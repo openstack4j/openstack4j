@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.pacesys</groupId>
+		<groupId>com.github.olivergondza.os4j</groupId>
 		<artifactId>openstack4j-core-integration-test</artifactId>
-		<version>3.1.1-jenkins2</version>
+		<version>3.1.0.1-jenkins-SNAPSHOT</version>
 	</parent>
 	<artifactId>it-httpclient</artifactId>
 	<name>OpenStack4j IntegrationTest Apache HttpClient</name>
@@ -14,13 +14,13 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.pacesys.openstack4j.connectors</groupId>
+			<groupId>com.github.olivergondza.os4j.connectors</groupId>
 			<artifactId>openstack4j-httpclient</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.pacesys</groupId>
+			<groupId>com.github.olivergondza.os4j</groupId>
 			<artifactId>openstack4j-core-integration-test</artifactId>
 			<version>${project.version}</version>
 			<type>test-jar</type>
@@ -43,7 +43,7 @@
 						<inherited>false</inherited>
 						<configuration>
 							<dependenciesToScan>
-								<dependency>org.pacesys:openstack4j-core-integration-test</dependency>
+								<dependency>com.github.olivergondza.os4j:openstack4j-core-integration-test</dependency>
 							</dependenciesToScan>
 						</configuration>
 					</execution>
