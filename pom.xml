@@ -35,9 +35,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:ContainX/openstack4j.git</connection>
-        <developerConnection>scm:git:git@github.com:ContainX/openstack4j.git</developerConnection>
-        <url>http://github.com/ContainX/openstack4j/</url>
+        <connection>scm:git:git@github.com:olivergondza/openstack4j.git</connection>
+        <developerConnection>scm:git:git@github.com:olivergondza/openstack4j.git</developerConnection>
+        <url>http://github.com/olivergondza/openstack4j/</url>
         <tag>HEAD</tag>
     </scm>
     <mailingLists>
