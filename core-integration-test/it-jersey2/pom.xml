@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.github.olivergondza.os4j</groupId>
 		<artifactId>openstack4j-core-integration-test</artifactId>
-		<version>3.1.0.1-jenkins-SNAPSHOT</version>
+		<version>3.1.0.1-jenkins</version>
 	</parent>
 	<artifactId>it-jersey2</artifactId>
 	<name>OpenStack4j IntegrationTest Jersey2 Connector</name>
