@@ -39,6 +39,9 @@
 						</goals>
                                                 <configuration>
                                                   <additionalparam>-Xdoclint:none</additionalparam>
+													<includeDependencySources>true</includeDependencySources>
+													<dependencySourceIncludes>com.github.olivergondza.os4j</dependencySourceIncludes>
+													<excludePackageNames>*.internal</excludePackageNames>
                                                 </configuration>
 					</execution>
 				</executions>
