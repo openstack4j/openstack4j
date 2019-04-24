@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.storage.block.EncryptionType;
 import org.openstack4j.model.storage.block.Volume;
 import org.openstack4j.model.storage.block.VolumeType;
 import org.openstack4j.model.storage.block.VolumeUploadImage;
@@ -41,6 +42,27 @@ public interface BlockVolumeService extends RestService {
      */
     VolumeType createVolumeType(VolumeType volumeType);
 
+    /**
+     * Creates a new encryption type with the specified instance for the specified volume type
+     *
+     * @param encryptionType
+     *            the EncryptionType for create
+     * @param volumeTypeId
+     *            the volume type identifier
+     * @return the created encryption type
+     */
+    EncryptionType createEncryptionType(EncryptionType encryptionType, String volumeTypeId);
+
+    /**
+     * Deletes the specified encryption type for the specified volume type
+     *
+     * @param encryptionId
+     *            the encryption type identifier
+     * @param volumeTypeId
+     *            the volume type identifier
+     */
+    void deleteEncryptionType(String encryptionId, String volumeTypeId);
+
 	/**
 	 * Lists summary information for all Block Storage volumes that the tenant who submits the request can access.
 	 * 
@@ -55,6 +77,13 @@ public interface BlockVolumeService extends RestService {
 	 * @return 
 	*/
 	List<? extends Volume> list(Map<String, String> filteringParams);
+
+	/**
+	 * Lists all Block Storage volumes for all tenants.
+	 *
+	 * @return List of all Volumes
+	 */
+	List<? extends Volume> listAll();
 
 	/**
 	 * Gets a Block Storage volume by ID

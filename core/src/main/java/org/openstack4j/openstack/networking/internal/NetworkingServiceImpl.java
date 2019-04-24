@@ -10,6 +10,7 @@ import org.openstack4j.api.networking.RouterService;
 import org.openstack4j.api.networking.SecurityGroupRuleService;
 import org.openstack4j.api.networking.SecurityGroupService;
 import org.openstack4j.api.networking.SubnetService;
+import org.openstack4j.api.networking.TrunkService;
 import org.openstack4j.api.networking.ext.AgentService;
 import org.openstack4j.api.networking.ext.FirewallAsService;
 import org.openstack4j.api.networking.ext.LbaasV2Service;
@@ -19,7 +20,7 @@ import org.openstack4j.api.networking.ext.NetworkIPAvailabilityService;
 
 /**
  * OpenStack Networking Operations API
- * 
+ *
  * @author Jeremy Unruh
  */
 public class NetworkingServiceImpl implements NetworkingService {
@@ -100,7 +101,7 @@ public class NetworkingServiceImpl implements NetworkingService {
      * {@inheritDoc}
      */
     @Override
-    public LbaasV2Service lbaasV2(){
+    public LbaasV2Service lbaasV2() {
         return Apis.get(LbaasV2Service.class);
     }
 
@@ -110,7 +111,7 @@ public class NetworkingServiceImpl implements NetworkingService {
     @Override
     public FirewallAsService firewalls() {
         return Apis.get(FirewallAsService.class);
-    }	
+    }
 
     /**
      * {@inheritDoc}
@@ -119,7 +120,7 @@ public class NetworkingServiceImpl implements NetworkingService {
     public AgentService agent() {
         return Apis.get(AgentService.class);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -134,6 +135,14 @@ public class NetworkingServiceImpl implements NetworkingService {
     @Override
     public NetworkIPAvailabilityService networkIPAvailability() {
         return Apis.get(NetworkIPAvailabilityService.class);
-    }	
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public TrunkService trunk() {
+        return Apis.get(TrunkService.class);
+    }
 
 }

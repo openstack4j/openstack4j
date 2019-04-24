@@ -260,4 +260,10 @@ public interface NetworkBuilders {
      */
     public NetworkIPAvailabilityBuilder networkIPAvailability();
 
+    /**
+     * The builder to create a Trunk
+     *
+     * @return TrunkBuilder
+     */
+    public TrunkBuilder trunk();
 }

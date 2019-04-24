@@ -82,6 +82,7 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
         String json = String.format("{ \"%s\": %s }", "floatingip", inner);
         return put(NeutronFloatingIP.class, uri("/floatingips/%s",fipId)).json(json)
                 .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
+
     }
 
     /**

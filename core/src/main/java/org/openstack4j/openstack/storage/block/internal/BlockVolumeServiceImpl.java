@@ -5,6 +5,7 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.api.storage.BlockVolumeService;
 import org.openstack4j.api.storage.BlockVolumeTransferService;
 import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.storage.block.EncryptionType;
 import org.openstack4j.model.storage.block.Volume;
 import org.openstack4j.model.storage.block.VolumeType;
 import org.openstack4j.model.storage.block.VolumeUploadImage;
@@ -48,6 +49,14 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
     public List<? extends Volume> list(Map<String, String> filteringParams) {
         Invocation<Volumes> volumeInvocation = buildInvocation(filteringParams);
         return volumeInvocation.execute().getList();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<? extends Volume> listAll() {
+        return get(Volumes.class, uri("/volumes/detail")).param("all_tenants", 1).execute().getList();
     }
 
     /**
@@ -157,6 +166,27 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
     public VolumeType createVolumeType(VolumeType volumeType) {
         checkNotNull(volumeType);
         return post(CinderVolumeType.class, uri("/types")).entity(volumeType).execute();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public EncryptionType createEncryptionType(EncryptionType encryptionType, String volumeTypeId) {
+        checkNotNull(encryptionType);
+        checkNotNull(volumeTypeId);
+        return post(CinderEncryptionType.class, uri("/types/%s/encryption", volumeTypeId)).entity(encryptionType)
+                .execute();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void deleteEncryptionType(String encryptionId, String volumeTypeId) {
+        checkNotNull(encryptionId);
+        checkNotNull(volumeTypeId);
+        delete(Void.class, uri("/types/%s/encryption/%s", volumeTypeId, encryptionId)).execute();
     }
 
     @Override
