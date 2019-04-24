@@ -10,7 +10,7 @@ import org.openstack4j.common.RestService;
 
 /**
  * OpenStack Networking Operations API
- * 
+ *
  * @author Jeremy Unruh
  */
 public interface NetworkingService extends RestService {
@@ -56,14 +56,14 @@ public interface NetworkingService extends RestService {
      * @return the network quota service
      */
     NetQuotaService quotas();
-   
+
     /**
      * @return the LBaaS service
      */
     LoadBalancerService loadbalancers();
-    
+
     /**
-     * 
+     *
      * @return the Neutron agent API
      */
     AgentService agent();
@@ -74,12 +74,15 @@ public interface NetworkingService extends RestService {
     LbaasV2Service lbaasV2();
 
     /**
-     * <p>OpenStack Firewall As a Service <code>(FwaaS) : Firewall</code> Operations API</p>
-     * 
+     * <p>
+     * OpenStack Firewall As a Service <code>(FwaaS) : Firewall</code> Operations
+     * API
+     * </p>
+     *
      * @return the FwaaS service
      */
     FirewallAsService firewalls();
-    
+
     /**
      * @return the Availability Zone Service API
      */
@@ -89,4 +92,9 @@ public interface NetworkingService extends RestService {
      * @return the Network IP Availability Service API
      */
     NetworkIPAvailabilityService networkIPAvailability();
+
+    /**
+     * @return the Trunk API
+     */
+    TrunkService trunk();
 }
