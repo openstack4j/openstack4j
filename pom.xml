@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.olivergondza.os4j</groupId>
     <artifactId>openstack4j-parent</artifactId>
-    <version>3.1.0.3-jenkins-SNAPSHOT</version>
+    <version>3.1.1-SNAPSHOT</version>
     <name>OpenStack4j Parent</name>
     <description>OpenStack Java API</description>
     <url>http://github.com/ContainX/openstack4j/</url>

@@ -2,7 +2,7 @@
     <parent>
         <groupId>com.github.olivergondza.os4j</groupId>
         <artifactId>openstack4j-parent</artifactId>
-        <version>3.1.0.3-jenkins-SNAPSHOT</version>
+        <version>3.1.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.olivergondza.os4j.connectors</groupId>
