@@ -1,7 +1,7 @@
 OpenStack4j
 ===========
 
-[![Build Status](https://travis-ci.org/ContainX/openstack4j.svg?branch=master)](https://travis-ci.org/ContainX/openstack4j)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
+[![Build Status](https://travis-ci.org/openstack4j/openstack4j.svg?branch=master)](https://travis-ci.org/openstack4j/openstack4j)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
 
 OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment.   This includes support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions (LBaaS, FWaaS, Quota-Sets, etc)
 
@@ -11,13 +11,11 @@ OpenStack4j is a fluent OpenStack client that allows provisioning and control of
 * Documentation/Tutorials: [OpenStack4j.com/learn/](http://www.openstack4j.com/learn/)
 * Questions - Use Google Groups: [groups.google.com/group/openstack4j](http://groups.google.com/group/openstack4j)
 * Questions - [Stackoverflow](http://stackoverflow.com/search?q=openstack4j)
-* Chat on Slack: [containx.slack.com](https://containx.slack.com)
-* Twitter: [@openstack4j](https://twitter.com/openstack4j)
-* Changelog: [Changelog](https://github.com/ContainX/openstack4j/blob/master/CHANGELOG.md)
+* Changelog: [Changelog](https://github.com/openstack4j/openstack4j/blob/master/CHANGELOG.md)
 
 ## Bug Reports
 
-* GitHub Issues: [Click Here](https://github.com/ContainX/openstack4j/issues)
+* GitHub Issues: [Click Here](https://github.com/openstack4j/openstack4j/issues)
 
 ## Requirements
 
@@ -45,7 +43,7 @@ OpenStack4j version 2.0.0+ is now modular.  One of the benefits to this is the a
 
 **Using OpenStack4j with one of our connector modules**
 
-To configure OpenStack4j to use one of our supported connectors (Jersey 2, Resteasy, Apache HttpClient, OKHttp) [see the usage guide](https://github.com/ContainX/openstack4j/tree/master/connectors)
+To configure OpenStack4j to use one of our supported connectors (Jersey 2, Resteasy, Apache HttpClient, OKHttp) [see the usage guide](https://github.com/openstack4j/openstack4j/tree/master/connectors)
 
 #### Current (Master Branch)
 
@@ -78,7 +76,7 @@ Example POM based repository declaration to grab snapshots:
 
 Contributing
 ------------
-If you would like to contribute please see our contributing [guidelines](https://github.com/ContainX/openstack4j/blob/master/CONTRIBUTING.md)
+If you would like to contribute please see our contributing [guidelines](https://github.com/openstack4j/openstack4j/blob/master/CONTRIBUTING.md)
 
 #### Thank you contributors
 
@@ -100,7 +98,7 @@ If you would like to contribute please see our contributing [guidelines](https:/
 
 #### Throughput
 
-[![Throughput Graph](https://graphs.waffle.io/ContainX/openstack4j/throughput.svg)](https://waffle.io/ContainX/openstack4j/metrics)
+[![Throughput Graph](https://graphs.waffle.io/openstack4j/openstack4j/throughput.svg)](https://waffle.io/openstack4j/openstack4j/metrics)
 
 Quick Usage Guide
 -----------------

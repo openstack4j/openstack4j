@@ -10,7 +10,7 @@
     <version>3.2.1-SNAPSHOT</version>
     <name>OpenStack4j Parent</name>
     <description>OpenStack Java API</description>
-    <url>http://github.com/ContainX/openstack4j/</url>
+    <url>http://github.com/openstack4j/openstack4j/</url>
     <packaging>pom</packaging>
     <properties>
         <release.version>2.0.0</release.version>
