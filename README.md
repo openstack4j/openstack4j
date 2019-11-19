@@ -78,27 +78,7 @@ Contributing
 ------------
 If you would like to contribute please see our contributing [guidelines](https://github.com/openstack4j/openstack4j/blob/master/CONTRIBUTING.md)
 
-#### Thank you contributors
-
-- @gondor         
-- @auhlig       	 
-- @octupszhang    
-- @gonzolino      
-- @ekasitk        
-- @magixyu        
-- @maxrome        
-- @isartcanyameres
-- @iviireczech    
-- @n-r-anderson  
-- @krishnabrucelee
-- @peter-nordquist
-- @RibeiroAna     
-- @symcssn        
-- @olivergondza   
-
-#### Throughput
-
-[![Throughput Graph](https://graphs.waffle.io/openstack4j/openstack4j/throughput.svg)](https://waffle.io/openstack4j/openstack4j/metrics)
+The OpenStack4j project is a work of Jeremy Unruh as the original project author and the [community of contributors](https://github.com/openstack4j/openstack4j/graphs/contributors).
 
 Quick Usage Guide
 -----------------
