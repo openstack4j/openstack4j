@@ -3,6 +3,7 @@ release.properties
 javadoc
 !.travis.yml
 !.gitignore
+!.github
 .classpath
 .project
 .orig
