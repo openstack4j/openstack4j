@@ -39,7 +39,7 @@ public class OSBadBooleanDeserializer extends JsonDeserializer<Boolean> {
          return Boolean.valueOf(_parseBooleanFromNumber(jp, ctxt));
      }
      if (t == JsonToken.VALUE_NULL) {
-         return getNullValue();
+         return getNullValue(ctxt);
      }
      // And finally, let's allow Strings to be converted too
      if (t == JsonToken.VALUE_STRING) {
@@ -51,7 +51,7 @@ public class OSBadBooleanDeserializer extends JsonDeserializer<Boolean> {
              return Boolean.FALSE;
          }
          if (text.length() == 0) {
-             return getEmptyValue();
+             return getNullValue(ctxt);
          }
          throw ctxt.weirdStringException(text, Boolean.class, "only \"true\" or \"false\" recognized");
      }
