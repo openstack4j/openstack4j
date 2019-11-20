@@ -35,9 +35,9 @@ OpenStack4j version 2.0.0+ is now modular.  One of the benefits to this is the a
 **Using OpenStack4j with the default Jersey2 Connector**
 ```xml
 <dependency>
-    <groupId>org.pacesys</groupId>
+    <groupId>com.github.openstack4j.core</groupId>
     <artifactId>openstack4j</artifactId>
-    <version>3.2.0</version>
+    <version>...</version>
 </dependency>
 ```
 
@@ -51,9 +51,9 @@ See notes above about connectors (same rules apply) to development branches.
 
 ```xml
 <dependency>
-    <groupId>org.pacesys</groupId>
+    <groupId>com.github.openstack4j.core</groupId>
     <artifactId>openstack4j</artifactId>
-    <version>3.2.1-SNAPSHOT</version>
+    <version>...</version>
 </dependency>
 ```
 
