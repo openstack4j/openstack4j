@@ -28,7 +28,7 @@ public class SecretTests extends AbstractTest {
     private final String secretName = "test_secret";
     private final String content_type = "application/octet-stream";
 
-    private final Date expiration = new Date(1451330264394l);
+    private final Date expiration = new Date(1451330084180L);
 
     public void testListSecretsByName() throws IOException {
         respondWith(SECRETS_JSON);
