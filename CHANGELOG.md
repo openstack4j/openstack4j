@@ -1,5 +1,9 @@
 # Change Log
 
+**Starting with 3.3, changelog has moved to [Releases page](https://github.com/openstack4j/openstack4j/releases)**
+
+## Old releases
+
 ### 3.2.0 (Latest / Stable)
 
 - Implement listCachedImages() for Glance V2 Images #1226
