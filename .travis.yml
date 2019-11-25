@@ -18,7 +18,7 @@ notifications:
 
 install: /bin/true
 
-script: mvn -B clean org.jacoco:jacoco-maven-plugin:prepare-agent install org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Dsonar.projectKey=openstack4j_openstack4j
+script: mvn -B clean org.jacoco:jacoco-maven-plugin:prepare-agent install org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Dsonar.projectKey=openstack4j_openstack4j -Dsonar.host.url=https://sonarcloud.io
 
 after_success:
   - "[[ $DEPLOY == 1 && $TRAVIS_BRANCH == \"master\" ]] && { mvn deploy --settings distribution/settings.xml -DskipTests=true -B; };"
