@@ -18,7 +18,17 @@ notifications:
 
 install: /bin/true
 
-script: mvn -B clean org.jacoco:jacoco-maven-plugin:prepare-agent install org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Dsonar.projectKey=openstack4j_openstack4j -Dsonar.host.url=https://sonarcloud.io
+script:
+  - |
+    if [ "$TRAVIS_BRANCH" == "master" ]; then
+      echo "Run sonar analysis for master only"
+      jacoco_goal="org.jacoco:jacoco-maven-plugin:prepare-agent"
+      sonar_goal="org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar"
+      sonar_opts="-Dsonar.projectKey=openstack4j_openstack4j"
+    else
+      echo "Skipping sonar analysis"
+    fi
+    mvn -B clean $jacoco_goal install $sonar_goal $sonar_opts
 
 after_success:
   - "[[ $DEPLOY == 1 && $TRAVIS_BRANCH == \"master\" ]] && { mvn deploy --settings distribution/settings.xml -DskipTests=true -B; };"
