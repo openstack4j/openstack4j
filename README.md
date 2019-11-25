@@ -1,7 +1,9 @@
 OpenStack4j
 ===========
 
-[![Build Status](https://travis-ci.org/openstack4j/openstack4j.svg?branch=master)](https://travis-ci.org/openstack4j/openstack4j)  [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
+[![Build Status](https://travis-ci.org/openstack4j/openstack4j.svg?branch=master)](https://travis-ci.org/openstack4j/openstack4j) 
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j) 
 
 OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment.   This includes support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions (LBaaS, FWaaS, Quota-Sets, etc)
 
@@ -10,7 +12,7 @@ OpenStack4j is a fluent OpenStack client that allows provisioning and control of
 * Website: [OpenStack4j.com](http://www.openstack4j.com)
 * Documentation/Tutorials: [OpenStack4j.com/learn/](http://www.openstack4j.com/learn/)
 * Questions - Use Google Groups: [groups.google.com/group/openstack4j](http://groups.google.com/group/openstack4j)
-* Questions - [Stackoverflow](http://stackoverflow.com/search?q=openstack4j)
+* Questions - [StackOverflow](http://stackoverflow.com/search?q=openstack4j)
 * Changelog: [Changelog](https://github.com/openstack4j/openstack4j/blob/master/CHANGELOG.md)
 
 ## Bug Reports
@@ -27,8 +29,6 @@ Maven
 -----
 
 #### Latest Release (Stable)
-
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.pacesys/openstack4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.pacesys/openstack4j)
 
 OpenStack4j version 2.0.0+ is now modular.  One of the benefits to this is the ability to choose the connector that you would like to use in your environment.  
 
