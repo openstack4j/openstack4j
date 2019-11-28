@@ -20,6 +20,7 @@ install: /bin/true
 
 script:
   - |
+    set -x
     if [ "$TRAVIS_BRANCH" == "master" ]; then
       echo "Run sonar analysis for master only"
       jacoco_goal="org.jacoco:jacoco-maven-plugin:prepare-agent"
@@ -31,7 +32,7 @@ script:
     mvn -B clean $jacoco_goal install $sonar_goal $sonar_opts
 
 after_success:
-  - "[[ $DEPLOY == 1 && $TRAVIS_BRANCH == \"master\" ]] && { mvn deploy --settings distribution/settings.xml -DskipTests=true -B; };"
+  - "set -x; [[ $DEPLOY == 1 && $TRAVIS_BRANCH == \"master\" ]] && { mvn deploy --settings distribution/settings.xml -DskipTests=true -B; };"
 
 # disable sudo to ensure that this build runs on the travis container-based
 # infrastructure. This should prevent the buffer overflow from
