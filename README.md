@@ -10,8 +10,8 @@ OpenStack4j is a fluent OpenStack client that allows provisioning and control of
 
 ## Documentation and Support
 
-* Website: [OpenStack4j.com](http://www.openstack4j.com)
-* Documentation/Tutorials: [OpenStack4j.com/learn/](http://www.openstack4j.com/learn/)
+* Website: [openstack4j.github.io](https://openstack4j.github.io/)
+* Documentation/Tutorials: [openstack4j.github.io/learn/](https://openstack4j.github.io/learn/)
 * Questions - Use Google Groups: [groups.google.com/group/openstack4j](http://groups.google.com/group/openstack4j)
 * Questions - [StackOverflow](http://stackoverflow.com/search?q=openstack4j)
 * Changelog: [Changelog](https://github.com/openstack4j/openstack4j/blob/master/CHANGELOG.md)
@@ -84,7 +84,7 @@ The OpenStack4j project is a work of Jeremy Unruh as the original project author
 Quick Usage Guide
 -----------------
 
-Below are some examples of the API usage.  Please visit [www.OpenStack4j.com](http://www.openstack4j.com) for the full manual and getting started guides.
+Below are some examples of the API usage.  Please visit [openstack4j.github.io](https://openstack4j.github.io/) for the full manual and getting started guides.
 
 
 ### Authenticating
