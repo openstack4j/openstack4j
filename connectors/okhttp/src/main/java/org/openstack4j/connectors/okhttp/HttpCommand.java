@@ -1,6 +1,5 @@
 package org.openstack4j.connectors.okhttp;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
@@ -13,13 +12,13 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.ConnectionPool;
-import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.internal.Util;
+import okhttp3.logging.HttpLoggingInterceptor;
 import org.openstack4j.core.transport.ClientConstants;
 import org.openstack4j.core.transport.Config;
 import org.openstack4j.core.transport.HttpMethod;
@@ -57,7 +56,7 @@ public final class HttpCommand<R> {
      * @return the command
      */
     public static <R> HttpCommand<R> create(HttpRequest<R> request) {
-        HttpCommand<R> command = new HttpCommand<R>(request);
+        HttpCommand<R> command = new HttpCommand<>(request);
         command.initialize();
         return command;
     }
@@ -89,7 +88,7 @@ public final class HttpCommand<R> {
         if (config.getHostNameVerifier() != null)
             okHttpClientBuilder.hostnameVerifier(config.getHostNameVerifier());
         if (HttpLoggingFilter.isLoggingEnabled()) {
-            okHttpClientBuilder.addInterceptor(new LoggingInterceptor());
+            okHttpClientBuilder.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         }
         okHttpClientBuilder.connectionPool(getConnectionPool());
         client = okHttpClientBuilder.build();
@@ -113,10 +112,7 @@ public final class HttpCommand<R> {
     }
 
     /**
-     * Executes the command and returns the Response
-     *
-     * @return the response
-     * @throws Exception
+     * Executes the command and returns the Response.
      */
     public Response execute() throws Exception {
         RequestBody body = null;
@@ -206,22 +202,6 @@ public final class HttpCommand<R> {
 
         for(Map.Entry<String, Object> h : request.getHeaders().entrySet()) {
             clientReq.addHeader(h.getKey(), String.valueOf(h.getValue()));
-        }
-    }
-
-    static class LoggingInterceptor implements Interceptor {
-        @Override public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-
-            long t1 = System.nanoTime();
-            System.err.println(String.format("Sending request %s on %s%n%s",
-                    request.url(), chain.connection(), request.headers()));
-            Response response = chain.proceed(request);
-
-            long t2 = System.nanoTime();
-            System.err.println(String.format("Received response for %s in %.1fms%n%s",
-                    response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-            return response;
         }
     }
 }

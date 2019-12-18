@@ -151,7 +151,7 @@ public abstract class OSFactory<T extends OSFactory<T>> {
      * @param enabled true to enable, false to enable
      */
     public static void enableHttpLoggingFilter(boolean enabled) {
-        System.getProperties().setProperty(HttpLoggingFilter.class.getName(), String.valueOf(enabled));
+        HttpLoggingFilter.toggleLogging(enabled);
     }
 
     /**

@@ -9,10 +9,13 @@ package org.openstack4j.core.transport.internal;
  */
 public final class HttpLoggingFilter {
 
+    private static final String PROPERTY_NAME = HttpLoggingFilter.class.getName();
+
     private HttpLoggingFilter() { }
     
     public static void toggleLogging(boolean isEnabled) {
-        System.getProperties().setProperty(HttpLoggingFilter.class.getName(), String.valueOf(isEnabled));
+        System.setProperty(PROPERTY_NAME, String.valueOf(isEnabled));
+
         System.setProperty("org.apache.commons.logging.Log","org.apache.commons.logging.impl.SimpleLog");
         System.setProperty("org.apache.commons.logging.simplelog.showdatetime", "true");
         System.setProperty("org.apache.commons.logging.simplelog.log.org.apache.http", isEnabled ? "DEBUG" : "WARN");
@@ -20,6 +23,6 @@ public final class HttpLoggingFilter {
     }
     
     public static boolean isLoggingEnabled() {
-        return Boolean.getBoolean(HttpLoggingFilter.class.getName());
+        return Boolean.getBoolean(PROPERTY_NAME);
     }
 }
