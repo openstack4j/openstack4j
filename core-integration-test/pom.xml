@@ -12,8 +12,8 @@
 	<properties>
 		<skipTests>false</skipTests>
 		<!--<it-root>${session.executionRootDirectory}</it-root>-->
-		<betamax.core.version>2.1.0-20160705.041750-6</betamax.core.version>
-		<betamax.junit.version>2.1.0-20160705.041753-6</betamax.junit.version>
+		<betamax.core.version>2.0.1</betamax.core.version>
+		<betamax.junit.version>2.0.1</betamax.junit.version>
 	</properties>
 
 	<!-- dedicated module per connector to test -->
