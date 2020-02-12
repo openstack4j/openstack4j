@@ -16,7 +16,9 @@ import java.util.List;
 public interface ShareService extends RestService {
     /**
      * @return a list of available Shared File Systems API extensions
+     * @deprecated https://docs.openstack.org/api-ref/compute/?expanded=#extensions-extensions-deprecated
      */
+    @Deprecated
     List<? extends Extension> listExtensions();
 
     /**

@@ -96,7 +96,9 @@ public interface ComputeService extends RestService {
 	
 	/**
 	 * @return a list of Extensions that have been added against the Compute service
+	 * @deprecated https://specs.openstack.org/openstack/nova-specs/specs/newton/implemented/api-no-more-extensions.html
 	 */
+	@Deprecated
 	List<? extends Extension> listExtensions();
 	
 	/**

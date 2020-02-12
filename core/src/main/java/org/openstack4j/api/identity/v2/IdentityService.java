@@ -45,7 +45,9 @@ public interface IdentityService extends RestService {
 	 * List extensions currently available on the OpenStack instance
 	 *
 	 * @return List of extensions
+	 * @deprecated https://docs.openstack.org/api-ref/compute/?expanded=#extensions-extensions-deprecated
 	 */
+	@Deprecated
 	List<? extends Extension> listExtensions();
 	
 	/**
