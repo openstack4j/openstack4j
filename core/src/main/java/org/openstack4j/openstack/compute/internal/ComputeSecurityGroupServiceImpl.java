@@ -19,6 +19,7 @@ import org.openstack4j.openstack.compute.domain.NovaSecGroupExtension.SecurityGr
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public class ComputeSecurityGroupServiceImpl extends BaseComputeServices implements ComputeSecurityGroupService {
 
 	/**

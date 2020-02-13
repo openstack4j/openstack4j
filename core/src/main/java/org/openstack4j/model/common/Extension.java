@@ -10,7 +10,9 @@ import org.openstack4j.model.ModelEntity;
  * Represents an Extension which adds additional functionality to the OpenStack API
  * 
  * @author Jeremy Unruh
+ * @deprecated https://specs.openstack.org/openstack/nova-specs/specs/newton/implemented/api-no-more-extensions.html
  */
+@Deprecated
 public interface Extension extends ModelEntity {
 
 	/**

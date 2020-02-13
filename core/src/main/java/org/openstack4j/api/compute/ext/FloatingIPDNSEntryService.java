@@ -12,6 +12,7 @@ import org.openstack4j.model.compute.ext.DNSRecordType;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public interface FloatingIPDNSEntryService extends RestService {
 
     /**

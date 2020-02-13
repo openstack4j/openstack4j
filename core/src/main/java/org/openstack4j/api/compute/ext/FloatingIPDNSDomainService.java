@@ -11,6 +11,7 @@ import org.openstack4j.model.compute.ext.DomainEntry;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public interface FloatingIPDNSDomainService extends RestService {
 
     /**

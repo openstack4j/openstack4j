@@ -17,6 +17,7 @@ import org.openstack4j.openstack.compute.domain.NovaImage.NovaImages;
  *
  * @author Jeremy Unruh
  */
+@Deprecated
 public class ComputeImageServiceImpl extends BaseComputeServices implements ComputeImageService {
 
 	/**

@@ -13,7 +13,10 @@ import org.openstack4j.model.compute.SecGroupExtension.Rule;
  * Extension Mapping: (os-security-groups)
  * 
  * @author Jeremy Unruh
+ * @deprecated These APIs are proxy calls to the Network service. Nova has deprecated all the proxy APIs and users should use the native APIs instead. These will fail with a 404 starting from microversion 2.36
+ * @see org.openstack4j.api.networking.SecurityGroupService
  */
+@Deprecated
 public interface ComputeSecurityGroupService extends RestService {
 
 	/**

@@ -15,7 +15,9 @@ import java.util.List;
  * Represents an Extension which adds additional functionality to the OpenStack API
  *
  * @author Jeremy Unruh
+ * @deprecated https://specs.openstack.org/openstack/nova-specs/specs/newton/implemented/api-no-more-extensions.html
  */
+@Deprecated
 public class ExtensionValue implements Extension {
 
 	private static final long serialVersionUID = 1L;
