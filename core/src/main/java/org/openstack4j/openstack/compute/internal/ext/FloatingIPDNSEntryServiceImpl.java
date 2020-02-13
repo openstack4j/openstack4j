@@ -17,6 +17,7 @@ import org.openstack4j.openstack.compute.internal.BaseComputeServices;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public class FloatingIPDNSEntryServiceImpl extends BaseComputeServices implements FloatingIPDNSEntryService {
 
     @Override

@@ -11,7 +11,10 @@ import org.openstack4j.model.compute.Server;
  * OpenStack Compute Floating-IP Operation API.
  *
  * @author Nathan Anderson
+ * @deprecated This API is a proxy call to the Network service. Nova has deprecated all the proxy APIs and users should use the native APIs instead. This API will fail with a 404 starting from microversion 2.36.
+ * @see org.openstack4j.api.networking.NetFloatingIPService
  */
+@Deprecated
 public interface ComputeFloatingIPService extends RestService {
 
 	/**

@@ -16,6 +16,7 @@ import org.openstack4j.openstack.compute.domain.NovaHostResource.NovaHostResourc
  * @author Qin An
  *
  */
+@Deprecated
 public class HostServiceImpl extends BaseComputeServices implements HostService {
 
     @Override

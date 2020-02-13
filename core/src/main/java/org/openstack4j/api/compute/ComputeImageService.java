@@ -11,7 +11,10 @@ import org.openstack4j.model.compute.Image;
  * Provides access to Compute Images
  * 
  * @author Jeremy Unruh
+ * @deprecated These APIs are proxy calls to the Image service. Nova has deprecated all the proxy APIs and users should use the native APIs instead. All the Image services proxy APIs except image metadata APIs will fail with a 404 starting from microversion 2.36. The image metadata APIs will fail with a 404 starting from microversion 2.39.
+ * @see org.openstack4j.api.image.v2.ImageService
  */
+@Deprecated
 public interface ComputeImageService extends RestService {
 
 	/**

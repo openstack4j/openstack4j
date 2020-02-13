@@ -10,6 +10,7 @@ import org.openstack4j.api.compute.ext.FloatingIPDNSService;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public class FloatingIPDNSServiceImpl implements FloatingIPDNSService {
 
     @Override

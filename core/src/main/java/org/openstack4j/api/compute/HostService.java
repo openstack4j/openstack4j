@@ -10,8 +10,10 @@ import org.openstack4j.model.compute.HostResource;
  * Nova OS Host Service
  * 
  * @author Qin An
- *
+ * @deprecated The os-hosts API is deprecated as of the 2.43 microversion. Requests made with microversion >= 2.43 will result in a 404 error. To list and show host details, use the Hypervisors (os-hypervisors) API. To enable or disable a service, use the Compute services (os-services) API. There is no replacement for the shutdown, startup, reboot, or maintenance_mode actions as those are system-level operations which should be outside of the control of the compute service.
+ * @see ServerService
  */
+@Deprecated
 public interface HostService extends RestService {
 
     /**

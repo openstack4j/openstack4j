@@ -28,7 +28,10 @@ public interface ComputeService extends RestService {
 	 * Image Service API
 	 *
 	 * @return the image service
+	 * @deprecated These APIs are proxy calls to the Image service. Nova has deprecated all the proxy APIs and users should use the native APIs instead. All the Image services proxy APIs except image metadata APIs will fail with a 404 starting from microversion 2.36. The image metadata APIs will fail with a 404 starting from microversion 2.39.
+	 * @see org.openstack4j.api.image.v2.ImageService
 	 */
+	@Deprecated
 	ComputeImageService images();
 	
 	/**
@@ -63,21 +66,30 @@ public interface ComputeService extends RestService {
 	 * Compute Os-Host API
 	 *
 	 * @return the compute os-host service
+	 * @deprecated The os-hosts API is deprecated as of the 2.43 microversion. Requests made with microversion >= 2.43 will result in a 404 error. To list and show host details, use the Hypervisors (os-hypervisors) API. To enable or disable a service, use the Compute services (os-services) API. There is no replacement for the shutdown, startup, reboot, or maintenance_mode actions as those are system-level operations which should be outside of the control of the compute service.
+	 * @see ServerService
 	 */
+	@Deprecated
 	HostService host();
 
 	/**
 	 * Floating IP Service API
 	 *
 	 * @return the floating-ip service
+	 * @deprecated This API is a proxy call to the Network service. Nova has deprecated all the proxy APIs and users should use the native APIs instead. This API will fail with a 404 starting from microversion 2.36.
+	 * @see org.openstack4j.api.networking.NetFloatingIPService
 	 */
+	@Deprecated
 	ComputeFloatingIPService floatingIps();
 	
 	/**
 	 * Security Groups Extension API
 	 * 
 	 * @return the security groups service
+	 * @deprecated These APIs are proxy calls to the Network service. Nova has deprecated all the proxy APIs and users should use the native APIs instead. These will fail with a 404 starting from microversion 2.36
+	 * @see org.openstack4j.api.networking.SecurityGroupService
 	 */
+	@Deprecated
 	ComputeSecurityGroupService securityGroups();
 	
 	/**
@@ -112,8 +124,11 @@ public interface ComputeService extends RestService {
 	 * Service that manages the extension 'os-floating-ip-dns'
 	 * 
 	 * @return the floating IP DNS Service
+	 * @deprecated Since these APIs are only implemented for nova-network, they are deprecated. These will fail with a 404 starting from microversion 2.36. They were removed in the 18.0.0 Rocky release.
 	 */
+	@Deprecated
 	FloatingIPDNSService floatingIPDNS();
+
 	/**
 	 * Host Aggregates Management Service
 	 */

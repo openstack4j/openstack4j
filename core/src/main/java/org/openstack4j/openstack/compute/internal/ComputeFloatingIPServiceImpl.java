@@ -22,6 +22,7 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
  *
  * @author Nathan Anderson
  */
+@Deprecated
 public class ComputeFloatingIPServiceImpl extends BaseComputeServices implements ComputeFloatingIPService {
 
     /**
