@@ -7,6 +7,7 @@ import org.openstack4j.model.ModelEntity;
  * 
  * @author Qin An
  */
+@Deprecated
 public interface HostResource extends ModelEntity {
     /**
      * @return the number of CPUs of the compute host

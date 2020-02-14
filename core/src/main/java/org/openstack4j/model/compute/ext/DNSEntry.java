@@ -7,6 +7,7 @@ import org.openstack4j.model.ModelEntity;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public interface DNSEntry extends ModelEntity {
 
     /**

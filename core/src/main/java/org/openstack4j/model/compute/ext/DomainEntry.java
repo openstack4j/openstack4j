@@ -10,8 +10,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public interface DomainEntry extends ModelEntity {
-    
+
+    @Deprecated
     public enum Scope {
         PUBLIC,
         PRIVATE

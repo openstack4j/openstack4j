@@ -8,6 +8,7 @@ import org.openstack4j.model.compute.FloatingIP;
  * 
  * @author Nathan Anderson
  */
+@Deprecated
 public interface FloatingIPBuilder extends Builder<FloatingIPBuilder, FloatingIP> {
 
 	/**

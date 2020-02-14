@@ -15,6 +15,7 @@ import com.google.common.base.MoreObjects;
  * @author Jeremy Unruh
  */
 @JsonRootName("domain_entry")
+@Deprecated
 public class ExtDomainEntry implements DomainEntry {
 
     private static final long serialVersionUID = 1L;
@@ -65,6 +66,7 @@ public class ExtDomainEntry implements DomainEntry {
                   .toString();
     }
 
+    @Deprecated
     public static class DomainEntries extends ListResult<ExtDomainEntry> {
 
         private static final long serialVersionUID = 1L;

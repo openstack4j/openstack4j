@@ -2,7 +2,6 @@ package org.openstack4j.api;
 
 import org.openstack4j.model.artifact.builder.ArtifactUpdateBuilder;
 import org.openstack4j.model.artifact.builder.ToscaTemplatesArtifactBuilder;
-import org.openstack4j.model.barbican.Secret;
 import org.openstack4j.model.barbican.builder.ContainerCreateBuilder;
 import org.openstack4j.model.barbican.builder.ContainerSecretBuilder;
 import org.openstack4j.model.barbican.builder.SecretCreateBuilder;
@@ -290,7 +289,9 @@ public class Builders {
      * The builder to create a Compute/Nova Floating IP
      *
      * @return the floating ip builder
+     * @deprecated @deprecated Since these APIs are only implemented for nova-network, they are deprecated. These will fail with a 404 starting from microversion 2.36. They were removed in the 18.0.0 Rocky release.
      */
+    @Deprecated
     public static FloatingIPBuilder floatingIP() {
         return NovaFloatingIP.builder();
     }
@@ -378,7 +379,6 @@ public class Builders {
 
     /**
      * The builder to create a {@link ResourceHealth}
-     * @return
      */
     public static ResourceHealthBuilder resourceHealth() {
         return HeatResourceHealth.builder();
@@ -853,10 +853,7 @@ public class Builders {
     }
 
     /**
-     * The builder which creates network service policy for gbp
-     *
-     *
-     * @return
+     * The builder which creates network service policy for gbp.
      */
     public static NetworkServicePolicyBuilder networkServicePolicy() {
         return GbpNetworkServicePolicy.builder();

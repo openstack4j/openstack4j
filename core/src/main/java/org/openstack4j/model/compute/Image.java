@@ -15,12 +15,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public interface Image extends ModelEntity {
 
 	/**
 	 * Status can be used while an image is being saved.  It provides state of the progress indicator.  Images with ACTIVE status
 	 * are available for install.
 	 */
+	@Deprecated
 	enum Status {
 		UNRECOGNIZED, UNKNOWN, ACTIVE, SAVING, ERROR, DELETED;
 		

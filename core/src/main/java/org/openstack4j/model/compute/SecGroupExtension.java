@@ -12,11 +12,13 @@ import org.openstack4j.model.compute.builder.SecurityGroupRuleBuilder;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public interface SecGroupExtension extends ModelEntity{
 
 	/**
 	 * Security Group Rule
 	 */
+	@Deprecated
 	public interface Rule extends ModelEntity, Buildable<SecurityGroupRuleBuilder> 
 	{
 		
@@ -66,6 +68,7 @@ public interface SecGroupExtension extends ModelEntity{
 		 * Rule Group
 		 * 
 		 */
+		@Deprecated
 		public interface Group 
 		{
 			 
@@ -85,6 +88,7 @@ public interface SecGroupExtension extends ModelEntity{
 		/**
 		 * Rule IP Range
 		 */
+		@Deprecated
 		public interface IpRange {
 			
 			/**
