@@ -21,6 +21,7 @@ import com.google.common.base.MoreObjects;
  * @author Jeremy Unruh
  */
 @JsonRootName("image")
+@Deprecated
 public class NovaImage implements Image {
 
 	private static final long serialVersionUID = 1L;
@@ -160,6 +161,7 @@ public class NovaImage implements Image {
 						.toString();
 	}
 
+	@Deprecated
 	public static class NovaImages extends ListResult<NovaImage> {
 
 		private static final long serialVersionUID = 1L;

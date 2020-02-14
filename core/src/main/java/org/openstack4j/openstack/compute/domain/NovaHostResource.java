@@ -16,6 +16,7 @@ import com.google.common.base.MoreObjects;
  * @author Elina Meier
  */
 @JsonRootName("resource")
+@Deprecated
 public class NovaHostResource implements HostResource {
 
     public static final long serialVersionUID = 1L;
@@ -76,7 +77,6 @@ public class NovaHostResource implements HostResource {
 	 * <p>Author:Wang Ting/王婷</p>
 	 * @Title: getService
 	 * @return
-	 * @see org.openstack4j.model.compute.Host#getService()
 	 */
 	@Override
 	public String getService() {
@@ -87,7 +87,6 @@ public class NovaHostResource implements HostResource {
 	 * <p>Author:Wang Ting/王婷</p>
 	 * @Title: getZone
 	 * @return
-	 * @see org.openstack4j.model.compute.Host#getZone()
 	 */
 	@Override
 	public String getZone() {
@@ -98,7 +97,6 @@ public class NovaHostResource implements HostResource {
 	 * <p>Author:Wang Ting/王婷</p>
 	 * @Title: getHostName
 	 * @return
-	 * @see org.openstack4j.model.compute.Host#getHostName()
 	 */
 	@Override
 	public String getHostName() {
@@ -123,6 +121,7 @@ public class NovaHostResource implements HostResource {
 	 * @author Wang Ting/王婷
 	 *
 	 */
+	@Deprecated
 	public static class NovaHostResources extends ListResult<NovaHostResource> {
 
 		private static final long serialVersionUID = 1L;

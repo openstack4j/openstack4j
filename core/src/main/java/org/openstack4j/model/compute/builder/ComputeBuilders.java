@@ -1,7 +1,5 @@
 package org.openstack4j.model.compute.builder;
 
-import org.openstack4j.openstack.compute.domain.*;
-
 /**
  * The Compute Builders
  */
@@ -32,7 +30,9 @@ public interface ComputeBuilders {
      * The builder to create a Compute/Nova Floating IP
      *
      * @return the floating ip builder
+     * @deprecated Since these APIs are only implemented for nova-network, they are deprecated. These will fail with a 404 starting from microversion 2.36. They were removed in the 18.0.0 Rocky release.
      */
+    @Deprecated
     public FloatingIPBuilder floatingIP();
 
     /**
@@ -41,5 +41,4 @@ public interface ComputeBuilders {
      * @return the QuotaSet update builder
      */
     public QuotaSetUpdateBuilder quotaSet();
-
 }

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  * @author Jeremy Unruh
  */
 @JsonRootName("dns_entry")
+@Deprecated
 public class ExtDNSEntry implements DNSEntry {
 
     private static final long serialVersionUID = 1L;
@@ -77,6 +78,7 @@ public class ExtDNSEntry implements DNSEntry {
                  .toString();
     }
 
+    @Deprecated
     public static class DNSEntries extends ListResult<ExtDNSEntry> {
 
         private static final long serialVersionUID = 1L;

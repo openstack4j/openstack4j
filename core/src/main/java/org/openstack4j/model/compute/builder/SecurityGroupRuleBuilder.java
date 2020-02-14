@@ -9,6 +9,7 @@ import org.openstack4j.model.compute.SecGroupExtension.Rule;
  * 
  * @author Jeremy Unruh
  */
+@Deprecated
 public interface SecurityGroupRuleBuilder extends Builder<SecurityGroupRuleBuilder, Rule> {
 
 	/**
