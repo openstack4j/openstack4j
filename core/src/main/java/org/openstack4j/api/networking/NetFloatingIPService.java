@@ -17,7 +17,7 @@ public interface NetFloatingIPService extends RestService {
   /**
    * Returns list of floating IPs.
    *
-   * @return List of NetFloatingIPs or empty
+   * @return List of NetFloatingIPs.
    */
   List<? extends NetFloatingIP> list();
   
@@ -31,18 +31,18 @@ public interface NetFloatingIPService extends RestService {
   /**
    * Gets a NetFloatingIP by id.
    *
-   * @param id the floating-ip identifier
+   * @param fipId the floating-ip identifier.
    * @return the NetFloatingIP
    */
-  NetFloatingIP get(String id);
+  NetFloatingIP get(String fipId);
 
   /**
    * Deletes NetFloatingIP by id.
    *
-   * @param id the id
+   * @param fipId the floating-ip identifier.
    * @return the action response
    */
-  ActionResponse delete(String id);
+  ActionResponse delete(String fipId);
 
   /**
    * Creates a new Floating IP
@@ -55,15 +55,17 @@ public interface NetFloatingIPService extends RestService {
   /**
    * Associates a Floating IP to a Port.
    *
+   * @param fipId the floating-ip identifier.
+   * @param portId Id of the port to associate to.
    * @return the net floating ip
    */
-  NetFloatingIP associateToPort(String id, String portId);
-  
-  
+  NetFloatingIP associateToPort(String fipId, String portId);
+
   /**
    * Disassociate from port.
    *
+   * @param fipId the floating-ip identifier.
    * @return the net floating ip
    */
-  NetFloatingIP disassociateFromPort(String id);
+  NetFloatingIP disassociateFromPort(String fipId);
 }

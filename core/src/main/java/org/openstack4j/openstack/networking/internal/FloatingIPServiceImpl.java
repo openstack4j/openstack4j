@@ -46,18 +46,18 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      * {@inheritDoc}
      */
     @Override
-    public NetFloatingIP get(String id) {
-        checkNotNull(id);
-        return get(NeutronFloatingIP.class, uri("/floatingips/%s", id)).execute();
+    public NetFloatingIP get(String fipId) {
+        checkNotNull(fipId);
+        return get(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).execute();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ActionResponse delete(String id) {
-        checkNotNull(id);
-        return deleteWithResponse(uri("/floatingips/%s", id)).execute();
+    public ActionResponse delete(String fipId) {
+        checkNotNull(fipId);
+        return deleteWithResponse(uri("/floatingips/%s", fipId)).execute();
     }
 
     /**
@@ -74,12 +74,12 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      * {@inheritDoc}
      */
     @Override
-    public NetFloatingIP associateToPort(String id, String portId) {
-        checkNotNull(id);
+    public NetFloatingIP associateToPort(String fipId, String portId) {
+        checkNotNull(fipId);
         checkNotNull(portId);
         String inner = String.format("{ \"port_id\":\"%s\" }", portId);
         String json = String.format("{ \"%s\": %s }", "floatingip", inner);
-        return put(NeutronFloatingIP.class, uri("/floatingips/%s",id)).json(json)
+        return put(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).json(json)
                 .execute(ExecutionOptions.<NeutronFloatingIP>create(PropagateOnStatus.on(404)));
 
     }
@@ -88,10 +88,10 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      * {@inheritDoc}
      */
     @Override
-    public NetFloatingIP disassociateFromPort(String id) {
-        checkNotNull(id);
+    public NetFloatingIP disassociateFromPort(String fipId) {
+        checkNotNull(fipId);
         String json = String.format("{ \"%s\": %s }", "floatingip", "{ \"port_id\":null }");
-        return put(NeutronFloatingIP.class, uri("/floatingips/%s",id)).json(json)
+        return put(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).json(json)
                 .execute(ExecutionOptions.<NeutronFloatingIP>create(PropagateOnStatus.on(404)));
     }
 }
