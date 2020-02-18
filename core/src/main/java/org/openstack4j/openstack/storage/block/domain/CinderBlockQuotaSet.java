@@ -71,7 +71,7 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
     }
 
     @JsonAnySetter
-    public void setVolumeTypesQuotas(String key, Integer value)
+    private void setVolumeTypesQuotas(String key, Integer value)
     {
         this.volumeTypesQuotas.put(key, value);
     }
@@ -123,8 +123,8 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
         }
 
         @Override
-        public BlockQuotaSetBuilder volumeTypeQuota(String key, int quota) {
-            model.volumeTypesQuotas.put(key, quota);
+        public BlockQuotaSetBuilder volumeTypesQuotas(Map<String, Integer> volumeTypesQuotas) {
+            model.volumeTypesQuotas = volumeTypesQuotas;
             return this;
         }
 

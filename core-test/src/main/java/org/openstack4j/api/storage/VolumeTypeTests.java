@@ -8,9 +8,7 @@ import java.io.IOException;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.storage.block.BlockQuotaSet;
 import org.openstack4j.model.storage.block.VolumeType;
-import org.openstack4j.openstack.storage.block.domain.CinderBlockQuotaSet;
 import org.testng.annotations.Test;
 
 @Test(suiteName = "Block Storage Tests")

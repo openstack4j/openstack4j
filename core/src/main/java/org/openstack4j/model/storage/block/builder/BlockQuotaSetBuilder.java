@@ -3,6 +3,8 @@ package org.openstack4j.model.storage.block.builder;
 import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
 
+import java.util.Map;
+
 /**
  * Builder for a QuotaSet model class.
  * 
@@ -33,5 +35,10 @@ public interface BlockQuotaSetBuilder extends Builder<BlockQuotaSetBuilder, Bloc
      */
     BlockQuotaSetBuilder gigabytes(int gigabytes);
 
-    BlockQuotaSetBuilder volumeTypeQuota(String key, int quota);
+    /**
+     * Quotas limits for each volume type
+     * @param volumeTypesQuotas
+     * @return volume types quota limits configured in the Block Storage.
+     */
+    BlockQuotaSetBuilder volumeTypesQuotas(Map<String, Integer> volumeTypesQuotas);
 }
