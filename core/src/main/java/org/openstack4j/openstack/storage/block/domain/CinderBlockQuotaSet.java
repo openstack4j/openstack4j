@@ -23,6 +23,8 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
 
     private static final long serialVersionUID = 1L;
 
+    private static final String VOLUME_TYPE_QUOTA_PREFIXES_REGEX = "(gigabytes|snapshots|volumes)_.*";
+
     @JsonProperty
     private String id;
     @JsonProperty
@@ -73,7 +75,7 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
     @JsonAnySetter
     private void setVolumeTypesQuotas(String key, Integer value)
     {
-        this.volumeTypesQuotas.put(key, value);
+        if (key.matches( VOLUME_TYPE_QUOTA_PREFIXES_REGEX )) this.volumeTypesQuotas.put(key, value);
     }
 
     @Override

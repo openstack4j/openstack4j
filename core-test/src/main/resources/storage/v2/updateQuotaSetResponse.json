@@ -1,6 +1,9 @@
 {
     "quota_set": {
         "gigabytes_ruby": 100,
-        "volumes": 5
+        "snapshots_ruby": 5,
+        "volumes_ruby": -1,
+        "volumes": 5,
+        "i_dont_want_that_key": 88
     }
 }
