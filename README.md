@@ -180,8 +180,7 @@ config.withSSLContext(sslContext);
 OSClient.OSClientV3 osClient = OSFactory.builderV3()
         .endpoint("https://<fqdn>:5000/v3")
         .withConfig(config)
-        .scopeToProject(Identifier.byId("project id"))
-        //.scopeToDomain(Identifier.byId("domain id"))
+        .scopeToProject(Identifier.byId("project id")
         .authenticate();
 ```
 
