@@ -25,6 +25,7 @@ public class CinderVolumeAttachment implements VolumeAttachment {
     @JsonProperty
     private String id;
 
+
     @JsonProperty
     private String server_id;
 
@@ -52,7 +53,6 @@ public class CinderVolumeAttachment implements VolumeAttachment {
     @Override
     public String getServerId() {
         return server_id;
-
     }
 
     @Override
@@ -61,13 +61,15 @@ public class CinderVolumeAttachment implements VolumeAttachment {
     }
 
     @Override
+    public String getAttachmentId() {
+        return attachment_id;
+    }
+
+    @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
                 .add("device", device).add("id", id).add("serverId", server_id)
-                .add("volumeId", volume_id).add("hostname", host_name).toString();
-
+                .add("volumeId", volume_id).add("hostname", host_name)
+                .add( "attachmentId", attachment_id ).toString();
     }
-
-
-
 }
