@@ -33,7 +33,7 @@ public class ResponseToActionResponse implements Function<HttpResponse, ActionRe
         if (ar != null)
             return ar;
 
-        if (ar == null && returnNullIfNotMapped)
+        if (returnNullIfNotMapped)
             return null;
 
         return ActionResponse.actionFailed(String.format("Status: %d, Reason: %s", response.getStatus(), response.getStatusMessage()), response.getStatus());
