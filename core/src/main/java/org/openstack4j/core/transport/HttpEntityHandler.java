@@ -36,6 +36,7 @@ public class HttpEntityHandler {
                     return (T) ResponseToActionResponse.INSTANCE.apply(response);
                 }
 
+
                 if (options != null) {
                     options.propagate(response);
                 }

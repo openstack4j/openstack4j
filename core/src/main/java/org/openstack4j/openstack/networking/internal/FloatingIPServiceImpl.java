@@ -67,7 +67,8 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
     public NetFloatingIP create(NetFloatingIP floatingIp) {
         checkNotNull(floatingIp);
         checkNotNull(floatingIp.getFloatingNetworkId());
-        return post(NeutronFloatingIP.class, uri("/floatingips")).entity(floatingIp).execute(); 
+        return post(NeutronFloatingIP.class, uri("/floatingips")).entity(floatingIp)
+                .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
     }
 
     /**
@@ -80,7 +81,7 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
         String inner = String.format("{ \"port_id\":\"%s\" }", portId);
         String json = String.format("{ \"%s\": %s }", "floatingip", inner);
         return put(NeutronFloatingIP.class, uri("/floatingips/%s",id)).json(json)
-                .execute(ExecutionOptions.<NeutronFloatingIP>create(PropagateOnStatus.on(404)));
+                .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
 
     }
 
@@ -92,6 +93,6 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
         checkNotNull(id);
         String json = String.format("{ \"%s\": %s }", "floatingip", "{ \"port_id\":null }");
         return put(NeutronFloatingIP.class, uri("/floatingips/%s",id)).json(json)
-                .execute(ExecutionOptions.<NeutronFloatingIP>create(PropagateOnStatus.on(404)));
+                .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
     }
 }
