@@ -87,6 +87,7 @@ public class VolumeTests extends AbstractTest {
         assertEquals(attachments.get(0).getId(), "8a9287b7-4f4d-4213-8d75-63470f19f27c");
         assertEquals(attachments.get(0).getServerId(), "eaa6a54d-35c1-40ce-831d-bb61f991e1a9");
         assertEquals(attachments.get(0).getVolumeId(), "8a9287b7-4f4d-4213-8d75-63470f19f27c");
+        assertEquals(attachments.get(0).getAttachmentId(), "f0dcbc70-52ee-11ea-8d77-2e728ce88125");
 
         assertEquals(volume.getTenantId(), "b0b5ed7ae06049688349fe43737796d4");
     }

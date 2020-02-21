@@ -38,4 +38,10 @@ public interface VolumeAttachment extends ModelEntity {
 	 * @return the id of a volume
 	 */
 	String getVolumeId();
+
+	/**
+	 * the attachment id for this volume
+	 * @return the id of a attachment
+	 */
+	String getAttachmentId();
 }
