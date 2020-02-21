@@ -96,12 +96,9 @@ public final class HttpCommand<R> {
                 out.write(requestBody);
                 out.flush();
             }
-            byte[] data = null;
 
             int status = connection.getResponseCode();
-            if (status >= 200 && status < 300) {
-                data = ByteStreams.toByteArray(connection.getInputStream());
-            }
+            byte[] data = getResponseBytes();
             return HttpResponseImpl.wrap(connection.getHeaderFields(),
                     status, connection.getResponseMessage(),
                     data);
@@ -112,6 +109,21 @@ public final class HttpCommand<R> {
         } finally {
             connection.disconnect();
         }
+    }
+
+    // https://stackoverflow.com/a/613484/2091470
+    private byte[] getResponseBytes() throws IOException {
+        InputStream is;
+        try {
+            is = connection.getInputStream();
+        } catch (IOException ex) {
+            is = connection.getErrorStream();
+        }
+
+        if (is != null) {
+            return ByteStreams.toByteArray(is);
+        }
+        return null;
     }
 
     /**

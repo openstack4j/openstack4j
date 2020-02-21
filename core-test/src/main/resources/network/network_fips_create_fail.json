@@ -1,0 +1,7 @@
+{
+  "NeutronError": {
+    "message": "External network 25ec4907-36fc-4035-b8d5-b797246330f2 is not reachable from subnet eb8db9f4-a76f-4fe2-a0bd-f932bc20dfa1.  Therefore, cannot associate Port 1c852648-f504-4fb1-9d97-83731642d4cf with a Floating IP.",
+    "type": "ExternalGatewayForFloatingIPNotFound",
+    "detail": ""
+  }
+}
