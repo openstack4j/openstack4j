@@ -1,24 +1,29 @@
 package org.openstack4j.openstack.storage.block.domain;
 
-import static com.google.common.base.MoreObjects.toStringHelper;
-
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
 import org.openstack4j.model.storage.block.builder.BlockQuotaSetBuilder;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.google.common.base.MoreObjects.toStringHelper;
 
 /**
  * An OpenStack Quota-Set
  *
  * @author Jeremy Unruh
+ * @author Manuel Mazzuola
  */
 @JsonRootName("quota_set")
-@JsonIgnoreProperties(ignoreUnknown=true)
 public class CinderBlockQuotaSet implements BlockQuotaSet {
 
     private static final long serialVersionUID = 1L;
+
+    private static final String VOLUME_TYPE_QUOTA_PREFIXES_REGEX = "(gigabytes|snapshots|volumes)_.*";
 
     @JsonProperty
     private String id;
@@ -28,6 +33,8 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
     private int volumes;
     @JsonProperty
     private int gigabytes;
+
+    private Map<String, Integer> volumeTypesQuotas = new HashMap<>();
 
     public static BlockQuotaSetBuilder builder() {
         return new BlockQuotaSetConcreteBuilder();
@@ -56,6 +63,19 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
     @Override
     public int getGigabytes() {
         return gigabytes;
+    }
+
+    @Override
+    @JsonAnyGetter
+    public Map<String, Integer> getVolumeTypesQuotas()
+    {
+        return volumeTypesQuotas;
+    }
+
+    @JsonAnySetter
+    private void setVolumeTypesQuotas(String key, Integer value)
+    {
+        if (key.matches( VOLUME_TYPE_QUOTA_PREFIXES_REGEX )) this.volumeTypesQuotas.put(key, value);
     }
 
     @Override
@@ -101,6 +121,12 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
         @Override
         public BlockQuotaSetBuilder gigabytes(int gigabytes) {
             model.gigabytes = gigabytes;
+            return this;
+        }
+
+        @Override
+        public BlockQuotaSetBuilder volumeTypesQuotas(Map<String, Integer> volumeTypesQuotas) {
+            model.volumeTypesQuotas = volumeTypesQuotas;
             return this;
         }
 
