@@ -25,7 +25,7 @@ import com.google.common.collect.Maps;
  * @see <a href="http://developer.openstack.org/api-ref-identity-v3.html#projects-v3">API reference</a>
  */
 @JsonRootName("project")
-/** If we don't explicitly set extra as an ignore property, it will methods with @JsonAnyGetter/Setter will not work **/
+/* If we don't explicitly set extra as an ignore property, it will methods with @JsonAnyGetter/Setter will not work */
 @JsonIgnoreProperties(value = "extra" , ignoreUnknown = true)
 public class KeystoneProject implements Project {
 
@@ -39,6 +39,7 @@ public class KeystoneProject implements Project {
     @JsonProperty("domain_id")
     private String domainId;
     private String description;
+    private Map<String, String> options = Maps.newHashMap();
     @JsonIgnore
     private Map<String, String> links;
     @JsonProperty("parent_id")
@@ -46,8 +47,10 @@ public class KeystoneProject implements Project {
     private String subtree;
     private String parents;
     private Boolean enabled = true;
-    private Map<String, String> extra = Maps.newHashMap();
     private List<String> tags = Lists.newArrayList();
+
+    /** Extra API properties served */
+    private Map<String, String> extra = Maps.newHashMap();
 
     /**
      * @return the Project builder
@@ -103,6 +106,11 @@ public class KeystoneProject implements Project {
         return name;
     }
 
+    @Override
+    public Map<String, String> getOptions() {
+        return options;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -156,6 +164,7 @@ public class KeystoneProject implements Project {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getExtra(String key) {
         return extra.get(key);
     }
@@ -298,6 +307,12 @@ public class KeystoneProject implements Project {
         @Override
         public ProjectBuilder name(String name) {
             model.name = name;
+            return this;
+        }
+
+        @Override
+        public ProjectBuilder options(Map<String, String> options) {
+            model.options = options;
             return this;
         }
 
