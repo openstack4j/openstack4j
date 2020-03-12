@@ -78,7 +78,12 @@ public interface Project extends ModelEntity, Buildable<ProjectBuilder> {
      * @return value for the given key
      */
     String getExtra(String key);
-    
+
+    /**
+     * Project options.
+     */
+    Map<String, String> getOptions();
+
     /**
      * 
      * @return list of tags

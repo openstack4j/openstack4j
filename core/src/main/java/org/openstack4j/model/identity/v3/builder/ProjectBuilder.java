@@ -48,7 +48,9 @@ public interface ProjectBuilder extends Builder<ProjectBuilder, Project> {
 	 */
 	ProjectBuilder name(String name);
 
-	/**
+    ProjectBuilder options(Map<String, String> options);
+
+    /**
 	 * 
 	 * @see Project#getLinks()
 	 */

@@ -31,6 +31,11 @@ public interface Domain extends ModelEntity, Buildable<DomainBuilder> {
     String getName();
 
     /**
+     * Domain options.
+     */
+    Map<String, String> getOptions();
+
+    /**
      * @return the Links of the domain
      */
     Map<String, String> getLinks();

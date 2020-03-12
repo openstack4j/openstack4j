@@ -1,0 +1,69 @@
+{
+  "links": {
+    "self": "http://127.0.0.1:5000/v3/roles?limit=500",
+    "previous": null,
+    "next": null
+  },
+  "roles": [
+    {
+      "description": null,
+      "links": {
+        "self": "http://127.0.0.1:5000/v3/roles/08597a07c6d14d378cd0d6708c20e5fe"
+      },
+      "options": {},
+      "id": "08597a07c6d14d378cd0d6708c20e5fe",
+      "domain_id": null,
+      "name": "reader"
+    },
+    {
+      "description": null,
+      "links": {
+        "self": "http://127.0.0.1:5000/v3/roles/2149cfabf0f44c5bbad249b1a38a625e"
+      },
+      "options": {},
+      "id": "2149cfabf0f44c5bbad249b1a38a625e",
+      "domain_id": null,
+      "name": "member"
+    },
+    {
+      "description": null,
+      "links": {
+        "self": "http://127.0.0.1:5000/v3/roles/790bcad86d7346cd91a7516e7bec8959"
+      },
+      "options": {},
+      "id": "790bcad86d7346cd91a7516e7bec8959",
+      "domain_id": null,
+      "name": "ResellerAdmin"
+    },
+    {
+      "description": null,
+      "links": {
+        "self": "http://127.0.0.1:5000/v3/roles/832e442d00434cea84195f7df09bb1bb"
+      },
+      "options": {},
+      "id": "832e442d00434cea84195f7df09bb1bb",
+      "domain_id": null,
+      "name": "SwiftOperator"
+    },
+    {
+      "description": null,
+      "links": {
+        "self": "http://127.0.0.1:5000/v3/roles/e3fee47e88114d6f9a8e37916ab45fcf"
+      },
+      "options": {},
+      "id": "e3fee47e88114d6f9a8e37916ab45fcf",
+      "domain_id": null,
+      "name": "_member_"
+    },
+    {
+      "description": null,
+      "links": {
+        "self": "http://127.0.0.1:5000/v3/roles/f768cc1132a649e7840b6d14f21d0bd8"
+      },
+      "options": {},
+      "id": "f768cc1132a649e7840b6d14f21d0bd8",
+      "domain_id": null,
+      "name": "admin"
+    }
+  ]
+}

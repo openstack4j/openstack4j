@@ -4,12 +4,15 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.identity.v3.Role;
 import org.openstack4j.model.identity.v3.RoleAssignment;
+import org.openstack4j.openstack.identity.v3.domain.KeystoneRole;
 import org.testng.annotations.Test;
 
 /**
@@ -292,4 +295,11 @@ public class KeystoneRoleServiceTests extends AbstractTest {
         return (value != null && value.length() != 0);
     }
 
+    @Test
+    public void role_with_options() throws IOException {
+        respondWith("/identity/v3/roles_with_options.json");
+        Role role = osv3().identity().roles().list().stream().filter(r -> "admin".equals(r.getName())).findFirst().get();
+        assertEquals(role.getId(), "f768cc1132a649e7840b6d14f21d0bd8");
+        assertEquals(role.getOptions(), Collections.emptyMap());
+    }
 }

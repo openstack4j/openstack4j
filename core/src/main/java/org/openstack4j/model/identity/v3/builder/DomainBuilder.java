@@ -27,6 +27,8 @@ public interface DomainBuilder extends Builder<DomainBuilder, Domain> {
      */
     DomainBuilder name(String name);
 
+    DomainBuilder options(Map<String, String> options);
+
     /**
      * @see Domain#getLinks()
      */

@@ -5,7 +5,12 @@ import static org.testng.Assert.assertEquals;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.identity.v3.Domain;
+import org.openstack4j.openstack.identity.v3.domain.KeystoneDomain;
+import org.openstack4j.openstack.identity.v3.domain.KeystoneRole;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.util.Collections;
 
 /**
  * Tests the Identity/Keystone API version 3 DomainService
@@ -62,7 +67,13 @@ public class KeystoneDomainServiceTests extends AbstractTest {
         assertEquals(updatedDomain.getId(), DOMAIN_ID);
         assertEquals(updatedDomain.getName(), DOMAIN_NAME);
         assertEquals(updatedDomain.getDescription(), DOMAIN_DESCRIPTION_UPDATED);
-
     }
 
+    @Test
+    public void domain_with_options() throws IOException {
+        respondWith("/identity/v3/domains_with_options.json");
+        Domain domain = osv3().identity().domains().list().stream().filter(r -> "Default".equals(r.getName())).findFirst().get();
+        assertEquals(domain.getId(), "default");
+        assertEquals(domain.getOptions(), Collections.emptyMap());
+    }
 }

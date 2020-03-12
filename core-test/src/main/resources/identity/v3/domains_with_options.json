@@ -1,0 +1,20 @@
+{
+  "domains": [
+    {
+      "description": "The default domain",
+      "links": {
+        "self": "http://127.0.0.1:5000/v3/domains/default"
+      },
+      "tags": [],
+      "enabled": true,
+      "options": {},
+      "id": "default",
+      "name": "Default"
+    }
+  ],
+  "links": {
+    "self": "http://127.0.0.1:5000/v3/domains?limit=500",
+    "previous": null,
+    "next": null
+  }
+}

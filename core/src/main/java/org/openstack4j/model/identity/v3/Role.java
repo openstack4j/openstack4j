@@ -26,6 +26,11 @@ public interface Role extends ModelEntity, Buildable<RoleBuilder> {
     String getName();
 
     /**
+     * Get Role options.
+     */
+    Map<String, String> getOptions();
+
+    /**
      * @return the links of the role
      */
     Map<String, String> getLinks();

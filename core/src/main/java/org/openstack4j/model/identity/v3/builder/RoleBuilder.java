@@ -22,6 +22,8 @@ public interface RoleBuilder extends Builder<RoleBuilder, Role> {
      */
     RoleBuilder name(String name);
 
+    RoleBuilder options(Map<String, String> options);
+
     /**
      * @see Role#getLinks()
      */

@@ -3,7 +3,9 @@ package org.openstack4j.api.identity.v3;
 import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertNull;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.openstack4j.api.AbstractTest;
@@ -30,7 +32,6 @@ public class KeystoneProjectServiceTests extends AbstractTest {
     private static final String PROJECT_EXTRA_KEY_2 = "extra_key2";
     private static final String PROJECT_EXTRA_VALUE_2 = "value2";
     private static final List<String> TAGS = Arrays.asList("one", "two", "three");
-    private String PROJECT_ID;
 
     @Override
     protected Service service() {
@@ -65,7 +66,7 @@ public class KeystoneProjectServiceTests extends AbstractTest {
         assertEquals(newProject.getExtra(PROJECT_EXTRA_KEY_1), PROJECT_EXTRA_VALUE_1);
         assertEquals(newProject.getTags(), TAGS);
 
-        PROJECT_ID = newProject.getId();
+        final String PROJECT_ID = newProject.getId();
 
         respondWith(JSON_PROJECTS_GET_BYID);
 
@@ -90,7 +91,15 @@ public class KeystoneProjectServiceTests extends AbstractTest {
         respondWith(JSON_PROJECTS_GET_BY_NAME_EMPTY);
         Project project = osv3().identity().projects().getByName(PROJECT_NAME, PROJECT_DOMAIN_ID);
         assertNull(project);
-    
     }
 
+    @Test
+    public void project_with_options() throws IOException {
+        respondWith("/identity/v3/projects_with_options.json");
+        List<? extends Project> list = osv3().identity().projects().list();
+        assertEquals(list.size(), 3);
+        Project project = list.stream().filter(p -> "demo".equals(p.getName())).findFirst().get();
+        assertEquals(project.getId(), "600905d353a84b20b644d2fe55a21e8a");
+        assertEquals(project.getOptions(), Collections.emptyMap());
+    }
 }
