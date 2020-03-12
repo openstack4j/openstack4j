@@ -26,6 +26,8 @@ public class TroveInstanceCreate implements InstanceCreate {
     private String name;
     @JsonProperty("datastore")
     private Datastore datastore;
+    @JsonProperty("availability_zone")
+    private String availabilityZone;
 
     /**
      *
@@ -80,6 +82,14 @@ public class TroveInstanceCreate implements InstanceCreate {
     @Override
     public void setDatastore(Datastore datastore) {
         this.datastore = datastore;
+    }
+
+    /**
+     * @param availabilityZone
+     */
+    @Override
+    public void setAvailabilityZone(String availabilityZone) {
+        this.availabilityZone = availabilityZone;
     }
 
     public class Volume {
@@ -181,6 +191,12 @@ public class TroveInstanceCreate implements InstanceCreate {
         @Override
         public InstanceCreateBuilder volumeSize(int size) {
             instance.setvolumeSize(size);
+            return this;
+        }
+
+        @Override
+        public InstanceCreateBuilder availabilityZone(String availabilityZone) {
+            instance.setAvailabilityZone(availabilityZone);
             return this;
         }
 

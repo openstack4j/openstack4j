@@ -6,6 +6,8 @@ import org.openstack4j.model.trove.InstanceCreate;
 
 public interface InstanceCreateBuilder extends Buildable.Builder<InstanceCreateBuilder, InstanceCreate> {
 
+    InstanceCreateBuilder availabilityZone(String availabilityZone);
+
     InstanceCreateBuilder volumeType(String volumeType);
 
     InstanceCreateBuilder volumeSize(int size);

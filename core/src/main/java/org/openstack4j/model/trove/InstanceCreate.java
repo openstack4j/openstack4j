@@ -15,4 +15,6 @@ public interface InstanceCreate extends ModelEntity, Buildable<InstanceCreateBui
     void setVolumetype(String volumeType);
 
     void setvolumeSize(int size);
+
+    void setAvailabilityZone(String availabilityZone);
 }
