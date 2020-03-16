@@ -40,6 +40,7 @@ import org.openstack4j.model.network.builder.*;
 import org.openstack4j.model.network.ext.builder.*;
 import org.openstack4j.model.sahara.builder.*;
 import org.openstack4j.model.storage.block.builder.BlockQuotaSetBuilder;
+import org.openstack4j.model.storage.block.builder.EncryptionTypeBuilder;
 import org.openstack4j.model.storage.block.builder.StorageBuilders;
 import org.openstack4j.model.storage.block.builder.VolumeBackupCreateBuilder;
 import org.openstack4j.model.storage.block.builder.VolumeBuilder;
@@ -99,6 +100,7 @@ import org.openstack4j.openstack.sahara.builder.SaharaBuilders;
 import org.openstack4j.openstack.sahara.domain.*;
 import org.openstack4j.openstack.storage.block.builder.CinderBuilders;
 import org.openstack4j.openstack.storage.block.domain.CinderBlockQuotaSet;
+import org.openstack4j.openstack.storage.block.domain.CinderEncryptionType;
 import org.openstack4j.openstack.storage.block.domain.CinderVolume;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackupCreate;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshot;
@@ -742,6 +744,15 @@ public class Builders {
      */
     public static DomainBuilder domain() {
         return KeystoneDomain.builder();
+    }
+
+    /**
+     * The builder to create an Encryption Type
+     *
+     * @return the encryption type builder
+     */
+    public static EncryptionTypeBuilder encryptionType() {
+        return CinderEncryptionType.builder();
     }
 
     /**
