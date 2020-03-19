@@ -185,6 +185,7 @@
                     <useReleaseProfile>true</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy nexus-staging:release</goals>
+                    <arguments>-DskipTests</arguments>
                 </configuration>
             </plugin>
             <plugin>
@@ -295,9 +296,6 @@
     <profiles>
         <profile>
             <id>release</id>
-            <properties>
-                <skipTests>true</skipTests>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
