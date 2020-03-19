@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.openstack4j.core</groupId>
     <artifactId>openstack4j-parent</artifactId>
-    <version>3.5</version>
+    <version>3.6-SNAPSHOT</version>
     <name>OpenStack4j Parent</name>
     <description>OpenStack Java API</description>
     <url>http://github.com/openstack4j/openstack4j/</url>
@@ -35,7 +35,7 @@
         <connection>scm:git:git@github.com:openstack4j/openstack4j.git</connection>
         <developerConnection>scm:git:git@github.com:openstack4j/openstack4j.git</developerConnection>
         <url>http://github.com/openstack4j/openstack4j/</url>
-        <tag>openstack4j-parent-3.5</tag>
+        <tag>HEAD</tag>
     </scm>
     <mailingLists>
         <mailingList>
