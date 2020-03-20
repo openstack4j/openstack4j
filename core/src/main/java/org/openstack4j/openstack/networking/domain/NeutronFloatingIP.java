@@ -1,6 +1,8 @@
 package org.openstack4j.openstack.networking.domain;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.model.network.builder.NetFloatingIPBuilder;
@@ -29,6 +31,9 @@ public class NeutronFloatingIP implements NetFloatingIP {
   @JsonProperty("tenant_id")
   private String tenantId;
 
+  @JsonProperty("project_id")
+  private String projectId;
+
   @JsonProperty("floating_network_id")
   private String floatingNetworkId;
 
@@ -41,7 +46,23 @@ public class NeutronFloatingIP implements NetFloatingIP {
   @JsonProperty("port_id")
   private String portId;
 
+  @JsonProperty("qos_policy_id")
+  private String qosPolicyId;
+
   private String status;
+
+  private String description;
+
+  private List<String> tags;
+
+  @JsonProperty("created_at")
+  private Date createdAt;
+
+  @JsonProperty("updated_at")
+  private Date updatedAt;
+
+  @JsonProperty("revision_number")
+  private Integer revisionNumber;
 
   /**
    * {@inheritDoc}
@@ -84,6 +105,11 @@ public class NeutronFloatingIP implements NetFloatingIP {
     return this.tenantId;
   }
 
+  @Override
+  public String getProjectId() {
+    return projectId;
+  }
+
   /**
    * {@inheritDoc}
    */
@@ -114,6 +140,16 @@ public class NeutronFloatingIP implements NetFloatingIP {
   @Override
   public String getPortId() {
     return this.portId;
+  }
+
+  @Override
+  public String getQosPolicyId() {
+    return qosPolicyId;
+  }
+
+  @Override
+  public Integer getRevisionNumber() {
+    return revisionNumber;
   }
 
   /**
@@ -180,50 +216,65 @@ public class NeutronFloatingIP implements NetFloatingIP {
 	this.status = status;
   }
 
-/**
+  @Override
+  public String getDescription() {
+    return description;
+  }
+
+  @Override
+  public List<String> getTags() {
+    return tags;
+  }
+
+  @Override
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  @Override
+  public Date getUpdatedAt() {
+    return updatedAt;
+  }
+
+  /**
    * {@inheritDoc}
    */
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this).omitNullValues()
-            .add("id", id).add("routerId", routerId).add("tenantId", tenantId).add("floatingNetworkId", floatingNetworkId)
+            .add("id", id).add("routerId", routerId).add("projectId", projectId).add("floatingNetworkId", floatingNetworkId)
             .add("floatingIpAddress", floatingIpAddress).add("fixedIpAddress", fixedIpAddress).add("portId", portId).add("status", status)
-            .addValue("\n")
             .toString();
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public int hashCode() {
-    return java.util.Objects.hash(id, routerId, tenantId, floatingNetworkId,
-            floatingIpAddress, fixedIpAddress, portId, status);
+    return Objects.hash(
+            id, routerId, tenantId, projectId, floatingNetworkId, floatingIpAddress, fixedIpAddress, portId,
+            qosPolicyId, status, description, tags, createdAt, updatedAt, revisionNumber
+    );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-
-    if (obj instanceof NeutronFloatingIP) {
-      NeutronFloatingIP that = (NeutronFloatingIP) obj;
-      if (java.util.Objects.equals(id, that.id) &&
-              java.util.Objects.equals(routerId, that.routerId) &&
-              java.util.Objects.equals(tenantId, that.tenantId) &&
-              java.util.Objects.equals(floatingNetworkId, that.floatingNetworkId) &&
-              java.util.Objects.equals(floatingIpAddress, that.floatingIpAddress) &&
-              java.util.Objects.equals(fixedIpAddress, that.fixedIpAddress) &&
-              java.util.Objects.equals(portId, that.portId) &&
-              java.util.Objects.equals(status, that.status)) {
-        return true;
-      }
-    }
-    return false;
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    NeutronFloatingIP that = (NeutronFloatingIP) o;
+    return Objects.equals(id, that.id) &&
+            Objects.equals(routerId, that.routerId) &&
+            Objects.equals(tenantId, that.tenantId) &&
+            Objects.equals(projectId, that.projectId) &&
+            Objects.equals(floatingNetworkId, that.floatingNetworkId) &&
+            Objects.equals(floatingIpAddress, that.floatingIpAddress) &&
+            Objects.equals(fixedIpAddress, that.fixedIpAddress) &&
+            Objects.equals(portId, that.portId) &&
+            Objects.equals(qosPolicyId, that.qosPolicyId) &&
+            Objects.equals(status, that.status) &&
+            Objects.equals(description, that.description) &&
+            Objects.equals(tags, that.tags) &&
+            Objects.equals(createdAt, that.createdAt) &&
+            Objects.equals(updatedAt, that.updatedAt) &&
+            Objects.equals(revisionNumber, that.revisionNumber);
   }
 
   /**
@@ -308,7 +359,23 @@ public class NeutronFloatingIP implements NetFloatingIP {
       f.portId = portId;
       return this;
     }
+
+    @Override
+    public NetFloatingIPBuilder floatingIpAddress(String address) {
+      f.floatingIpAddress = address;
+      return this;
+    }
+
+    @Override
+    public NetFloatingIPBuilder fixedIpAddress(String address) {
+      f.fixedIpAddress = address;
+      return this;
+    }
+
+    @Override
+    public NetFloatingIPBuilder description(String description) {
+      f.description = description;
+      return this;
+    }
   }
-
-
 }

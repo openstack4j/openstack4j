@@ -4,6 +4,9 @@ import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.network.builder.NetFloatingIPBuilder;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * The Interface NetFloatingIP.
  * 
@@ -33,6 +36,11 @@ public interface NetFloatingIP extends ModelEntity, Buildable<NetFloatingIPBuild
    */
    String getTenantId();
 
+   /**
+    * Gets the project id.
+    */
+   String getProjectId();
+
   /**
    * Gets the floating network id.
    *
@@ -60,13 +68,41 @@ public interface NetFloatingIP extends ModelEntity, Buildable<NetFloatingIPBuild
    * @return the port id
    */
    String getPortId();
-   
+
    /**
+    * ID of the QoS policy.
+    */
+   String getQosPolicyId();
+
+    /**
     * Gets the floating ip status
     * 
     * @return the floating ip status
     */
    String getStatus();
-   
 
+   /**
+    * Get text description of the resource;
+    */
+   String getDescription();
+
+   /**
+    * List of tags associated with the IP address.
+    */
+   List<String> getTags();
+
+   /**
+    * Time the IP was created.
+    */
+   Date getCreatedAt();
+
+   /**
+    * Time the IP was last updated.
+    */
+   Date getUpdatedAt();
+
+   /**
+    * Revision number of a resource.
+    */
+   Integer getRevisionNumber();
 }
