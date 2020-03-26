@@ -241,8 +241,11 @@ public class NeutronFloatingIP implements NetFloatingIP {
    */
   @Override
   public String toString() {
+    // Report tenantId iff it differs from projectId
+    String distinctTenantId = Objects.equals(tenantId, projectId) ? null : tenantId;
     return MoreObjects.toStringHelper(this).omitNullValues()
-            .add("id", id).add("routerId", routerId).add("projectId", projectId).add("floatingNetworkId", floatingNetworkId)
+            .add("id", id).add("routerId", routerId).add("floatingNetworkId", floatingNetworkId)
+            .add("projectId", projectId).add("tenantId", distinctTenantId)
             .add("floatingIpAddress", floatingIpAddress).add("fixedIpAddress", fixedIpAddress).add("portId", portId).add("status", status)
             .toString();
   }
