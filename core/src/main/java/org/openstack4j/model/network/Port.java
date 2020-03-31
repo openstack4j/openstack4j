@@ -58,6 +58,21 @@ public interface Port extends Resource, Buildable<PortBuilder> {
   List<String> getSecurityGroups();
 
   /**
+   * @return the parent ID of this port
+   */
+  String getTrunkPortParentId();
+  
+  /**
+   * @return the trunk port type of this port
+   */
+  String getTrunkPortType();
+  
+  /**
+   * @return the Vlan of this port
+   */
+  String getTrunkPortVlanId();
+
+  /**
    * @return The port security status. A valid value is enabled (true) or disabled (false).
    */
   Boolean isPortSecurityEnabled();

@@ -36,6 +36,28 @@ public interface PortBuilder extends Builder<PortBuilder, Port> {
 	PortBuilder networkId(String networkId);
 	
 	/**
+	 * @param parentPortId - ID of of the parent port
+	 * @return PortBuilder
+	 * @see Port#getTrunkPortParentId()
+	 */
+	PortBuilder trunkPortParentId(String parentPortId);
+
+	/**
+	 * @param portType - type of the port
+	 * @return PortBuilder
+	 * @see Port#getTrunkPortType()
+	 */
+	PortBuilder trunkPortType(String portType);
+
+	/**
+	 * 
+	 * @param vlanId - ID of the vlan connected to trunk port
+	 * @return PortBuilder
+	 * @see Port#getTrunkPortVlanId()
+	 */
+	PortBuilder trunkPortVlanId(String vlanId);
+	
+	/**
 	 * @see Port#getDeviceId()
 	 */
 	PortBuilder deviceId(String deviceId);

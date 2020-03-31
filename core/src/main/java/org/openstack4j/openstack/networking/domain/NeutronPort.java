@@ -63,6 +63,15 @@ public class NeutronPort implements Port {
 	@JsonProperty("tenant_id")
 	private String tenantId;
 
+	@JsonProperty("trunkport:type")
+	private String trunkPortType;
+
+	@JsonProperty("trunkport:parent_id")
+	private String trunkPortParentId;
+
+	@JsonProperty("trunkport:vid")
+	private String trunkPortVlanId;
+	
 	@JsonProperty("security_groups")
 	private List<String> securityGroups;
 
@@ -191,7 +200,7 @@ public class NeutronPort implements Port {
 	public List<String> getSecurityGroups() {
 		return securityGroups;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -232,6 +241,30 @@ public class NeutronPort implements Port {
 		return profile;
 	}
 
+	/**
+	 * @return String - the parent ID of the port
+	 */
+	@Override
+	public String getTrunkPortParentId() {
+		return trunkPortParentId;
+	}
+
+	/**
+	 * @return String - the trunk port type of the port
+	 */
+	@Override
+	public String getTrunkPortType() {
+		return trunkPortType;
+	}
+
+	/**
+	 * @return String - the vlan ID of the port
+	 */
+	@Override
+	public String getTrunkPortVlanId() {
+		return trunkPortVlanId;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -292,6 +325,7 @@ public class NeutronPort implements Port {
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
 				    .add("id", id).add("name", name).add("adminStateUp", adminStateUp).add("deviceId", deviceId)
+				    .add("trunkPortType", trunkPortType).add("trunkPortParentId", trunkPortParentId).add("trunkPortVlanId", trunkPortVlanId)
 				    .add("deviceOwner", deviceOwner).add("fixedIps", fixedIps).add("macAddress", macAddress)
 				    .add("networkId", networkId).add("tenantId", tenantId).add("securityGroups", securityGroups)
 				    .add("allowed_address_pairs", allowedAddressPairs).add("port_security_enabled ", portSecurityEnabled)
@@ -460,6 +494,24 @@ public class NeutronPort implements Port {
 			return this;
 		}
 
+		@Override
+		public PortBuilder trunkPortParentId(String parentPortId) {
+			m.trunkPortParentId = parentPortId;
+			return this;
+		}
+
+		@Override
+		public PortBuilder trunkPortType(String trunkPortType) {
+			m.trunkPortType = trunkPortType;
+			return this;
+		}
+
+		@Override
+		public PortBuilder trunkPortVlanId(String vlanId) {
+			m.trunkPortVlanId = vlanId;
+			return this;
+		}
+		
 		@Override
 		public Port build() {
 			return m;
