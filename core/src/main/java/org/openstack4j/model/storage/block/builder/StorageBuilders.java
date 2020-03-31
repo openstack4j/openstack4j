@@ -34,4 +34,11 @@ public interface StorageBuilders {
      */
     public VolumeBackupCreateBuilder volumeBackupCreate();
 
+    /**
+     * The builder to create a Volume Type Encryption
+     *
+     * @return the volume type encryption builder
+     */
+    public VolumeTypeEncryptionBuilder volumeTypeEncryption();
+
 }

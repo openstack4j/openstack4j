@@ -29,4 +29,9 @@ public class CinderBuilders implements StorageBuilders {
     public VolumeBackupCreateBuilder volumeBackupCreate(){
     	return CinderVolumeBackupCreate.builder();
     }
+
+    @Override
+    public VolumeTypeEncryptionBuilder volumeTypeEncryption() {
+        return CinderVolumeTypeEncryption.builder();
+    }
 }

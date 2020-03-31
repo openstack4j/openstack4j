@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.storage.block.EncryptionType;
 import org.openstack4j.model.storage.block.Volume;
 import org.openstack4j.model.storage.block.VolumeType;
+import org.openstack4j.model.storage.block.VolumeTypeEncryption;
 import org.openstack4j.model.storage.block.VolumeUploadImage;
 import org.openstack4j.model.storage.block.options.UploadImageData;
 
@@ -43,25 +43,34 @@ public interface BlockVolumeService extends RestService {
     VolumeType createVolumeType(VolumeType volumeType);
 
     /**
-     * Creates a new encryption type with the specified instance for the specified volume type
+     * Creates a new encryption with the specified instance for the specified volume type
      *
-     * @param encryptionType
-     *            the EncryptionType for create
      * @param volumeTypeId
      *            the volume type identifier
-     * @return the created encryption type
+     * @param volumeTypeEncryption
+     *            the encryption to create
+     * @return the created volume type encryption
      */
-    EncryptionType createEncryptionType(EncryptionType encryptionType, String volumeTypeId);
+    VolumeTypeEncryption createVolumeTypeEncryption(String volumeTypeId, VolumeTypeEncryption volumeTypeEncryption);
 
     /**
-     * Deletes the specified encryption type for the specified volume type
+     * Retrieves the encryption for the specified volume type
      *
-     * @param encryptionId
-     *            the encryption type identifier
      * @param volumeTypeId
      *            the volume type identifier
+     * @return the encryption
      */
-    void deleteEncryptionType(String encryptionId, String volumeTypeId);
+    VolumeTypeEncryption getVolumeTypeEncryption(String volumeTypeId);
+
+    /**
+     * Deletes the specified volume type encryption for the specified volume type
+     *
+     * @param volumeTypeId
+     *            the volume type identifier
+     * @param encryptionId
+     *            the encryption identifier
+     */
+    void deleteVolumeTypeEncryption(String volumeTypeId, String encryptionId);
 
 	/**
 	 * Lists summary information for all Block Storage volumes that the tenant who submits the request can access.
