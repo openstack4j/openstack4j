@@ -73,7 +73,6 @@ public class TrunkPortTests extends AbstractTest {
         String trunk1Id = "cf15956d-4391-4ebf-a9cb-0f7e27b24073";
         String trunk2Id = "f98559e9-8e92-4100-96ac-a805e0340abd";
         List<String> trunkIds = new ArrayList<>();
-        assertNotNull(trunkIds);
         for (Trunk t : osv3().networking().trunk().list()) {
             assertNotNull(t);
             trunkIds.add(t.getId());
