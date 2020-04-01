@@ -38,7 +38,7 @@ public class TrunkPortTests extends AbstractTest {
         return Service.NETWORK;
     }
 
-    @Test(enabled = true)
+    @Test
     public void createTrunk() throws Exception {
         respondWith(JSON_PORT_CREATE_RESPONSE);
 
@@ -58,7 +58,7 @@ public class TrunkPortTests extends AbstractTest {
         assertEquals(builtTrunk.getName(), trunk1Name);
     }
 
-    @Test(enabled = true)
+    @Test
     public void deleteTrunk() throws Exception {
         respondWith(204);
         String trunkId = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
@@ -66,7 +66,7 @@ public class TrunkPortTests extends AbstractTest {
         assertTrue(delete.isSuccess());
     }
 
-    @Test(enabled = true)
+    @Test
     public void listTrunks() throws Exception {
         respondWith(JSON_LIST_TRUNKS_RESPONSE);
 
@@ -82,7 +82,7 @@ public class TrunkPortTests extends AbstractTest {
         assertTrue(trunkIds.contains(trunk2Id));
     }
 
-    @Test(enabled = true)
+    @Test
     public void updateTrunk() throws Exception {
         respondWith(JSON_UPDATE_TRUNK_RESPONSE);
 
@@ -95,7 +95,7 @@ public class TrunkPortTests extends AbstractTest {
         assertEquals(updatedTrunk.getId(), trunkId);
     }
 
-    @Test(enabled = true)
+    @Test
     public void addSubPort() throws Exception {
         respondWith(JSON_ADD_SUBPORT_RESPONSE);
 
@@ -112,7 +112,7 @@ public class TrunkPortTests extends AbstractTest {
         assertEquals(segmentationType, withSubPort.getSubPorts().get(0).getSegmentationType());
     }
 
-    @Test(enabled = true)
+    @Test
     public void removeSubPort() throws Exception {
         respondWith(JSON_REMOVE_SUBPORT_RESPONSE);
 
@@ -123,7 +123,7 @@ public class TrunkPortTests extends AbstractTest {
         assertTrue(withoutSubport.getSubPorts().isEmpty());
     }
 
-    @Test(enabled = true)
+    @Test
     public void listSubPorts() throws Exception {
         respondWith(JSON_LIST_SUBPORTS_RESPONSE);
 
@@ -138,7 +138,7 @@ public class TrunkPortTests extends AbstractTest {
         assertEquals(ids.size(), 2);
     }
 
-    @Test(enabled = true)
+    @Test
     public void getTrunk() throws Exception {
         respondWith(JSON_GET_TRUNK_RESPONSE);
 
