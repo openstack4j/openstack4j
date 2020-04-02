@@ -35,7 +35,7 @@ public interface VolumeTypeEncryptionBuilder extends Builder<VolumeTypeEncryptio
      * @param keySize Defining key size for the encryption type
      * @return VolumeTypeEncryptionBuilder
      */
-    VolumeTypeEncryptionBuilder keySize(int keySize);
+    VolumeTypeEncryptionBuilder keySize(Integer keySize);
 
     /**
      * See {@link VolumeTypeEncryption#getProvider()}
