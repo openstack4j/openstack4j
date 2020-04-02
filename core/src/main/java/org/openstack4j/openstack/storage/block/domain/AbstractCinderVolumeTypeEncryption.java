@@ -68,8 +68,8 @@ public class AbstractCinderVolumeTypeEncryption implements VolumeTypeEncryption 
      * {@inheritDoc}
      */
     @Override
-    public int getKeySize() {
-        return (keySize == null) ? 0 : keySize;
+    public Integer getKeySize() {
+        return keySize;
     }
 
     /**
@@ -150,7 +150,7 @@ public class AbstractCinderVolumeTypeEncryption implements VolumeTypeEncryption 
         }
 
         @Override
-        public VolumeTypeEncryptionBuilder keySize(int keySize) {
+        public VolumeTypeEncryptionBuilder keySize(Integer keySize) {
             cinderVolumeTypeEncryption.keySize = keySize;
             return this;
         }
@@ -161,4 +161,5 @@ public class AbstractCinderVolumeTypeEncryption implements VolumeTypeEncryption 
             return this;
         }
     }
+
 }

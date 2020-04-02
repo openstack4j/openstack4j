@@ -29,7 +29,7 @@ public interface VolumeTypeEncryption extends ModelEntity, Buildable<VolumeTypeE
     /**
      * @return the key size of the encryption in bits
      */
-    int getKeySize();
+    Integer getKeySize();
 
     /**
      * @return the provider of the encryption
