@@ -1,0 +1,38 @@
+{
+  "floatingips": [
+    {
+      "router_id": "4910645f-7efe-4c37-918e-3ace85162985",
+      "status": "ACTIVE",
+      "description": "",
+      "tags": [],
+      "tenant_id": "e68d5f9cb37844ecbd793632944f4459",
+      "created_at": "2020-03-20T19:46:05Z",
+      "updated_at": "2020-03-20T19:46:09Z",
+      "floating_network_id": "38cc9e61-11fc-4921-843d-80ef249a3710",
+      "fixed_ip_address": "10.0.51.16",
+      "floating_ip_address": "10.0.50.29",
+      "revision_number": 1,
+      "project_id": "e68d5f9cb37844ecbd793632944f4459",
+      "port_id": "7095d432-a007-4d6b-9549-683cd1566188",
+      "id": "530e2826-ae43-4cde-bd7c-856a33a3061d",
+      "qos_policy_id": null
+    },
+    {
+      "router_id": null,
+      "status": "DOWN",
+      "description": "idle",
+      "tags": [],
+      "tenant_id": "d7e88181cd044db188592070ec8bf8b4",
+      "created_at": "2020-03-20T12:14:47Z",
+      "updated_at": "2020-03-20T12:14:47Z",
+      "floating_network_id": "38cc9e61-11fc-4921-843d-80ef249a3710",
+      "fixed_ip_address": null,
+      "floating_ip_address": "10.0.50.8",
+      "revision_number": 0,
+      "project_id": "d7e88181cd044db188592070ec8bf8b4",
+      "port_id": null,
+      "id": "65297c50-2c6e-4c5f-96eb-8b4c228cd54c",
+      "qos_policy_id": null
+    }
+  ]
+}

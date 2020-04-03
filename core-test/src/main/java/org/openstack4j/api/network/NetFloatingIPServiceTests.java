@@ -29,6 +29,10 @@ import org.openstack4j.api.exceptions.ClientResponseException;
 import org.openstack4j.model.network.NetFloatingIP;
 import org.testng.annotations.Test;
 
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 @Test(suiteName = "Network Floating IPs Tests")
@@ -49,5 +53,46 @@ public class NetFloatingIPServiceTests extends AbstractTest {
         } catch (ClientResponseException expected) {
             assertTrue(expected.toString().contains("is not reachable from subnet"), expected.toString());
         }
+    }
+
+    @Test
+    public void listIps() throws Exception {
+        respondWith("/network/network_fips_list.json");
+
+        List<? extends NetFloatingIP> list = osv3().networking().floatingip().list();
+        assertEquals(list.size(), 2);
+        NetFloatingIP used = list.get(0);
+        assertEquals(used.getStatus(), "ACTIVE");
+        assertEquals(used.getRouterId(), "4910645f-7efe-4c37-918e-3ace85162985");
+        assertEquals("", used.getDescription());
+        assertEquals(used.getTags(), Collections.emptyList());
+        assertEquals(used.getProjectId(), "e68d5f9cb37844ecbd793632944f4459");
+        assertEquals(used.getTenantId(), "e68d5f9cb37844ecbd793632944f4459");
+        assertEquals(used.getCreatedAt(), new Date(1584733565000L));
+        assertEquals(used.getUpdatedAt(), new Date(1584733569000L));
+        assertEquals(used.getFloatingNetworkId(), "38cc9e61-11fc-4921-843d-80ef249a3710");
+        assertEquals(used.getFixedIpAddress(), "10.0.51.16");
+        assertEquals(used.getFloatingIpAddress(), "10.0.50.29");
+        assertEquals(used.getPortId(), "7095d432-a007-4d6b-9549-683cd1566188");
+        assertEquals(used.getId(), "530e2826-ae43-4cde-bd7c-856a33a3061d");
+        assertNull(used.getQosPolicyId());
+        assertEquals(1, used.getRevisionNumber().intValue());
+
+        NetFloatingIP idle = list.get(1);
+        assertEquals(idle.getStatus(), "DOWN");
+        assertNull(idle.getRouterId());
+        assertEquals("idle", idle.getDescription());
+        assertEquals(idle.getTags(), Collections.emptyList());
+        assertEquals(idle.getProjectId(), "d7e88181cd044db188592070ec8bf8b4");
+        assertEquals(idle.getTenantId(), "d7e88181cd044db188592070ec8bf8b4");
+        assertEquals(idle.getCreatedAt(), new Date(1584706487000L));
+        assertEquals(idle.getUpdatedAt(), new Date(1584706487000L));
+        assertEquals(idle.getFloatingNetworkId(), "38cc9e61-11fc-4921-843d-80ef249a3710");
+        assertNull(idle.getFixedIpAddress());
+        assertEquals(idle.getFloatingIpAddress(), "10.0.50.8");
+        assertNull(idle.getPortId());
+        assertEquals(idle.getId(), "65297c50-2c6e-4c5f-96eb-8b4c228cd54c");
+        assertNull(idle.getQosPolicyId());
+        assertEquals(0, idle.getRevisionNumber().intValue());
     }
 }
