@@ -11,9 +11,9 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.Port;
-import org.openstack4j.model.network.SubPort;
+import org.openstack4j.model.network.TrunkSubPort;
 import org.openstack4j.model.network.Trunk;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort;
+import org.openstack4j.openstack.networking.domain.NeutronTrunkSubPort;
 import org.testng.annotations.Test;
 
 /**
@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
  * @author Kashyap Jha
  */
 @Test(suiteName = "Network")
-public class TrunkPortTests extends AbstractTest {
+public class TrunkTests extends AbstractTest {
 
     private static final String JSON_CREATE_TRUNK_RESPONSE = "/network/createTrunkResponse.json";
     private static final String JSON_ADD_SUBPORT_RESPONSE = "/network/addSubPortResponse.json";
@@ -38,7 +38,7 @@ public class TrunkPortTests extends AbstractTest {
         return Service.NETWORK;
     }
 
-    @Test(enabled = true)
+    @Test
     public void createTrunk() throws Exception {
         respondWith(JSON_PORT_CREATE_RESPONSE);
 
@@ -58,7 +58,7 @@ public class TrunkPortTests extends AbstractTest {
         assertEquals(builtTrunk.getName(), trunk1Name);
     }
 
-    @Test(enabled = true)
+    @Test
     public void deleteTrunk() throws Exception {
         respondWith(204);
         String trunkId = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
@@ -66,14 +66,13 @@ public class TrunkPortTests extends AbstractTest {
         assertTrue(delete.isSuccess());
     }
 
-    @Test(enabled = true)
+    @Test
     public void listTrunks() throws Exception {
         respondWith(JSON_LIST_TRUNKS_RESPONSE);
 
         String trunk1Id = "cf15956d-4391-4ebf-a9cb-0f7e27b24073";
         String trunk2Id = "f98559e9-8e92-4100-96ac-a805e0340abd";
         List<String> trunkIds = new ArrayList<>();
-        assertNotNull(trunkIds);
         for (Trunk t : osv3().networking().trunk().list()) {
             assertNotNull(t);
             trunkIds.add(t.getId());
@@ -82,7 +81,7 @@ public class TrunkPortTests extends AbstractTest {
         assertTrue(trunkIds.contains(trunk2Id));
     }
 
-    @Test(enabled = true)
+    @Test
     public void updateTrunk() throws Exception {
         respondWith(JSON_UPDATE_TRUNK_RESPONSE);
 
@@ -95,7 +94,7 @@ public class TrunkPortTests extends AbstractTest {
         assertEquals(updatedTrunk.getId(), trunkId);
     }
 
-    @Test(enabled = true)
+    @Test
     public void addSubPort() throws Exception {
         respondWith(JSON_ADD_SUBPORT_RESPONSE);
 
@@ -103,7 +102,7 @@ public class TrunkPortTests extends AbstractTest {
         String subPortId = "9d30c4d8-3bb6-4b59-99ab-5eaa22e55037";
         int segmentationId = 101;
         String segmentationType = "vlan";
-        SubPort subPort = NeutronSubPort.builder().portId(subPortId).segmentationId(segmentationId)
+        TrunkSubPort subPort = NeutronTrunkSubPort.builder().portId(subPortId).segmentationId(segmentationId)
                 .segmentationType("vlan").build();
         Trunk withSubPort = osv3().networking().trunk().addSubPort(trunkId, subPort);
         assertNotNull(withSubPort);
@@ -112,7 +111,7 @@ public class TrunkPortTests extends AbstractTest {
         assertEquals(segmentationType, withSubPort.getSubPorts().get(0).getSegmentationType());
     }
 
-    @Test(enabled = true)
+    @Test
     public void removeSubPort() throws Exception {
         respondWith(JSON_REMOVE_SUBPORT_RESPONSE);
 
@@ -123,22 +122,22 @@ public class TrunkPortTests extends AbstractTest {
         assertTrue(withoutSubport.getSubPorts().isEmpty());
     }
 
-    @Test(enabled = true)
+    @Test
     public void listSubPorts() throws Exception {
         respondWith(JSON_LIST_SUBPORTS_RESPONSE);
 
         String trunkId = "f98559e9-8e92-4100-96ac-a805e0340abd";
         List<String> ids = new ArrayList<>();
-        List<NeutronSubPort> subPorts = osv3().networking().trunk().listSubPorts(trunkId);
+        List<NeutronTrunkSubPort> subPorts = osv3().networking().trunk().listSubPorts(trunkId);
         assertNotNull(subPorts);
-        for (SubPort subPort : subPorts) {
+        for (TrunkSubPort subPort : subPorts) {
             assertNotNull(subPort);
             ids.add(subPort.getId());
         }
         assertEquals(ids.size(), 2);
     }
 
-    @Test(enabled = true)
+    @Test
     public void getTrunk() throws Exception {
         respondWith(JSON_GET_TRUNK_RESPONSE);
 

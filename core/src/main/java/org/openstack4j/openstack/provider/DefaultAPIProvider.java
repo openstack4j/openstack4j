@@ -553,6 +553,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(WorkflowEnvironmentService.class, WorkflowEnvironmentServiceImpl.class);
         bind(CronTriggerService.class, CronTriggerServiceImpl.class);
         bind(NetworkIPAvailabilityService.class, NetworkIPAvailabilityServiceImpl.class);
+        bind(TrunkService.class, TrunkServiceImpl.class);
     }
 
     /**

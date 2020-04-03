@@ -3,7 +3,7 @@ package org.openstack4j.openstack.networking.domain;
 import java.util.List;
 
 import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.network.SubPort;
+import org.openstack4j.model.network.TrunkSubPort;
 import org.openstack4j.openstack.common.ListEntity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -70,9 +70,9 @@ public class NeutronSubPortCreate implements ModelEntity {
 
         private static final long serialVersionUID = 1L;
 
-        public static NeutronSubPortsCreate fromSubPorts(List<? extends SubPort> subPorts) {
+        public static NeutronSubPortsCreate fromSubPorts(List<? extends TrunkSubPort> subPorts) {
             NeutronSubPortsCreate toCreate = new NeutronSubPortsCreate();
-            for (SubPort subPort : subPorts) {
+            for (TrunkSubPort subPort : subPorts) {
                 toCreate.subPorts.add(NeutronSubPortCreate.fromSubPort(subPort));
             }
             return toCreate;
@@ -88,7 +88,7 @@ public class NeutronSubPortCreate implements ModelEntity {
 
     private static final long serialVersionUID = 1L;
 
-    public static NeutronSubPortCreate fromSubPort(SubPort subPort) {
+    public static NeutronSubPortCreate fromSubPort(TrunkSubPort subPort) {
         NeutronSubPortCreate toCreate = new NeutronSubPortCreate();
         toCreate.segmentationId = subPort.getSegmentationId();
         toCreate.segmentationType = subPort.getSegmentationType();

@@ -5,8 +5,8 @@ import java.util.Objects;
 
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.builder.ResourceBuilder;
-import org.openstack4j.model.network.SubPort;
-import org.openstack4j.model.network.builder.SubPortBuilder;
+import org.openstack4j.model.network.TrunkSubPort;
+import org.openstack4j.model.network.builder.TrunkSubPortBuilder;
 import org.openstack4j.openstack.common.ListEntity;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -22,97 +22,97 @@ import com.google.common.base.MoreObjects;
  */
 @JsonRootName("sub_port")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NeutronSubPort implements SubPort, ModelEntity {
+public class NeutronTrunkSubPort implements TrunkSubPort, ModelEntity {
 
-    public static class NeutronSubPorts implements ModelEntity {
+    public static class NeutronTrunkSubPorts implements ModelEntity {
 
         private static final long serialVersionUID = 1L;
 
-        public static NeutronSubPorts fromSubPorts(List<? extends SubPort> subPorts) {
-            NeutronSubPorts toCreate = new NeutronSubPorts();
-            for (SubPort subPort : subPorts) {
-                toCreate.subPorts.add(NeutronSubPort.fromSubPort(subPort));
+        public static NeutronTrunkSubPorts fromSubPorts(List<? extends TrunkSubPort> subPorts) {
+            NeutronTrunkSubPorts toCreate = new NeutronTrunkSubPorts();
+            for (TrunkSubPort subPort : subPorts) {
+                toCreate.subPorts.add(NeutronTrunkSubPort.fromSubPort(subPort));
             }
             return toCreate;
         }
 
         @JsonProperty("sub_ports")
-        private ListEntity<NeutronSubPort> subPorts;
+        private ListEntity<NeutronTrunkSubPort> subPorts;
 
-        public NeutronSubPorts() {
+        public NeutronTrunkSubPorts() {
             subPorts = new ListEntity<>();
         }
     }
 
-    public static class SubPortConcreteBuilder extends ResourceBuilder<SubPort, SubPortConcreteBuilder>
-            implements SubPortBuilder {
+    public static class TrunkSubPortConcreteBuilder extends ResourceBuilder<TrunkSubPort, TrunkSubPortConcreteBuilder>
+            implements TrunkSubPortBuilder {
 
-        private NeutronSubPort reference;
+        private NeutronTrunkSubPort reference;
 
-        SubPortConcreteBuilder() {
-            this(new NeutronSubPort());
+        TrunkSubPortConcreteBuilder() {
+            this(new NeutronTrunkSubPort());
         }
 
-        SubPortConcreteBuilder(NeutronSubPort subPort) {
+        TrunkSubPortConcreteBuilder(NeutronTrunkSubPort subPort) {
             this.reference = subPort;
         }
 
         @Override
-        public SubPort build() {
+        public TrunkSubPort build() {
             return reference;
         }
 
         @Override
-        public SubPortBuilder from(SubPort in) {
-            reference = (NeutronSubPort) in;
+        public TrunkSubPortBuilder from(TrunkSubPort in) {
+            reference = (NeutronTrunkSubPort) in;
             return this;
         }
 
         @Override
-        public SubPortBuilder portId(String portId) {
+        public TrunkSubPortBuilder portId(String portId) {
             reference.portId = portId;
             return this;
         }
 
         @Override
-        protected SubPort reference() {
+        protected TrunkSubPort reference() {
             return reference;
         }
 
         @Override
-        public SubPortBuilder segmentationId(int segmentationId) {
+        public TrunkSubPortBuilder segmentationId(int segmentationId) {
             reference.segmentationId = segmentationId;
             return this;
         }
 
         @Override
-        public SubPortBuilder segmentationType(String segmentationType) {
+        public TrunkSubPortBuilder segmentationType(String segmentationType) {
             reference.segmentationType = segmentationType;
             return this;
         }
     }
 
-    public static class SubPorts extends ListResult<NeutronSubPort> {
+    public static class TrunkSubPorts extends ListResult<NeutronTrunkSubPort> {
         private static final long serialVersionUID = 1L;
 
         @JsonIgnoreProperties(ignoreUnknown = true)
         @JsonProperty("sub_ports")
-        private List<NeutronSubPort> subPorts;
+        private List<NeutronTrunkSubPort> trunkSubPorts;
 
         @Override
-        protected List<NeutronSubPort> value() {
-            return subPorts;
+        protected List<NeutronTrunkSubPort> value() {
+            return trunkSubPorts;
         }
     }
 
     private static final long serialVersionUID = 1L;
 
-    public static SubPortBuilder builder() {
-        return new SubPortConcreteBuilder();
+    public static TrunkSubPortBuilder builder() {
+        return new TrunkSubPortConcreteBuilder();
     }
 
-    public static NeutronSubPort fromSubPort(SubPort subPort) {
-        NeutronSubPort toCreate = new NeutronSubPort();
+    public static NeutronTrunkSubPort fromSubPort(TrunkSubPort subPort) {
+        NeutronTrunkSubPort toCreate = new NeutronTrunkSubPort();
         toCreate.portId = subPort.getPortId();
         toCreate.segmentationId = subPort.getSegmentationId();
         toCreate.segmentationType = subPort.getSegmentationType();
@@ -128,10 +128,10 @@ public class NeutronSubPort implements SubPort, ModelEntity {
     @JsonProperty("segmentation_type")
     private String segmentationType;
 
-    public NeutronSubPort() {
+    public NeutronTrunkSubPort() {
     }
 
-    public NeutronSubPort(String portId) {
+    public NeutronTrunkSubPort(String portId) {
         this.portId = portId;
     }
 
@@ -139,8 +139,8 @@ public class NeutronSubPort implements SubPort, ModelEntity {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj instanceof NeutronSubPort) {
-            NeutronSubPort that = (NeutronSubPort) obj;
+        if (obj instanceof NeutronTrunkSubPort) {
+            NeutronTrunkSubPort that = (NeutronTrunkSubPort) obj;
             if (Objects.equals(portId, that.portId) && Objects.equals(segmentationId, that.segmentationId)
                     && Objects.equals(segmentationType, that.segmentationType)) {
                 return true;
@@ -217,8 +217,8 @@ public class NeutronSubPort implements SubPort, ModelEntity {
     }
 
     @Override
-    public SubPortBuilder toBuilder() {
-        return new SubPortConcreteBuilder(this);
+    public TrunkSubPortBuilder toBuilder() {
+        return new TrunkSubPortConcreteBuilder(this);
     }
 
     @Override

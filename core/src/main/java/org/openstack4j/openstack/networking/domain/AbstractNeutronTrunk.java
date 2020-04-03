@@ -71,7 +71,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
         }
 
         @Override
-        public TrunkBuilder subPorts(List<NeutronSubPort> subPorts) {
+        public TrunkBuilder subPorts(List<NeutronTrunkSubPort> subPorts) {
             reference.subPorts = subPorts;
             return this;
         }
@@ -118,7 +118,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     protected State state;
 
     @JsonProperty("sub_ports")
-    protected List<NeutronSubPort> subPorts;
+    protected List<NeutronTrunkSubPort> subPorts;
 
     @JsonProperty("tenant_id")
     protected String tenantId;
@@ -172,7 +172,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     }
 
     @Override
-    public List<NeutronSubPort> getSubPorts() {
+    public List<NeutronTrunkSubPort> getSubPorts() {
         return subPorts;
     }
 

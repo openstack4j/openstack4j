@@ -7,11 +7,11 @@ import java.util.List;
 
 import org.openstack4j.api.networking.TrunkService;
 import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.network.SubPort;
+import org.openstack4j.model.network.TrunkSubPort;
 import org.openstack4j.model.network.Trunk;
 import org.openstack4j.openstack.networking.domain.AbstractNeutronTrunk.Trunks;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort.SubPorts;
+import org.openstack4j.openstack.networking.domain.NeutronTrunkSubPort;
+import org.openstack4j.openstack.networking.domain.NeutronTrunkSubPort.TrunkSubPorts;
 import org.openstack4j.openstack.networking.domain.NeutronSubPortCreate;
 import org.openstack4j.openstack.networking.domain.NeutronSubPortCreate.NeutronSubPortDelete.NeutronSubPortsDelete;
 import org.openstack4j.openstack.networking.domain.NeutronTrunk;
@@ -66,10 +66,10 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public Trunk addSubPort(String trunkId, SubPort subPort) {
+    public Trunk addSubPort(String trunkId, TrunkSubPort subPort) {
         checkNotNull(subPort);
         checkNotNull(trunkId);
-        List<SubPort> al = new ArrayList<>();
+        List<TrunkSubPort> al = new ArrayList<>();
         al.add(subPort);
         return put(NeutronTrunkSubport.class, uri("/trunks/%s/add_subports", trunkId))
                 .entity(NeutronSubPortCreate.NeutronSubPortsCreate.fromSubPorts(al)).execute();
@@ -92,9 +92,9 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public List<NeutronSubPort> listSubPorts(String trunkId) {
+    public List<NeutronTrunkSubPort> listSubPorts(String trunkId) {
         checkNotNull(trunkId);
-        return get(SubPorts.class, uri("/trunks/%s/get_subports", trunkId)).execute().getList();
+        return get(TrunkSubPorts.class, uri("/trunks/%s/get_subports", trunkId)).execute().getList();
     }
 
     /**

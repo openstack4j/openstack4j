@@ -242,7 +242,7 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-	 * @return String - the parent ID of the port
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTrunkPortParentId() {
@@ -250,7 +250,7 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-	 * @return String - the trunk port type of the port
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTrunkPortType() {
@@ -258,7 +258,7 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-	 * @return String - the vlan ID of the port
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTrunkPortVlanId() {
