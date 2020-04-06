@@ -67,7 +67,7 @@ public interface TrunkService extends RestService {
      *            trunk ID
      * @return a list of subports
      */
-    List<NeutronTrunkSubPort> listSubPorts(String trunkId);
+    List <TrunkSubPort> listSubPorts(String trunkId);
 
     /**
      * Removes subport from the specified trunk
@@ -87,7 +87,7 @@ public interface TrunkService extends RestService {
      *            the trunk object to update
      * @param trunkId
      *            the ID of the trunk to update
-     * @return
+     * @return updated trunk object
      */
     Trunk updateTrunk(Trunk trunk, String trunkId);
 }

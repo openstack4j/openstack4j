@@ -5,6 +5,7 @@ import java.util.List;
 import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.identity.v3.Tenant;
 import org.openstack4j.model.network.Trunk;
+import org.openstack4j.model.network.TrunkSubPort;
 import org.openstack4j.openstack.networking.domain.NeutronTrunkSubPort;
 
 /**
@@ -47,6 +48,6 @@ public interface TrunkBuilder extends Builder<TrunkBuilder, Trunk> {
     /**
      * Sets the subports
      */
-    TrunkBuilder subPorts(List<NeutronTrunkSubPort> subPorts);
+    TrunkBuilder subPorts(List<TrunkSubPort> subPorts);
 
 }

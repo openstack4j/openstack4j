@@ -128,7 +128,7 @@ public class TrunkTests extends AbstractTest {
 
         String trunkId = "f98559e9-8e92-4100-96ac-a805e0340abd";
         List<String> ids = new ArrayList<>();
-        List<NeutronTrunkSubPort> subPorts = osv3().networking().trunk().listSubPorts(trunkId);
+        List<TrunkSubPort> subPorts = osv3().networking().trunk().listSubPorts(trunkId);
         assertNotNull(subPorts);
         for (TrunkSubPort subPort : subPorts) {
             assertNotNull(subPort);

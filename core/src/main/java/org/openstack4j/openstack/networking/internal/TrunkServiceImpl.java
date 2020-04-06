@@ -92,7 +92,7 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public List<NeutronTrunkSubPort> listSubPorts(String trunkId) {
+    public List<TrunkSubPort> listSubPorts(String trunkId) {
         checkNotNull(trunkId);
         return get(TrunkSubPorts.class, uri("/trunks/%s/get_subports", trunkId)).execute().getList();
     }

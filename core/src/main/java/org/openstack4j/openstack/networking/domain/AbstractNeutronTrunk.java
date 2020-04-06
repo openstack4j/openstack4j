@@ -6,6 +6,7 @@ import java.util.Objects;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.State;
 import org.openstack4j.model.network.Trunk;
+import org.openstack4j.model.network.TrunkSubPort;
 import org.openstack4j.model.network.builder.TrunkBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -71,7 +72,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
         }
 
         @Override
-        public TrunkBuilder subPorts(List<NeutronTrunkSubPort> subPorts) {
+        public TrunkBuilder subPorts(List<TrunkSubPort> subPorts) {
             reference.subPorts = subPorts;
             return this;
         }
@@ -118,7 +119,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     protected State state;
 
     @JsonProperty("sub_ports")
-    protected List<NeutronTrunkSubPort> subPorts;
+    protected List<TrunkSubPort> subPorts;
 
     @JsonProperty("tenant_id")
     protected String tenantId;
@@ -172,7 +173,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     }
 
     @Override
-    public List<NeutronTrunkSubPort> getSubPorts() {
+    public List<TrunkSubPort> getSubPorts() {
         return subPorts;
     }
 

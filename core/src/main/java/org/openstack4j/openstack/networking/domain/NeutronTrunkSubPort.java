@@ -92,15 +92,15 @@ public class NeutronTrunkSubPort implements TrunkSubPort, ModelEntity {
         }
     }
 
-    public static class TrunkSubPorts extends ListResult<NeutronTrunkSubPort> {
+    public static class TrunkSubPorts extends ListResult<TrunkSubPort> {
         private static final long serialVersionUID = 1L;
 
         @JsonIgnoreProperties(ignoreUnknown = true)
         @JsonProperty("sub_ports")
-        private List<NeutronTrunkSubPort> trunkSubPorts;
+        private List<TrunkSubPort> trunkSubPorts;
 
         @Override
-        protected List<NeutronTrunkSubPort> value() {
+        protected List<TrunkSubPort> value() {
             return trunkSubPorts;
         }
     }
