@@ -90,7 +90,7 @@ public interface NetworkingService extends RestService {
      */
     NetworkIPAvailabilityService networkIPAvailability();
 
-	/**
+    /**
      * @return the Trunk API
      */
     TrunkService trunk();
