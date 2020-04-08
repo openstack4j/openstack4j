@@ -56,10 +56,10 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public Trunk updateTrunk(Trunk trunk, String trunkId) {
+    public Trunk updateTrunk(Trunk trunk) {
         checkNotNull(trunk);
-        checkNotNull(trunkId);
-        return put(NeutronTrunk.class, uri("/trunks/%s", trunkId)).entity(NeutronTrunkUpdate.update(trunk)).execute();
+        checkNotNull(trunk.getId());
+        return put(NeutronTrunk.class, uri("/trunks/%s", trunk.getId())).entity(NeutronTrunkUpdate.update(trunk)).execute();
     }
 
     /**

@@ -89,5 +89,5 @@ public interface TrunkService extends RestService {
      *            the ID of the trunk to update
      * @return updated trunk object
      */
-    Trunk updateTrunk(Trunk trunk, String trunkId);
+    Trunk updateTrunk(Trunk trunk);
 }

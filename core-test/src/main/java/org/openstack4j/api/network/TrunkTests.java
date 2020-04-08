@@ -11,8 +11,8 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.Port;
-import org.openstack4j.model.network.TrunkSubPort;
 import org.openstack4j.model.network.Trunk;
+import org.openstack4j.model.network.TrunkSubPort;
 import org.openstack4j.openstack.networking.domain.NeutronTrunkSubPort;
 import org.testng.annotations.Test;
 
@@ -51,7 +51,7 @@ public class TrunkTests extends AbstractTest {
 
         respondWith(JSON_CREATE_TRUNK_RESPONSE);
         Trunk builtTrunk = osv3.networking().trunk()
-                .createTrunk(Builders.trunk().name(trunk1Name).parentPort(builtPort.getId()).build());
+                .createTrunk(Builders.neutron().trunk().name(trunk1Name).parentPort(builtPort.getId()).build());
 
         assertNotNull(builtTrunk);
         assertEquals(builtTrunk.getParentPort(), builtPort.getId());
@@ -87,8 +87,7 @@ public class TrunkTests extends AbstractTest {
 
         String trunkId = "f98559e9-8e92-4100-96ac-a805e0340abd";
         String updatedName = "changedName";
-        Trunk updatedTrunk = osv3().networking().trunk().updateTrunk(Builders.trunk().name(updatedName).build(),
-                trunkId);
+        Trunk updatedTrunk = osv3().networking().trunk().updateTrunk(Builders.neutron().trunk().name(updatedName).build());
         assertNotNull(updatedTrunk);
         assertEquals(updatedTrunk.getName(), updatedName);
         assertEquals(updatedTrunk.getId(), trunkId);
