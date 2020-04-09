@@ -1,23 +1,18 @@
 package org.openstack4j.openstack.networking.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.openstack4j.api.networking.TrunkService;
+import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.network.Trunk;
+import org.openstack4j.model.network.TrunkSubport;
+import org.openstack4j.openstack.networking.domain.AbstractNeutronTrunk.Trunks;
+import org.openstack4j.openstack.networking.domain.*;
+import org.openstack4j.openstack.networking.domain.NeutronTrunkSubport.TrunkSubports;
+import org.openstack4j.openstack.networking.domain.NeutronTrunkSubportCreate.NeutronTrunkSubportDelete.NeutronTrunkSubportsDelete;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openstack4j.api.networking.TrunkService;
-import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.network.SubPort;
-import org.openstack4j.model.network.Trunk;
-import org.openstack4j.openstack.networking.domain.AbstractNeutronTrunk.Trunks;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort.SubPorts;
-import org.openstack4j.openstack.networking.domain.NeutronSubPortCreate;
-import org.openstack4j.openstack.networking.domain.NeutronSubPortCreate.NeutronSubPortDelete.NeutronSubPortsDelete;
-import org.openstack4j.openstack.networking.domain.NeutronTrunk;
-import org.openstack4j.openstack.networking.domain.NeutronTrunkCreate;
-import org.openstack4j.openstack.networking.domain.NeutronTrunkSubport;
-import org.openstack4j.openstack.networking.domain.NeutronTrunkUpdate;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack Network Trunk operations implementation
@@ -56,45 +51,45 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public Trunk updateTrunk(Trunk trunk, String trunkId) {
+    public Trunk updateTrunk(Trunk trunk) {
         checkNotNull(trunk);
-        checkNotNull(trunkId);
-        return put(NeutronTrunk.class, uri("/trunks/%s", trunkId)).entity(NeutronTrunkUpdate.update(trunk)).execute();
+        checkNotNull(trunk.getId());
+        return put(NeutronTrunk.class, uri("/trunks/%s", trunk.getId())).entity(NeutronTrunkUpdate.update(trunk)).execute();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Trunk addSubPort(String trunkId, SubPort subPort) {
+    public Trunk addTrunkSubport(String trunkId, TrunkSubport subPort) {
         checkNotNull(subPort);
         checkNotNull(trunkId);
-        List<SubPort> al = new ArrayList<>();
+        List<TrunkSubport> al = new ArrayList<>();
         al.add(subPort);
-        return put(NeutronTrunkSubport.class, uri("/trunks/%s/add_subports", trunkId))
-                .entity(NeutronSubPortCreate.NeutronSubPortsCreate.fromSubPorts(al)).execute();
+        return put(NeutronTrunkSubportAddRemove.class, uri("/trunks/%s/add_subports", trunkId))
+                .entity(NeutronTrunkSubportCreate.NeutronTrunkSubportsCreate.fromTrunkSubports(al)).execute();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Trunk removeSubPort(String trunkId, String portId) {
+    public Trunk removeTrunkSubport(String trunkId, String portId) {
         checkNotNull(trunkId);
         checkNotNull(portId);
         List<String> al = new ArrayList<>();
         al.add(portId);
-        return put(NeutronTrunkSubport.class, uri("/trunks/%s/remove_subports", trunkId))
-                .entity(NeutronSubPortsDelete.delete(al)).execute();
+        return put(NeutronTrunkSubportAddRemove.class, uri("/trunks/%s/remove_subports", trunkId))
+                .entity(NeutronTrunkSubportsDelete.delete(al)).execute();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<NeutronSubPort> listSubPorts(String trunkId) {
+    public List<NeutronTrunkSubport> listTrunkSubports(String trunkId) {
         checkNotNull(trunkId);
-        return get(SubPorts.class, uri("/trunks/%s/get_subports", trunkId)).execute().getList();
+        return get(TrunkSubports.class, uri("/trunks/%s/get_subports", trunkId)).execute().getList();
     }
 
     /**

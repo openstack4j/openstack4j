@@ -1,26 +1,17 @@
 package org.openstack4j.openstack.networking.domain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openstack4j.model.common.builder.ResourceBuilder;
-import org.openstack4j.model.network.AllowedAddressPair;
-import org.openstack4j.model.network.ExtraDhcpOptCreate;
-import org.openstack4j.model.network.IP;
-import org.openstack4j.model.network.Port;
-import org.openstack4j.model.network.State;
-import org.openstack4j.model.network.builder.PortBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.openstack4j.model.common.builder.ResourceBuilder;
+import org.openstack4j.model.network.*;
+import org.openstack4j.model.network.builder.PortBuilder;
+import org.openstack4j.openstack.common.ListResult;
+
+import java.util.*;
 
 /**
  * A Neutron Port
@@ -242,7 +233,7 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-	 * @return String - the parent ID of the port
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTrunkPortParentId() {
@@ -250,7 +241,7 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-	 * @return String - the trunk port type of the port
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTrunkPortType() {
@@ -258,7 +249,7 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-	 * @return String - the vlan ID of the port
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getTrunkPortVlanId() {

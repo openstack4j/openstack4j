@@ -1,11 +1,11 @@
 package org.openstack4j.model.network.builder;
 
-import java.util.List;
-
 import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.identity.v3.Tenant;
 import org.openstack4j.model.network.Trunk;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort;
+import org.openstack4j.openstack.networking.domain.NeutronTrunkSubport;
+
+import java.util.List;
 
 /**
  * A builder which creates a network trunk
@@ -47,6 +47,11 @@ public interface TrunkBuilder extends Builder<TrunkBuilder, Trunk> {
     /**
      * Sets the subports
      */
-    TrunkBuilder subPorts(List<NeutronSubPort> subPorts);
+    TrunkBuilder trunkSubports(List<NeutronTrunkSubport> trunkSubports);
+
+    /**
+     * Sets the trunk id
+     */
+    TrunkBuilder trunkId(String trunkId);
 
 }

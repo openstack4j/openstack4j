@@ -1,23 +1,22 @@
 package org.openstack4j.openstack.networking.domain;
 
-import java.util.List;
-import java.util.Objects;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.State;
 import org.openstack4j.model.network.Trunk;
 import org.openstack4j.model.network.builder.TrunkBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A Neutron Trunk
  *
  * This is the parent class for {@link NeutronTrunk} and
- * {@link NeutronTrunkSubport} NeutronTrunk has the json root name trunk whereas
- * NeutronTrunkSubport doesn't as the API doesn't expect it
+ * {@link NeutronTrunkSubportAddRemove} NeutronTrunk has the json root name trunk whereas
+ * NeutronTrunkSubportAddRemove doesn't as the API doesn't expect it
  *
  * @author Kashyap Jha
  */
@@ -71,8 +70,14 @@ public abstract class AbstractNeutronTrunk implements Trunk {
         }
 
         @Override
-        public TrunkBuilder subPorts(List<NeutronSubPort> subPorts) {
-            reference.subPorts = subPorts;
+        public TrunkBuilder trunkSubports(List<NeutronTrunkSubport> trunkSubports) {
+            reference.trunkSubports = trunkSubports;
+            return this;
+        }
+
+        @Override
+        public TrunkBuilder trunkId(String trunkId) {
+            reference.id = trunkId;
             return this;
         }
     }
@@ -118,7 +123,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     protected State state;
 
     @JsonProperty("sub_ports")
-    protected List<NeutronSubPort> subPorts;
+    protected List<NeutronTrunkSubport> trunkSubports;
 
     @JsonProperty("tenant_id")
     protected String tenantId;
@@ -134,7 +139,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
                     && java.util.Objects.equals(tenantId, that.tenantId)
                     && java.util.Objects.equals(parentPortId, that.parentPortId)
                     && java.util.Objects.equals(revisionNumber, that.revisionNumber)
-                    && java.util.Objects.equals(state, that.state) && java.util.Objects.equals(subPorts, that.subPorts)
+                    && java.util.Objects.equals(state, that.state) && java.util.Objects.equals(trunkSubports, that.trunkSubports)
                     && java.util.Objects.equals(description, that.description)) {
                 return true;
             }
@@ -172,8 +177,8 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     }
 
     @Override
-    public List<NeutronSubPort> getSubPorts() {
-        return subPorts;
+    public List<NeutronTrunkSubport> getTrunkSubports() {
+        return trunkSubports;
     }
 
     @Override
@@ -182,7 +187,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     }
 
     public int hashCode() {
-        return Objects.hash(id, name, parentPortId, revisionNumber, state, tenantId, subPorts, description);
+        return Objects.hash(id, name, parentPortId, revisionNumber, state, tenantId, trunkSubports, description);
     }
 
     @Override
@@ -219,6 +224,6 @@ public abstract class AbstractNeutronTrunk implements Trunk {
         return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name)
                 .add("adminStateUp", adminStateUp).add("parentPortId", parentPortId)
                 .add("revisionNumber", revisionNumber).add("state", state).add("tenantId", tenantId)
-                .add("subPorts", subPorts).add("description", description).toString();
+                .add("trunkSubports", trunkSubports).add("description", description).toString();
     }
 }

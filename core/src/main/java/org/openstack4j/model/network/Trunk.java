@@ -1,11 +1,10 @@
 package org.openstack4j.model.network;
 
-import java.util.List;
-
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.common.Resource;
 import org.openstack4j.model.network.builder.TrunkBuilder;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort;
+
+import java.util.List;
 
 /**
  * A network Trunk
@@ -32,7 +31,7 @@ public interface Trunk extends Resource, Buildable<TrunkBuilder> {
     /**
      * @return a list of subports associated with the trunk
      */
-    List<NeutronSubPort> getSubPorts();
+    List<? extends TrunkSubport> getTrunkSubports();
 
     /**
      * @return a string containing the description

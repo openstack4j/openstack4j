@@ -1,12 +1,12 @@
 package org.openstack4j.api.networking;
 
-import java.util.List;
-
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.network.SubPort;
 import org.openstack4j.model.network.Trunk;
-import org.openstack4j.openstack.networking.domain.NeutronSubPort;
+import org.openstack4j.model.network.TrunkSubport;
+import org.openstack4j.openstack.networking.domain.NeutronTrunkSubport;
+
+import java.util.List;
 
 /**
  * OpenStack Network Trunk operations
@@ -24,7 +24,7 @@ public interface TrunkService extends RestService {
      *            subport object to add
      * @return the updated trunk object
      */
-    Trunk addSubPort(String trunkId, SubPort subPort);
+    Trunk addTrunkSubport(String trunkId, TrunkSubport subPort);
 
     /**
      * Creates a trunk
@@ -67,7 +67,7 @@ public interface TrunkService extends RestService {
      *            trunk ID
      * @return a list of subports
      */
-    List<NeutronSubPort> listSubPorts(String trunkId);
+    List<NeutronTrunkSubport> listTrunkSubports(String trunkId);
 
     /**
      * Removes subport from the specified trunk
@@ -78,16 +78,15 @@ public interface TrunkService extends RestService {
      *            the ID of the subport to remove
      * @return trunk object with the subport removed
      */
-    Trunk removeSubPort(String trunkId, String portId);
+    Trunk removeTrunkSubport(String trunkId, String portId);
 
     /**
      * Updates a trunk object
      *
      * @param trunk
      *            the trunk object to update
-     * @param trunkId
-     *            the ID of the trunk to update
      * @return
+     *            the updated trunk object
      */
-    Trunk updateTrunk(Trunk trunk, String trunkId);
+    Trunk updateTrunk(Trunk trunk);
 }
