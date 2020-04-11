@@ -33,7 +33,7 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public Trunk createTrunk(Trunk trunk) {
+    public Trunk create(Trunk trunk) {
         checkNotNull(trunk);
         return post(NeutronTrunk.class, uri("/trunks")).entity(NeutronTrunkCreate.fromTrunk(trunk)).execute();
     }
@@ -42,7 +42,16 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public ActionResponse deleteTrunk(String trunkId) {
+    public Trunk get(String trunkId) {
+        checkNotNull(trunkId);
+        return get(NeutronTrunk.class, uri("/trunks/%s", trunkId)).execute();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ActionResponse delete(String trunkId) {
         checkNotNull(trunkId);
         return deleteWithResponse(uri("/trunks/%s", trunkId)).execute();
     }
@@ -51,7 +60,7 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
      * {@inheritDoc}
      */
     @Override
-    public Trunk updateTrunk(Trunk trunk) {
+    public Trunk update(Trunk trunk) {
         checkNotNull(trunk);
         checkNotNull(trunk.getId());
         return put(NeutronTrunk.class, uri("/trunks/%s", trunk.getId())).entity(NeutronTrunkUpdate.update(trunk)).execute();
@@ -91,14 +100,4 @@ public class TrunkServiceImpl extends BaseNetworkingServices implements TrunkSer
         checkNotNull(trunkId);
         return get(TrunkSubports.class, uri("/trunks/%s/get_subports", trunkId)).execute().getList();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Trunk get(String trunkId) {
-        checkNotNull(trunkId);
-        return get(NeutronTrunk.class, uri("/trunks/%s", trunkId)).execute();
-    }
-
 }

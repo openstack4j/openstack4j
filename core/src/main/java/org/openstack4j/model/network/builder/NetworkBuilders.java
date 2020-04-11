@@ -266,5 +266,4 @@ public interface NetworkBuilders {
      * @return TrunkBuilder
      */
     public TrunkBuilder trunk();
-
 }

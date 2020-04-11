@@ -53,5 +53,4 @@ public interface TrunkBuilder extends Builder<TrunkBuilder, Trunk> {
      * Sets the trunk id
      */
     TrunkBuilder trunkId(String trunkId);
-
 }

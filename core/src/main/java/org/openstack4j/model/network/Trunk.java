@@ -37,5 +37,4 @@ public interface Trunk extends Resource, Buildable<TrunkBuilder> {
      * @return a string containing the description
      */
     String getDescription();
-
 }

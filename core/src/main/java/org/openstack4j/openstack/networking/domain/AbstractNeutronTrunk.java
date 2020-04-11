@@ -134,17 +134,24 @@ public abstract class AbstractNeutronTrunk implements Trunk {
             return true;
         if (obj instanceof NeutronTrunk) {
             NeutronTrunk that = (NeutronTrunk) obj;
-            if (java.util.Objects.equals(id, that.id) && java.util.Objects.equals(name, that.name)
-                    && java.util.Objects.equals(adminStateUp, that.adminStateUp)
-                    && java.util.Objects.equals(tenantId, that.tenantId)
-                    && java.util.Objects.equals(parentPortId, that.parentPortId)
-                    && java.util.Objects.equals(revisionNumber, that.revisionNumber)
-                    && java.util.Objects.equals(state, that.state) && java.util.Objects.equals(trunkSubports, that.trunkSubports)
-                    && java.util.Objects.equals(description, that.description)) {
+            if (Objects.equals(id, that.id)
+                    && Objects.equals(name, that.name)
+                    && Objects.equals(adminStateUp, that.adminStateUp)
+                    && Objects.equals(tenantId, that.tenantId)
+                    && Objects.equals(parentPortId, that.parentPortId)
+                    && Objects.equals(revisionNumber, that.revisionNumber)
+                    && Objects.equals(state, that.state)
+                    && Objects.equals(trunkSubports, that.trunkSubports)
+                    && Objects.equals(description, that.description)) {
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, parentPortId, revisionNumber, state, tenantId, trunkSubports, description);
     }
 
     @Override
@@ -184,10 +191,6 @@ public abstract class AbstractNeutronTrunk implements Trunk {
     @Override
     public String getTenantId() {
         return tenantId;
-    }
-
-    public int hashCode() {
-        return Objects.hash(id, name, parentPortId, revisionNumber, state, tenantId, trunkSubports, description);
     }
 
     @Override

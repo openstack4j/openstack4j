@@ -16,24 +16,13 @@ import java.util.List;
 public interface TrunkService extends RestService {
 
     /**
-     * Adds a subport to the specified Trunk
-     *
-     * @param trunkId
-     *            ID of the trunk
-     * @param subPort
-     *            subport object to add
-     * @return the updated trunk object
-     */
-    Trunk addTrunkSubport(String trunkId, TrunkSubport subPort);
-
-    /**
      * Creates a trunk
      *
      * @param trunk
      *            the trunk to create
      * @return the created trunk object
      */
-    Trunk createTrunk(Trunk trunk);
+    Trunk create(Trunk trunk);
 
     /**
      * Delete a trunk
@@ -42,7 +31,7 @@ public interface TrunkService extends RestService {
      *            ID of the trunk
      * @return action response
      */
-    ActionResponse deleteTrunk(String trunkId);
+    ActionResponse delete(String trunkId);
 
     /**
      * Get a trunk by ID
@@ -52,6 +41,16 @@ public interface TrunkService extends RestService {
      * @return the trunk object
      */
     Trunk get(String trunkId);
+
+    /**
+     * Updates a trunk object
+     *
+     * @param trunk
+     *            the trunk object to update
+     * @return
+     *            the updated trunk object
+     */
+    Trunk update(Trunk trunk);
 
     /**
      * Lists all trunks
@@ -70,6 +69,17 @@ public interface TrunkService extends RestService {
     List<NeutronTrunkSubport> listTrunkSubports(String trunkId);
 
     /**
+     * Adds a subport to the specified Trunk
+     *
+     * @param trunkId
+     *            ID of the trunk
+     * @param subPort
+     *            subport object to add
+     * @return the updated trunk object
+     */
+    Trunk addTrunkSubport(String trunkId, TrunkSubport subPort);
+
+    /**
      * Removes subport from the specified trunk
      *
      * @param trunkId
@@ -79,14 +89,4 @@ public interface TrunkService extends RestService {
      * @return trunk object with the subport removed
      */
     Trunk removeTrunkSubport(String trunkId, String portId);
-
-    /**
-     * Updates a trunk object
-     *
-     * @param trunk
-     *            the trunk object to update
-     * @return
-     *            the updated trunk object
-     */
-    Trunk updateTrunk(Trunk trunk);
 }

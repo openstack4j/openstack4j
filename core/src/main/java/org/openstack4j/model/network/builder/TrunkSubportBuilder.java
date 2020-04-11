@@ -24,5 +24,4 @@ public interface TrunkSubportBuilder extends Builder<TrunkSubportBuilder, TrunkS
      * Set the segmentation type
      */
     TrunkSubportBuilder segmentationType(String segmentationType);
-
 }

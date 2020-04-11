@@ -191,7 +191,7 @@ public class NeutronPort implements Port {
 	public List<String> getSecurityGroups() {
 		return securityGroups;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

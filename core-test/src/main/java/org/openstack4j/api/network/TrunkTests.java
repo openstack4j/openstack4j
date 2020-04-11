@@ -48,7 +48,7 @@ public class TrunkTests extends AbstractTest {
 
         respondWith(JSON_CREATE_TRUNK_RESPONSE);
         Trunk builtTrunk = osv3.networking().trunk()
-                .createTrunk(Builders.neutron().trunk().name(trunk1Name).parentPort(builtPort.getId()).build());
+                .create(Builders.neutron().trunk().name(trunk1Name).parentPort(builtPort.getId()).build());
 
         assertNotNull(builtTrunk);
         assertEquals(builtTrunk.getParentPort(), builtPort.getId());
@@ -58,7 +58,7 @@ public class TrunkTests extends AbstractTest {
     public void deleteTrunk() throws Exception {
         respondWith(204);
         String trunkId = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
-        ActionResponse delete = osv3().networking().trunk().deleteTrunk(trunkId);
+        ActionResponse delete = osv3().networking().trunk().delete(trunkId);
         assertTrue(delete.isSuccess());
     }
 
@@ -81,7 +81,7 @@ public class TrunkTests extends AbstractTest {
 
         String trunkId = "f98559e9-8e92-4100-96ac-a805e0340abd";
         String updatedName = "changedName";
-        Trunk updatedTrunk = osv3().networking().trunk().updateTrunk(Builders.neutron().trunk().trunkId(trunkId).name(updatedName).build());
+        Trunk updatedTrunk = osv3().networking().trunk().update(Builders.neutron().trunk().trunkId(trunkId).name(updatedName).build());
         assertNotNull(updatedTrunk);
         assertEquals(updatedTrunk.getName(), updatedName);
         assertEquals(updatedTrunk.getId(), trunkId);
