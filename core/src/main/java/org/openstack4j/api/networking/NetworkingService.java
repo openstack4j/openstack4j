@@ -89,4 +89,9 @@ public interface NetworkingService extends RestService {
      * @return the Network IP Availability Service API
      */
     NetworkIPAvailabilityService networkIPAvailability();
+
+	/**
+     * @return the Trunk API
+     */
+    TrunkService trunk();
 }

@@ -1,26 +1,17 @@
 package org.openstack4j.openstack.networking.domain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openstack4j.model.common.builder.ResourceBuilder;
-import org.openstack4j.model.network.AllowedAddressPair;
-import org.openstack4j.model.network.ExtraDhcpOptCreate;
-import org.openstack4j.model.network.IP;
-import org.openstack4j.model.network.Port;
-import org.openstack4j.model.network.State;
-import org.openstack4j.model.network.builder.PortBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.openstack4j.model.common.builder.ResourceBuilder;
+import org.openstack4j.model.network.*;
+import org.openstack4j.model.network.builder.PortBuilder;
+import org.openstack4j.openstack.common.ListResult;
+
+import java.util.*;
 
 /**
  * A Neutron Port
@@ -63,6 +54,15 @@ public class NeutronPort implements Port {
 	@JsonProperty("tenant_id")
 	private String tenantId;
 
+	@JsonProperty("trunkport:type")
+	private String trunkPortType;
+
+	@JsonProperty("trunkport:parent_id")
+	private String trunkPortParentId;
+
+	@JsonProperty("trunkport:vid")
+	private String trunkPortVlanId;
+	
 	@JsonProperty("security_groups")
 	private List<String> securityGroups;
 
@@ -191,7 +191,7 @@ public class NeutronPort implements Port {
 	public List<String> getSecurityGroups() {
 		return securityGroups;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -232,6 +232,30 @@ public class NeutronPort implements Port {
 		return profile;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getTrunkPortParentId() {
+		return trunkPortParentId;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getTrunkPortType() {
+		return trunkPortType;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getTrunkPortVlanId() {
+		return trunkPortVlanId;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -292,6 +316,7 @@ public class NeutronPort implements Port {
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
 				    .add("id", id).add("name", name).add("adminStateUp", adminStateUp).add("deviceId", deviceId)
+				    .add("trunkPortType", trunkPortType).add("trunkPortParentId", trunkPortParentId).add("trunkPortVlanId", trunkPortVlanId)
 				    .add("deviceOwner", deviceOwner).add("fixedIps", fixedIps).add("macAddress", macAddress)
 				    .add("networkId", networkId).add("tenantId", tenantId).add("securityGroups", securityGroups)
 				    .add("allowed_address_pairs", allowedAddressPairs).add("port_security_enabled ", portSecurityEnabled)
@@ -460,6 +485,24 @@ public class NeutronPort implements Port {
 			return this;
 		}
 
+		@Override
+		public PortBuilder trunkPortParentId(String parentPortId) {
+			m.trunkPortParentId = parentPortId;
+			return this;
+		}
+
+		@Override
+		public PortBuilder trunkPortType(String trunkPortType) {
+			m.trunkPortType = trunkPortType;
+			return this;
+		}
+
+		@Override
+		public PortBuilder trunkPortVlanId(String vlanId) {
+			m.trunkPortVlanId = vlanId;
+			return this;
+		}
+		
 		@Override
 		public Port build() {
 			return m;

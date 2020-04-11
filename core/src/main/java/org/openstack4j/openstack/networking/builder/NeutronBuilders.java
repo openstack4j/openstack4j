@@ -36,6 +36,11 @@ public class NeutronBuilders implements NetworkBuilders {
     }
 
     @Override
+    public TrunkBuilder trunk() {
+        return NeutronTrunk.builder();
+    }
+
+    @Override
     public RouterBuilder router() {
         return NeutronRouter.builder();
     }
