@@ -96,6 +96,31 @@ public class ListenerV2Tests extends AbstractTest {
 
     }
 
+    public void testUpdateListenerDefaultPoolV2() throws IOException {
+        respondWith(LISTENERV2_UPDATE_JSON);
+        String name = "listener_default_pool_updated";
+        String description = "im a good listener";
+        Integer connectionLimit = 20;
+        String tlsContainerRef = "http://0.0.0.0:9311/v1/containers/52594300-d996-49e4-8bf1-a4e000171ad9";
+        String defaultPoolId_secondary = "c1f6a49f-ebd8-43c5-b792-5748366eff22";
+        ListenerV2Update update = Builders.listenerV2Update()
+                .adminStateUp(false)
+                .description(description)
+                .name(name)
+                .connectionLimit(connectionLimit)
+                .defaultTlsContainerRef(tlsContainerRef)
+                .defaultPoolId(defaultPoolId_secondary)
+                .build();
+        ListenerV2 result = osv3().networking().lbaasV2().listener().update("c07058a9-8d84-4443-b8f5-508d0facfe10", update);
+        assertFalse(result.isAdminStateUp());
+        assertEquals(result.getName(), name);
+        assertEquals(result.getDescription(), description);
+        assertEquals(result.getConnectionLimit(), connectionLimit);
+        assertEquals(result.getDefaultTlsContainerRef(), tlsContainerRef);
+        assertEquals(result.getDefaultPoolId(), defaultPoolId_secondary);
+
+    }
+
     public void testDeleteListenerV2() {
         respondWith(204);
         ActionResponse result = osv3().networking().lbaasV2().listener().delete("c07058a9-8d84-4443-b8f5-508d0facfe10");
