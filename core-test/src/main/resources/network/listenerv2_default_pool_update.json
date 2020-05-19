@@ -15,8 +15,8 @@
       "http://0.0.0.0:9311/v1/containers/907f400c-d970-47f8-9900-db5796505e1f"
     ],
     "connection_limit": 20,
-    "default_pool_id": "b7f6a49f-ebd8-43c5-b792-5748366eff21",
+    "default_pool_id": "61f79fe4-9d33-468c-9a6d-e16742698a07",
     "id": "c07058a9-8d84-4443-b8f5-508d0facfe10",
-    "name": "listener_updated"
+    "name": "listener_default_pool_updated"
   }
 }

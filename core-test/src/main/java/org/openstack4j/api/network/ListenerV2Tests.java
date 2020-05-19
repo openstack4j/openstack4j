@@ -29,6 +29,7 @@ public class ListenerV2Tests extends AbstractTest {
     private static final String LISTENERSV2_JSON = "/network/listenersv2.json";
     private static final String LISTENERV2_JSON = "/network/listenerv2.json";
     private static final String LISTENERV2_UPDATE_JSON = "/network/listenerv2_update.json";
+    private static final String LISTENERV2_DEFAULT_POOL_UPDATE_JSON = "/network/listenerv2_default_pool_update.json";
 
     public void testListListenersV2() throws IOException {
         respondWith(LISTENERSV2_JSON);
@@ -97,8 +98,8 @@ public class ListenerV2Tests extends AbstractTest {
     }
 
     public void testUpdateListenerV2DefaultPool() throws IOException {
-        respondWith(LISTENERV2_UPDATE_JSON);
-        String name = "listener_updated";
+        respondWith(LISTENERV2_DEFAULT_POOL_UPDATE_JSON);
+        String name = "listener_default_pool_updated";
         String description = "im a good listener";
         Integer connectionLimit = 20;
         String tlsContainerRef = "http://0.0.0.0:9311/v1/containers/52594300-d996-49e4-8bf1-a4e000171ad9";
