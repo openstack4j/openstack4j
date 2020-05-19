@@ -33,6 +33,9 @@ public class NeutronListenerV2Update implements ListenerV2Update {
     @JsonProperty("default_tls_container_ref")
     private String defaultTlsContainerRef;
 
+    @JsonProperty("default_pool_id")
+    private String defaultPoolId;
+
     /**
      * {@inheritDoc}
      */
@@ -81,6 +84,12 @@ public class NeutronListenerV2Update implements ListenerV2Update {
         return defaultTlsContainerRef;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDefaultPoolId(){ return defaultPoolId; }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -89,6 +98,7 @@ public class NeutronListenerV2Update implements ListenerV2Update {
                 .add("name", name)
                 .add("connectionLimit", connectionLimit)
                 .add("defaultTlsContainerRef", defaultTlsContainerRef)
+                .add("defaultPoolId", defaultPoolId)
                 .toString();
     }
 
@@ -162,6 +172,15 @@ public class NeutronListenerV2Update implements ListenerV2Update {
         @Override
         public ListenerV2UpdateBuilder defaultTlsContainerRef(String defaultTlsContainerRef){
             m.defaultTlsContainerRef = defaultTlsContainerRef;
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public ListenerV2UpdateBuilder defaultPoolId(String defaultPoolId){
+            m.defaultPoolId = defaultPoolId;
             return this;
         }
     }

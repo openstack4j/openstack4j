@@ -16,6 +16,7 @@
     ],
     "connection_limit": 20,
     "default_pool_id": "b7f6a49f-ebd8-43c5-b792-5748366eff21",
+    "secondary_default_pool_id": "61f79fe4-9d33-468c-9a6d-e16742698a07",
     "id": "c07058a9-8d84-4443-b8f5-508d0facfe10",
     "name": "listener_updated"
   }
