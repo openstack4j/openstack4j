@@ -29,6 +29,7 @@ public class ListenerV2Tests extends AbstractTest {
     private static final String LISTENERSV2_JSON = "/network/listenersv2.json";
     private static final String LISTENERV2_JSON = "/network/listenerv2.json";
     private static final String LISTENERV2_UPDATE_JSON = "/network/listenerv2_update.json";
+    private static final String LISTENERV2_DEFAULT_POOL_UPDATE_JSON = "/network/listenerv2_default_pool_update.json";
 
     public void testListListenersV2() throws IOException {
         respondWith(LISTENERSV2_JSON);
@@ -93,6 +94,31 @@ public class ListenerV2Tests extends AbstractTest {
         assertEquals(result.getDescription(), description);
         assertEquals(result.getConnectionLimit(), connectionLimit);
         assertEquals(result.getDefaultTlsContainerRef(), tlsContainerRef);
+
+    }
+
+    public void testUpdateListenerV2DefaultPool() throws IOException {
+        respondWith(LISTENERV2_DEFAULT_POOL_UPDATE_JSON);
+        String name = "listener_default_pool_updated";
+        String description = "im a good listener";
+        Integer connectionLimit = 20;
+        String tlsContainerRef = "http://0.0.0.0:9311/v1/containers/52594300-d996-49e4-8bf1-a4e000171ad9";
+        String defaultPoolId_secondary = "61f79fe4-9d33-468c-9a6d-e16742698a07";
+        ListenerV2Update update = Builders.listenerV2Update()
+                .adminStateUp(false)
+                .description(description)
+                .name(name)
+                .connectionLimit(connectionLimit)
+                .defaultTlsContainerRef(tlsContainerRef)
+                .defaultPoolId(defaultPoolId_secondary)
+                .build();
+        ListenerV2 result = osv3().networking().lbaasV2().listener().update("c07058a9-8d84-4443-b8f5-508d0facfe10", update);
+        assertFalse(result.isAdminStateUp());
+        assertEquals(result.getName(), name);
+        assertEquals(result.getDescription(), description);
+        assertEquals(result.getConnectionLimit(), connectionLimit);
+        assertEquals(result.getDefaultTlsContainerRef(), tlsContainerRef);
+        assertEquals(result.getDefaultPoolId(), defaultPoolId_secondary);
 
     }
 

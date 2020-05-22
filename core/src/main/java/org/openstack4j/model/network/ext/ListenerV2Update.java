@@ -38,4 +38,10 @@ public interface ListenerV2Update extends ModelEntity, Buildable<ListenerV2Updat
      * @see ListenerV2#getDefaultTlsContainerRef()
      */
     public String getDefaultTlsContainerRef();
+
+    /**
+     * Optional
+     * @see ListenerV2#getDefaultPoolId()
+     */
+    public String getDefaultPoolId();
 }
