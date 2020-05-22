@@ -88,7 +88,9 @@ public class NeutronListenerV2Update implements ListenerV2Update {
      * {@inheritDoc}
      */
     @Override
-    public String getDefaultPoolId(){ return defaultPoolId; }
+    public String getDefaultPoolId(){
+        return defaultPoolId;
+    }
 
     @Override
     public String toString() {
