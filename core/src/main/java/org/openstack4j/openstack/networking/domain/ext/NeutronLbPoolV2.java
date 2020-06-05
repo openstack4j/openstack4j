@@ -174,7 +174,7 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
                 .add("adminStateUp", adminStateUp)
                 .add("listenerId", listenerId)
                 .add("listeners", listeners)
-                .add("loadbalancer", loadbalancerId)
+                .add("loadbalancerId", loadbalancerId)
                 .add("members", members)
                 .add("healthMonitorId", healthMonitorId)
                 .toString();
