@@ -28,6 +28,7 @@ import static org.testng.Assert.assertTrue;
 public class LbPoolV2Tests extends AbstractTest {
     private static final String LBPOOLSV2_JSON = "/network/lbpoolsv2.json";
     private static final String LBPOOLV2_JSON = "/network/lbpoolv2.json";
+    private static final String LBPOOLV2_WITHOUT_LISTENER_JSON = "/network/lbpoolv2_without_listener.json";
     private static final String LBPOOLV2_UPDATE_JSON = "/network/lbpoolv2_update.json";
 
     public void testListPoolV2() throws IOException {
@@ -69,6 +70,27 @@ public class LbPoolV2Tests extends AbstractTest {
         assertEquals(result.getName(), name);
         assertEquals(result.getLbMethod(), LbMethod.LEAST_CONNECTIONS);
         assertEquals(result.getProtocol(), protocol);
+    }
+
+    public void testCreatePoolV2_no_listener() throws IOException {
+        respondWith(LBPOOLV2_WITHOUT_LISTENER_JSON);
+        String name = "testlbpool_no_listener";
+        Protocol protocol = Protocol.HTTP;
+        String loadbalancerId = "fbc45db6-d3c2-4918-981e-c8ae8c9eccc0";
+        LbPoolV2 create = Builders.lbpoolV2()
+                .adminStateUp(true)
+                .description("im a swimming pool")
+                .lbMethod(LbMethod.LEAST_CONNECTIONS)
+                .name(name)
+                .tenantId("6f759d84e3ca496ab77f8c0ffaa0311e")
+                .protocol(protocol)
+                .loadbalancerId(loadbalancerId)
+                .build();
+        LbPoolV2 result = osv3().networking().lbaasV2().lbPool().create(create);
+        assertEquals(result.getName(), name);
+        assertEquals(result.getLbMethod(), LbMethod.LEAST_CONNECTIONS);
+        assertEquals(result.getProtocol(), protocol);
+        assertEquals(result.getLoadbalancerId(), loadbalancerId);
     }
 
     public void testUpdatePoolV2() throws IOException {
