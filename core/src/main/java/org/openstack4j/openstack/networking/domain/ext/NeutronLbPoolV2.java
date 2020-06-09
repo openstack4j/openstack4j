@@ -141,7 +141,7 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getLoadbalancerId(){
+    public String getLoadBalancerId(){
         return loadbalancerId;
     }
 

@@ -90,7 +90,7 @@ public class LbPoolV2Tests extends AbstractTest {
         assertEquals(result.getName(), name);
         assertEquals(result.getLbMethod(), LbMethod.LEAST_CONNECTIONS);
         assertEquals(result.getProtocol(), protocol);
-        assertEquals(result.getLoadbalancerId(), loadbalancerId);
+        assertEquals(result.getLoadBalancerId(), loadbalancerId);
     }
 
     public void testUpdatePoolV2() throws IOException {
