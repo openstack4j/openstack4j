@@ -90,8 +90,8 @@ public interface LbPoolV2Builder extends Buildable.Builder<LbPoolV2Builder, LbPo
      * Each load balancer can have zero or more pools associated with it. These pools can be used for L7policies.
      * Either listener_id or loadbalancer_id must be specified.
      *
-     * @param loadbalancerId
+     * @param loadBalancerId
      * @return LbPoolV2Builder
      */
-    LbPoolV2Builder loadbalancerId(String loadbalancerId);
+    LbPoolV2Builder loadBalancerId(String loadBalancerId);
 }
