@@ -46,6 +46,9 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
     @JsonProperty("listener_id")
     private String listenerId;
 
+    @JsonProperty("loadbalancer_id")
+    private String loadBalancerId;
+
     private List<ListItem> listeners;
 
     private List<ListItem> members;
@@ -138,6 +141,14 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
+    public String getLoadBalancerId(){
+        return loadBalancerId;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<ListItem> getMembers(){
         return members;
     }
@@ -163,6 +174,7 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
                 .add("adminStateUp", adminStateUp)
                 .add("listenerId", listenerId)
                 .add("listeners", listeners)
+                .add("loadBalancerId", loadBalancerId)
                 .add("members", members)
                 .add("healthMonitorId", healthMonitorId)
                 .toString();
@@ -260,6 +272,15 @@ public class NeutronLbPoolV2 implements LbPoolV2 {
         @Override
         public LbPoolV2Builder listenerId(String listenerId){
             m.listenerId = listenerId;
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public LbPoolV2Builder loadBalancerId(String loadBalancerId) {
+            m.loadBalancerId = loadBalancerId;
             return this;
         }
     }

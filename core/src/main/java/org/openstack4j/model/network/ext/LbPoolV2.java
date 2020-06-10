@@ -61,6 +61,10 @@ public interface LbPoolV2 extends ModelEntity, Buildable<LbPoolV2Builder> {
      */
     List<ListItem> getListeners();
 
+    /**
+     * @return The ID of the load balancer under which this pool will be created.
+     */
+    String getLoadBalancerId();
 
     /**
      * @return List of members that belong to the pool.
