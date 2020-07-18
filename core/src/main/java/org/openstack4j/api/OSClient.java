@@ -3,6 +3,7 @@ package org.openstack4j.api;
 import org.openstack4j.api.artifact.ArtifactService;
 import org.openstack4j.api.barbican.BarbicanService;
 import org.openstack4j.api.compute.ComputeService;
+import org.openstack4j.api.compute.EventServices;
 import org.openstack4j.api.dns.v2.DNSService;
 import org.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import org.openstack4j.api.gbp.GbpService;
@@ -354,5 +355,12 @@ public interface OSClient< T extends OSClient<T>> {
      * @return the DNS service
      */
     DNSService dns();
+    
+    /**
+     * Returns the Server Event Service API
+     *
+     * @return the Server Event Service API
+     */
+    EventServices event();
 
 }

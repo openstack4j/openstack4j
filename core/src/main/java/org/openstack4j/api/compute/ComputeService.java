@@ -16,6 +16,13 @@ import org.openstack4j.model.common.Extension;
  * @author Jeremy Unruh
  */
 public interface ComputeService extends RestService {
+	
+	 /**
+     * Server Event Service API
+     *
+     * @return server event service
+     */
+    EventServices events();
 
 	/**
 	 * Flavor Service API

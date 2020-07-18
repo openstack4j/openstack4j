@@ -12,6 +12,7 @@ import org.openstack4j.api.artifact.ArtifactService;
 import org.openstack4j.api.barbican.BarbicanService;
 import org.openstack4j.api.client.CloudProvider;
 import org.openstack4j.api.compute.ComputeService;
+import org.openstack4j.api.compute.EventServices;
 import org.openstack4j.api.dns.v2.DNSService;
 import org.openstack4j.api.gbp.GbpService;
 import org.openstack4j.api.heat.HeatService;
@@ -245,6 +246,13 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
      * {@inheritDoc}
      */
     public DNSService dns() {return Apis.getDNSService(); }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public EventServices event() {
+        return Apis.getEventServices();
+    }
 
     /**
      * {@inheritDoc}
