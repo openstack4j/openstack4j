@@ -21,11 +21,11 @@ public class MapWithoutMetaPrefixFunction implements Function<Map<String, String
         	  if (key == null) {
         	  	continue;
         	  }
-            int idx = key.indexOf("-Meta-");
+            int idx = key.toLowerCase().indexOf("-meta-");
             if (idx > -1) {
                 metadata.put(key.substring(idx + 6), input.get(key));
             }
-            if (key.indexOf("X-") > -1) {
+            if (key.toLowerCase().indexOf("x-") > -1) {
                 metadata.put(key, input.get(key));
             }
         }
