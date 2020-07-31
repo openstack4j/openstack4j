@@ -23,6 +23,7 @@ public class KeystoneProjectServiceTests extends AbstractTest {
     private static final String JSON_PROJECTS_UPDATE = "/identity/v3/projects_update_response.json";
     private static final String JSON_PROJECTS_GET_BYID = "/identity/v3/projects_get_byId.json";
     private static final String JSON_PROJECTS_GET_BY_NAME_EMPTY = "/identity/v3/projects_getByName_empty.json";
+    private static final String JSON_PROJECTS_WITH_EXTRA = "/identity/v3/projects_with_extra.json";
     private static final String PROJECT_NAME = "ProjectX";
     private static final String PROJECT_DOMAIN_ID = "7a71863c2d1d4444b3e6c2cd36955e1e";
     private static final String PROJECT_DESCRIPTION = "Project used for CRUD tests";
@@ -31,6 +32,7 @@ public class KeystoneProjectServiceTests extends AbstractTest {
     private static final String PROJECT_EXTRA_VALUE_1 = "value1";
     private static final String PROJECT_EXTRA_KEY_2 = "extra_key2";
     private static final String PROJECT_EXTRA_VALUE_2 = "value2";
+    private static final String PROJECT_EXTRA_KEY_TO_BE_IGNORED = "extra_key_to_be_ignored";
     private static final List<String> TAGS = Arrays.asList("one", "two", "three");
 
     @Override
@@ -101,5 +103,16 @@ public class KeystoneProjectServiceTests extends AbstractTest {
         Project project = list.stream().filter(p -> "demo".equals(p.getName())).findFirst().get();
         assertEquals(project.getId(), "600905d353a84b20b644d2fe55a21e8a");
         assertEquals(project.getOptions(), Collections.emptyMap());
+    }
+
+    @Test
+    public void project_with_extra() throws IOException {
+        respondWith(JSON_PROJECTS_WITH_EXTRA);
+        List<? extends Project> projects = osv3().identity().projects().list();
+        assertEquals(projects.size(), 2);
+        Project project = projects.stream().filter(p -> "demo".equals(p.getName())).findFirst().get();
+        assertEquals(project.getExtra(PROJECT_EXTRA_KEY_1), PROJECT_EXTRA_VALUE_1);
+        assertEquals(project.getExtra(PROJECT_EXTRA_KEY_2), PROJECT_EXTRA_VALUE_2);
+        assertNull(project.getExtra(PROJECT_EXTRA_KEY_TO_BE_IGNORED));
     }
 }
