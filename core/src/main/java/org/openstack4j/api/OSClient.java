@@ -355,12 +355,4 @@ public interface OSClient< T extends OSClient<T>> {
      * @return the DNS service
      */
     DNSService dns();
-    
-    /**
-     * Returns the Server Event Service API
-     *
-     * @return the Server Event Service API
-     */
-    EventServices event();
-
 }

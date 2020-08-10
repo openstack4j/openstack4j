@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.common;
 
-import org.openstack4j.model.common.EventList;
+import org.openstack4j.model.common.ServerActionEvent;
 import org.openstack4j.model.common.builder.EventListBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,7 +12,7 @@ import com.google.common.base.MoreObjects;
  * @author sujit sah
  *
  */
-public class GenericEventsList implements EventList {
+public class GenericEventsList implements ServerActionEvent {
 
     private static final long serialVersionUID = 1L;
     @JsonProperty("start_time")
@@ -93,12 +93,12 @@ public class GenericEventsList implements EventList {
         }
 
         @Override
-        public EventList build() {
+        public ServerActionEvent build() {
             return model;
         }
 
         @Override
-        public EventListBuilder from(EventList in) {
+        public EventListBuilder from(ServerActionEvent in) {
             this.model = (GenericEventsList) in;
             return this;
         }

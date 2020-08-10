@@ -10,7 +10,7 @@ import org.openstack4j.model.common.builder.EventListBuilder;
  * @author sujit sah
  *
  */
-public interface EventList extends ModelEntity, Buildable<EventListBuilder> {
+public interface ServerActionEvent extends ModelEntity, Buildable<EventListBuilder> {
     /**
      * @return event
      */

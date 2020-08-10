@@ -246,13 +246,6 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
      * {@inheritDoc}
      */
     public DNSService dns() {return Apis.getDNSService(); }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public EventServices event() {
-        return Apis.getEventServices();
-    }
 
     /**
      * {@inheritDoc}

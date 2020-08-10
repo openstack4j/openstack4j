@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.common.EventList;
+import org.openstack4j.model.common.ServerActionEvent;
 
 /**
  * This interface describes the getter-methods (and thus components) of a Event.
@@ -16,7 +16,7 @@ import org.openstack4j.model.common.EventList;
  * @author sujit sah
  *
  */
-public interface Event extends ModelEntity {
+public interface ServerAction extends ModelEntity {
     /**
      * Returns the action of the event
      *
@@ -29,7 +29,7 @@ public interface Event extends ModelEntity {
      *
      * @return the list of event
      */
-    public List<? extends EventList> getEvents();
+    public List<? extends ServerActionEvent> getEvents();
 
     /**
      * Returns the id of the server

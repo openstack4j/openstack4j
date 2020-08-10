@@ -232,13 +232,4 @@ public class Apis {
         p.initialize();
         return p;
     }
-    
-    /**
-     * Gets the Server events services API
-     *
-     * @return the event Services
-     */
-    public static EventServices getEventServices() {
-        return get(EventServices.class);
-    }
 }

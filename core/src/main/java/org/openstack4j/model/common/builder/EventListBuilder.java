@@ -1,7 +1,7 @@
 package org.openstack4j.model.common.builder;
 
 import org.openstack4j.common.Buildable;
-import org.openstack4j.model.common.EventList;
+import org.openstack4j.model.common.ServerActionEvent;
 
 /**
  * Builder which create events
@@ -9,29 +9,29 @@ import org.openstack4j.model.common.EventList;
  * @author sujit sah
  *
  */
-public interface EventListBuilder extends Buildable.Builder<EventListBuilder, EventList> {
+public interface EventListBuilder extends Buildable.Builder<EventListBuilder, ServerActionEvent> {
     /**
-     * @see EventList#getEvent()
+     * @see ServerActionEvent#getEvent()
      */
     EventListBuilder event(String event);
 
     /**
-     * @see EventList#getFinishTime()
+     * @see ServerActionEvent#getFinishTime()
      */
     EventListBuilder finishTime(String finish_time);
 
     /**
-     * @see EventList#getResult()
+     * @see ServerActionEvent#getResult()
      */
     EventListBuilder result(String result);
 
     /**
-     * @see EventList#getStartTime()
+     * @see ServerActionEvent#getStartTime()
      */
     EventListBuilder startTime(String start_time);
 
     /**
-     * @see EventList#getTraceback()
+     * @see ServerActionEvent#getTraceback()
      */
     EventListBuilder traceback(String traceback);
 }

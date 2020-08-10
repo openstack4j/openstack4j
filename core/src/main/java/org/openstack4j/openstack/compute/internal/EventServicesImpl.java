@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.List;
 
 import org.openstack4j.api.compute.EventServices;
-import org.openstack4j.model.compute.Event;
+import org.openstack4j.model.compute.ServerAction;
 import org.openstack4j.openstack.compute.domain.ServerEvent;
 import org.openstack4j.openstack.compute.domain.ServerEvent.Events;
 import org.openstack4j.openstack.heat.domain.HeatEvent;
@@ -21,13 +21,13 @@ import org.openstack4j.openstack.heat.domain.HeatEvent;
 public class EventServicesImpl extends BaseComputeServices implements EventServices {
 
     @Override
-    public List<? extends Event> list(String serverId) {
+    public List<? extends ServerAction> list(String serverId) {
         checkNotNull(serverId);
         return get(Events.class, uri("servers/%s/os-instance-actions", serverId)).execute().getList();
     }
 
     @Override
-    public Event show(String serverId, String requestId) {
+    public ServerAction show(String serverId, String requestId) {
         checkNotNull(serverId);
         checkNotNull(requestId);
         return get(ServerEvent.class, uri("/servers/%s/os-instance-actions/%s", serverId, requestId)).execute();

@@ -3,8 +3,8 @@ package org.openstack4j.openstack.compute.domain;
 import java.util.Date;
 import java.util.List;
 
-import org.openstack4j.model.common.EventList;
-import org.openstack4j.model.compute.Event;
+import org.openstack4j.model.common.ServerActionEvent;
+import org.openstack4j.model.compute.ServerAction;
 import org.openstack4j.openstack.common.GenericEventsList;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -13,15 +13,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
- * This is a model of a serverevent. It uses Jackson annotations for
- * (de)serialization into JSON format
+ * This is a model of a serverevent.
  *
  * @author sujit sah
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("instanceAction")
-public class ServerEvent implements Event {
+public class ServerEvent implements ServerAction {
 
     /**
      * Inner class for representing the list of server resource
@@ -63,7 +62,7 @@ public class ServerEvent implements Event {
     }
 
     @Override
-    public List<? extends EventList> getEvents() {
+    public List<? extends ServerActionEvent> getEvents() {
         return events;
     }
 
