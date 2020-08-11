@@ -1,8 +1,8 @@
-package org.openstack4j.model.common;
+package org.openstack4j.model.compute;
 
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.common.builder.EventListBuilder;
+import org.openstack4j.model.common.builder.ServerActionEventBuilder;
 
 /**
  * Model for the generic events
@@ -10,7 +10,7 @@ import org.openstack4j.model.common.builder.EventListBuilder;
  * @author sujit sah
  *
  */
-public interface ServerActionEvent extends ModelEntity, Buildable<EventListBuilder> {
+public interface ServerActionEvent extends ModelEntity, Buildable<ServerActionEventBuilder> {
     /**
      * @return event
      */

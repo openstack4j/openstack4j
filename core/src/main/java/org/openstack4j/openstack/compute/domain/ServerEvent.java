@@ -3,9 +3,9 @@ package org.openstack4j.openstack.compute.domain;
 import java.util.Date;
 import java.util.List;
 
-import org.openstack4j.model.common.ServerActionEvent;
+import org.openstack4j.model.compute.ServerActionEvent;
 import org.openstack4j.model.compute.ServerAction;
-import org.openstack4j.openstack.common.GenericEventsList;
+import org.openstack4j.openstack.common.NovaServerActionEvent;
 import org.openstack4j.openstack.common.ListResult;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,7 +25,7 @@ public class ServerEvent implements ServerAction {
     /**
      * Inner class for representing the list of server resource
      *
-     * @author zsujsah
+     * @author sujit sah
      *
      */
     public static class Events extends ListResult<ServerEvent> {
@@ -44,7 +44,7 @@ public class ServerEvent implements ServerAction {
     @JsonProperty("action")
     private String action;
     @JsonProperty("events")
-    private List<GenericEventsList> events;
+    private List<NovaServerActionEvent> events;
     @JsonProperty("instance_uuid")
     private String instanceUuid;
     @JsonProperty("request_id")

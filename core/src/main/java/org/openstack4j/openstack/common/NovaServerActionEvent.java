@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.common;
 
-import org.openstack4j.model.common.ServerActionEvent;
-import org.openstack4j.model.common.builder.EventListBuilder;
+import org.openstack4j.model.compute.ServerActionEvent;
+import org.openstack4j.model.common.builder.ServerActionEventBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
@@ -12,7 +12,7 @@ import com.google.common.base.MoreObjects;
  * @author sujit sah
  *
  */
-public class GenericEventsList implements ServerActionEvent {
+public class NovaServerActionEvent implements ServerActionEvent {
 
     private static final long serialVersionUID = 1L;
     @JsonProperty("start_time")
@@ -26,7 +26,7 @@ public class GenericEventsList implements ServerActionEvent {
     @JsonProperty("traceback")
     private String traceback;
 
-    public GenericEventsList(String finish_time, String start_time, String traceback, String event, String result) {
+    public NovaServerActionEvent(String finish_time, String start_time, String traceback, String event, String result) {
         this.start_time = start_time;
         this.finish_time = finish_time;
         this.event = event;
@@ -34,7 +34,7 @@ public class GenericEventsList implements ServerActionEvent {
         this.traceback = traceback;
     }
 
-    public GenericEventsList() {
+    public NovaServerActionEvent() {
     }
 
     @Override
@@ -69,7 +69,7 @@ public class GenericEventsList implements ServerActionEvent {
     }
 
     @Override
-    public EventListBuilder toBuilder() {
+    public ServerActionEventBuilder toBuilder() {
         return new EventConcreteBuilder(this);
     }
 
@@ -77,18 +77,18 @@ public class GenericEventsList implements ServerActionEvent {
      *
      * @return the event builder
      */
-    public static EventListBuilder builder() {
+    public static ServerActionEventBuilder builder() {
         return new EventConcreteBuilder();
     }
 
-    public static class EventConcreteBuilder implements EventListBuilder {
-        GenericEventsList model;
+    public static class EventConcreteBuilder implements ServerActionEventBuilder {
+        NovaServerActionEvent model;
 
         EventConcreteBuilder() {
-            this(new GenericEventsList());
+            this(new NovaServerActionEvent());
         }
 
-        public EventConcreteBuilder(GenericEventsList genericEventsList) {
+        public EventConcreteBuilder(NovaServerActionEvent genericEventsList) {
             this.model = genericEventsList;
         }
 
@@ -98,37 +98,37 @@ public class GenericEventsList implements ServerActionEvent {
         }
 
         @Override
-        public EventListBuilder from(ServerActionEvent in) {
-            this.model = (GenericEventsList) in;
+        public ServerActionEventBuilder from(ServerActionEvent in) {
+            this.model = (NovaServerActionEvent) in;
             return this;
         }
 
         @Override
-        public EventListBuilder startTime(String startTime) {
+        public ServerActionEventBuilder startTime(String startTime) {
             model.start_time = startTime;
             return this;
         }
 
         @Override
-        public EventListBuilder result(String result) {
+        public ServerActionEventBuilder result(String result) {
             model.result = result;
             return this;
         }
 
         @Override
-        public EventListBuilder event(String event) {
+        public ServerActionEventBuilder event(String event) {
             model.event = event;
             return this;
         }
 
         @Override
-        public EventListBuilder finishTime(String finishTime) {
+        public ServerActionEventBuilder finishTime(String finishTime) {
             model.finish_time = finishTime;
             return this;
         }
 
         @Override
-        public EventListBuilder traceback(String traceback) {
+        public ServerActionEventBuilder traceback(String traceback) {
             model.traceback = traceback;
             return this;
         }

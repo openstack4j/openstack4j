@@ -4,10 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.common.ServerActionEvent;
+import org.openstack4j.model.compute.ServerActionEvent;
 
 /**
- * This interface describes the getter-methods (and thus components) of a Event.
+ * This interface describes the getter-methods (and thus components) of a {@link ServerAction}.
  * All getters map to the possible return values of
  * <code> GET /v2.1/servers/{server_id}/os-instance-actions​</code>
  * <code> GET /v2.1/servers/{server_id}/os-instance-actions/{request_id}​</code>

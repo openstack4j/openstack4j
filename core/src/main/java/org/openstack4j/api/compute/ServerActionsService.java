@@ -11,7 +11,7 @@ import org.openstack4j.model.compute.ServerAction;
  * @author sujit sah
  *
  */
-public interface EventServices extends RestService {
+public interface ServerActionsService extends RestService {
     /**
      * Gets a list of currently existing {@link ServerAction}s for a specified server.
      *

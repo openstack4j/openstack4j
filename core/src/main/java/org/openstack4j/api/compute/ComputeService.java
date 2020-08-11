@@ -22,7 +22,7 @@ public interface ComputeService extends RestService {
      *
      * @return server event service
      */
-    EventServices events();
+    ServerActionsService events();
 
 	/**
 	 * Flavor Service API
