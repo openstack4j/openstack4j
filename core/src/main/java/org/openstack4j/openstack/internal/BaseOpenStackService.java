@@ -29,13 +29,12 @@ import org.openstack4j.model.identity.v3.Service;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 
-
 public class BaseOpenStackService {
 
-    ServiceType serviceType = ServiceType.IDENTITY;
-    Function<String, String> endpointFunc;
+    private ServiceType serviceType = ServiceType.IDENTITY;
+    private Function<String, String> endpointFunc;
     
-    private static ThreadLocal<String> reqIdContainer = new ThreadLocal<String>();
+    private static ThreadLocal<String> reqIdContainer = new ThreadLocal<>();
     
     public String getXOpenstackRequestId() {
     	return reqIdContainer.get();
@@ -61,7 +60,7 @@ public class BaseOpenStackService {
         return builder(returnType, path, HttpMethod.POST);
     }
 
-    protected <R> Invocation<ActionResponse> postWithResponse(String... path) {
+    protected Invocation<ActionResponse> postWithResponse(String... path) {
         return builder(ActionResponse.class, path, HttpMethod.POST);
     }
 
@@ -73,7 +72,7 @@ public class BaseOpenStackService {
         return builder(returnType, path, HttpMethod.PATCH);
     }
 
-    protected <R> Invocation<ActionResponse> patchWithResponse(String... path) {
+    protected Invocation<ActionResponse> patchWithResponse(String... path) {
         return builder(ActionResponse.class, path, HttpMethod.PATCH);
     }
 
@@ -81,7 +80,7 @@ public class BaseOpenStackService {
         return builder(returnType, path, HttpMethod.DELETE);
     }
 
-    protected <R> Invocation<ActionResponse> deleteWithResponse(String... path) {
+    protected Invocation<ActionResponse> deleteWithResponse(String... path) {
         return builder(ActionResponse.class, path, HttpMethod.DELETE);
     }
 
@@ -103,20 +102,19 @@ public class BaseOpenStackService {
         return builder(returnType, Joiner.on("").join(path), method);
     }
 
-    @SuppressWarnings("rawtypes")
     private <R> Invocation<R> builder(Class<R> returnType, String path, HttpMethod method) {
-        OSClientSession ses = OSClientSession.getCurrent();
+        OSClientSession<?, ?> ses = OSClientSession.getCurrent();
         if (ses == null) {
             throw new OS4JException(
                     "Unable to retrieve current session. Please verify thread has a current session available.");
         }
         RequestBuilder<R> req = HttpRequest.builder(returnType).endpointTokenProvider(ses).config(ses.getConfig())
                 .method(method).path(path);
-        Map headers = ses.getHeaders();
+        Map<String, String> headers = ses.getHeaders();
         if (headers != null && headers.size() > 0){
-            return new Invocation<R>(req, serviceType, endpointFunc).headers(headers);
+            return new Invocation<>(req, serviceType, endpointFunc).headers(headers);
         }else{ 
-            return new Invocation<R>(req, serviceType, endpointFunc);
+            return new Invocation<>(req, serviceType, endpointFunc);
         }
     }
 
@@ -213,38 +211,28 @@ public class BaseOpenStackService {
             HttpResponse res = HttpExecutor.create().execute(request);
             
             reqIdContainer.remove();
-             
-            String reqId = null;
-            if(res.headers().containsKey(ClientConstants.X_COMPUTE_REQUEST_ID)) {
-            	reqId = res.header(ClientConstants.X_COMPUTE_REQUEST_ID);
-            } else {
-            	reqId = res.header(ClientConstants.X_OPENSTACK_REQUEST_ID);
-            }
-             
-            reqIdContainer.set(reqId);
+            reqIdContainer.set(getRequestId(res));
             return res.getEntity(request.getReturnType(), options);
         }
 
         public HttpResponse executeWithResponse() {
         	HttpResponse res = HttpExecutor.create().execute(req.build());
         	reqIdContainer.remove();
-            
-            String reqId = null;
-            if(res.headers().containsKey(ClientConstants.X_COMPUTE_REQUEST_ID)) {
-            	reqId = res.header(ClientConstants.X_COMPUTE_REQUEST_ID);
-            } else {
-            	reqId = res.header(ClientConstants.X_OPENSTACK_REQUEST_ID);
-            }
-             
-            reqIdContainer.set(reqId);
+            reqIdContainer.set(getRequestId(res));
             return res;
         }
 
+        private String getRequestId(HttpResponse res) {
+            if (res.headers().containsKey(ClientConstants.X_COMPUTE_REQUEST_ID)) {
+                return res.header(ClientConstants.X_COMPUTE_REQUEST_ID);
+            } else {
+                return res.header(ClientConstants.X_OPENSTACK_REQUEST_ID);
+            }
+        }
     }
 
-    @SuppressWarnings("rawtypes")
     protected int getServiceVersion() {
-        OSClientSession session = OSClientSession.getCurrent();
+        OSClientSession<?, ?> session = OSClientSession.getCurrent();
         if (session.getAuthVersion() == AuthVersion.V3) {
             SortedSet<? extends Service> services = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType());
             Service service = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType()).first();

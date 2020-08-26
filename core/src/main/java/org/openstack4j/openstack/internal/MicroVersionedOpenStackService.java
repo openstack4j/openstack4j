@@ -60,7 +60,7 @@ public abstract class MicroVersionedOpenStackService extends BaseOpenStackServic
     }
 
     @Override
-    protected <R> Invocation<ActionResponse> deleteWithResponse(String... path) {
+    protected Invocation<ActionResponse> deleteWithResponse(String... path) {
         return super.deleteWithResponse(path).header(getApiVersionHeader(), getMicroVersion().toString());
     }
 

@@ -66,7 +66,7 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
     String region;
     Set<ServiceType> supports;
     CloudProvider provider;
-    Map<String, ? extends Object> headers;
+    private Map<String, String> headers;
     EndpointURLResolver fallbackEndpointUrlResolver = new DefaultEndpointURLResolver();
 
     @SuppressWarnings("rawtypes")
@@ -262,12 +262,12 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
     /**
      * {@inheritDoc}
      */
-    public T headers(Map<String, ? extends Object> headers) {
+    public T headers(Map<String, String> headers) {
         this.headers = headers;
         return (T) this;
     }
 
-    public Map<String, ? extends Object> getHeaders(){
+    public Map<String, String> getHeaders(){
         return this.headers;
     }
 

@@ -152,7 +152,7 @@ public class OSAuthenticator {
 
     private static OSClientV3 authenticateV3(KeystoneAuth auth, SessionInfo info, Config config) {
         if (auth.getType().equals(Type.TOKENLESS)){
-            Map headers = new HashMap();
+            Map<String, String> headers = new HashMap<>();
             Authentication.Scope.Project project = auth.getScope().getProject();
             if (project != null){
                 if (!isEmpty(project.getId()))

@@ -72,7 +72,7 @@ public interface OSClient< T extends OSClient<T>> {
      * @param headers the headers to use for keystone tokenless
      * @return OSClient for method chaining
      */
-    T headers(Map<String, ? extends Object> headers);
+    T headers(Map<String, String> headers);
 
     /**
      * Gets the supported services. A set of ServiceTypes will be returned
@@ -280,7 +280,7 @@ public interface OSClient< T extends OSClient<T>> {
     /**
      * OpenStack4j Client which authenticates against version V2
      */
-    public interface OSClientV2 extends OSClient<OSClient.OSClientV2> {
+    interface OSClientV2 extends OSClient<OSClient.OSClientV2> {
         
         /**
          * Returns the Identity V2 Access object assigned during authentication
@@ -301,7 +301,7 @@ public interface OSClient< T extends OSClient<T>> {
     /**
      * OpenStack4j Client which authenticates against version V3
      */
-    public interface OSClientV3 extends OSClient<OSClient.OSClientV3> {
+    interface OSClientV3 extends OSClient<OSClient.OSClientV3> {
         
         
         /**
