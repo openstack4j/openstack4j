@@ -288,7 +288,7 @@ public class HttpRequest<R> {
 		 * @param headers the headers to append
 		 * @return the request builder
 		 */
-		public RequestBuilder<R> headers(Map<String, ? extends Object> headers) {
+		public RequestBuilder<R> headers(Map<String, ?> headers) {
 			request.getHeaders().putAll(headers);
 			return this;
 		}

@@ -141,7 +141,7 @@ public class BaseOpenStackService {
             return this;
         }
 
-        public Invocation<R> params(Map<String, ? extends Object> params) {
+        public Invocation<R> params(Map<String, ?> params) {
             if (params != null) {
                 for (String name : params.keySet())
                     req.queryParam(name, params.get(name));
@@ -155,9 +155,9 @@ public class BaseOpenStackService {
             return this;
         }
 
-        public Invocation<R> paramLists(Map<String, ? extends Iterable<? extends Object>> params) {
+        public Invocation<R> paramLists(Map<String, ? extends Iterable<?>> params) {
             if (params != null) {
-                for (Map.Entry<String, ? extends Iterable<? extends Object>> pair : params.entrySet())
+                for (Map.Entry<String, ? extends Iterable<?>> pair : params.entrySet())
                     for (Object value : pair.getValue())
                         req.queryParam(pair.getKey(), value);
             }
@@ -190,7 +190,7 @@ public class BaseOpenStackService {
             return this;
         }
 
-        public Invocation<R> headers(Map<String, ? extends Object> headers) {
+        public Invocation<R> headers(Map<String, ?> headers) {
             if (headers != null)
                 req.headers(headers);
             return this;
