@@ -7,6 +7,7 @@ import org.openstack4j.api.compute.ComputeFloatingIPService;
 import org.openstack4j.api.compute.ComputeImageService;
 import org.openstack4j.api.compute.ComputeSecurityGroupService;
 import org.openstack4j.api.compute.ComputeService;
+import org.openstack4j.api.compute.ServerActionsService;
 import org.openstack4j.api.compute.FlavorService;
 import org.openstack4j.api.compute.HostAggregateService;
 import org.openstack4j.api.compute.HostService;
@@ -150,6 +151,14 @@ public class ComputeServiceImpl extends BaseComputeServices implements ComputeSe
     @Override
     public ServicesService services() {
         return Apis.get(ServicesService.class);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ServerActionsService events() {
+        return Apis.get(ServerActionsService.class);
     }
     
 }

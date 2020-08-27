@@ -354,5 +354,4 @@ public interface OSClient< T extends OSClient<T>> {
      * @return the DNS service
      */
     DNSService dns();
-
 }
