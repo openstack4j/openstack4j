@@ -2,7 +2,7 @@ package org.openstack4j.model.compute;
 
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.common.builder.ServerActionEventBuilder;
+import org.openstack4j.model.compute.builder.ServerActionEventBuilder;
 
 /**
  * Model for the generic events

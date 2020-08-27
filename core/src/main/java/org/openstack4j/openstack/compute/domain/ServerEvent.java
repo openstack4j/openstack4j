@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.openstack4j.model.compute.ServerActionEvent;
 import org.openstack4j.model.compute.ServerAction;
-import org.openstack4j.openstack.common.NovaServerActionEvent;
+import org.openstack4j.openstack.compute.internal.NovaServerActionEvent;
 import org.openstack4j.openstack.common.ListResult;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

@@ -1,4 +1,4 @@
-package org.openstack4j.model.common.builder;
+package org.openstack4j.model.compute.builder;
 
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.compute.ServerActionEvent;

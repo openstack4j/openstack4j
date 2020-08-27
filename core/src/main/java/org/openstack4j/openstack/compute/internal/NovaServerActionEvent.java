@@ -1,7 +1,7 @@
-package org.openstack4j.openstack.common;
+package org.openstack4j.openstack.compute.internal;
 
 import org.openstack4j.model.compute.ServerActionEvent;
-import org.openstack4j.model.common.builder.ServerActionEventBuilder;
+import org.openstack4j.model.compute.builder.ServerActionEventBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
