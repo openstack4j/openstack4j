@@ -3,10 +3,14 @@ package org.openstack4j.core.transport;
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
 import org.openstack4j.api.EndpointTokenProvider;
+import org.openstack4j.api.exceptions.ConnectionException;
 import org.openstack4j.api.types.ServiceType;
+import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.Payload;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +35,7 @@ public class HttpRequest<R> {
 	String json;
 	private Config config;
 	private Map<String, List<Object>> queryParams;
-	private Map<String, Object> headers = new HashMap<String, Object>();
+	private final Map<String, Object> headers = new HashMap<>();
 	private Function<String, String> endpointFunc;
 	public HttpRequest() { }
 
@@ -57,7 +61,7 @@ public class HttpRequest<R> {
 	 * @return the request builder
 	 */
 	public static RequestBuilder<Void> builder() {
-		return new RequestBuilder<Void>(Void.class);
+		return new RequestBuilder<>(Void.class);
 	}
 
 	/**
@@ -68,7 +72,7 @@ public class HttpRequest<R> {
 	 * @return the request builder
 	 */
 	public static <R> RequestBuilder<R> builder(Class<R> returnType) {
-		return new RequestBuilder<R>(returnType);
+		return new RequestBuilder<>(returnType);
 	}
 
 	/**
@@ -167,6 +171,36 @@ public class HttpRequest<R> {
 	 */
 	public Config getConfig() {
 	    return config != null ? config : Config.DEFAULT;
+	}
+
+	/**
+	 * Append query parameters into the url.
+	 */
+	public String getUrl() {
+		StringBuilder url = new StringBuilder();
+		url.append(new EndpointURIFromRequestFunction().apply(this));
+
+		if (!hasQueryParams()) return url.toString();
+
+		url.append("?");
+
+		boolean first = true;
+		for (Map.Entry<String, List<Object>> entry : getQueryParams().entrySet()) {
+			for (Object o : entry.getValue()) {
+				if (first) {
+					first = false;
+				} else {
+					url.append("&");
+				}
+				try {
+					url.append(URLEncoder.encode(entry.getKey(), "UTF-8")).append("=").append(URLEncoder.encode(String.valueOf(o), "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					throw new ConnectionException(e.getMessage(), 0, e);
+				}
+			}
+		}
+
+		return url.toString();
 	}
 
 	public static final class RequestBuilder<R> {

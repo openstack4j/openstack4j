@@ -47,7 +47,7 @@ public class HttpExecutor  {
      * Delegate to {@link HttpExecutorService#execute(HttpRequest)}
      */
     public <R> HttpResponse execute(HttpRequest<R> request) {
-        LOG.debug("Executing Request: {} -> {}", request.getEndpoint(), request.getPath());
+        LOG.debug("Executing Request: {} {}", request.getMethod(), request.getUrl());
         return service().execute(request);
     }
 }

@@ -1,12 +1,9 @@
 package org.openstack4j.connectors.okhttp;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Proxy.Type;
-import java.net.URLEncoder;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -25,10 +22,7 @@ import org.openstack4j.core.transport.HttpMethod;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.core.transport.UntrustedSSL;
-import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
 import org.openstack4j.core.transport.internal.HttpLoggingFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.io.ByteStreams;
 
@@ -39,9 +33,7 @@ import com.google.common.io.ByteStreams;
  */
 public final class HttpCommand<R> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HttpCommand.class);
-
-    private HttpRequest<R> request;
+    private final HttpRequest<R> request;
     private OkHttpClient client;
     private Request.Builder clientReq;
     private int retries;
@@ -153,7 +145,7 @@ public final class HttpCommand<R> {
     }
 
     /**
-     * @return incremement's the retry count and returns self
+     * @return increment the retry count and returns self
      */
     public HttpCommand<R> incrementRetriesAndReturn() {
         initialize();
@@ -166,34 +158,7 @@ public final class HttpCommand<R> {
     }
 
     private void populateQueryParams(HttpRequest<R> request)  {
-
-        StringBuilder url = new StringBuilder();
-        url.append(new EndpointURIFromRequestFunction().apply(request));
-
-        if (!request.hasQueryParams())
-        {
-            clientReq.url(url.toString());
-            return;
-        }
-
-        url.append("?");
-
-        for(Map.Entry<String, List<Object> > entry : request.getQueryParams().entrySet()) {
-            for (Object o : entry.getValue()) {
-                try
-                {
-                    url.append(URLEncoder.encode(entry.getKey(), "UTF-8")).append("=").append(URLEncoder.encode(String.valueOf(o), "UTF-8"));
-                    url.append("&");
-                }
-                catch (UnsupportedEncodingException e) {
-                    LOG.error(e.getMessage(), e);
-                }
-            }
-        }
-        if (url.charAt(url.length() - 1) == '&') {
-            url.deleteCharAt(url.length() - 1);
-        }
-        clientReq.url(url.toString());
+        clientReq.url(request.getUrl());
     }
 
     private void populateHeaders(HttpRequest<R> request) {

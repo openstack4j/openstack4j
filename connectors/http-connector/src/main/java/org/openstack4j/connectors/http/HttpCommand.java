@@ -6,18 +6,15 @@ import org.openstack4j.core.transport.Config;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
-import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.*;
 import java.net.Proxy.Type;
-import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -32,7 +29,7 @@ public final class HttpCommand<R> {
 
     private static final Logger LOG = LoggerFactory.getLogger(HttpCommand.class);
 
-    private HttpRequest<R> request;
+    private final HttpRequest<R> request;
     private URL connectionUrl;
     private HttpURLConnection connection;
     private int retries;
@@ -49,7 +46,7 @@ public final class HttpCommand<R> {
      * @return the command
      */
     public static <R> HttpCommand<R> create(HttpRequest<R> request) {
-        HttpCommand<R> command = new HttpCommand<R>(request);
+        HttpCommand<R> command = new HttpCommand<>(request);
         command.initialize();
         return command;
     }
@@ -68,7 +65,6 @@ public final class HttpCommand<R> {
      * Executes the command and returns the Response
      *
      * @return the response
-     * @throws Exception
      */
     public HttpResponse execute() throws Exception {
         byte[] requestBody = null;
@@ -132,7 +128,7 @@ public final class HttpCommand<R> {
      * @param httpURLConnection the HttpURLConnection
      * @param method the methods name (GET, PUT, POST,... exception is thrown when trying to do a PATCH)
      */
-    private static final void setRequestMethodUsingWorkaroundForJREBug(final HttpURLConnection httpURLConnection, final String method) {
+    private static void setRequestMethodUsingWorkaroundForJREBug(final HttpURLConnection httpURLConnection, final String method) {
         try {
             httpURLConnection.setRequestMethod(method);
             // Check whether we are running on a buggy JRE
@@ -188,31 +184,7 @@ public final class HttpCommand<R> {
     }
 
     private void populateQueryParams() throws MalformedURLException {
-
-        StringBuilder url = new StringBuilder();
-        url.append(new EndpointURIFromRequestFunction().apply(request));
-
-        if (!request.hasQueryParams()) {
-            connectionUrl = new URL(url.toString());
-            return;
-        }
-
-        url.append("?");
-
-        for (Map.Entry<String, List<Object>> entry : request.getQueryParams().entrySet()) {
-            for (Object o : entry.getValue()) {
-                try {
-                    url.append(URLEncoder.encode(entry.getKey(), "UTF-8")).append("=").append(URLEncoder.encode(String.valueOf(o), "UTF-8"));
-                    url.append("&");
-                } catch (UnsupportedEncodingException e) {
-                    LOG.error(e.getMessage(), e);
-                }
-            }
-        }
-        if (url.charAt(url.length() - 1) == '&') {
-            url.deleteCharAt(url.length() - 1);
-        }
-        connectionUrl = new URL(url.toString());
+        connectionUrl = new URL(request.getUrl());
     }
 
     private void populateHeaders() throws IOException {
