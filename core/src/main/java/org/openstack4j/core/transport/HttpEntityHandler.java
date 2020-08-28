@@ -48,7 +48,7 @@ public class HttpEntityHandler {
                     return handle.getReturnObject();
                 }
 
-                throw mapException(response.getStatusMessage(), response.getStatus());
+                throw ResponseException.mapException(response);
             }
 
             if (options != null && options.hasParser()) {
@@ -98,7 +98,7 @@ public class HttpEntityHandler {
                 if (handle.getReturnType() == ActionResponse.class) {
                     return handle.complete((T) ar);
                 }
-                throw mapException(ar.getFault(), handle.getResponse().getStatus());
+                throw ResponseException.mapException(handle.getResponse(), ar.getFault());
             } catch (ResponseException re) {
                 throw re;
             } catch (Exception e) {

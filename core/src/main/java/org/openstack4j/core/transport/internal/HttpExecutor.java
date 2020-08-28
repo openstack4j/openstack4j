@@ -1,6 +1,7 @@
 package org.openstack4j.core.transport.internal;
 
 import org.openstack4j.api.exceptions.ConnectorNotFoundException;
+import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.HttpExecutorService;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.HttpResponse;
@@ -47,7 +48,13 @@ public class HttpExecutor  {
      * Delegate to {@link HttpExecutorService#execute(HttpRequest)}
      */
     public <R> HttpResponse execute(HttpRequest<R> request) {
+
         LOG.debug("Executing Request: {} {}", request.getMethod(), request.getUrl());
-        return service().execute(request);
+        try {
+            return service().execute(request);
+        } catch (ResponseException ex) {
+            ex.setRequestInfo(request);
+            throw ex;
+        }
     }
 }

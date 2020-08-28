@@ -1,6 +1,10 @@
 package org.openstack4j.api.exceptions;
 
 import com.google.common.base.MoreObjects;
+import org.openstack4j.core.transport.HttpRequest;
+import org.openstack4j.core.transport.HttpResponse;
+
+import javax.annotation.Nullable;
 
 /**
  * Base Exception for HTTP Errors during Rest Operations
@@ -12,6 +16,10 @@ public class ResponseException extends OS4JException {
 	private static final long serialVersionUID = 7294957362769575271L;
 
 	protected int status;
+	// method, url, etc. Assigned after created, when available
+	protected @Nullable String requestInfo;
+	// X-Openstack-Request-Id. Assigned after created, when available
+	protected @Nullable String requestId;
 
 	public ResponseException(String message, int status) {
 		super(message);
@@ -30,14 +38,23 @@ public class ResponseException extends OS4JException {
 		return status;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	public void setRequestInfo(HttpRequest<?> request) {
+		requestInfo = request.getMethod() + " " + request.getUrl();
+	}
+
+	public void setRequestId(String id) {
+		requestId = id;
+	}
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
-				     .add("message", getMessage()).add("status", getStatus())
-				     .toString();
+				.add("message", getMessage())
+				.add("status", getStatus())
+				.add("X-Openstack-Request-Id", requestId)
+				.add("request", requestInfo)
+				.toString()
+		;
 	}
 
 	/**
@@ -47,6 +64,7 @@ public class ResponseException extends OS4JException {
      * @param status the status
      * @return the response exception
      */
+    @Deprecated
     public static ResponseException mapException(String message, int status) {
         return mapException(message, status, null);
     }
@@ -70,4 +88,14 @@ public class ResponseException extends OS4JException {
         return new ResponseException(message, status, cause);
     }
 
+    public static ResponseException mapException(HttpResponse response) {
+        return mapException(response, response.getStatusMessage());
+    }
+
+    public static ResponseException mapException(HttpResponse response, String message) {
+        ResponseException re = mapException(message, response.getStatus(), null);
+        // Get openstack local request ID and attach it to the exception
+        re.setRequestId(response.header("X-Openstack-Request-Id"));
+        return re;
+    }
 }

@@ -11,7 +11,7 @@ public class ClientResponseException extends ResponseException {
 
 	private static final long serialVersionUID = 1L;
 
-	private StatusCode code;
+	private final StatusCode code;
 
 	public ClientResponseException(String message, int status, Throwable cause) {
 		super(message, status, cause);
@@ -23,7 +23,6 @@ public class ClientResponseException extends ResponseException {
 		code = StatusCode.fromCode(status);
 	}
 
-
 	/**
 	 * @return the status code mapping for the current {@link #getStatus()}
 	 */
@@ -31,13 +30,14 @@ public class ClientResponseException extends ResponseException {
 		return code;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
-				     .add("message", getMessage()).add("status", getStatus()).add("status-code", code)
-				     .toString();
+				.add("message", getMessage())
+				.add("status", getStatus())
+				.add("status-code", code)
+				.add("X-Openstack-Request-Id", requestId)
+				.add("request", requestInfo)
+				.toString();
 	}
 }
