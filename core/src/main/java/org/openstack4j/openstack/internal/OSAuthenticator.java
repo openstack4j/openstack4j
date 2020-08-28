@@ -6,6 +6,7 @@ import org.openstack4j.api.OSClient;
 import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.client.CloudProvider;
+import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.api.types.Facing;
 import org.openstack4j.core.transport.*;
 import org.openstack4j.core.transport.internal.HttpExecutor;
@@ -126,7 +127,9 @@ public class OSAuthenticator {
         HttpResponse response = HttpExecutor.create().execute(request);
         if (response.getStatus() >= 400) {
             try {
-                throw mapException(response.getStatusMessage(), response.getStatus());
+                ResponseException re = ResponseException.mapException(response);
+                re.setRequestInfo(request);
+                throw re;
             } finally {
                 HttpEntityHandler.closeQuietly(response);
             }
@@ -188,7 +191,9 @@ public class OSAuthenticator {
 
         if (response.getStatus() >= 400) {
             try {
-                throw mapException(response.getStatusMessage(), response.getStatus());
+                ResponseException re = ResponseException.mapException(response);
+                re.setRequestInfo(request);
+                throw re;
             } finally {
                 HttpEntityHandler.closeQuietly(response);
             }

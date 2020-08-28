@@ -2,6 +2,7 @@ package org.openstack4j.core.transport.propagation;
 
 import static org.openstack4j.core.transport.HttpExceptionHandler.mapException;
 
+import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.core.transport.PropagateResponse;
 import org.openstack4j.core.transport.functions.ResponseToActionResponse;
@@ -28,7 +29,7 @@ public class PropagateOnStatus implements PropagateResponse {
     public void propagate(HttpResponse response) {
         if (response.getStatus() == statusCode) {
             ActionResponse ar = ResponseToActionResponse.INSTANCE.apply(response);
-            throw mapException(ar.getFault(), response.getStatus());
+            throw ResponseException.mapException(response, ar.getFault());
         }
     }
 
