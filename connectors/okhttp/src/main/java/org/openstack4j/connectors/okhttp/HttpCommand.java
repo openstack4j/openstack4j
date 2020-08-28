@@ -79,7 +79,7 @@ public final class HttpCommand<R> {
         if (config.isIgnoreSSLVerification())
         {
             okHttpClientBuilder.hostnameVerifier(UntrustedSSL.getHostnameVerifier());
-            okHttpClientBuilder.sslSocketFactory(UntrustedSSL.getSSLContext().getSocketFactory());
+            okHttpClientBuilder.sslSocketFactory(UntrustedSSL.getSSLContext().getSocketFactory(), UntrustedSSL.getTrustManager());
         }
 
         if (config.getSslContext() != null)
