@@ -1,3 +1,5 @@
+dist: bionic
+
 # Cache maven cache directory so external artifacts dont need to be
 # re-downloaded.
 cache:
@@ -7,7 +9,7 @@ cache:
 language: java
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 env:
   global:
@@ -39,11 +41,6 @@ after_success:
 # infrastructure. This should prevent the buffer overflow from
 # https://github.com/travis-ci/travis-ci/issues/5227
 sudo: false
-
-# due to travis-ci changes in default build environment,
-# this must be specify in order for oraclejdk8 to install
-# https://blog.travis-ci.com/2019-04-15-xenial-default-build-environment
-dist: trusty
 
 addons:
   sonarcloud: # Report coverage results to sonarcloud.io
