@@ -18,9 +18,9 @@ import org.openstack4j.model.common.Extension;
 public interface ComputeService extends RestService {
 	
 	 /**
-     * Server Event Service API
+     * Server Actions Service API
      *
-     * @return server event service
+     * @return server actions service
      */
     ServerActionsService events();
 

@@ -18,16 +18,16 @@ import org.openstack4j.model.compute.ServerActionEvent;
  */
 public interface ServerAction extends ModelEntity {
     /**
-     * Returns the action of the event
+     * Returns the action performed on the server
      *
-     * @return the action of the event
+     * @return the action performed on the server
      */
     public String getAction();
 
     /**
-     * Returns the list of event
+     * Returns the list of server actions
      *
-     * @return the list of event
+     * @return the list of server actions
      */
     public List<? extends ServerActionEvent> getEvents();
 
@@ -39,16 +39,16 @@ public interface ServerAction extends ModelEntity {
     public String getInstaceUuid();
 
     /**
-     * Returns the request id of the event
+     * Returns the request id of the server action
      *
-     * @return the request id of the event
+     * @return the request id of the server action
      */
     public String getRequestId();
 
     /**
-     * Returns the start_time of the event
+     * Returns the start_time of the server action
      *
-     * @return the start_time of the event
+     * @return the start_time of the server action
      */
     public Date getStartTime();
 
