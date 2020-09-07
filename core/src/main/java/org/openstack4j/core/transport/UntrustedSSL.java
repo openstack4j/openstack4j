@@ -19,26 +19,27 @@ public class UntrustedSSL {
 
     private SSLContext context;
     private HostnameVerifier verifier;
+    private X509TrustManager trustManager;
 
     private UntrustedSSL() {
         try
         {
-            TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+            trustManager = new X509TrustManager() {
                 public X509Certificate[] getAcceptedIssuers() {
-                	return new X509Certificate[]{};
+                    return new X509Certificate[]{};
                 }
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {}
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {}
-            } };
+
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                }
+            };
             SSLContext ssc = SSLContext.getInstance("TLS");
-            ssc.init(null, trustAllCerts, new SecureRandom());
+            ssc.init(null, new TrustManager[] {trustManager}, new SecureRandom());
 
             this.context = ssc;
-            this.verifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(String s, SSLSession session) {
-                    return true;
-                } };
+            this.verifier = (s, session) -> true;
         }
         catch (Throwable t) {
             LOG.error(t.getMessage(), t);
@@ -47,6 +48,10 @@ public class UntrustedSSL {
 
     public static SSLContext getSSLContext() {
         return INSTANCE.context;
+    }
+
+    public static X509TrustManager getTrustManager() {
+        return INSTANCE.trustManager;
     }
 
     public static HostnameVerifier getHostnameVerifier() {
