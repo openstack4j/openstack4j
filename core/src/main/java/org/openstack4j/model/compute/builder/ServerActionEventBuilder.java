@@ -4,7 +4,7 @@ import org.openstack4j.common.Buildable;
 import org.openstack4j.model.compute.ServerActionEvent;
 
 /**
- * Builder which create events
+ * Builder which create server action events
  *
  * @author sujit sah
  *

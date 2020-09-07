@@ -6,7 +6,7 @@ import org.openstack4j.common.RestService;
 import org.openstack4j.model.compute.ServerAction;
 
 /**
- * This interface defines all methods for the manipulation of events
+ * This interface defines all methods for the manipulation of server actions
  *
  * @author sujit sah
  *
@@ -21,11 +21,11 @@ public interface ServerActionsService extends RestService {
     List<? extends ServerAction> list(String serverId);
 
     /**
-     * Gets a event of currently existing {@link ServerAction}s for a specified request id
+     * Gets the server action associated with specific request id for the specified server
      *
      * @param serverId  the id of server
-     * @param requestId the request id of server
-     * @return the server event detail
+     * @param request id of specific action for the specified server
+     * @return the server action detail
      */
     ServerAction show(String serverId, String requestId);
 
