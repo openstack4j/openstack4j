@@ -5,6 +5,7 @@ OpenStack4j
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j)
 [![javadoc](https://javadoc.io/badge2/com.github.openstack4j.core/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/com.github.openstack4j.core/openstack4j-core)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=openstack4j_openstack4j&metric=alert_status)](https://sonarcloud.io/dashboard?id=openstack4j_openstack4j)
 
 OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment.   This includes support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions (LBaaS, FWaaS, Quota-Sets, etc)
 
