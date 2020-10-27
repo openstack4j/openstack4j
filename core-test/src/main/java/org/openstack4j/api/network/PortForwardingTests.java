@@ -63,7 +63,7 @@ public class PortForwardingTests extends AbstractTest {
         respondWithCodeAndResource(200, JSON_RESPONSE_LIST);
         List<? extends PortForwarding> portForwardings = osv3().networking().floatingip().portForwarding().list(FLOATINGIP_ID);
         assertNotNull(portForwardings);
-        assertEquals(portForwardings.size(), 1);
+        assertEquals(portForwardings.size(), 2);
     }
 
     public void testDelete() {
