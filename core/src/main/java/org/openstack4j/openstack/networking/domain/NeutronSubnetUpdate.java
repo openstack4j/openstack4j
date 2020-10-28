@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.domain;
 
 import java.util.List;
 
+import com.google.common.base.Strings;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.network.Subnet;
 
@@ -42,7 +43,7 @@ public class NeutronSubnetUpdate implements ModelEntity {
         ns.dnsNames = in.getDnsNames();
         ns.pools = (List<NeutronPool>) in.getAllocationPools();
         ns.hostRoutes = (List<NeutronHostRoute>) in.getHostRoutes();
-        ns.gateway = in.getGateway();
+        if (!Strings.isNullOrEmpty(in.getGateway())) ns.gateway = in.getGateway();
         ns.enabledhcp = in.isDHCPEnabled();
         return ns;
     }
