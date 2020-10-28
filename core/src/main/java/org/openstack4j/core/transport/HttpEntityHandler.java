@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import static org.openstack4j.core.transport.HttpExceptionHandler.mapException;
 
@@ -74,10 +75,8 @@ public class HttpEntityHandler {
 
             if (ListType.class.isAssignableFrom(handle.getReturnType())) {
                 try {
-                    return handle.complete(handle.getReturnType().newInstance());
-                } catch (InstantiationException e) {
-                    LOG.error(e.getMessage(), e);
-                } catch (IllegalAccessException e) {
+                    return handle.complete(handle.getReturnType().getDeclaredConstructor().newInstance());
+                } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                     LOG.error(e.getMessage(), e);
                 }
             }

@@ -347,25 +347,23 @@ public class NeutronPort implements Port {
 
 		if (obj instanceof NeutronPort) {
 			NeutronPort that = (NeutronPort) obj;
-			if (java.util.Objects.equals(id, that.id) &&
-					java.util.Objects.equals(name, that.name) &&
-					java.util.Objects.equals(adminStateUp, that.adminStateUp) &&
-					java.util.Objects.equals(deviceId, that.deviceId) &&
-					java.util.Objects.equals(deviceOwner, that.deviceOwner) &&
-					java.util.Objects.equals(fixedIps, that.fixedIps) &&
-					java.util.Objects.equals(macAddress, that.macAddress) &&
-					java.util.Objects.equals(networkId, that.networkId) &&
-					java.util.Objects.equals(tenantId, that.tenantId) &&
-					java.util.Objects.equals(securityGroups, that.securityGroups) &&
-					java.util.Objects.equals(allowedAddressPairs, that.allowedAddressPairs) &&
-					java.util.Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
-					java.util.Objects.equals(hostId, that.hostId) &&
-					java.util.Objects.equals(vifType, that.vifType) &&
-					java.util.Objects.equals(vifDetails, that.vifDetails) &&
-					java.util.Objects.equals(vNicType, that.vNicType) &&
-					java.util.Objects.equals(profile, that.profile)) {
-				return true;
-			}
+			return Objects.equals(id, that.id) &&
+					Objects.equals(name, that.name) &&
+					Objects.equals(adminStateUp, that.adminStateUp) &&
+					Objects.equals(deviceId, that.deviceId) &&
+					Objects.equals(deviceOwner, that.deviceOwner) &&
+					Objects.equals(fixedIps, that.fixedIps) &&
+					Objects.equals(macAddress, that.macAddress) &&
+					Objects.equals(networkId, that.networkId) &&
+					Objects.equals(tenantId, that.tenantId) &&
+					Objects.equals(securityGroups, that.securityGroups) &&
+					Objects.equals(allowedAddressPairs, that.allowedAddressPairs) &&
+					Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
+					Objects.equals(hostId, that.hostId) &&
+					Objects.equals(vifType, that.vifType) &&
+					Objects.equals(vifDetails, that.vifDetails) &&
+					Objects.equals(vNicType, that.vNicType) &&
+					Objects.equals(profile, that.profile);
 		}
 		return false;
 	}
@@ -432,15 +430,11 @@ public class NeutronPort implements Port {
 			if (m.fixedIps == null)
 			  m.fixedIps = Sets.newHashSet();
 
-			Iterator<NeutronIP> iter = m.fixedIps.iterator();
-
-			while (iter.hasNext()) {
-			  NeutronIP fixedIP = iter.next();
-			  if (fixedIP.getSubnetId() != null && fixedIP.getSubnetId().equals(subnetId) &&
-			      fixedIP.getIpAddress() != null && fixedIP.getIpAddress().equals(address)) {
-			    iter.remove();
-			  }
-			}
+			m.fixedIps.removeIf(fixedIP ->
+					fixedIP.getSubnetId() != null &&
+					fixedIP.getSubnetId().equals(subnetId) &&
+					fixedIP.getIpAddress() != null &&
+					fixedIP.getIpAddress().equals(address));
 
 			return this;
 		}
@@ -459,15 +453,11 @@ public class NeutronPort implements Port {
 			if (m.allowedAddressPairs == null)
 				m.allowedAddressPairs = Sets.newHashSet();
 
-			Iterator<NeutronAllowedAddressPair> iter = m.allowedAddressPairs.iterator();
-
-			while (iter.hasNext()) {
-				NeutronAllowedAddressPair allowedAddress = iter.next();
-				if (allowedAddress.getIpAddress() != null && allowedAddress.getIpAddress().equals(ipAddress) &&
-						allowedAddress.getMacAddress() != null && allowedAddress.getMacAddress().equals(macAddress)) {
-					iter.remove();
-				}
-			}
+			m.allowedAddressPairs.removeIf(allowedAddress ->
+					allowedAddress.getIpAddress() != null &&
+					allowedAddress.getIpAddress().equals(ipAddress) &&
+					allowedAddress.getMacAddress() != null &&
+					allowedAddress.getMacAddress().equals(macAddress));
 
 			return this;
 		}

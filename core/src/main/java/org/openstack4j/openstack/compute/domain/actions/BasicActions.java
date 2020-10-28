@@ -131,7 +131,7 @@ public final class BasicActions {
     public static ServerAction instanceFor(Class<? extends ServerAction> action) {
         ServerAction sa = null;
         try {
-            sa = action.newInstance();
+            sa = action.getDeclaredConstructor().newInstance();
         } catch (Throwable t) {
             LoggerFactory.getLogger(ServerAction.class).error(t.getMessage(), t);
         }
