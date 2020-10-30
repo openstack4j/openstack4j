@@ -1,27 +1,17 @@
 package org.openstack4j.openstack.networking.domain;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.model.common.builder.ResourceBuilder;
-import org.openstack4j.model.network.HostRoute;
-import org.openstack4j.model.network.IPVersionType;
-import org.openstack4j.model.network.Ipv6AddressMode;
-import org.openstack4j.model.network.Ipv6RaMode;
-import org.openstack4j.model.network.Network;
-import org.openstack4j.model.network.Pool;
-import org.openstack4j.model.network.Subnet;
-import org.openstack4j.model.network.builder.SubnetBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
+import com.fasterxml.jackson.annotation.*;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import org.openstack4j.model.common.builder.ResourceBuilder;
+import org.openstack4j.model.network.*;
+import org.openstack4j.model.network.builder.SubnetBuilder;
+import org.openstack4j.openstack.common.ListResult;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * A Subnet is a network with Pools and network based settings
@@ -58,9 +48,11 @@ public class NeutronSubnet implements Subnet {
 	@JsonProperty("ipv6_ra_mode")
 	private Ipv6RaMode ipv6RaMode;
 	@JsonProperty("created_at")
-	private String createdTime;
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+	private Date createdTime;
 	@JsonProperty("updated_at")
-	private String updatedTime;
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+	private Date updatedTime;
 
     public NeutronSubnet() {
     }
@@ -226,7 +218,7 @@ public class NeutronSubnet implements Subnet {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getCreatedTime() {
+	public Date getCreatedTime() {
 		return createdTime;
 	}
 
@@ -234,7 +226,7 @@ public class NeutronSubnet implements Subnet {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getUpdatedTime() {
+	public Date getUpdatedTime() {
 		return updatedTime;
 	}
 

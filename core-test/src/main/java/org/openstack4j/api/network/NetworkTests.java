@@ -1,25 +1,23 @@
 package org.openstack4j.api.network;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import okhttp3.mockwebserver.RecordedRequest;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
+import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.Agent;
 import org.openstack4j.model.network.Agent.Type;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.model.network.NetworkType;
 import org.openstack4j.model.network.State;
-import org.openstack4j.model.common.ActionResponse;
 import org.testng.annotations.Test;
 
-import okhttp3.mockwebserver.RecordedRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.testng.Assert.*;
 
 /**
  * Tests the Compute -> Network API against the mock webserver and spec based
@@ -45,7 +43,9 @@ public class NetworkTests extends AbstractTest {
         server.takeRequest();	 
         assertEquals(n.getName(), NETWORK_NAME);
         assertEquals(n.getStatus(), State.ACTIVE);
-        assertEquals(n.isRouterExternal(), false);
+        assertFalse(n.isRouterExternal());
+        assertEquals(n.getCreatedTime(), DATE);
+        assertEquals(n.getUpdatedTime(), DATE);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class NetworkTests extends AbstractTest {
         server.takeRequest();	 
         assertEquals(n.getName(), NETWORK_NAME);
         assertEquals(n.getStatus(), State.ACTIVE);
-        assertEquals(n.isRouterExternal(), true);
+        assertTrue(n.isRouterExternal());
     }
     
     @Test
@@ -78,8 +78,8 @@ public class NetworkTests extends AbstractTest {
         Agent agent = agentList.get(0);
         assertEquals(agentList.size(), 12);
         assertEquals(agent.getBinary(), "neutron-dhcp-agent");
-        assertEquals(agent.getAdminStateUp(), true);
-        assertEquals(agent.getAlive(), true);
+        assertTrue(agent.getAdminStateUp());
+        assertTrue(agent.getAlive());
         assertEquals(agent.getAgentType(), Type.DHCP);
         assertEquals(agent.getHost(), "cic-0-3");
         assertEquals(agent.getId(), "086d8a3d-ef23-4708-909b-0c459528e2a6");

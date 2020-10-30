@@ -1,22 +1,21 @@
 package org.openstack4j.openstack.networking.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import org.openstack4j.api.Apis;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.model.network.NetworkType;
 import org.openstack4j.model.network.State;
 import org.openstack4j.model.network.Subnet;
 import org.openstack4j.model.network.builder.NetworkBuilder;
-import org.openstack4j.model.network.builder.PortBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Sets;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * An OpenStack (Neutron) network
@@ -52,9 +51,11 @@ public class NeutronNetwork implements Network {
     @JsonProperty("availability_zones")
     private List<String> availabilityZones;
     @JsonProperty("created_at")
-    private String createdTime;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date createdTime;
     @JsonProperty("updated_at")
-    private String updatedTime;
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+    private Date updatedTime;
     
     /**
      * The maximum transmission unit (MTU) value to address fragmentation. Minimum value is 68 for IPv4, and 1280 for IPv6.
@@ -231,7 +232,7 @@ public class NeutronNetwork implements Network {
      * {@inheritDoc}
      */
     @Override
-    public String getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
@@ -239,7 +240,7 @@ public class NeutronNetwork implements Network {
      * {@inheritDoc}
      */
     @Override
-    public String getUpdatedTime() {
+    public Date getUpdatedTime() {
         return updatedTime;
     }
 

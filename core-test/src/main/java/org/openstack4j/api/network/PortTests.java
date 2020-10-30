@@ -4,6 +4,7 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.network.Port;
 import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,8 @@ public class PortTests extends AbstractTest {
 
     private void validatePort(Port port) {
         assertEquals(port.getNetworkId(), NETWORK_ID);
+        assertEquals(port.getCreatedTime(), DATE);
+        assertEquals(port.getUpdatedTime(), DATE);
     }
 
     private Port getPort() {

@@ -1,6 +1,6 @@
 package org.openstack4j.model.common;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 
 /**
  *  A simple entity which supports time data
@@ -14,13 +14,13 @@ public interface TimeEntity {
      * 
      * @return created time
      */
-    String getCreatedTime();
+    Date getCreatedTime();
 	
     /**
      * updated time
      * 
      * @return updated time
      */
-    String getUpdatedTime();
+    Date getUpdatedTime();
 
 }
