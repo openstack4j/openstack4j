@@ -62,7 +62,7 @@ public class NeutronPort implements Port {
 
 	@JsonProperty("trunkport:vid")
 	private String trunkPortVlanId;
-	
+
 	@JsonProperty("security_groups")
 	private List<String> securityGroups;
 
@@ -169,8 +169,8 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-	* {@inheritDoc}
-	*/
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Set<? extends AllowedAddressPair> getAllowedAddressPairs() {
 		return allowedAddressPairs;
@@ -255,7 +255,7 @@ public class NeutronPort implements Port {
 	public String getTrunkPortVlanId() {
 		return trunkPortVlanId;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -301,12 +301,12 @@ public class NeutronPort implements Port {
 	}
 
 	/**
-     * {@inheritDoc}
-     */
-    @Override
-    public Boolean isPortSecurityEnabled() {
-        return portSecurityEnabled;
-    }
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Boolean isPortSecurityEnabled() {
+		return portSecurityEnabled;
+	}
 
 
 	/**
@@ -315,14 +315,14 @@ public class NeutronPort implements Port {
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
-				    .add("id", id).add("name", name).add("adminStateUp", adminStateUp).add("deviceId", deviceId)
-				    .add("trunkPortType", trunkPortType).add("trunkPortParentId", trunkPortParentId).add("trunkPortVlanId", trunkPortVlanId)
-				    .add("deviceOwner", deviceOwner).add("fixedIps", fixedIps).add("macAddress", macAddress)
-				    .add("networkId", networkId).add("tenantId", tenantId).add("securityGroups", securityGroups)
-				    .add("allowed_address_pairs", allowedAddressPairs).add("port_security_enabled ", portSecurityEnabled)
-				    .add("binding:host_id", hostId).add("binding:vif_type", vifType).add("binding:vif_details", vifDetails)
-				    .add("binding:vnic_type", vNicType).add("binding:profile", profile)
-				    .toString();
+				.add("id", id).add("name", name).add("adminStateUp", adminStateUp).add("deviceId", deviceId)
+				.add("trunkPortType", trunkPortType).add("trunkPortParentId", trunkPortParentId).add("trunkPortVlanId", trunkPortVlanId)
+				.add("deviceOwner", deviceOwner).add("fixedIps", fixedIps).add("macAddress", macAddress)
+				.add("networkId", networkId).add("tenantId", tenantId).add("securityGroups", securityGroups)
+				.add("allowed_address_pairs", allowedAddressPairs).add("port_security_enabled ", portSecurityEnabled)
+				.add("binding:host_id", hostId).add("binding:vif_type", vifType).add("binding:vif_details", vifDetails)
+				.add("binding:vnic_type", vNicType).add("binding:profile", profile)
+				.toString();
 	}
 
 	/**
@@ -347,23 +347,25 @@ public class NeutronPort implements Port {
 
 		if (obj instanceof NeutronPort) {
 			NeutronPort that = (NeutronPort) obj;
-			return Objects.equals(id, that.id) &&
-					Objects.equals(name, that.name) &&
-					Objects.equals(adminStateUp, that.adminStateUp) &&
-					Objects.equals(deviceId, that.deviceId) &&
-					Objects.equals(deviceOwner, that.deviceOwner) &&
-					Objects.equals(fixedIps, that.fixedIps) &&
-					Objects.equals(macAddress, that.macAddress) &&
-					Objects.equals(networkId, that.networkId) &&
-					Objects.equals(tenantId, that.tenantId) &&
-					Objects.equals(securityGroups, that.securityGroups) &&
-					Objects.equals(allowedAddressPairs, that.allowedAddressPairs) &&
-					Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
-					Objects.equals(hostId, that.hostId) &&
-					Objects.equals(vifType, that.vifType) &&
-					Objects.equals(vifDetails, that.vifDetails) &&
-					Objects.equals(vNicType, that.vNicType) &&
-					Objects.equals(profile, that.profile);
+			if (java.util.Objects.equals(id, that.id) &&
+					java.util.Objects.equals(name, that.name) &&
+					java.util.Objects.equals(adminStateUp, that.adminStateUp) &&
+					java.util.Objects.equals(deviceId, that.deviceId) &&
+					java.util.Objects.equals(deviceOwner, that.deviceOwner) &&
+					java.util.Objects.equals(fixedIps, that.fixedIps) &&
+					java.util.Objects.equals(macAddress, that.macAddress) &&
+					java.util.Objects.equals(networkId, that.networkId) &&
+					java.util.Objects.equals(tenantId, that.tenantId) &&
+					java.util.Objects.equals(securityGroups, that.securityGroups) &&
+					java.util.Objects.equals(allowedAddressPairs, that.allowedAddressPairs) &&
+					java.util.Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
+					java.util.Objects.equals(hostId, that.hostId) &&
+					java.util.Objects.equals(vifType, that.vifType) &&
+					java.util.Objects.equals(vifDetails, that.vifDetails) &&
+					java.util.Objects.equals(vNicType, that.vNicType) &&
+					java.util.Objects.equals(profile, that.profile)) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -426,15 +428,15 @@ public class NeutronPort implements Port {
 		}
 
 		@Override
-        public PortBuilder removeFixedIp(String address, String subnetId) {
+		public PortBuilder removeFixedIp(String address, String subnetId) {
 			if (m.fixedIps == null)
-			  m.fixedIps = Sets.newHashSet();
+				m.fixedIps = Sets.newHashSet();
 
 			m.fixedIps.removeIf(fixedIP ->
 					fixedIP.getSubnetId() != null &&
-					fixedIP.getSubnetId().equals(subnetId) &&
-					fixedIP.getIpAddress() != null &&
-					fixedIP.getIpAddress().equals(address));
+							fixedIP.getSubnetId().equals(subnetId) &&
+							fixedIP.getIpAddress() != null &&
+							fixedIP.getIpAddress().equals(address));
 
 			return this;
 		}
@@ -453,11 +455,10 @@ public class NeutronPort implements Port {
 			if (m.allowedAddressPairs == null)
 				m.allowedAddressPairs = Sets.newHashSet();
 
-			m.allowedAddressPairs.removeIf(allowedAddress ->
-					allowedAddress.getIpAddress() != null &&
-					allowedAddress.getIpAddress().equals(ipAddress) &&
-					allowedAddress.getMacAddress() != null &&
-					allowedAddress.getMacAddress().equals(macAddress));
+			m.allowedAddressPairs.removeIf(allowedAddress -> allowedAddress.getIpAddress() != null &&
+							allowedAddress.getIpAddress().equals(ipAddress) &&
+							allowedAddress.getMacAddress() != null &&
+							allowedAddress.getMacAddress().equals(macAddress));
 
 			return this;
 		}
@@ -492,7 +493,7 @@ public class NeutronPort implements Port {
 			m.trunkPortVlanId = vlanId;
 			return this;
 		}
-		
+
 		@Override
 		public Port build() {
 			return m;
@@ -509,13 +510,13 @@ public class NeutronPort implements Port {
 			return m;
 		}
 
-    @Override
-        public PortBuilder extraDhcpOpt(ExtraDhcpOptCreate extraDhcpOptCreate) {
-            if (m.extraDhcpOptCreates == null)
-                m.extraDhcpOptCreates = Lists.newArrayList();
-            m.extraDhcpOptCreates.add((NeutronExtraDhcpOptCreate)extraDhcpOptCreate);
-            return this;
-    }
+		@Override
+		public PortBuilder extraDhcpOpt(ExtraDhcpOptCreate extraDhcpOptCreate) {
+			if (m.extraDhcpOptCreates == null)
+				m.extraDhcpOptCreates = Lists.newArrayList();
+			m.extraDhcpOptCreates.add((NeutronExtraDhcpOptCreate)extraDhcpOptCreate);
+			return this;
+		}
 
 		@Override
 		public PortBuilder securityGroup(String groupName) {
@@ -526,41 +527,41 @@ public class NeutronPort implements Port {
 			return this;
 		}
 
-        @Override
-        public PortBuilder portSecurityEnabled(Boolean portSecurityEnabled) {
-            m.portSecurityEnabled=portSecurityEnabled;
-            return this;
-        }
+		@Override
+		public PortBuilder portSecurityEnabled(Boolean portSecurityEnabled) {
+			m.portSecurityEnabled=portSecurityEnabled;
+			return this;
+		}
 
-        @Override
-        public PortBuilder hostId(String hostId) {
+		@Override
+		public PortBuilder hostId(String hostId) {
 			m.hostId = hostId;
 			return this;
-    	}
+		}
 
-        @Override
-    	public PortBuilder vifType(String vifType) {
+		@Override
+		public PortBuilder vifType(String vifType) {
 			m.vifType = vifType;
 			return this;
-    	}
+		}
 
-        @Override
-    	public PortBuilder vifDetails(Map<String, Object> vifDetails) {
+		@Override
+		public PortBuilder vifDetails(Map<String, Object> vifDetails) {
 			m.vifDetails = vifDetails;
 			return this;
-    	}
+		}
 
-        @Override
-    	public PortBuilder vNicType(String vNicType) {
+		@Override
+		public PortBuilder vNicType(String vNicType) {
 			m.vNicType = vNicType;
 			return this;
-    	}
+		}
 
-        @Override
-    	public PortBuilder profile(Map<String, Object> profile) {
+		@Override
+		public PortBuilder profile(Map<String, Object> profile) {
 			m.profile = profile;
 			return this;
-    	}
+		}
 
 	}
 

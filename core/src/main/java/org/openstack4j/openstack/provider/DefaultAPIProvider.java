@@ -298,7 +298,7 @@ public class DefaultAPIProvider implements APIProvider {
 
         if (bindings.containsKey(api)) {
             try {
-                T impl = (T) bindings.get(api).getDeclaredConstructor().newInstance();
+                T impl = (T) bindings.get(api).newInstance();
                 instances.put(api, impl);
                 return impl;
             } catch (Exception e) {
