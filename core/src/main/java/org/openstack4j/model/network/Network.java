@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.common.Resource;
+import org.openstack4j.model.common.TimeEntity;
 import org.openstack4j.model.network.builder.NetworkBuilder;
 
 /**
@@ -11,7 +12,7 @@ import org.openstack4j.model.network.builder.NetworkBuilder;
  * 
  * @author Jeremy Unruh
  */
-public interface Network extends Resource, Buildable<NetworkBuilder> {
+public interface Network extends Resource, TimeEntity, Buildable<NetworkBuilder> {
 
 	/**
 	 * @return the status of the network

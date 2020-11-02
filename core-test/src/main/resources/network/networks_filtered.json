@@ -11,6 +11,8 @@
         "shared": true,
         "provider:network_type": "vxlan",
         "id": "73f6f1ac-5e58-4801-88c3-7e12c6ddfb39",
-        "provider:segmentation_id": 101101
+        "provider:segmentation_id": 101101,
+        "created_at": "2020-10-30T22:16:01Z",
+        "updated_at": "2020-10-30T22:16:01Z"
     }]
 }
