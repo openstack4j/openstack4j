@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,7 +71,6 @@ public abstract class AbstractTest {
     protected static final String JSON_ACCESS = "/identity/v2/access.json";
     protected static final String JSON_TOKEN = "/identity/v3/authv3_project.json";
     protected static final String TOKEN_ID = "123456789";
-    protected static final Date DATE = new Date(1604096161000L);
 
     protected OSClientV2 osv2;
     protected OSClientV3 osv3;

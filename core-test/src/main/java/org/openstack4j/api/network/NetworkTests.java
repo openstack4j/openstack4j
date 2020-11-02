@@ -35,6 +35,7 @@ public class NetworkTests extends AbstractTest {
     private static final String JSON_NETWORK_ZONE = "/network/network_zone.json";
     private static final String NETWORK_NAME = "net1";
     private static final String NETWORK_ID = "4e8e5957-649f-477b-9e5b-f1f75b21c03c";
+    private static final Date DATE = new Date(1604096161000L);
 
     @Test
     public void getNetwork() throws Exception {
