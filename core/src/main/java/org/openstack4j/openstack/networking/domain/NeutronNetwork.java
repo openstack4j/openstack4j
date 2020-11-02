@@ -1,6 +1,5 @@
 package org.openstack4j.openstack.networking.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -51,10 +50,8 @@ public class NeutronNetwork implements Network {
     @JsonProperty("availability_zones")
     private List<String> availabilityZones;
     @JsonProperty("created_at")
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date createdTime;
     @JsonProperty("updated_at")
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
     private Date updatedTime;
     
     /**

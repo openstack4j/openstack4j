@@ -48,10 +48,8 @@ public class NeutronSubnet implements Subnet {
 	@JsonProperty("ipv6_ra_mode")
 	private Ipv6RaMode ipv6RaMode;
 	@JsonProperty("created_at")
-	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date createdTime;
 	@JsonProperty("updated_at")
-	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date updatedTime;
 
     public NeutronSubnet() {

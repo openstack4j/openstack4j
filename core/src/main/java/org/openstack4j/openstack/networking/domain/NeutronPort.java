@@ -1,6 +1,5 @@
 package org.openstack4j.openstack.networking.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -89,11 +88,9 @@ public class NeutronPort implements Port {
 	private Map<String, Object> profile;
 
 	@JsonProperty("created_at")
-	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date createdTime;
 
 	@JsonProperty("updated_at")
-	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date updatedTime;
 
 	public static PortBuilder builder() {
