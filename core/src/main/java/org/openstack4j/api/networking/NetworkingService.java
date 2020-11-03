@@ -48,6 +48,12 @@ public interface NetworkingService extends RestService {
 
     /**
      *
+     * @return the Security Group Tag Service API
+     */
+    SecurityGroupTagService securityGroupTags();
+
+    /**
+     *
      * @return the Security Group Rule Service API
      */
     SecurityGroupRuleService securityrule();

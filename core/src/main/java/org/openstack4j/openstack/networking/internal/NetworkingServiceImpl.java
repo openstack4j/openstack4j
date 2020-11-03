@@ -1,16 +1,7 @@
 package org.openstack4j.openstack.networking.internal;
 
 import org.openstack4j.api.Apis;
-import org.openstack4j.api.networking.AvailabilityZoneService;
-import org.openstack4j.api.networking.NetFloatingIPService;
-import org.openstack4j.api.networking.NetworkService;
-import org.openstack4j.api.networking.NetworkingService;
-import org.openstack4j.api.networking.PortService;
-import org.openstack4j.api.networking.RouterService;
-import org.openstack4j.api.networking.SecurityGroupRuleService;
-import org.openstack4j.api.networking.SecurityGroupService;
-import org.openstack4j.api.networking.SubnetService;
-import org.openstack4j.api.networking.TrunkService;
+import org.openstack4j.api.networking.*;
 import org.openstack4j.api.networking.ext.AgentService;
 import org.openstack4j.api.networking.ext.FirewallAsService;
 import org.openstack4j.api.networking.ext.LbaasV2Service;
@@ -71,6 +62,14 @@ public class NetworkingServiceImpl implements NetworkingService {
     @Override
     public SecurityGroupService securitygroup() {
         return Apis.get(SecurityGroupService.class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SecurityGroupTagService securityGroupTags() {
+        return Apis.get(SecurityGroupTagService.class);
     }
 
     /**
