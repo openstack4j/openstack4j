@@ -2,18 +2,21 @@ package org.openstack4j.openstack.manila.domain.actions;
 
 import org.openstack4j.model.ModelEntity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Actions to force down/force up manila services
  */
 public class ServiceActions implements ModelEntity {
     private String binary;
     private String host;
-    private boolean forced_down;
+    @JsonProperty("forced_down")
+    public boolean isForcedDown;
 
-    private ServiceActions(String binary, String host, boolean forced_down) {
+    private ServiceActions(String binary, String host, boolean isForcedDown) {
         this.binary = binary;
         this.host = host;
-        this.forced_down = forced_down;
+        this.isForcedDown = isForcedDown;
     }
 
     public static ServiceActions forceUp(String binary, String host) {
@@ -32,7 +35,8 @@ public class ServiceActions implements ModelEntity {
         return host;
     }
 
-    public boolean isForced_down() {
-        return forced_down;
+    @JsonProperty("forced_down")
+    public boolean isForcedDown() {
+        return isForcedDown;
     }
 }
