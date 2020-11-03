@@ -432,15 +432,9 @@ public class NeutronPort implements Port {
 			if (m.fixedIps == null)
 			  m.fixedIps = Sets.newHashSet();
 
-			Iterator<NeutronIP> iter = m.fixedIps.iterator();
-
-			while (iter.hasNext()) {
-			  NeutronIP fixedIP = iter.next();
-			  if (fixedIP.getSubnetId() != null && fixedIP.getSubnetId().equals(subnetId) &&
-			      fixedIP.getIpAddress() != null && fixedIP.getIpAddress().equals(address)) {
-			    iter.remove();
-			  }
-			}
+			m.fixedIps.removeIf(fixedIP ->
+					fixedIP.getSubnetId() != null && fixedIP.getSubnetId().equals(subnetId) &&
+					fixedIP.getIpAddress() != null && fixedIP.getIpAddress().equals(address));
 
 			return this;
 		}
@@ -459,15 +453,9 @@ public class NeutronPort implements Port {
 			if (m.allowedAddressPairs == null)
 				m.allowedAddressPairs = Sets.newHashSet();
 
-			Iterator<NeutronAllowedAddressPair> iter = m.allowedAddressPairs.iterator();
-
-			while (iter.hasNext()) {
-				NeutronAllowedAddressPair allowedAddress = iter.next();
-				if (allowedAddress.getIpAddress() != null && allowedAddress.getIpAddress().equals(ipAddress) &&
-						allowedAddress.getMacAddress() != null && allowedAddress.getMacAddress().equals(macAddress)) {
-					iter.remove();
-				}
-			}
+			m.allowedAddressPairs.removeIf(allowedAddress ->
+					allowedAddress.getIpAddress() != null && allowedAddress.getIpAddress().equals(ipAddress) &&
+					allowedAddress.getMacAddress() != null && allowedAddress.getMacAddress().equals(macAddress));
 
 			return this;
 		}
