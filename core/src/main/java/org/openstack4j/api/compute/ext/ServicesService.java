@@ -53,4 +53,22 @@ public interface ServicesService {
      */
     ExtService disableService(String binary, String host);
 
+    /**
+     * Forcefully shuts down a service.
+     *
+     * @param binary the name of the service binary that you want to shutdown
+     * @param host the host name of the service that you want to shutdown
+     * @return the shutdown service
+     */
+    ExtService forceDownService(String binary, String host);
+
+    /**
+     * Forcefully brings up a service.
+     *
+     * @param binary the name of the service binary that you want to bring up
+     * @param host the host name of the service that you want to bring up
+     * @return the brought up service
+     */
+    ExtService forceUpService(String binary, String host);
+
 }

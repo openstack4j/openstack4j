@@ -4,7 +4,9 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.network.Port;
 import org.testng.annotations.Test;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -20,6 +22,7 @@ public class PortTests extends AbstractTest {
     private static final String JSON_PORTS_EXTERNAL = "/network/ports_external.json";
     private static final String JSON_PORT_EXTERNAL = "/network/port_external.json";
     private static final String NETWORK_ID = "a87cc70a-3e15-4acf-8205-9b711a3531b7";
+    private static final Date DATE = new Date(1604096161000L);
 
     @Test
     public void createPorts() throws Exception {
@@ -39,6 +42,8 @@ public class PortTests extends AbstractTest {
 
     private void validatePort(Port port) {
         assertEquals(port.getNetworkId(), NETWORK_ID);
+        assertEquals(port.getCreatedTime(), DATE);
+        assertEquals(port.getUpdatedTime(), DATE);
     }
 
     private Port getPort() {

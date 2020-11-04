@@ -10,6 +10,7 @@ import org.openstack4j.model.compute.ext.Service;
 import org.openstack4j.openstack.compute.domain.ext.ExtService;
 import org.openstack4j.openstack.compute.domain.ext.ExtService.Services;
 import org.openstack4j.openstack.manila.domain.actions.ServiceAction;
+import org.openstack4j.openstack.manila.domain.actions.ServiceActions;
 
 /**
  * Compute Services service provides CRUD capabilities for nova service(s).
@@ -78,4 +79,26 @@ public class ServicesServiceImpl extends BaseComputeServices implements Services
 
 		return put(ExtService.class, uri("/os-services/disable")).entity(ServiceAction.disable(binary, host)).execute();
 	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ExtService forceDownService(String binary, String host) {
+        checkNotNull(binary);
+        checkNotNull(host);
+        return put(ExtService.class, uri("/os-services/force-down")).header("x-openstack-nova-api-version", "2.11")
+                .entity(ServiceActions.forceDown(binary, host)).execute();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ExtService forceUpService(String binary, String host) {
+        checkNotNull(binary);
+        checkNotNull(host);
+        return put(ExtService.class, uri("/os-services/force-down")).header("x-openstack-nova-api-version", "2.11")
+                .entity(ServiceActions.forceUp(binary, host)).execute();
+    }
 }
