@@ -94,5 +94,5 @@ public interface Service extends ModelEntity {
     /**
      * @return Whether or not this service was forced down manually by an administrator
      */
-    String getDorcedDown();
+    String getForcedDown();
 }
