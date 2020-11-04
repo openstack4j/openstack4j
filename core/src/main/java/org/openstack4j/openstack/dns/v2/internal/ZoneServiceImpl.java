@@ -6,7 +6,6 @@ import org.openstack4j.model.dns.v2.Nameserver;
 import org.openstack4j.model.dns.v2.Zone;
 import org.openstack4j.openstack.dns.v2.domain.DesignateNameserver;
 import org.openstack4j.openstack.dns.v2.domain.DesignateZone;
-import org.openstack4j.openstack.internal.BaseOpenStackService;
 
 import java.util.List;
 

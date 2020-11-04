@@ -59,7 +59,6 @@ import org.openstack4j.openstack.common.GenericLink;
 import org.openstack4j.openstack.compute.builder.NovaBuilders;
 import org.openstack4j.openstack.compute.domain.*;
 import org.openstack4j.openstack.compute.domain.NovaSecGroupExtension.SecurityGroupRule;
-import org.openstack4j.openstack.compute.domain.NovaServerCreate;
 import org.openstack4j.openstack.dns.v2.builder.DesignateV2Builders;
 import org.openstack4j.openstack.dns.v2.domain.DesignateRecordset;
 import org.openstack4j.openstack.dns.v2.domain.DesignateZone;

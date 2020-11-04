@@ -3,7 +3,6 @@ package org.openstack4j.openstack.networking.domain;
 import java.util.List;
 
 import org.openstack4j.model.network.AvailabilityZone;
-import org.openstack4j.model.network.Pool;
 import org.openstack4j.openstack.common.ListResult;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

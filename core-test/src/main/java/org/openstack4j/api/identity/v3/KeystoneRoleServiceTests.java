@@ -12,7 +12,6 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.identity.v3.Role;
 import org.openstack4j.model.identity.v3.RoleAssignment;
-import org.openstack4j.openstack.identity.v3.domain.KeystoneRole;
 import org.testng.annotations.Test;
 
 /**

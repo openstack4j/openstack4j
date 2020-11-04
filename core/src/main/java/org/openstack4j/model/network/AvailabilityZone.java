@@ -1,7 +1,5 @@
 package org.openstack4j.model.network;
 
-import java.util.List;
-
 import org.openstack4j.model.ModelEntity;
 
 /**

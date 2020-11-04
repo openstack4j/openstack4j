@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.senlin.Version;
 import org.openstack4j.openstack.common.ListResult;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

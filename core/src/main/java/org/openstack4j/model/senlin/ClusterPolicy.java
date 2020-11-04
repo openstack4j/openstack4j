@@ -1,7 +1,6 @@
 package org.openstack4j.model.senlin;
 
 import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.ResourceEntity;
 
 /**
  * This interface describes the getter-methods (and thus components) of a ClusterPolicy.

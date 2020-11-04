@@ -5,8 +5,6 @@ import static org.testng.Assert.assertEquals;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.identity.v3.Domain;
-import org.openstack4j.openstack.identity.v3.domain.KeystoneDomain;
-import org.openstack4j.openstack.identity.v3.domain.KeystoneRole;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

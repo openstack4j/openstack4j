@@ -2,7 +2,6 @@ package org.openstack4j.model.senlin;
 
 import org.openstack4j.model.ModelEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

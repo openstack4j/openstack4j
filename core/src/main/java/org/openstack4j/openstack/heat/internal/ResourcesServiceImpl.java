@@ -1,6 +1,5 @@
 package org.openstack4j.openstack.heat.internal;
 
-import com.google.common.net.*;
 import org.openstack4j.api.heat.ResourcesService;
 import org.openstack4j.model.common.*;
 import org.openstack4j.model.heat.Resource;
