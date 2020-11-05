@@ -5,7 +5,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.barbican.ContainerService;
 import org.openstack4j.model.barbican.Container;
-import org.openstack4j.model.barbican.ContainerSecret;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.openstack.barbican.domain.BarbicanContainer;
 import org.openstack4j.openstack.barbican.domain.BarbicanContainer.Containers;

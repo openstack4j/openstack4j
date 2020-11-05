@@ -2,7 +2,6 @@ package org.openstack4j.connectors.okhttp;
 
 import okhttp3.Response;
 import org.openstack4j.api.exceptions.ConnectionException;
-import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.ClientConstants;
 import org.openstack4j.core.transport.HttpExecutorService;
 import org.openstack4j.core.transport.HttpRequest;

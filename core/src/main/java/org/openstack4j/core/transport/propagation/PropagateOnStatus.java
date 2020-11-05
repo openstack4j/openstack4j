@@ -1,7 +1,5 @@
 package org.openstack4j.core.transport.propagation;
 
-import static org.openstack4j.core.transport.HttpExceptionHandler.mapException;
-
 import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.core.transport.PropagateResponse;

@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-import static org.openstack4j.core.transport.HttpExceptionHandler.mapException;
-
 /**
  * Handles retrieving an Entity from an HttpResponse while validating resulting
  * status codes.

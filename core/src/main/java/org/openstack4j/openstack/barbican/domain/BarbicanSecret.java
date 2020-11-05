@@ -1,6 +1,5 @@
 package org.openstack4j.openstack.barbican.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import org.openstack4j.model.barbican.Secret;

@@ -1,7 +1,6 @@
 package org.openstack4j.model.workflow.builder;
 
 import org.openstack4j.common.Buildable.Builder;
-import org.openstack4j.model.workflow.Definition;
 import org.openstack4j.model.workflow.Execution;
 
 import java.util.Date;

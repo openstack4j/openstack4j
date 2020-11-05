@@ -1,6 +1,5 @@
 package org.openstack4j.openstack.telemetry.internal;
 
-import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.openstack.common.functions.EnforceVersionToURL;
