@@ -5,7 +5,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.List;
 import java.util.Map;
 
+import org.openstack4j.api.Apis;
 import org.openstack4j.api.networking.NetFloatingIPService;
+import org.openstack4j.api.networking.ext.PortForwardingService;
 import org.openstack4j.core.transport.ExecutionOptions;
 import org.openstack4j.core.transport.propagation.PropagateOnStatus;
 import org.openstack4j.model.common.ActionResponse;
@@ -93,5 +95,13 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
         String json = String.format("{ \"%s\": %s }", "floatingip", "{ \"port_id\":null }");
         return put(NeutronFloatingIP.class, uri("/floatingips/%s",fipId)).json(json)
                 .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PortForwardingService portForwarding() {
+        return Apis.get(PortForwardingService.class);
     }
 }

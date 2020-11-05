@@ -266,4 +266,11 @@ public interface NetworkBuilders {
      * @return TrunkBuilder
      */
     public TrunkBuilder trunk();
+
+    /**
+     * The builder to create a floating IP port forwarding
+     *
+     * @return PortForwardingBuilder
+     */
+    PortForwardingBuilder portForwarding();
 }

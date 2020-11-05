@@ -3,6 +3,7 @@ package org.openstack4j.api.networking;
 import java.util.List;
 import java.util.Map;
 
+import org.openstack4j.api.networking.ext.PortForwardingService;
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.NetFloatingIP;
@@ -68,4 +69,9 @@ public interface NetFloatingIPService extends RestService {
    * @return the net floating ip
    */
   NetFloatingIP disassociateFromPort(String fipId);
+
+  /**
+   * @return the port forwarding Service API
+   */
+  PortForwardingService portForwarding();
 }

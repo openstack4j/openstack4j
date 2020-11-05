@@ -41,6 +41,11 @@ public class NeutronBuilders implements NetworkBuilders {
     }
 
     @Override
+    public PortForwardingBuilder portForwarding() {
+        return FloatingIPPortForwarding.builder();
+    }
+
+    @Override
     public RouterBuilder router() {
         return NeutronRouter.builder();
     }

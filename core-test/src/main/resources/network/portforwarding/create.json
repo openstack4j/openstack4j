@@ -1,0 +1,11 @@
+{
+  "port_forwarding": {
+    "protocol": "tcp",
+    "internal_ip_address": "10.0.0.11",
+    "internal_port": 25,
+    "internal_port_id": "1238be08-a2a8-4b8d-addf-fb5e2250e480",
+    "external_port": 2230,
+    "description": "Some description",
+    "id": "725ade3c-9760-4880-8080-8fc2dbab9acc"
+  }
+}
