@@ -21,11 +21,11 @@ public interface NeutronResourceTagService extends RestService {
 	ActionResponse check(Resource resource, String resourceId, String tag);
 
 	/**
-	 * Obtains the security group tags for a resource.
+	 * Obtains the (Neutron) resource tags for a resource.
 	 *
 	 * @param resource resource type
 	 * @param resourceId resource id
-	 * @return security group tags
+	 * @return the NeutronResourceTag
 	 */
 	NeutronResourceTag list(Resource resource, String resourceId);
 
@@ -43,7 +43,7 @@ public interface NeutronResourceTagService extends RestService {
 	 *
 	 * @param resourceId resource id
 	 * @param tags tags
-	 * @return the ActionResponse
+	 * @return the NeutronResourceTag
 	 */
 	NeutronResourceTag replace(Resource resource, String resourceId, NeutronResourceTag tags);
 
