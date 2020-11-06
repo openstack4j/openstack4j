@@ -37,10 +37,10 @@ public interface BlockVolumeBackupService  extends RestService {
 	
 	/**
 	 * Shows information for a specified backup.
-	 * @param id the backup identifier
+	 * @param backupId the backup identifier
 	 * @return the volume backup or null
 	 */
-	VolumeBackup get(String backupId  );
+	VolumeBackup get(String backupId);
 	
 	/**
 	 * Delete a specified volume backup 

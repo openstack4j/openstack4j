@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.internal;
 
-import static org.openstack4j.core.transport.HttpExceptionHandler.mapException;
-
 import org.openstack4j.api.OSClient;
 import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;

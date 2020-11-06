@@ -59,7 +59,6 @@ import org.openstack4j.openstack.common.GenericLink;
 import org.openstack4j.openstack.compute.builder.NovaBuilders;
 import org.openstack4j.openstack.compute.domain.*;
 import org.openstack4j.openstack.compute.domain.NovaSecGroupExtension.SecurityGroupRule;
-import org.openstack4j.openstack.compute.domain.NovaServerCreate;
 import org.openstack4j.openstack.dns.v2.builder.DesignateV2Builders;
 import org.openstack4j.openstack.dns.v2.domain.DesignateRecordset;
 import org.openstack4j.openstack.dns.v2.domain.DesignateZone;
@@ -261,7 +260,7 @@ public class Builders {
 
     /**
      * The builder to create a Volume Type
-     * 
+     *
      * @return the volume type builder
      */
     public static VolumeTypeBuilder volumeType() {
@@ -276,7 +275,7 @@ public class Builders {
     public static VolumeSnapshotBuilder volumeSnapshot() {
         return CinderVolumeSnapshot.builder();
     }
-    
+
     /**
      * The builder to create a Block Volume Backup
      * @return the volume backup builder
@@ -1255,5 +1254,9 @@ public class Builders {
 
     public static WorkflowBuilders workflow() {
         return new MistralBuilders();
+    }
+
+    public static PortForwardingBuilder portForwarding() {
+        return FloatingIPPortForwarding.builder();
     }
 }

@@ -9,7 +9,6 @@ import static org.testng.Assert.assertTrue;
 
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import okhttp3.mockwebserver.RecordedRequest;

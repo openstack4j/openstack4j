@@ -2,7 +2,6 @@ package org.openstack4j.model.senlin;
 
 import org.openstack4j.model.ResourceEntity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;

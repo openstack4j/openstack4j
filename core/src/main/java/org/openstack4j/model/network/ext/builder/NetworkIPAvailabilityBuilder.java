@@ -1,7 +1,6 @@
 package org.openstack4j.model.network.ext.builder;
 
 import java.math.BigInteger;
-import java.util.List;
 
 import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.network.ext.NetworkIPAvailability;

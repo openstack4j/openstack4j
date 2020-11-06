@@ -286,6 +286,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(TrunkService.class, TrunkServiceImpl.class);
         bind(ServerActionsService.class, NovaServerActionsService.class);
         bind(NeutronResourceTagService.class, NeutronResourceTagServiceImpl.class);
+        bind(PortForwardingService.class, PortForwardingServiceImpl.class);
     }
 
     /**

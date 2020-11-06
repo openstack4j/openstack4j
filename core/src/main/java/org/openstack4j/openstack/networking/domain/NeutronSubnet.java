@@ -1,27 +1,17 @@
 package org.openstack4j.openstack.networking.domain;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.model.common.builder.ResourceBuilder;
-import org.openstack4j.model.network.HostRoute;
-import org.openstack4j.model.network.IPVersionType;
-import org.openstack4j.model.network.Ipv6AddressMode;
-import org.openstack4j.model.network.Ipv6RaMode;
-import org.openstack4j.model.network.Network;
-import org.openstack4j.model.network.Pool;
-import org.openstack4j.model.network.Subnet;
-import org.openstack4j.model.network.builder.SubnetBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
+import com.fasterxml.jackson.annotation.*;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import org.openstack4j.model.common.builder.ResourceBuilder;
+import org.openstack4j.model.network.*;
+import org.openstack4j.model.network.builder.SubnetBuilder;
+import org.openstack4j.openstack.common.ListResult;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * A Subnet is a network with Pools and network based settings
@@ -57,6 +47,10 @@ public class NeutronSubnet implements Subnet {
 	private Ipv6AddressMode ipv6AddressMode;
 	@JsonProperty("ipv6_ra_mode")
 	private Ipv6RaMode ipv6RaMode;
+	@JsonProperty("created_at")
+	private Date createdTime;
+	@JsonProperty("updated_at")
+	private Date updatedTime;
 
     public NeutronSubnet() {
     }
@@ -222,12 +216,29 @@ public class NeutronSubnet implements Subnet {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Date getUpdatedTime() {
+		return updatedTime;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this).omitNullValues()
 				.add("id", id).add("name", name).add("enableDHCP", enableDHCP).add("network-id", networkId)
 				.add("tenant_id", tenantId).add("dns_nameservers", dnsNames).add("allocation_pools", pools)
 				.add("host_routes", hostRoutes).add("ip_version", ipVersion).add("gateway_ip", gateway).add("cidr", cidr)
 				.add("ipv6AddressMode", ipv6AddressMode).add("ipv6RaMode", ipv6RaMode)
+				.add("created_at", createdTime).add("updated_at", updatedTime)
 				.toString();
 	}
 
@@ -238,7 +249,7 @@ public class NeutronSubnet implements Subnet {
 	public int hashCode() {
 			return java.util.Objects.hash(id, name, enableDHCP, networkId,
 							tenantId, dnsNames, pools, hostRoutes, ipVersion, gateway,
-							cidr, ipv6AddressMode, ipv6RaMode);
+							cidr, ipv6AddressMode, ipv6RaMode, createdTime, updatedTime);
 	}
 
 	/**
@@ -264,7 +275,9 @@ public class NeutronSubnet implements Subnet {
 									java.util.Objects.equals(gateway, that.gateway) &&
 									java.util.Objects.equals(cidr, that.cidr) &&
 									java.util.Objects.equals(ipv6AddressMode, that.ipv6AddressMode) &&
-									java.util.Objects.equals(ipv6RaMode, that.ipv6RaMode)) {
+									java.util.Objects.equals(ipv6RaMode, that.ipv6RaMode) &&
+									java.util.Objects.equals(createdTime, that.createdTime) &&
+									java.util.Objects.equals(updatedTime, that.updatedTime)) {
 							return true;
 					}
 			}
