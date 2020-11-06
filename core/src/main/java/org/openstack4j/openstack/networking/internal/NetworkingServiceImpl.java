@@ -68,8 +68,8 @@ public class NetworkingServiceImpl implements NetworkingService {
      * {@inheritDoc}
      */
     @Override
-    public SecurityGroupTagService securityGroupTags() {
-        return Apis.get(SecurityGroupTagService.class);
+    public NeutronResourceTagService resourceTags() {
+        return Apis.get(NeutronResourceTagService.class);
     }
 
     /**

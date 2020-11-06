@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Security Group Tags Entity
+ * Neutron Resource Tags Entity
  *
  * @author bboyHan
  */
-public class NeutronSecurityGroupTag implements ModelEntity {
+public class NeutronResourceTag implements ModelEntity {
 
     private static final long serialVersionUID = 1L;
 
