@@ -41,6 +41,11 @@ public interface NetworkingService extends RestService {
     SecurityGroupService securitygroup();
 
     /**
+     * @return the (Neutron) Resource Tag Service API
+     */
+    NeutronResourceTagService resourceTags();
+
+    /**
      * @return the Security Group Rule Service API
      */
     SecurityGroupRuleService securityrule();

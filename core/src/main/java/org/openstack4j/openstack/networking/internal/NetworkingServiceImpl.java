@@ -63,6 +63,14 @@ public class NetworkingServiceImpl implements NetworkingService {
      * {@inheritDoc}
      */
     @Override
+    public NeutronResourceTagService resourceTags() {
+        return Apis.get(NeutronResourceTagService.class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public SecurityGroupRuleService securityrule() {
         return Apis.get(SecurityGroupRuleService.class);
     }
