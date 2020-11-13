@@ -23,8 +23,7 @@ public class NetworkServiceImpl extends BaseNetworkingServices implements Networ
         Invocation<Networks> invocation = get(Networks.class, "/networks");
         if (filteringParams == null) {
             return invocation;
-        }
-        else {
+        } else {
             for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
                 invocation = invocation.param(entry.getKey(), entry.getValue());
             }

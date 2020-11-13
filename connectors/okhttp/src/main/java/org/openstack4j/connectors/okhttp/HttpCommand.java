@@ -100,13 +100,11 @@ public final class HttpCommand<R> {
             if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
                 byte[] content = ByteStreams.toByteArray((InputStream) request.getEntity());
                 body = RequestBody.create(MediaType.parse(request.getContentType()), content);
-            }
-            else {
+            } else {
                 String content = ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer().writeValueAsString(request.getEntity());
                 body = RequestBody.create(MediaType.parse(request.getContentType()), content);
             }
-        }
-        else if (request.hasJson()) {
+        } else if (request.hasJson()) {
             body = RequestBody.create(MediaType.parse(ClientConstants.CONTENT_TYPE_JSON), request.getJson());
         }
         //Added to address https://github.com/square/okhttp/issues/751

@@ -111,8 +111,7 @@ public class BaseOpenStackService {
         Map<String, String> headers = ses.getHeaders();
         if (headers != null && headers.size() > 0) {
             return new Invocation<>(req, serviceType, endpointFunc).headers(headers);
-        }
-        else {
+        } else {
             return new Invocation<>(req, serviceType, endpointFunc);
         }
     }
@@ -129,8 +128,7 @@ public class BaseOpenStackService {
 
             return service.getVersion();
 
-        }
-        else {
+        } else {
             SortedSet<? extends Access.Service> services = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType());
             Access.Service service = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType()).first();
 
@@ -260,8 +258,7 @@ public class BaseOpenStackService {
         private String getRequestId(HttpResponse res) {
             if (res.headers().containsKey(ClientConstants.X_COMPUTE_REQUEST_ID)) {
                 return res.header(ClientConstants.X_COMPUTE_REQUEST_ID);
-            }
-            else {
+            } else {
                 return res.header(ClientConstants.X_OPENSTACK_REQUEST_ID);
             }
         }

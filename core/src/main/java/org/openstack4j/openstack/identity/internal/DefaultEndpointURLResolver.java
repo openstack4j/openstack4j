@@ -47,8 +47,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
 
         if (url != null) {
             return url;
-        }
-        else if (p.region != null)
+        } else if (p.region != null)
             throw RegionEndpointNotFoundException.create(p.region, p.type.getServiceName());
 
         return p.access.getEndpoint();
@@ -73,8 +72,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
         if (url != null) {
             CACHE.put(key, url);
             return url;
-        }
-        else if (p.region != null)
+        } else if (p.region != null)
             throw RegionEndpointNotFoundException.create(p.region, p.type.getServiceName());
 
         return p.token.getEndpoint();
@@ -111,8 +109,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
                         return ep.getPublicURL().toString();
                 }
             }
-        }
-        else {
+        } else {
             //if no catalog returned, if is identity service, just return endpoint
             if (ServiceType.IDENTITY.equals(p.type)) {
                 return p.access.getEndpoint();
@@ -129,8 +126,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
         if (token.getCatalog() == null) {
             if (ServiceType.IDENTITY.equals(p.type)) {
                 return token.getEndpoint();
-            }
-            else {
+            } else {
                 return null;
             }
         }
@@ -241,8 +237,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
             if (uid == null) {
                 if (other.uid != null)
                     return false;
-            }
-            else if (!uid.equals(other.uid))
+            } else if (!uid.equals(other.uid))
                 return false;
             return true;
         }

@@ -163,8 +163,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
             if (tokenId != null && tokenId.length() > 0)
                 if (scope != null) {
                     return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId, scope), endpoint, perspective, config, provider);
-                }
-                else {
+                } else {
                     return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId), endpoint, perspective, config, provider);
                 }
             // credential based authentication

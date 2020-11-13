@@ -82,8 +82,7 @@ public class BlockVolumeSnapshotServiceImpl extends BaseBlockStorageServices imp
         Invocation<VolumeSnapshots> volumeInvocation = get(VolumeSnapshots.class, "/snapshots");
         if (filteringParams == null) {
             return volumeInvocation;
-        }
-        else {
+        } else {
             for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
                 volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
             }

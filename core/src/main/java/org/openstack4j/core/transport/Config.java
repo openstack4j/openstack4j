@@ -261,31 +261,27 @@ public final class Config {
         if (natHostOrIP == null) {
             if (other.natHostOrIP != null)
                 return false;
-        }
-        else if (!natHostOrIP.equals(other.natHostOrIP))
+        } else if (!natHostOrIP.equals(other.natHostOrIP))
             return false;
         if (readTimeout != other.readTimeout)
             return false;
         if (proxy == null) {
             if (other.proxy != null)
                 return false;
-        }
-        else if (!proxy.equals(other.proxy))
+        } else if (!proxy.equals(other.proxy))
             return false;
         if (sslContext == null) {
             if (other.getSslContext() != null) {
                 return false;
             }
-        }
-        else if (!sslContext.equals(other.getSslContext())) {
+        } else if (!sslContext.equals(other.getSslContext())) {
             return false;
         }
         if (hostNameVerifier == null) {
             if (other.getHostNameVerifier() != null) {
                 return false;
             }
-        }
-        else if (!hostNameVerifier.equals(other.getHostNameVerifier())) {
+        } else if (!hostNameVerifier.equals(other.getHostNameVerifier())) {
             return false;
         }
 

@@ -73,8 +73,7 @@ public class JobBinaryServiceImpl extends BaseSaharaServices implements JobBinar
             if (response.getStatus() < 400)
                 return Payloads.create(response.getInputStream());
             return null;
-        }
-        finally {
+        } finally {
             HttpEntityHandler.closeQuietly(response);
         }
     }

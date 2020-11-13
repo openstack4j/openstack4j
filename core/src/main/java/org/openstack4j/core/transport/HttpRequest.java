@@ -192,8 +192,7 @@ public class HttpRequest<R> {
             for (Object o : entry.getValue()) {
                 if (first) {
                     first = false;
-                }
-                else {
+                } else {
                     url.append("&");
                 }
                 try {
@@ -373,8 +372,7 @@ public class HttpRequest<R> {
             if (request.queryParams.containsKey(key)) {
                 List<Object> values = request.queryParams.get(key);
                 values.add(value);
-            }
-            else {
+            } else {
                 List<Object> values = new ArrayList<Object>();
                 values.add(value);
                 request.queryParams.put(key, values);

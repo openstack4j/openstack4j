@@ -60,8 +60,7 @@ public class MuranoApplication implements Application {
         if (key.equals("?")) {
             ObjectMapper mapper = new ObjectMapper();
             this.service = mapper.convertValue(value, MuranoServiceInfo.class);
-        }
-        else {
+        } else {
             this.data.put(key, value);
         }
     }

@@ -99,22 +99,19 @@ public final class ProxyHost {
         if (host == null) {
             if (other.host != null)
                 return false;
-        }
-        else if (!host.equals(other.host))
+        } else if (!host.equals(other.host))
             return false;
         if (password == null) {
             if (other.password != null)
                 return false;
-        }
-        else if (!password.equals(other.password))
+        } else if (!password.equals(other.password))
             return false;
         if (port != other.port)
             return false;
         if (username == null) {
             if (other.username != null)
                 return false;
-        }
-        else if (!username.equals(other.username))
+        } else if (!username.equals(other.username))
             return false;
         return true;
     }

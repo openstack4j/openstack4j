@@ -206,8 +206,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
                         else
                             domain.setName(domainIdentifier.getId());
                         setName(username);
-                    }
-                    else
+                    } else
                         setId(username);
                 }
 
@@ -312,8 +311,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
                 scope.domain = new AuthDomain(domain);
                 if (project.isTypeID()) {
                     scope.id = project.getId();
-                }
-                else {
+                } else {
                     scope.name = project.getId();
                 }
                 return scope;

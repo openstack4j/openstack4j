@@ -84,8 +84,7 @@ public class ImageForUpdateToHeaders implements Function<Image, Map<String, Obje
 
         if (asHeader) {
             headers.put(header.asHeader(), value);
-        }
-        else {
+        } else {
             headers.put(header.asGlanceHeader(), value);
         }
     }

@@ -85,8 +85,7 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
             for (HostRoute route : routes) {
                 rb.route(route.getDestination(), route.getNexthop());
             }
-        }
-        else {
+        } else {
             rb.noRoutes();
         }
 

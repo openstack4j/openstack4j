@@ -81,11 +81,9 @@ public final class HttpCommand<R> {
                 invocation.property(ClientProperties.REQUEST_ENTITY_PROCESSING, RequestEntityProcessing.CHUNKED);
             }
             response = invocation.method(request.getMethod().name(), getEntity());
-        }
-        else if (request.hasJson()) {
+        } else if (request.hasJson()) {
             response = invocation.method(request.getMethod().name(), Entity.entity(request.getJson(), ClientConstants.CONTENT_TYPE_JSON));
-        }
-        else {
+        } else {
             response = invocation.method(request.getMethod().name());
         }
 

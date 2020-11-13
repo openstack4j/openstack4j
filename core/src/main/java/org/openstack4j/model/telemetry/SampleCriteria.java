@@ -150,8 +150,7 @@ public class SampleCriteria {
             this.operator = operator;
             if (value instanceof Date) {
                 this.value = Parser.toISO8601DateFormat(Date.class.cast(value));
-            }
-            else {
+            } else {
                 this.value = String.valueOf(value);
             }
         }

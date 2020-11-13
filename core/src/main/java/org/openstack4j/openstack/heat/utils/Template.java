@@ -84,8 +84,7 @@ public class Template {
 
             if (value instanceof Map<?, ?>) {
                 resolveTemplateType((Map<?, ?>) value);
-            }
-            else if (value instanceof List<?>) {
+            } else if (value instanceof List<?>) {
                 for (Object item : (List<?>) value) {
                     if (item instanceof Map<?, ?>) {
                         resolveTemplateType((Map<?, ?>) item);
@@ -114,8 +113,7 @@ public class Template {
             Object subMap = map.get(skey);
             if (subMap instanceof Map<?, ?>) {
                 resolveTemplateGetFiles((Map<?, ?>) subMap);
-            }
-            else if (subMap instanceof List<?>) {
+            } else if (subMap instanceof List<?>) {
                 for (Object item : (List<?>) subMap) {
                     if (item instanceof Map<?, ?>) {
                         resolveTemplateGetFiles((Map<?, ?>) item);
@@ -129,8 +127,7 @@ public class Template {
         if (!files.containsKey(filename)) {
             if (filename.startsWith("/")) {
                 files.put(filename, TemplateUtils.readToString(filename));
-            }
-            else {
+            } else {
                 files.put(filename, TemplateUtils.readToString(baseUrl + filename));
             }
         }
@@ -146,8 +143,7 @@ public class Template {
         }
         if (value.endsWith(".yaml") || value.endsWith(".template")) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

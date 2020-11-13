@@ -33,8 +33,7 @@ public class MuranoApplicationUtils {
             while (i.hasNext()) {
                 list.add(mapper.convertValue(i.next(), MuranoApplication.class));
             }
-        }
-        else if (json.getNodeType() == JsonNodeType.OBJECT) {
+        } else if (json.getNodeType() == JsonNodeType.OBJECT) {
             list.add(mapper.convertValue(json, MuranoApplication.class));
         }
 

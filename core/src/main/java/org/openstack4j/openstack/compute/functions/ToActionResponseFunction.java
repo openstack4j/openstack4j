@@ -43,8 +43,7 @@ public class ToActionResponseFunction implements Function<HttpResponse, ActionRe
                 return ResponseToActionResponse.INSTANCE.apply(response);
             }
             return ActionResponse.actionSuccess();
-        }
-        finally {
+        } finally {
             HttpEntityHandler.closeQuietly(response);
         }
     }

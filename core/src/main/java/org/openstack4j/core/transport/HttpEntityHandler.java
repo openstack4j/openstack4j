@@ -62,8 +62,7 @@ public class HttpEntityHandler {
             }
 
             return response.readEntity(returnType);
-        }
-        finally {
+        } finally {
             closeQuietly(response);
         }
     }

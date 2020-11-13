@@ -36,8 +36,7 @@ public class TemplateUtils {
                 || path.startsWith("http:")
                 || path.startsWith("https:")) {
             return new URI(path).toURL();
-        }
-        else {
+        } else {
             return new File(path).toURI().toURL();
         }
 
@@ -49,8 +48,7 @@ public class TemplateUtils {
                 || templateName.startsWith("http:")
                 || templateName.startsWith("https:")) {
             return normaliseFilePathToUrl(templateName);
-        }
-        else {
+        } else {
             return normaliseFilePathToUrl(baseUrl + templateName);
         }
     }

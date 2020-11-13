@@ -157,8 +157,7 @@ public final class Parser {
             // Replace Z with +0000
             if (tz.equals("Z")) return "+0000";
             return tz;
-        }
-        else {
+        } else {
             // Return +0000 if no time zone
             return "+0000";
         }

@@ -226,8 +226,7 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
         Invocation<Volumes> volumeInvocation = get(Volumes.class, "/volumes/detail");
         if (filteringParams == null) {
             return volumeInvocation;
-        }
-        else {
+        } else {
             for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
                 volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
             }

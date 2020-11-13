@@ -63,11 +63,9 @@ public final class HttpCommand<R> {
         Invocation webRequest;
         if (request.getEntity() != null) {
             webRequest = resteasyRequest.build(request.getMethod().name(), Entity.entity(request.getEntity(), request.getContentType()));
-        }
-        else if (request.hasJson()) {
+        } else if (request.hasJson()) {
             webRequest = resteasyRequest.build(request.getMethod().name(), Entity.entity(request.getJson(), ClientConstants.CONTENT_TYPE_JSON));
-        }
-        else {
+        } else {
             webRequest = resteasyRequest.build(request.getMethod().name());
         }
 

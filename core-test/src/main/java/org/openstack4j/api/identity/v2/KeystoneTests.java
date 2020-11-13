@@ -116,8 +116,7 @@ public class KeystoneTests extends AbstractTest {
             System.out.println("users.size = " + users.size());
 
             assertEquals(users.size(), 8);
-        }
-        finally {
+        } finally {
             osv2().removeRegion();
         }
     }
@@ -132,8 +131,7 @@ public class KeystoneTests extends AbstractTest {
         osv2().useRegion("RegionInvalid");
         try {
             osv2().identity().users().list();
-        }
-        finally {
+        } finally {
             osv2().removeRegion();
         }
     }

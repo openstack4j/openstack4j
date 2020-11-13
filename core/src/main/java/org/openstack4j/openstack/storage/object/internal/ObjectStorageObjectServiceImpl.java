@@ -81,8 +81,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
                 return null;
 
             return ParseObjectFunction.create(location).apply(resp);
-        }
-        finally {
+        } finally {
             closeQuietly(resp);
         }
     }
@@ -128,8 +127,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
                 .executeWithResponse();
         try {
             return resp.header(ETAG);
-        }
-        finally {
+        } finally {
             closeQuietly(resp);
         }
     }
@@ -170,8 +168,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
                 .executeWithResponse();
         try {
             return resp.header(ETAG);
-        }
-        finally {
+        } finally {
             closeQuietly(resp);
         }
     }
@@ -183,8 +180,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         HttpResponse resp = head(Void.class, location.getURI()).executeWithResponse();
         try {
             return MapWithoutMetaPrefixFunction.INSTANCE.apply(resp.headers());
-        }
-        finally {
+        } finally {
             closeQuietly(resp);
         }
     }

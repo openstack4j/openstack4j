@@ -296,8 +296,7 @@ public class KeystoneAuthenticationTests extends AbstractTest {
             respondWith(JSON_USERS);
             List<? extends User> userList = osv3().identity().users().list();
             assertNotNull(userList);
-        }
-        finally {
+        } finally {
             osv3().removeRegion();
         }
     }
@@ -314,8 +313,7 @@ public class KeystoneAuthenticationTests extends AbstractTest {
             osv3().useRegion("regionInvalid");
 
             osv3().identity().users().list();
-        }
-        finally {
+        } finally {
             osv3().removeRegion();
         }
 

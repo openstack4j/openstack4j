@@ -45,8 +45,7 @@ public class BlockVolumeBackupServiceImpl extends BaseBlockStorageServices imple
         Invocation<VolumeBackups> invocation = get(VolumeBackups.class, "/backups/detail");
         if (filteringParams == null) {
             return invocation;
-        }
-        else {
+        } else {
             for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
                 invocation = invocation.param(entry.getKey(), entry.getValue());
             }

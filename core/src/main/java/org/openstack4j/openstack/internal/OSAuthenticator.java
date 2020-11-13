@@ -128,8 +128,7 @@ public class OSAuthenticator {
                 ResponseException re = ResponseException.mapException(response);
                 re.setRequestInfo(request);
                 throw re;
-            }
-            finally {
+            } finally {
                 HttpEntityHandler.closeQuietly(response);
             }
         }
@@ -138,11 +137,9 @@ public class OSAuthenticator {
 
         if (auth.getType() == Type.CREDENTIALS) {
             access = access.applyContext(info.endpoint, (Credentials) auth);
-        }
-        else if (auth.getType() == Type.RAX_APIKEY) {
+        } else if (auth.getType() == Type.RAX_APIKEY) {
             access = access.applyContext(info.endpoint, (RaxApiKeyCredentials) auth);
-        }
-        else {
+        } else {
             access = access.applyContext(info.endpoint, (org.openstack4j.openstack.identity.v2.domain.TokenAuth) auth);
         }
 
@@ -170,8 +167,7 @@ public class OSAuthenticator {
                     if (!isEmpty(domain.getName()))
                         headers.put(ClientConstants.HEADER_X_PROJECT_DOMAIN_NAME, domain.getName());
                 }
-            }
-            else {
+            } else {
                 Authentication.Scope.Domain domain = auth.getScope().getDomain();
                 if (domain != null) {
                     if (!isEmpty(domain.getId()))
@@ -196,8 +192,7 @@ public class OSAuthenticator {
                 ResponseException re = ResponseException.mapException(response);
                 re.setRequestInfo(request);
                 throw re;
-            }
-            finally {
+            } finally {
                 HttpEntityHandler.closeQuietly(response);
             }
         }
@@ -206,18 +201,15 @@ public class OSAuthenticator {
 
         if (auth.getType().equals(Type.CREDENTIALS)) {
             token = token.applyContext(info.endpoint, auth);
-        }
-        else {
+        } else {
             if (token.getProject() != null) {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(),
                         auth.getScope().getProject().getName(), auth.getScope().getProject().getId()));
 
-            }
-            else if (token.getDomain() != null) {
+            } else if (token.getDomain() != null) {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(),
                         auth.getScope().getDomain().getName(), auth.getScope().getDomain().getId()));
-            }
-            else {
+            } else {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(), null, null));
             }
         }

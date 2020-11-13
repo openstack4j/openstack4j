@@ -72,8 +72,7 @@ public final class HttpCommand<R> {
                 if (parentClass == HttpsURLConnection.class) {
                     methodField = parentClass.getSuperclass().getDeclaredField(
                             "method");
-                }
-                else {
+                } else {
                     methodField = parentClass.getDeclaredField("method");
                 }
                 methodField.setAccessible(true);
@@ -105,13 +104,11 @@ public final class HttpCommand<R> {
         if (request.getEntity() != null) {
             if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
                 requestBody = ByteStreams.toByteArray((InputStream) request.getEntity());
-            }
-            else {
+            } else {
                 String content = ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer().writeValueAsString(request.getEntity());
                 requestBody = content.getBytes();
             }
-        }
-        else if (request.hasJson()) {
+        } else if (request.hasJson()) {
             requestBody = request.getJson().getBytes();
         }
 
@@ -135,8 +132,7 @@ public final class HttpCommand<R> {
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
             throw e;
-        }
-        finally {
+        } finally {
             connection.disconnect();
         }
     }
@@ -194,8 +190,7 @@ public final class HttpCommand<R> {
             Proxy proxy = new Proxy(Type.HTTP,
                     new InetSocketAddress(config.getProxy().getRawHost(), config.getProxy().getPort()));
             connection = (HttpURLConnection) connectionUrl.openConnection(proxy);
-        }
-        else {
+        } else {
             connection = (HttpURLConnection) connectionUrl.openConnection();
         }
         connection.setRequestProperty("Content-Type", request.getContentType());

@@ -101,8 +101,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
         try {
             if (resp.getStatus() == 409)
                 return ActionResponse.actionFailed(String.format("Container %s is not empty", name), 409);
-        }
-        finally {
+        } finally {
             closeQuietly(resp);
         }
 
@@ -118,8 +117,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
         HttpResponse resp = head(Void.class, URI_SEP, name).executeWithResponse();
         try {
             return MapWithoutMetaPrefixFunction.INSTANCE.apply(resp.headers());
-        }
-        finally {
+        } finally {
             closeQuietly(resp);
         }
     }
