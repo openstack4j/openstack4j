@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.networking.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.networking.PortService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.Port;
@@ -8,13 +10,11 @@ import org.openstack4j.openstack.networking.domain.NeutronPort;
 import org.openstack4j.openstack.networking.domain.NeutronPort.Ports;
 import org.openstack4j.openstack.networking.domain.NeutronPortCreate;
 
-import java.util.List;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Neutron) Port based Operations Implementation
- * 
+ *
  * @author Jeremy Unruh
  */
 public class PortServiceImpl extends BaseNetworkingServices implements PortService {
@@ -31,7 +31,7 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
     public List<? extends Port> list(PortListOptions options) {
         if (options == null)
             return list();
-        
+
         return get(Ports.class, uri("/ports")).params(options.getOptions()).execute().getList();
     }
 
@@ -84,8 +84,8 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
         checkNotNull(port);
         checkNotNull(port.getId());
         Port p = port.toBuilder().networkId(null).state(null).tenantId(null).macAddress(null)
-        		.vifType(null).vifDetails(null)
-        		.build();
+                .vifType(null).vifDetails(null)
+                .build();
         return put(NeutronPort.class, uri("/ports/%s", getAndClearIdentifier(p))).entity(p).execute();
     }
 

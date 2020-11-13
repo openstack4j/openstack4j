@@ -1,14 +1,6 @@
 package org.openstack4j.connectors.http;
 
-import com.google.common.io.ByteStreams;
-import com.google.common.net.MediaType;
-import org.openstack4j.core.transport.Config;
-import org.openstack4j.core.transport.HttpRequest;
-import org.openstack4j.core.transport.HttpResponse;
-import org.openstack4j.core.transport.ObjectMapperSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +9,14 @@ import java.net.*;
 import java.net.Proxy.Type;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
+import com.google.common.io.ByteStreams;
+import com.google.common.net.MediaType;
+import org.openstack4j.core.transport.Config;
+import org.openstack4j.core.transport.HttpRequest;
+import org.openstack4j.core.transport.HttpResponse;
+import org.openstack4j.core.transport.ObjectMapperSingleton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * HttpCommand is responsible for executing the actual request driven by the
@@ -51,6 +50,40 @@ public final class HttpCommand<R> {
         return command;
     }
 
+    /**
+     * @param httpURLConnection the HttpURLConnection
+     * @param method the methods name (GET, PUT, POST,... exception is thrown when trying to do a PATCH)
+     * @see <a href= "https://java.net/jira/browse/JERSEY-639">https://java.net/jira/browse/JERSEY-639</a>
+     */
+    private static void setRequestMethodUsingWorkaroundForJREBug(final HttpURLConnection httpURLConnection, final String method) {
+        try {
+            httpURLConnection.setRequestMethod(method);
+            // Check whether we are running on a buggy JRE
+        } catch (final ProtocolException pe) {
+            try {
+                final Class<?> httpURLConnectionClass = httpURLConnection
+                        .getClass();
+                final Class<?> parentClass = httpURLConnectionClass
+                        .getSuperclass();
+                final Field methodField;
+                // If the implementation class is an HTTPS URL Connection, we
+                // need to go up one level higher in the heirarchy to modify the
+                // 'method' field.
+                if (parentClass == HttpsURLConnection.class) {
+                    methodField = parentClass.getSuperclass().getDeclaredField(
+                            "method");
+                }
+                else {
+                    methodField = parentClass.getDeclaredField("method");
+                }
+                methodField.setAccessible(true);
+                methodField.set(httpURLConnection, method);
+            } catch (final Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     private void initialize() {
         try {
 
@@ -71,14 +104,14 @@ public final class HttpCommand<R> {
 
         if (request.getEntity() != null) {
             if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
-                requestBody = ByteStreams.toByteArray((InputStream)request.getEntity());
+                requestBody = ByteStreams.toByteArray((InputStream) request.getEntity());
             }
-            else
-            {
+            else {
                 String content = ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer().writeValueAsString(request.getEntity());
                 requestBody = content.getBytes();
             }
-        } else if (request.hasJson()) {
+        }
+        else if (request.hasJson()) {
             requestBody = request.getJson().getBytes();
         }
 
@@ -102,7 +135,8 @@ public final class HttpCommand<R> {
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
             throw e;
-        } finally {
+        }
+        finally {
             connection.disconnect();
         }
     }
@@ -120,40 +154,6 @@ public final class HttpCommand<R> {
             return ByteStreams.toByteArray(is);
         }
         return null;
-    }
-
-    /**
-     * @see <a href= "https://java.net/jira/browse/JERSEY-639">https://java.net/jira/browse/JERSEY-639</a>
-     *
-     * @param httpURLConnection the HttpURLConnection
-     * @param method the methods name (GET, PUT, POST,... exception is thrown when trying to do a PATCH)
-     */
-    private static void setRequestMethodUsingWorkaroundForJREBug(final HttpURLConnection httpURLConnection, final String method) {
-        try {
-            httpURLConnection.setRequestMethod(method);
-            // Check whether we are running on a buggy JRE
-        } catch (final ProtocolException pe) {
-            try {
-                final Class<?> httpURLConnectionClass = httpURLConnection
-                        .getClass();
-                final Class<?> parentClass = httpURLConnectionClass
-                        .getSuperclass();
-                final Field methodField;
-                // If the implementation class is an HTTPS URL Connection, we
-                // need to go up one level higher in the heirarchy to modify the
-                // 'method' field.
-                if (parentClass == HttpsURLConnection.class) {
-                    methodField = parentClass.getSuperclass().getDeclaredField(
-                            "method");
-                } else {
-                    methodField = parentClass.getDeclaredField("method");
-                }
-                methodField.setAccessible(true);
-                methodField.set(httpURLConnection, method);
-            } catch (final Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     /**
@@ -195,8 +195,7 @@ public final class HttpCommand<R> {
                     new InetSocketAddress(config.getProxy().getRawHost(), config.getProxy().getPort()));
             connection = (HttpURLConnection) connectionUrl.openConnection(proxy);
         }
-        else
-        {
+        else {
             connection = (HttpURLConnection) connectionUrl.openConnection();
         }
         connection.setRequestProperty("Content-Type", request.getContentType());

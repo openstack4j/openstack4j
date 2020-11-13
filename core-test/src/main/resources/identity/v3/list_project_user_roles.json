@@ -4,11 +4,13 @@
         "previous": null,
         "next": null
     },
-    "roles": [{
-        "id": "aae88952465d4c32b0a1140a76601b68",
-        "links": {
-            "self": "http://devstack.openstack.stack:5000/v3/roles/aa9f25defa6d4cafb48466df83106065"
-        },
-        "name": "admin"
-    }]
+    "roles": [
+        {
+            "id": "aae88952465d4c32b0a1140a76601b68",
+            "links": {
+                "self": "http://devstack.openstack.stack:5000/v3/roles/aa9f25defa6d4cafb48466df83106065"
+            },
+            "name": "admin"
+        }
+    ]
 }

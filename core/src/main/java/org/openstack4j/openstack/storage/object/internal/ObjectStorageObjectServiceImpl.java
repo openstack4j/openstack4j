@@ -1,27 +1,21 @@
 package org.openstack4j.openstack.storage.object.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.openstack4j.core.transport.HttpEntityHandler.closeQuietly;
-import static org.openstack4j.model.storage.object.SwiftHeaders.CONTENT_LENGTH;
-import static org.openstack4j.model.storage.object.SwiftHeaders.ETAG;
-import static org.openstack4j.model.storage.object.SwiftHeaders.OBJECT_METADATA_PREFIX;
-import static org.openstack4j.model.storage.object.SwiftHeaders.X_COPY_FROM;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
 import org.openstack4j.api.storage.ObjectStorageObjectService;
 import org.openstack4j.core.transport.HttpResponse;
+import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.common.DLPayload;
 import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.common.payloads.FilePayload;
-import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.block.options.DownloadOptions;
 import org.openstack4j.model.storage.object.SwiftObject;
+import org.openstack4j.model.storage.object.options.ObjectDeleteOptions;
 import org.openstack4j.model.storage.object.options.ObjectListOptions;
 import org.openstack4j.model.storage.object.options.ObjectLocation;
-import org.openstack4j.model.storage.object.options.ObjectDeleteOptions;
 import org.openstack4j.model.storage.object.options.ObjectPutOptions;
 import org.openstack4j.openstack.common.DLPayloadEntity;
 import org.openstack4j.openstack.common.functions.HeaderNameValuesToHeaderMap;
@@ -32,12 +26,17 @@ import org.openstack4j.openstack.storage.object.functions.MapWithoutMetaPrefixFu
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
 import org.openstack4j.openstack.storage.object.functions.ParseObjectFunction;
 
-import com.google.common.collect.Lists;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.openstack4j.core.transport.HttpEntityHandler.closeQuietly;
+import static org.openstack4j.model.storage.object.SwiftHeaders.CONTENT_LENGTH;
+import static org.openstack4j.model.storage.object.SwiftHeaders.ETAG;
+import static org.openstack4j.model.storage.object.SwiftHeaders.OBJECT_METADATA_PREFIX;
+import static org.openstack4j.model.storage.object.SwiftHeaders.X_COPY_FROM;
 
 /**
  * A service responsible for maintaining directory and file objects within containers for
  * an Object Service within OpenStack
- * 
+ *
  * @author Jeremy Unruh
  */
 public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService implements ObjectStorageObjectService {
@@ -46,11 +45,11 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
     public List<? extends SwiftObject> list(String containerName) {
         checkNotNull(containerName);
         List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").execute();
-        
+
         if (objs == null) {
             return Collections.emptyList();
         }
-        
+
         return Lists.transform(objs, ApplyContainerToObjectFunction.create(containerName));
     }
 
@@ -58,17 +57,17 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
     public List<? extends SwiftObject> list(String containerName, ObjectListOptions options) {
         if (options == null)
             return list(containerName);
-        
+
         checkNotNull(containerName);
-        
+
         List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").params(options.getOptions()).execute();
         if (objs == null) {
             return Collections.emptyList();
         }
         return Lists.transform(objs, ApplyContainerToObjectFunction.create(containerName));
-                
+
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -77,18 +76,17 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         checkNotNull(location);
 
         HttpResponse resp = head(Void.class, location.getURI()).executeWithResponse();
-        try
-        {
+        try {
             if (resp.getStatus() == 404)
                 return null;
-            
+
             return ParseObjectFunction.create(location).apply(resp);
         }
         finally {
             closeQuietly(resp);
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -117,23 +115,22 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
             name = FilePayload.class.cast(payload).getRaw().getName();
         else
             checkNotNull(name);
-        
-        
+
+
         if (options.getPath() != null && name.indexOf('/') == -1)
             name = options.getPath() + "/" + name;
-        
+
         HttpResponse resp = put(Void.class, uri("/%s/%s", containerName, name))
-                              .entity(payload)
-                              .headers(options.getOptions())
-                              .contentType(options.getContentType())
-                              .paramLists(options.getQueryParams())
-                              .executeWithResponse();
-        try
-        {
+                .entity(payload)
+                .headers(options.getOptions())
+                .contentType(options.getContentType())
+                .paramLists(options.getQueryParams())
+                .executeWithResponse();
+        try {
             return resp.header(ETAG);
         }
         finally {
-           closeQuietly(resp);
+            closeQuietly(resp);
         }
     }
 
@@ -141,8 +138,8 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
     public ActionResponse delete(String containerName, String name) {
         checkNotNull(containerName);
         checkNotNull(name);
-        
-       return delete(ObjectLocation.create(containerName, name));
+
+        return delete(ObjectLocation.create(containerName, name));
     }
 
     @Override
@@ -155,10 +152,10 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         checkNotNull(location);
         checkNotNull(options);
         return delete(ActionResponse.class, location.getURI())
-            .paramLists(options.getQueryParams())
-            .execute();
+                .paramLists(options.getQueryParams())
+                .execute();
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -168,11 +165,10 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         checkNotNull(dest);
 
         HttpResponse resp = put(Void.class, dest.getURI())
-                                .header(X_COPY_FROM, source.getURI())
-                                .header(CONTENT_LENGTH, 0)
-                                .executeWithResponse();
-        try
-        {
+                .header(X_COPY_FROM, source.getURI())
+                .header(CONTENT_LENGTH, 0)
+                .executeWithResponse();
+        try {
             return resp.header(ETAG);
         }
         finally {
@@ -185,8 +181,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         checkNotNull(location);
 
         HttpResponse resp = head(Void.class, location.getURI()).executeWithResponse();
-        try
-        {
+        try {
             return MapWithoutMetaPrefixFunction.INSTANCE.apply(resp.headers());
         }
         finally {
@@ -209,8 +204,8 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         //the successfull response state of updateMetadata is 202 instead of 204
         //I test it by curl and this api
         return isResponseSuccess(post(Void.class, location.getURI())
-                  .headers(MetadataToHeadersFunction.create(OBJECT_METADATA_PREFIX).apply(metadata))
-                  .executeWithResponse(), 202);
+                .headers(MetadataToHeadersFunction.create(OBJECT_METADATA_PREFIX).apply(metadata))
+                .executeWithResponse(), 202);
     }
 
     @Override
@@ -223,7 +218,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         checkNotNull(containerName);
         checkNotNull(name);
         checkNotNull(options);
-        
+
         return download(ObjectLocation.create(containerName, name), options);
     }
 
@@ -231,11 +226,11 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
     public DLPayload download(ObjectLocation location, DownloadOptions options) {
         checkNotNull(location);
         checkNotNull(options);
-        
+
         return DLPayloadEntity.create(
-                  get(Void.class, location.getURI())
-                    .headers(HeaderNameValuesToHeaderMap.INSTANCE.apply(options.getHeaders()))
-                    .executeWithResponse()
-               );
+                get(Void.class, location.getURI())
+                        .headers(HeaderNameValuesToHeaderMap.INSTANCE.apply(options.getHeaders()))
+                        .executeWithResponse()
+        );
     }
 }

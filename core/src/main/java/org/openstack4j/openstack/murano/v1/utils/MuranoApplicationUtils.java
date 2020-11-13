@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.murano.v1.utils;
 
+import java.io.IOException;
+import java.util.Iterator;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import org.openstack4j.openstack.murano.v1.domain.MuranoApplication;
-
-import java.io.IOException;
-import java.util.Iterator;
 
 /**
  * @author Nikolay Mahotkin.
@@ -33,7 +33,8 @@ public class MuranoApplicationUtils {
             while (i.hasNext()) {
                 list.add(mapper.convertValue(i.next(), MuranoApplication.class));
             }
-        } else if (json.getNodeType() == JsonNodeType.OBJECT) {
+        }
+        else if (json.getNodeType() == JsonNodeType.OBJECT) {
             list.add(mapper.convertValue(json, MuranoApplication.class));
         }
 

@@ -1,11 +1,11 @@
 package org.openstack4j.api.telemetry;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.telemetry.Resource;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;

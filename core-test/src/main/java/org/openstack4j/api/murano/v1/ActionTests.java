@@ -1,21 +1,24 @@
 package org.openstack4j.api.murano.v1;
 
-import org.openstack4j.api.AbstractTest;
-import org.openstack4j.model.murano.v1.domain.ActionInfo;
-import org.openstack4j.model.murano.v1.domain.ActionResult;
-import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.testng.Assert.*;
+import org.openstack4j.api.AbstractTest;
+import org.openstack4j.model.murano.v1.domain.ActionInfo;
+import org.openstack4j.model.murano.v1.domain.ActionResult;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
 
 /**
  * @author nmakhotkin
  */
-@Test(suiteName="Murano/AppCatalog", enabled = true)
+@Test(suiteName = "Murano/AppCatalog", enabled = true)
 public class ActionTests extends AbstractTest {
     private static final String ENVIRONMENT_JSON = "/murano/v1/environment.json";
     private static final String ACTION_RESULT = "/murano/v1/action_result.json";

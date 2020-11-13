@@ -1,17 +1,17 @@
 package org.openstack4j.api.telemetry;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.telemetry.Event;
 import org.openstack4j.model.telemetry.Trait;
 import org.openstack4j.model.telemetry.TraitDescription;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 
-@Test(suiteName="Event Tests")
+@Test(suiteName = "Event Tests")
 public class EventTests extends AbstractTest {
 
     private static final String JSON_EVENTS = "/telemetry/events.json";

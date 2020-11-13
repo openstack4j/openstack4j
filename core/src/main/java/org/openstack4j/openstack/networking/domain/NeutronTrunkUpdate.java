@@ -1,10 +1,9 @@
 package org.openstack4j.openstack.networking.domain;
 
-import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.network.Trunk;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.ModelEntity;
+import org.openstack4j.model.network.Trunk;
 
 /**
  * Model for trunk update call

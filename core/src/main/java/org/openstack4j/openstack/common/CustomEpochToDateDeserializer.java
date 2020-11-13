@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.common;
 
+import java.io.IOException;
+import java.util.Date;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-
-import java.io.IOException;
-import java.util.Date;
 
 /**
  * @author esommar on 5/10/2017.

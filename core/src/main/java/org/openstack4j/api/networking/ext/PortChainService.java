@@ -7,11 +7,10 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.PortChain;
 
 /**
-* Port Chain Service
-*
-* @author Dmitry Gerenrot
-*
-*/
+ * Port Chain Service
+ *
+ * @author Dmitry Gerenrot
+ */
 public interface PortChainService extends RestService {
 
     /**

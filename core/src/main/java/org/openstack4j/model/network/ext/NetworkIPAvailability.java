@@ -9,7 +9,7 @@ import org.openstack4j.model.network.ext.builder.NetworkIPAvailabilityBuilder;
 
 /**
  * A network IP availability details for a network
- * 
+ *
  * @author Xiangbin HAN
  */
 public interface NetworkIPAvailability extends ModelEntity, Buildable<NetworkIPAvailabilityBuilder> {
@@ -18,7 +18,7 @@ public interface NetworkIPAvailability extends ModelEntity, Buildable<NetworkIPA
      * @return the network name
      */
     String getNetworkName();
-    
+
     /**
      * @return the network identifier
      */
@@ -28,29 +28,29 @@ public interface NetworkIPAvailability extends ModelEntity, Buildable<NetworkIPA
      * @return the tenant identifier
      */
     String getTenantId();
-    
+
     /**
      * @return the project identifier
      */
     String getProjectId();
-    
+
     /**
      * Number of total IPs per network
-     * 
+     *
      * @return the number of IPs
      */
     BigInteger getTotalIps();
-    
+
     /**
      * Number of used IPs per network
-     * 
+     *
      * @return the number of IPs
      */
     BigInteger getUsedIps();
-    
+
     /**
      * List of subnet IP availability per network
-     * 
+     *
      * @return the list of SubnetIPAvailability
      */
     public List<? extends SubnetIPAvailability> getSubnetIPAvailabilities();

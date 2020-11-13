@@ -1,13 +1,13 @@
 package org.openstack4j.api.compute;
 
-import org.openstack4j.api.AbstractTest;
-import org.openstack4j.model.common.Extension;
-import org.testng.annotations.Test;
-
 import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import org.openstack4j.api.AbstractTest;
+import org.openstack4j.model.common.Extension;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -17,7 +17,7 @@ import static org.testng.Assert.assertTrue;
  *
  * @author Jeremy Unruh
  */
-@Test(suiteName="ExtensionList")
+@Test(suiteName = "ExtensionList")
 public class ExtensionTests extends AbstractTest {
     private static final String JSON_EXTENSIONS = "/compute/extensions.json";
 

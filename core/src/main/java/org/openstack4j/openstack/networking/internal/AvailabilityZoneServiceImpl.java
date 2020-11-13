@@ -9,21 +9,21 @@ import org.openstack4j.openstack.networking.domain.NeutronAvailabilityZone.Avail
 
 /**
  * Availability Zone Service
- * 
- * @author Taemin
  *
+ * @author Taemin
  */
 public class AvailabilityZoneServiceImpl extends BaseNetworkingServices implements AvailabilityZoneService {
 
     /**
      * List all availability zone that the current neutron has
      * {@inheritDoc}
+     *
      * @author Taemin
      */
-	@Override
-	public List<? extends AvailabilityZone> list() {		
-		return get(AvailabilityZones.class, uri("/availability_zones")).execute().getList();	
-	}
+    @Override
+    public List<? extends AvailabilityZone> list() {
+        return get(AvailabilityZones.class, uri("/availability_zones")).execute().getList();
+    }
 
-   
+
 }

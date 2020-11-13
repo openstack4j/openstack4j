@@ -1,12 +1,12 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareSnapshot;
 import org.openstack4j.model.manila.ShareSnapshotCreate;
 import org.openstack4j.model.manila.ShareSnapshotUpdateOptions;
-
-import java.util.List;
 
 /**
  * Share Snapshot Service for Manila SHared Filesystems.

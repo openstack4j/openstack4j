@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.manila.ShareNetworkService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareNetwork;
@@ -11,8 +13,6 @@ import org.openstack4j.openstack.manila.domain.ManilaShareNetwork;
 import org.openstack4j.openstack.manila.domain.ManilaShareNetworkCreate;
 import org.openstack4j.openstack.manila.domain.ManilaShareNetworkUpdate;
 import org.openstack4j.openstack.manila.domain.actions.SecurityServiceAction;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -45,7 +45,7 @@ public class ShareNetworkServiceImpl extends BaseShareServices implements ShareN
     }
 
     private List<? extends ShareNetwork> list(boolean detail) {
-        return get(ManilaShareNetwork.ShareNetworks.class, uri("/share-networks" + (detail ? "/detail" : "")))
+        return get(ManilaShareNetwork.ShareNetworks.class, uri("/share-networks" + (detail ? "/detail": "")))
                 .execute()
                 .getList();
     }

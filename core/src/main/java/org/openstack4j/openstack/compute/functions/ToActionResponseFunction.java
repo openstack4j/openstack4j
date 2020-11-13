@@ -1,7 +1,6 @@
 package org.openstack4j.openstack.compute.functions;
 
 import com.google.common.base.Function;
-
 import org.openstack4j.core.transport.HttpEntityHandler;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.core.transport.functions.ResponseToActionResponse;
@@ -44,7 +43,8 @@ public class ToActionResponseFunction implements Function<HttpResponse, ActionRe
                 return ResponseToActionResponse.INSTANCE.apply(response);
             }
             return ActionResponse.actionSuccess();
-        } finally {
+        }
+        finally {
             HttpEntityHandler.closeQuietly(response);
         }
     }

@@ -7,7 +7,6 @@ import org.openstack4j.model.common.Extension;
 
 /**
  * Identity v3 Service Operations API
- *
  */
 public interface IdentityService extends RestService {
 
@@ -52,10 +51,10 @@ public interface IdentityService extends RestService {
      * @return the group service
      */
     GroupService groups();
-    
+
     /**
      * Token Service API
-     * 
+     *
      * @return the token service
      */
     TokenService tokens();
@@ -80,7 +79,7 @@ public interface IdentityService extends RestService {
      * @return the region service
      */
     RegionService regions();
-    
+
     /**
      * List extensions currently available on the OpenStack instance
      *

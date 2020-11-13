@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.octavia.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -10,10 +12,9 @@ import org.openstack4j.model.octavia.LoadBalancerV2;
 import org.openstack4j.model.octavia.builder.LoadBalancerV2Builder;
 import org.openstack4j.openstack.common.ListResult;
 
-import java.util.List;
-
 /**
  * lbaas v2 loadbalancer
+ *
  * @author wei
  */
 @JsonRootName("loadbalancer")
@@ -63,11 +64,15 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
 
     private String provider;
 
+    public static LoadBalancerV2Builder builder() {
+        return new LoadBalancerV2ConcreteBuilder();
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getId(){
+    public String getId() {
         return id;
     }
 
@@ -75,7 +80,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getProjectId(){
+    public String getProjectId() {
         return projectId;
     }
 
@@ -83,7 +88,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -91,7 +96,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
@@ -100,7 +105,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      */
     @JsonProperty("vip_network_id")
     @Override
-    public String getVipNetworkId(){
+    public String getVipNetworkId() {
         return vipNetworkId;
     }
 
@@ -109,7 +114,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      */
     @JsonProperty("vip_subnet_id")
     @Override
-    public String getVipSubnetId(){
+    public String getVipSubnetId() {
         return vipSubnetId;
     }
 
@@ -117,7 +122,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getVipAddress(){
+    public String getVipAddress() {
         return vipAddress;
     }
 
@@ -125,7 +130,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public boolean isAdminStateUp() {
         return adminStateUp;
     }
 
@@ -133,7 +138,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public List<ListItem> getListeners(){
+    public List<ListItem> getListeners() {
         return listeners;
     }
 
@@ -141,7 +146,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public LbProvisioningStatus getProvisioningStatus(){
+    public LbProvisioningStatus getProvisioningStatus() {
         return provisioningStatus;
     }
 
@@ -149,7 +154,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public LbOperatingStatus getOperatingStatus(){
+    public LbOperatingStatus getOperatingStatus() {
         return operatingStatus;
     }
 
@@ -157,7 +162,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getVipPortId(){
+    public String getVipPortId() {
         return vipPortId;
     }
 
@@ -165,7 +170,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getProvider(){
+    public String getProvider() {
         return provider;
     }
 
@@ -173,12 +178,12 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
      * {@inheritDoc}
      */
     @Override
-    public LoadBalancerV2Builder toBuilder(){
+    public LoadBalancerV2Builder toBuilder() {
         return new LoadBalancerV2ConcreteBuilder(this);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("projectId", projectId)
@@ -237,7 +242,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder from(LoadBalancerV2 in){
+        public LoadBalancerV2Builder from(LoadBalancerV2 in) {
             m = (OctaviaLoadBalancerV2) in;
             return this;
         }
@@ -246,7 +251,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder projectId(String projectId){
+        public LoadBalancerV2Builder projectId(String projectId) {
             m.projectId = projectId;
             return this;
         }
@@ -255,7 +260,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder name(String name){
+        public LoadBalancerV2Builder name(String name) {
             m.name = name;
             return this;
         }
@@ -264,7 +269,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder description(String description){
+        public LoadBalancerV2Builder description(String description) {
             m.description = description;
             return this;
         }
@@ -273,7 +278,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder networkId(String vipNetworkId){
+        public LoadBalancerV2Builder networkId(String vipNetworkId) {
             m.vipNetworkId = vipNetworkId;
             return this;
         }
@@ -282,7 +287,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder subnetId(String vipSubnetId){
+        public LoadBalancerV2Builder subnetId(String vipSubnetId) {
             m.vipSubnetId = vipSubnetId;
             return this;
         }
@@ -291,7 +296,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder portId(String vipPortId){
+        public LoadBalancerV2Builder portId(String vipPortId) {
             m.vipPortId = vipPortId;
             return this;
         }
@@ -300,7 +305,7 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder address(String vipAddress){
+        public LoadBalancerV2Builder address(String vipAddress) {
             m.vipAddress = vipAddress;
             return this;
         }
@@ -309,20 +314,16 @@ public class OctaviaLoadBalancerV2 implements LoadBalancerV2 {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Builder adminStateUp(boolean adminStateUp){
+        public LoadBalancerV2Builder adminStateUp(boolean adminStateUp) {
             m.adminStateUp = adminStateUp;
             return this;
         }
 
         @Override
-        public LoadBalancerV2Builder provider(String provider){
+        public LoadBalancerV2Builder provider(String provider) {
             m.provider = provider;
             return this;
         }
-    }
-
-    public static LoadBalancerV2Builder builder() {
-        return new LoadBalancerV2ConcreteBuilder();
     }
 }
 

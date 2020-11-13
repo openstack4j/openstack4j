@@ -1,12 +1,12 @@
 package org.openstack4j.api.storage;
 
+import java.util.Map;
+
 import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
 import org.openstack4j.openstack.storage.block.domain.CinderBlockQuotaSet;
 import org.testng.annotations.Test;
-
-import java.util.Map;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;

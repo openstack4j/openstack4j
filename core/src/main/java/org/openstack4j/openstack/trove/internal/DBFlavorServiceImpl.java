@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.trove.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.trove.InstanceFlavorService;
 import org.openstack4j.model.trove.Flavor;
 import org.openstack4j.openstack.trove.domain.TroveInstanceFlavor;
 import org.openstack4j.openstack.trove.domain.TroveInstanceFlavor.Flavors;
-
-import java.util.List;
 
 /**
  * Flavor API Implementation

@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.manila.ShareSnapshotService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareSnapshot;
@@ -10,8 +12,6 @@ import org.openstack4j.openstack.manila.domain.ManilaShareSnapshot;
 import org.openstack4j.openstack.manila.domain.ManilaShareSnapshotUpdate;
 import org.openstack4j.openstack.manila.domain.actions.ShareSnapshotAction;
 import org.openstack4j.openstack.manila.domain.actions.ShareSnapshotActions;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -35,7 +35,7 @@ public class ShareSnapshotServiceImpl extends BaseShareServices implements Share
     }
 
     private List<? extends ShareSnapshot> list(boolean detail) {
-        return get(ManilaShareSnapshot.ShareSnapshots.class, uri("/snapshots" +  (detail ? "/detail" : "")))
+        return get(ManilaShareSnapshot.ShareSnapshots.class, uri("/snapshots" + (detail ? "/detail": "")))
                 .execute()
                 .getList();
     }

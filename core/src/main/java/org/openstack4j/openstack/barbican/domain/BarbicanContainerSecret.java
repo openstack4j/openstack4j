@@ -10,6 +10,10 @@ public class BarbicanContainerSecret implements ContainerSecret {
     @JsonProperty("secret_ref")
     private String reference;
 
+    public static ContainerSecretBuilder builder() {
+        return new SecretConcreteBuilder();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -64,7 +68,7 @@ public class BarbicanContainerSecret implements ContainerSecret {
          * {@inheritDoc}
          */
         @Override
-        public ContainerSecretBuilder from(ContainerSecret in){
+        public ContainerSecretBuilder from(ContainerSecret in) {
             internalSecret = (BarbicanContainerSecret) in;
             return this;
         }
@@ -73,7 +77,7 @@ public class BarbicanContainerSecret implements ContainerSecret {
          * {@inheritDoc}
          */
         @Override
-        public ContainerSecretBuilder name(String name){
+        public ContainerSecretBuilder name(String name) {
             internalSecret.name = name;
             return this;
         }
@@ -82,14 +86,10 @@ public class BarbicanContainerSecret implements ContainerSecret {
          * {@inheritDoc}
          */
         @Override
-        public ContainerSecretBuilder reference(String ref){
+        public ContainerSecretBuilder reference(String ref) {
             internalSecret.reference = ref;
             return this;
         }
-    }
-
-    public static ContainerSecretBuilder builder() {
-        return new SecretConcreteBuilder();
     }
 
 }

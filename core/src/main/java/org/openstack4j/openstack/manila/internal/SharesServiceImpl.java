@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.manila.SharesService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.Access;
@@ -17,8 +19,6 @@ import org.openstack4j.openstack.manila.domain.ManilaShareCreate;
 import org.openstack4j.openstack.manila.domain.ManilaShareUpdate;
 import org.openstack4j.openstack.manila.domain.actions.ShareAction;
 import org.openstack4j.openstack.manila.domain.actions.ShareActions;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -51,7 +51,7 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
     }
 
     private List<? extends Share> list(boolean detail) {
-        return get(ManilaShare.Shares.class, uri("/shares" +  (detail ? "/detail" : "")))
+        return get(ManilaShare.Shares.class, uri("/shares" + (detail ? "/detail": "")))
                 .execute()
                 .getList();
     }

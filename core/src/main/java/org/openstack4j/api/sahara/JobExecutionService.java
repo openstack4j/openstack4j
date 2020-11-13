@@ -15,7 +15,7 @@ public interface JobExecutionService extends RestService {
 
     /**
      * Create a new job execution
-     * 
+     *
      * @param jobExecution the job execution to create
      * @return the created job execution
      */
@@ -23,14 +23,14 @@ public interface JobExecutionService extends RestService {
 
     /**
      * List all job executions
-     * 
+     *
      * @return list of job executions or empty
      */
     List<? extends JobExecution> list();
 
     /**
      * Get a job execution by ID
-     * 
+     *
      * @param jobExecutionId the job execution identifier
      * @return the job execution or null if not found
      */
@@ -38,15 +38,15 @@ public interface JobExecutionService extends RestService {
 
     /**
      * Refresh the status of a job execution by ID
-     * 
-     * @param jobExecutionId the job execution identifier 
+     *
+     * @param jobExecutionId the job execution identifier
      * @return the refreshed job execution or null if not found
      */
     JobExecution refreshStatus(String jobExecutionId);
 
     /**
      * Cancel a job execution by ID
-     * 
+     *
      * @param jobExecutionId the job execution identifier
      * @return the canceled job execution or null if not found
      */
@@ -54,7 +54,7 @@ public interface JobExecutionService extends RestService {
 
     /**
      * Delete a job execution by ID
-     * 
+     *
      * @param jobExecutionId the job execution identifier
      * @return the action response
      */

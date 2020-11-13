@@ -1,5 +1,8 @@
 package org.openstack4j.api.octavia;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.octavia.LbPoolV2;
@@ -7,11 +10,9 @@ import org.openstack4j.model.octavia.LbPoolV2Update;
 import org.openstack4j.model.octavia.MemberV2;
 import org.openstack4j.model.octavia.MemberV2Update;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Octavia V2 pool Extension API
+ *
  * @author wei
  */
 public interface LbPoolV2Service extends RestService {
@@ -25,8 +26,7 @@ public interface LbPoolV2Service extends RestService {
     /**
      * Returns list of lb v2 pools filtered by parameters.
      *
-     * @param filteringParams
-     *            map (name, value) of filtering parameters
+     * @param filteringParams map (name, value) of filtering parameters
      * @return List
      */
     List<? extends LbPoolV2> list(Map<String, String> filteringParams);
@@ -34,8 +34,7 @@ public interface LbPoolV2Service extends RestService {
     /**
      * Get the specified lb pool by ID
      *
-     * @param lbPoolId
-     *            the lb v2 pool identifier
+     * @param lbPoolId the lb v2 pool identifier
      * @return the lbPoolV2 or null if not found
      */
     LbPoolV2 get(String lbPoolId);
@@ -43,8 +42,7 @@ public interface LbPoolV2Service extends RestService {
     /**
      * Delete the specified lb Pool by ID
      *
-     * @param lbPoolId
-     *            the lb pool identifier
+     * @param lbPoolId the lb pool identifier
      * @return the action response
      */
     ActionResponse delete(String lbPoolId);
@@ -52,8 +50,7 @@ public interface LbPoolV2Service extends RestService {
     /**
      * Create a lb Pool
      *
-     * @param lbPool
-     *            LbPool
+     * @param lbPool LbPool
      * @return lbPoolV2
      */
     LbPoolV2 create(LbPoolV2 lbPool);
@@ -61,10 +58,8 @@ public interface LbPoolV2Service extends RestService {
     /**
      * Update a lb pool
      *
-     * @param lbPoolId
-     *            the lb pool identifier
-     * @param lbPool
-     *            LbPoolV2Update
+     * @param lbPoolId the lb pool identifier
+     * @param lbPool LbPoolV2Update
      * @return LbPoolV2
      */
     LbPoolV2 update(String lbPoolId, LbPoolV2Update lbPool);
@@ -98,6 +93,7 @@ public interface LbPoolV2Service extends RestService {
 
     /**
      * Create a member
+     *
      * @param lbPoolId the load balancer pool
      * @param member Member
      * @return Member
@@ -106,6 +102,7 @@ public interface LbPoolV2Service extends RestService {
 
     /**
      * Delete the specified member by ID
+     *
      * @param lbPoolId the load balancer pool
      * @param memberId the member identifier
      * @return the action response
@@ -114,6 +111,7 @@ public interface LbPoolV2Service extends RestService {
 
     /**
      * Update a member
+     *
      * @param lbPoolId the load balancer pool
      * @param memberId the member identifier
      * @param member MemberUpdate

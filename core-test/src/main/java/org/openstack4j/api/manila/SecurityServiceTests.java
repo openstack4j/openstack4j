@@ -1,5 +1,7 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,16 +10,16 @@ import org.openstack4j.model.manila.SecurityServiceCreate;
 import org.openstack4j.model.manila.SecurityServiceUpdateOptions;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Test cases for security services
  *
  * @author Daniel Gonzalez Nothnagel
  */
-@Test(suiteName="SecurityService")
+@Test(suiteName = "SecurityService")
 public class SecurityServiceTests extends AbstractTest {
     private static final String JSON_SECURITY_SERVICE = "/manila/security_service.json";
     private static final String JSON_SECURITY_SERVICE_CREATE = "/manila/security_service_create.json";

@@ -1,6 +1,11 @@
 package org.openstack4j.api.octavia;
 
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,22 +15,15 @@ import org.openstack4j.model.octavia.LoadBalancerV2StatusTree;
 import org.openstack4j.model.octavia.LoadBalancerV2Update;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.assertFalse;
 
 /**
- *
  * @author wei
- *
  */
-@Test(suiteName="Octavia/loadBalancerV2", enabled = true)
+@Test(suiteName = "Octavia/loadBalancerV2", enabled = true)
 public class LoadBalancerV2Tests extends AbstractTest {
     private static final String LOADBALANCERSV2_JSON = "/octavia/loadbalancersv2.json";
     private static final String LOADBALANCERV2_JSON = "/octavia/loadbalancerv2.json";

@@ -6,7 +6,7 @@ import org.openstack4j.model.telemetry.Capabilities;
 
 /**
  * A single Representation for capabilities.
- * 
+ *
  * @author Shital Patil
  */
 

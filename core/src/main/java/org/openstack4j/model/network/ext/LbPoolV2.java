@@ -1,14 +1,15 @@
 package org.openstack4j.model.network.ext;
 
+import java.util.List;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.network.ext.builder.LbPoolV2Builder;
 import org.openstack4j.openstack.networking.domain.ext.ListItem;
 
-import java.util.List;
-
 /**
  * A v2 loadbanlance pool
+ *
  * @author emjburns
  */
 public interface LbPoolV2 extends ModelEntity, Buildable<LbPoolV2Builder> {
@@ -44,19 +45,19 @@ public interface LbPoolV2 extends ModelEntity, Buildable<LbPoolV2Builder> {
     LbMethod getLbMethod();
 
     /**
-     *
      * @return SessionPersistence
      */
     SessionPersistence getSessionPersistence();
 
     /**
      * @return The administrative state of the lb pool, which is up (true) or
-     *         down (false).
+     * down (false).
      */
     boolean isAdminStateUp();
 
     /**
      * Listeners associated with the pool
+     *
      * @return listeners associated with the pool
      */
     List<ListItem> getListeners();

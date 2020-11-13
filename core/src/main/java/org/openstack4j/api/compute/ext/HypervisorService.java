@@ -1,10 +1,10 @@
 package org.openstack4j.api.compute.ext;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.compute.ext.Hypervisor;
 import org.openstack4j.model.compute.ext.HypervisorStatistics;
-
-import java.util.List;
 
 /**
  * API which supports the "os-hypervisors" extension.  For more details

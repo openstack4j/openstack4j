@@ -2,23 +2,22 @@ package org.openstack4j.openstack.identity.v2.domain;
 
 import java.io.Serializable;
 
-import org.openstack4j.model.identity.AuthStore;
-import org.openstack4j.model.identity.AuthVersion;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.identity.AuthStore;
+import org.openstack4j.model.identity.AuthVersion;
 
 @JsonRootName("auth")
 public class Credentials extends Auth implements AuthStore {
 
     private static final long serialVersionUID = 1L;
 
-    @JsonProperty(value="passwordCredentials")
+    @JsonProperty(value = "passwordCredentials")
     private PasswordCredentials passwordCreds = new PasswordCredentials();
 
 
-    public Credentials() { 
+    public Credentials() {
         super(Type.CREDENTIALS);
     }
 
@@ -62,11 +61,17 @@ public class Credentials extends Auth implements AuthStore {
         return getTenantName();
     }
 
+    @JsonIgnore
+    @Override
+    public AuthVersion getVersion() {
+        return AuthVersion.V2;
+    }
+
     private static final class PasswordCredentials implements Serializable {
 
-		private static final long serialVersionUID = 1L;
-		
-		@JsonProperty
+        private static final long serialVersionUID = 1L;
+
+        @JsonProperty
         String username;
         @JsonProperty
         String password;
@@ -75,11 +80,5 @@ public class Credentials extends Auth implements AuthStore {
             this.username = username;
             this.password = password;
         }
-    }
-
-    @JsonIgnore
-    @Override
-    public AuthVersion getVersion() {
-        return AuthVersion.V2;
     }
 }

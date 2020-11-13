@@ -4,41 +4,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.sahara.builder.ClusterBuilder;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 /**
  * An OpenStack Cluster
- * 
+ *
  * @author ekasit.kijsipongse@nectec.or.th
  */
 public interface Cluster extends ModelEntity, Buildable<ClusterBuilder> {
-
-    enum Status {
-        /* 
-         * Since it is being developed, this list is not stable yet. Note 
-         *  also that Sahara cluster status may appear in 2 words, e.g. 
-         *  "Adding Instances", but we match only the first word for simplicity 
-         *  until the list is stable. 
-         *  See http://docs.openstack.org/developer/sahara/userdoc/statuses.html for more info.
-         */
-        UNRECOGNIZED, VALIDATING, INFRAUPDATING, SPAWNING, WAITING, PREPARING, CONFIGURING, STARTING, ACTIVE, SCALING, ADDING, DECOMMISSIONING, DELETING, ERROR; 
-        @JsonCreator
-        public static Status forValue(String value) {
-            if (value != null)
-            {
-                for (Status s : Status.values()) {
-                    if (value.toUpperCase().startsWith(s.name()))
-                        return s;
-                }
-            }
-            return Status.UNRECOGNIZED;
-        }
-    }
-
 
     /**
      * @return the status of the cluster
@@ -56,7 +32,7 @@ public interface Cluster extends ModelEntity, Buildable<ClusterBuilder> {
     String getClusterTemplateId();
 
     /**
-     * @return the if the cluster is transient 
+     * @return the if the cluster is transient
      */
     Boolean isTransient();
 
@@ -68,7 +44,7 @@ public interface Cluster extends ModelEntity, Buildable<ClusterBuilder> {
     /**
      * @return the configurations of the cluster
      */
-    Map<String,? extends ServiceConfig> getClusterConfigs();
+    Map<String, ? extends ServiceConfig> getClusterConfigs();
 
     /**
      * @return the created date of the cluster
@@ -144,5 +120,27 @@ public interface Cluster extends ModelEntity, Buildable<ClusterBuilder> {
      * @return the name of the cluster
      */
     String getName();
+
+    enum Status {
+        /*
+         * Since it is being developed, this list is not stable yet. Note
+         *  also that Sahara cluster status may appear in 2 words, e.g.
+         *  "Adding Instances", but we match only the first word for simplicity
+         *  until the list is stable.
+         *  See http://docs.openstack.org/developer/sahara/userdoc/statuses.html for more info.
+         */
+        UNRECOGNIZED, VALIDATING, INFRAUPDATING, SPAWNING, WAITING, PREPARING, CONFIGURING, STARTING, ACTIVE, SCALING, ADDING, DECOMMISSIONING, DELETING, ERROR;
+
+        @JsonCreator
+        public static Status forValue(String value) {
+            if (value != null) {
+                for (Status s : Status.values()) {
+                    if (value.toUpperCase().startsWith(s.name()))
+                        return s;
+                }
+            }
+            return Status.UNRECOGNIZED;
+        }
+    }
 
 }

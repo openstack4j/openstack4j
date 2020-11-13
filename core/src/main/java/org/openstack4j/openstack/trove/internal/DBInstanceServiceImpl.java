@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.trove.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 
 import org.openstack4j.api.trove.InstanceService;
@@ -10,6 +8,8 @@ import org.openstack4j.model.trove.Instance;
 import org.openstack4j.model.trove.InstanceCreate;
 import org.openstack4j.openstack.trove.domain.TroveInstance;
 import org.openstack4j.openstack.trove.domain.TroveInstance.DBInstances;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * InstanceService API Implementation

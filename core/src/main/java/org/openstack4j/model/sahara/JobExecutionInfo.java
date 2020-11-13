@@ -7,7 +7,7 @@ import org.openstack4j.model.ModelEntity;
 
 /**
  * An Info of Sahara Job Execution
- * 
+ *
  * @author ekasit.kijsipongse@nectec.or.th
  * @author siwat.pru@outlook.com
  */

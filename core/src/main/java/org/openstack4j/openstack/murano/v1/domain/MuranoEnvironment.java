@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.murano.v1.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import org.openstack4j.model.murano.v1.builder.EnvironmentBuilder;
 import org.openstack4j.model.murano.v1.domain.Environment;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 
 public class MuranoEnvironment implements Environment {
@@ -35,6 +35,13 @@ public class MuranoEnvironment implements Environment {
     private String tenantId;
 
     private List<MuranoApplication> services;
+
+    /**
+     * @return the environment Builder
+     */
+    public static EnvironmentBuilder builder() {
+        return new MuranoEnvironmentConcreteBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -121,14 +128,7 @@ public class MuranoEnvironment implements Environment {
         return new MuranoEnvironmentConcreteBuilder(this);
     }
 
-    /**
-     * @return the environment Builder
-     */
-    public static EnvironmentBuilder builder() {
-        return new MuranoEnvironmentConcreteBuilder();
-    }
-
-    public static class MuranoEnvironmentConcreteBuilder implements EnvironmentBuilder{
+    public static class MuranoEnvironmentConcreteBuilder implements EnvironmentBuilder {
 
         private MuranoEnvironment model;
 

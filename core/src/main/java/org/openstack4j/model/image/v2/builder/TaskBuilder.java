@@ -1,12 +1,13 @@
 package org.openstack4j.model.image.v2.builder;
 
+import java.util.Map;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.image.v2.Task;
 
-import java.util.Map;
-
 /**
  * Builder for Glance V2 tasks
+ *
  * @author emjburns
  */
 public interface TaskBuilder extends Buildable.Builder<TaskBuilder, Task> {
@@ -18,5 +19,5 @@ public interface TaskBuilder extends Buildable.Builder<TaskBuilder, Task> {
     /**
      * @see Task#getInput()
      */
-    TaskBuilder input(Map<String,Object> input);
+    TaskBuilder input(Map<String, Object> input);
 }

@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.manila.domain;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.collect.Maps;
 import org.openstack4j.model.manila.Share;
 import org.openstack4j.model.manila.ShareCreate;
 import org.openstack4j.model.manila.builder.ShareCreateBuilder;
-
-import java.util.Map;
 
 /**
  * Object used to create new shares.
@@ -17,7 +17,7 @@ import java.util.Map;
 @JsonRootName("share")
 public class ManilaShareCreate implements ShareCreate {
     private static final long serialVersionUID = 1L;
-    
+
     @JsonProperty("share_proto")
     private Share.Protocol shareProto;
     private Integer size;
@@ -34,7 +34,7 @@ public class ManilaShareCreate implements ShareCreate {
     @JsonProperty("snapshot_id")
     private String snapshotId;
     @JsonProperty("is_public")
-    private Boolean isPublic ;
+    private Boolean isPublic;
     private Map<String, String> metadata;
     @JsonProperty("share_network_id")
     private String shareNetworkId;
@@ -42,6 +42,10 @@ public class ManilaShareCreate implements ShareCreate {
     private String consistencyGroupId;
     @JsonProperty("availability_zone")
     private String availabilityZone;
+
+    public static ShareCreateBuilder builder() {
+        return new ShareCreateConcreteBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -154,16 +158,12 @@ public class ManilaShareCreate implements ShareCreate {
     public String getAvailabilityZone() {
         return availabilityZone;
     }
-    
-    public static ShareCreateBuilder builder() {
-        return new ShareCreateConcreteBuilder();
-    }
-    
+
     @Override
     public ShareCreateBuilder toBuilder() {
         return new ShareCreateConcreteBuilder(this);
     }
-    
+
     public static class ShareCreateConcreteBuilder implements ShareCreateBuilder {
         ManilaShareCreate shareCreate;
 

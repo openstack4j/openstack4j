@@ -1,11 +1,11 @@
 package org.openstack4j.api.networking.ext;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.PortForwarding;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Provides floating IP port forwarding service.
@@ -24,7 +24,7 @@ public interface PortForwardingService extends RestService {
     /**
      * Returns list of floating IP port forwarding filtered by parameters.
      *
-     * @param floatingIpId    the floating ip identifier
+     * @param floatingIpId the floating ip identifier
      * @param filteringParams map (name, value) of filtering parameters
      * @return list of floating IP port forwarding
      */
@@ -34,7 +34,7 @@ public interface PortForwardingService extends RestService {
      * Gets a floating IP port forwarding by id.
      *
      * @param floatingIpId the floating ip identifier
-     * @param id           the port_forwarding identifier
+     * @param id the port_forwarding identifier
      * @return a floating IP port forwarding
      */
     PortForwarding get(String floatingIpId, String id);
@@ -43,7 +43,7 @@ public interface PortForwardingService extends RestService {
      * Deletes floating IP port forwarding by id.
      *
      * @param floatingIpId the floating ip identifier
-     * @param id           id the port forwarding identifier
+     * @param id id the port forwarding identifier
      * @return the action response
      */
     ActionResponse delete(String floatingIpId, String id);
@@ -52,7 +52,7 @@ public interface PortForwardingService extends RestService {
     /**
      * Creates a floating IP port forwarding
      *
-     * @param floatingIpId   the floating ip identifier
+     * @param floatingIpId the floating ip identifier
      * @param portForwarding the floating IP port forwarding
      * @return the floating IP port forwarding
      */

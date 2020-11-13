@@ -11,20 +11,20 @@ import org.openstack4j.model.network.builder.NetSecurityGroupBuilder;
  *
  * @author Nathan Anderson
  */
-public interface SecurityGroup extends Resource, Buildable<NetSecurityGroupBuilder>{
-  
-  /**
-   * Gets the description.
-   *
-   * @return the description
-   */
-  String getDescription();
-  
-  /**
-   * Gets the rules.
-   *
-   * @return the rules
-   */
-  List<? extends SecurityGroupRule> getRules();
-  
+public interface SecurityGroup extends Resource, Buildable<NetSecurityGroupBuilder> {
+
+    /**
+     * Gets the description.
+     *
+     * @return the description
+     */
+    String getDescription();
+
+    /**
+     * Gets the rules.
+     *
+     * @return the rules
+     */
+    List<? extends SecurityGroupRule> getRules();
+
 }

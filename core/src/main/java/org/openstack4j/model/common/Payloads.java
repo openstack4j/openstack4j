@@ -15,34 +15,34 @@ import org.openstack4j.model.common.payloads.URLPayload;
  */
 public class Payloads {
 
-	/**
-	 * Creates a new File based Payload
-	 *
-	 * @param file the file to send
-	 * @return the Payload
-	 */
-	public static Payload<File> create(File file) {
-		return new FilePayload(file);
-	}
-	
-	/**
-	 * Creates a new Input Stream based Payload
-	 *
-	 * @param stream the input stream
-	 * @return the Payload
-	 */
-	public static Payload<InputStream> create(InputStream stream) {
-		return new InputStreamPayload(stream);
-	}
-	
-	/**
-	 * Creates a new URL based Payload allowing direct upload from the URL
-	 *
-	 * @param url the URL
-	 * @return the Payload
-	 */
-	public static Payload<URL> create(URL url) {
-		return new URLPayload(url);
-	}
-	
+    /**
+     * Creates a new File based Payload
+     *
+     * @param file the file to send
+     * @return the Payload
+     */
+    public static Payload<File> create(File file) {
+        return new FilePayload(file);
+    }
+
+    /**
+     * Creates a new Input Stream based Payload
+     *
+     * @param stream the input stream
+     * @return the Payload
+     */
+    public static Payload<InputStream> create(InputStream stream) {
+        return new InputStreamPayload(stream);
+    }
+
+    /**
+     * Creates a new URL based Payload allowing direct upload from the URL
+     *
+     * @param url the URL
+     * @return the Payload
+     */
+    public static Payload<URL> create(URL url) {
+        return new URLPayload(url);
+    }
+
 }

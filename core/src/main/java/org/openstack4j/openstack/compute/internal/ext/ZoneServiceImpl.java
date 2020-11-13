@@ -19,7 +19,7 @@ public class ZoneServiceImpl extends BaseComputeServices implements ZoneService 
 
     @Override
     public List<? extends AvailabilityZone> list(boolean detailed) {
-        String uri = (detailed) ? "/os-availability-zone/detail" : "/os-availability-zone";
+        String uri = (detailed) ? "/os-availability-zone/detail": "/os-availability-zone";
         return get(AvailabilityZones.class, uri).execute().getList();
     }
 }

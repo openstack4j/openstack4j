@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.manila.domain;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.manila.ShareServer;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * A share server is created by multi-tenant back-end drivers where shares are hosted.

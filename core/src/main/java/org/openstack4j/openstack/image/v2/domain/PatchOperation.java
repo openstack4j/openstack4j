@@ -8,38 +8,17 @@ import org.openstack4j.model.ModelEntity;
 
 /**
  * Representation of a json patch operation for an openstack image update
+ *
  * @author emjburns
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PatchOperation implements ModelEntity {
-    public enum OperationType {
-        ADD,
-        REMOVE,
-        REPLACE,
-        UNKNOWN;
-
-        @JsonCreator
-        public static OperationType value(String v)
-        {
-            if (v == null) return UNKNOWN;
-            try {
-                return valueOf(v.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                return UNKNOWN;
-            }
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     private OperationType op;
     private String path;
     private Object value;
 
-    public PatchOperation() {}
+    public PatchOperation() {
+    }
 
     public PatchOperation(OperationType op, String path, Object value) {
         this.op = op;
@@ -56,20 +35,20 @@ public class PatchOperation implements ModelEntity {
         return op;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-
     public void setOp(OperationType op) {
         this.op = op;
     }
 
+    public String getPath() {
+        return path;
+    }
+
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Object getValue() {
+        return value;
     }
 
     public void setValue(Object value) {
@@ -83,5 +62,27 @@ public class PatchOperation implements ModelEntity {
                 .add("path", path)
                 .add("value", value)
                 .toString();
+    }
+
+    public enum OperationType {
+        ADD,
+        REMOVE,
+        REPLACE,
+        UNKNOWN;
+
+        @JsonCreator
+        public static OperationType value(String v) {
+            if (v == null) return UNKNOWN;
+            try {
+                return valueOf(v.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return UNKNOWN;
+            }
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
     }
 }

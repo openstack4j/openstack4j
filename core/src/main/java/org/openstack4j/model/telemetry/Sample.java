@@ -6,7 +6,7 @@ import org.openstack4j.model.ModelEntity;
 
 /**
  * A single measurement for Sample.
- * 
+ *
  * @author Shital Patil
  */
 

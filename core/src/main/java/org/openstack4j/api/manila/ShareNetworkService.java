@@ -1,13 +1,13 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareNetwork;
 import org.openstack4j.model.manila.ShareNetworkCreate;
 import org.openstack4j.model.manila.ShareNetworkUpdateOptions;
 import org.openstack4j.model.manila.builder.ShareNetworkCreateBuilder;
-
-import java.util.List;
 
 /**
  * Share Networks Service for Manila Shared File Systems.

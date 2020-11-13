@@ -3,16 +3,15 @@ package org.openstack4j.openstack.networking.domain.ext;
 import java.math.BigInteger;
 import java.util.List;
 
-import org.openstack4j.model.network.ext.NetworkIPAvailability;
-import org.openstack4j.model.network.ext.SubnetIPAvailability;
-import org.openstack4j.model.network.ext.builder.NetworkIPAvailabilityBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
+import org.openstack4j.model.network.ext.NetworkIPAvailability;
+import org.openstack4j.model.network.ext.SubnetIPAvailability;
+import org.openstack4j.model.network.ext.builder.NetworkIPAvailabilityBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * A network IP availability is used to list and show the network IP usage stats of a specified network
@@ -42,7 +41,7 @@ public class NeutronNetworkIPAvailability implements NetworkIPAvailability {
 
     @JsonProperty("total_ips")
     private BigInteger totalIps;
-    
+
     @JsonProperty("subnet_ip_availability")
     private List<NeutronSubnetIPAvailability> subnetIPAvailabilities;
 
@@ -50,7 +49,7 @@ public class NeutronNetworkIPAvailability implements NetworkIPAvailability {
     }
 
     public NeutronNetworkIPAvailability(String networkName, String networkId, String tenantId, String projectId, BigInteger usedIps,
-            BigInteger totalIps, List<NeutronSubnetIPAvailability> subnetIPAvailabilities) {
+                                        BigInteger totalIps, List<NeutronSubnetIPAvailability> subnetIPAvailabilities) {
         this.networkName = networkName;
         this.networkId = networkId;
         this.tenantId = tenantId;
@@ -129,7 +128,7 @@ public class NeutronNetworkIPAvailability implements NetworkIPAvailability {
      * {@inheritDoc}
      */
     @Override
-    public String toString(){
+    public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("networkName", networkName)
                 .add("networkId", networkId)

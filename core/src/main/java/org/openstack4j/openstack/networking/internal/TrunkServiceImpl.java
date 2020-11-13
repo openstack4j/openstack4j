@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.networking.internal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openstack4j.api.networking.TrunkService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.Trunk;
@@ -8,9 +11,6 @@ import org.openstack4j.openstack.networking.domain.AbstractNeutronTrunk.Trunks;
 import org.openstack4j.openstack.networking.domain.*;
 import org.openstack4j.openstack.networking.domain.NeutronTrunkSubport.TrunkSubports;
 import org.openstack4j.openstack.networking.domain.NeutronTrunkSubportCreate.NeutronTrunkSubportDelete.NeutronTrunkSubportsDelete;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

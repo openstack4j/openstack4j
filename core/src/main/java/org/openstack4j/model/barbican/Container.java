@@ -1,11 +1,11 @@
 package org.openstack4j.model.barbican;
 
+import java.util.Date;
+import java.util.List;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.barbican.builder.ContainerCreateBuilder;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Project storage unit for secrets.

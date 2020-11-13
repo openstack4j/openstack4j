@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.octavia.domain.LoadBalancerV2StatusTree;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -7,10 +9,9 @@ import com.google.common.base.MoreObjects;
 import org.openstack4j.model.octavia.status.ListenerV2Status;
 import org.openstack4j.model.octavia.status.LoadBalancerV2Status;
 
-import java.util.List;
-
 /**
  * An object to hold status of lbaas v2 loadbalancer
+ *
  * @author wei
  */
 @JsonRootName("loadbalancer")
@@ -23,16 +24,16 @@ public class OctaviaLoadBalancerV2Status extends Status implements LoadBalancerV
     private List<ListenerV2Status> listenerStatuses;
 
     @Override
-    public List<ListenerV2Status> getListenerStatuses(){
+    public List<ListenerV2Status> getListenerStatuses() {
         return listenerStatuses;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("name", name)

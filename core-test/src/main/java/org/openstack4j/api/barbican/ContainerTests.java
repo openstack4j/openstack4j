@@ -1,5 +1,10 @@
 package org.openstack4j.api.barbican;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
@@ -8,16 +13,11 @@ import org.openstack4j.model.barbican.ContainerSecret;
 import org.openstack4j.model.common.ActionResponse;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
-@Test(suiteName="Barbican/Containers", enabled = true)
+@Test(suiteName = "Barbican/Containers", enabled = true)
 public class ContainerTests extends AbstractTest {
     private static final String CONTAINER_JSON = "/barbican/container.json";
     private static final String CONTAINER_CREATE_JSON = "/barbican/container_create.json";

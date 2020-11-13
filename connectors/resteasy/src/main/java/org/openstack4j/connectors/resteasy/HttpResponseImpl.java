@@ -1,12 +1,11 @@
 package org.openstack4j.connectors.resteasy;
 
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
 
 import org.openstack4j.core.transport.ClientConstants;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -122,7 +121,7 @@ public class HttpResponseImpl implements HttpResponse {
     public void close() throws IOException {
         response.close();
     }
-    
+
     @Override
     public String getContentType() {
         return header(ClientConstants.HEADER_CONTENT_TYPE);

@@ -1,9 +1,9 @@
 package org.openstack4j.model.manila;
 
-import org.openstack4j.core.transport.HttpMethod;
-
 import java.util.Date;
 import java.util.List;
+
+import org.openstack4j.core.transport.HttpMethod;
 
 /**
  * Rate limits control the frequency at which users can issue specific API requests.
@@ -13,10 +13,6 @@ import java.util.List;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface RateLimit {
-    enum TimeIntervalUnit {
-        SECOND, MINUTE, HOUR, DAY;
-    }
-
     /**
      * @return a human-readable URI of a rate limit
      */
@@ -31,6 +27,10 @@ public interface RateLimit {
      * @return the limit object of this rate limit
      */
     List<? extends Limit> getLimit();
+
+    enum TimeIntervalUnit {
+        SECOND, MINUTE, HOUR, DAY;
+    }
 
     interface Limit {
         /**

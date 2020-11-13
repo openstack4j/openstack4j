@@ -2,23 +2,21 @@ package org.openstack4j.openstack.networking.domain.ext;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import org.openstack4j.model.network.ext.Protocol;
 import org.openstack4j.model.network.ext.SessionPersistence;
 import org.openstack4j.model.network.ext.Vip;
 import org.openstack4j.model.network.ext.builder.VipBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-
 /**
  * @author liujunpeng
- *
  */
 @JsonRootName("vip")
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NeutronVip implements Vip {
 
     private static final long serialVersionUID = 1L;
@@ -78,17 +76,21 @@ public class NeutronVip implements Vip {
      * The status of the VIP. Indicates whether the VIP is operational.
      */
     private String status;
+
+    public static VipBuilder builder() {
+        return new VipContreteBuilder();
+
+    }
+
     /**
-     *
      * {@inheritDoc}
      */
     @Override
     public VipBuilder toBuilder() {
-        return new VipContreteBuilder() ;
+        return new VipContreteBuilder();
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -97,7 +99,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -106,7 +107,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -115,7 +115,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -124,7 +123,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -133,7 +131,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -142,7 +139,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -151,7 +147,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -160,7 +155,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -169,7 +163,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -178,7 +171,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -187,7 +179,6 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -196,14 +187,12 @@ public class NeutronVip implements Vip {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
     public String getTenantId() {
         return tenantId;
     }
-
 
     @Override
     public String toString() {
@@ -224,21 +213,20 @@ public class NeutronVip implements Vip {
                 .toString();
     }
 
-
     /**
-     *
      * @author liujunpeng
-     *
      */
-    public static class Vips extends ListResult<NeutronVip>{
+    public static class Vips extends ListResult<NeutronVip> {
 
         private static final long serialVersionUID = 1L;
         @JsonProperty("vips")
         List<NeutronVip> vips;
+
         @Override
         public List<NeutronVip> value() {
             return vips;
         }
+
         @Override
         public String toString() {
             return MoreObjects.toStringHelper(this).omitNullValues()
@@ -246,18 +234,21 @@ public class NeutronVip implements Vip {
         }
 
     }
+
     public static class VipContreteBuilder implements VipBuilder {
 
         private NeutronVip m;
-        public VipContreteBuilder(){
+
+        public VipContreteBuilder() {
             this(new NeutronVip());
         }
-        public VipContreteBuilder(NeutronVip m){
+
+        public VipContreteBuilder(NeutronVip m) {
             this.m = m;
 
         }
+
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -267,12 +258,11 @@ public class NeutronVip implements Vip {
 
         @Override
         public VipBuilder from(Vip in) {
-            m = (NeutronVip)in;
+            m = (NeutronVip) in;
             return this;
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -282,7 +272,6 @@ public class NeutronVip implements Vip {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -292,7 +281,6 @@ public class NeutronVip implements Vip {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -302,7 +290,6 @@ public class NeutronVip implements Vip {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -312,7 +299,6 @@ public class NeutronVip implements Vip {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -322,7 +308,6 @@ public class NeutronVip implements Vip {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -332,7 +317,6 @@ public class NeutronVip implements Vip {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -340,8 +324,8 @@ public class NeutronVip implements Vip {
             m.protocolPort = protocolPort;
             return this;
         }
+
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -349,18 +333,18 @@ public class NeutronVip implements Vip {
             m.poolId = poolId;
             return this;
         }
+
         /**
-         *
          * {@inheritDoc}
          */
         @Override
         public VipBuilder sessionPersistence(
                 SessionPersistence sessionPersistence) {
-            m.sessionPersistence = (NeutronSessionPersistence)sessionPersistence;
+            m.sessionPersistence = (NeutronSessionPersistence) sessionPersistence;
             return this;
         }
+
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -368,8 +352,8 @@ public class NeutronVip implements Vip {
             m.connectionLimit = connectionLimit;
             return this;
         }
+
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -377,11 +361,6 @@ public class NeutronVip implements Vip {
             m.adminStateUp = adminStateUp;
             return this;
         }
-
-    }
-
-    public static VipBuilder  builder(){
-        return new VipContreteBuilder();
 
     }
 }

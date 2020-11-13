@@ -8,7 +8,6 @@ import org.openstack4j.model.identity.v3.Credential;
 
 /**
  * Identity V3 Credential service
- *
  */
 public interface CredentialService extends RestService {
 

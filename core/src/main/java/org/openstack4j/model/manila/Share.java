@@ -1,12 +1,12 @@
 package org.openstack4j.model.manila;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.Link;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * A share is a remote, mountable file system.
@@ -15,56 +15,6 @@ import java.util.Map;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface Share extends ModelEntity {
-    enum Status {
-        CREATING,
-        DELETING,
-        ERROR,
-        ERROR_DELETING,
-        AVAILABLE,
-        MANAGE_STARTING,
-        UNMANAGE_STARTING,
-        UNMANAGE_ERROR,
-        UNMANAGED,
-        EXTENDING,
-        EXTENDING_ERROR,
-        SHRINKING,
-        SHRINKING_ERROR,
-        SHRINKING_POSSIBLE_DATA_LOSS_ERROR;
-
-        @JsonCreator
-        public static Status value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
-    enum Protocol {
-        NFS, CIFS, GlusterFS, HDFS
-    }
-
-    enum TaskState {
-        NULL,
-        MIGRATION_STARTING,
-        MIGRATION_ERROR,
-        MIGRATION_SUCCESS,
-        MIGRATION_COMPLETING,
-        MIGRATING;
-
-        @JsonCreator
-        public static TaskState value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     /**
      * @return The UUID of the share
      */
@@ -199,4 +149,54 @@ public interface Share extends ModelEntity {
      * @return The date and time stamp when the share was created
      */
     String getCreatedAt();
+
+    enum Status {
+        CREATING,
+        DELETING,
+        ERROR,
+        ERROR_DELETING,
+        AVAILABLE,
+        MANAGE_STARTING,
+        UNMANAGE_STARTING,
+        UNMANAGE_ERROR,
+        UNMANAGED,
+        EXTENDING,
+        EXTENDING_ERROR,
+        SHRINKING,
+        SHRINKING_ERROR,
+        SHRINKING_POSSIBLE_DATA_LOSS_ERROR;
+
+        @JsonCreator
+        public static Status value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
+
+    enum Protocol {
+        NFS, CIFS, GlusterFS, HDFS
+    }
+
+    enum TaskState {
+        NULL,
+        MIGRATION_STARTING,
+        MIGRATION_ERROR,
+        MIGRATION_SUCCESS,
+        MIGRATION_COMPLETING,
+        MIGRATING;
+
+        @JsonCreator
+        public static TaskState value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 }

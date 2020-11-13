@@ -9,7 +9,6 @@ import org.openstack4j.model.network.ext.PortPairGroup;
  * Port Pair Group Service
  *
  * @author Dmitry Gerenrot
- *
  */
 public interface PortPairGroupService {
 
@@ -22,6 +21,7 @@ public interface PortPairGroupService {
 
     /**
      * Get a port pair group by id.
+     *
      * @param id
      * @return PortPairGroup
      */

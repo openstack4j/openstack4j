@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.networking.internal.ext;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 
 import org.openstack4j.api.networking.ext.PortChainService;
@@ -10,6 +8,8 @@ import org.openstack4j.model.network.ext.PortChain;
 import org.openstack4j.openstack.networking.domain.ext.NeutronPortChain;
 import org.openstack4j.openstack.networking.domain.ext.NeutronPortChain.PortChains;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * {@inheritDoc}

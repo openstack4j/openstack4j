@@ -4,11 +4,9 @@ import org.openstack4j.model.ModelEntity;
 
 /**
  * This interface describes the getter-methods (and thus components) of a response Action.
- * 
- * @see http://developer.openstack.org/api-ref-clustering-v1.html
- * 
+ *
  * @author lion
- * 
+ * @see http://developer.openstack.org/api-ref-clustering-v1.html
  */
 public interface ActionID extends ModelEntity {
 

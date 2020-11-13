@@ -228,6 +228,7 @@ public interface NetworkBuilders {
 
     /**
      * The builder to createa v2 lbaas listener
+     *
      * @return ListenerV2Builder
      */
     public ListenerV2Builder listenerV2();
@@ -260,7 +261,7 @@ public interface NetworkBuilders {
      */
     public NetworkIPAvailabilityBuilder networkIPAvailability();
 
-	/**
+    /**
      * The builder to create a Trunk
      *
      * @return TrunkBuilder

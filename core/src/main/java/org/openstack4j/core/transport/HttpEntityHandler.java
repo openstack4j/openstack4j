@@ -1,12 +1,12 @@
 package org.openstack4j.core.transport;
 
+import java.io.IOException;
+
 import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.functions.ResponseToActionResponse;
 import org.openstack4j.model.common.ActionResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * Handles retrieving an Entity from an HttpResponse while validating resulting
@@ -24,7 +24,7 @@ public class HttpEntityHandler {
 
     @SuppressWarnings("unchecked")
     public static <T> T handle(HttpResponse response, Class<T> returnType, ExecutionOptions<T> options,
-            boolean requiresVoidBodyHandling) {
+                               boolean requiresVoidBodyHandling) {
         try {
             Handle<T> handle = Handle.create(response, returnType, options, requiresVoidBodyHandling);
 
@@ -62,7 +62,8 @@ public class HttpEntityHandler {
             }
 
             return response.readEntity(returnType);
-        } finally {
+        }
+        finally {
             closeQuietly(response);
         }
     }

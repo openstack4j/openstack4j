@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.openstack4j.model.sahara.JobConfig;
-import org.openstack4j.model.sahara.builder.JobConfigBuilder;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
+import org.openstack4j.model.sahara.JobConfig;
+import org.openstack4j.model.sahara.builder.JobConfigBuilder;
 
 /**
  * For mapping JSON response to/from java objects
@@ -28,6 +27,13 @@ public class SaharaJobConfig implements JobConfig {
     private List<Object> args;
     @JsonProperty("params")
     private Map<String, Object> params;
+
+    /**
+     * @return the job config builder
+     */
+    public static JobConfigBuilder builder() {
+        return new concreteJobConfigBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -56,10 +62,10 @@ public class SaharaJobConfig implements JobConfig {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
-                   .add("configs", configs)
-                   .add("args", args)
-                   .add("params", params)
-                   .toString();
+                .add("configs", configs)
+                .add("args", args)
+                .add("params", params)
+                .toString();
     }
 
     /**
@@ -68,13 +74,6 @@ public class SaharaJobConfig implements JobConfig {
     @Override
     public JobConfigBuilder toBuilder() {
         return new concreteJobConfigBuilder(this);
-    }
-
-    /**
-     * @return the job config builder
-     */
-    public static JobConfigBuilder builder() {
-        return new concreteJobConfigBuilder();
     }
 
     public static class concreteJobConfigBuilder implements JobConfigBuilder {

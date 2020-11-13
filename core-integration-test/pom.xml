@@ -1,147 +1,148 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<groupId>com.github.openstack4j.core</groupId>
-		<artifactId>openstack4j-parent</artifactId>
-		<version>3.9-SNAPSHOT</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>openstack4j-core-integration-test</artifactId>
-	<name>OpenStack4j Integration test Cases</name>
-	<url>http://github.com/openstack4j/openstack4j/</url>
-	<packaging>pom</packaging>
-	<properties>
-		<skipTests>false</skipTests>
-		<!--<it-root>${session.executionRootDirectory}</it-root>-->
-		<betamax.core.version>2.0.1</betamax.core.version>
-		<betamax.junit.version>2.0.1</betamax.junit.version>
-	</properties>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.github.openstack4j.core</groupId>
+        <artifactId>openstack4j-parent</artifactId>
+        <version>3.9-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>openstack4j-core-integration-test</artifactId>
+    <name>OpenStack4j Integration test Cases</name>
+    <url>http://github.com/openstack4j/openstack4j/</url>
+    <packaging>pom</packaging>
+    <properties>
+        <skipTests>false</skipTests>
+        <!--<it-root>${session.executionRootDirectory}</it-root>-->
+        <betamax.core.version>2.0.1</betamax.core.version>
+        <betamax.junit.version>2.0.1</betamax.junit.version>
+    </properties>
 
-	<!-- dedicated module per connector to test -->
-	<modules>
-		<module>it-jersey2</module>
-		<module>it-resteasy</module>
-		<module>it-okhttp</module>
-		<module>it-httpclient</module>
-	</modules>
+    <!-- dedicated module per connector to test -->
+    <modules>
+        <module>it-jersey2</module>
+        <module>it-resteasy</module>
+        <module>it-okhttp</module>
+        <module>it-httpclient</module>
+    </modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.github.openstack4j.core</groupId>
-			<artifactId>openstack4j</artifactId>
-			<version>${project.version}</version>
-			<exclusions>
-				<exclusion> <!-- excluded to solve AbstractMethodError due to duplication of javax.ws.rs-api in the above mentioned modules -->
-					<groupId>com.github.openstack4j.core.connectors</groupId>
-					<artifactId>openstack4j-resteasy</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.spockframework</groupId>
-			<artifactId>spock-core</artifactId>
-			<version>1.0-groovy-2.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency> <!-- use a specific Groovy version rather than the one specified by spock-core -->
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
-			<version>2.4.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>software.betamax</groupId>
-			<artifactId>betamax-junit</artifactId>
-			<version>${betamax.junit.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>software.betamax</groupId>
-			<artifactId>betamax-core</artifactId>
-			<version>${betamax.core.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.openstack4j.core</groupId>
+            <artifactId>openstack4j</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion> <!-- excluded to solve AbstractMethodError due to duplication of javax.ws.rs-api in the above mentioned modules -->
+                    <groupId>com.github.openstack4j.core.connectors</groupId>
+                    <artifactId>openstack4j-resteasy</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>1.0-groovy-2.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency> <!-- use a specific Groovy version rather than the one specified by spock-core -->
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>software.betamax</groupId>
+            <artifactId>betamax-junit</artifactId>
+            <version>${betamax.junit.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>software.betamax</groupId>
+            <artifactId>betamax-core</artifactId>
+            <version>${betamax.core.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+    </dependencies>
 
-	<repositories>
-		<repository>
-			<!-- betamax snapshots -->
-			<id>sonatype-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <!-- betamax snapshots -->
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-	<build>
-		<plugins>
-			<!-- Do not deploy the test module -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.2</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.gmavenplus</groupId>
-				<artifactId>gmavenplus-plugin</artifactId>
-				<version>1.10.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>compileTests</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19</version>
-				<configuration>
-					<useFile>false</useFile>
-					<dependenciesToScan>
-						<!-- Run in modules that inherit this so they are supposed to scan this parent module for tests -->
-						<dependency>${project.groupId}:openstack4j-core-integration-test</dependency>
-					</dependenciesToScan>
-					<!-- The tests are inherited so those are class name patterns, not file path patterns -->
-					<includes>
-						<include>*Spec</include>
-						<include>*Test</include>
-					</includes>
-				</configuration>
-			</plugin>
-			<!-- this is required in order to share the tests in src/test/groovy with 
-				other (sub-)modules -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>${maven.jar.plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test-jar</goal>
-						</goals>
-						<phase>test-compile</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<outputDirectory>${basedir}\target</outputDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <!-- Do not deploy the test module -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.10.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <dependenciesToScan>
+                        <!-- Run in modules that inherit this so they are supposed to scan this parent module for tests -->
+                        <dependency>${project.groupId}:openstack4j-core-integration-test</dependency>
+                    </dependenciesToScan>
+                    <!-- The tests are inherited so those are class name patterns, not file path patterns -->
+                    <includes>
+                        <include>*Spec</include>
+                        <include>*Test</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <!-- this is required in order to share the tests in src/test/groovy with
+                other (sub-)modules -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>${basedir}\target</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

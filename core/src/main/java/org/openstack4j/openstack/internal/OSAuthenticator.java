@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.internal;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openstack4j.api.OSClient;
 import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;
@@ -25,9 +28,6 @@ import org.openstack4j.openstack.internal.OSClientSession.OSClientSessionV3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Responsible for authenticating and re-authenticating sessions for V2 and V3
  * of the Identity API
@@ -49,7 +49,7 @@ public class OSAuthenticator {
      */
     @SuppressWarnings("rawtypes")
     public static OSClient invoke(AuthStore auth, String endpoint, Facing perspective, Config config,
-            CloudProvider provider) {
+                                  CloudProvider provider) {
         SessionInfo info = new SessionInfo(endpoint, perspective, false, provider);
         if (auth.getVersion().equals(AuthVersion.V2)) {
             return authenticateV2((org.openstack4j.openstack.identity.v2.domain.Auth) auth, info, config);
@@ -59,7 +59,7 @@ public class OSAuthenticator {
 
     /**
      * Invokes V3 authentication via an existing token
-     * 
+     *
      * @param auth the token authentication
      * @param endpoint the identity endpoint
      * @param perspective the network facing perspective
@@ -68,14 +68,14 @@ public class OSAuthenticator {
      */
     @SuppressWarnings("rawtypes")
     public static OSClient invoke(KeystoneAuth auth, String endpoint, Facing perspective, Config config,
-            CloudProvider provider) {
+                                  CloudProvider provider) {
         SessionInfo info = new SessionInfo(endpoint, perspective, false, provider);
         return authenticateV3(auth, info, config);
     }
 
     /**
      * Invokes V2 authentication via an existing token
-     * 
+     *
      * @param auth the token authentication
      * @param endpoint the identity endpoint
      * @param perspective the network facing perspective
@@ -84,7 +84,7 @@ public class OSAuthenticator {
      */
     @SuppressWarnings("rawtypes")
     public static OSClient invoke(org.openstack4j.openstack.identity.v2.domain.TokenAuth auth, String endpoint,
-            Facing perspective, Config config, CloudProvider provider) {
+                                  Facing perspective, Config config, CloudProvider provider) {
         SessionInfo info = new SessionInfo(endpoint, perspective, false, provider);
         return authenticateV2(auth, info, config);
     }
@@ -100,24 +100,24 @@ public class OSAuthenticator {
         OSClientSession session = OSClientSession.getCurrent();
 
         switch (session.getAuthVersion()) {
-        case V2:
-            KeystoneAccess access = ((OSClientSessionV2) session).getAccess().unwrap();
-            SessionInfo info = new SessionInfo(access.getEndpoint(), session.getPerspective(), true,
-                    session.getProvider());
-            Auth auth = (Auth) ((access.isCredentialType()) ? access.getCredentials() : access.getTokenAuth());
-            authenticateV2((org.openstack4j.openstack.identity.v2.domain.Auth) auth, info, session.getConfig());
-            break;
-        case V3:
-        default:
-            Token token = ((OSClientSessionV3) session).getToken();
-            info = new SessionInfo(token.getEndpoint(), session.getPerspective(), true, session.getProvider());
-            authenticateV3((KeystoneAuth) token.getCredentials(), info, session.getConfig());
-            break;
+            case V2:
+                KeystoneAccess access = ((OSClientSessionV2) session).getAccess().unwrap();
+                SessionInfo info = new SessionInfo(access.getEndpoint(), session.getPerspective(), true,
+                        session.getProvider());
+                Auth auth = (Auth) ((access.isCredentialType()) ? access.getCredentials(): access.getTokenAuth());
+                authenticateV2((org.openstack4j.openstack.identity.v2.domain.Auth) auth, info, session.getConfig());
+                break;
+            case V3:
+            default:
+                Token token = ((OSClientSessionV3) session).getToken();
+                info = new SessionInfo(token.getEndpoint(), session.getPerspective(), true, session.getProvider());
+                authenticateV3((KeystoneAuth) token.getCredentials(), info, session.getConfig());
+                break;
         }
     }
 
     private static OSClientV2 authenticateV2(org.openstack4j.openstack.identity.v2.domain.Auth auth, SessionInfo info,
-            Config config) {
+                                             Config config) {
         HttpRequest<KeystoneAccess> request = HttpRequest.builder(KeystoneAccess.class)
                 .header(ClientConstants.HEADER_OS4J_AUTH, TOKEN_INDICATOR).endpoint(info.endpoint)
                 .method(HttpMethod.POST).path("/tokens").config(config).entity(auth).build();
@@ -128,7 +128,8 @@ public class OSAuthenticator {
                 ResponseException re = ResponseException.mapException(response);
                 re.setRequestInfo(request);
                 throw re;
-            } finally {
+            }
+            finally {
                 HttpEntityHandler.closeQuietly(response);
             }
         }
@@ -137,9 +138,11 @@ public class OSAuthenticator {
 
         if (auth.getType() == Type.CREDENTIALS) {
             access = access.applyContext(info.endpoint, (Credentials) auth);
-        } else if (auth.getType() == Type.RAX_APIKEY) {
+        }
+        else if (auth.getType() == Type.RAX_APIKEY) {
             access = access.applyContext(info.endpoint, (RaxApiKeyCredentials) auth);
-        } else {
+        }
+        else {
             access = access.applyContext(info.endpoint, (org.openstack4j.openstack.identity.v2.domain.TokenAuth) auth);
         }
 
@@ -152,24 +155,25 @@ public class OSAuthenticator {
     }
 
     private static OSClientV3 authenticateV3(KeystoneAuth auth, SessionInfo info, Config config) {
-        if (auth.getType().equals(Type.TOKENLESS)){
+        if (auth.getType().equals(Type.TOKENLESS)) {
             Map<String, String> headers = new HashMap<>();
             Authentication.Scope.Project project = auth.getScope().getProject();
-            if (project != null){
+            if (project != null) {
                 if (!isEmpty(project.getId()))
                     headers.put(ClientConstants.HEADER_X_PROJECT_ID, project.getId());
                 if (!isEmpty(project.getName()))
                     headers.put(ClientConstants.HEADER_X_PROJECT_NAME, project.getName());
                 Authentication.Scope.Domain domain = project.getDomain();
-                if (domain != null){
+                if (domain != null) {
                     if (!isEmpty(domain.getId()))
                         headers.put(ClientConstants.HEADER_X_PROJECT_DOMAIN_ID, domain.getId());
                     if (!isEmpty(domain.getName()))
                         headers.put(ClientConstants.HEADER_X_PROJECT_DOMAIN_NAME, domain.getName());
                 }
-            }else{
+            }
+            else {
                 Authentication.Scope.Domain domain = auth.getScope().getDomain();
-                if (domain != null){
+                if (domain != null) {
                     if (!isEmpty(domain.getId()))
                         headers.put(ClientConstants.HEADER_X_DOMAIN_ID, domain.getId());
                     if (!isEmpty(domain.getName()))
@@ -192,7 +196,8 @@ public class OSAuthenticator {
                 ResponseException re = ResponseException.mapException(response);
                 re.setRequestInfo(request);
                 throw re;
-            } finally {
+            }
+            finally {
                 HttpEntityHandler.closeQuietly(response);
             }
         }
@@ -201,32 +206,41 @@ public class OSAuthenticator {
 
         if (auth.getType().equals(Type.CREDENTIALS)) {
             token = token.applyContext(info.endpoint, auth);
-        } else {
+        }
+        else {
             if (token.getProject() != null) {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(),
                         auth.getScope().getProject().getName(), auth.getScope().getProject().getId()));
 
-            } else if (token.getDomain() != null ) {
+            }
+            else if (token.getDomain() != null) {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(),
                         auth.getScope().getDomain().getName(), auth.getScope().getDomain().getId()));
-            } else {
-                token = token.applyContext(info.endpoint, new TokenAuth(token.getId(),null,null));
+            }
+            else {
+                token = token.applyContext(info.endpoint, new TokenAuth(token.getId(), null, null));
             }
         }
 
         String reqId = response.header(ClientConstants.X_OPENSTACK_REQUEST_ID);
 
         if (!info.reLinkToExistingSession) {
-        	OSClientSessionV3 v3 = OSClientSessionV3.createSession(token, info.perspective, info.provider, config);
-        	v3.reqId = reqId;
+            OSClientSessionV3 v3 = OSClientSessionV3.createSession(token, info.perspective, info.provider, config);
+            v3.reqId = reqId;
             return v3;
         }
 
         OSClientSessionV3 current = (OSClientSessionV3) OSClientSessionV3.getCurrent();
         current.token = token;
-       
+
         current.reqId = reqId;
         return current;
+    }
+
+    private static boolean isEmpty(String str) {
+        if (str != null && str.length() > 0)
+            return false;
+        return true;
     }
 
     private static class SessionInfo {
@@ -241,11 +255,5 @@ public class OSAuthenticator {
             this.reLinkToExistingSession = reLinkToExistingSession;
             this.provider = provider;
         }
-    }
-
-    private static boolean isEmpty(String str){
-        if (str != null && str.length() > 0)
-            return false;
-        return true;
     }
 }

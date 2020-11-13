@@ -29,7 +29,6 @@
             "keypair_id": "kp",
             "public": false,
             "labels": {
-                
             },
             "docker_volume_size": 3,
             "server_type": "vm",

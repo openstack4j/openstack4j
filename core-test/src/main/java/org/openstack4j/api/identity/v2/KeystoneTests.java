@@ -1,8 +1,5 @@
 package org.openstack4j.api.identity.v2;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,17 +8,16 @@ import java.util.List;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import org.openstack4j.model.common.Extension;
-import org.openstack4j.model.identity.v2.Role;
-import org.openstack4j.model.identity.v2.Tenant;
-import org.openstack4j.model.identity.v2.TenantUser;
-import org.openstack4j.model.identity.v2.TokenV2;
-import org.openstack4j.model.identity.v2.User;
+import org.openstack4j.model.identity.v2.*;
 import org.openstack4j.openstack.OSFactory;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+
 /**
  * Tests the Identity/Keystone API
- * 
+ *
  * @author Jeremy Unruh
  */
 @Test(suiteName = "Identity/Keystone_V2")
@@ -120,7 +116,8 @@ public class KeystoneTests extends AbstractTest {
             System.out.println("users.size = " + users.size());
 
             assertEquals(users.size(), 8);
-        } finally {
+        }
+        finally {
             osv2().removeRegion();
         }
     }
@@ -130,12 +127,13 @@ public class KeystoneTests extends AbstractTest {
      *
      * @throws Exception
      */
-    @Test(expectedExceptions = { RegionEndpointNotFoundException.class })
+    @Test(expectedExceptions = {RegionEndpointNotFoundException.class})
     public void testInvalidRegion() throws Exception {
         osv2().useRegion("RegionInvalid");
         try {
             osv2().identity().users().list();
-        } finally {
+        }
+        finally {
             osv2().removeRegion();
         }
     }

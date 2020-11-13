@@ -1,26 +1,29 @@
 package org.openstack4j.api.manila;
 
-import org.openstack4j.api.AbstractTest;
-import org.openstack4j.api.Builders;
-import org.openstack4j.core.transport.HttpMethod;
-import org.openstack4j.model.common.Extension;
-import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.manila.*;
-import org.openstack4j.openstack.manila.domain.ManilaService;
-import org.testng.annotations.Test;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import org.openstack4j.api.AbstractTest;
+import org.openstack4j.api.Builders;
+import org.openstack4j.core.transport.HttpMethod;
+import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.common.Extension;
+import org.openstack4j.model.manila.*;
+import org.openstack4j.openstack.manila.domain.ManilaService;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Test cases for share services
  *
  * @author Daniel Gonzalez Nothnagel
  */
-@Test(suiteName="Share")
+@Test(suiteName = "Share")
 public class ShareTests extends AbstractTest {
     private static final String JSON_EXTENSIONS = "/manila/extensions.json";
     private static final String JSON_LIMITS = "/manila/limits.json";

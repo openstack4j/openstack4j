@@ -1,5 +1,10 @@
 package org.openstack4j.connectors.httpclient;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -7,11 +12,6 @@ import org.openstack4j.api.exceptions.ClientResponseException;
 import org.openstack4j.core.transport.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -106,7 +106,7 @@ public class HttpResponseImpl implements HttpResponse {
      */
     public String header(String name) {
         Header header = response.getFirstHeader(name);
-        return (header != null) ? header.getValue() : null;
+        return (header != null) ? header.getValue(): null;
     }
 
     /**
@@ -114,7 +114,7 @@ public class HttpResponseImpl implements HttpResponse {
      */
     public Map<String, String> headers() {
         Map<String, String> retHeaders = new HashMap<String, String>();
-        Header[] headers =  response.getAllHeaders();
+        Header[] headers = response.getAllHeaders();
 
         for (Header h : headers) {
             retHeaders.put(h.getName(), h.getValue());

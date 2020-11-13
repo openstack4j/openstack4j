@@ -1,5 +1,9 @@
 package org.openstack4j.api.manila;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -11,19 +15,18 @@ import org.openstack4j.model.manila.actions.AccessOptions;
 import org.openstack4j.openstack.common.Metadata;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Test cases for shares
  *
  * @author Daniel Gonzalez Nothnagel
  */
-@Test(suiteName="Shares")
-public class SharesTests extends AbstractTest{
+@Test(suiteName = "Shares")
+public class SharesTests extends AbstractTest {
     private static final String JSON_SHARE = "/manila/share.json";
     private static final String JSON_SHARE_CREATE = "/manila/share_create.json";
     private static final String JSON_SHARE_UPDATE = "/manila/share_update.json";

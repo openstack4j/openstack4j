@@ -1,21 +1,21 @@
 package org.openstack4j.api.gbp;
 
-import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.gbp.NetworkServicePolicy;
-
 import java.util.List;
 import java.util.Map;
 
+import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.gbp.NetworkServicePolicy;
+
 /**
  * This interface defines all methods for the manipulation of network service
- * 
+ *
  * @author vinod borole
- * 
  */
 public interface NetworkPolicyService {
 
     /**
      * List all gbp network service policies
+     *
      * @return
      */
     List<? extends NetworkServicePolicy> list();
@@ -30,6 +30,7 @@ public interface NetworkPolicyService {
 
     /**
      * Get a gbp network service policy specified by id
+     *
      * @param id
      * @return
      */
@@ -37,6 +38,7 @@ public interface NetworkPolicyService {
 
     /**
      * Create a gbp network service policy
+     *
      * @param networkServicePolicy
      * @return
      */
@@ -44,6 +46,7 @@ public interface NetworkPolicyService {
 
     /**
      * Delete a gbp network service policy specified by id
+     *
      * @param id
      * @return
      */
@@ -51,10 +54,11 @@ public interface NetworkPolicyService {
 
     /**
      * Update the gbp network service policy specified by id
+     *
      * @param gbpServicePolicyId
      * @param gbpServicePolicy
      * @return
      */
-    NetworkServicePolicy update(String gbpServicePolicyId , NetworkServicePolicy gbpServicePolicy);
+    NetworkServicePolicy update(String gbpServicePolicyId, NetworkServicePolicy gbpServicePolicy);
 
 }

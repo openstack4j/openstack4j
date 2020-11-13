@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.networking.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +12,8 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.openstack.networking.domain.NeutronFloatingIP;
 import org.openstack4j.openstack.networking.domain.NeutronFloatingIP.FloatingIPs;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * FloatingIPService implementation that provides Neutron Floating-IP based Service Operations.
@@ -82,7 +82,7 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
         checkNotNull(portId);
         String inner = String.format("{ \"port_id\":\"%s\" }", portId);
         String json = String.format("{ \"%s\": %s }", "floatingip", inner);
-        return put(NeutronFloatingIP.class, uri("/floatingips/%s",fipId)).json(json)
+        return put(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).json(json)
                 .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
     }
 
@@ -93,7 +93,7 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
     public NetFloatingIP disassociateFromPort(String fipId) {
         checkNotNull(fipId);
         String json = String.format("{ \"%s\": %s }", "floatingip", "{ \"port_id\":null }");
-        return put(NeutronFloatingIP.class, uri("/floatingips/%s",fipId)).json(json)
+        return put(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).json(json)
                 .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
     }
 

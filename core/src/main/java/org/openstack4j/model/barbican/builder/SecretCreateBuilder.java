@@ -1,9 +1,9 @@
 package org.openstack4j.model.barbican.builder;
 
+import java.util.Date;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.barbican.Secret;
-
-import java.util.Date;
 
 /**
  * Created by reneschollmeyer on 02.08.17.
@@ -30,7 +30,7 @@ public interface SecretCreateBuilder extends Buildable.Builder<SecretCreateBuild
 
     /**
      * @param bitLength Metadata provided by a user or system for informational purposes.
-     *                  Value must be greater than zero.
+     * Value must be greater than zero.
      * @return
      */
     SecretCreateBuilder bitLength(Integer bitLength);
@@ -49,14 +49,14 @@ public interface SecretCreateBuilder extends Buildable.Builder<SecretCreateBuild
 
     /**
      * @param payloadContentType The media type for the content of the payload
-     *                           (required if payload is included).
+     * (required if payload is included).
      * @return
      */
     SecretCreateBuilder payloadContentType(String payloadContentType);
 
     /**
      * @param payloadContentEncoding The encoding used for the payload to be able to include
-     *                               it in the JSON request (required if payload is encoded).
+     * it in the JSON request (required if payload is encoded).
      * @return
      */
     SecretCreateBuilder payloadContentEncoding(String payloadContentEncoding);

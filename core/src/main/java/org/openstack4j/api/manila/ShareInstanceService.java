@@ -1,10 +1,10 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareInstance;
-
-import java.util.List;
 
 /**
  * Share Instance Service for Manila Shared Filesystems.

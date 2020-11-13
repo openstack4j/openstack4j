@@ -1,7 +1,5 @@
 package org.openstack4j.api.network;
 
-import static org.testng.Assert.assertEquals;
-
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
@@ -9,6 +7,8 @@ import java.util.List;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.network.ext.NetworkIPAvailability;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Network IP availability test

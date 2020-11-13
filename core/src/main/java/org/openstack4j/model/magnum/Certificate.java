@@ -9,21 +9,21 @@ import org.openstack4j.openstack.common.GenericLink;
 public interface Certificate extends ModelEntity, Buildable<CertificateBuilder> {
     /**
      * Gets pem
-     * 
+     *
      * @return pem
      */
     String getPem();
 
     /**
      * Gets bayUuid
-     * 
+     *
      * @return bayUuid
      */
     String getBayUuid();
 
     /**
      * Gets links
-     * 
+     *
      * @return links
      */
     List<GenericLink> getLinks();

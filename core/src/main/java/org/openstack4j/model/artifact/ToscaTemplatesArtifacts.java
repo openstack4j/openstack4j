@@ -1,8 +1,8 @@
 package org.openstack4j.model.artifact;
 
-import org.openstack4j.openstack.artifact.domain.ToscaTemplates;
-
 import java.util.List;
+
+import org.openstack4j.openstack.artifact.domain.ToscaTemplates;
 
 /**
  * A Glare Tosca Templates Artifact

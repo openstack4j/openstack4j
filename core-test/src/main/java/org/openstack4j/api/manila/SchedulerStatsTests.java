@@ -1,12 +1,14 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.manila.BackendStoragePool;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -14,7 +16,7 @@ import static org.testng.AssertJUnit.assertTrue;
  *
  * @author Daniel Gonzalez Nothnagel
  */
-@Test(suiteName="SchedulerStats")
+@Test(suiteName = "SchedulerStats")
 public class SchedulerStatsTests extends AbstractTest {
     private static final String JSON_SCHEDULER_STATS = "/manila/scheduler-stats.json";
     private static final String JSON_SCHEDULER_STATS_DETAIL = "/manila/scheduler-stats_detail.json";

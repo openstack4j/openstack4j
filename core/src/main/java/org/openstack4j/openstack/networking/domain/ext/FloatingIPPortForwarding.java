@@ -1,14 +1,14 @@
 package org.openstack4j.openstack.networking.domain.ext;
 
+import java.util.List;
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.network.ext.PortForwarding;
 import org.openstack4j.model.network.ext.builder.PortForwardingBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * A floating IP port forwarding.
@@ -177,6 +177,14 @@ public class FloatingIPPortForwarding implements PortForwarding {
     public static class PortForwardingConcreteBuilder implements PortForwardingBuilder {
         FloatingIPPortForwarding f;
 
+        public PortForwardingConcreteBuilder() {
+            this(new FloatingIPPortForwarding());
+        }
+
+        public PortForwardingConcreteBuilder(FloatingIPPortForwarding f) {
+            this.f = f;
+        }
+
         @Override
         public FloatingIPPortForwarding build() {
             return f;
@@ -186,14 +194,6 @@ public class FloatingIPPortForwarding implements PortForwarding {
         public PortForwardingConcreteBuilder from(PortForwarding in) {
             this.f = (FloatingIPPortForwarding) in;
             return this;
-        }
-
-        public PortForwardingConcreteBuilder() {
-            this(new FloatingIPPortForwarding());
-        }
-
-        public PortForwardingConcreteBuilder(FloatingIPPortForwarding f) {
-            this.f = f;
         }
 
         public PortForwardingConcreteBuilder id(String id) {

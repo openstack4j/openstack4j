@@ -1,11 +1,11 @@
 package org.openstack4j.api.murano.v1;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.murano.v1.domain.ActionInfo;
 import org.openstack4j.model.murano.v1.domain.ActionResult;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Nikolay Mahotkin.
@@ -19,6 +19,7 @@ public interface MuranoActionService extends RestService {
      * @return list of actions or null.
      */
     List<? extends ActionInfo> list(String envId, String serviceId);
+
     List<? extends ActionInfo> list(String envId);
 
     /**
@@ -57,7 +58,9 @@ public interface MuranoActionService extends RestService {
      * @return String with taskId
      */
     String cast(String envId, String actionId);
+
     String cast(String envId, String actionId, String jsonString);
+
     String cast(String envId, String actionId, Map<String, Object> arguments);
 
     /**
@@ -79,6 +82,8 @@ public interface MuranoActionService extends RestService {
      * @return Action result instance
      */
     ActionResult run(String envId, String actionId);
+
     ActionResult run(String envId, String actionId, String jsonString);
+
     ActionResult run(String envId, String actionId, Map<String, Object> arguments);
 }

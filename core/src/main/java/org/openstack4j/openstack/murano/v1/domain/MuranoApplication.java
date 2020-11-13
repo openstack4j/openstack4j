@@ -1,38 +1,41 @@
 package org.openstack4j.openstack.murano.v1.domain;
 
-import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.murano.v1.domain.Application;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.openstack4j.model.ModelEntity;
+import org.openstack4j.model.murano.v1.domain.Application;
+
 
 /**
  * This is needed to serialize only property "data" without key "data" itself.
  * I.e. get output:
  * {
- *     "instance": {
- *         ...
- *     },
- *     "name": "MyApp",
- *     ...
+ * "instance": {
+ * ...
+ * },
+ * "name": "MyApp",
+ * ...
  * }
- *
+ * <p>
  * instead of:
- *
+ * <p>
  * {
- *     "data": {
- *         "instance": {
- *             ...
- *         },
- *         "name": "MyApp",
- *         ...
- *     }
+ * "data": {
+ * "instance": {
+ * ...
+ * },
+ * "name": "MyApp",
+ * ...
+ * }
  * }
  */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "data")
@@ -57,7 +60,8 @@ public class MuranoApplication implements Application {
         if (key.equals("?")) {
             ObjectMapper mapper = new ObjectMapper();
             this.service = mapper.convertValue(value, MuranoServiceInfo.class);
-        } else {
+        }
+        else {
             this.data.put(key, value);
         }
     }
@@ -100,16 +104,16 @@ public class MuranoApplication implements Application {
      * It wrappers an ArrayList<MuranoApplication> class to serialize without
      * the list key itself:
      * [
-     *   {"key": "value"},
-     *   {"key": "value2"}
+     * {"key": "value"},
+     * {"key": "value2"}
      * ]
-     *
+     * <p>
      * instead of:
      * {
-     *     "list_key": [
-     *         {"key": "value"},
-     *         {"key": "value2"}
-     *     ]
+     * "list_key": [
+     * {"key": "value"},
+     * {"key": "value2"}
+     * ]
      * }
      */
     public static class ApplicationList extends ArrayList<MuranoApplication> implements ModelEntity {

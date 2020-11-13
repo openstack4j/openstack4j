@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.artifact.domain;
 
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.artifact.ArtifactUpdate;
 import org.openstack4j.model.artifact.builder.ArtifactUpdateBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * Created by vadavi on 20-01-2017.
@@ -19,6 +19,10 @@ public class ArtifactUpdateModel implements ArtifactUpdate {
     private String path;
     @JsonProperty("value")
     private String value;
+
+    public static ArtifactUpdateBuilder builder() {
+        return new ArtifactUpdateConcreteBuilder();
+    }
 
     @Override
     public String getOp() {
@@ -50,10 +54,6 @@ public class ArtifactUpdateModel implements ArtifactUpdate {
     @Override
     public ArtifactUpdateBuilder toBuilder() {
         return new ArtifactUpdateConcreteBuilder(this);
-    }
-
-    public static ArtifactUpdateBuilder builder() {
-        return new ArtifactUpdateConcreteBuilder();
     }
 
     public static class ArtifactUpdates extends ListResult<ArtifactUpdateModel> {

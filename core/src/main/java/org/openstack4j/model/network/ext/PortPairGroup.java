@@ -11,7 +11,6 @@ import org.openstack4j.model.network.ext.builder.PortPairGroupBuilder;
  * A Port Pair Group Entity.
  *
  * @author Dmitry Gerenrot.
- *
  */
 public interface PortPairGroup extends Resource, Buildable<PortPairGroupBuilder> {
 
@@ -27,7 +26,7 @@ public interface PortPairGroup extends Resource, Buildable<PortPairGroupBuilder>
 
     /**
      * @return Dictionary of parameters for this group.
-     *      Possible keys: lb_fields or service_type. Check openstack documentation.
+     * Possible keys: lb_fields or service_type. Check openstack documentation.
      */
     Map<String, Object> getPortPairGroupParameters();
 }

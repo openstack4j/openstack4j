@@ -1,11 +1,11 @@
 package org.openstack4j.model.barbican;
 
+import java.util.Date;
+import java.util.Map;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.barbican.builder.SecretCreateBuilder;
-
-import java.util.Date;
-import java.util.Map;
 
 /**
  * Created by reneschollmeyer on 02.08.17.

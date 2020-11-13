@@ -6,9 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
- * 
  * Create Snapshot action which creates a new Image snapshot from the present state of the server instance
- * 
+ *
  * @author Jeremy Unruh
  */
 @JsonRootName("createImage")
@@ -18,12 +17,13 @@ public class CreateSnapshotAction implements ServerAction {
 
     @JsonProperty
     private String name;
-    
+
     @JsonProperty
     private Map<String, String> metadata;
-    
-    public CreateSnapshotAction() { }
-    
+
+    public CreateSnapshotAction() {
+    }
+
     public CreateSnapshotAction(String name) {
         this.name = name;
     }
@@ -32,7 +32,7 @@ public class CreateSnapshotAction implements ServerAction {
         this.name = name;
         this.metadata = metadata;
     }
-    
+
     public static CreateSnapshotAction create(String name) {
         return new CreateSnapshotAction(name);
     }
@@ -48,7 +48,6 @@ public class CreateSnapshotAction implements ServerAction {
     public Map<String, String> getMetadata() {
         return metadata;
     }
-    
-    
-    
+
+
 }

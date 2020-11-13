@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.storage.block.internal;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.storage.BlockVolumeService;
@@ -13,9 +16,6 @@ import org.openstack4j.model.storage.block.options.UploadImageData;
 import org.openstack4j.openstack.storage.block.domain.*;
 import org.openstack4j.openstack.storage.block.domain.CinderVolume.Volumes;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeType.VolumeTypes;
-
-import java.util.List;
-import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -112,7 +112,7 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
                 .execute();
     }
 
-    
+
     /**
      * {@inheritDoc}
      */
@@ -173,7 +173,7 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
      */
     @Override
     public VolumeTypeEncryption createVolumeTypeEncryption(String volumeTypeId,
-            VolumeTypeEncryption volumeTypeEncryption) {
+                                                           VolumeTypeEncryption volumeTypeEncryption) {
         checkNotNull(volumeTypeEncryption);
         checkNotNull(volumeTypeId);
         return post(CinderVolumeTypeEncryption.class, uri("/types/%s/encryption", volumeTypeId))
@@ -226,7 +226,8 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
         Invocation<Volumes> volumeInvocation = get(Volumes.class, "/volumes/detail");
         if (filteringParams == null) {
             return volumeInvocation;
-        } else {
+        }
+        else {
             for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
                 volumeInvocation = volumeInvocation.param(entry.getKey(), entry.getValue());
             }
@@ -287,20 +288,21 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
         ForceDetachAction detach = new ForceDetachAction(attachmentId, connector);
         return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
     }
-    
-	/**
-	 * Detach volume from server
-	 * @author capitek-xuning（首信科技-徐宁）
-	 * @param volumeId
-	 * @param attachmentId
-	 * @return
-	 */
-	@Override
-	public ActionResponse detach(String volumeId, String attachmentId) {
-		checkNotNull(volumeId);
-		checkNotNull(attachmentId);
-		DetachAction detach = new DetachAction(attachmentId);
-		return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
-	}
-    
+
+    /**
+     * Detach volume from server
+     *
+     * @param volumeId
+     * @param attachmentId
+     * @return
+     * @author capitek-xuning（首信科技-徐宁）
+     */
+    @Override
+    public ActionResponse detach(String volumeId, String attachmentId) {
+        checkNotNull(volumeId);
+        checkNotNull(attachmentId);
+        DetachAction detach = new DetachAction(attachmentId);
+        return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
+    }
+
 }

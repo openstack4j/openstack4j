@@ -8,28 +8,28 @@ import org.openstack4j.core.transport.HttpResponse;
 
 /**
  * A Payload which encapsulates downstream data
- * 
+ *
  * @author Jeremy Unruh
  */
 public interface DLPayload {
 
     /**
      * The HttpResponse
-     * 
+     *
      * @return the HttpResponse
      */
-	HttpResponse getHttpResponse();
-	
+    HttpResponse getHttpResponse();
+
     /**
      * The raw inputstream
-     * 
+     *
      * @return the inputstream
      */
     InputStream getInputStream();
-    
+
     /**
      * Writes the current stream to the specified {@code file}
-     * 
+     *
      * @param file the file to write to
      * @throws IOException
      */

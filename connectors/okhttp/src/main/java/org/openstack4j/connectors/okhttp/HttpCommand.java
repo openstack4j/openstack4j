@@ -7,24 +7,12 @@ import java.net.Proxy.Type;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Call;
-import okhttp3.ConnectionPool;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import com.google.common.io.ByteStreams;
+import okhttp3.*;
 import okhttp3.internal.Util;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.openstack4j.core.transport.ClientConstants;
-import org.openstack4j.core.transport.Config;
-import org.openstack4j.core.transport.HttpMethod;
-import org.openstack4j.core.transport.HttpRequest;
-import org.openstack4j.core.transport.ObjectMapperSingleton;
-import org.openstack4j.core.transport.UntrustedSSL;
+import org.openstack4j.core.transport.*;
 import org.openstack4j.core.transport.internal.HttpLoggingFilter;
-
-import com.google.common.io.ByteStreams;
 
 /**
  * HttpCommand is responsible for executing the actual request driven by the HttpExecutor.
@@ -44,6 +32,7 @@ public final class HttpCommand<R> {
 
     /**
      * Creates a new HttpCommand from the given request
+     *
      * @param request the request
      * @return the command
      */
@@ -68,8 +57,7 @@ public final class HttpCommand<R> {
         if (config.getReadTimeout() > 0)
             okHttpClientBuilder.readTimeout(config.getReadTimeout(), TimeUnit.MILLISECONDS);
 
-        if (config.isIgnoreSSLVerification())
-        {
+        if (config.isIgnoreSSLVerification()) {
             okHttpClientBuilder.hostnameVerifier(UntrustedSSL.getHostnameVerifier());
             okHttpClientBuilder.sslSocketFactory(UntrustedSSL.getSSLContext().getSocketFactory(), UntrustedSSL.getTrustManager());
         }
@@ -110,19 +98,20 @@ public final class HttpCommand<R> {
         RequestBody body = null;
         if (request.getEntity() != null) {
             if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
-                byte[] content = ByteStreams.toByteArray((InputStream)request.getEntity());
+                byte[] content = ByteStreams.toByteArray((InputStream) request.getEntity());
                 body = RequestBody.create(MediaType.parse(request.getContentType()), content);
-            } else {
+            }
+            else {
                 String content = ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer().writeValueAsString(request.getEntity());
                 body = RequestBody.create(MediaType.parse(request.getContentType()), content);
             }
         }
-        else if(request.hasJson()) {
+        else if (request.hasJson()) {
             body = RequestBody.create(MediaType.parse(ClientConstants.CONTENT_TYPE_JSON), request.getJson());
         }
         //Added to address https://github.com/square/okhttp/issues/751
         //Set body as empty byte array if request is POST or PUT and body is sent as null
-        if((request.getMethod() == HttpMethod.POST || request.getMethod() == HttpMethod.PUT) && body == null){
+        if ((request.getMethod() == HttpMethod.POST || request.getMethod() == HttpMethod.PUT) && body == null) {
             body = RequestBody.create(null, Util.EMPTY_BYTE_ARRAY);
         }
         clientReq.method(request.getMethod().name(), body);
@@ -157,7 +146,7 @@ public final class HttpCommand<R> {
         return request;
     }
 
-    private void populateQueryParams(HttpRequest<R> request)  {
+    private void populateQueryParams(HttpRequest<R> request) {
         clientReq.url(request.getUrl());
     }
 
@@ -165,7 +154,7 @@ public final class HttpCommand<R> {
 
         if (!request.hasHeaders()) return;
 
-        for(Map.Entry<String, Object> h : request.getHeaders().entrySet()) {
+        for (Map.Entry<String, Object> h : request.getHeaders().entrySet()) {
             clientReq.addHeader(h.getKey(), String.valueOf(h.getValue()));
         }
     }

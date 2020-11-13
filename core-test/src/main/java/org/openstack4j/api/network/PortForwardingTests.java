@@ -1,15 +1,17 @@
 package org.openstack4j.api.network;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.PortForwarding;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * @author zjluo

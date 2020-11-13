@@ -1,15 +1,15 @@
 package org.openstack4j.api.artifact;
 
 
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.artifact.ArtifactUpdate;
 import org.openstack4j.model.artifact.ToscaTemplatesArtifact;
 import org.openstack4j.model.artifact.ToscaTemplatesArtifacts;
 import org.openstack4j.model.common.ActionResponse;
-
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
 
 /**
  * OpenStack (Glare) Artifact based Operations for Tosca Templates type

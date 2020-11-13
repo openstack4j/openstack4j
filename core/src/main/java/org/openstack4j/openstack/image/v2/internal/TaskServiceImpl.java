@@ -1,14 +1,15 @@
 package org.openstack4j.openstack.image.v2.internal;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.image.v2.TaskService;
 import org.openstack4j.model.image.v2.Task;
 import org.openstack4j.openstack.image.v2.domain.GlanceTask;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Glance V2 task service implementation
+ *
  * @author emjburns
  */
 public class TaskServiceImpl extends BaseImageServices implements TaskService {
@@ -34,7 +35,7 @@ public class TaskServiceImpl extends BaseImageServices implements TaskService {
      */
     @Override
     public Task get(String taskId) {
-        return get(GlanceTask.class, uri("/tasks/%s",taskId)).execute();
+        return get(GlanceTask.class, uri("/tasks/%s", taskId)).execute();
     }
 
     /**

@@ -1,16 +1,16 @@
 package org.openstack4j.api.workflow;
 
+import java.io.InputStream;
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.workflow.Scope;
 import org.openstack4j.model.workflow.WorkbookDefinition;
 
-import java.io.InputStream;
-import java.util.List;
-
 /**
  * Service that provides CRUD operations for workbook definitions.
- * 
+ *
  * @author Renat Akhmerov
  */
 public interface WorkbookDefinitionService extends RestService {

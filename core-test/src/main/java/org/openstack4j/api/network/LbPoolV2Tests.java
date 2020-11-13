@@ -1,5 +1,10 @@
 package org.openstack4j.api.network;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,22 +14,15 @@ import org.openstack4j.model.network.ext.LbPoolV2Update;
 import org.openstack4j.model.network.ext.Protocol;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 /**
- *
  * @author ashleykasim
- *
  */
-@Test(suiteName="Network/lbpoolv2", enabled=true)
+@Test(suiteName = "Network/lbpoolv2", enabled = true)
 public class LbPoolV2Tests extends AbstractTest {
     private static final String LBPOOLSV2_JSON = "/network/lbpoolsv2.json";
     private static final String LBPOOLV2_JSON = "/network/lbpoolv2.json";

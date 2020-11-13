@@ -9,11 +9,11 @@ import org.openstack4j.model.sahara.builder.JobBuilder;
 
 /**
  * An Openstack Sahara Job
- * 
+ *
  * @author ekasit.kijsipongse@nectec.or.th
  * @author siwat.pru@outlook.com
  */
-public interface Job extends ModelEntity, Buildable<JobBuilder>   {
+public interface Job extends ModelEntity, Buildable<JobBuilder> {
 
     /**
      * @return the description of the job
@@ -49,7 +49,7 @@ public interface Job extends ModelEntity, Buildable<JobBuilder>   {
      * @return the type of the job
      */
     String getType();
-    
+
     /**
      * @return mains
      */

@@ -15,7 +15,8 @@ public final class ObjectDeleteOptions {
 
     private Map<String, List<Object>> queryParams = Maps.newHashMap();
 
-    private ObjectDeleteOptions() { }
+    private ObjectDeleteOptions() {
+    }
 
     public static ObjectDeleteOptions create() {
         return new ObjectDeleteOptions();
@@ -28,7 +29,8 @@ public final class ObjectDeleteOptions {
         if (queryParams.containsKey(key)) {
             List<Object> list = queryParams.get(key);
             list.add(value);
-        } else {
+        }
+        else {
             List<Object> list = new ArrayList<Object>();
             list.add(value);
             queryParams.put(key, list);

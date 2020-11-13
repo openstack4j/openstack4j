@@ -10,36 +10,6 @@ import org.openstack4j.model.ModelEntity;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface Service extends ModelEntity {
-    enum Status {
-        ENABLED,
-        DISABLED;
-
-        @JsonCreator
-        public static Status value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
-    enum State {
-        UP,
-        DOWN;
-
-        @JsonCreator
-        public static State value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     /**
      * @return the service ID
      */
@@ -74,4 +44,34 @@ public interface Service extends ModelEntity {
      * @return the date and time stamp when the service was updated
      */
     String getUpdatedAt();
+
+    enum Status {
+        ENABLED,
+        DISABLED;
+
+        @JsonCreator
+        public static Status value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
+
+    enum State {
+        UP,
+        DOWN;
+
+        @JsonCreator
+        public static State value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 }

@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.networking.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +9,8 @@ import org.openstack4j.model.network.SecurityGroup;
 import org.openstack4j.model.network.SecurityGroupUpdate;
 import org.openstack4j.openstack.networking.domain.NeutronSecurityGroup;
 import org.openstack4j.openstack.networking.domain.NeutronSecurityGroup.SecurityGroups;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * FloatingIPService implementation that provides Neutron Floating-IP based Service Operations.
