@@ -92,12 +92,12 @@ ij_java_doc_align_param_comments = false
 # ij_java_doc_param_description_on_new_line = false
 # ij_java_doc_preserve_line_breaks = false
 # ij_java_doc_use_throws_not_exception_tag = true
-ij_java_else_on_new_line = true
+ij_java_else_on_new_line = false
 # ij_java_enum_constants_wrap = off
 # ij_java_extends_keyword_wrap = off
 # ij_java_extends_list_wrap = off
 # ij_java_field_annotation_wrap = normal
-ij_java_finally_on_new_line = true
+ij_java_finally_on_new_line = false
 # ij_java_for_brace_force = never
 ij_java_for_statement_new_line_after_left_paren = true
 ij_java_for_statement_right_paren_on_new_line = true
@@ -106,7 +106,7 @@ ij_java_for_statement_right_paren_on_new_line = true
 # ij_java_generate_final_parameters = false
 # ij_java_if_brace_force = never
 # https://youtrack.jetbrains.com/issue/IDEA-170643#focus=streamItem-27-3708697.0-0
-ij_java_imports_layout = javax.**, java.**, |, *, |, $*
+ij_java_imports_layout = javax.**,java.**,|,*,|,$*
 # ij_java_indent_case_from_switch = true
 # ij_java_insert_inner_class_imports = false
 # ij_java_insert_override_annotation = true
@@ -246,26 +246,7 @@ ij_java_spaces_around_shift_operators = true
 # ij_java_wrap_first_method_in_call_chain = false
 # ij_java_wrap_long_lines = false
 
-[{*.ant, *.aspx?tbguid=
-59b05ea4-69fb-4983-acfe-5c66f8537956,
-*.fxml,
-*.jelly,
-*.jhm,
-*.jnlp,
-*.jrxml,
-*.jspx,
-*.pom,
-*.qrc,
-*.rng,
-*.tagx,
-*.tld,
-*.wsdl,
-*.xml,
-*.xsd,
-*.xsl,
-*.xslt,
-*.xul,
-taglib}]
+[{*.ant, *.fxml, *.jelly, *.jhm, *.jnlp, *.jrxml, *.jspx, *.pom, *.qrc, *.rng, *.tagx, *.tld, *.wsdl, *.xml, *.xsd, *.xsl, *.xslt, *.xul, taglib}]
 # ij_xml_align_attributes = true
 # ij_xml_align_text = false
 # ij_xml_attribute_wrap = normal
