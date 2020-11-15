@@ -214,6 +214,15 @@ public class Builders {
     }
 
     /**
+     * The builder to create a Subnet Pool
+     *
+     * @return the subnet pool builder
+     */
+    public static SubnetPoolBuilder subnetPool() {
+        return NeutronSubnetPool.builder();
+    }
+
+    /**
      * The builder to create a Subnet
      *
      * @return the subnet builder

@@ -2,12 +2,7 @@ package org.openstack4j.openstack.networking.internal;
 
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.networking.*;
-import org.openstack4j.api.networking.ext.AgentService;
-import org.openstack4j.api.networking.ext.FirewallAsService;
-import org.openstack4j.api.networking.ext.LbaasV2Service;
-import org.openstack4j.api.networking.ext.LoadBalancerService;
-import org.openstack4j.api.networking.ext.NetQuotaService;
-import org.openstack4j.api.networking.ext.NetworkIPAvailabilityService;
+import org.openstack4j.api.networking.ext.*;
 
 /**
  * OpenStack Networking Operations API
@@ -30,6 +25,14 @@ public class NetworkingServiceImpl implements NetworkingService {
     @Override
     public SubnetService subnet() {
         return Apis.get(SubnetService.class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SubnetPoolService subnetPool() {
+        return Apis.get(SubnetPoolService.class);
     }
 
     /**

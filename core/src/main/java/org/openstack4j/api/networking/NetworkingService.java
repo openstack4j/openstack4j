@@ -1,11 +1,6 @@
 package org.openstack4j.api.networking;
 
-import org.openstack4j.api.networking.ext.AgentService;
-import org.openstack4j.api.networking.ext.FirewallAsService;
-import org.openstack4j.api.networking.ext.LbaasV2Service;
-import org.openstack4j.api.networking.ext.LoadBalancerService;
-import org.openstack4j.api.networking.ext.NetQuotaService;
-import org.openstack4j.api.networking.ext.NetworkIPAvailabilityService;
+import org.openstack4j.api.networking.ext.*;
 import org.openstack4j.common.RestService;
 
 /**
@@ -24,6 +19,11 @@ public interface NetworkingService extends RestService {
      * @return the Subnet Service API
      */
     SubnetService subnet();
+
+    /**
+     * @return the Subnet Service API
+     */
+    SubnetPoolService subnetPool();
 
     /**
      * @return the Port Service API
