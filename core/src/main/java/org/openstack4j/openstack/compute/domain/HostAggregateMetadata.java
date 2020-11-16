@@ -2,6 +2,7 @@ package org.openstack4j.openstack.compute.domain;
 
 import java.util.Map;
 
+import org.openstack4j.core.transport.SerializationAllowNull;
 import org.openstack4j.model.ModelEntity;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  * @author liujunpeng
  */
 @JsonRootName("set_metadata")
+@SerializationAllowNull
 public class HostAggregateMetadata implements ModelEntity {
 
 	private static final long serialVersionUID = 1L;

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  * Default Jackson Mappings
  * 
  * @author Jeremy Unruh
+ * @author bboyHan
  */
 public class ObjectMapperSingleton  {
 
@@ -21,7 +22,6 @@ public class ObjectMapperSingleton  {
     private ObjectMapperSingleton() {
 
         mapper = new ObjectMapper();
-
         mapper.setSerializationInclusion(Include.NON_NULL);
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
@@ -38,7 +38,9 @@ public class ObjectMapperSingleton  {
     
 
     public static ObjectMapper getContext(Class<?> type) {
-        return type.getAnnotation(JsonRootName.class) == null ? INSTANCE.mapper : INSTANCE.rootMapper;
+        return type.getAnnotation(JsonRootName.class) == null ?
+                type.getAnnotation(SerializationAllowNull.class) == null ? INSTANCE.mapper : INSTANCE.mapper.setSerializationInclusion(Include.ALWAYS) :
+                type.getAnnotation(SerializationAllowNull.class) == null ? INSTANCE.rootMapper : INSTANCE.rootMapper.setSerializationInclusion(Include.ALWAYS);
     }
 
 }

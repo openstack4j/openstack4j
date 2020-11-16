@@ -1,8 +1,12 @@
 package org.openstack4j.api.compute;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.compute.HostAggregate;
@@ -10,8 +14,9 @@ import org.testng.annotations.Test;
 
 /**
  * Host Aggregate Tests
- * @author chenyan
  *
+ * @author chenyan
+ * @author bboyHan
  */
 @Test(suiteName = "HostAggregate")
 public class HostAggregateTests extends AbstractTest {
@@ -42,6 +47,16 @@ public class HostAggregateTests extends AbstractTest {
 		assertEquals(null != hostAggregate, true);
 		assertEquals(hostAggregate.getName(),name);
 		assertEquals(hostAggregate.getAvailabilityZone(),availabilityZone);
+	}
+
+	@Test
+	public void setMetadata() throws IOException {
+		respondWith(JSON_HOST_AGGREGATE_CREATE);
+		Map<String, String> metadata = new HashMap<>();
+		metadata.put("key1", "value1");
+		metadata.put("key2", null);
+		HostAggregate hostAggregate = osv3().compute().hostAggregates().setMetadata("aggregateId", metadata);
+		assertNotNull(hostAggregate);
 	}
 	
 	@Override
