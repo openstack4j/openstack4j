@@ -2,6 +2,7 @@ package org.openstack4j.api.compute;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.openstack4j.api.AbstractTest;
+import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.compute.HostAggregate;
+import org.openstack4j.openstack.compute.domain.HostAggregateMetadata;
 import org.testng.annotations.Test;
 
 /**
@@ -57,11 +60,14 @@ public class HostAggregateTests extends AbstractTest {
 		metadata.put("key2", null);
 		HostAggregate hostAggregate = osv3().compute().hostAggregates().setMetadata("aggregateId", metadata);
 		assertNotNull(hostAggregate);
+
+		HostAggregateMetadata ham = new HostAggregateMetadata(metadata);
+		String s = ObjectMapperSingleton.getContext(HostAggregateMetadata.class).writer().writeValueAsString(ham);
+		assertTrue(s.contains("\"key2\" : null"), "null key2 should be present. found " + s);
 	}
-	
+
 	@Override
 	protected Service service() {
 		return Service.COMPUTE;
 	}
-
 }
