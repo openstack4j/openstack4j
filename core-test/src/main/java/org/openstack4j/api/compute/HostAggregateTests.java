@@ -1,17 +1,25 @@
 package org.openstack4j.api.compute;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openstack4j.api.AbstractTest;
+import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.compute.HostAggregate;
+import org.openstack4j.openstack.compute.domain.HostAggregateMetadata;
 import org.testng.annotations.Test;
 
 /**
  * Host Aggregate Tests
- * @author chenyan
  *
+ * @author chenyan
+ * @author bboyHan
  */
 @Test(suiteName = "HostAggregate")
 public class HostAggregateTests extends AbstractTest {
@@ -43,10 +51,23 @@ public class HostAggregateTests extends AbstractTest {
 		assertEquals(hostAggregate.getName(),name);
 		assertEquals(hostAggregate.getAvailabilityZone(),availabilityZone);
 	}
-	
+
+	@Test
+	public void setMetadata() throws IOException {
+		respondWith(JSON_HOST_AGGREGATE_CREATE);
+		Map<String, String> metadata = new HashMap<>();
+		metadata.put("key1", "value1");
+		metadata.put("key2", null);
+		HostAggregate hostAggregate = osv3().compute().hostAggregates().setMetadata("aggregateId", metadata);
+		assertNotNull(hostAggregate);
+
+		HostAggregateMetadata ham = new HostAggregateMetadata(metadata);
+		String s = ObjectMapperSingleton.getContext(HostAggregateMetadata.class).writer().writeValueAsString(ham);
+		assertTrue(s.contains("\"key2\" : null"), "null key2 should be present. found " + s);
+	}
+
 	@Override
 	protected Service service() {
 		return Service.COMPUTE;
 	}
-
 }
