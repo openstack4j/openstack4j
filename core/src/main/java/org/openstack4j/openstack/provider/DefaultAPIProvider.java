@@ -288,6 +288,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(NeutronResourceTagService.class, NeutronResourceTagServiceImpl.class);
         bind(PortForwardingService.class, PortForwardingServiceImpl.class);
         bind(SubnetPoolService.class, SubnetPoolServiceImpl.class);
+        bind(NetQosPolicyService.class, NetQosPolicyServiceImpl.class);
     }
 
     /**

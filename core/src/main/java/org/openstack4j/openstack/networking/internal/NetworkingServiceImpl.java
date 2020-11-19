@@ -147,4 +147,12 @@ public class NetworkingServiceImpl implements NetworkingService {
         return Apis.get(TrunkService.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetQosPolicyService netQosPolicy() {
+        return Apis.get(NetQosPolicyService.class);
+    }
+
 }
