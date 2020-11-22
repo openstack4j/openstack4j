@@ -7,7 +7,7 @@ import org.openstack4j.model.network.RouterConntrackHelper;
 import java.util.List;
 
 /**
- * Provides Neutron Router Conntrack Helper based Service Operations
+ * Provides (Neutron) Router Conntrack Helper based Service Operations
  * 
  * @author bboyHan
  */

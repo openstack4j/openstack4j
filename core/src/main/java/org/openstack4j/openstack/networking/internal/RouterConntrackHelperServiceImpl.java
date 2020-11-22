@@ -11,7 +11,7 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * RouterService implementation that provides Neutron Router based Service Operations.
+ * RouterConntrackHelperService implementation that provides (Neutron) Router Conntrack Helper based Service Operations.
  *
  * @author bboyHan
  */
