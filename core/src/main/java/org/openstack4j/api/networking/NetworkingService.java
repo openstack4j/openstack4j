@@ -100,4 +100,10 @@ public interface NetworkingService extends RestService {
      * @return the Networking (Neutron) Qos Policy Extension API
      */
     NetQosPolicyService netQosPolicy();
+
+    /**
+     * @return the Networking (Neutron) Qos Policy Bandwidth Limit Rule Extension API
+     */
+    NetQosPolicyBLRuleService netQosPolicyBandWidthLimitRule();
+
 }
