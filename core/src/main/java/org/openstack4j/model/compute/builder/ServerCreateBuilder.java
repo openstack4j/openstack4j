@@ -158,5 +158,23 @@ public interface ServerCreateBuilder extends Buildable.Builder<ServerCreateBuild
      */
     
     ServerCreateBuilder configDrive(boolean configDrive);
+    
+    /**
+     * Sets the maximum count of servers to boot.
+     *
+     * @param maxCount the maxCount value
+     * @return this builder
+     */
+    
+    ServerCreateBuilder max(int maxCount);
+
+    /**
+     * Sets the minimum count of servers to boot.
+     *
+     * @param minCount the minCount value
+     * @return this builder
+     */
+    
+    ServerCreateBuilder min(int minCount);
 
 }
