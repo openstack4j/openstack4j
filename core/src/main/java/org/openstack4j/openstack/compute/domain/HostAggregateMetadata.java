@@ -2,8 +2,8 @@ package org.openstack4j.openstack.compute.domain;
 
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.ModelEntity;
 
 /**

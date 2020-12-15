@@ -1,11 +1,11 @@
 package org.openstack4j.api.networking.ext;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.network.ext.NetQosPolicyUpdate;
 import org.openstack4j.model.network.ext.NetQosPolicy;
-
-import java.util.List;
+import org.openstack4j.model.network.ext.NetQosPolicyUpdate;
 
 /**
  * Networking (Neutron) Qos Policy Extension API

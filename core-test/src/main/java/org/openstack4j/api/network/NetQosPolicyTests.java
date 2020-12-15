@@ -1,15 +1,17 @@
 package org.openstack4j.api.network;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.NetQosPolicy;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicy;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Test cases for (Neutron) qos policy extension based Services
@@ -30,7 +32,7 @@ public class NetQosPolicyTests extends AbstractTest {
         assertFalse(netQosPolicies.get(0).isDefault());
     }
 
-    public void get() throws IOException{
+    public void get() throws IOException {
         respondWith(QOS_POLICY_JSON);
         NetQosPolicy netQosPolicy = osv3().networking().netQosPolicy().get("networkId");
         assertEquals("8d4c70a21fed4aeba121a1a429ba0d04", netQosPolicy.getTenantId());

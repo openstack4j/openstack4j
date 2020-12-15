@@ -1,9 +1,5 @@
 package org.openstack4j.api.compute;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +10,10 @@ import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.compute.HostAggregate;
 import org.openstack4j.openstack.compute.domain.HostAggregateMetadata;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Host Aggregate Tests
@@ -40,34 +40,34 @@ public class HostAggregateTests extends AbstractTest {
         assertEquals(aggregate.getName(), "aggregate_zl_test");
     }
 
-	@Test
-	public void createTest() throws Exception {
-		respondWith(JSON_HOST_AGGREGATE_CREATE);
-		
-		String name = "testAggregate01";
-		String availabilityZone = "nova";
-		HostAggregate hostAggregate = osv3().compute().hostAggregates().create(name, availabilityZone);
+    @Test
+    public void createTest() throws Exception {
+        respondWith(JSON_HOST_AGGREGATE_CREATE);
+
+        String name = "testAggregate01";
+        String availabilityZone = "nova";
+        HostAggregate hostAggregate = osv3().compute().hostAggregates().create(name, availabilityZone);
         assertNotNull(hostAggregate);
-		assertEquals(hostAggregate.getName(),name);
-		assertEquals(hostAggregate.getAvailabilityZone(),availabilityZone);
-	}
+        assertEquals(hostAggregate.getName(), name);
+        assertEquals(hostAggregate.getAvailabilityZone(), availabilityZone);
+    }
 
-	@Test
-	public void setMetadata() throws IOException {
-		respondWith(JSON_HOST_AGGREGATE_CREATE);
-		Map<String, String> metadata = new HashMap<>();
-		metadata.put("key1", "value1");
-		metadata.put("key2", null);
-		HostAggregate hostAggregate = osv3().compute().hostAggregates().setMetadata("aggregateId", metadata);
-		assertNotNull(hostAggregate);
+    @Test
+    public void setMetadata() throws IOException {
+        respondWith(JSON_HOST_AGGREGATE_CREATE);
+        Map<String, String> metadata = new HashMap<>();
+        metadata.put("key1", "value1");
+        metadata.put("key2", null);
+        HostAggregate hostAggregate = osv3().compute().hostAggregates().setMetadata("aggregateId", metadata);
+        assertNotNull(hostAggregate);
 
-		HostAggregateMetadata ham = new HostAggregateMetadata(metadata);
-		String s = ObjectMapperSingleton.getContext(HostAggregateMetadata.class).writer().writeValueAsString(ham);
-		assertTrue(s.contains("\"key2\" : null"), "null key2 should be present. found " + s);
-	}
+        HostAggregateMetadata ham = new HostAggregateMetadata(metadata);
+        String s = ObjectMapperSingleton.getContext(HostAggregateMetadata.class).writer().writeValueAsString(ham);
+        assertTrue(s.contains("\"key2\" : null"), "null key2 should be present. found " + s);
+    }
 
-	@Override
-	protected Service service() {
-		return Service.COMPUTE;
-	}
+    @Override
+    protected Service service() {
+        return Service.COMPUTE;
+    }
 }
