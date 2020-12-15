@@ -248,22 +248,22 @@ ij_java_wrap_first_method_in_call_chain = false
 ij_java_wrap_long_lines = false
 
 [{*.ant, *.fxml, *.jelly, *.jhm, *.jnlp, *.jrxml, *.jspx, *.pom, *.qrc, *.rng, *.tagx, *.tld, *.wsdl, *.xml, *.xsd, *.xsl, *.xslt, *.xul, taglib}]
-# ij_xml_align_attributes = true
-# ij_xml_align_text = false
-# ij_xml_attribute_wrap = normal
-# ij_xml_block_comment_at_first_column = true
-# ij_xml_keep_blank_lines = 2
-# ij_xml_keep_indents_on_empty_lines = false
-# ij_xml_keep_line_breaks = true
-# ij_xml_keep_line_breaks_in_text = true
-# ij_xml_keep_whitespaces = false
-# ij_xml_keep_whitespaces_around_cdata = preserve
-# ij_xml_keep_whitespaces_inside_cdata = false
-# ij_xml_line_comment_at_first_column = true
-# ij_xml_space_after_tag_name = false
-# ij_xml_space_around_equals_in_attribute = false
-# ij_xml_space_inside_empty_tag = false
-# ij_xml_text_wrap = normal
+ij_xml_align_attributes = false
+ij_xml_align_text = false
+ij_xml_attribute_wrap = normal
+ij_xml_block_comment_at_first_column = true
+ij_xml_keep_blank_lines = 2
+ij_xml_keep_indents_on_empty_lines = false
+ij_xml_keep_line_breaks = true
+ij_xml_keep_line_breaks_in_text = true
+ij_xml_keep_whitespaces = false
+ij_xml_keep_whitespaces_around_cdata = preserve
+ij_xml_keep_whitespaces_inside_cdata = false
+ij_xml_line_comment_at_first_column = true
+ij_xml_space_after_tag_name = false
+ij_xml_space_around_equals_in_attribute = false
+ij_xml_space_inside_empty_tag = false
+ij_xml_text_wrap = normal
 
 [{*.gant, *.gradle, *.groovy, *.gy, *.jenkinsfile, Jenkinsfile}]
 # ij_groovy_align_group_field_declarations = false
