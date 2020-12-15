@@ -76,7 +76,6 @@ public interface BlockVolumeService extends RestService {
      * Returns list of Block Storage volumes filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends Volume> list(Map<String, String> filteringParams);
 
@@ -161,7 +160,6 @@ public interface BlockVolumeService extends RestService {
      * migrate a volume to another host and service
      *
      * @param volumeId the volume id
-     * @param forceHostCopy
      * @param hostService the destination host and service ,like kvmnode002021.cnsuning.com@lvmdriver
      * @return the action response
      */
@@ -188,32 +186,18 @@ public interface BlockVolumeService extends RestService {
      * You should set instance_uuid or host_name.
      * Volume status must be available.
      * <p>Author:Wang Ting/王婷</p>
-     *
-     * @param volumeId
-     * @param instanceId
-     * @param mountpoint
-     * @param hostName
-     * @return
      */
     ActionResponse attach(String volumeId, String instanceId, String mountpoint, String hostName);
 
     /**
      * <br/>Description:Forces a volume to detach.
      * <p>Author:Wang Ting/王婷</p>
-     *
-     * @param volumeId
-     * @param initiator
-     * @param attachmentId
-     * @return
      */
     ActionResponse forceDetach(String volumeId, String initiator, String attachmentId);
 
     /**
      * Detach volume from server
      *
-     * @param volumeId
-     * @param attachmentId
-     * @return
      * @author capitek-xuning（首信科技-徐宁）
      */
     ActionResponse detach(String volumeId, String attachmentId);

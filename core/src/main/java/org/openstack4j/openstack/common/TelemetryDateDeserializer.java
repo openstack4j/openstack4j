@@ -47,7 +47,6 @@ public class TelemetryDateDeserializer extends StdDeserializer<Date> {
     /**
      * Modifies the date string to have the expected date format ("yyyy-MM-dd'T'HH:mm:ss.SSS")
      *
-     * @param date
      * @return the date with the correct format
      */
     private String getParseableDate(String date) {

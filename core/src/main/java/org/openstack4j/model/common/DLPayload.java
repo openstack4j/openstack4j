@@ -31,7 +31,6 @@ public interface DLPayload {
      * Writes the current stream to the specified {@code file}
      *
      * @param file the file to write to
-     * @throws IOException
      */
     void writeToFile(File file) throws IOException;
 }

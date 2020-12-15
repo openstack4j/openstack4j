@@ -23,7 +23,6 @@ public interface PolicyRuleService {
      * Returns list of policy rules filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends PolicyRule> list(Map<String, String> filteringParams);
 

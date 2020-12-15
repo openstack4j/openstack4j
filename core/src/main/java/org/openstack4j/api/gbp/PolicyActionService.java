@@ -24,7 +24,6 @@ public interface PolicyActionService {
      * Returns list of policy actions filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends PolicyAction> list(Map<String, String> filteringParams);
 

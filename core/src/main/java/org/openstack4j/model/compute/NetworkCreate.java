@@ -21,8 +21,6 @@ public interface NetworkCreate extends ModelEntity {
 
     /**
      * port id of a pre-made port
-     *
-     * @return
      */
     String getPort();
 

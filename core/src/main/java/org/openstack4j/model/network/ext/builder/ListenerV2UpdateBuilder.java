@@ -39,7 +39,6 @@ public interface ListenerV2UpdateBuilder extends Buildable.Builder<ListenerV2Upd
      * Optional
      * The maximum number of connections allowed for the listener. Default is -1, meaning no limit.
      *
-     * @param connectionLimit
      * @return ListenerV2UpdateBuilder
      */
     ListenerV2UpdateBuilder connectionLimit(Integer connectionLimit);
@@ -49,7 +48,6 @@ public interface ListenerV2UpdateBuilder extends Buildable.Builder<ListenerV2Upd
      * <p>
      * The tls container reference
      *
-     * @param defaultTlsContainerRef
      * @return ListenerV2UpdateBuilder
      */
     ListenerV2UpdateBuilder defaultTlsContainerRef(String defaultTlsContainerRef);
@@ -59,7 +57,6 @@ public interface ListenerV2UpdateBuilder extends Buildable.Builder<ListenerV2Upd
      * <p>
      * The default pool id
      *
-     * @param defaultPoolId
      * @return ListenerV2UpdateBuilder
      */
     ListenerV2UpdateBuilder defaultPoolId(String defaultPoolId);

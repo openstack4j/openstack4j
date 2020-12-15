@@ -48,7 +48,6 @@ public interface ImageService extends RestService {
      * Show details for an image by imageid.
      * The image must exist
      *
-     * @param imageId
      * @return the image
      */
     Image get(String imageId);
@@ -56,7 +55,6 @@ public interface ImageService extends RestService {
     /**
      * Creates a catalog record for an operating system disk image.
      *
-     * @param image
      * @return Image
      */
     Image create(Image image);
@@ -64,7 +62,6 @@ public interface ImageService extends RestService {
     /**
      * Update image by providing the changed image object.
      *
-     * @param image
      * @return image
      */
     Image update(Image image);
@@ -74,8 +71,6 @@ public interface ImageService extends RestService {
      * that represent the json transformation
      * instead of the building the whole image
      *
-     * @param imageId
-     * @param imageUpdate
      * @return Image
      */
     Image update(String imageId, ImageUpdate imageUpdate);
@@ -83,8 +78,6 @@ public interface ImageService extends RestService {
     /**
      * Deletes an image.
      * You cannot delete images with the protected attribute set to true (boolean).
-     *
-     * @param imageId
      */
     ActionResponse delete(String imageId);
 
@@ -92,16 +85,11 @@ public interface ImageService extends RestService {
      * Deactivate an image
      * If you try to download a deactivated image, you will receive a 403 (Forbidden) response code.
      * Additionally, only administrative users can view image locations for deactivated images.
-     *
-     * @param imageId
      */
     ActionResponse deactivate(String imageId);
 
     /**
      * Reactivate an image
-     *
-     * @param imageId
-     * @return
      */
     ActionResponse reactivate(String imageId);
 
@@ -109,7 +97,6 @@ public interface ImageService extends RestService {
      * List members of a particular image.
      * These members are projects or tenants that can see the image.
      *
-     * @param imageId
      * @return List of members
      */
     List<? extends Member> listMembers(String imageId);
@@ -118,7 +105,6 @@ public interface ImageService extends RestService {
      * List members of a particular image.
      * These members are projects or tenants that can see the image.
      *
-     * @param imageId
      * @return List of members
      */
     List<? extends Member> listMembers(String imageId, Map<String, String> filteringParams);
@@ -128,7 +114,6 @@ public interface ImageService extends RestService {
      * Otherwise, this will fail.
      *
      * @param imageId the image to share
-     * @param memberId
      * @return member
      */
     Member createMember(String imageId, String memberId);
@@ -136,8 +121,6 @@ public interface ImageService extends RestService {
     /**
      * Get details about a member
      *
-     * @param imageId
-     * @param memberId
      * @return member
      */
     Member getMember(String imageId, String memberId);
@@ -146,57 +129,34 @@ public interface ImageService extends RestService {
      * Change status of an image member
      * For more details see http://specs.openstack.org/openstack/glance-specs/specs/api/v2/sharing-image-api-v2.html
      *
-     * @param imageId
-     * @param memberId
-     * @param memberStatus
      * @return member
      */
     Member updateMember(String imageId, String memberId, Member.MemberStatus memberStatus);
 
     /**
      * You must be the owner of the image to delete the member
-     *
-     * @param imageId
-     * @param memberId
      */
     ActionResponse deleteMember(String imageId, String memberId);
 
     /**
      * Add tag to image.
      * Can also be done with ImagesService#update(image)
-     *
-     * @param imageId
-     * @param tag
-     * @return
      */
     ActionResponse updateTag(String imageId, String tag);
 
     /**
      * Delete tag from image.
      * Can also be done with ImagesService#update(image)
-     *
-     * @param imageId
-     * @param tag
-     * @return
      */
     ActionResponse deleteTag(String imageId, String tag);
 
     /**
      * Uploads binary image data
-     *
-     * @param imageId
-     * @param payload
-     * @param image
-     * @return
      */
     ActionResponse upload(String imageId, Payload<?> payload, @Nullable Image image);
 
     /**
      * Downloads binary image data
-     *
-     * @param imageId
-     * @param filename
-     * @return
      */
     ActionResponse download(String imageId, File filename);
 

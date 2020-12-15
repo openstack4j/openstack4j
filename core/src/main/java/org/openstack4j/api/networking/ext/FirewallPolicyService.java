@@ -64,7 +64,6 @@ public interface FirewallPolicyService extends RestService {
     /**
      * Create a FirewallPolicy
      *
-     * @param FirewallPolicy
      * @return FirewallPolicy
      */
     FirewallPolicy create(FirewallPolicy firewallPolicy);
@@ -88,12 +87,11 @@ public interface FirewallPolicyService extends RestService {
      * @return FirewallPolicy
      */
     FirewallPolicy insertFirewallRuleInPolicy(String firewallPolicyId, String firewallRuleId,
-                                              RuleInsertStrategyType type, String insertAfterOrBeforeRuleId);
+            RuleInsertStrategyType type, String insertAfterOrBeforeRuleId);
 
     /**
      * Removes a firewall rule from a firewall policy.
      *
-     * @param firewallPolicyId
      * @param firewallRuleId rule to be deleted.
      * @return FirewallPolicy
      */

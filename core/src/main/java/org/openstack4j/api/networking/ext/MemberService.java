@@ -25,7 +25,6 @@ public interface MemberService extends RestService {
      * Returns list of member filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends Member> list(Map<String, String> filteringParams);
 

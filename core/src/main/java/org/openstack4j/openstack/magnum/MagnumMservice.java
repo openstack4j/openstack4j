@@ -56,8 +56,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the id
-     *
-     * @param id
      */
     public void setId(String id) {
         this.id = id;
@@ -73,8 +71,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the binary
-     *
-     * @param binary
      */
     public void setBinary(String binary) {
         this.binary = binary;
@@ -90,8 +86,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the creation date
-     *
-     * @param createdAt
      */
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
@@ -107,8 +101,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the state
-     *
-     * @param state
      */
     public void setState(String state) {
         this.state = state;
@@ -124,8 +116,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the report count
-     *
-     * @param reportCount
      */
     public void setReportCount(int reportCount) {
         this.reportCount = reportCount;
@@ -141,8 +131,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the updated time
-     *
-     * @param updatedAt
      */
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
@@ -158,8 +146,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the hostname
-     *
-     * @param host
      */
     public void setHost(String host) {
         this.host = host;
@@ -176,8 +162,6 @@ public class MagnumMservice implements Mservice {
 
     /**
      * Set the disabled reason
-     *
-     * @param disabledReason
      */
     public void setDisabledReason(String disabledReason) {
         this.disabledReason = disabledReason;

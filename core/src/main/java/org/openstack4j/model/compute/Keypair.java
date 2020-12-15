@@ -50,22 +50,16 @@ public interface Keypair extends ModelEntity {
 
     /**
      * time created
-     *
-     * @return
      */
     Date getCreatedAt();
 
     /**
      * time updated
-     *
-     * @return
      */
     Date getUpdatedAt();
 
     /**
      * time deleted
-     *
-     * @return
      */
     Date getDeletedAt();
 

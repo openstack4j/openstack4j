@@ -29,19 +29,16 @@ public interface VnfBuilder extends Builder<VnfBuilder, Vnf> {
     VnfBuilder description(String description);
 
     /**
-     * @param attributes
      * @return VnfBuilder
      */
     VnfBuilder attributes(VnfAttributes attributes);
 
     /**
-     * @param vnfdId
      * @return VnfBuilder
      */
     VnfBuilder vnfdId(String vnfdId);
 
     /**
-     * @param vimId
      * @return VnfBuilder
      */
     VnfBuilder vimId(String vimId);

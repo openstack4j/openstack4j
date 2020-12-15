@@ -22,7 +22,6 @@ public interface SessionPersistenceBuilder extends Builder<SessionPersistenceBui
     /**
      * optional
      *
-     * @param cookieName
      * @return SessionPersistenceBuilder
      */
     public SessionPersistenceBuilder cookieName(String cookieName);

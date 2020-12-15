@@ -20,37 +20,27 @@ public interface Task extends ModelEntity, Buildable<TaskBuilder> {
 
     /**
      * Date and time task was created.
-     *
-     * @return
      */
     Date getCreatedAt();
 
     /**
      * The date and time the task is subject to removal.
      * The result of the task will still exist.
-     *
-     * @return
      */
     Date getExpiresAt();
 
     /**
      * The date and time the task was updated.
-     *
-     * @return
      */
     Date getUpdatedAt();
 
     /**
      * Identifier for the task, a UUID.
-     *
-     * @return
      */
     String getId();
 
     /**
      * A JSON object specifying the input parameters of the task.
-     *
-     * @return
      */
     Map<String, Object> getInput();
 
@@ -58,30 +48,22 @@ public interface Task extends ModelEntity, Buildable<TaskBuilder> {
      * Human readable text, possibly and empty string, usually
      * displayed in an error situation to provide more information
      * about what has occurred.
-     *
-     * @return
      */
     String getMessage();
 
     /**
      * Identifier for owner of the task, usually tenant ID.
-     *
-     * @return
      */
     String getOwner();
 
     /**
      * A JSON object specifying information about the ultimate
      * outcome of the task.
-     *
-     * @return
      */
     Map<String, String> getResult();
 
     /**
      * The URI for the schema describing an image task.
-     *
-     * @return
      */
     String getSchema();
 
@@ -94,15 +76,11 @@ public interface Task extends ModelEntity, Buildable<TaskBuilder> {
 
     /**
      * The type of task represented by this content.
-     *
-     * @return
      */
     String getType();
 
     /**
      * A URI for this task.
-     *
-     * @return
      */
     String getSelf();
 

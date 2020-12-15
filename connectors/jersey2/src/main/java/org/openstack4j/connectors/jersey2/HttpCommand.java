@@ -21,8 +21,6 @@ import org.openstack4j.core.transport.internal.HttpLoggingFilter;
 
 /**
  * HttpCommand is responsible for executing the actual request driven by the HttpExecutor.
- *
- * @param <R>
  */
 public final class HttpCommand<R> {
 

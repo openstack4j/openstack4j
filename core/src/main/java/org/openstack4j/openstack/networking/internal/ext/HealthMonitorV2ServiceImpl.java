@@ -74,7 +74,7 @@ public class HealthMonitorV2ServiceImpl extends BaseNetworkingServices implement
      */
     @Override
     public HealthMonitorV2 update(String healthMonitorId,
-                                  HealthMonitorV2Update healthMonitor) {
+            HealthMonitorV2Update healthMonitor) {
         checkNotNull(healthMonitorId);
         checkNotNull(healthMonitor);
         return put(NeutronHealthMonitorV2.class, uri("/lbaas/healthmonitors/%s", healthMonitorId)).entity(healthMonitor).execute();

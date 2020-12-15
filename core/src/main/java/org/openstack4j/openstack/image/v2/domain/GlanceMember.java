@@ -43,8 +43,6 @@ public class GlanceMember implements Member {
 
     /**
      * Constructor used in createMember
-     *
-     * @param memberId
      */
     public GlanceMember(String memberId) {
         this.member = memberId;
@@ -52,8 +50,6 @@ public class GlanceMember implements Member {
 
     /**
      * Constructor used in updateMember
-     *
-     * @param status
      */
     public GlanceMember(MemberStatus status) {
         this.status = status;

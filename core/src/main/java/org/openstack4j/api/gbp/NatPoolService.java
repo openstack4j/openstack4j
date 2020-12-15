@@ -23,7 +23,6 @@ public interface NatPoolService {
      * Returns list of nat pool filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends NatPool> list(Map<String, String> filteringParams);
 

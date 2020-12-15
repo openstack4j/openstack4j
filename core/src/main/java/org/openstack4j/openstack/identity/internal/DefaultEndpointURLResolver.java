@@ -152,10 +152,6 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
     /**
      * Returns <code>true</code> for any endpoint that matches a given
      * {@link URLResolverParams}.
-     *
-     * @param endpoint
-     * @param p
-     * @return
      */
     private boolean matches(org.openstack4j.model.identity.v3.Endpoint endpoint, URLResolverParams p) {
         boolean matches = endpoint.getIface() == p.perspective;

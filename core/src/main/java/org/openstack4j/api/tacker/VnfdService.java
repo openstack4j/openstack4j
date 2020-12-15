@@ -66,7 +66,6 @@ public interface VnfdService extends RestService {
     /**
      * Create vnfd - Create a vnfd entry based on the vnfd template.
      *
-     * @param vnfd
      * @return Vnfd
      */
     Vnfd create(Vnfd vnfd);

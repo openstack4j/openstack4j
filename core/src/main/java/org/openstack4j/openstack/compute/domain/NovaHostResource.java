@@ -74,7 +74,6 @@ public class NovaHostResource implements HostResource {
     /**
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @return
      * @Title: getService
      */
     @Override
@@ -85,7 +84,6 @@ public class NovaHostResource implements HostResource {
     /**
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @return
      * @Title: getZone
      */
     @Override
@@ -96,7 +94,6 @@ public class NovaHostResource implements HostResource {
     /**
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @return
      * @Title: getHostName
      */
     @Override

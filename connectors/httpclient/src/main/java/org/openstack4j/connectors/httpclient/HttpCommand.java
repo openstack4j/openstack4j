@@ -20,8 +20,6 @@ import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
 /**
  * HttpCommand is responsible for executing the actual request driven by the
  * HttpExecutor.
- *
- * @param <R>
  */
 public final class HttpCommand<R> {
 
@@ -85,7 +83,6 @@ public final class HttpCommand<R> {
      * Executes the command and returns the Response
      *
      * @return the response
-     * @throws Exception
      */
     public CloseableHttpResponse execute() throws Exception {
 

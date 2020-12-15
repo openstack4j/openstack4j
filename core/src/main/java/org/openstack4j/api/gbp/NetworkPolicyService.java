@@ -15,8 +15,6 @@ public interface NetworkPolicyService {
 
     /**
      * List all gbp network service policies
-     *
-     * @return
      */
     List<? extends NetworkServicePolicy> list();
 
@@ -24,40 +22,26 @@ public interface NetworkPolicyService {
      * Returns list of service policy filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends NetworkServicePolicy> list(Map<String, String> filteringParams);
 
     /**
      * Get a gbp network service policy specified by id
-     *
-     * @param id
-     * @return
      */
     NetworkServicePolicy get(String id);
 
     /**
      * Create a gbp network service policy
-     *
-     * @param networkServicePolicy
-     * @return
      */
     NetworkServicePolicy create(NetworkServicePolicy networkServicePolicy);
 
     /**
      * Delete a gbp network service policy specified by id
-     *
-     * @param id
-     * @return
      */
     ActionResponse delete(String id);
 
     /**
      * Update the gbp network service policy specified by id
-     *
-     * @param gbpServicePolicyId
-     * @param gbpServicePolicy
-     * @return
      */
     NetworkServicePolicy update(String gbpServicePolicyId, NetworkServicePolicy gbpServicePolicy);
 

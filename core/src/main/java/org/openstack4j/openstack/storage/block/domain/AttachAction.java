@@ -35,11 +35,6 @@ public class AttachAction implements ModelEntity {
     /**
      * <br/>Description:
      * <p>Author:Wang Ting/王婷</p>
-     *
-     * @param instanceId
-     * @param mountpoint
-     * @param hostName
-     * @param serverId
      */
 
     public AttachAction(String instanceId, String mountpoint, String hostName) {

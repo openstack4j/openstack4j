@@ -380,7 +380,7 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
     }
 
     /**
-     * @return
+     *
      */
     public TroveService trove() {
         return Apis.getTroveServices();

@@ -21,7 +21,6 @@ public class AggregateAddHost implements ModelEntity {
     String host;
 
     /**
-     * @param host
      * @return AggregateAddHost
      */
     public AggregateAddHost(String host) {

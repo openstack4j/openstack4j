@@ -58,7 +58,6 @@ public interface LoadBalancerV2Service extends RestService {
     /**
      * Create a loadbalancer
      *
-     * @param loadbalancer
      * @return loadbalancer
      */
     LoadBalancerV2 create(LoadBalancerV2 loadbalancer);
@@ -75,7 +74,6 @@ public interface LoadBalancerV2Service extends RestService {
     /**
      * Retrieve statistics on a loadbalancer
      *
-     * @param loadbalancerId
      * @return LoadBalancerV2Stats
      */
     LoadBalancerV2Stats stats(String loadbalancerId);
@@ -83,7 +81,6 @@ public interface LoadBalancerV2Service extends RestService {
     /**
      * Retrieve the status tree of a loadbalancer
      *
-     * @param loadbalancerId
      * @return status
      */
     LoadBalancerV2StatusTree statusTree(String loadbalancerId);

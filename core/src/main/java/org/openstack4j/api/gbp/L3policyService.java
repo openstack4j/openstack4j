@@ -23,7 +23,6 @@ public interface L3policyService {
      * Returns list of l3 policies filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends L3Policy> list(Map<String, String> filteringParams);
 

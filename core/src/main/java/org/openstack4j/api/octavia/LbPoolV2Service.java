@@ -77,7 +77,6 @@ public interface LbPoolV2Service extends RestService {
      *
      * @param lbPoolId the load balancer pool
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends MemberV2> listMembers(String lbPoolId, Map<String, String> filteringParams);
 

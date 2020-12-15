@@ -49,7 +49,7 @@ public class OSAuthenticator {
      */
     @SuppressWarnings("rawtypes")
     public static OSClient invoke(AuthStore auth, String endpoint, Facing perspective, Config config,
-                                  CloudProvider provider) {
+            CloudProvider provider) {
         SessionInfo info = new SessionInfo(endpoint, perspective, false, provider);
         if (auth.getVersion().equals(AuthVersion.V2)) {
             return authenticateV2((org.openstack4j.openstack.identity.v2.domain.Auth) auth, info, config);
@@ -68,7 +68,7 @@ public class OSAuthenticator {
      */
     @SuppressWarnings("rawtypes")
     public static OSClient invoke(KeystoneAuth auth, String endpoint, Facing perspective, Config config,
-                                  CloudProvider provider) {
+            CloudProvider provider) {
         SessionInfo info = new SessionInfo(endpoint, perspective, false, provider);
         return authenticateV3(auth, info, config);
     }
@@ -84,7 +84,7 @@ public class OSAuthenticator {
      */
     @SuppressWarnings("rawtypes")
     public static OSClient invoke(org.openstack4j.openstack.identity.v2.domain.TokenAuth auth, String endpoint,
-                                  Facing perspective, Config config, CloudProvider provider) {
+            Facing perspective, Config config, CloudProvider provider) {
         SessionInfo info = new SessionInfo(endpoint, perspective, false, provider);
         return authenticateV2(auth, info, config);
     }
@@ -117,7 +117,7 @@ public class OSAuthenticator {
     }
 
     private static OSClientV2 authenticateV2(org.openstack4j.openstack.identity.v2.domain.Auth auth, SessionInfo info,
-                                             Config config) {
+            Config config) {
         HttpRequest<KeystoneAccess> request = HttpRequest.builder(KeystoneAccess.class)
                 .header(ClientConstants.HEADER_OS4J_AUTH, TOKEN_INDICATOR).endpoint(info.endpoint)
                 .method(HttpMethod.POST).path("/tokens").config(config).entity(auth).build();

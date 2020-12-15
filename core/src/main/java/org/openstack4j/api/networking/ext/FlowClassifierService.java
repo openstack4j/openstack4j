@@ -23,7 +23,6 @@ public interface FlowClassifierService extends RestService {
     /**
      * Get a flow classifier by id.
      *
-     * @param flowClassifierId
      * @return FlowClassifier
      */
     FlowClassifier get(String flowClassifierId);
@@ -31,8 +30,6 @@ public interface FlowClassifierService extends RestService {
     /**
      * Update a flow classifier with the given id to match the given update object
      *
-     * @param flowClassifierId
-     * @param flowClassifier
      * @return flowClassifier : object updated
      */
     FlowClassifier update(String flowClassifierId, FlowClassifier flowClassifier);
@@ -40,7 +37,6 @@ public interface FlowClassifierService extends RestService {
     /**
      * Create a flow classifier
      *
-     * @param flowClassifier
      * @return flowClassifier : object actually created
      */
     FlowClassifier create(FlowClassifier flowClassifier);
@@ -48,7 +44,6 @@ public interface FlowClassifierService extends RestService {
     /**
      * Delete a flow classifier
      *
-     * @param flowClassifierId
      * @return the action response
      */
     ActionResponse delete(String flowClassifierId);

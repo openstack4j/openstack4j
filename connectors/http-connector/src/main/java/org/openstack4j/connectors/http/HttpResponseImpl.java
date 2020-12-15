@@ -23,7 +23,7 @@ public class HttpResponseImpl implements HttpResponse {
     private byte[] data;
 
     private HttpResponseImpl(Map<String, List<String>> headers,
-                             int responseCode, String responseMessage, byte[] data) {
+            int responseCode, String responseMessage, byte[] data) {
         this.headers = headers;
         this.responseCode = responseCode;
         this.responseMessage = responseMessage;
@@ -33,13 +33,10 @@ public class HttpResponseImpl implements HttpResponse {
     /**
      * Wrap the given Response
      *
-     * @param headers
-     * @param responseCode
-     * @param responseMessage
      * @return the HttpResponse
      */
     public static HttpResponseImpl wrap(Map<String, List<String>> headers,
-                                        int responseCode, String responseMessage, byte[] data) {
+            int responseCode, String responseMessage, byte[] data) {
         return new HttpResponseImpl(headers, responseCode, responseMessage, data);
     }
 

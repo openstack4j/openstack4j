@@ -73,7 +73,7 @@ public class HealthMonitorV2ServiceImpl extends BaseOctaviaServices implements H
      */
     @Override
     public HealthMonitorV2 update(String healthMonitorId,
-                                  HealthMonitorV2Update healthMonitor) {
+            HealthMonitorV2Update healthMonitor) {
         checkNotNull(healthMonitorId);
         checkNotNull(healthMonitor);
         return put(OctaviaHealthMonitorV2.class, uri("/lbaas/healthmonitors/%s", healthMonitorId)).entity(healthMonitor).execute();

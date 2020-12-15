@@ -48,11 +48,11 @@ public class NovaQuotaSetUpdate implements QuotaSetUpdate {
 
 
     protected NovaQuotaSetUpdate(Integer metadataItems,
-                                 Integer injectedFileContentBytes, Integer injectedFiles,
-                                 Integer ram, Integer floatingIps, Integer instances,
-                                 Integer cores, Integer securityGroups,
-                                 Integer securityGroupRules, Integer injectedFilePathBytes,
-                                 Integer keyPairs) {
+            Integer injectedFileContentBytes, Integer injectedFiles,
+            Integer ram, Integer floatingIps, Integer instances,
+            Integer cores, Integer securityGroups,
+            Integer securityGroupRules, Integer injectedFilePathBytes,
+            Integer keyPairs) {
         super();
         this.metadataItems = metadataItems;
         this.injectedFileContentBytes = injectedFileContentBytes;
@@ -171,11 +171,11 @@ public class NovaQuotaSetUpdate implements QuotaSetUpdate {
         private static final long serialVersionUID = 1L;
 
         public NovaQuotaSetUpdateTenant(Integer metadataItems,
-                                        Integer injectedFileContentBytes, Integer injectedFiles,
-                                        Integer ram, Integer floatingIps,
-                                        Integer instances, Integer cores,
-                                        Integer securityGroups, Integer securityGroupRules,
-                                        Integer injectedFilePathBytes, Integer keyPairs) {
+                Integer injectedFileContentBytes, Integer injectedFiles,
+                Integer ram, Integer floatingIps,
+                Integer instances, Integer cores,
+                Integer securityGroups, Integer securityGroupRules,
+                Integer injectedFilePathBytes, Integer keyPairs) {
             super(metadataItems, injectedFileContentBytes, injectedFiles, ram,
                     floatingIps, instances, cores, securityGroups, securityGroupRules,
                     injectedFilePathBytes, keyPairs);
@@ -195,11 +195,11 @@ public class NovaQuotaSetUpdate implements QuotaSetUpdate {
         private static final long serialVersionUID = 1L;
 
         public NovaQuotaSetUpdateClass(Integer metadataItems,
-                                       Integer injectedFileContentBytes, Integer injectedFiles,
-                                       Integer ram, Integer floatingIps,
-                                       Integer instances, Integer cores,
-                                       Integer securityGroups, Integer securityGroupRules,
-                                       Integer injectedFilePathBytes, Integer keyPairs) {
+                Integer injectedFileContentBytes, Integer injectedFiles,
+                Integer ram, Integer floatingIps,
+                Integer instances, Integer cores,
+                Integer securityGroups, Integer securityGroupRules,
+                Integer injectedFilePathBytes, Integer keyPairs) {
             super(metadataItems, injectedFileContentBytes, injectedFiles, ram,
                     floatingIps, instances, cores, securityGroups, securityGroupRules,
                     injectedFilePathBytes, keyPairs);

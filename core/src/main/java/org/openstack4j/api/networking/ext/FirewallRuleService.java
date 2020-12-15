@@ -61,7 +61,6 @@ public interface FirewallRuleService extends RestService {
     /**
      * Create a FirewallRule
      *
-     * @param firewallRule
      * @return FirewallRule
      */
     FirewallRule create(FirewallRule firewallRule);

@@ -42,7 +42,6 @@ public interface ServerService {
      * Returns list of servers filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends Server> list(Map<String, String> filteringParams);
 

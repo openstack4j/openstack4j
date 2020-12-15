@@ -20,7 +20,7 @@ public class AggregateRemoveHost implements ModelEntity {
     String host;
 
     /**
-     * @param host
+     *
      */
     public AggregateRemoveHost(String host) {
         this.host = host;

@@ -66,7 +66,6 @@ public interface VimService extends RestService {
     /**
      * Create Vim - Register a Vim entry based on the Vim template.
      *
-     * @param Vim
      * @return Vim
      */
     Vim register(Vim vim);

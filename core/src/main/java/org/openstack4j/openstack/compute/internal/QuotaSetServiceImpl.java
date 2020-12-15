@@ -94,7 +94,7 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
      */
     @Override
     public List<? extends SimpleTenantUsage> listTenantUsages(String startTime,
-                                                              String endTime) {
+            String endTime) {
         checkNotNull(startTime);
         checkNotNull(endTime);
         return get(NovaSimpleTenantUsages.class, uri("/os-simple-tenant-usage"))
@@ -108,7 +108,7 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
      */
     @Override
     public SimpleTenantUsage getTenantUsage(String tenantId, String startTime,
-                                            String endTime) {
+            String endTime) {
         checkNotNull(tenantId);
         checkNotNull(startTime);
         checkNotNull(endTime);

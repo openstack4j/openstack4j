@@ -103,8 +103,6 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests finding an endpoint for Region Two which does exist
-     *
-     * @throws Exception
      */
 
     public void testRegionTwo() throws Exception {
@@ -123,8 +121,6 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests finding an endpoint for which does not exist
-     *
-     * @throws Exception
      */
     @Test(expectedExceptions = {RegionEndpointNotFoundException.class})
     public void testInvalidRegion() throws Exception {
@@ -151,8 +147,6 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests tenant based operations
-     *
-     * @throws Exception
      */
     public void testTenants() throws Exception {
         respondWith(JSON_TENANTS);
@@ -173,8 +167,6 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests retrieving Extensions
-     *
-     * @throws Exception
      */
     public void testExtensions() throws Exception {
         respondWith(JSON_EXTENSIONS);

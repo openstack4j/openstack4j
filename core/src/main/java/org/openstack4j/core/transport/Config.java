@@ -85,7 +85,6 @@ public final class Config {
     /**
      * Associates the <b>initialized</b> SSL Context to use when querying secure endpoints
      *
-     * @param sslContext
      * @return Config
      */
     public Config withSSLContext(SSLContext sslContext) {

@@ -82,8 +82,6 @@ public interface GroupService extends RestService {
 
     /**
      * lists the users that belong to a group
-     *
-     * @return
      */
     List<? extends User> listGroupUsers(String groupId);
 

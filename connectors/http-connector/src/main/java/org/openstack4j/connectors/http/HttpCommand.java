@@ -21,8 +21,6 @@ import org.slf4j.LoggerFactory;
 /**
  * HttpCommand is responsible for executing the actual request driven by the
  * HttpExecutor.
- *
- * @param <R>
  */
 public final class HttpCommand<R> {
 

@@ -32,7 +32,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Get the specified listener by ID
      *
-     * @param listenerId
      * @return the listener or null if not found
      */
     ListenerV2 get(String listenerId);
@@ -40,7 +39,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Delete the specified listener by ID
      *
-     * @param listenerId
      * @return the action response
      */
     ActionResponse delete(String listenerId);
@@ -48,7 +46,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Create a listener
      *
-     * @param listener
      * @return ListenerV2
      */
     ListenerV2 create(ListenerV2 listener);
@@ -56,8 +53,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Update a listener
      *
-     * @param listenerId
-     * @param listener
      * @return ListenerV2
      */
     ListenerV2 update(String listenerId, ListenerV2Update listener);

@@ -99,7 +99,6 @@ public interface ComputeFloatingIPService extends RestService {
      *
      * @param serverId the id of the server
      * @param ipAddress the ip address
-     * @return
      */
     ActionResponse removeFloatingIP(String serverId, String ipAddress);
 

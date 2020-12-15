@@ -57,8 +57,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * gets a list of users
-     *
-     * @throws Exception
      */
     public void listAllUsers_Test() throws Exception {
 
@@ -72,8 +70,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * get speciific user by user identifier
-     *
-     * @throws Exception
      */
     public void getUser_byId_Test() throws Exception {
 
@@ -89,8 +85,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * returns users across all domains matching given name
-     *
-     * @throws Exception
      */
     public void getUsers_byName_AcrossAllDomains_Test() throws Exception {
 
@@ -103,8 +97,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * returns the user specified by name and domain.
-     *
-     * @throws Exception
      */
     public void getUser_byName_byDomainId_Test() throws Exception {
 
@@ -119,8 +111,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * returns null for an non-existing user when the user specified by name and domain.
-     *
-     * @throws Exception
      */
     public void getUser_byName_byDomainId_NotExist_Test() throws Exception {
 
@@ -132,8 +122,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * CRUD user tests
-     *
-     * @throws Exception
      */
     public void crud_User_Test() throws Exception {
 
@@ -187,8 +175,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * tries to delete an non existent user fails
-     *
-     * @throws Exception
      */
     public void deleteUser_fail_Test() throws Exception {
 
@@ -200,8 +186,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * list roles for a user in domain context
-     *
-     * @throws Exception
      */
     public void listDomainUserRoles_Test() throws Exception {
 
@@ -213,8 +197,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * list roles for user in project context
-     *
-     * @throws Exception
      */
     public void listProjectUserRoles_Test() throws Exception {
 
@@ -226,8 +208,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * lists the groups for user
-     *
-     * @throws Exception
      */
     public void listUserGroups_Test() throws Exception {
 
@@ -239,8 +219,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * list the projects given user has access to
-     *
-     * @throws Exception
      */
     public void listUserProjects_Test() throws Exception {
 
@@ -252,8 +230,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * Changes the password for a user
-     *
-     * @throws Exception
      */
     public void changeUserPassword_Test() throws Exception {
 
@@ -265,8 +241,6 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
     /**
      * tries to change the password for an non existent user fails
-     *
-     * @throws Exception
      */
     public void changeUserPassword_fail_Test() throws Exception {
 

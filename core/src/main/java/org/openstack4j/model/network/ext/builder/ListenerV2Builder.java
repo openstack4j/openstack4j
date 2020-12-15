@@ -24,7 +24,6 @@ public interface ListenerV2Builder extends Buildable.Builder<ListenerV2Builder, 
     /**
      * The port in which the frontend will be listening. Must be an integer in the range of 1-65535
      *
-     * @param protocolPort
      * @return ListenerV2Builder
      */
     ListenerV2Builder protocolPort(Integer protocolPort);
@@ -33,7 +32,6 @@ public interface ListenerV2Builder extends Buildable.Builder<ListenerV2Builder, 
      * The load balancer this listener will be provisioned on. A tenant can only create listeners on
      * load balancers authorized by policy (e.g. her own load balancers).
      *
-     * @param loadbalancerId
      * @return ListenerV2Builder
      */
     ListenerV2Builder loadBalancerId(String loadbalancerId);
@@ -68,7 +66,6 @@ public interface ListenerV2Builder extends Buildable.Builder<ListenerV2Builder, 
      * <p>
      * The default value for this attribute will be -1, indicating an infinite limit.
      *
-     * @param connectionLimit
      * @return ListenerV2Builder
      */
     ListenerV2Builder connectionLimit(Integer connectionLimit);
@@ -78,7 +75,6 @@ public interface ListenerV2Builder extends Buildable.Builder<ListenerV2Builder, 
      * <p>
      * Barbican container with tls policy
      *
-     * @param tlsContainerRef
      * @return ListenerV2Builder
      */
     ListenerV2Builder defaultTlsContainerRef(String tlsContainerRef);
@@ -88,7 +84,6 @@ public interface ListenerV2Builder extends Buildable.Builder<ListenerV2Builder, 
      * <p>
      * Barbican container(s) with sni certificates
      *
-     * @param sniContainerRefs
      * @return ListenerV2Builder
      */
     ListenerV2Builder sniContainerRefs(List<String> sniContainerRefs);

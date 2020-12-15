@@ -63,7 +63,6 @@ public interface BlockDeviceMappingBuilder extends Buildable.Builder<BlockDevice
     /**
      * Set to create a volume from a snapshot id.
      *
-     * @param snapshotId
      * @return BlockDeviceMappingBuilder
      */
     BlockDeviceMappingBuilder snapshotId(String snapshotId);
@@ -71,7 +70,6 @@ public interface BlockDeviceMappingBuilder extends Buildable.Builder<BlockDevice
     /**
      * Set to create a volume from a volume id.
      *
-     * @param volumeId
      * @return BlockDeviceMappingBuilder
      */
     BlockDeviceMappingBuilder volumeId(String volumeId);

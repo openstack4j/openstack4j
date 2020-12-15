@@ -15,7 +15,6 @@ public interface BlockQuotaSetBuilder extends Builder<BlockQuotaSetBuilder, Bloc
     /**
      * Volumes Quota for Block Storage
      *
-     * @param volumes
      * @return volumes consumed in the Block Storage.
      */
     BlockQuotaSetBuilder volumes(int volumes);
@@ -23,7 +22,6 @@ public interface BlockQuotaSetBuilder extends Builder<BlockQuotaSetBuilder, Bloc
     /**
      * Snapshots present in Block Storage
      *
-     * @param snapshots
      * @return snapshots present in the Block Storage.
      */
     BlockQuotaSetBuilder snapshots(int snapshots);
@@ -31,7 +29,6 @@ public interface BlockQuotaSetBuilder extends Builder<BlockQuotaSetBuilder, Bloc
     /**
      * Space consumed in gigabytes for Block Storage
      *
-     * @param gigabytes
      * @return space consumed in the Block Storage.
      */
     BlockQuotaSetBuilder gigabytes(int gigabytes);
@@ -39,7 +36,6 @@ public interface BlockQuotaSetBuilder extends Builder<BlockQuotaSetBuilder, Bloc
     /**
      * Quotas limits for each volume type
      *
-     * @param volumeTypesQuotas
      * @return volume types quota limits configured in the Block Storage.
      */
     BlockQuotaSetBuilder volumeTypesQuotas(Map<String, Integer> volumeTypesQuotas);

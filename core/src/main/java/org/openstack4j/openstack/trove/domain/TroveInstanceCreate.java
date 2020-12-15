@@ -56,7 +56,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * @param volumeType
+     *
      */
     @Override
     public void setVolumetype(String volumeType) {
@@ -64,7 +64,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * @param size
+     *
      */
     @Override
     public void setvolumeSize(int size) {
@@ -72,7 +72,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * @param datastore
+     *
      */
     @Override
     public void setDatastore(Datastore datastore) {
@@ -80,7 +80,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * @param availabilityZone
+     *
      */
     @Override
     public void setAvailabilityZone(String availabilityZone) {

@@ -3,7 +3,6 @@ package org.openstack4j.core.transport;
 /**
  * A handle which is used to visit entity handling conditions and to determine if the workflow is satisfied
  *
- * @param <T>
  * @author Jeremy Unruh
  */
 public class Handle<T> {

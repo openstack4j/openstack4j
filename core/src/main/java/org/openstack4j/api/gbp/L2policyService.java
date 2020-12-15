@@ -23,7 +23,6 @@ public interface L2policyService {
      * Returns list of l2 policies filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends L2Policy> list(Map<String, String> filteringParams);
 

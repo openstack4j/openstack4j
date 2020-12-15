@@ -37,8 +37,6 @@ public class CustomEndpointURLResolverTest extends AbstractTest {
      * This test verifies the default logic to retrieve the endpoint URL is
      * still working. Internally it will generate the endpoint included in the
      * security token.
-     *
-     * @throws IOException
      */
     public void defaultImplementation_Test() throws IOException {
         // create a default session containing the default Config object
@@ -54,8 +52,6 @@ public class CustomEndpointURLResolverTest extends AbstractTest {
     /**
      * This test validates the custom url endpoint resolver is used when it has
      * been configured in the Config class.
-     *
-     * @throws IOException
      */
     public void customImplementation_Test() throws IOException {
         // create the default session
@@ -76,9 +72,6 @@ public class CustomEndpointURLResolverTest extends AbstractTest {
 
     /**
      * Creates a V3 client using the default testing methods.
-     *
-     * @return
-     * @throws IOException
      */
     private OSClientSessionV2 getDefaultSession() throws IOException {
         respondWith(JSON_ACCESS);
@@ -88,9 +81,6 @@ public class CustomEndpointURLResolverTest extends AbstractTest {
     /**
      * Creates a custom V3 client based on the default logic, but customizing
      * the Config by explicitely specifying the endpoint URL to use
-     *
-     * @return
-     * @throws IOException
      */
     private OSClientSessionV2 getCustomConfigSession() throws IOException {
         final OSClientSessionV2 origSession = getDefaultSession();

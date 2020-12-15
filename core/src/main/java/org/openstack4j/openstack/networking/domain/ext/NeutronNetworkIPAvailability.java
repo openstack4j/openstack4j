@@ -49,7 +49,7 @@ public class NeutronNetworkIPAvailability implements NetworkIPAvailability {
     }
 
     public NeutronNetworkIPAvailability(String networkName, String networkId, String tenantId, String projectId, BigInteger usedIps,
-                                        BigInteger totalIps, List<NeutronSubnetIPAvailability> subnetIPAvailabilities) {
+            BigInteger totalIps, List<NeutronSubnetIPAvailability> subnetIPAvailabilities) {
         this.networkName = networkName;
         this.networkId = networkId;
         this.tenantId = tenantId;

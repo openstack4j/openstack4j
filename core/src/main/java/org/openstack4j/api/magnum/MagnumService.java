@@ -30,24 +30,17 @@ public interface MagnumService extends RestService {
 
     /**
      * Creates a new baymodel
-     *
-     * @param baymodel
-     * @return
      */
     Baymodel createBaymodel(Baymodel baymodel);
 
     /**
      * Deletes a baymodel
-     *
-     * @param id
-     * @return
      */
     ActionResponse deleteBaymodel(String id);
 
     /**
      * Gets all information of a baymodel
      *
-     * @param id
      * @return baymodel information
      */
     Baymodel showBaymodel(String id);
@@ -55,8 +48,6 @@ public interface MagnumService extends RestService {
     /**
      * Updates baymodel attributes
      *
-     * @param id
-     * @param operations
      * @return updated baymodel
      */
     Baymodel updateBaymodel(String id, String operations);
@@ -71,33 +62,24 @@ public interface MagnumService extends RestService {
     /**
      * Creates a new bay
      *
-     * @param bay
      * @return newly created bay
      */
     Bay createBay(Bay bay);
 
     /**
      * Deletes a bay
-     *
-     * @param id
-     * @return
      */
     ActionResponse deleteBay(String id);
 
     /**
      * Show a bay
      *
-     * @param id
      * @return bay
      */
     Bay showBay(String id);
 
     /**
      * Update bay
-     *
-     * @param id
-     * @param operations
-     * @return
      */
     Bay updateBay(String id, String operations);
 
@@ -113,7 +95,6 @@ public interface MagnumService extends RestService {
     /**
      * Creates a new Container
      *
-     * @param baymodel
      * @return newly created Container
      */
     Container createContainer(Container container);
@@ -121,7 +102,6 @@ public interface MagnumService extends RestService {
     /**
      * Deletes a Container
      *
-     * @param id
      * @return success/failure response
      */
     ActionResponse deleteContainer(String uuid);
@@ -129,8 +109,6 @@ public interface MagnumService extends RestService {
     /**
      * Execute command in a Container
      *
-     * @param id
-     * @param cmd
      * @return output of the command
      */
     String execCmdInContainer(String id, String cmd);
@@ -138,7 +116,6 @@ public interface MagnumService extends RestService {
     /**
      * Get logs of a Container
      *
-     * @param id
      * @return logs
      */
     String getContainerLogs(String id);
@@ -146,7 +123,6 @@ public interface MagnumService extends RestService {
     /**
      * Pause a Container
      *
-     * @param id
      * @return paused Container
      */
     Container pauseContainer(String id);
@@ -154,7 +130,6 @@ public interface MagnumService extends RestService {
     /**
      * Unpause a Container
      *
-     * @param id
      * @return paused Container
      */
     Container unpauseContainer(String id);
@@ -162,7 +137,6 @@ public interface MagnumService extends RestService {
     /**
      * Reboot a Container
      *
-     * @param id
      * @return rebooted Container
      */
     Container rebootContainer(String id);
@@ -170,7 +144,6 @@ public interface MagnumService extends RestService {
     /**
      * Start a Container
      *
-     * @param id
      * @return Container
      */
     Container startContainer(String id);
@@ -178,7 +151,6 @@ public interface MagnumService extends RestService {
     /**
      * Stop a Container
      *
-     * @param id
      * @return Container
      */
     Container stopContainer(String id);
@@ -186,17 +158,12 @@ public interface MagnumService extends RestService {
     /**
      * Show a Container
      *
-     * @param id
      * @return Container
      */
     Container showContainer(String id);
 
     /**
      * Update a container
-     *
-     * @param id
-     * @param operations
-     * @return
      */
     Container updateContainer(String id, String operations);
 
@@ -229,16 +196,11 @@ public interface MagnumService extends RestService {
 
     /**
      * Create new cluster based on cluster template
-     *
-     * @param cluster
-     * @return
      */
     Cluster createCluster(Cluster cluster);
 
     /**
      * List all clusters
-     *
-     * @return
      */
     List<? extends Cluster> listClusters();
 
@@ -264,8 +226,6 @@ public interface MagnumService extends RestService {
      * The attributes to ``add`` and
      * ``replace`` in the form of ``key=value`` while ``remove`` only needs the keys.
      *
-     * @param id
-     * @param operations
      * @return updated cluster
      */
     Cluster updateCluster(String id, String operations);
@@ -275,7 +235,6 @@ public interface MagnumService extends RestService {
     /**
      * Create new cluster template
      *
-     * @param template
      * @return newly created cluster template
      */
     Clustertemplate createClustertemplate(Clustertemplate template);
@@ -317,7 +276,6 @@ public interface MagnumService extends RestService {
     /**
      * Create a pod
      *
-     * @param pod
      * @return pod
      */
     Pod createPod(Pod pod);
@@ -325,8 +283,6 @@ public interface MagnumService extends RestService {
     /**
      * Delete a pod
      *
-     * @param bayUuid
-     * @param id
      * @return status
      */
     ActionResponse deletePod(String bayUuid, String id);
@@ -334,8 +290,6 @@ public interface MagnumService extends RestService {
     /**
      * Show a pod
      *
-     * @param bayUuid
-     * @param id
      * @return pod
      */
     Pod showPod(String bayUuid, String id);
@@ -343,8 +297,6 @@ public interface MagnumService extends RestService {
     /**
      * Update a pod
      *
-     * @param bayUuid
-     * @param id
      * @return pod
      */
     Pod updatePod(String bayUuid, String id, String operations);

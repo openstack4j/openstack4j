@@ -38,8 +38,6 @@ public class NovaHostAggregate implements HostAggregate {
     /**
      * Used internally by the domain side of the API to create a new HostAggregate on an OpenStack server
      *
-     * @param name
-     * @param availabilityZone
      * @return NovaHostAggregate
      */
     public static NovaHostAggregate create(String name, String availabilityZone) {

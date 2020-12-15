@@ -11,7 +11,6 @@ public interface ContainerCreateBuilder extends Buildable.Builder<ContainerCreat
      * Optional.
      *
      * @param name Human readable name for identifying your container.
-     * @return
      */
     ContainerCreateBuilder name(String name);
 
@@ -19,7 +18,6 @@ public interface ContainerCreateBuilder extends Buildable.Builder<ContainerCreat
      * Required.
      *
      * @param type Type of container. Options: generic, rsa, certificate
-     * @return
      */
     ContainerCreateBuilder type(String type);
 
@@ -27,7 +25,6 @@ public interface ContainerCreateBuilder extends Buildable.Builder<ContainerCreat
      * Required.
      *
      * @param references A list of dictionaries containing references to secrets
-     * @return
      */
     ContainerCreateBuilder secretReferences(List<? extends ContainerSecret> references);
 }

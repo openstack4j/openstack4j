@@ -18,7 +18,6 @@ public interface PolicyRuleSetService {
      * Returns list of policy rule set filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends PolicyRuleSet> list(Map<String, String> filteringParams);
 

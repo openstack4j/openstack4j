@@ -31,8 +31,6 @@ public class ServicesServiceImpl extends BaseComputeServices implements Services
      * Returns list of compute services filtered by parameters.
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @param filteringParams
-     * @return
      * @Title: list
      * @see org.openstack4j.api.compute.ServicesService#list(java.util.Map)
      */
@@ -51,9 +49,6 @@ public class ServicesServiceImpl extends BaseComputeServices implements Services
      * Enables a compute services.
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @param binary
-     * @param host
-     * @return
      * @Title: enableService
      * @see org.openstack4j.api.compute.ServicesService#enableService(java.lang.String, java.lang.String)
      */
@@ -69,9 +64,6 @@ public class ServicesServiceImpl extends BaseComputeServices implements Services
      * Disables a compute service.
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @param binary
-     * @param host
-     * @return
      * @Title: disableService
      * @see org.openstack4j.api.compute.ServicesService#disableService(java.lang.String, java.lang.String)
      */

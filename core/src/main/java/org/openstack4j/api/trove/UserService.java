@@ -19,7 +19,6 @@ public interface UserService {
     /**
      * Returns list of all users for the database instance
      *
-     * @param instanceId
      * @return the list of users for the database instance
      */
     List<? extends DatabaseUser> list(String instanceId);
@@ -27,8 +26,6 @@ public interface UserService {
     /**
      * Returns list of all databases which the user has access to on the database instance
      *
-     * @param instanceId
-     * @param userName
      * @return the list of databases for a user
      */
     List<? extends Database> listUserDatabases(String instanceId, String userName);
@@ -36,8 +33,6 @@ public interface UserService {
     /**
      * Create a user for the database instance
      *
-     * @param instanceId
-     * @param databaseUsers
      * @return the action response
      */
     ActionResponse create(String instanceId, DatabaseUsers databaseUsers);
@@ -45,8 +40,6 @@ public interface UserService {
     /**
      * Deletes a user for the database instance
      *
-     * @param instanceId
-     * @param userName
      * @return the action response
      */
     ActionResponse delete(String instanceId, String userName);
@@ -54,9 +47,6 @@ public interface UserService {
     /**
      * Grant user access to a database on the database instance
      *
-     * @param instanceId
-     * @param userName
-     * @param databases
      * @return the action response
      */
     ActionResponse grantUserDBAccess(String instanceId, String userName, Databases databases);
@@ -64,9 +54,6 @@ public interface UserService {
     /**
      * Revoke user access to a database on the database instance
      *
-     * @param instanceId
-     * @param userName
-     * @param dbName
      * @return the action response
      */
     ActionResponse revokeUserDBAccess(String instanceId, String userName, String dbName);

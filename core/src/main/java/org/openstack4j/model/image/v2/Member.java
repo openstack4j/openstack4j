@@ -54,8 +54,6 @@ public interface Member extends ModelEntity {
 
     /**
      * The json schema for the member object
-     *
-     * @return
      */
     String getSchema();
 

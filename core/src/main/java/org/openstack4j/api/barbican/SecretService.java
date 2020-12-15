@@ -30,25 +30,16 @@ public interface SecretService {
 
     /**
      * Get a specified secret by its ID.
-     *
-     * @param secretId
-     * @return
      */
     Secret get(final String secretId);
 
     /**
      * Delete a specified secret by its ID.
-     *
-     * @param secretId
-     * @return
      */
     ActionResponse delete(final String secretId);
 
     /**
      * Create a secret.
-     *
-     * @param secret
-     * @return
      */
     Secret create(final Secret secret);
 }

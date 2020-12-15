@@ -12,17 +12,11 @@ public interface ResourceHealthBuilder extends Buildable.Builder<ResourceHealthB
 
     /**
      * Set the unhealthy status of the resource.
-     *
-     * @param markUnhealthy
-     * @return
      */
     ResourceHealthBuilder markUnhealthy(boolean markUnhealthy);
 
     /**
      * Set the resource status reason on the resource.
-     *
-     * @param resourceStatusReason
-     * @return
      */
     ResourceHealthBuilder resourceStatusReason(String resourceStatusReason);
 }

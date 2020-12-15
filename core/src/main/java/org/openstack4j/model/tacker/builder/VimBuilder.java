@@ -24,31 +24,26 @@ public interface VimBuilder extends Builder<VimBuilder, Vim> {
     VimBuilder description(String description);
 
     /**
-     * @param authUrl
      * @return VimBuilder
      */
     VimBuilder authUrl(String authUrl);
 
     /**
-     * @param vimProject
      * @return VimBuilder
      */
     VimBuilder vimProject(VimProject vimProject);
 
     /**
-     * @param authCredentials
      * @return VimBuilder
      */
     VimBuilder authCredentials(AuthCredentials authCredentials);
 
     /**
-     * @param isDefault
      * @return VimBuilder
      */
     VimBuilder isDefault(Boolean isDefault);
 
     /**
-     * @param type
      * @return VimBuilder
      */
     VimBuilder type(String type);

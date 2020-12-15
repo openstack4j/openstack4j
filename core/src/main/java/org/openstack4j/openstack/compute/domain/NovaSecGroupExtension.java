@@ -37,7 +37,6 @@ public class NovaSecGroupExtension implements SecGroupExtension {
      *
      * @param name name of the security group
      * @param description description of the security group
-     * @return
      */
     public static NovaSecGroupExtension create(String name, String description) {
         NovaSecGroupExtension sg = new NovaSecGroupExtension();

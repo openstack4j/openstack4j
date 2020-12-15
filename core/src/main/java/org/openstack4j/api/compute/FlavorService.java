@@ -63,7 +63,6 @@ public interface FlavorService extends RestService {
     /**
      * list extra specs
      *
-     * @param flavorId
      * @return all extra specs for this flavor
      */
     Map<String, String> listExtraSpecs(String flavorId);
@@ -73,25 +72,18 @@ public interface FlavorService extends RestService {
      * extra spec created. openstack provides one api to support both create and
      * update extra spec
      *
-     * @param flavorId
-     * @param spec
      * @return spec
      */
     Map<String, String> createAndUpdateExtraSpecs(String flavorId, Map<String, String> spec);
 
     /**
      * delete the extra spec with the key and flavorId
-     *
-     * @param flavorId
-     * @param key
      */
     void deleteExtraSpecs(String flavorId, String key);
 
     /**
      * get the extra spec's value by the key
      *
-     * @param flavorId
-     * @param key
      * @return value
      */
     String getSpec(String flavorId, String key);
@@ -99,7 +91,6 @@ public interface FlavorService extends RestService {
     /**
      * List tenants with access to private flavor
      *
-     * @param flavorId
      * @return List tenants with access to private flavor
      */
     List<? extends FlavorAccess> listFlavorAccess(String flavorId);
@@ -107,8 +98,6 @@ public interface FlavorService extends RestService {
     /**
      * Add access to private flavor
      *
-     * @param flavorId
-     * @param tenantId
      * @return List tenants with access to private flavor
      */
     List<? extends FlavorAccess> addTenantAccess(String flavorId, String tenantId);
@@ -116,8 +105,6 @@ public interface FlavorService extends RestService {
     /**
      * Delete access from private flavor
      *
-     * @param flavorId
-     * @param tenantId
      * @return List tenants with access to private flavor
      */
     List<? extends FlavorAccess> removeTenantAccess(String flavorId, String tenantId);
@@ -127,23 +114,16 @@ public interface FlavorService extends RestService {
      *
      * @param detail is detailed
      * @param filteringParams parameters affect the response data,availbed are:sort_key,sort_dir,limit,marker,minDisk,minRam,is_public
-     * @return
      */
     List<? extends Flavor> list(boolean detail, Map<String, String> filteringParams);
 
     /**
      * list flavors with detailed
-     *
-     * @param filteringParams
-     * @return
      */
     List<? extends Flavor> list(Map<String, String> filteringParams);
 
     /**
      * list flavors with non filtering parameters
-     *
-     * @param detail
-     * @return
      */
     List<? extends Flavor> list(boolean detail);
 

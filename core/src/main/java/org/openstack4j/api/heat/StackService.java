@@ -48,7 +48,7 @@ public interface StackService {
      * @return new {@link Stack} as returned from the server
      */
     Stack create(String name, String template, Map<String, String> parameters,
-                 boolean disableRollback, Long timeOutMins);
+            boolean disableRollback, Long timeOutMins);
 
     /**
      * returns details of a {@link Stack}.
@@ -78,7 +78,6 @@ public interface StackService {
      *
      * @param stackName Name of {@link Stack}
      * @param stackId Id of {@link Stack}
-     * @return
      */
     Stack getDetails(String stackName, String stackId);
 
@@ -108,8 +107,7 @@ public interface StackService {
      * @param disableRollback Enable or disable rollback
      * @param timeOutMins Timeout in minutes
      * @param template Template in Json-Format or YAML format. It is optional, used just in case there will be new resources (not included in adoptStackData)
-     * @return
      */
     Stack adopt(AdoptStackData adoptStackData, Map<String, String> parameters,
-                boolean disableRollback, Long timeOutMins, String template);
+            boolean disableRollback, Long timeOutMins, String template);
 }

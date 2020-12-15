@@ -25,7 +25,6 @@ public interface HealthMonitorService extends RestService {
      * Returns list of healthMonitor filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends HealthMonitor> list(Map<String, String> filteringParams);
 
@@ -49,7 +48,6 @@ public interface HealthMonitorService extends RestService {
     /**
      * Create a healthMonitor
      *
-     * @param healthMonitor
      * @return HealthMonitor
      */
     HealthMonitor create(HealthMonitor healthMonitor);

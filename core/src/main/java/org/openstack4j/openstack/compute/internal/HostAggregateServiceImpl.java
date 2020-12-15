@@ -82,7 +82,7 @@ public class HostAggregateServiceImpl extends BaseComputeServices implements
      */
     @Override
     public HostAggregate update(String hostAggregateId, String name,
-                                @Nullable String availabilityZone) {
+            @Nullable String availabilityZone) {
         checkNotNull(hostAggregateId);
         checkNotNull(name);
         return put(NovaHostAggregate.class, uri("/os-aggregates/%s", hostAggregateId)).entity(new NovaHostAggregateUpdate(name, availabilityZone)).execute();

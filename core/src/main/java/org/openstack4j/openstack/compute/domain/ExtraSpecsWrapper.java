@@ -27,7 +27,6 @@ public class ExtraSpecsWrapper implements ModelEntity {
     /**
      * Wraps the given extraSpecs into the wrapper
      *
-     * @param extraSpecs
      * @return extraSpecs wrapper
      */
     public static ExtraSpecsWrapper wrap(Map<String, String> extraSpecs) {

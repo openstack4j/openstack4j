@@ -23,7 +23,6 @@ public interface DatastoreService {
     /**
      * Gets a datastore specified by ID
      *
-     * @param id
      * @return the datastore or null if not found
      */
     Datastore get(String id);
@@ -31,7 +30,6 @@ public interface DatastoreService {
     /**
      * Returns list of all datastore versions
      *
-     * @param datasoreId
      * @return list of datastore versions
      */
     List<? extends DatastoreVersion> listDatastoreVersions(String datasoreId);
@@ -39,8 +37,6 @@ public interface DatastoreService {
     /**
      * Get the datastore version specified by ID
      *
-     * @param datastoreId
-     * @param versionId
      * @return the datastore version or null if not found
      */
     DatastoreVersion getDatastoreVersion(String datastoreId, String versionId);

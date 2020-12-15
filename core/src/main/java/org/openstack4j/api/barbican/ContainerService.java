@@ -28,25 +28,16 @@ public interface ContainerService {
 
     /**
      * Get the specified container by ID
-     *
-     * @param containerId
-     * @return
      */
     Container get(final String containerId);
 
     /**
      * Delete the specified container by ID
-     *
-     * @param containerId
-     * @return
      */
     ActionResponse delete(final String containerId);
 
     /**
      * Create a container.
-     *
-     * @param container
-     * @return
      */
     Container create(final Container container);
 }

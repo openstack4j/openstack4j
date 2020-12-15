@@ -68,37 +68,31 @@ public interface FlowClassifierBuilder extends Builder<FlowClassifierBuilder, Fl
     FlowClassifierBuilder destinationPortRangeMax(Integer destinationPortRangeMax);
 
     /**
-     * @param sourceIpPrefix
      * @return FlowClassifierBuilder
      */
     FlowClassifierBuilder sourceIpPrefix(String sourceIpPrefix);
 
     /**
-     * @param destinationIpPrefix
      * @return FlowClassifierBuilder
      */
     FlowClassifierBuilder destinationIpPrefix(String destinationIpPrefix);
 
     /**
-     * @param logicalSourcePort
      * @return FlowClassifierBuilder
      */
     FlowClassifierBuilder logicalSourcePort(String logicalSourcePort);
 
     /**
-     * @param logicalDestinationPort
      * @return FlowClassifierBuilder
      */
     FlowClassifierBuilder logicalDestinationPort(String logicalDestinationPort);
 
     /**
-     * @param l7Parameters
      * @return FlowClassifierBuilder
      */
     FlowClassifierBuilder l7Parameters(Map<String, String> l7Parameters);
 
     /**
-     * @param ethertype
      * @return FlowClassifierBuilder
      */
     FlowClassifierBuilder ethertype(Ethertype ethertype);

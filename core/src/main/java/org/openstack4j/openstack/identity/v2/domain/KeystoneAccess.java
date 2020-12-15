@@ -90,8 +90,6 @@ public class KeystoneAccess implements Access {
 
     /**
      * ONLY used for unit tests
-     *
-     * @param endpoint
      */
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;

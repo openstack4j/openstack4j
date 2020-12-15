@@ -22,7 +22,6 @@ public interface InstanceFlavorService {
     /**
      * Get the instance flavor specified by ID
      *
-     * @param id
      * @return the flavor or null if not found
      */
     Flavor get(String id);

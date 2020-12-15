@@ -41,7 +41,7 @@ public class NeutronSubnetIPAvailability implements SubnetIPAvailability {
     }
 
     public NeutronSubnetIPAvailability(BigInteger usedIps, BigInteger totalIps, String subnetId, String subnetName,
-                                       IPVersionType ipVersion, String cidr) {
+            IPVersionType ipVersion, String cidr) {
         this.usedIps = usedIps;
         this.totalIps = totalIps;
         this.subnetId = subnetId;

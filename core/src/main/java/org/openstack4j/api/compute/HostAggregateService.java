@@ -25,7 +25,6 @@ public interface HostAggregateService extends RestService {
      * Returns list of Aggregates filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends HostAggregate> list(Map<String, String> filteringParams);
 
@@ -49,8 +48,6 @@ public interface HostAggregateService extends RestService {
     /**
      * Create a hostAggregate
      *
-     * @param name
-     * @param availabilityZone
      * @return HostAggregate
      */
     HostAggregate create(String name, String availabilityZone);
@@ -59,8 +56,6 @@ public interface HostAggregateService extends RestService {
      * Updates the name, and optionally the availability zone, for a specified aggregate.
      *
      * @param hostAggregateId the aggregate identifier
-     * @param name
-     * @param availabilityZone
      * @return HostAggregate
      */
     HostAggregate update(String hostAggregateId, String name, String availabilityZone);
@@ -69,7 +64,6 @@ public interface HostAggregateService extends RestService {
      * Sets metadata for an aggregate.
      *
      * @param hostAggregateId the aggregate identifier
-     * @param metadata
      * @return HostAggregate
      */
     HostAggregate setMetadata(String hostAggregateId, Map<String, String> metadata);

@@ -55,7 +55,6 @@ public interface StackUpdateBuilder extends Buildable.Builder<StackUpdateBuilder
     /**
      * Set the tags for the stack, separated by a comma.
      *
-     * @param tags
      * @return StackUpdateBuilder
      */
     StackUpdateBuilder tags(String tags);

@@ -25,7 +25,6 @@ public interface BlockVolumeSnapshotService extends RestService {
      * Returns list of Block Storage snapshots filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends VolumeSnapshot> list(Map<String, String> filteringParams);
 

@@ -23,7 +23,6 @@ public interface ExternalSegmentService {
      * Returns list of external segments filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends ExternalSegment> list(Map<String, String> filteringParams);
 

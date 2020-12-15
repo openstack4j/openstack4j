@@ -37,7 +37,6 @@ public interface ImageService extends RestService {
      * * Returns list of public VM images filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends Image> list(Map<String, String> filteringParams);
 
@@ -52,7 +51,6 @@ public interface ImageService extends RestService {
      * * Returns list of public VM images filtered by parameters when the result greater than the default page size defined by openstack
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends Image> listAll(Map<String, String> filteringParams);
 
@@ -116,7 +114,6 @@ public interface ImageService extends RestService {
      * @param imageId the image identifier of the previously reserved image
      * @param payload the playload to upload
      * @param image the optional Image which will be used to update meta data during this transaction
-     * @return
      */
     Image upload(String imageId, Payload<?> payload, @Nullable Image image);
 

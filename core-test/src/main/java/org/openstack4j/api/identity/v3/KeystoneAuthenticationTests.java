@@ -57,8 +57,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates with userId+password++projectId
-     *
-     * @throws Exception
      */
     public void authenticate_userId_password_projectId_Test() throws Exception {
 
@@ -78,8 +76,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates with userId+password+projectId+projectDomainId
-     *
-     * @throws Exception
      */
     public void authenticate_userId_password_projectId_projectDomainId_Test() throws Exception {
 
@@ -99,8 +95,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates with userName+password+projectId+projectDomainId
-     *
-     * @throws Exception
      */
     public void authenticate_userName_password_projectId_projectDomainId_Test() throws Exception {
 
@@ -119,8 +113,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates with userId+password+domainId
-     *
-     * @throws Exception
      */
     public void authenticate_userId_password_domainId_Test() throws Exception {
 
@@ -140,8 +132,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates with userName+password+domainId
-     *
-     * @throws Exception
      */
     public void authenticate_userName_password_domainId_Test() throws Exception {
 
@@ -161,8 +151,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates with userId+password+domainName
-     *
-     * @throws Exception
      */
     public void authenticate_userId_password_domainName_Test() throws Exception {
 
@@ -182,8 +170,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates with a token
-     *
-     * @throws Exception
      */
     public void auth_Token_Test() throws Exception {
 
@@ -214,8 +200,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * get an unscoped token, then reauthenticate with it
-     *
-     * @throws Exception
      */
     public void authenticate_userId_password_unscoped_reauthenticate_Test() throws Exception {
 
@@ -253,8 +237,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * get an unscoped token, then use it to get a scoped token
-     *
-     * @throws Exception
      */
     public void authenticate_userId_password_unscopedTokenToScopedToken_Test() throws Exception {
 
@@ -283,8 +265,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * authenticates in another existing region
-     *
-     * @throws Exception
      */
     @Test(priority = -1)
     public void authenticate_userId_password_domain_region_Test() throws Exception {
@@ -303,8 +283,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * attempt authenticate in a non-existing region results in an RegionEndpointNotFoundException
-     *
-     * @throws Exception
      */
     @Test(expectedExceptions = {RegionEndpointNotFoundException.class})
     public void authenticate_userId_password_domain_regionInvalid_Test() throws Exception {
@@ -321,8 +299,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     /**
      * reAuthenticate after authorizationError e.g. the token expired
-     *
-     * @throws Exception
      */
     public void reAuthentication_Test() throws Exception {
 

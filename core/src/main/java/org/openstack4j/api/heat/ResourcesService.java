@@ -64,20 +64,11 @@ public interface ResourcesService {
 
     /**
      * Signals a resource
-     *
-     * @param stackName
-     * @param stackId
-     * @param resourceName
      */
     ActionResponse signal(String stackName, String stackId, String resourceName);
 
     /**
      * Marks a resource unhealthy
-     *
-     * @param stackName
-     * @param stackId
-     * @param resourceName
-     * @param resourceHealth
      */
     ActionResponse markUnhealthy(String stackName, String stackId, String resourceName, ResourceHealth resourceHealth);
 

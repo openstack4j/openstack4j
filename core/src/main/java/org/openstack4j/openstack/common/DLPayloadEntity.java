@@ -42,7 +42,7 @@ public class DLPayloadEntity implements DLPayload {
     public void writeToFile(File file) throws IOException {
         checkNotNull(file);
         try (InputStream inputStream = response.getInputStream();
-             FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+                FileOutputStream fileOutputStream = new FileOutputStream(file)) {
             ByteStreams.copy(inputStream, fileOutputStream);
         }
     }

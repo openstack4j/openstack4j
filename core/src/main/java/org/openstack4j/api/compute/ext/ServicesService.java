@@ -26,7 +26,6 @@ public interface ServicesService {
      * Returns list of compute services filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      * @author Wang Ting/王婷
      */
     List<? extends Service> list(Map<String, String> filteringParams);

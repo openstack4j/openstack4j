@@ -24,7 +24,6 @@ public interface GroupService {
      * Returns list of policy target group filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends PolicyTargetGroup> list(Map<String, String> filteringParams);
 

@@ -22,7 +22,6 @@ public interface PortPairGroupService {
     /**
      * Get a port pair group by id.
      *
-     * @param id
      * @return PortPairGroup
      */
     PortPairGroup get(String id);
@@ -30,8 +29,6 @@ public interface PortPairGroupService {
     /**
      * Update a port pair group with the given id to match the given update object
      *
-     * @param id
-     * @param portPairGroup
      * @return PortPairGroup
      */
     PortPairGroup update(String portPairGroupId, PortPairGroup portPairGroup);
@@ -39,7 +36,6 @@ public interface PortPairGroupService {
     /**
      * Create a port pair group
      *
-     * @param portPairGroup
      * @return portPairGroup : object actually created
      */
     PortPairGroup create(PortPairGroup portPairGroup);
@@ -47,7 +43,6 @@ public interface PortPairGroupService {
     /**
      * Delete a port pair group
      *
-     * @param portPairGroupId
      * @return the action response
      */
     ActionResponse delete(String portPairGroupId);

@@ -56,8 +56,8 @@ public class NeutronSubnet implements Subnet {
     }
 
     public NeutronSubnet(String id, String name, boolean enableDHCP, String networkId, String tenantId, List<String> dnsNames,
-                         List<NeutronPool> pools, List<NeutronHostRoute> hostRoutes, IPVersionType ipVersion,
-                         String gateway, String cidr, Ipv6AddressMode ipv6AddressMode, Ipv6RaMode ipv6RaMode) {
+            List<NeutronPool> pools, List<NeutronHostRoute> hostRoutes, IPVersionType ipVersion,
+            String gateway, String cidr, Ipv6AddressMode ipv6AddressMode, Ipv6RaMode ipv6RaMode) {
         this.id = id;
         this.name = name;
         this.enableDHCP = enableDHCP;
@@ -293,8 +293,8 @@ public class NeutronSubnet implements Subnet {
         private String gateway;
 
         public NeutronSubnetNoGateway(String id, String name, boolean enableDHCP, String networkId, String tenantId,
-                                      List<String> dnsNames, List<NeutronPool> pools, List<NeutronHostRoute> hostRoutes,
-                                      IPVersionType ipVersion, String cidr, Ipv6AddressMode ipv6AddressMode, Ipv6RaMode ipv6RaMode) {
+                List<String> dnsNames, List<NeutronPool> pools, List<NeutronHostRoute> hostRoutes,
+                IPVersionType ipVersion, String cidr, Ipv6AddressMode ipv6AddressMode, Ipv6RaMode ipv6RaMode) {
             super(id, name, enableDHCP, networkId, tenantId, dnsNames, pools, hostRoutes, ipVersion, null, cidr, ipv6AddressMode, ipv6RaMode);
             this.gateway = null;
         }

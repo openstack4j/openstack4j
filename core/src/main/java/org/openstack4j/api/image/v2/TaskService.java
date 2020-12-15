@@ -24,7 +24,6 @@ public interface TaskService extends RestService {
      * Use these parameters to do pagination as described in
      * http://developer.openstack.org/api-ref/image/v2/index.html#list-tasks
      *
-     * @param filteringParams
      * @return a list of tasks
      */
     List<? extends Task> list(Map<String, String> filteringParams);
@@ -32,7 +31,6 @@ public interface TaskService extends RestService {
     /**
      * Show details for a task.
      *
-     * @param taskId
      * @return a specific task
      */
     Task get(String taskId);

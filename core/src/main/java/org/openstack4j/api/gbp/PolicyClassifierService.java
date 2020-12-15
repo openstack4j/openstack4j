@@ -24,7 +24,6 @@ public interface PolicyClassifierService {
      * Returns list of policy classifier filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends PolicyClassifier> list(Map<String, String> filteringParams);
 

@@ -32,25 +32,21 @@ public interface VnfdBuilder extends Builder<VnfdBuilder, Vnfd> {
     VnfdBuilder description(String description);
 
     /**
-     * @param managementDriver
      * @return VnfdBuilder
      */
     VnfdBuilder managementDriver(String managementDriver);
 
     /**
-     * @param infrastructureDriver
      * @return VnfdBuilder
      */
     VnfdBuilder infrastructureDriver(String infrastructureDriver);
 
     /**
-     * @param attributes
      * @return VnfdBuilder
      */
     VnfdBuilder attributes(VnfdAttributes attributes);
 
     /**
-     * @param serviceTypes
      * @return VnfdBuilder
      */
     VnfdBuilder serviceTypes(List<VnfdServiceTypes> serviceTypes);

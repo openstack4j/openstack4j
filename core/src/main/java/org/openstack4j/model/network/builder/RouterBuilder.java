@@ -69,7 +69,6 @@ public interface RouterBuilder extends Builder<RouterBuilder, Router> {
 
     /**
      * @param distributed:true indicates a distributed router. It is available when dvr extension is enabled.
-     * @return
      */
     RouterBuilder distributed(Boolean distributed);
 }

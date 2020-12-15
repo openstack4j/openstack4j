@@ -72,7 +72,6 @@ public interface LbPoolV2Builder extends Buildable.Builder<LbPoolV2Builder, LbPo
      * The listener in which this pool will become the default pool.
      * There can only be on default pool for a listener.
      *
-     * @param listenerId
      * @return LbPoolV2Builder
      */
     LbPoolV2Builder listenerId(String listenerId);
@@ -81,7 +80,6 @@ public interface LbPoolV2Builder extends Buildable.Builder<LbPoolV2Builder, LbPo
      * The load balancer this pool will be provisioned on. A tenant can only create pool on
      * load balancers authorized by policy (e.g. her own load balancers).
      *
-     * @param loadbalancerId
      * @return LbPoolV2Builder
      */
     LbPoolV2Builder loadbalancerId(String loadbalancerId);

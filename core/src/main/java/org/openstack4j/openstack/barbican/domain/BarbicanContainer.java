@@ -181,8 +181,6 @@ public class BarbicanContainer implements Container {
 
         /**
          * {@inheritDoc}
-         *
-         * @param type
          */
         @Override
         public ContainerCreateBuilder type(String type) {

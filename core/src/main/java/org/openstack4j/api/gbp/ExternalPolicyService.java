@@ -26,7 +26,6 @@ public interface ExternalPolicyService extends RestService {
      * Returns list of external policies filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends ExternalPolicy> list(Map<String, String> filteringParams);
 

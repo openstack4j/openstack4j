@@ -173,7 +173,7 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
      */
     @Override
     public VolumeTypeEncryption createVolumeTypeEncryption(String volumeTypeId,
-                                                           VolumeTypeEncryption volumeTypeEncryption) {
+            VolumeTypeEncryption volumeTypeEncryption) {
         checkNotNull(volumeTypeEncryption);
         checkNotNull(volumeTypeId);
         return post(CinderVolumeTypeEncryption.class, uri("/types/%s/encryption", volumeTypeId))
@@ -251,10 +251,6 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
      * You should set instanceId or hostName.
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @param volumeId
-     * @param instanceId
-     * @param mountpoint
-     * @param hostName
      * @return ActionResponse
      */
     @Override
@@ -271,10 +267,6 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
      * <p>Description:Force detach a volume</p>
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @param volumeId
-     * @param initiator
-     * @param attachmentId
-     * @return
      * @Title: forceDetach
      * @see org.openstack4j.api.storage.BlockVolumeService#forceDetach(java.lang.String, java.lang.String, java.lang.String)
      */
@@ -291,9 +283,6 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
     /**
      * Detach volume from server
      *
-     * @param volumeId
-     * @param attachmentId
-     * @return
      * @author capitek-xuning（首信科技-徐宁）
      */
     @Override

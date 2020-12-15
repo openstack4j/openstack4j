@@ -34,7 +34,6 @@ public interface SenlinReceiverService {
      * returns details of a {@link Receiver}.
      *
      * @param receiverID Id of {@link Receiver}
-     * @return
      */
     Receiver get(String receiverID);
 

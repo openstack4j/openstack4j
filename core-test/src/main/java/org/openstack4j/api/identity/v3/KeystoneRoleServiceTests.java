@@ -98,8 +98,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
 
     /**
      * checks if a user has a role in project context
-     *
-     * @throws Exception
      */
     public void checkProjectUserRole_success_Test() throws Exception {
 
@@ -114,8 +112,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
 
     /**
      * checks if a user has a role in domain context
-     *
-     * @throws Exception
      */
     @Test(enabled = false)
     public void checkProjectUserRole_fail_Test() throws Exception {
@@ -130,8 +126,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
 
     /**
      * grants and revokes a role to/from a user in project context
-     *
-     * @throws Exception
      */
     public void grantRevokeProjectUserRole_Test() throws Exception {
 
@@ -150,8 +144,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
     /**
      * try to grant a project role to a user using role that doesn't exist
      * results in failing ActionResponse
-     *
-     * @throws Exception
      */
     public void grantProjectUserRole_fail_Test() throws Exception {
 
@@ -166,8 +158,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
     /**
      * try to revoke a project role from a user that isn't assigned to him
      * results in failing ActionResponse
-     *
-     * @throws Exception
      */
     public void revokeProjectUserRole_fail_Test() throws Exception {
 
@@ -180,8 +170,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
 
     /**
      * checks if a user has a role in domain context
-     *
-     * @throws Exception
      */
     public void checkDomainUserRole_success_Test() throws Exception {
 
@@ -196,8 +184,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
 
     /**
      * checks if a user has a role in domain context
-     *
-     * @throws Exception
      */
     @Test(enabled = false)
     public void checkDomainUserRole_fail_Test() throws Exception {
@@ -212,8 +198,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
 
     /**
      * grants and revokes a role to/from a user in domain context
-     *
-     * @throws Exception
      */
     public void grantRevokeDomainUserRole_Test() throws Exception {
 
@@ -232,8 +216,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
     /**
      * try to grant a domain role to a user using a role that doesn't exist
      * results in failing ActionResponse
-     *
-     * @throws Exception
      */
     public void grantDomainUserRole_fail_Test() throws Exception {
 
@@ -248,8 +230,6 @@ public class KeystoneRoleServiceTests extends AbstractTest {
     /**
      * try to revoke a domain role from a user that isn't assigned to him
      * results in failing ActionResponse
-     *
-     * @throws Exception
      */
     public void revokeDomainUserRole_fail_Test() throws Exception {
 

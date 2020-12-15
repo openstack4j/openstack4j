@@ -43,8 +43,6 @@ public interface Router extends Resource, Buildable<RouterBuilder> {
 
     /**
      * true indicates a distributed router. It is available when dvr extension is enabled.
-     *
-     * @return
      */
     Boolean getDistributed();
 }

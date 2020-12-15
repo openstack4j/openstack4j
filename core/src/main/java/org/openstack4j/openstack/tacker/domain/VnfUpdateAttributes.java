@@ -21,7 +21,6 @@ public class VnfUpdateAttributes {
     /**
      * User config file or data..
      *
-     * @param config
      * @return VnfUpdateAttributes
      */
     public VnfUpdateAttributes config(String config) {

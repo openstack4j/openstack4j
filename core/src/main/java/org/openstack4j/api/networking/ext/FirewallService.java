@@ -60,7 +60,6 @@ public interface FirewallService extends RestService {
     /**
      * Create a Firewall
      *
-     * @param firewall
      * @return Firewall
      */
     Firewall create(Firewall firewall);

@@ -5,7 +5,6 @@ import com.google.common.base.Function;
 /**
  * HTTP Execution Options
  *
- * @param <R>
  * @author Jeremy Unruh
  */
 public class ExecutionOptions<R> {

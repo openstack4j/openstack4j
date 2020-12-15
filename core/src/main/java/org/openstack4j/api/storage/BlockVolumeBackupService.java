@@ -30,7 +30,6 @@ public interface BlockVolumeBackupService extends RestService {
      * Returns list of Block Storage backups filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends VolumeBackup> list(Map<String, String> filteringParams);
 
@@ -66,7 +65,6 @@ public interface BlockVolumeBackupService extends RestService {
      * @param backupId the backup identifier
      * @param name the volume name
      * @param volumeId the identified of existing volume
-     * @return
      */
     VolumeBackupRestore restore(String backupId, String name, String volumeId);
 
