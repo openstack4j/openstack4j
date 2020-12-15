@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.networking.domain;
 
-import com.google.common.base.MoreObjects;
-import org.openstack4j.model.ModelEntity;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.google.common.base.MoreObjects;
+import org.openstack4j.model.ModelEntity;
 
 /**
  * Neutron Resource Tags Entity

@@ -11,20 +11,20 @@ public enum DBCollation {
     UTF8_GENERAL_CI,
     UTF16_GENERAL_CI,
     UTF32_GENERAL_CI,
-    UNRECOGNIZED
-    ;
-
-    @JsonValue
-    public String value() { return name().toLowerCase(); }
+    UNRECOGNIZED;
 
     @JsonCreator
     public static DBCollation value(String paramType) {
         try {
             return valueOf(paramType.toUpperCase());
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return UNRECOGNIZED;
         }
+    }
+
+    @JsonValue
+    public String value() {
+        return name().toLowerCase();
     }
 
 }

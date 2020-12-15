@@ -6,16 +6,16 @@ import com.google.common.base.Function;
 
 /**
  * A Function which returns one entry from a List or null
- * @author Jeremy Unruh
- * 
+ *
  * @param <T> The return Type
+ * @author Jeremy Unruh
  */
 public class OneOrNull<T> implements Function<List<T>, T> {
 
     public static <T> OneOrNull<T> create() {
         return new OneOrNull<T>();
     }
-     
+
     @Override
     public T apply(List<T> input) {
         if (input != null && input.size() > 0)

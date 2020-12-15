@@ -8,24 +8,20 @@ import com.google.common.collect.Maps;
 public class BaseActionOptions {
 
     private static final String OPT_FMT = "\"%s\": \"%s\"";
-    
-    public interface OptionEnum {
-        String getParam();
-    }
-    
     private Map<OptionEnum, Object> options = Maps.newHashMap();
 
-    protected BaseActionOptions() { }
-    
+    protected BaseActionOptions() {
+    }
+
     protected void add(OptionEnum option, Object value) {
         options.put(option, value);
     }
-    
+
     @SuppressWarnings("unchecked")
     protected <T> T get(OptionEnum option) {
         return (T) options.get(option);
     }
-    
+
     /**
      * @return A JSON String representing this object
      */
@@ -42,5 +38,9 @@ public class BaseActionOptions {
         sb.append("\n}");
         return sb.toString();
     }
-    
+
+    public interface OptionEnum {
+        String getParam();
+    }
+
 }

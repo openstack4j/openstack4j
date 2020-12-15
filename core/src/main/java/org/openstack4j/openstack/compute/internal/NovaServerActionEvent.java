@@ -1,16 +1,14 @@
 package org.openstack4j.openstack.compute.internal;
 
-import org.openstack4j.model.compute.ServerActionEvent;
-import org.openstack4j.model.compute.builder.ServerActionEventBuilder;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.compute.ServerActionEvent;
+import org.openstack4j.model.compute.builder.ServerActionEventBuilder;
 
 /**
  * Events hold information about start_time, finish_time, event and result
  *
  * @author sujit sah
- *
  */
 public class NovaServerActionEvent implements ServerActionEvent {
 
@@ -35,6 +33,13 @@ public class NovaServerActionEvent implements ServerActionEvent {
     }
 
     public NovaServerActionEvent() {
+    }
+
+    /**
+     * @return the event builder
+     */
+    public static ServerActionEventBuilder builder() {
+        return new EventConcreteBuilder();
     }
 
     @Override
@@ -71,14 +76,6 @@ public class NovaServerActionEvent implements ServerActionEvent {
     @Override
     public ServerActionEventBuilder toBuilder() {
         return new EventConcreteBuilder(this);
-    }
-
-    /**
-     *
-     * @return the event builder
-     */
-    public static ServerActionEventBuilder builder() {
-        return new EventConcreteBuilder();
     }
 
     public static class EventConcreteBuilder implements ServerActionEventBuilder {

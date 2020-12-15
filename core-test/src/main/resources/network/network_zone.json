@@ -1,7 +1,9 @@
 {
     "network": {
         "admin_state_up": true,
-        "availability_zone_hints": ["nova"],
+        "availability_zone_hints": [
+            "nova"
+        ],
         "availability_zones": [],
         "id": "4e8e5957-649f-477b-9e5b-f1f75b21c03c",
         "mtu": 0,

@@ -1,11 +1,11 @@
 package org.openstack4j.api.murano.v1;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.murano.v1.domain.Application;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Nikolay Mahotkin.
@@ -24,6 +24,7 @@ public interface MuranoApplicationService extends RestService {
 
     /**
      * Gets services by environmentId
+     *
      * @param environmentId the environment identifier
      * @param path the path identifier
      * @param sessionId the session identifier
@@ -44,7 +45,6 @@ public interface MuranoApplicationService extends RestService {
     Application create(String environmentId, String sessionId, Map<String, Object> data);
 
     /**
-     *
      * @param jsonString raw String containing the apps configuration.
      * @return the list of created services.
      */
@@ -59,6 +59,7 @@ public interface MuranoApplicationService extends RestService {
      * @return create service
      */
     Application update(String environmentId, String sessionId, Map<String, Object> data);
+
     List<? extends Application> update(String environmentId, String sessionId, String jsonString);
 
     /**

@@ -1,17 +1,16 @@
 package org.openstack4j.openstack.manila.domain.actions;
 
-import org.openstack4j.model.ModelEntity;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.openstack4j.model.ModelEntity;
 
 /**
  * Actions to force down/force up manila services
  */
 public class ServiceActions implements ModelEntity {
-    private String binary;
-    private String host;
     @JsonProperty("forced_down")
     public boolean isForcedDown;
+    private String binary;
+    private String host;
 
     private ServiceActions(String binary, String host, boolean isForcedDown) {
         this.binary = binary;

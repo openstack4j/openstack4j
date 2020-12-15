@@ -15,7 +15,7 @@ public interface Group extends ModelEntity, Buildable<GroupBuilder> {
 
     /**
      * Globally unique within the owning domain.
-     * 
+     *
      * @return the id of the group
      */
     String getId();

@@ -1,5 +1,11 @@
 package org.openstack4j.connectors.httpclient;
 
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.http.client.entity.EntityBuilder;
 import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
@@ -11,23 +17,15 @@ import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
 
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Map;
-
 /**
  * HttpCommand is responsible for executing the actual request driven by the
  * HttpExecutor.
- *
- * @param <R>
  */
 public final class HttpCommand<R> {
 
+    HttpUriRequest clientReq;
     private HttpRequest<R> request;
     private CloseableHttpClient client;
-    HttpUriRequest clientReq;
     private int retries;
 
     private HttpCommand(HttpRequest<R> request) {
@@ -37,8 +35,7 @@ public final class HttpCommand<R> {
     /**
      * Creates a new HttpCommand from the given request
      *
-     * @param request
-     *            the request
+     * @param request the request
      * @return the command
      */
     public static <R> HttpCommand<R> create(HttpRequest<R> request) {
@@ -57,26 +54,26 @@ public final class HttpCommand<R> {
         client = HttpClientFactory.INSTANCE.getClient(request.getConfig());
 
         switch (request.getMethod()) {
-        case POST:
-            clientReq = new HttpPost(url);
-            break;
-        case PUT:
-            clientReq = new HttpPut(url);
-            break;
-        case DELETE:
-            clientReq = new HttpDelete(url);
-            break;
-        case HEAD:
-            clientReq = new HttpHead(url);
-            break;
-        case PATCH:
-            clientReq = new HttpPatch(url);
-            break;
-        case GET:
-            clientReq = new HttpGet(url);
-            break;
-        default:
-            throw new IllegalArgumentException("Unsupported http method: " + request.getMethod());
+            case POST:
+                clientReq = new HttpPost(url);
+                break;
+            case PUT:
+                clientReq = new HttpPut(url);
+                break;
+            case DELETE:
+                clientReq = new HttpDelete(url);
+                break;
+            case HEAD:
+                clientReq = new HttpHead(url);
+                break;
+            case PATCH:
+                clientReq = new HttpPatch(url);
+                break;
+            case GET:
+                clientReq = new HttpGet(url);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported http method: " + request.getMethod());
         }
         clientReq.setHeader("Accept", "application/json");
         populateHeaders(request);
@@ -86,7 +83,6 @@ public final class HttpCommand<R> {
      * Executes the command and returns the Response
      *
      * @return the response
-     * @throws Exception
      */
     public CloseableHttpResponse execute() throws Exception {
 

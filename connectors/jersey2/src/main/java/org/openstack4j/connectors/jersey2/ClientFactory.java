@@ -1,5 +1,19 @@
 package org.openstack4j.connectors.jersey2;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.ClientRequestContext;
+import javax.ws.rs.client.ClientRequestFilter;
+import javax.ws.rs.ext.ContextResolver;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.Proxy.Type;
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
@@ -15,20 +29,6 @@ import org.openstack4j.core.transport.Config;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.core.transport.UntrustedSSL;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.client.ClientRequestFilter;
-import javax.ws.rs.ext.ContextResolver;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.Proxy.Type;
-import java.net.URL;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-
 /**
  * A factory for creating a rest Client which is mapped to Jackson for JSON processing.
  *
@@ -38,12 +38,13 @@ class ClientFactory {
 
     private static final CustomContextResolver RESOLVER = new CustomContextResolver();
     private static LoadingCache<Config, Client> CACHE = CacheBuilder.newBuilder()
-                                                                    .expireAfterAccess(20, TimeUnit.MINUTES)
-                                                                    .build(new CacheLoader<Config, Client>() {
-                                                                        @Override
-                                                                        public Client load(Config config) throws Exception {
-                                                                            return buildClientFromConfig(config);
-                                                                        } });
+            .expireAfterAccess(20, TimeUnit.MINUTES)
+            .build(new CacheLoader<Config, Client>() {
+                @Override
+                public Client load(Config config) throws Exception {
+                    return buildClientFromConfig(config);
+                }
+            });
 
     /**
      * Creates or Returns a Client
@@ -67,11 +68,11 @@ class ClientFactory {
         }
 
         ClientBuilder cb = ClientBuilder.newBuilder()
-                            .withConfig(clientConfig)
-                            .property(ClientProperties.SUPPRESS_HTTP_COMPLIANCE_VALIDATION, "true")
-                            .register(JacksonFeature.class)
-                            .register(RESOLVER)
-                            .register(new RequestFilter());
+                .withConfig(clientConfig)
+                .property(ClientProperties.SUPPRESS_HTTP_COMPLIANCE_VALIDATION, "true")
+                .register(JacksonFeature.class)
+                .register(RESOLVER)
+                .register(new RequestFilter());
 
         if (config.getSslContext() != null)
             cb.sslContext(config.getSslContext());
@@ -104,7 +105,8 @@ class ClientFactory {
                 @Override
                 public HttpURLConnection getConnection(URL url) throws IOException {
                     return (HttpURLConnection) url.openConnection(proxy);
-                }});
+                }
+            });
         }
     }
 

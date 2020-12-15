@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.gbp.internal;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.gbp.NetworkPolicyService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.gbp.NetworkServicePolicy;
@@ -7,14 +10,11 @@ import org.openstack4j.openstack.gbp.domain.GbpNetworkServicePolicy;
 import org.openstack4j.openstack.gbp.domain.GbpNetworkServicePolicy.NetworkServicePolicies;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
 
-import java.util.List;
-import java.util.Map;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Network service policy API Implementation
- * 
+ *
  * @author sumit gandhi
  */
 public class NetworkPolicyServiceImpl extends BaseNetworkingServices implements NetworkPolicyService {
@@ -80,7 +80,7 @@ public class NetworkPolicyServiceImpl extends BaseNetworkingServices implements 
      * {@inheritDoc}
      */
     @Override
-    public NetworkServicePolicy update(String gbpServicePolicyId , NetworkServicePolicy gbpServicePolicy) {
+    public NetworkServicePolicy update(String gbpServicePolicyId, NetworkServicePolicy gbpServicePolicy) {
         checkNotNull(gbpServicePolicy);
         checkNotNull(gbpServicePolicyId);
         return put(GbpNetworkServicePolicy.class, uri("/grouppolicy/network_service_policies/%s", gbpServicePolicyId)).

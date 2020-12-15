@@ -11,7 +11,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * This class implements all methods for manipulation of {@link MuranoEnvironment} objects.
  *
  * @author Nikolay Mahotkin
- *
  */
 public class MuranoSessionServiceImpl extends BaseMuranoServices implements MuranoSessionService {
     /**

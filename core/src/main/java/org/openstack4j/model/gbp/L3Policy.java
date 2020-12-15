@@ -9,7 +9,7 @@ import org.openstack4j.model.gbp.builder.L3PolicyBuilder;
 
 /**
  * L3 Policy Model Entity
- * 
+ *
  * @author vinod borole
  */
 public interface L3Policy extends Resource, Buildable<L3PolicyBuilder> {

@@ -28,6 +28,10 @@ public class CeilometerTrait implements Trait {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -36,20 +40,16 @@ public class CeilometerTrait implements Trait {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String getValue() {
         return value;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public void setValue(String value) {

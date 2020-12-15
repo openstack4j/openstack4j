@@ -1,15 +1,16 @@
 package org.openstack4j.openstack.heat.domain;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
-import java.util.Map;
 import org.openstack4j.model.heat.AdoptStackData;
 
 /**
  * This class contains all elements required for the creation of <code>adopt_stack_data</code> element. It is used for stack adoption and as a return value for stack abandoning.
  * It uses Jackson annotation for (de)serialization into JSON.
- * 
+ *
  * @author Ales Kemr
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,27 +19,31 @@ public class HeatAdoptStackData implements AdoptStackData {
 
     @JsonProperty("action")
     private String action;
-    
+
     @JsonProperty("id")
     private String id;
-    
+
     @JsonProperty("name")
     private String name;
-    
+
     @JsonProperty("status")
     private String status;
-    
+
     @JsonProperty("template")
-    private Map<String,Object> template;
-    
+    private Map<String, Object> template;
+
     @JsonProperty("resources")
     private Map<String, Map<String, Object>> resources;
+
+    public static HeatAdoptStackDataBuilder builder() {
+        return new HeatAdoptStackDataBuilder();
+    }
 
     @Override
     public String getAction() {
         return action;
     }
-    
+
     @Override
     public String getId() {
         return id;
@@ -55,7 +60,7 @@ public class HeatAdoptStackData implements AdoptStackData {
     }
 
     @Override
-    public Map<String,Object> getTemplate() {
+    public Map<String, Object> getTemplate() {
         return template;
     }
 
@@ -72,10 +77,6 @@ public class HeatAdoptStackData implements AdoptStackData {
                 .add("status", status)
                 .add("resources", resources)
                 .toString();
-    }
-
-    public static HeatAdoptStackDataBuilder builder() {
-        return new HeatAdoptStackDataBuilder();
     }
 
     public static class HeatAdoptStackDataBuilder {
@@ -110,7 +111,7 @@ public class HeatAdoptStackData implements AdoptStackData {
             return this;
         }
 
-        public HeatAdoptStackDataBuilder template(Map<String,Object> template) {
+        public HeatAdoptStackDataBuilder template(Map<String, Object> template) {
             this.model.template = template;
             return this;
         }
@@ -125,5 +126,5 @@ public class HeatAdoptStackData implements AdoptStackData {
         }
     }
 
-    
+
 }

@@ -8,7 +8,7 @@ import org.openstack4j.model.identity.v2.User;
 
 /**
  * Identity User based Operations
- * 
+ *
  * @author Jeremy Unruh
  */
 public interface UserService {
@@ -21,7 +21,8 @@ public interface UserService {
      */
     User get(String userId);
 
-    /**API added by @ Sandeep Kumar Singh
+    /**
+     * API added by @ Sandeep Kumar Singh
      * Gets detailed information about a specified user by name
      *
      * @param userName the user name
@@ -58,6 +59,7 @@ public interface UserService {
 
     /**
      * Creates a User
+     *
      * @param user the user to create
      * @return the newly created user
      */
@@ -69,7 +71,7 @@ public interface UserService {
      * @param userId the user id
      * @return the action response
      */
-     ActionResponse delete(String userId);
+    ActionResponse delete(String userId);
 
     /**
      * Enables/Disables a user by ID
@@ -114,7 +116,7 @@ public interface UserService {
     List<? extends Role> listRoles(User user);
 
     /**
-     * Lists the tenant roles for a specified user. 
+     * Lists the tenant roles for a specified user.
      *
      * @param userId the user id
      * @param tenantId the tenant id

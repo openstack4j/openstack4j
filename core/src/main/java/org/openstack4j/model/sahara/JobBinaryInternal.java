@@ -6,7 +6,7 @@ import org.openstack4j.model.ModelEntity;
 
 /**
  * An Openstack Sahara Job Binary Internal
- * 
+ *
  * @author ekasit.kijsipongse@nectec.or.th
  * @author siwat.pru@outlook.com
  */

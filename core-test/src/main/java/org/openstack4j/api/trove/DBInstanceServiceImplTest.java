@@ -1,16 +1,16 @@
 package org.openstack4j.api.trove;
 
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.trove.Instance;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 
 
-@Test(suiteName="trove/instances")
-public class DBInstanceServiceImplTest extends AbstractTest{
+@Test(suiteName = "trove/instances")
+public class DBInstanceServiceImplTest extends AbstractTest {
 
     private static final String TROVE_INSTANCES = "/trove/instances.json";
 
@@ -20,7 +20,7 @@ public class DBInstanceServiceImplTest extends AbstractTest{
     }
 
     @Test
-    public void testListInstances() throws Exception{
+    public void testListInstances() throws Exception {
         respondWith(TROVE_INSTANCES);
         List<? extends Instance> instances = osv2().trove().instanceService().list();
         assertEquals(1, instances.size());

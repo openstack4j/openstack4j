@@ -1,10 +1,10 @@
 package org.openstack4j.model.manila;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * Access details for a share type.
@@ -20,12 +20,12 @@ public class ShareTypeAccess implements ModelEntity {
     private String projectId;
 
     public String getShareTypeId() {
-            return shareTypeId;
-        }
+        return shareTypeId;
+    }
 
     public String getProjectId() {
-            return projectId;
-        }
+        return projectId;
+    }
 
     public static class ShareTypeAccessList extends ListResult<ShareTypeAccess> {
         private static final long serialVersionUID = 1L;

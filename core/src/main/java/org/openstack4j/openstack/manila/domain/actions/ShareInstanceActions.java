@@ -10,6 +10,14 @@ import org.openstack4j.model.manila.ShareInstance;
  * @author Daniel Gonzalez Nothnagel
  */
 public final class ShareInstanceActions {
+    public static ResetStateAction resetState(ShareInstance.Status status) {
+        return new ResetStateAction(status);
+    }
+
+    public static ForceDeleteAction forceDelete() {
+        return new ForceDeleteAction();
+    }
+
     @JsonRootName("os-reset_status")
     public static class ResetStateAction implements ModelEntity {
         private ShareInstance.Status status;
@@ -24,13 +32,6 @@ public final class ShareInstanceActions {
     }
 
     @JsonRootName("os-force_delete")
-    public static class ForceDeleteAction implements ModelEntity {}
-
-    public static ResetStateAction resetState(ShareInstance.Status status) {
-        return new ResetStateAction(status);
-    }
-
-    public static ForceDeleteAction forceDelete() {
-        return new ForceDeleteAction();
+    public static class ForceDeleteAction implements ModelEntity {
     }
 }

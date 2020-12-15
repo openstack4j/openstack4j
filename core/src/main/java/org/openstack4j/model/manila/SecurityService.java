@@ -1,10 +1,10 @@
 package org.openstack4j.model.manila;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openstack4j.model.ModelEntity;
-
-import java.util.List;
 
 /**
  * A security service stores configuration information for clients for authentication and authorization (AuthN/AuthZ).
@@ -12,20 +12,6 @@ import java.util.List;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface SecurityService extends ModelEntity {
-    enum Type {
-        LDAP, KERBEROS, ACTIVE_DIRECTORY;
-
-        @JsonCreator
-        public static Type value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     /**
      * @return the security service status
      */
@@ -95,4 +81,18 @@ public interface SecurityService extends ModelEntity {
      * @return the share networks this security is added to
      */
     List<String> getShareNetworks();
+
+    enum Type {
+        LDAP, KERBEROS, ACTIVE_DIRECTORY;
+
+        @JsonCreator
+        public static Type value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 }

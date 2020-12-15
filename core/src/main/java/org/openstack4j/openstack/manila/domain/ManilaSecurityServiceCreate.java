@@ -18,6 +18,10 @@ public class ManilaSecurityServiceCreate implements SecurityServiceCreate {
     private String domain;
     private String server;
 
+    public static SecurityServiceCreateBuilder builder() {
+        return new SecurityServiceCreateConcreteBuilder();
+    }
+
     @Override
     public SecurityService.Type getType() {
         return type;
@@ -56,10 +60,6 @@ public class ManilaSecurityServiceCreate implements SecurityServiceCreate {
     @Override
     public String getServer() {
         return server;
-    }
-
-    public static SecurityServiceCreateBuilder builder() {
-        return new SecurityServiceCreateConcreteBuilder();
     }
 
     @Override

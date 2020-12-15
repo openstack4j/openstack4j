@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.manila.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.manila.ExtraSpecs;
 import org.openstack4j.model.manila.ShareType;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * A share type enables you to filter or choose back ends before you create a share.

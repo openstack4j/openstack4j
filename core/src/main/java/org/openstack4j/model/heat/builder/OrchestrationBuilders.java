@@ -35,8 +35,6 @@ public interface OrchestrationBuilders {
 
     /**
      * The builder to create a resource health update
-     *
-     * @return
      */
     public ResourceHealthBuilder resourceHealth();
 

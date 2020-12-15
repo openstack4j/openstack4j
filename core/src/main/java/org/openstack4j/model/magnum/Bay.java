@@ -7,123 +7,123 @@ import org.openstack4j.model.ModelEntity;
 import org.openstack4j.openstack.common.GenericLink;
 
 public interface Bay extends ModelEntity, Buildable<BayBuilder> {
-	/**
-	 * Gets status
-	 * 
-	 * @return status
-	 */
-	String getStatus();
+    /**
+     * Gets status
+     *
+     * @return status
+     */
+    String getStatus();
 
-	/**
-	 * Gets uuid
-	 * 
-	 * @return uuid
-	 */
-	String getUuid();
+    /**
+     * Gets uuid
+     *
+     * @return uuid
+     */
+    String getUuid();
 
-	/**
-	 * Gets links
-	 * 
-	 * @return links
-	 */
-	List<GenericLink> getLinks();
+    /**
+     * Gets links
+     *
+     * @return links
+     */
+    List<GenericLink> getLinks();
 
-	/**
-	 * Gets stackId
-	 * 
-	 * @return stackId
-	 */
-	String getStackId();
+    /**
+     * Gets stackId
+     *
+     * @return stackId
+     */
+    String getStackId();
 
-	/**
-	 * Gets createdAt
-	 * 
-	 * @return createdAt
-	 */
-	String getCreatedAt();
+    /**
+     * Gets createdAt
+     *
+     * @return createdAt
+     */
+    String getCreatedAt();
 
-	/**
-	 * Gets apiAddress
-	 * 
-	 * @return apiAddress
-	 */
-	String getApiAddress();
+    /**
+     * Gets apiAddress
+     *
+     * @return apiAddress
+     */
+    String getApiAddress();
 
-	/**
-	 * Gets discoveryUrl
-	 * 
-	 * @return discoveryUrl
-	 */
-	String getDiscoveryUrl();
+    /**
+     * Gets discoveryUrl
+     *
+     * @return discoveryUrl
+     */
+    String getDiscoveryUrl();
 
-	/**
-	 * Gets updatedAt
-	 * 
-	 * @return updatedAt
-	 */
-	String getUpdatedAt();
+    /**
+     * Gets updatedAt
+     *
+     * @return updatedAt
+     */
+    String getUpdatedAt();
 
-	/**
-	 * Gets masterCount
-	 * 
-	 * @return masterCount
-	 */
-	Integer getMasterCount();
+    /**
+     * Gets masterCount
+     *
+     * @return masterCount
+     */
+    Integer getMasterCount();
 
-	/**
-	 * Gets coeVersion
-	 * 
-	 * @return coeVersion
-	 */
-	String getCoeVersion();
+    /**
+     * Gets coeVersion
+     *
+     * @return coeVersion
+     */
+    String getCoeVersion();
 
-	/**
-	 * Gets baymodelId
-	 * 
-	 * @return baymodelId
-	 */
-	String getBaymodelId();
+    /**
+     * Gets baymodelId
+     *
+     * @return baymodelId
+     */
+    String getBaymodelId();
 
-	/**
-	 * Gets masterAddresses
-	 * 
-	 * @return masterAddresses
-	 */
-	List<String> getMasterAddresses();
+    /**
+     * Gets masterAddresses
+     *
+     * @return masterAddresses
+     */
+    List<String> getMasterAddresses();
 
-	/**
-	 * Gets nodeCount
-	 * 
-	 * @return nodeCount
-	 */
-	Integer getNodeCount();
+    /**
+     * Gets nodeCount
+     *
+     * @return nodeCount
+     */
+    Integer getNodeCount();
 
-	/**
-	 * Gets nodeAddresses
-	 * 
-	 * @return nodeAddresses
-	 */
-	List<String> getNodeAddresses();
+    /**
+     * Gets nodeAddresses
+     *
+     * @return nodeAddresses
+     */
+    List<String> getNodeAddresses();
 
-	/**
-	 * Gets statusReason
-	 * 
-	 * @return statusReason
-	 */
-	String getStatusReason();
+    /**
+     * Gets statusReason
+     *
+     * @return statusReason
+     */
+    String getStatusReason();
 
-	/**
-	 * Gets bayCreateTimeout
-	 * 
-	 * @return bayCreateTimeout
-	 */
-	String getBayCreateTimeout();
+    /**
+     * Gets bayCreateTimeout
+     *
+     * @return bayCreateTimeout
+     */
+    String getBayCreateTimeout();
 
-	/**
-	 * Gets name
-	 * 
-	 * @return name
-	 */
-	String getName();
+    /**
+     * Gets name
+     *
+     * @return name
+     */
+    String getName();
 
 }

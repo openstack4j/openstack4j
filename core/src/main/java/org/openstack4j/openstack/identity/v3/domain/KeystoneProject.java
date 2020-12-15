@@ -3,21 +3,15 @@ package org.openstack4j.openstack.identity.v3.domain;
 import java.util.List;
 import java.util.Map;
 
-import org.openstack4j.model.identity.v3.Domain;
-import org.openstack4j.model.identity.v3.Project;
-import org.openstack4j.model.identity.v3.builder.ProjectBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.*;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.openstack4j.model.identity.v3.Domain;
+import org.openstack4j.model.identity.v3.Project;
+import org.openstack4j.model.identity.v3.builder.ProjectBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * Project model class for identity/v3
@@ -26,7 +20,7 @@ import com.google.common.collect.Maps;
  */
 @JsonRootName("project")
 /* If we don't explicitly set extra as an ignore property, it will methods with @JsonAnyGetter/Setter will not work */
-@JsonIgnoreProperties(value = "extra" , ignoreUnknown = true)
+@JsonIgnoreProperties(value = "extra", ignoreUnknown = true)
 public class KeystoneProject implements Project {
 
     private static final long serialVersionUID = 1L;
@@ -49,7 +43,9 @@ public class KeystoneProject implements Project {
     private Boolean enabled = true;
     private List<String> tags = Lists.newArrayList();
 
-    /** Extra API properties served */
+    /**
+     * Extra API properties served
+     */
     private Map<String, String> extra = Maps.newHashMap();
 
     /**
@@ -160,6 +156,14 @@ public class KeystoneProject implements Project {
         return (enabled != null && enabled);
     }
 
+    /**
+     * set project enabled
+     *
+     * @param enabled the new enabled status
+     */
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     /**
      * {@inheritDoc}
@@ -185,27 +189,17 @@ public class KeystoneProject implements Project {
     }
 
     /**
-	 * @return the tags
-	 */
-	public List<String> getTags() {
-		return tags;
-	}
-
-	/**
-	 * @param tags the tags to set
-	 */
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
-
-	/**
-     * set project enabled
-     *
-     * @param enabled
-     *            the new enabled status
+     * @return the tags
      */
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public List<String> getTags() {
+        return tags;
+    }
+
+    /**
+     * @param tags the tags to set
+     */
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     /**
@@ -237,7 +231,7 @@ public class KeystoneProject implements Project {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, domain != null ? domain.getId() : domainId, description, name, links, parentId, subtree, parents);
+        return Objects.hashCode(id, domain != null ? domain.getId(): domainId, description, name, links, parentId, subtree, parents);
     }
 
     /**
@@ -361,16 +355,16 @@ public class KeystoneProject implements Project {
             model.extra.put(key, value);
             return this;
         }
-        
+
         /**
          * @see KeystoneProject#setTags(List<String>)
          */
 
-		@Override
-		public ProjectBuilder setTags(List<String> tags) {
-			model.setTags(tags);
-			return this;
-		}
+        @Override
+        public ProjectBuilder setTags(List<String> tags) {
+            model.setTags(tags);
+            return this;
+        }
 
         /**
          * @see KeystoneProject#isEnabled()

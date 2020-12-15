@@ -2,16 +2,15 @@ package org.openstack4j.openstack.compute.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import org.openstack4j.model.common.Link;
 import org.openstack4j.model.compute.IPProtocol;
 import org.openstack4j.model.compute.SecGroupExtension;
 import org.openstack4j.model.compute.builder.SecurityGroupRuleBuilder;
 import org.openstack4j.openstack.common.GenericLink;
 import org.openstack4j.openstack.common.ListResult;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
 
 /**
  * A Security Group which is defined the the (os-security-groups) extension
@@ -22,344 +21,333 @@ import com.google.common.base.MoreObjects;
 @Deprecated
 public class NovaSecGroupExtension implements SecGroupExtension {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String id;
-	private String name;
-	private String description;
-	@JsonProperty("tenant_id")
-	private String tenantId;
-	private List<SecurityGroupRule> rules;
-	private List<GenericLink> links;
+    private String id;
+    private String name;
+    private String description;
+    @JsonProperty("tenant_id")
+    private String tenantId;
+    private List<SecurityGroupRule> rules;
+    private List<GenericLink> links;
 
-	/**
-	 * Security Groups only need two fields populated when Created so instead of a builder the API can
-	 * leverage this call to create a new Security Group
-	 *
-	 * @param name name of the security group
-	 * @param description description of the security group
-	 * @return
-	 */
-	public static NovaSecGroupExtension create(String name, String description) {
-		NovaSecGroupExtension sg = new NovaSecGroupExtension();
-		sg.name = name;
-		sg.description = description;
-		return sg;
-	}
+    /**
+     * Security Groups only need two fields populated when Created so instead of a builder the API can
+     * leverage this call to create a new Security Group
+     *
+     * @param name name of the security group
+     * @param description description of the security group
+     */
+    public static NovaSecGroupExtension create(String name, String description) {
+        NovaSecGroupExtension sg = new NovaSecGroupExtension();
+        sg.name = name;
+        sg.description = description;
+        return sg;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getId() {
-		return id;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getName() {
-		return name;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDescription() {
+        return description;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getTenantId() {
-		return tenantId;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getTenantId() {
+        return tenantId;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<? extends Rule> getRules() {
-		return rules;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<? extends Rule> getRules() {
+        return rules;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<? extends Link> getLinks() {
-		return links;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<? extends Link> getLinks() {
+        return links;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String toString() {
-		return MoreObjects.toStringHelper(this).omitNullValues()
-				.add("id", id).add("name", name).add("description", description)
-				.add("tenantId", tenantId).add("rules", rules).add("links", links)
-				.toString();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this).omitNullValues()
+                .add("id", id).add("name", name).add("description", description)
+                .add("tenantId", tenantId).add("rules", rules).add("links", links)
+                .toString();
+    }
 
-	@Deprecated
-	public static class SecurityGroups extends ListResult<NovaSecGroupExtension> {
+    @Deprecated
+    public static class SecurityGroups extends ListResult<NovaSecGroupExtension> {
 
-		private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-		@JsonProperty("security_groups")
-		private List<NovaSecGroupExtension> groups;
+        @JsonProperty("security_groups")
+        private List<NovaSecGroupExtension> groups;
 
-		@Override
-		protected List<NovaSecGroupExtension> value() {
-			return groups;
-		}
-	}
+        @Override
+        protected List<NovaSecGroupExtension> value() {
+            return groups;
+        }
+    }
 
-	/**
-	 * Security Group Rule
-	 */
-	@JsonRootName("security_group_rule")
-	@Deprecated
-	public static class SecurityGroupRule implements SecGroupExtension.Rule {
+    /**
+     * Security Group Rule
+     */
+    @JsonRootName("security_group_rule")
+    @Deprecated
+    public static class SecurityGroupRule implements SecGroupExtension.Rule {
 
-		private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
+        // Used for Create Only
+        @JsonProperty("cidr")
+        String cidr;
+        @JsonProperty("group_id")
+        String groupId;
+        private String id;
+        private String name;
+        @JsonProperty("parent_group_id")
+        private String parentGroupId;
+        @JsonProperty("from_port")
+        private Integer fromPort;
+        @JsonProperty("to_port")
+        private Integer toPort;
+        @JsonProperty("ip_protocol")
+        private IPProtocol ipProtocol;
+        @JsonProperty("ip_range")
+        private RuleIpRange ipRange;
+        private RuleGroup group;
 
-		private String id;
+        public static SecurityGroupRuleBuilder builder() {
+            return new RuleConcreteBuilder();
+        }
 
-		private String name;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public IPProtocol getIPProtocol() {
+            return (ipProtocol != null) ? ipProtocol: IPProtocol.UNRECOGNIZED;
+        }
 
-		@JsonProperty("parent_group_id")
-		private String parentGroupId;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Group getGroup() {
+            return group;
+        }
 
-		@JsonProperty("from_port")
-		private Integer fromPort;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public IpRange getRange() {
+            return ipRange;
+        }
 
-		@JsonProperty("to_port")
-		private Integer toPort;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int getToPort() {
+            return (toPort != null) ? toPort: 0;
+        }
 
-		@JsonProperty("ip_protocol")
-		private IPProtocol ipProtocol;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int getFromPort() {
+            return (fromPort != null) ? fromPort: 0;
+        }
 
-		@JsonProperty("ip_range")
-		private RuleIpRange ipRange;
-		private RuleGroup group;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String getParentGroupId() {
+            return parentGroupId;
+        }
 
-		// Used for Create Only
-		@JsonProperty("cidr")
-		String cidr;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String getName() {
+            return name;
+        }
 
-		@JsonProperty("group_id")
-		String groupId;
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String getId() {
+            return id;
+        }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public IPProtocol getIPProtocol() {
-			return (ipProtocol != null) ? ipProtocol : IPProtocol.UNRECOGNIZED;
-		}
+        public String toString() {
+            return MoreObjects.toStringHelper("Rule").omitNullValues()
+                    .add("id", id).add("name", name).add("parentGroupId", parentGroupId)
+                    .add("fromPort", fromPort).add("toPort", toPort).add("ipProtocol", ipProtocol)
+                    .add("range", ipRange).add("group", group)
+                    .toString();
+        }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public Group getGroup() {
-			return group;
-		}
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public SecurityGroupRuleBuilder toBuilder() {
+            return new RuleConcreteBuilder(this);
+        }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public IpRange getRange() {
-			return ipRange;
-		}
+        @Deprecated
+        public static class RuleConcreteBuilder implements SecurityGroupRuleBuilder {
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public int getToPort() {
-			return (toPort != null) ? toPort : 0;
-		}
+            private SecurityGroupRule m;
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public int getFromPort() {
-			return (fromPort != null) ? fromPort : 0;
-		}
+            RuleConcreteBuilder() {
+                this(new SecurityGroupRule());
+            }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getParentGroupId() {
-			return parentGroupId;
-		}
+            RuleConcreteBuilder(SecurityGroupRule m) {
+                this.m = m;
+            }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getName() {
-			return name;
-		}
+            @Override
+            public SecurityGroupRuleBuilder protocol(IPProtocol protocol) {
+                m.ipProtocol = protocol;
+                return this;
+            }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getId() {
-			return id;
-		}
+            @Override
+            public SecurityGroupRuleBuilder range(int fromPort, int toPort) {
+                m.fromPort = fromPort;
+                m.toPort = toPort;
+                return this;
+            }
 
-		public String toString() {
-			return MoreObjects.toStringHelper("Rule").omitNullValues()
-					    .add("id", id).add("name", name).add("parentGroupId", parentGroupId)
-					    .add("fromPort", fromPort).add("toPort", toPort).add("ipProtocol", ipProtocol)
-					    .add("range", ipRange).add("group", group)
-					    .toString();
-		}
+            @Override
+            public SecurityGroupRuleBuilder cidr(String cidr) {
+                m.cidr = cidr;
+                return this;
+            }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public SecurityGroupRuleBuilder toBuilder() {
-			return new RuleConcreteBuilder(this);
-		}
+            @Override
+            public SecurityGroupRuleBuilder groupId(String groupId) {
+                m.groupId = groupId;
+                return this;
+            }
 
-		public static SecurityGroupRuleBuilder builder() {
-			return new RuleConcreteBuilder();
-		}
+            @Override
+            public SecurityGroupRuleBuilder parentGroupId(String parentGroupId) {
+                m.parentGroupId = parentGroupId;
+                return this;
+            }
 
-		@Deprecated
-		public static class RuleConcreteBuilder implements SecurityGroupRuleBuilder
-		{
+            @Override
+            public Rule build() {
+                return m;
+            }
 
-			private SecurityGroupRule m;
+            @Override
+            public SecurityGroupRuleBuilder from(Rule in) {
+                m = (SecurityGroupRule) in;
+                return this;
+            }
 
-			RuleConcreteBuilder() {
-				this(new SecurityGroupRule());
-			}
+        }
 
-			RuleConcreteBuilder(SecurityGroupRule m) {
-				this.m = m;
-			}
+        /**
+         * Security Group Rule -> Group
+         */
+        @Deprecated
+        public static class RuleGroup implements Group {
 
-			@Override
-			public SecurityGroupRuleBuilder protocol(IPProtocol protocol) {
-				m.ipProtocol = protocol;
-				return this;
-			}
+            private String name;
 
-			@Override
-			public SecurityGroupRuleBuilder range(int fromPort, int toPort) {
-				m.fromPort = fromPort;
-				m.toPort = toPort;
-				return this;
-			}
+            @JsonProperty("tenant_id")
+            private String tenantId;
 
-			@Override
-			public SecurityGroupRuleBuilder cidr(String cidr) {
-				m.cidr = cidr;
-				return this;
-			}
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public String getName() {
+                return name;
+            }
 
-			@Override
-			public SecurityGroupRuleBuilder groupId(String groupId) {
-				m.groupId = groupId;
-				return this;
-			}
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public String getTenantId() {
+                return tenantId;
+            }
 
-			@Override
-			public SecurityGroupRuleBuilder parentGroupId(String parentGroupId) {
-				m.parentGroupId = parentGroupId;
-				return this;
-			}
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public String toString() {
+                return MoreObjects.toStringHelper(this).omitNullValues().add("name", name).add("tenantId", tenantId).toString();
+            }
 
-			@Override
-			public Rule build() {
-				return m;
-			}
+        }
 
-			@Override
-			public SecurityGroupRuleBuilder from(Rule in) {
-				m = (SecurityGroupRule) in;
-				return this;
-			}
+        /**
+         * Security Group Rule -> IP Range
+         */
+        @Deprecated
+        public static class RuleIpRange implements IpRange {
 
-		}
+            private String cidr;
 
-		/**
-		 * Security Group Rule -> Group
-		 */
-		@Deprecated
-		public static class RuleGroup implements Group {
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public String getCidr() {
+                return cidr;
+            }
 
-			private String name;
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public String toString() {
+                return MoreObjects.toStringHelper(this).add("cidr", cidr).toString();
+            }
 
-			@JsonProperty("tenant_id")
-			private String tenantId;
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			public String getName() {
-				return name;
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			public String getTenantId() {
-				return tenantId;
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			public String toString() {
-				return MoreObjects.toStringHelper(this).omitNullValues().add("name", name).add("tenantId", tenantId).toString();
-			}
-
-		}
-
-		/**
-		 * Security Group Rule -> IP Range
-		 */
-		@Deprecated
-		public static class RuleIpRange implements IpRange {
-
-			private String cidr;
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			public String getCidr() {
-				return cidr;
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			public String toString() {
-				return MoreObjects.toStringHelper(this).add("cidr", cidr).toString();
-			}
-
-		}
-	}
+        }
+    }
 
 }

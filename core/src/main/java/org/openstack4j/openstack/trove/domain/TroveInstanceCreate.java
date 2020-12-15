@@ -1,11 +1,10 @@
 package org.openstack4j.openstack.trove.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.trove.Datastore;
 import org.openstack4j.model.trove.InstanceCreate;
 import org.openstack4j.model.trove.builder.InstanceCreateBuilder;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * Model implementation for Database instance creation
@@ -29,19 +28,19 @@ public class TroveInstanceCreate implements InstanceCreate {
     @JsonProperty("availability_zone")
     private String availabilityZone;
 
+    public static InstanceCreateBuilder builder() {
+        return new ConcereteInstanceBuilder();
+    }
+
     /**
-     *
-     * @param volume
-     *            The volume
+     * @param volume The volume
      */
     public void setVolume(Volume volume) {
         this.volume = volume;
     }
 
     /**
-     *
-     * @param flavorRef
-     *            The flavorRef
+     * @param flavorRef The flavorRef
      */
     @Override
     public void setFlavor(String flavorRef) {
@@ -49,9 +48,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     *
-     * @param name
-     *            The name
+     * @param name The name
      */
     @Override
     public void setName(String name) {
@@ -59,8 +56,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * 
-     * @param volumeType
+     *
      */
     @Override
     public void setVolumetype(String volumeType) {
@@ -68,8 +64,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * 
-     * @param size
+     *
      */
     @Override
     public void setvolumeSize(int size) {
@@ -77,7 +72,7 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * @param datastore
+     *
      */
     @Override
     public void setDatastore(Datastore datastore) {
@@ -85,60 +80,16 @@ public class TroveInstanceCreate implements InstanceCreate {
     }
 
     /**
-     * @param availabilityZone
+     *
      */
     @Override
     public void setAvailabilityZone(String availabilityZone) {
         this.availabilityZone = availabilityZone;
     }
 
-    public class Volume {
-
-        @JsonProperty("type")
-        private String type;
-        @JsonProperty("size")
-        private Integer size;
-
-        /**
-         *
-         * @return
-         *         The type
-         */
-
-        public String getType() {
-            return type;
-        }
-
-        /**
-         *
-         * @param type
-         *            The type
-         */
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        /**
-         *
-         * @param size
-         *            The size
-         */
-
-        public int getSize() {
-            return size;
-        }
-
-        /**
-         *
-         * @param size
-         *            The size
-         */
-
-        public void setSize(Integer size) {
-            this.size = size;
-        }
-
+    @Override
+    public InstanceCreateBuilder toBuilder() {
+        return new ConcereteInstanceBuilder(this);
     }
 
     public static class ConcereteInstanceBuilder implements InstanceCreateBuilder {
@@ -202,13 +153,45 @@ public class TroveInstanceCreate implements InstanceCreate {
 
     }
 
-    public static InstanceCreateBuilder builder() {
-        return new ConcereteInstanceBuilder();
-    }
+    public class Volume {
 
-    @Override
-    public InstanceCreateBuilder toBuilder() {
-        return new ConcereteInstanceBuilder(this);
+        @JsonProperty("type")
+        private String type;
+        @JsonProperty("size")
+        private Integer size;
+
+        /**
+         * @return The type
+         */
+
+        public String getType() {
+            return type;
+        }
+
+        /**
+         * @param type The type
+         */
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        /**
+         * @param size The size
+         */
+
+        public int getSize() {
+            return size;
+        }
+
+        /**
+         * @param size The size
+         */
+
+        public void setSize(Integer size) {
+            this.size = size;
+        }
+
     }
 
 }

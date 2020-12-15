@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.identity.v3.internal;
 
-import static org.openstack4j.core.transport.ClientConstants.PATH_EXTENSIONS;
-
 import java.util.List;
 
 import org.openstack4j.api.Apis;
@@ -9,9 +7,10 @@ import org.openstack4j.api.identity.v3.*;
 import org.openstack4j.model.common.Extension;
 import org.openstack4j.openstack.common.ExtensionValue.ExtensionList;
 
+import static org.openstack4j.core.transport.ClientConstants.PATH_EXTENSIONS;
+
 /**
  * Identity V3 service implementation
- *
  */
 public class IdentityServiceImpl extends BaseIdentityServices implements IdentityService {
 
@@ -64,7 +63,7 @@ public class IdentityServiceImpl extends BaseIdentityServices implements Identit
     public TokenService tokens() {
         return Apis.get(TokenService.class);
     }
-    
+
     @Override
     public List<? extends Extension> listExtensions() {
         return get(ExtensionList.class, PATH_EXTENSIONS).execute().getList();

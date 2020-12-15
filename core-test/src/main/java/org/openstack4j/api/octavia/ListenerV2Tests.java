@@ -1,18 +1,18 @@
 package org.openstack4j.api.octavia;
 
 
-import org.openstack4j.api.AbstractTest;
-import org.openstack4j.api.Builders;
-import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.octavia.ListenerV2;
-import org.openstack4j.model.octavia.ListenerV2Update;
-import org.openstack4j.model.octavia.ListenerProtocol;
-import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.openstack4j.api.AbstractTest;
+import org.openstack4j.api.Builders;
+import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.octavia.ListenerProtocol;
+import org.openstack4j.model.octavia.ListenerV2;
+import org.openstack4j.model.octavia.ListenerV2Update;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -20,11 +20,9 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 /**
- *
  * @author wei
- *
  */
-@Test(suiteName="Octavia/listener", enabled = true)
+@Test(suiteName = "Octavia/listener", enabled = true)
 public class ListenerV2Tests extends AbstractTest {
     private static final String LISTENERSV2_JSON = "/octavia/listenersv2.json";
     private static final String LISTENERV2_JSON = "/octavia/listenerv2.json";

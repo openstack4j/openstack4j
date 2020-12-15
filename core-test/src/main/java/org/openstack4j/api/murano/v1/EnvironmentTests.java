@@ -1,14 +1,14 @@
 package org.openstack4j.api.murano.v1;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.murano.v1.domain.Application;
 import org.openstack4j.model.murano.v1.domain.Environment;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -17,7 +17,7 @@ import static org.testng.Assert.assertTrue;
 /**
  * @author nmakhotkin
  */
-@Test(suiteName="Murano/AppCatalog", enabled = true)
+@Test(suiteName = "Murano/AppCatalog", enabled = true)
 public class EnvironmentTests extends AbstractTest {
     private static final String ENVIRONMENTS_JSON = "/murano/v1/environments.json";
     private static final String ENVIRONMENT_JSON = "/murano/v1/environment.json";

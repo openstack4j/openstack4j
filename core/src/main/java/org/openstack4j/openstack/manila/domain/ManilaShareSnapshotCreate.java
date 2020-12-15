@@ -22,6 +22,10 @@ public class ManilaShareSnapshotCreate implements ShareSnapshotCreate {
     @JsonProperty("display_description")
     private String displayDescription;
 
+    public static ShareSnapshotCreateBuilder builder() {
+        return new ShareSnapshotCreateConcreteBuilder();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -70,14 +74,11 @@ public class ManilaShareSnapshotCreate implements ShareSnapshotCreate {
         return displayDescription;
     }
 
-    public static ShareSnapshotCreateBuilder builder() {
-        return new ShareSnapshotCreateConcreteBuilder();
-    }
     @Override
     public ShareSnapshotCreateBuilder toBuilder() {
         return new ShareSnapshotCreateConcreteBuilder(this);
     }
-    
+
     public static class ShareSnapshotCreateConcreteBuilder implements ShareSnapshotCreateBuilder {
         ManilaShareSnapshotCreate shareSnapshotCreate;
 

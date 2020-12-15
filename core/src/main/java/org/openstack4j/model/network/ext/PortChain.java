@@ -11,7 +11,6 @@ import org.openstack4j.model.network.ext.builder.PortChainBuilder;
  * A Port Chain Entity.
  *
  * @author Dmitry Gerenrot.
- *
  */
 public interface PortChain extends Resource, Buildable<PortChainBuilder> {
 

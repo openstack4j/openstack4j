@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
 import org.openstack4j.model.image.v2.Task;
 import org.openstack4j.model.image.v2.builder.TaskBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
-
 /**
  * A Glance v2 task model implementation
+ *
  * @author emjburns
  */
 public class GlanceTask implements Task {
@@ -42,6 +42,10 @@ public class GlanceTask implements Task {
     String type;
 
     String self;
+
+    public static TaskBuilder builder() {
+        return new TaskConcreteBuilder();
+    }
 
     @Override
     public Date getCreatedAt() {
@@ -106,10 +110,6 @@ public class GlanceTask implements Task {
     @Override
     public TaskBuilder toBuilder() {
         return new TaskConcreteBuilder(this);
-    }
-
-    public static TaskBuilder builder() {
-        return new TaskConcreteBuilder();
     }
 
     @Override

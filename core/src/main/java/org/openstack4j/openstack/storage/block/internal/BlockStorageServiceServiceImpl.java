@@ -13,12 +13,12 @@ import org.openstack4j.openstack.storage.block.domain.ext.ExtService.Services;
  */
 public class BlockStorageServiceServiceImpl extends BaseBlockStorageServices implements BlockStorageServiceService {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public List<? extends Service> list() {
-		return get(Services.class, uri("/os-services")).execute().getList();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<? extends Service> list() {
+        return get(Services.class, uri("/os-services")).execute().getList();
+    }
 
 }

@@ -21,8 +21,6 @@ public class KeystoneTokenlessTest extends AbstractTest {
 
     /**
      * check headers whether right from request
-     *
-     * @throws Exception
      */
     public void pass_headers_Test() throws Exception {
 

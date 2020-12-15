@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.manila.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.core.transport.HttpMethod;
-import org.openstack4j.model.manila.RateLimit;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.openstack4j.core.transport.HttpMethod;
+import org.openstack4j.model.manila.RateLimit;
 
 /**
  * Rate limits control the frequency at which users can issue specific API requests.

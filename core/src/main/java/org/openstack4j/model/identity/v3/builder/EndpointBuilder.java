@@ -9,8 +9,6 @@ import org.openstack4j.model.identity.v3.Endpoint;
 
 /**
  * A Builder which creates an identity v3 endpoint.
- *
- *
  */
 public interface EndpointBuilder extends Builder<EndpointBuilder, Endpoint> {
 

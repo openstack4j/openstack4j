@@ -1,11 +1,10 @@
 package org.openstack4j.connectors.jersey2;
 
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.ws.rs.core.Response;
 
 import org.openstack4j.core.transport.ClientConstants;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -102,7 +101,7 @@ public class HttpResponseImpl implements HttpResponse {
      */
     public Map<String, String> headers() {
         Map<String, String> headers = new HashMap<String, String>();
-        for(String k : response.getHeaders().keySet()) {
+        for (String k : response.getHeaders().keySet()) {
             headers.put(k, response.getHeaderString(k));
         }
         return headers;
@@ -117,7 +116,7 @@ public class HttpResponseImpl implements HttpResponse {
     public void close() throws IOException {
         // Jersey handles this automatically in all cases - no-op
     }
-    
+
     @Override
     public String getContentType() {
         return header(ClientConstants.HEADER_CONTENT_TYPE);

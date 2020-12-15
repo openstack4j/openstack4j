@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.octavia.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -9,10 +11,9 @@ import org.openstack4j.model.octavia.ListenerV2;
 import org.openstack4j.model.octavia.builder.ListenerV2Builder;
 import org.openstack4j.openstack.common.ListResult;
 
-import java.util.List;
-
 /**
  * lbaas v2 listener
+ *
  * @author wei
  */
 @JsonRootName("listener")
@@ -64,11 +65,15 @@ public class OctaviaListenerV2 implements ListenerV2 {
     @JsonProperty("sni_container_refs")
     private List<String> sniContainerRefs;
 
+    public static ListenerV2Builder builder() {
+        return new ListenerConcreteBuilder();
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<ListItem> getLoadBalancers(){
+    public List<ListItem> getLoadBalancers() {
         return loadbalancers;
     }
 
@@ -76,7 +81,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public boolean isAdminStateUp() {
         return adminStateUp;
     }
 
@@ -84,7 +89,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getDefaultPoolId(){
+    public String getDefaultPoolId() {
         return defaultPoolId;
     }
 
@@ -92,7 +97,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public Integer getConnectionLimit(){
+    public Integer getConnectionLimit() {
         return connectionLimit;
     }
 
@@ -100,7 +105,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public Integer getProtocolPort(){
+    public Integer getProtocolPort() {
         return protocolPort;
     }
 
@@ -108,7 +113,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public ListenerProtocol getProtocol(){
+    public ListenerProtocol getProtocol() {
         return protocol;
     }
 
@@ -116,7 +121,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
@@ -124,7 +129,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -132,7 +137,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getProjectId(){
+    public String getProjectId() {
         return projectId;
     }
 
@@ -140,7 +145,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getDefaultTlsContainerRef(){
+    public String getDefaultTlsContainerRef() {
         return defaultTlsContainerRef;
     }
 
@@ -148,7 +153,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public List<String> getSniContainerRefs(){
+    public List<String> getSniContainerRefs() {
         return sniContainerRefs;
     }
 
@@ -156,12 +161,12 @@ public class OctaviaListenerV2 implements ListenerV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getId(){
+    public String getId() {
         return id;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("adminStateUp", adminStateUp)
@@ -178,6 +183,11 @@ public class OctaviaListenerV2 implements ListenerV2 {
                 .toString();
     }
 
+    @Override
+    public ListenerV2Builder toBuilder() {
+        return new ListenerConcreteBuilder(this);
+    }
+
     public static class ListenerConcreteBuilder implements ListenerV2Builder {
         private OctaviaListenerV2 m;
 
@@ -190,18 +200,18 @@ public class OctaviaListenerV2 implements ListenerV2 {
         }
 
         @Override
-        public ListenerV2 build(){
+        public ListenerV2 build() {
             return m;
         }
 
         @Override
-        public ListenerV2Builder from(ListenerV2 in){
+        public ListenerV2Builder from(ListenerV2 in) {
             m = (OctaviaListenerV2) in;
             return this;
         }
 
         @Override
-        public ListenerV2Builder loadBalancerId(String loadbalancerId){
+        public ListenerV2Builder loadBalancerId(String loadbalancerId) {
             m.loadbalancerId = loadbalancerId;
             return this;
         }
@@ -210,7 +220,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder projectId(String projectId){
+        public ListenerV2Builder projectId(String projectId) {
             m.projectId = projectId;
             return this;
         }
@@ -219,7 +229,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder protocol(ListenerProtocol protocol){
+        public ListenerV2Builder protocol(ListenerProtocol protocol) {
             m.protocol = protocol;
             return this;
         }
@@ -228,7 +238,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder protocolPort(Integer protocolPort){
+        public ListenerV2Builder protocolPort(Integer protocolPort) {
             m.protocolPort = protocolPort;
             return this;
         }
@@ -237,7 +247,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder adminStateUp(boolean adminStateUp){
+        public ListenerV2Builder adminStateUp(boolean adminStateUp) {
             m.adminStateUp = adminStateUp;
             return this;
         }
@@ -246,7 +256,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder name(String name){
+        public ListenerV2Builder name(String name) {
             m.name = name;
             return this;
         }
@@ -255,7 +265,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder description(String description){
+        public ListenerV2Builder description(String description) {
             m.description = description;
             return this;
         }
@@ -264,7 +274,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder connectionLimit(Integer connectionLimit){
+        public ListenerV2Builder connectionLimit(Integer connectionLimit) {
             m.connectionLimit = connectionLimit;
             return this;
         }
@@ -273,7 +283,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder sniContainerRefs(List<String> sniContainerRefs){
+        public ListenerV2Builder sniContainerRefs(List<String> sniContainerRefs) {
             m.sniContainerRefs = sniContainerRefs;
             return this;
         }
@@ -282,19 +292,10 @@ public class OctaviaListenerV2 implements ListenerV2 {
          * {@inheritDoc}
          */
         @Override
-        public ListenerV2Builder defaultTlsContainerRef(String tlsContainerRef){
+        public ListenerV2Builder defaultTlsContainerRef(String tlsContainerRef) {
             m.defaultTlsContainerRef = tlsContainerRef;
             return this;
         }
-    }
-
-    @Override
-    public ListenerV2Builder toBuilder(){
-        return new ListenerConcreteBuilder(this);
-    }
-
-    public static ListenerV2Builder builder(){
-        return new ListenerConcreteBuilder();
     }
 
     public static class Listeners extends ListResult<OctaviaListenerV2> {
@@ -312,7 +313,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return MoreObjects.toStringHelper(this)
                     .add("listeners", listeners)
                     .toString();

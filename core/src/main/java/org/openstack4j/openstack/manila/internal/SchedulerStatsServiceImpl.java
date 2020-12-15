@@ -1,10 +1,10 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.manila.SchedulerStatsService;
 import org.openstack4j.model.manila.BackendStoragePool;
 import org.openstack4j.openstack.manila.domain.ManilaBackendStoragePool;
-
-import java.util.List;
 
 public class SchedulerStatsServiceImpl extends BaseShareServices implements SchedulerStatsService {
     @Override
@@ -18,7 +18,7 @@ public class SchedulerStatsServiceImpl extends BaseShareServices implements Sche
     }
 
     private List<? extends BackendStoragePool> list(boolean detail) {
-        return get(ManilaBackendStoragePool.BackendStoragePools.class, uri("/scheduler-stats/pools" +  (detail ? "/detail" : "")))
+        return get(ManilaBackendStoragePool.BackendStoragePools.class, uri("/scheduler-stats/pools" + (detail ? "/detail": "")))
                 .execute()
                 .getList();
     }

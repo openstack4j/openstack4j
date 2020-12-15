@@ -1,5 +1,9 @@
 package org.openstack4j.api.trove;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,10 +12,6 @@ import org.openstack4j.openstack.trove.builder.TroveBuilders;
 import org.openstack4j.openstack.trove.domain.TroveDatabaseUser;
 import org.openstack4j.openstack.trove.domain.TroveDatabaseUser.DatabaseUsers;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -31,21 +31,21 @@ public class DBUserServiceImplTest extends AbstractTest {
     }
 
     @Test
-    public void testListDatabaseUsers() throws Exception{
+    public void testListDatabaseUsers() throws Exception {
         String databaseInstanceId = "54c91755526e44b9808385a263db4aa6";
         respondWith(TROVE_DATABASE_USERS);
         List<? extends DatabaseUser> databaseUsers = osv2().trove().databaseUsersService().list(databaseInstanceId);
         assertEquals(2, databaseUsers.size());
         Preconditions.checkNotNull(databaseUsers.get(0));
-        Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Database User from List : "+ databaseUsers.get(0));
+        Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Database User from List : " + databaseUsers.get(0));
     }
 
     @Test
-    public void testCreateDatabaseUser() throws Exception{
+    public void testCreateDatabaseUser() throws Exception {
         String databaseInstanceId = "54c91755526e44b9808385a263db4aa6";
         respondWith(200);
         TroveBuilders troveBuilders = new TroveBuilders();
-        TroveDatabaseUser databaseUser = (TroveDatabaseUser)troveBuilders.databaseUserCreate().username("dbuser4")
+        TroveDatabaseUser databaseUser = (TroveDatabaseUser) troveBuilders.databaseUserCreate().username("dbuser4")
                 .password("password").build();
         List<TroveDatabaseUser> troveDatabaseUsers = new ArrayList<>();
         troveDatabaseUsers.add(databaseUser);

@@ -1,11 +1,11 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareInstance;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
  *
  * @author Daniel Gonzalez Nothnagel
  */
-@Test(suiteName="ShareInstance")
+@Test(suiteName = "ShareInstance")
 public class ShareInstanceTests extends AbstractTest {
     private static final String JSON_SHARE_INSTANCES = "/manila/share_instances.json";
     private static final String JSON_SHARE_INSTANCE = "/manila/share_instance.json";

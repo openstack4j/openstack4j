@@ -1,8 +1,5 @@
 package org.openstack4j.openstack.identity.v3.internal;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.openstack4j.core.transport.ClientConstants.PATH_DOMAINS;
-
 import java.util.List;
 
 import org.openstack4j.api.identity.v3.DomainService;
@@ -10,6 +7,9 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.identity.v3.Domain;
 import org.openstack4j.openstack.identity.v3.domain.KeystoneDomain;
 import org.openstack4j.openstack.identity.v3.domain.KeystoneDomain.Domains;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static org.openstack4j.core.transport.ClientConstants.PATH_DOMAINS;
 
 public class DomainServiceImpl extends BaseIdentityServices implements DomainService {
 

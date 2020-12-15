@@ -19,12 +19,17 @@ public class URLResolverParams {
     public ServiceType type;
     public String region;
     public Facing perspective;
-    private ServiceVersionResolver resolver;
     public Access access;
+    private ServiceVersionResolver resolver;
 
     private URLResolverParams(Token token, ServiceType type) {
         this.token = token;
-        this.type = (type == null) ? ServiceType.IDENTITY : type;
+        this.type = (type == null) ? ServiceType.IDENTITY: type;
+    }
+
+    private URLResolverParams(Access access, ServiceType type) {
+        this.access = access;
+        this.type = (type == null) ? ServiceType.IDENTITY: type;
     }
 
     public static URLResolverParams create(Token token, ServiceType type) {
@@ -33,11 +38,6 @@ public class URLResolverParams {
 
     public static URLResolverParams create(Access access, ServiceType type) {
         return new URLResolverParams(access, type);
-    }
-
-    private URLResolverParams(Access access, ServiceType type) {
-        this.access = access;
-        this.type = (type == null) ? ServiceType.IDENTITY : type;
     }
 
     public URLResolverParams region(String region) {
@@ -56,11 +56,11 @@ public class URLResolverParams {
     }
 
     public ServiceVersionResolver getResolver() {
-        return (resolver != null) ? resolver : LatestServiceVersionResolver.INSTANCE;
+        return (resolver != null) ? resolver: LatestServiceVersionResolver.INSTANCE;
     }
 
     public ServiceVersionResolver getV2Resolver() {
-        return (resolver != null) ? resolver : StableServiceVersionResolver.INSTANCE;
+        return (resolver != null) ? resolver: StableServiceVersionResolver.INSTANCE;
     }
 
 }

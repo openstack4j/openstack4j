@@ -1,6 +1,7 @@
 package org.openstack4j.model.heat;
 
 import java.util.Map;
+
 import org.openstack4j.model.ModelEntity;
 
 /**
@@ -9,15 +10,14 @@ import org.openstack4j.model.ModelEntity;
  * map to the possible return values of
  * <code> Delete /v1/{tenant_id}/stacks/{stack_name}/{stack_id}/abandon</code>
  *
- * @see https://developer.openstack.org/api-ref/orchestration/v1
- *
  * @author Ales Kemr
+ * @see https://developer.openstack.org/api-ref/orchestration/v1
  */
 public interface AdoptStackData extends ModelEntity {
 
     /**
      * Returns stack action, e.g. CREATE
-     * 
+     *
      * @return stack action
      */
     String getAction();

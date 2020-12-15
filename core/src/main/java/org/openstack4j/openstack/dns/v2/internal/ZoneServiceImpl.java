@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.dns.v2.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.dns.v2.ZoneService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.dns.v2.Nameserver;
@@ -7,11 +9,9 @@ import org.openstack4j.model.dns.v2.Zone;
 import org.openstack4j.openstack.dns.v2.domain.DesignateNameserver;
 import org.openstack4j.openstack.dns.v2.domain.DesignateZone;
 
-import java.util.List;
-
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.openstack4j.core.transport.ClientConstants.PATH_ZONES;
 import static org.openstack4j.core.transport.ClientConstants.PATH_NAMESERVERS;
+import static org.openstack4j.core.transport.ClientConstants.PATH_ZONES;
 
 public class ZoneServiceImpl extends BaseDNSServices implements ZoneService {
 
@@ -30,7 +30,7 @@ public class ZoneServiceImpl extends BaseDNSServices implements ZoneService {
     @Override
     public List<? extends Nameserver> listNameservers(String zoneId) {
         checkNotNull(zoneId);
-        return get(DesignateNameserver.Nameservers.class, PATH_ZONES, "/",zoneId, PATH_NAMESERVERS).execute().getList();
+        return get(DesignateNameserver.Nameservers.class, PATH_ZONES, "/", zoneId, PATH_NAMESERVERS).execute().getList();
     }
 
     @Override

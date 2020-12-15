@@ -1,5 +1,7 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +11,6 @@ import org.openstack4j.model.manila.ShareSnapshotCreate;
 import org.openstack4j.model.manila.ShareSnapshotUpdateOptions;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -19,7 +19,7 @@ import static org.testng.Assert.assertTrue;
  *
  * @author Daniel Gonzalez Nothnagel
  */
-@Test(suiteName="ShareSnapshot")
+@Test(suiteName = "ShareSnapshot")
 public class ShareSnapshotTests extends AbstractTest {
     private static final String JSON_SHARE_SNAPSHOT = "/manila/share_snapshot.json";
     private static final String JSON_SHARE_SNAPSHOT_CREATE = "/manila/share_snapshot_create.json";

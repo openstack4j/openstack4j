@@ -1,15 +1,16 @@
 package org.openstack4j.api.networking.ext;
 
-import org.openstack4j.common.RestService;
-import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.network.ext.HealthMonitorV2Update;
-import org.openstack4j.model.network.ext.HealthMonitorV2;
-
 import java.util.List;
 import java.util.Map;
 
+import org.openstack4j.common.RestService;
+import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.network.ext.HealthMonitorV2;
+import org.openstack4j.model.network.ext.HealthMonitorV2Update;
+
 /**
  * Networking (Neutron Lbaas) V2 healthmonitor Extention API
+ *
  * @author emjburns
  */
 public interface HealthMonitorV2Service extends RestService {
@@ -24,7 +25,6 @@ public interface HealthMonitorV2Service extends RestService {
      * Returns list of healthMonitorV2 filtered by parameters.
      *
      * @param filteringParams map (name, value) of filtering parameters
-     * @return
      */
     List<? extends HealthMonitorV2> list(Map<String, String> filteringParams);
 
@@ -38,6 +38,7 @@ public interface HealthMonitorV2Service extends RestService {
 
     /**
      * Delete the specified healthMonitor by ID
+     *
      * @param healthMonitorId the healthMonitorV2 identifier
      * @return the action response
      */
@@ -45,13 +46,14 @@ public interface HealthMonitorV2Service extends RestService {
 
     /**
      * Create a healthMonitorV2
-     * @param healthMonitor
+     *
      * @return HealthMonitorV2
      */
     HealthMonitorV2 create(HealthMonitorV2 healthMonitor);
 
     /**
      * Update a healthMonitorV2
+     *
      * @param healthMonitorId the healthMonitorV2 identifier
      * @param healthMonitor HealthMonitorV2Update
      * @return HealthMonitorV2

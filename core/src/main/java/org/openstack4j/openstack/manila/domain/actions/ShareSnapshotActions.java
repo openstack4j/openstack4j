@@ -9,6 +9,14 @@ import org.openstack4j.model.manila.ShareSnapshot;
  * @author Daniel Gonzalez Nothnagel
  */
 public class ShareSnapshotActions {
+    public static ResetStateAction resetState(ShareSnapshot.Status status) {
+        return new ResetStateAction(status);
+    }
+
+    public static ForceDeleteAction forceDelete() {
+        return new ForceDeleteAction();
+    }
+
     @JsonRootName("os-reset_status")
     public static class ResetStateAction implements ShareSnapshotAction {
         private ShareSnapshot.Status status;
@@ -23,13 +31,6 @@ public class ShareSnapshotActions {
     }
 
     @JsonRootName("os-force_delete")
-    public static class ForceDeleteAction implements ShareSnapshotAction {}
-
-    public static ResetStateAction resetState(ShareSnapshot.Status status) {
-        return new ResetStateAction(status);
-    }
-
-    public static ForceDeleteAction forceDelete() {
-        return new ForceDeleteAction();
+    public static class ForceDeleteAction implements ShareSnapshotAction {
     }
 }

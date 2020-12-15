@@ -1,8 +1,8 @@
 package org.openstack4j.model.compute.ext;
 
-import org.openstack4j.model.ModelEntity;
-
 import java.util.List;
+
+import org.openstack4j.model.ModelEntity;
 
 /**
  * Represents a Hypervisor details Entity used within the OSHypervisor extensions API

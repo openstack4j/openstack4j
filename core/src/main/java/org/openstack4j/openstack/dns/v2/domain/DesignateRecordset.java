@@ -1,18 +1,17 @@
 package org.openstack4j.openstack.dns.v2.domain;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-
-import org.openstack4j.model.dns.v2.Recordset;
 import org.openstack4j.model.dns.v2.Action;
+import org.openstack4j.model.dns.v2.Recordset;
 import org.openstack4j.model.dns.v2.Status;
 import org.openstack4j.model.dns.v2.builder.RecordsetBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * zone model class for designate/v2 zone
@@ -39,7 +38,7 @@ public class DesignateRecordset implements Recordset {
     private String createdAt;
     @JsonProperty("updated_at")
     private String updatedAt;
-    private Map<String,String> links;
+    private Map<String, String> links;
     private List<String> records;
 
     /**
@@ -143,7 +142,7 @@ public class DesignateRecordset implements Recordset {
                 .add("action", action)
                 .add("zoneId", zoneId)
                 .add("zoneName", zoneName)
-                .add("description",description)
+                .add("description", description)
                 .add("type", type)
                 .add("version", version)
                 .add("createdAt", createdAt)

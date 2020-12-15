@@ -3,13 +3,12 @@ package org.openstack4j.openstack.networking.domain.ext;
 import java.util.List;
 import java.util.Map;
 
-import org.openstack4j.model.network.ext.PortChain;
-import org.openstack4j.model.network.ext.builder.PortChainBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.network.ext.PortChain;
+import org.openstack4j.model.network.ext.builder.PortChainBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * {@inheritDoc}
@@ -18,30 +17,26 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 public class NeutronPortChain implements PortChain {
 
     private static final long serialVersionUID = 1L;
-
+    @JsonProperty("chain_id")
+    String chainId;
+    @JsonProperty("flow_classifiers")
+    List<String> flowClassifiers;
+    @JsonProperty("port_pair_groups")
+    List<String> portPairGroups;
+    @JsonProperty("chain_parameters")
+    Map<String, String> chainParameters;
     @JsonProperty
     private String id;
-
     @JsonProperty
     private String name;
-
     @JsonProperty("project_id")
     private String projectId;
-
     @JsonProperty
     private String description;
 
-    @JsonProperty("chain_id")
-    String chainId;
-
-    @JsonProperty("flow_classifiers")
-    List<String> flowClassifiers;
-
-    @JsonProperty("port_pair_groups")
-    List<String> portPairGroups;
-
-    @JsonProperty("chain_parameters")
-    Map<String, String> chainParameters;
+    public static PortChainBuilder builder() {
+        return new PortChainConcreteBuilder();
+    }
 
     @Override
     public String getId() {
@@ -118,10 +113,6 @@ public class NeutronPortChain implements PortChain {
     @Override
     public PortChainBuilder toBuilder() {
         return new PortChainConcreteBuilder(this);
-    }
-
-    public static PortChainBuilder builder() {
-        return new PortChainConcreteBuilder();
     }
 
     public static class PortChains extends ListResult<NeutronPortChain> {

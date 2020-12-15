@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.provider;
 
+import java.util.Map;
+
 import com.google.common.collect.Maps;
 import org.openstack4j.api.APIProvider;
 import org.openstack4j.api.artifact.ArtifactService;
@@ -73,8 +75,6 @@ import org.openstack4j.openstack.tacker.internal.VnfdServiceImpl;
 import org.openstack4j.openstack.telemetry.internal.*;
 import org.openstack4j.openstack.trove.internal.*;
 import org.openstack4j.openstack.workflow.internal.*;
-
-import java.util.Map;
 
 /**
  * Simple API Provider which keeps internally Maps interface implementations as singletons
@@ -263,7 +263,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(TaskService.class, TaskServiceImpl.class);
         bind(TaskService.class, TaskServiceImpl.class);
         bind(ServerTagService.class, ServerTagServiceImpl.class);
-        bind(TelemetryAodhService.class,TelemetryAodhServiceImpl.class);
+        bind(TelemetryAodhService.class, TelemetryAodhServiceImpl.class);
         bind(AlarmAodhService.class, AlarmAodhServiceImpl.class);
         bind(ServicesService.class, ServicesServiceImpl.class);
         bind(BlockStorageServiceService.class, BlockStorageServiceServiceImpl.class);

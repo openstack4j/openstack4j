@@ -4,12 +4,15 @@ import org.openstack4j.openstack.internal.MicroVersion;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 
 public class MicroVersionTest {
     @DataProvider
     public static Object[][] invalidMicroVersions() {
-        return new Object[][] {
+        return new Object[][]{
                 {"1.2.3"},
                 {"1,0"},
                 {"1"},
@@ -29,8 +32,7 @@ public class MicroVersionTest {
         try {
             new MicroVersion(v);
             fail("Expected IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             assertEquals(e.getMessage(), "Invalid version pattern " + v + ", should be 'X.Y' (Major.Minor)");
         }
     }

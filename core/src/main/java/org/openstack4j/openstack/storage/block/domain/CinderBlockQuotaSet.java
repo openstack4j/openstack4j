@@ -1,14 +1,14 @@
 package org.openstack4j.openstack.storage.block.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
 import org.openstack4j.model.storage.block.builder.BlockQuotaSetBuilder;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
 
@@ -67,15 +67,13 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
 
     @Override
     @JsonAnyGetter
-    public Map<String, Integer> getVolumeTypesQuotas()
-    {
+    public Map<String, Integer> getVolumeTypesQuotas() {
         return volumeTypesQuotas;
     }
 
     @JsonAnySetter
-    private void setVolumeTypesQuotas(String key, Integer value)
-    {
-        if (key.matches( VOLUME_TYPE_QUOTA_PREFIXES_REGEX )) this.volumeTypesQuotas.put(key, value);
+    private void setVolumeTypesQuotas(String key, Integer value) {
+        if (key.matches(VOLUME_TYPE_QUOTA_PREFIXES_REGEX)) this.volumeTypesQuotas.put(key, value);
     }
 
     @Override

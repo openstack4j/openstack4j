@@ -20,7 +20,7 @@ public class NeutronResourceTagServiceImpl extends BaseNetworkingServices implem
         checkNotNull(tag);
         checkNotNull(resource);
         String resourceType = checkNotNull(Resource.forValue(resource));
-        return getWithResponse(uri("/%s/%s/tags/%s", resourceType ,resourceId, tag)).execute();
+        return getWithResponse(uri("/%s/%s/tags/%s", resourceType, resourceId, tag)).execute();
     }
 
     /**

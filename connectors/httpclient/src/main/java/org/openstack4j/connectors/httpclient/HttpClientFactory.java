@@ -1,5 +1,8 @@
 package org.openstack4j.connectors.httpclient;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
@@ -11,9 +14,6 @@ import org.openstack4j.core.transport.internal.HttpExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 /**
  * Creates the initial HttpClient and keeps it as a singleton to preserve pooling strategies within the Http Client
  *
@@ -24,9 +24,17 @@ public class HttpClientFactory {
     public static final HttpClientFactory INSTANCE = new HttpClientFactory();
     private static final String USER_AGENT = "OpenStack4j-Agent";
     private static final Logger LOG = LoggerFactory.getLogger(HttpExecutor.class);
-
-    private CloseableHttpClient client;
     private static HttpClientConfigInterceptor INTERCEPTOR;
+    private CloseableHttpClient client;
+
+    /**
+     * Registers a HttpClientConfigInterceptor that is invoked prior to a new HttpClient being created.
+     *
+     * @param interceptor the http config interceptor
+     */
+    public static void registerInterceptor(HttpClientConfigInterceptor interceptor) {
+        INTERCEPTOR = interceptor;
+    }
 
     /**
      * Creates or Returns an existing HttpClient
@@ -36,22 +44,13 @@ public class HttpClientFactory {
      */
     CloseableHttpClient getClient(Config config) {
         if (client == null) {
-            synchronized(this) {
+            synchronized (this) {
                 if (client == null) {
                     client = buildClient(config);
                 }
             }
         }
         return client;
-    }
-
-    /**
-     * Registers a HttpClientConfigInterceptor that is invoked prior to a new HttpClient being created.
-     *
-     * @param interceptor the http config interceptor
-     */
-    public static void registerInterceptor(HttpClientConfigInterceptor interceptor) {
-        INTERCEPTOR = interceptor;
     }
 
     private CloseableHttpClient buildClient(Config config) {
@@ -67,8 +66,7 @@ public class HttpClientFactory {
             }
         }
 
-        if (config.isIgnoreSSLVerification())
-        {
+        if (config.isIgnoreSSLVerification()) {
             cb.setSslcontext(UntrustedSSL.getSSLContext());
             cb.setHostnameVerifier(new AllowAllHostnameVerifier());
         }

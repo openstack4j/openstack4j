@@ -2,29 +2,19 @@ package org.openstack4j.model.gbp;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * IP Version enum
- * 
+ *
  * @author vinod borole
  */
 public enum IPVersionType {
     V4(4),
-    V6(6)
-    ;
+    V6(6);
     private final int version;
-    
+
     private IPVersionType(int version) {
         this.version = version;
-    }
-    
-    /**
-     * Gets the version in Integer form
-     *
-     * @return the version as int
-     */
-    @JsonValue
-    public int getVersion() {
-        return version;
     }
 
     @JsonCreator
@@ -35,5 +25,15 @@ public enum IPVersionType {
             }
         }
         return V4;
+    }
+
+    /**
+     * Gets the version in Integer form
+     *
+     * @return the version as int
+     */
+    @JsonValue
+    public int getVersion() {
+        return version;
     }
 }

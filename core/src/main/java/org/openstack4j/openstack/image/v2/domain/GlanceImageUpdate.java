@@ -1,17 +1,18 @@
 package org.openstack4j.openstack.image.v2.domain;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.MoreObjects;
 import org.openstack4j.model.image.v2.ImageUpdate;
 import org.openstack4j.model.image.v2.builder.ImageUpdateBuilder;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 /**
  * Implementation of updating a glance image
+ *
  * @author emjburns
  */
 public class GlanceImageUpdate implements ImageUpdate {
@@ -22,8 +23,8 @@ public class GlanceImageUpdate implements ImageUpdate {
     }
 
     public GlanceImageUpdate(JsonNode value) {
-        if (value.isArray()){
-            for(Iterator<JsonNode> iterator = value.iterator(); iterator.hasNext();) {
+        if (value.isArray()) {
+            for (Iterator<JsonNode> iterator = value.iterator(); iterator.hasNext(); ) {
                 JsonNode next = iterator.next();
                 iterator.remove();
                 PatchOperation p = new PatchOperation(
@@ -38,6 +39,10 @@ public class GlanceImageUpdate implements ImageUpdate {
 
     public GlanceImageUpdate(List<PatchOperation> ops) {
         this.ops = ops;
+    }
+
+    public static ImageUpdateBuilder builder() {
+        return new ImageUpdateConcreteBuilder();
     }
 
     /**
@@ -62,10 +67,6 @@ public class GlanceImageUpdate implements ImageUpdate {
     @Override
     public ImageUpdateBuilder toBuilder() {
         return new ImageUpdateConcreteBuilder(this);
-    }
-
-    public static ImageUpdateBuilder builder() {
-        return new ImageUpdateConcreteBuilder();
     }
 
     public static class ImageUpdateConcreteBuilder implements ImageUpdateBuilder {

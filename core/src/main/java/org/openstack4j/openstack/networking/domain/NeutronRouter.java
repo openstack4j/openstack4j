@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.networking.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -12,8 +14,6 @@ import org.openstack4j.model.network.Router;
 import org.openstack4j.model.network.State;
 import org.openstack4j.model.network.builder.RouterBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * A router is used to interconnect subnets and forward traffic among them. Another feature of the router is to NAT internal traffic to external networks.
@@ -70,22 +70,6 @@ public class NeutronRouter implements Router {
      * {@inheritDoc}
      */
     @Override
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -94,8 +78,24 @@ public class NeutronRouter implements Router {
      * {@inheritDoc}
      */
     @Override
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getTenantId() {
+        return tenantId;
     }
 
     /**
@@ -120,7 +120,7 @@ public class NeutronRouter implements Router {
     @JsonIgnore
     @Override
     public boolean isAdminStateUp() {
-        return (adminStateUp != null) ? adminStateUp : false;
+        return (adminStateUp != null) ? adminStateUp: false;
     }
 
     /**
@@ -160,11 +160,11 @@ public class NeutronRouter implements Router {
     /**
      * {@inheritDoc}
      */
-		@Override
-		public int hashCode() {
-			return java.util.Objects.hash(id, name, status, tenantId, adminStateUp,
-							externalGatewayInfo, routes);
-		}
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(id, name, status, tenantId, adminStateUp,
+                externalGatewayInfo, routes);
+    }
 
     /**
      * {@inheritDoc}
@@ -172,7 +172,7 @@ public class NeutronRouter implements Router {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
-          return true;
+            return true;
         }
 
         if (obj instanceof NeutronRouter) {
@@ -184,7 +184,7 @@ public class NeutronRouter implements Router {
                     java.util.Objects.equals(adminStateUp, that.adminStateUp) &&
                     java.util.Objects.equals(externalGatewayInfo, that.externalGatewayInfo) &&
                     java.util.Objects.equals(routes, that.routes)) {
-              return true;
+                return true;
             }
         }
         return false;

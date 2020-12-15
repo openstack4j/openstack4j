@@ -3,16 +3,15 @@ package org.openstack4j.openstack.sahara.domain;
 import java.util.Date;
 import java.util.List;
 
-import org.openstack4j.model.sahara.JobBinary;
-import org.openstack4j.model.sahara.JobBinaryCredentials;
-import org.openstack4j.model.sahara.builder.JobBinaryBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.sahara.JobBinary;
+import org.openstack4j.model.sahara.JobBinaryCredentials;
+import org.openstack4j.model.sahara.builder.JobBinaryBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * For mapping JSON response to/from java objects
@@ -22,7 +21,7 @@ import com.google.common.base.MoreObjects;
  */
 
 @JsonRootName("job_binary")
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaharaJobBinary implements JobBinary {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +44,13 @@ public class SaharaJobBinary implements JobBinary {
     private String name;
     @JsonProperty("extra")
     private SaharaJobBinaryCredentials credentials;
+
+    /**
+     * @return the job binary Builder
+     */
+    public static JobBinaryBuilder builder() {
+        return new ConcreteJobBinaryBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -113,14 +119,22 @@ public class SaharaJobBinary implements JobBinary {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
-                   .add("description", description)
-                   .add("url", url)
-                   .add("tenant_id", tenantId)
-                   .add("created_at", createdAt)
-                   .add("updated_at", updatedAt)
-                   .add("id",id)
-                   .add("name", name)
-                   .toString();
+                .add("description", description)
+                .add("url", url)
+                .add("tenant_id", tenantId)
+                .add("created_at", createdAt)
+                .add("updated_at", updatedAt)
+                .add("id", id)
+                .add("name", name)
+                .toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JobBinaryBuilder toBuilder() {
+        return new ConcreteJobBinaryBuilder(this);
     }
 
     public static class JobBinaries extends ListResult<SaharaJobBinary> {
@@ -133,21 +147,6 @@ public class SaharaJobBinary implements JobBinary {
         public List<SaharaJobBinary> value() {
             return jobbinaries;
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JobBinaryBuilder toBuilder() {
-            return new ConcreteJobBinaryBuilder(this);
-    }
-
-    /**
-     * @return the job binary Builder
-     */
-    public static JobBinaryBuilder builder() {
-            return new ConcreteJobBinaryBuilder();
     }
 
     public static class ConcreteJobBinaryBuilder implements JobBinaryBuilder {

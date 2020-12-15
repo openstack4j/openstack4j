@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.workflow.internal;
 
+import java.io.InputStream;
+import java.util.List;
+
 import org.openstack4j.api.workflow.ActionDefinitionService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.common.payloads.InputStreamPayload;
@@ -7,9 +10,6 @@ import org.openstack4j.model.workflow.ActionDefinition;
 import org.openstack4j.model.workflow.Scope;
 import org.openstack4j.openstack.workflow.domain.MistralActionDefinition;
 import org.openstack4j.openstack.workflow.domain.MistralActionDefinition.MistralActionDefinitions;
-
-import java.io.InputStream;
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

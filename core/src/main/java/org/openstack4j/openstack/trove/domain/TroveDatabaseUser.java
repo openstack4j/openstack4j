@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.trove.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.trove.DatabaseUser;
 import org.openstack4j.model.trove.builder.DatabaseUserBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * Model implementation for Database User
@@ -15,12 +15,16 @@ import java.util.List;
 
 public class TroveDatabaseUser implements DatabaseUser {
 
+    @JsonProperty("databases")
+    List<TroveDatabase> troveDatabaseList;
     @JsonProperty("name")
     private String username;
     @JsonProperty("password")
     private String password;
-    @JsonProperty("databases")
-    List<TroveDatabase> troveDatabaseList;
+
+    public static DatabaseUserBuilder builder() {
+        return new DatabaseUserConcreteBuilder();
+    }
 
     public String getUsername() {
         return username;
@@ -87,7 +91,7 @@ public class TroveDatabaseUser implements DatabaseUser {
 
         @Override
         public DatabaseUserBuilder from(DatabaseUser in) {
-            this.databaseUser = (TroveDatabaseUser)in;
+            this.databaseUser = (TroveDatabaseUser) in;
             return this;
         }
 
@@ -108,10 +112,6 @@ public class TroveDatabaseUser implements DatabaseUser {
             this.databaseUser.troveDatabaseList = troveDatabaseList;
             return this;
         }
-    }
-
-    public static DatabaseUserBuilder builder() {
-        return new DatabaseUserConcreteBuilder();
     }
 
 }

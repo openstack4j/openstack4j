@@ -9,6 +9,7 @@ import org.openstack4j.model.network.ext.builder.MemberV2UpdateBuilder;
 
 /**
  * Entity for updating lbaas v2 members
+ *
  * @author emjburns
  */
 @JsonRootName("member")
@@ -26,13 +27,17 @@ public class NeutronMemberV2Update implements MemberV2Update {
     @JsonProperty("admin_state_up")
     private boolean adminStateUp = true;
 
+    public static MemberV2UpdateBuilder builder() {
+        return new MemberV2UpdateConcreteBuilder();
+    }
+
     @Override
-    public boolean isAdminStateUp(){
+    public boolean isAdminStateUp() {
         return adminStateUp;
     }
 
     @Override
-    public Integer getWeight(){
+    public Integer getWeight() {
         return weight;
     }
 
@@ -40,8 +45,13 @@ public class NeutronMemberV2Update implements MemberV2Update {
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("weight", weight)
-                .add("adminStateUp",adminStateUp)
+                .add("adminStateUp", adminStateUp)
                 .toString();
+    }
+
+    @Override
+    public MemberV2UpdateBuilder toBuilder() {
+        return new MemberV2UpdateConcreteBuilder(this);
     }
 
     public static class MemberV2UpdateConcreteBuilder implements MemberV2UpdateBuilder {
@@ -59,7 +69,7 @@ public class NeutronMemberV2Update implements MemberV2Update {
          * {@inheritDoc}
          */
         @Override
-        public MemberV2Update build(){
+        public MemberV2Update build() {
             return m;
         }
 
@@ -67,7 +77,7 @@ public class NeutronMemberV2Update implements MemberV2Update {
          * {@inheritDoc}
          */
         @Override
-        public MemberV2UpdateBuilder from(MemberV2Update in){
+        public MemberV2UpdateBuilder from(MemberV2Update in) {
             m = (NeutronMemberV2Update) in;
             return this;
         }
@@ -76,7 +86,7 @@ public class NeutronMemberV2Update implements MemberV2Update {
          * {@inheritDoc}
          */
         @Override
-        public MemberV2UpdateBuilder adminStateUp(boolean adminStateUp){
+        public MemberV2UpdateBuilder adminStateUp(boolean adminStateUp) {
             m.adminStateUp = adminStateUp;
             return this;
         }
@@ -85,18 +95,9 @@ public class NeutronMemberV2Update implements MemberV2Update {
          * {@inheritDoc}
          */
         @Override
-        public MemberV2UpdateBuilder weight(Integer weight){
+        public MemberV2UpdateBuilder weight(Integer weight) {
             m.weight = weight;
             return this;
         }
-    }
-
-    @Override
-    public MemberV2UpdateBuilder toBuilder(){
-        return new MemberV2UpdateConcreteBuilder(this);
-    }
-
-    public static MemberV2UpdateBuilder builder(){
-        return new MemberV2UpdateConcreteBuilder();
     }
 }

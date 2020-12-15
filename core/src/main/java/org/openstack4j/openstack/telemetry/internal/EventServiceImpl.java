@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.telemetry.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.telemetry.EventService;
 import org.openstack4j.model.telemetry.Event;
 import org.openstack4j.model.telemetry.EventCriteria;
@@ -8,8 +10,6 @@ import org.openstack4j.model.telemetry.TraitDescription;
 import org.openstack4j.openstack.telemetry.domain.CeilometerEvent;
 import org.openstack4j.openstack.telemetry.domain.CeilometerTrait;
 import org.openstack4j.openstack.telemetry.domain.CeilometerTraitDescription;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
