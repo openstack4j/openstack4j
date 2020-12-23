@@ -7,6 +7,8 @@ import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.block.VolumeBackup;
 import org.openstack4j.model.storage.block.VolumeBackupCreate;
+import org.openstack4j.model.storage.block.VolumeBackupExport;
+import org.openstack4j.model.storage.block.VolumeBackupImport;
 import org.openstack4j.model.storage.block.VolumeBackupRestore;
  
 
@@ -67,5 +69,20 @@ public interface BlockVolumeBackupService  extends RestService {
 	  */
 	 VolumeBackupRestore restore( String backupId , String name, String volumeId) ;
 	 
+	 /**
+	  * Export the metadata of a specified volume backup
+	  * @param backupId the backup identifier
+	  * @return backup details necessary to restore to a new or rebuilt service instance
+	  */
+	 VolumeBackupExport exportMetadata(String backupId);
+
+	 /**
+	  * Import the metadata of a volume backup
+	  * @param backupService backup service containing the backup
+	  * @param backupMetadata encoded backup metadata
+	  * @return imported backup details
+	  */
+	 VolumeBackupImport importMetadata(String backupService, String backupMetadata);
+
 
 }
