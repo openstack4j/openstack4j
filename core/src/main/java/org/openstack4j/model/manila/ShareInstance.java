@@ -1,10 +1,10 @@
 package org.openstack4j.model.manila;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openstack4j.model.ModelEntity;
-
-import java.util.List;
 
 /**
  * Representation of a share instance.
@@ -12,20 +12,6 @@ import java.util.List;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface ShareInstance extends ModelEntity {
-    enum Status {
-        AVAILABLE, ERROR, CREATING, DELETING, ERROR_DELETING;
-
-        @JsonCreator
-        public static Status value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     /**
      * @return the share instance status
      */
@@ -75,4 +61,18 @@ public interface ShareInstance extends ModelEntity {
      * @return the share instance ID
      */
     String getId();
+
+    enum Status {
+        AVAILABLE, ERROR, CREATING, DELETING, ERROR_DELETING;
+
+        @JsonCreator
+        public static Status value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 }

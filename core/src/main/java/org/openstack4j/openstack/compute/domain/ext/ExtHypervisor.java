@@ -1,16 +1,15 @@
 package org.openstack4j.openstack.compute.domain.ext;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
-
 import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.compute.ext.Hypervisor;
 import org.openstack4j.openstack.common.ListResult;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 public class ExtHypervisor implements Hypervisor {
 

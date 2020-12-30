@@ -1,14 +1,14 @@
 /*
- * 
+ *
  */
 package org.openstack4j.model.workflow;
+
+import java.util.Date;
+import java.util.Map;
 
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.workflow.builder.CronTriggerBuilder;
-
-import java.util.Date;
-import java.util.Map;
 
 
 /**
@@ -27,6 +27,7 @@ public interface EventTrigger extends ModelEntity, Buildable<CronTriggerBuilder>
      * @return The name of this definition.
      */
     String getName();
+
     /**
      * @return The name of workflow that this trigger needs to run.
      */

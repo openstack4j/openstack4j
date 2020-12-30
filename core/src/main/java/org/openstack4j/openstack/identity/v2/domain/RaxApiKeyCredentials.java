@@ -1,11 +1,10 @@
 package org.openstack4j.openstack.identity.v2.domain;
 
-import org.openstack4j.model.identity.AuthStore;
-import org.openstack4j.model.identity.AuthVersion;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.identity.AuthStore;
+import org.openstack4j.model.identity.AuthVersion;
 
 @JsonRootName("auth")
 public class RaxApiKeyCredentials extends Auth implements AuthStore {
@@ -27,15 +26,15 @@ public class RaxApiKeyCredentials extends Auth implements AuthStore {
 
     @Override
     @JsonIgnore
-	public String getTenantId() {
+    public String getTenantId() {
         return super.getTenantId();
-	}
+    }
 
     @Override
     @JsonIgnore
-	public String getTenantName() {
+    public String getTenantName() {
         return super.getTenantName();
-	}
+    }
 
     @JsonIgnore
     public String getUsername() {
@@ -65,6 +64,12 @@ public class RaxApiKeyCredentials extends Auth implements AuthStore {
         return getTenantName();
     }
 
+    @JsonIgnore
+    @Override
+    public AuthVersion getVersion() {
+        return AuthVersion.V2;
+    }
+
     private static final class ApiKeyCredentials {
 
         @JsonProperty
@@ -76,12 +81,5 @@ public class RaxApiKeyCredentials extends Auth implements AuthStore {
             this.username = username;
             this.apiKey = apiKey;
         }
-    }
-
-
-    @JsonIgnore
-    @Override
-    public AuthVersion getVersion() {
-        return AuthVersion.V2;
     }
 }

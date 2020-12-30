@@ -23,7 +23,7 @@ public abstract class MicroVersionedOpenStackService extends BaseOpenStackServic
     }
 
     protected MicroVersionedOpenStackService(ServiceType serviceType, MicroVersion microVersion,
-                                             Function<String, String> endpointFunc) {
+            Function<String, String> endpointFunc) {
         super(serviceType, endpointFunc);
         this.microVersion = microVersion;
     }

@@ -8,6 +8,14 @@ import com.fasterxml.jackson.annotation.JsonRootName;
  * @author Daniel Gonzalez Nothnagel
  */
 public final class ShareTypeActions {
+    public static AddShareTypeAccessAction addShareTypeAccess(String project) {
+        return new AddShareTypeAccessAction(project);
+    }
+
+    public static RemoveShareTypeAccessAction removeShareTypeAccess(String project) {
+        return new RemoveShareTypeAccessAction(project);
+    }
+
     private static class ShareTypeAccessAction implements ShareTypeAction {
         private String project;
 
@@ -32,13 +40,5 @@ public final class ShareTypeActions {
         RemoveShareTypeAccessAction(String project) {
             super(project);
         }
-    }
-
-    public static AddShareTypeAccessAction addShareTypeAccess(String project) {
-        return new AddShareTypeAccessAction(project);
-    }
-
-    public static RemoveShareTypeAccessAction removeShareTypeAccess(String project) {
-        return new RemoveShareTypeAccessAction(project);
     }
 }

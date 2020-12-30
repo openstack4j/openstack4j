@@ -5,7 +5,7 @@ import java.util.Map;
 import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.identity.v3.Credential;
 
-public interface CredentialBuilder extends Builder<CredentialBuilder, Credential>{
+public interface CredentialBuilder extends Builder<CredentialBuilder, Credential> {
 
     /**
      * @see Credential#getId()

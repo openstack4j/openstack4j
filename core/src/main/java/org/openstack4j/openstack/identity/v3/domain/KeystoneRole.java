@@ -3,15 +3,14 @@ package org.openstack4j.openstack.identity.v3.domain;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
-import org.openstack4j.model.identity.v3.Role;
-import org.openstack4j.model.identity.v3.builder.RoleBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
+import com.google.common.collect.Maps;
+import org.openstack4j.model.identity.v3.Role;
+import org.openstack4j.model.identity.v3.builder.RoleBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * v3 role implementation
@@ -30,13 +29,13 @@ public class KeystoneRole implements Role {
     private Map<String, String> links;
     private Map<String, String> options = Maps.newHashMap();
 
+    public static RoleBuilder builder() {
+        return new RoleConcreteBuilder();
+    }
+
     @Override
     public RoleBuilder toBuilder() {
         return new RoleConcreteBuilder(this);
-    }
-
-    public static RoleBuilder builder() {
-        return new RoleConcreteBuilder();
     }
 
     /**

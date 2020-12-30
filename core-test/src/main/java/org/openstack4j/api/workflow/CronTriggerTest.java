@@ -1,14 +1,14 @@
 package org.openstack4j.api.workflow;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.workflow.Scope;
 import org.openstack4j.model.workflow.CronTrigger;
+import org.openstack4j.model.workflow.Scope;
 import org.openstack4j.openstack.workflow.domain.MistralCronTrigger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.util.Collections;
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;

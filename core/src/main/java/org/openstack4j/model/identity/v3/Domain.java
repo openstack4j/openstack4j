@@ -8,7 +8,7 @@ import org.openstack4j.model.identity.v3.builder.DomainBuilder;
 
 /**
  * Domain model.
- * 
+ *
  * @see <a href="http://developer.openstack.org/api-ref-identity-v3.html#domains-v3">API reference</a>
  */
 public interface Domain extends ModelEntity, Buildable<DomainBuilder> {

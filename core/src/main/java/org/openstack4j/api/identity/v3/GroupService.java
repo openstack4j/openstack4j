@@ -11,7 +11,6 @@ import org.openstack4j.model.identity.v3.User;
 
 /**
  * Identity V3 Group Service
- *
  */
 public interface GroupService extends RestService {
 
@@ -70,7 +69,6 @@ public interface GroupService extends RestService {
      * @param domainId the domain id
      * @param name the group name
      * @param description the description
-     *
      * @return the newly created group
      */
     Group create(String domainId, String name, String description);
@@ -84,8 +82,6 @@ public interface GroupService extends RestService {
 
     /**
      * lists the users that belong to a group
-     *
-     * @return
      */
     List<? extends User> listGroupUsers(String groupId);
 

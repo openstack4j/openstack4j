@@ -7,11 +7,10 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.PortChain;
 
 /**
-* Port Chain Service
-*
-* @author Dmitry Gerenrot
-*
-*/
+ * Port Chain Service
+ *
+ * @author Dmitry Gerenrot
+ */
 public interface PortChainService extends RestService {
 
     /**
@@ -25,7 +24,6 @@ public interface PortChainService extends RestService {
     /**
      * Get a port chain by id.
      *
-     * @param portChainId
      * @return PortChain
      */
     PortChain get(String portChainId);
@@ -33,8 +31,6 @@ public interface PortChainService extends RestService {
     /**
      * Update a port chain with the given id to match the given update object
      *
-     * @param portChainId
-     * @param portChain
      * @return PortChain
      */
     PortChain update(String portChainId, PortChain portChain);
@@ -42,7 +38,6 @@ public interface PortChainService extends RestService {
     /**
      * Create a port chain
      *
-     * @param portChain
      * @return portChain : object actually created
      */
     PortChain create(PortChain portChain);
@@ -50,7 +45,6 @@ public interface PortChainService extends RestService {
     /**
      * Delete a port chain
      *
-     * @param portChainId
      * @return the action response
      */
     ActionResponse delete(String portChainId);

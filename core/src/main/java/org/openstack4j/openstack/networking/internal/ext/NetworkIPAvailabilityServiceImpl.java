@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.networking.internal.ext;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 
 import org.openstack4j.api.networking.ext.NetworkIPAvailabilityService;
@@ -10,9 +8,11 @@ import org.openstack4j.openstack.networking.domain.ext.NeutronNetworkIPAvailabil
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetworkIPAvailability.NeutronNetworkIPAvailabilities;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Network IP availability and usage stats Extension API
- * 
+ *
  * @author Xiangbin HAN
  */
 public class NetworkIPAvailabilityServiceImpl extends BaseNetworkingServices implements NetworkIPAvailabilityService {

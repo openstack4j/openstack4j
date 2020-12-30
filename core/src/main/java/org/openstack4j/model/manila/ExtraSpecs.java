@@ -1,10 +1,10 @@
 package org.openstack4j.model.manila;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.model.ModelEntity;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.ModelEntity;
 
 /**
  * Represents extra specifications for share types.

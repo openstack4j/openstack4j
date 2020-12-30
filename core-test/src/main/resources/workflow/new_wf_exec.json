@@ -1,5 +1,5 @@
 {
-  "workflow_name": "parallel_join_2",
-  "params": "{}",
-  "input": "{}"
+    "workflow_name": "parallel_join_2",
+    "params": "{}",
+    "input": "{}"
 }

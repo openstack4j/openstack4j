@@ -1,9 +1,9 @@
 package org.openstack4j.model.heat.builder;
 
+import java.util.Map;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.heat.StackCreate;
-
-import java.util.Map;
 
 /**
  * This interface describes a builder for {@link StackCreate} objects
@@ -89,7 +89,6 @@ public interface StackCreateBuilder extends Buildable.Builder<StackCreateBuilder
     /**
      * Set the tags for the stack, separated by a comma.
      *
-     * @param tags
      * @return StackCreateBuilder
      */
     StackCreateBuilder tags(String tags);

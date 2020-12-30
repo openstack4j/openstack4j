@@ -7,15 +7,15 @@ import com.google.common.base.Function;
 
 /**
  * Functions to help resolve specific Services and Versions
- * 
+ *
  * @author Jeremy Unruh
  */
 public final class ServiceFunctions {
 
     private static final Pattern VERSION_PATTERN = Pattern.compile("(.*)v(\\d+)");
-    
+
     /**
-     * Takes a Service Type or Service Name and strips off any version (if applicable) and returns the 
+     * Takes a Service Type or Service Name and strips off any version (if applicable) and returns the
      * common name.  For example: {@code nova21} would be returned as {@code nova}.
      */
     public static final Function<String, String> TYPE_WITHOUT_VERSION = new Function<String, String>() {
@@ -37,7 +37,7 @@ public final class ServiceFunctions {
             return matchForVersion(serviceType, true);
         }
     };
-    
+
     @SuppressWarnings("unchecked")
     private static <T> T matchForVersion(String service, boolean returnVersion) {
         Matcher m = VERSION_PATTERN.matcher(service);
@@ -52,5 +52,5 @@ public final class ServiceFunctions {
         }
         return (T) service;
     }
-    
+
 }

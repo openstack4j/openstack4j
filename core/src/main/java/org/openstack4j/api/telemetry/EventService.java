@@ -1,16 +1,16 @@
 package org.openstack4j.api.telemetry;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.telemetry.Event;
 import org.openstack4j.model.telemetry.EventCriteria;
 import org.openstack4j.model.telemetry.Trait;
 import org.openstack4j.model.telemetry.TraitDescription;
 
-import java.util.List;
-
 /**
  * OpenStack (Ceilometer) Event based Operations
- * 
+ *
  * @author Miroslav Lacina
  */
 public interface EventService extends RestService {

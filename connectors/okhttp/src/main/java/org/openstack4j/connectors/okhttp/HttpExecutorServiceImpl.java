@@ -13,13 +13,13 @@ import org.openstack4j.openstack.internal.OSClientSession;
 /**
  * HttpExecutor is the default implementation for HttpExecutorService which is responsible for interfacing with OKHttp and mapping common status codes, requests and responses
  * back to the common API
- * 
+ *
  * @author Jeremy Unruh
  */
 public class HttpExecutorServiceImpl implements HttpExecutorService {
 
     private static final String NAME = "OKHttp Connector";
-    
+
     /**
      * {@inheritDoc}
      */
@@ -27,11 +27,9 @@ public class HttpExecutorServiceImpl implements HttpExecutorService {
     public <R> HttpResponse execute(HttpRequest<R> request) {
         try {
             return invoke(request);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             throw e;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -57,8 +55,7 @@ public class HttpExecutorServiceImpl implements HttpExecutorService {
 
     private <R> HttpResponse invokeRequest(HttpCommand<R> command) throws Exception {
         Response response = command.execute();
-        if (command.getRetries() == 0 && response.code() == 401 && !command.getRequest().getHeaders().containsKey(ClientConstants.HEADER_OS4J_AUTH))
-        {
+        if (command.getRetries() == 0 && response.code() == 401 && !command.getRequest().getHeaders().containsKey(ClientConstants.HEADER_OS4J_AUTH)) {
             OSAuthenticator.reAuthenticate();
             command.getRequest().getHeaders().put(ClientConstants.HEADER_X_AUTH_TOKEN, OSClientSession.getCurrent().getTokenId());
             return invokeRequest(command.incrementRetriesAndReturn());

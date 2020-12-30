@@ -1,16 +1,16 @@
 package org.openstack4j.api.workflow;
 
+import java.io.InputStream;
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.workflow.ActionDefinition;
 import org.openstack4j.model.workflow.Scope;
 
-import java.io.InputStream;
-import java.util.List;
-
 /**
  * Service that provides CRUD operations for action definitions.
- * 
+ *
  * @author Renat Akhmerov
  */
 public interface ActionDefinitionService extends RestService {

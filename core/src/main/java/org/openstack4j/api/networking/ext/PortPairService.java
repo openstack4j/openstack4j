@@ -6,11 +6,9 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.PortPair;
 
 /**
- *
  * Service Port Pair Service
  *
  * @author Dmitry Gerenrot
- *
  */
 public interface PortPairService {
 
@@ -24,7 +22,7 @@ public interface PortPairService {
 
     /**
      * Get a Port Pair by id.
-     * @param portPairId
+     *
      * @return PortPair
      */
     PortPair get(String portPairId);
@@ -32,8 +30,6 @@ public interface PortPairService {
     /**
      * Update a Port Pair with the given id to match the given update object
      *
-     * @param portPairId
-     * @param portPair
      * @return PortPair
      */
     PortPair update(String portPairId, PortPair portPair);
@@ -41,7 +37,6 @@ public interface PortPairService {
     /**
      * Create a Port Pair
      *
-     * @param portPair
      * @return PortPair : object actually created
      */
     PortPair create(PortPair portPair);
@@ -49,7 +44,6 @@ public interface PortPairService {
     /**
      * Delete a Port Pair
      *
-     * @param portPairId
      * @return the action response
      */
     ActionResponse delete(String portPairId);

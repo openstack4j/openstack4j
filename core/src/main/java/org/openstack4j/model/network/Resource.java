@@ -15,13 +15,13 @@ public enum Resource {
     SUBNET_POOL("subnetpools"),
     FLOATING_IP("floatingips"),
     QOS_POLICY("policies"),
-	TRUNK("trunks");
+    TRUNK("trunks");
 
     private final String value;
 
-	Resource(String value) {
-		this.value = value;
-	}
+    Resource(String value) {
+        this.value = value;
+    }
 
     public static String forValue(Resource resource) {
         if (resource != null) {

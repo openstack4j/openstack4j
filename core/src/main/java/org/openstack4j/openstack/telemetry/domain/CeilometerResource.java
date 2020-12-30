@@ -3,10 +3,9 @@ package org.openstack4j.openstack.telemetry.domain;
 import java.util.Date;
 import java.util.Map;
 
-import org.openstack4j.model.telemetry.Resource;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.telemetry.Resource;
 
 /**
  * A single measurement for resource.
@@ -20,23 +19,17 @@ public class CeilometerResource implements Resource {
 
     @JsonProperty("resource_id")
     String id;
-
-    @JsonProperty("user_id")
-    private String userId;
-
-    private String source;
-
-    @JsonProperty("project_id")
-    private String projectId;
-
-    @JsonProperty("first_sample_timestamp")
-    private Date firstSampleTimestamp;
-
-    @JsonProperty("last_sample_timestamp")
-    private Date lastSampleTimeStamp;
-
     @JsonProperty("metadata")
     Map<String, Object> metaData;
+    @JsonProperty("user_id")
+    private String userId;
+    private String source;
+    @JsonProperty("project_id")
+    private String projectId;
+    @JsonProperty("first_sample_timestamp")
+    private Date firstSampleTimestamp;
+    @JsonProperty("last_sample_timestamp")
+    private Date lastSampleTimeStamp;
 
     /**
      * {@inheritDoc}

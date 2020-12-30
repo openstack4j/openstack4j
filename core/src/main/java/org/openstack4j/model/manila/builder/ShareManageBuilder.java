@@ -1,11 +1,11 @@
 package org.openstack4j.model.manila.builder;
 
+import java.util.Map;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.manila.Share;
 import org.openstack4j.model.manila.ShareCreate;
 import org.openstack4j.model.manila.ShareManage;
-
-import java.util.Map;
 
 /**
  * Builds a {@link ShareCreate}.
@@ -31,6 +31,7 @@ public interface ShareManageBuilder extends Buildable.Builder<ShareManageBuilder
 
     /**
      * Set the share type name.
+     *
      * @param shareType the share type
      * @return ShareManageBuilder
      */

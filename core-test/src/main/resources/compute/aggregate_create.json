@@ -1,6 +1,5 @@
 {
-    "aggregate":
-    {
+    "aggregate": {
         "name": "testAggregate01",
         "availability_zone": "nova"
     }

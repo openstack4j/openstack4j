@@ -10,13 +10,13 @@ import org.testng.ITestResult;
 import org.testng.SkipException;
 
 /**
- * A TestNG listener checking test methods for the presence of {@code @SkipTest} 
+ * A TestNG listener checking test methods for the presence of {@code @SkipTest}
  * annotation
- * 
+ *
  * <p>If annotation is present on test method and current HTTP connector matches
  * the HTTP connector specified by {@code @SkipTest}, the listener will skip the test
  * by throwing TestNG {@code SkipException}.</p>
- * 
+ *
  * @author Bruno Semperlotti
  */
 public class SkipTestListener implements IInvokedMethodListener {

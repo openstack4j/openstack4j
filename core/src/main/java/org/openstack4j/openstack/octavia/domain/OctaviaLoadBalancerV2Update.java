@@ -9,6 +9,7 @@ import org.openstack4j.model.octavia.builder.LoadBalancerV2UpdateBuilder;
 
 /**
  * Entity used to update lbaas v2 loadbalancer
+ *
  * @author wei
  */
 @JsonRootName("loadbalancer")
@@ -22,11 +23,15 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
     @JsonProperty("admin_state_up")
     private boolean adminStateUp = true;
 
+    public static LoadBalancerV2UpdateBuilder builder() {
+        return new LoadBalancerV2UpdateConcreteBuilder();
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
@@ -34,7 +39,7 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
      * {@inheritDoc}
      */
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -42,7 +47,7 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public boolean isAdminStateUp() {
         return adminStateUp;
     }
 
@@ -55,15 +60,23 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
                 .toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LoadBalancerV2UpdateBuilder toBuilder() {
+        return new LoadBalancerV2UpdateConcreteBuilder();
+    }
+
     public static class LoadBalancerV2UpdateConcreteBuilder implements LoadBalancerV2UpdateBuilder {
 
         private OctaviaLoadBalancerV2Update m;
 
-        public LoadBalancerV2UpdateConcreteBuilder (){
+        public LoadBalancerV2UpdateConcreteBuilder() {
             this(new OctaviaLoadBalancerV2Update());
         }
 
-        public LoadBalancerV2UpdateConcreteBuilder (OctaviaLoadBalancerV2Update m){
+        public LoadBalancerV2UpdateConcreteBuilder(OctaviaLoadBalancerV2Update m) {
             this.m = m;
         }
 
@@ -71,7 +84,7 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2Update build(){
+        public LoadBalancerV2Update build() {
             return m;
         }
 
@@ -79,7 +92,7 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2UpdateBuilder from(LoadBalancerV2Update in){
+        public LoadBalancerV2UpdateBuilder from(LoadBalancerV2Update in) {
             m = (OctaviaLoadBalancerV2Update) in;
             return this;
         }
@@ -88,7 +101,7 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2UpdateBuilder description(String description){
+        public LoadBalancerV2UpdateBuilder description(String description) {
             m.description = description;
             return this;
         }
@@ -97,7 +110,7 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2UpdateBuilder name(String name){
+        public LoadBalancerV2UpdateBuilder name(String name) {
             m.name = name;
             return this;
         }
@@ -106,21 +119,10 @@ public class OctaviaLoadBalancerV2Update implements LoadBalancerV2Update {
          * {@inheritDoc}
          */
         @Override
-        public LoadBalancerV2UpdateBuilder adminStateUp(boolean adminStateUp){
+        public LoadBalancerV2UpdateBuilder adminStateUp(boolean adminStateUp) {
             m.adminStateUp = adminStateUp;
             return this;
         }
 
-    }
-    public static LoadBalancerV2UpdateBuilder builder(){
-        return new LoadBalancerV2UpdateConcreteBuilder();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public LoadBalancerV2UpdateBuilder toBuilder(){
-        return new LoadBalancerV2UpdateConcreteBuilder();
     }
 }

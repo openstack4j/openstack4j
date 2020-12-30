@@ -1,14 +1,14 @@
 package org.openstack4j.openstack.murano.v1.domain;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.murano.v1.domain.Application;
 import org.openstack4j.model.murano.v1.domain.Deployment;
 import org.openstack4j.model.murano.v1.domain.DeploymentResult;
 import org.openstack4j.model.murano.v1.domain.EnvironmentDescription;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Nikolay Mahotkin.
@@ -43,6 +43,7 @@ public class MuranoDeployment implements Deployment {
 
     @JsonProperty
     private MuranoDeploymentResult result;
+
     /**
      * {@inheritDoc}
      */
@@ -118,6 +119,8 @@ public class MuranoDeployment implements Deployment {
     public static class MuranoDeploymentResult implements DeploymentResult {
         @JsonProperty
         private boolean isException;
+        @JsonProperty
+        private MuranoInnerResult result;
 
         /**
          * {@inheritDoc}
@@ -132,9 +135,6 @@ public class MuranoDeployment implements Deployment {
         public MuranoInnerResult getResult() {
             return this.result;
         }
-
-        @JsonProperty
-        private MuranoInnerResult result;
 
         public static class MuranoInnerResult implements InnerResult {
             @JsonProperty

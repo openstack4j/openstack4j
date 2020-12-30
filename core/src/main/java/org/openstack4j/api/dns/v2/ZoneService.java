@@ -1,15 +1,14 @@
 package org.openstack4j.api.dns.v2;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.dns.v2.Nameserver;
 import org.openstack4j.model.dns.v2.Zone;
 
-import java.util.List;
-
 /**
  * Designate V2 Zone Service
- *
  */
 public interface ZoneService extends RestService {
 
@@ -26,7 +25,6 @@ public interface ZoneService extends RestService {
      *
      * @param name the zone name
      * @param email the e-mail for the zone
-     *
      * @return the newly created group
      */
     Zone create(String name, String email);

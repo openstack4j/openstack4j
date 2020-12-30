@@ -21,7 +21,12 @@ public class ManilaShareNetworkCreate implements ShareNetworkCreate {
     private String name;
     private String description;
 
-    private ManilaShareNetworkCreate() {}
+    private ManilaShareNetworkCreate() {
+    }
+
+    public static ShareNetworkCreateBuilder builder() {
+        return new ShareNetworkCreateConcreteBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -63,9 +68,6 @@ public class ManilaShareNetworkCreate implements ShareNetworkCreate {
         return description;
     }
 
-    public static ShareNetworkCreateBuilder builder() {
-        return new ShareNetworkCreateConcreteBuilder();
-    }
     @Override
     public ShareNetworkCreateBuilder toBuilder() {
         return new ShareNetworkCreateConcreteBuilder(this);

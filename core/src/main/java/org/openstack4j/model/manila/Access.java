@@ -10,6 +10,46 @@ import org.openstack4j.model.ModelEntity;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface Access extends ModelEntity {
+    /**
+     * @return the access rule ID
+     */
+    String getId();
+
+    /**
+     * @return the UUID of the share to which you are granted or denied access
+     */
+    String getShareId();
+
+    /**
+     * @return the access rule state
+     */
+    State getState();
+
+    /**
+     * @return the date and time stamp when the access rule was created
+     */
+    String getCreatedAt();
+
+    /**
+     * @return the date and time stamp when the access rule was updated
+     */
+    String getUpdatedAt();
+
+    /**
+     * @return the rule access type
+     */
+    Type getAccessType();
+
+    /**
+     * @return the access that the back end grants or denies
+     */
+    String getAccessTo();
+
+    /**
+     * @return the share access level
+     */
+    Level getAccessLevel();
+
     enum Level {
         RW, RO;
 
@@ -51,44 +91,4 @@ public interface Access extends ModelEntity {
             return name().toLowerCase();
         }
     }
-
-    /**
-     * @return the access rule ID
-     */
-    String getId();
-
-    /**
-     * @return the UUID of the share to which you are granted or denied access
-     */
-    String getShareId();
-
-    /**
-     * @return the access rule state
-     */
-    State getState();
-
-    /**
-     * @return the date and time stamp when the access rule was created
-     */
-    String getCreatedAt();
-
-    /**
-     * @return the date and time stamp when the access rule was updated
-     */
-    String getUpdatedAt();
-
-    /**
-     * @return the rule access type
-     */
-    Type getAccessType();
-
-    /**
-     * @return the access that the back end grants or denies
-     */
-    String getAccessTo();
-
-    /**
-     * @return the share access level
-     */
-    Level getAccessLevel();
 }

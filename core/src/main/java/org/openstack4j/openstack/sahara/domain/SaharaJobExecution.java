@@ -3,17 +3,16 @@ package org.openstack4j.openstack.sahara.domain;
 import java.util.Date;
 import java.util.List;
 
-import org.openstack4j.model.sahara.JobConfig;
-import org.openstack4j.model.sahara.JobExecution;
-import org.openstack4j.model.sahara.JobExecutionInfo;
-import org.openstack4j.model.sahara.builder.JobExecutionBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.sahara.JobConfig;
+import org.openstack4j.model.sahara.JobExecution;
+import org.openstack4j.model.sahara.JobExecutionInfo;
+import org.openstack4j.model.sahara.builder.JobExecutionBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * For mapping JSON response to/from java objects
@@ -23,7 +22,7 @@ import com.google.common.base.MoreObjects;
  */
 
 @JsonRootName("job_execution")
-@JsonIgnoreProperties(value={"jobIdForExecution"}, ignoreUnknown=true)
+@JsonIgnoreProperties(value = {"jobIdForExecution"}, ignoreUnknown = true)
 public class SaharaJobExecution implements JobExecution {
 
     private static final long serialVersionUID = 1L;
@@ -64,6 +63,13 @@ public class SaharaJobExecution implements JobExecution {
     private SaharaJobExecutionInfo info;
 
     private String jobIdForExecute;
+
+    /**
+     * @return the job execution Builder
+     */
+    public static JobExecutionBuilder builder() {
+        return new concreteJobExecutionBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -196,22 +202,30 @@ public class SaharaJobExecution implements JobExecution {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
-                   .add("cluster_id", clusterId)
-                   .add("input_id", inputId)
-                   .add("output_id", outputId)
-                   .add("job_configs", jobConfigs)
-                   .add("job_id", jobId)
-                   .add("tenant_id", tenantId)
-                   .add("start_time", startTime)
-                   .add("end_time", endTime)
-                   .add("created_at", createdAt)
-                   .add("updated_at", updatedAt)
-                   .add("oozie_job_id", oozieJobId)
-                   .add("return_code", returnCode)
-                   .add("progress", progress)
-                   .add("info", info)
-                   .add("id", id)
-                   .toString();
+                .add("cluster_id", clusterId)
+                .add("input_id", inputId)
+                .add("output_id", outputId)
+                .add("job_configs", jobConfigs)
+                .add("job_id", jobId)
+                .add("tenant_id", tenantId)
+                .add("start_time", startTime)
+                .add("end_time", endTime)
+                .add("created_at", createdAt)
+                .add("updated_at", updatedAt)
+                .add("oozie_job_id", oozieJobId)
+                .add("return_code", returnCode)
+                .add("progress", progress)
+                .add("info", info)
+                .add("id", id)
+                .toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JobExecutionBuilder toBuilder() {
+        return new concreteJobExecutionBuilder(this);
     }
 
     public static class JobExecutions extends ListResult<SaharaJobExecution> {
@@ -226,22 +240,7 @@ public class SaharaJobExecution implements JobExecution {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JobExecutionBuilder toBuilder() {
-        return new concreteJobExecutionBuilder(this);
-    }
-
-    /**
-     * @return the job execution Builder
-     */
-    public static JobExecutionBuilder builder() {
-        return new concreteJobExecutionBuilder();
-    }
-
-    public static class  concreteJobExecutionBuilder implements JobExecutionBuilder {
+    public static class concreteJobExecutionBuilder implements JobExecutionBuilder {
 
         SaharaJobExecution m;
 

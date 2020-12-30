@@ -1,18 +1,18 @@
 package org.openstack4j.api.network;
 
 
-import org.openstack4j.api.AbstractTest;
-import org.openstack4j.api.Builders;
-import org.openstack4j.model.common.ActionResponse;
-import org.openstack4j.model.network.ext.ListenerV2;
-import org.openstack4j.model.network.ext.ListenerV2Update;
-import org.openstack4j.model.network.ext.ListenerProtocol;
-import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.openstack4j.api.AbstractTest;
+import org.openstack4j.api.Builders;
+import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.network.ext.ListenerProtocol;
+import org.openstack4j.model.network.ext.ListenerV2;
+import org.openstack4j.model.network.ext.ListenerV2Update;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -20,11 +20,9 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 /**
- *
  * @author ashleykasim
- *
  */
-@Test(suiteName="Network/listener", enabled = true)
+@Test(suiteName = "Network/listener", enabled = true)
 public class ListenerV2Tests extends AbstractTest {
     private static final String LISTENERSV2_JSON = "/network/listenersv2.json";
     private static final String LISTENERV2_JSON = "/network/listenerv2.json";

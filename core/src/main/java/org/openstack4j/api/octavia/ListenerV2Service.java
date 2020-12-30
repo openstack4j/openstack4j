@@ -1,20 +1,22 @@
 package org.openstack4j.api.octavia;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.octavia.ListenerV2;
 import org.openstack4j.model.octavia.ListenerV2Update;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * Octavia V2 listener Extension API
+ *
  * @author wei
  */
 public interface ListenerV2Service extends RestService {
     /**
      * List all listeners that the current tenant has access to
+     *
      * @return list of all listeners
      */
     List<? extends ListenerV2> list();
@@ -30,7 +32,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Get the specified listener by ID
      *
-     * @param listenerId
      * @return the listener or null if not found
      */
     ListenerV2 get(String listenerId);
@@ -38,7 +39,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Delete the specified listener by ID
      *
-     * @param listenerId
      * @return the action response
      */
     ActionResponse delete(String listenerId);
@@ -46,7 +46,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Create a listener
      *
-     * @param listener
      * @return ListenerV2
      */
     ListenerV2 create(ListenerV2 listener);
@@ -54,8 +53,6 @@ public interface ListenerV2Service extends RestService {
     /**
      * Update a listener
      *
-     * @param listenerId
-     * @param listener
      * @return ListenerV2
      */
     ListenerV2 update(String listenerId, ListenerV2Update listener);

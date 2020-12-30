@@ -1,11 +1,10 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
-import org.openstack4j.model.identity.AuthStore;
-import org.openstack4j.model.identity.AuthVersion;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.identity.AuthStore;
+import org.openstack4j.model.identity.AuthVersion;
 
 @JsonRootName("auth")
 public class Credentials extends Auth implements AuthStore {
@@ -52,6 +51,12 @@ public class Credentials extends Auth implements AuthStore {
         return getDomainName();
     }
 
+    @JsonIgnore
+    @Override
+    public AuthVersion getVersion() {
+        return AuthVersion.V3;
+    }
+
     private static final class PasswordCredentials {
 
         @JsonProperty
@@ -63,11 +68,5 @@ public class Credentials extends Auth implements AuthStore {
             this.username = username;
             this.password = password;
         }
-    }
-
-    @JsonIgnore
-    @Override
-    public AuthVersion getVersion() {
-        return AuthVersion.V3;
     }
 }

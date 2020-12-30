@@ -1,5 +1,8 @@
 package org.openstack4j.api.network;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,10 +12,9 @@ import org.openstack4j.model.network.TrunkSubport;
 import org.openstack4j.openstack.networking.domain.NeutronTrunkSubport;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Rewrote the entire API and so had to re-write tests

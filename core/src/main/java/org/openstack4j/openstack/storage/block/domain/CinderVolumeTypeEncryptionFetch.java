@@ -5,7 +5,7 @@ package org.openstack4j.openstack.storage.block.domain;
  * name "encryption"
  *
  * @author Jyothi Saroja
-*/
+ */
 public class CinderVolumeTypeEncryptionFetch extends AbstractCinderVolumeTypeEncryption {
 
     private static final long serialVersionUID = 1L;

@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.manila.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.manila.AbsoluteLimit;
 import org.openstack4j.model.manila.Limits;
 import org.openstack4j.model.manila.RateLimit;
-
-import java.util.List;
 
 /**
  * Limits are the resource limitations that are allowed for each tenant (project).

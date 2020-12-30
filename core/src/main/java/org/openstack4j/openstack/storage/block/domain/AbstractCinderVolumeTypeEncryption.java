@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.storage.block.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
 import org.openstack4j.model.storage.block.VolumeTypeEncryption;
 import org.openstack4j.model.storage.block.builder.VolumeTypeEncryptionBuilder;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
-
 /**
  * A volume type encryption
- *
+ * <p>
  * This is the parent class for {@link CinderVolumeTypeEncryption} and
  * {@link CinderVolumeTypeEncryptionFetch} CinderVolumeTypeEncryption has the json root name encryption whereas
  * CinderVolumeTypeEncryptionFetch doesn't as the API doesn't expect it
@@ -31,6 +30,13 @@ public class AbstractCinderVolumeTypeEncryption implements VolumeTypeEncryption 
     protected Integer keySize;
     @JsonProperty("volume_type_id")
     protected String volumeTypeId;
+
+    /**
+     * @return the Encryption Type Builder
+     */
+    public static VolumeTypeEncryptionBuilder builder() {
+        return new VolumeTypeEncryptionConcreteBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -57,8 +63,8 @@ public class AbstractCinderVolumeTypeEncryption implements VolumeTypeEncryption 
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     @Override
     public String getCipher() {
         return cipher;
@@ -83,13 +89,6 @@ public class AbstractCinderVolumeTypeEncryption implements VolumeTypeEncryption 
     @Override
     public VolumeTypeEncryptionBuilder toBuilder() {
         return new VolumeTypeEncryptionConcreteBuilder(this);
-    }
-
-    /**
-     * @return the Encryption Type Builder
-     */
-    public static VolumeTypeEncryptionBuilder builder() {
-        return new VolumeTypeEncryptionConcreteBuilder();
     }
 
     /**

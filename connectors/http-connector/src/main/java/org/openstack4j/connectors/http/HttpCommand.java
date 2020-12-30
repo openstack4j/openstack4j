@@ -1,5 +1,14 @@
 package org.openstack4j.connectors.http;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.net.*;
+import java.net.Proxy.Type;
+import java.util.Map;
+
 import com.google.common.io.ByteStreams;
 import com.google.common.net.MediaType;
 import org.openstack4j.core.transport.Config;
@@ -9,21 +18,9 @@ import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.net.*;
-import java.net.Proxy.Type;
-import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
-
 /**
  * HttpCommand is responsible for executing the actual request driven by the
  * HttpExecutor.
- *
- * @param <R>
  */
 public final class HttpCommand<R> {
 
@@ -51,6 +48,39 @@ public final class HttpCommand<R> {
         return command;
     }
 
+    /**
+     * @param httpURLConnection the HttpURLConnection
+     * @param method the methods name (GET, PUT, POST,... exception is thrown when trying to do a PATCH)
+     * @see <a href= "https://java.net/jira/browse/JERSEY-639">https://java.net/jira/browse/JERSEY-639</a>
+     */
+    private static void setRequestMethodUsingWorkaroundForJREBug(final HttpURLConnection httpURLConnection, final String method) {
+        try {
+            httpURLConnection.setRequestMethod(method);
+            // Check whether we are running on a buggy JRE
+        } catch (final ProtocolException pe) {
+            try {
+                final Class<?> httpURLConnectionClass = httpURLConnection
+                        .getClass();
+                final Class<?> parentClass = httpURLConnectionClass
+                        .getSuperclass();
+                final Field methodField;
+                // If the implementation class is an HTTPS URL Connection, we
+                // need to go up one level higher in the heirarchy to modify the
+                // 'method' field.
+                if (parentClass == HttpsURLConnection.class) {
+                    methodField = parentClass.getSuperclass().getDeclaredField(
+                            "method");
+                } else {
+                    methodField = parentClass.getDeclaredField("method");
+                }
+                methodField.setAccessible(true);
+                methodField.set(httpURLConnection, method);
+            } catch (final Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     private void initialize() {
         try {
 
@@ -71,10 +101,8 @@ public final class HttpCommand<R> {
 
         if (request.getEntity() != null) {
             if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
-                requestBody = ByteStreams.toByteArray((InputStream)request.getEntity());
-            }
-            else
-            {
+                requestBody = ByteStreams.toByteArray((InputStream) request.getEntity());
+            } else {
                 String content = ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer().writeValueAsString(request.getEntity());
                 requestBody = content.getBytes();
             }
@@ -123,40 +151,6 @@ public final class HttpCommand<R> {
     }
 
     /**
-     * @see <a href= "https://java.net/jira/browse/JERSEY-639">https://java.net/jira/browse/JERSEY-639</a>
-     *
-     * @param httpURLConnection the HttpURLConnection
-     * @param method the methods name (GET, PUT, POST,... exception is thrown when trying to do a PATCH)
-     */
-    private static void setRequestMethodUsingWorkaroundForJREBug(final HttpURLConnection httpURLConnection, final String method) {
-        try {
-            httpURLConnection.setRequestMethod(method);
-            // Check whether we are running on a buggy JRE
-        } catch (final ProtocolException pe) {
-            try {
-                final Class<?> httpURLConnectionClass = httpURLConnection
-                        .getClass();
-                final Class<?> parentClass = httpURLConnectionClass
-                        .getSuperclass();
-                final Field methodField;
-                // If the implementation class is an HTTPS URL Connection, we
-                // need to go up one level higher in the heirarchy to modify the
-                // 'method' field.
-                if (parentClass == HttpsURLConnection.class) {
-                    methodField = parentClass.getSuperclass().getDeclaredField(
-                            "method");
-                } else {
-                    methodField = parentClass.getDeclaredField("method");
-                }
-                methodField.setAccessible(true);
-                methodField.set(httpURLConnection, method);
-            } catch (final Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    /**
      * @return true if a request entity has been set
      */
     public boolean hasEntity() {
@@ -194,9 +188,7 @@ public final class HttpCommand<R> {
             Proxy proxy = new Proxy(Type.HTTP,
                     new InetSocketAddress(config.getProxy().getRawHost(), config.getProxy().getPort()));
             connection = (HttpURLConnection) connectionUrl.openConnection(proxy);
-        }
-        else
-        {
+        } else {
             connection = (HttpURLConnection) connectionUrl.openConnection();
         }
         connection.setRequestProperty("Content-Type", request.getContentType());

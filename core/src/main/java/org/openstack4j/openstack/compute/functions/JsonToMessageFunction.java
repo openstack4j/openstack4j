@@ -6,17 +6,17 @@ import java.util.regex.Pattern;
 import com.google.common.base.Function;
 
 /**
- * Attempts to extract an error message from a JSON payload.  If the message cannot be found then the original 
+ * Attempts to extract an error message from a JSON payload.  If the message cannot be found then the original
  * JSON string is returned
- * 
+ *
  * @author Jeremy Unruh
  */
 public class JsonToMessageFunction implements Function<String, String> {
 
     public static final JsonToMessageFunction INSTANCE = new JsonToMessageFunction();
     private static final Pattern MESSAGE_PATTERN = Pattern.compile(".*message\\\":\\s\\\"([^\"]+)\\\".*");
-    
-    
+
+
     @Override
     public String apply(String json) {
         if (json != null && json.contains("message")) {

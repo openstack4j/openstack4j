@@ -1,7 +1,7 @@
 {
-  "service": {
-    "status": "enabled",
-    "binary": "nova-compute",
-    "host": "some_host"
-  }
+    "service": {
+        "status": "enabled",
+        "binary": "nova-compute",
+        "host": "some_host"
+    }
 }

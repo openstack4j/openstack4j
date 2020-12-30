@@ -1,13 +1,17 @@
 package org.openstack4j.api.workflow;
 
+import java.util.List;
+
 import org.openstack4j.model.workflow.State;
 import org.openstack4j.model.workflow.TaskExecution;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Test cases for {@link TaskExecutionService}.

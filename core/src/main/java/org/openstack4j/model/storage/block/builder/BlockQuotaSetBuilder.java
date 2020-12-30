@@ -1,21 +1,20 @@
 package org.openstack4j.model.storage.block.builder;
 
+import java.util.Map;
+
 import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
 
-import java.util.Map;
-
 /**
  * Builder for a QuotaSet model class.
- * 
+ *
  * @author Jeremy Unruh
  */
 public interface BlockQuotaSetBuilder extends Builder<BlockQuotaSetBuilder, BlockQuotaSet> {
 
     /**
      * Volumes Quota for Block Storage
-     * 
-     * @param volumes
+     *
      * @return volumes consumed in the Block Storage.
      */
     BlockQuotaSetBuilder volumes(int volumes);
@@ -23,21 +22,20 @@ public interface BlockQuotaSetBuilder extends Builder<BlockQuotaSetBuilder, Bloc
     /**
      * Snapshots present in Block Storage
      *
-     * @param snapshots
      * @return snapshots present in the Block Storage.
      */
     BlockQuotaSetBuilder snapshots(int snapshots);
 
     /**
      * Space consumed in gigabytes for Block Storage
-     * @param gigabytes
+     *
      * @return space consumed in the Block Storage.
      */
     BlockQuotaSetBuilder gigabytes(int gigabytes);
 
     /**
      * Quotas limits for each volume type
-     * @param volumeTypesQuotas
+     *
      * @return volume types quota limits configured in the Block Storage.
      */
     BlockQuotaSetBuilder volumeTypesQuotas(Map<String, Integer> volumeTypesQuotas);

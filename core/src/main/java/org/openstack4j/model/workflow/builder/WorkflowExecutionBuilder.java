@@ -1,16 +1,16 @@
 package org.openstack4j.model.workflow.builder;
 
-import org.openstack4j.model.workflow.WorkflowExecution;
-
 import java.util.Map;
+
+import org.openstack4j.model.workflow.WorkflowExecution;
 
 /**
  * Builder for a {@link WorkflowExecution} model class
- * 
+ *
  * @author Renat Akhmerov
  */
 public interface WorkflowExecutionBuilder<T extends WorkflowExecutionBuilder<T, M>, M extends WorkflowExecution>
-		extends ExecutionBuilder<T, M> {
+        extends ExecutionBuilder<T, M> {
 
     /**
      * @see WorkflowExecution#getParameters()
@@ -18,9 +18,9 @@ public interface WorkflowExecutionBuilder<T extends WorkflowExecutionBuilder<T, 
     T parameters(Map<String, Object> params);
 
     /**
-	 * @see WorkflowExecution#getInput()
-	 */
-	T input(Map<String, Object> input);
+     * @see WorkflowExecution#getInput()
+     */
+    T input(Map<String, Object> input);
 
     /**
      * @see WorkflowExecution#getOutput()

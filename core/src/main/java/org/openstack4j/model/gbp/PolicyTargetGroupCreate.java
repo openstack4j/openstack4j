@@ -9,7 +9,7 @@ import org.openstack4j.model.gbp.builder.PolicyTargetGroupBuilder;
 
 /**
  * Policy Target group Model Entity
- * 
+ *
  * @author vinod borole
  */
 public interface PolicyTargetGroupCreate extends Buildable<PolicyTargetGroupBuilder>, Resource {
@@ -61,14 +61,14 @@ public interface PolicyTargetGroupCreate extends Buildable<PolicyTargetGroupBuil
      *
      * @return the provided policy rule sets ids
      */
-    Map<String,String> getProvidedPolicyRuleSets();
+    Map<String, String> getProvidedPolicyRuleSets();
 
     /**
      * Gets the consumed policy rule sets Ids
      *
      * @return the consumed policy rule sets ids
      */
-    Map<String,String> getConsumedPolicyRuleSets();
+    Map<String, String> getConsumedPolicyRuleSets();
 
     /**
      * Gets the description
@@ -78,4 +78,3 @@ public interface PolicyTargetGroupCreate extends Buildable<PolicyTargetGroupBuil
     String getDescription();
 
 }
- 

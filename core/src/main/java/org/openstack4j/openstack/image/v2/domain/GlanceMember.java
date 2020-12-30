@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.image.v2.domain;
 
+import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,11 +10,9 @@ import com.google.common.base.MoreObjects;
 import org.openstack4j.model.image.v2.Member;
 import org.openstack4j.openstack.common.ListResult;
 
-import java.util.Date;
-import java.util.List;
-
 /**
  * Implementation of Glance V2 member
+ *
  * @author emjburns
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -42,7 +43,6 @@ public class GlanceMember implements Member {
 
     /**
      * Constructor used in createMember
-     * @param memberId
      */
     public GlanceMember(String memberId) {
         this.member = memberId;
@@ -50,7 +50,6 @@ public class GlanceMember implements Member {
 
     /**
      * Constructor used in updateMember
-     * @param status
      */
     public GlanceMember(MemberStatus status) {
         this.status = status;

@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.manila.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.manila.Service;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * Represents a Manila service and their binary.

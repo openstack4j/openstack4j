@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.networking.internal.ext;
 
+import java.util.List;
+
 import org.openstack4j.api.networking.ext.NetQosPolicyService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.NetQosPolicy;
@@ -7,8 +9,6 @@ import org.openstack4j.model.network.ext.NetQosPolicyUpdate;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicy;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicy.NeutronNetQosPolicies;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

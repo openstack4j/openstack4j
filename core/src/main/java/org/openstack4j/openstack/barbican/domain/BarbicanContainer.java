@@ -1,15 +1,15 @@
 package org.openstack4j.openstack.barbican.domain;
 
+import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
-import org.openstack4j.model.barbican.ContainerConsumer;
 import org.openstack4j.model.barbican.Container;
+import org.openstack4j.model.barbican.ContainerConsumer;
 import org.openstack4j.model.barbican.ContainerSecret;
 import org.openstack4j.model.barbican.builder.ContainerCreateBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.Date;
-import java.util.List;
 
 public class BarbicanContainer implements Container {
     private static final long serialVersionUID = 1L;
@@ -27,6 +27,10 @@ public class BarbicanContainer implements Container {
     @JsonProperty("secret_refs")
     private List<BarbicanContainerSecret> secretReferences;
     private String type;
+
+    public static ContainerCreateBuilder builder() {
+        return new ContainerCreateConcreteBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -161,7 +165,7 @@ public class BarbicanContainer implements Container {
          * {@inheritDoc}
          */
         @Override
-        public ContainerCreateBuilder from(Container in){
+        public ContainerCreateBuilder from(Container in) {
             internalContainer = (BarbicanContainer) in;
             return this;
         }
@@ -170,17 +174,16 @@ public class BarbicanContainer implements Container {
          * {@inheritDoc}
          */
         @Override
-        public ContainerCreateBuilder name(String name){
+        public ContainerCreateBuilder name(String name) {
             internalContainer.name = name;
             return this;
         }
 
         /**
          * {@inheritDoc}
-         * @param type
          */
         @Override
-        public ContainerCreateBuilder type(String type){
+        public ContainerCreateBuilder type(String type) {
             internalContainer.type = type;
             return this;
         }
@@ -189,13 +192,9 @@ public class BarbicanContainer implements Container {
          * {@inheritDoc}
          */
         @Override
-        public ContainerCreateBuilder secretReferences(List<? extends ContainerSecret> references){
+        public ContainerCreateBuilder secretReferences(List<? extends ContainerSecret> references) {
             internalContainer.secretReferences = (List<BarbicanContainerSecret>) references;
             return this;
         }
-    }
-
-    public static ContainerCreateBuilder builder() {
-        return new ContainerCreateConcreteBuilder();
     }
 }

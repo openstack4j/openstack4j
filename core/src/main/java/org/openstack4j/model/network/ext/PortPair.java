@@ -10,7 +10,6 @@ import org.openstack4j.model.network.ext.builder.PortPairBuilder;
  * A Port Pair Entity.
  *
  * @author Dmitry Gerenrot.
- *
  */
 public interface PortPair extends Resource, Buildable<PortPairBuilder> {
 

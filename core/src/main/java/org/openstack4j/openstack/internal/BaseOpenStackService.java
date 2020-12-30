@@ -1,23 +1,14 @@
 package org.openstack4j.openstack.internal;
 
-import static org.openstack4j.core.transport.ClientConstants.HEADER_USER_AGENT;
-import static org.openstack4j.core.transport.ClientConstants.USER_AGENT;
+import java.util.*;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedSet;
-
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
 import org.openstack4j.api.client.CloudProvider;
 import org.openstack4j.api.exceptions.OS4JException;
 import org.openstack4j.api.types.ServiceType;
-import org.openstack4j.core.transport.ClientConstants;
-import org.openstack4j.core.transport.ExecutionOptions;
-import org.openstack4j.core.transport.HttpMethod;
-import org.openstack4j.core.transport.HttpRequest;
+import org.openstack4j.core.transport.*;
 import org.openstack4j.core.transport.HttpRequest.RequestBuilder;
-import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.core.transport.internal.HttpExecutor;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.ActionResponse;
@@ -26,19 +17,14 @@ import org.openstack4j.model.identity.AuthVersion;
 import org.openstack4j.model.identity.v2.Access;
 import org.openstack4j.model.identity.v3.Service;
 
-import com.google.common.base.Function;
-import com.google.common.base.Joiner;
+import static org.openstack4j.core.transport.ClientConstants.HEADER_USER_AGENT;
+import static org.openstack4j.core.transport.ClientConstants.USER_AGENT;
 
 public class BaseOpenStackService {
 
+    private static ThreadLocal<String> reqIdContainer = new ThreadLocal<>();
     private ServiceType serviceType = ServiceType.IDENTITY;
     private Function<String, String> endpointFunc;
-    
-    private static ThreadLocal<String> reqIdContainer = new ThreadLocal<>();
-    
-    public String getXOpenstackRequestId() {
-    	return reqIdContainer.get();
-    }
 
     protected BaseOpenStackService() {
     }
@@ -50,6 +36,10 @@ public class BaseOpenStackService {
     protected BaseOpenStackService(ServiceType serviceType, Function<String, String> endpointFunc) {
         this.serviceType = serviceType;
         this.endpointFunc = endpointFunc;
+    }
+
+    public String getXOpenstackRequestId() {
+        return reqIdContainer.get();
     }
 
     protected <R> Invocation<R> get(Class<R> returnType, String... path) {
@@ -119,11 +109,46 @@ public class BaseOpenStackService {
         RequestBuilder<R> req = HttpRequest.builder(returnType).endpointTokenProvider(ses).config(ses.getConfig())
                 .method(method).path(path);
         Map<String, String> headers = ses.getHeaders();
-        if (headers != null && headers.size() > 0){
+        if (headers != null && headers.size() > 0) {
             return new Invocation<>(req, serviceType, endpointFunc).headers(headers);
-        }else{ 
+        } else {
             return new Invocation<>(req, serviceType, endpointFunc);
         }
+    }
+
+    protected int getServiceVersion() {
+        OSClientSession<?, ?> session = OSClientSession.getCurrent();
+        if (session.getAuthVersion() == AuthVersion.V3) {
+            SortedSet<? extends Service> services = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType());
+            Service service = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType()).first();
+
+            if (services.isEmpty()) {
+                return 1;
+            }
+
+            return service.getVersion();
+
+        } else {
+            SortedSet<? extends Access.Service> services = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType());
+            Access.Service service = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType()).first();
+
+            if (services.isEmpty()) {
+                return 1;
+            }
+
+            return service.getVersion();
+        }
+
+    }
+
+    protected <T> List<T> toList(T[] arr) {
+        if (arr == null)
+            return Collections.emptyList();
+        return Arrays.asList(arr);
+    }
+
+    protected CloudProvider getProvider() {
+        return OSClientSession.getCurrent().getProvider();
     }
 
     protected static class Invocation<R> {
@@ -217,15 +242,15 @@ public class BaseOpenStackService {
             header(HEADER_USER_AGENT, USER_AGENT);
             HttpRequest<R> request = req.build();
             HttpResponse res = HttpExecutor.create().execute(request);
-            
+
             reqIdContainer.remove();
             reqIdContainer.set(getRequestId(res));
             return res.getEntity(request.getReturnType(), options);
         }
 
         public HttpResponse executeWithResponse() {
-        	HttpResponse res = HttpExecutor.create().execute(req.build());
-        	reqIdContainer.remove();
+            HttpResponse res = HttpExecutor.create().execute(req.build());
+            reqIdContainer.remove();
             reqIdContainer.set(getRequestId(res));
             return res;
         }
@@ -237,40 +262,5 @@ public class BaseOpenStackService {
                 return res.header(ClientConstants.X_OPENSTACK_REQUEST_ID);
             }
         }
-    }
-
-    protected int getServiceVersion() {
-        OSClientSession<?, ?> session = OSClientSession.getCurrent();
-        if (session.getAuthVersion() == AuthVersion.V3) {
-            SortedSet<? extends Service> services = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType());
-            Service service = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType()).first();
-
-            if (services.isEmpty()) {
-                return 1;
-            }
-
-            return service.getVersion();
-
-        } else {
-            SortedSet<? extends Access.Service> services = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType());
-            Access.Service service = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType()).first();
-
-            if (services.isEmpty()) {
-                return 1;
-            }
-
-            return service.getVersion();
-        }
-
-    }
-
-    protected <T> List<T> toList(T[] arr) {
-        if (arr == null)
-            return Collections.emptyList();
-        return Arrays.asList(arr);
-    }
-
-    protected CloudProvider getProvider() {
-        return OSClientSession.getCurrent().getProvider();
     }
 }

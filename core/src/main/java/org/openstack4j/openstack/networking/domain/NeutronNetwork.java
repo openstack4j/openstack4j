@@ -1,5 +1,9 @@
 package org.openstack4j.openstack.networking.domain;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -11,10 +15,6 @@ import org.openstack4j.model.network.State;
 import org.openstack4j.model.network.Subnet;
 import org.openstack4j.model.network.builder.NetworkBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -54,12 +54,12 @@ public class NeutronNetwork implements Network {
     private Date createdTime;
     @JsonProperty("updated_at")
     private Date updatedTime;
-    
+
     /**
      * The maximum transmission unit (MTU) value to address fragmentation. Minimum value is 68 for IPv4, and 1280 for IPv6.
      */
     @JsonProperty("mtu")
-	private Integer mtu;
+    private Integer mtu;
 
     public static NetworkBuilder builder() {
         return new NetworkConcreteBuilder();
@@ -67,34 +67,11 @@ public class NeutronNetwork implements Network {
 
     /**
      * Wraps this Network into a Builder
+     *
      * @return the network builder
      */
     public NetworkBuilder toBuilder() {
         return new NetworkConcreteBuilder(this);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
     }
 
     /**
@@ -118,11 +95,10 @@ public class NeutronNetwork implements Network {
      */
     @Override
     public List<? extends Subnet> getNeutronSubnets() {
-        if ( neutronSubnets == null && (subnets != null && subnets.size() > 0))
-        {
+        if (neutronSubnets == null && (subnets != null && subnets.size() > 0)) {
             neutronSubnets = new ArrayList<NeutronSubnet>();
-            for ( String subnetId : subnets) {
-                NeutronSubnet sub = (NeutronSubnet)Apis.getNetworkingServices().subnet().get(subnetId);
+            for (String subnetId : subnets) {
+                NeutronSubnet sub = (NeutronSubnet) Apis.getNetworkingServices().subnet().get(subnetId);
                 neutronSubnets.add(sub);
             }
         }
@@ -135,6 +111,14 @@ public class NeutronNetwork implements Network {
     @Override
     public String getName() {
         return name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -159,6 +143,14 @@ public class NeutronNetwork implements Network {
     @Override
     public String getTenantId() {
         return tenantId;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
     /**
@@ -190,6 +182,14 @@ public class NeutronNetwork implements Network {
      * {@inheritDoc}
      */
     @Override
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isShared() {
         return shared != null && shared;
     }
@@ -206,10 +206,10 @@ public class NeutronNetwork implements Network {
      * {@inheritDoc}
      */
     @Override
-	public Integer getMTU() {
-		return mtu;
-	}
-    
+    public Integer getMTU() {
+        return mtu;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -217,7 +217,7 @@ public class NeutronNetwork implements Network {
     public List<String> getAvailabilityZoneHints() {
         return availabilityZoneHints;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -381,14 +381,14 @@ public class NeutronNetwork implements Network {
             m = (NeutronNetwork) in;
             return this;
         }
-        
+
         @Override
-		public NetworkBuilder addAvailabilityZoneHints(String availabilityZone) {
-        	if(m.availabilityZoneHints==null){
-				m.availabilityZoneHints = new ArrayList<>();
-			}
-			m.availabilityZoneHints.add(availabilityZone);
-			return this;			        	
-		}
+        public NetworkBuilder addAvailabilityZoneHints(String availabilityZone) {
+            if (m.availabilityZoneHints == null) {
+                m.availabilityZoneHints = new ArrayList<>();
+            }
+            m.availabilityZoneHints.add(availabilityZone);
+            return this;
+        }
     }
 }

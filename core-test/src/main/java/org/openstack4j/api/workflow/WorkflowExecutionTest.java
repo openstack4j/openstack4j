@@ -1,5 +1,8 @@
 package org.openstack4j.api.workflow;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.workflow.State;
 import org.openstack4j.model.workflow.WorkflowExecution;
@@ -7,10 +10,9 @@ import org.openstack4j.openstack.workflow.domain.MistralWorkflowExecution.Mistra
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.Collections;
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
 
 /**
  * Test cases for {@link WorkflowExecutionService}.

@@ -4,7 +4,7 @@ import org.openstack4j.api.exceptions.ResponseException;
 
 /**
  * Exception Handles for common Http messages and status codes
- * 
+ *
  * @author Jeremy Unruh
  */
 @Deprecated

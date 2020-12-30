@@ -9,8 +9,8 @@ import org.openstack4j.openstack.compute.domain.ext.ExtMigration.Migrations;
 import org.openstack4j.openstack.compute.internal.BaseComputeServices;
 
 /**
- * API which supports the "os-migrations" extension.  
- * 
+ * API which supports the "os-migrations" extension.
+ *
  * @author Jeremy Unruh
  */
 public class MigrationServiceImpl extends BaseComputeServices implements MigrationService {

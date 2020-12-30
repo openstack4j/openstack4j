@@ -1,5 +1,5 @@
 {
-  "extra_specs": {
-    "my_key": "my_value"
-  }
+    "extra_specs": {
+        "my_key": "my_value"
+    }
 }

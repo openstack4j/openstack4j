@@ -3,17 +3,15 @@ package org.openstack4j.openstack.networking.domain.ext;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.network.ext.PortPairGroup;
 import org.openstack4j.model.network.ext.builder.PortPairGroupBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 /**
  * @author Dmitry Gerenrot
- *
  */
 @JsonRootName("port_pair_group")
 public class NeutronPortPairGroup implements PortPairGroup {
@@ -37,6 +35,10 @@ public class NeutronPortPairGroup implements PortPairGroup {
 
     @JsonProperty("port_pair_group_parameters")
     private Map<String, Object> portPairGroupParameters;
+
+    public static PortPairGroupBuilder builder() {
+        return new PortPairGroupConcreteBuilder();
+    }
 
     @Override
     public String getId() {
@@ -88,7 +90,7 @@ public class NeutronPortPairGroup implements PortPairGroup {
     }
 
     @Override
-    public Map<String, Object>  getPortPairGroupParameters() {
+    public Map<String, Object> getPortPairGroupParameters() {
         return portPairGroupParameters;
     }
 
@@ -99,10 +101,6 @@ public class NeutronPortPairGroup implements PortPairGroup {
     @Override
     public PortPairGroupBuilder toBuilder() {
         return new PortPairGroupConcreteBuilder(this);
-    }
-
-    public static PortPairGroupBuilder builder() {
-        return new PortPairGroupConcreteBuilder();
     }
 
     public static class PortPairGroups extends ListResult<NeutronPortPairGroup> {
@@ -171,7 +169,7 @@ public class NeutronPortPairGroup implements PortPairGroup {
         }
 
         @Override
-        public PortPairGroupBuilder portPairGroupParameters(Map<String, Object>  portPairGroupParameters) {
+        public PortPairGroupBuilder portPairGroupParameters(Map<String, Object> portPairGroupParameters) {
             this.neutronPortPairGroup.portPairGroupParameters = portPairGroupParameters;
             return this;
         }

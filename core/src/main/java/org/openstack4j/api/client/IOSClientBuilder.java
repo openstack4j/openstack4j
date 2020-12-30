@@ -11,7 +11,6 @@ import org.openstack4j.model.common.Identifier;
  * OpenStack4j Client Builder
  *
  * @author Jeremy Unruh
- *
  */
 public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
 
@@ -53,7 +52,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
      * Allows for a specific network perspective to be used. For example to only
      * use AdminURL Endpoints you would want to set the {@link Facing#ADMIN} as
      * a facing perspective.
-     *
+     * <p>
      * NOTE: If you choose PUBLIC some features may not work that are normally
      * admin based configuration/functionality. If you normally are not using
      * these features PUBLIC works fine in most cases.
@@ -65,7 +64,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
 
     /**
      * DEPRECATED: Use {@link #applyConfig(Config)} to configure SSL policies
-     *
+     * <p>
      * In some private environments self signed certificates are used. If you
      * are using HTTPS and using self-signed cerificates then set this to true.
      * Otherwise the default strict hostname and properly signed validation
@@ -85,7 +84,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
      *
      * @return the authenticated client
      * @throws AuthenticationException if the credentials or default tenant is
-     *             invalid
+     * invalid
      */
     R authenticate() throws AuthenticationException;
 
@@ -96,7 +95,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
 
         /**
          * The tenant/project to authenticate as
-         * 
+         *
          * @param tenantName the tenant/project name
          * @return self for method chaining
          */
@@ -105,7 +104,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
         /**
          * The tenant/project to authenticate as (some clouds such as HP use
          * tenantId vs tenantName)
-         * 
+         *
          * @param tenantId the tenant/project id
          * @return self for method chaining
          */
@@ -113,7 +112,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
 
         /**
          * Use Rackspace API Key Authentication Admin Extension to authenticate
-         * 
+         *
          * @param raxApiKey true if enabled
          * @return self for method chaining
          */
@@ -124,7 +123,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
          * {@link #credentials(String, String)}. Note: The
          * {@link #tenantId(String)} or {@link #tenantName(String)} will
          * required when using this method for authentication.
-         * 
+         *
          * @param tokenId the token identifier
          * @return self for method chaining
          */
@@ -150,7 +149,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
         /**
          * DEPRECATED: Please use
          * {@link #credentials(String, String, Identifier)
-         *
+         * <p>
          * Authenticates against the specified domain name
          *
          * @param domainName the domain name to authenticate against
@@ -162,7 +161,7 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
         /**
          * DEPRECATED: Please use
          * {@link #credentials(String, String, Identifier)}
-         *
+         * <p>
          * Authenticates against the specified domain identifier
          *
          * @param domainId the domain identifier to authenticate against

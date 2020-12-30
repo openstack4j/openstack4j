@@ -1,14 +1,14 @@
 package org.openstack4j.openstack.barbican.domain;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import org.openstack4j.model.barbican.Secret;
 import org.openstack4j.model.barbican.builder.SecretCreateBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by reneschollmeyer on 02.08.17.
@@ -44,6 +44,10 @@ public class BarbicanSecret implements Secret {
     private String payloadContentType;
     @JsonProperty("payload_content_encoding")
     private String payloadContentEncoding;
+
+    public static SecretCreateBuilder builder() {
+        return new SecretCreateConcreteBuilder();
+    }
 
     /**
      * {@inheritDoc}
@@ -145,19 +149,25 @@ public class BarbicanSecret implements Secret {
      * {@inheritDoc}
      */
     @Override
-    public String getPayload() { return payload; }
+    public String getPayload() {
+        return payload;
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getPayloadContentType() { return payloadContentType; }
+    public String getPayloadContentType() {
+        return payloadContentType;
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getPayloadContentEncoding() { return payloadContentEncoding; }
+    public String getPayloadContentEncoding() {
+        return payloadContentEncoding;
+    }
 
     /**
      * {@inheritDoc}
@@ -311,9 +321,5 @@ public class BarbicanSecret implements Secret {
             internalSecret = (BarbicanSecret) in;
             return this;
         }
-    }
-
-    public static SecretCreateBuilder builder() {
-        return new SecretCreateConcreteBuilder();
     }
 }

@@ -8,9 +8,6 @@ import org.openstack4j.model.identity.v3.User;
 
 /**
  * A Builder which creates a identity v3 project
- * 
- * 
- * 
  */
 public interface UserBuilder extends Builder<UserBuilder, User> {
 
@@ -41,7 +38,7 @@ public interface UserBuilder extends Builder<UserBuilder, User> {
 
     /**
      * Accepts an existing domain and uses its id
-     * 
+     *
      * @see User#getDomain()
      */
     UserBuilder domain(Domain domain);

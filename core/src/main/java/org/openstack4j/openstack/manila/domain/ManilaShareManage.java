@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.manila.domain;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.collect.Maps;
 import org.openstack4j.model.manila.Share;
 import org.openstack4j.model.manila.ShareManage;
 import org.openstack4j.model.manila.builder.ShareManageBuilder;
-
-import java.util.Map;
 
 /**
  * Object to configure Shared File Systems to manage a share.
@@ -27,6 +27,10 @@ public class ManilaShareManage implements ShareManage {
     @JsonProperty("service_host")
     private String serviceHost;
     private String description;
+
+    public static ShareManageBuilder builder() {
+        return new ShareManageConcreteBuilder();
+    }
 
     @Override
     public Share.Protocol getProtocol() {
@@ -63,15 +67,11 @@ public class ManilaShareManage implements ShareManage {
         return description;
     }
 
-    public static ShareManageBuilder builder() {
-        return new ShareManageConcreteBuilder();
-    }
-
     @Override
     public ShareManageBuilder toBuilder() {
         return new ShareManageConcreteBuilder(this);
     }
-    
+
     public static class ShareManageConcreteBuilder implements ShareManageBuilder {
         ManilaShareManage shareManage;
 

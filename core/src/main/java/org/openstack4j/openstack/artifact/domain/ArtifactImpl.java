@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.artifact.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.artifact.Artifact;
-
-import java.util.List;
 
 /**
  * Created by vadavi on 27-01-2017.

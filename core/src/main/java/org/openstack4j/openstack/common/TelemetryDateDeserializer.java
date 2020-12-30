@@ -21,46 +21,45 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
  * @author pdube
  */
 public class TelemetryDateDeserializer extends StdDeserializer<Date> {
-   private static final String MILLIS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+    private static final String MILLIS_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS";
 
-   public TelemetryDateDeserializer() {
-      this(null);
-   }
+    public TelemetryDateDeserializer() {
+        this(null);
+    }
 
-   public TelemetryDateDeserializer(Class<?> vc) {
-      super(vc);
-   }
+    public TelemetryDateDeserializer(Class<?> vc) {
+        super(vc);
+    }
 
-   @Override
-   public Date deserialize(JsonParser jsonParser, DeserializationContext ctxt)
-         throws IOException, JsonProcessingException {
-      String date = jsonParser.getText();
-      SimpleDateFormat sdf = new SimpleDateFormat(MILLIS_DATE_FORMAT);
-      sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-      try {
-         return sdf.parse(getParseableDate(date));
-      } catch (ParseException e) {
-         throw new JsonParseException(jsonParser, "Could not process telemetry date", e);
-      }
-   }
+    @Override
+    public Date deserialize(JsonParser jsonParser, DeserializationContext ctxt)
+            throws IOException, JsonProcessingException {
+        String date = jsonParser.getText();
+        SimpleDateFormat sdf = new SimpleDateFormat(MILLIS_DATE_FORMAT);
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            return sdf.parse(getParseableDate(date));
+        } catch (ParseException e) {
+            throw new JsonParseException(jsonParser, "Could not process telemetry date", e);
+        }
+    }
 
-   /**
-    * Modifies the date string to have the expected date format ("yyyy-MM-dd'T'HH:mm:ss.SSS")
-    * 
-    * @param date
-    * @return the date with the correct format
-    */
-   private String getParseableDate(String date) {
-      // e.g. [ "2017-06-20 13:00:00" , "395000" ] or [] if no decimal
-      String[] sdate = date.split("\\.");
-      if (sdate.length > 1) {
-         return sdate[0] + "." + getExpectedDecimals(sdate[1]);
-      }
-      return date + ".000";
-   }
+    /**
+     * Modifies the date string to have the expected date format ("yyyy-MM-dd'T'HH:mm:ss.SSS")
+     *
+     * @return the date with the correct format
+     */
+    private String getParseableDate(String date) {
+        // e.g. [ "2017-06-20 13:00:00" , "395000" ] or [] if no decimal
+        String[] sdate = date.split("\\.");
+        if (sdate.length > 1) {
+            return sdate[0] + "." + getExpectedDecimals(sdate[1]);
+        }
+        return date + ".000";
+    }
 
-   private String getExpectedDecimals(String decimals) {
-      return (decimals + "000").substring(0, 3);
-   }
+    private String getExpectedDecimals(String decimals) {
+        return (decimals + "000").substring(0, 3);
+    }
 
 }

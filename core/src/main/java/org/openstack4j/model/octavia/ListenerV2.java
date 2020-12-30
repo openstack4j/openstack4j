@@ -1,5 +1,7 @@
 package org.openstack4j.model.octavia;
 
+import java.util.List;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
@@ -7,10 +9,9 @@ import org.openstack4j.model.octavia.builder.ListenerV2Builder;
 import org.openstack4j.openstack.octavia.domain.ListItem;
 import org.openstack4j.openstack.octavia.domain.OctaviaListenerV2;
 
-import java.util.List;
-
 /**
  * A listener for v2 loadbalancer
+ *
  * @author wei
  */
 @JsonDeserialize(as = OctaviaListenerV2.class)
@@ -69,7 +70,7 @@ public interface ListenerV2 extends ModelEntity, Buildable<ListenerV2Builder> {
 
     /**
      * @return The administrative state of the listener, which is up (true) or
-     *         down (false).
+     * down (false).
      */
     boolean isAdminStateUp();
 

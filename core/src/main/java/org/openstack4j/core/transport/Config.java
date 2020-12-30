@@ -47,7 +47,7 @@ public final class Config {
         this.resolver = resolver;
         return this;
     }
-    
+
     /**
      * Sets the Endpoint URL resolver for providing the URL resolution strategy
      *
@@ -55,8 +55,8 @@ public final class Config {
      * @return Config
      */
     public Config withEndpointURLResolver(EndpointURLResolver endpointURLResolver) {
-    	this.endpointURLResolver = endpointURLResolver;
-    	return this;
+        this.endpointURLResolver = endpointURLResolver;
+        return this;
     }
 
 
@@ -85,7 +85,6 @@ public final class Config {
     /**
      * Associates the <b>initialized</b> SSL Context to use when querying secure endpoints
      *
-     * @param sslContext
      * @return Config
      */
     public Config withSSLContext(SSLContext sslContext) {
@@ -163,7 +162,7 @@ public final class Config {
 
     /**
      * If no SSL Context has been specified and this SSL Verification is disabled we will by pass certificate checks (useful for self signed certificates).
-     *
+     * <p>
      * NOTE: This property used to be known as "useNonStrictSSL" in previous releases
      *
      * @return Config
@@ -176,13 +175,13 @@ public final class Config {
     public ServiceVersionResolver getResolver() {
         return resolver;
     }
-    
+
     public ServiceVersionResolver getV2Resolver() {
         return resolver;
     }
-    
+
     public EndpointURLResolver getEndpointURLResolver() {
-    	return endpointURLResolver;
+        return endpointURLResolver;
     }
 
     public int getConnectTimeout() {
@@ -232,12 +231,12 @@ public final class Config {
         result = prime * result + connectTimeout;
         result = prime * result + maxConnections;
         result = prime * result + maxConnectionsPerRoute;
-        result = prime * result + (ignoreSSLVerification ? 1231 : 1237);
-        result = prime * result + ((natHostOrIP == null) ? 0 : natHostOrIP.hashCode());
+        result = prime * result + (ignoreSSLVerification ? 1231: 1237);
+        result = prime * result + ((natHostOrIP == null) ? 0: natHostOrIP.hashCode());
         result = prime * result + readTimeout;
-        result = prime * result + ((proxy == null) ? 0 : proxy.hashCode());
-        result = prime * result + ((sslContext == null) ? 0 : sslContext.hashCode());
-        result = prime * result + ((hostNameVerifier == null) ? 0 : hostNameVerifier.hashCode());
+        result = prime * result + ((proxy == null) ? 0: proxy.hashCode());
+        result = prime * result + ((sslContext == null) ? 0: sslContext.hashCode());
+        result = prime * result + ((hostNameVerifier == null) ? 0: hostNameVerifier.hashCode());
         return result;
     }
 
@@ -270,21 +269,21 @@ public final class Config {
                 return false;
         } else if (!proxy.equals(other.proxy))
             return false;
-        if(sslContext == null) {
-        	if(other.getSslContext() != null) {
-        		return false;
-        	}
-        } else if(!sslContext.equals(other.getSslContext())) {
-        	return false;
+        if (sslContext == null) {
+            if (other.getSslContext() != null) {
+                return false;
+            }
+        } else if (!sslContext.equals(other.getSslContext())) {
+            return false;
         }
-        if(hostNameVerifier == null) {
-        	if(other.getHostNameVerifier() != null) {
-        		return false;
-        	}
-        } else if(!hostNameVerifier.equals(other.getHostNameVerifier())) {
-        	return false;
+        if (hostNameVerifier == null) {
+            if (other.getHostNameVerifier() != null) {
+                return false;
+            }
+        } else if (!hostNameVerifier.equals(other.getHostNameVerifier())) {
+            return false;
         }
-        
+
         return true;
     }
 

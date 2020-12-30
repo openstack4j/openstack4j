@@ -16,6 +16,12 @@ import org.openstack4j.model.network.Trunk;
 public class NeutronTrunkCreate implements ModelEntity {
 
     private static final long serialVersionUID = 1L;
+    @JsonProperty("admin_state_up")
+    private boolean adminStateUp = true;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("port_id")
+    private String parentPortId;
 
     public static NeutronTrunkCreate fromTrunk(Trunk trunk) {
 
@@ -25,14 +31,5 @@ public class NeutronTrunkCreate implements ModelEntity {
         toCreate.parentPortId = trunk.getParentPort();
         return toCreate;
     }
-
-    @JsonProperty("admin_state_up")
-    private boolean adminStateUp = true;
-
-    @JsonProperty("name")
-    private String name;
-
-    @JsonProperty("port_id")
-    private String parentPortId;
 
 }

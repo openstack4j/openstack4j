@@ -1,7 +1,5 @@
 package org.openstack4j.openstack.compute.internal.ext;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
 
 import org.openstack4j.api.compute.ext.FloatingIPDNSEntryService;
@@ -12,9 +10,11 @@ import org.openstack4j.openstack.compute.domain.ext.ExtDNSEntry;
 import org.openstack4j.openstack.compute.domain.ext.ExtDNSEntry.DNSEntries;
 import org.openstack4j.openstack.compute.internal.BaseComputeServices;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * A Service which handles DNS Entries for the Floating IP DNS Extension
- * 
+ *
  * @author Jeremy Unruh
  */
 @Deprecated
@@ -30,7 +30,7 @@ public class FloatingIPDNSEntryServiceImpl extends BaseComputeServices implement
     public List<? extends DNSEntry> listByName(String domain, String name) {
         checkNotNull(domain, "domain");
         checkNotNull(name, "name");
-        
+
         return get(DNSEntries.class, uri("/os-floating-ip-dns/%s/entries/%s", domain, name)).execute().getList();
     }
 
@@ -53,8 +53,8 @@ public class FloatingIPDNSEntryServiceImpl extends BaseComputeServices implement
         checkNotNull(ip, "ip");
 
         return put(ExtDNSEntry.class, uri("/os-floating-ip-dns/%s/entries/%s", domain, name))
-                   .entity(new ExtDNSEntry(ip, DNSRecordType.A))
-                   .execute();
+                .entity(new ExtDNSEntry(ip, DNSRecordType.A))
+                .execute();
     }
 
     @Override

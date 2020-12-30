@@ -3,12 +3,11 @@ package org.openstack4j.openstack.trove.domain;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.trove.Flavor;
 import org.openstack4j.model.trove.Instance;
 import org.openstack4j.openstack.common.ListResult;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 /**
  * Model implementation for Database instance
@@ -39,62 +38,6 @@ public class TroveInstance implements Instance {
     private Volume volume;
 
     private InstanceDatastore datastore;
-
-    public class Volume {
-
-        private String type;
-
-        private Integer size;
-
-        /**
-         *
-         * @return
-         *         The type
-         */
-
-        public String getType() {
-            return type;
-        }
-
-        /**
-         *
-         * @return
-         *         The size
-         */
-
-        public int getSize() {
-            return size;
-        }
-
-        @Override
-        public String toString() {
-            final StringBuilder sb = new StringBuilder("Volume{");
-            sb.append("type='").append(type).append('\'');
-            sb.append(", size=").append(size);
-            sb.append('}');
-            return sb.toString();
-        }
-    }
-
-    public class InstanceDatastore {
-
-        private String type;
-
-        private String version;
-
-        public String getType() { return type; }
-
-        public String getVersion() { return version; }
-
-        @Override
-        public String toString() {
-            final StringBuilder sb = new StringBuilder("InstanceDatastore{");
-            sb.append("type='").append(type).append('\'');
-            sb.append(", version='").append(version).append('\'');
-            sb.append('}');
-            return sb.toString();
-        }
-    }
 
     @Override
     public int getVolumeSize() {
@@ -127,7 +70,9 @@ public class TroveInstance implements Instance {
     }
 
     @Override
-    public List<String> getIp() { return ip; }
+    public List<String> getIp() {
+        return ip;
+    }
 
     @Override
     public String getId() {
@@ -148,7 +93,9 @@ public class TroveInstance implements Instance {
         return volume;
     }
 
-    public InstanceDatastore getDatastore() { return datastore; }
+    public InstanceDatastore getDatastore() {
+        return datastore;
+    }
 
     @Override
     public String getDatastoreType() {
@@ -162,19 +109,6 @@ public class TroveInstance implements Instance {
         return getDatastore() != null
                 ? getDatastore().getVersion()
                 : null;
-    }
-
-    public static class DBInstances extends ListResult<TroveInstance> {
-
-        private static final long serialVersionUID = 1L;
-
-        @JsonProperty("instances")
-        private List<TroveInstance> instances;
-
-        @Override
-        protected List<TroveInstance> value() {
-            return instances;
-        }
     }
 
     @Override
@@ -192,5 +126,74 @@ public class TroveInstance implements Instance {
         sb.append(", datastore=").append(datastore);
         sb.append('}');
         return sb.toString();
+    }
+
+    public static class DBInstances extends ListResult<TroveInstance> {
+
+        private static final long serialVersionUID = 1L;
+
+        @JsonProperty("instances")
+        private List<TroveInstance> instances;
+
+        @Override
+        protected List<TroveInstance> value() {
+            return instances;
+        }
+    }
+
+    public class Volume {
+
+        private String type;
+
+        private Integer size;
+
+        /**
+         * @return The type
+         */
+
+        public String getType() {
+            return type;
+        }
+
+        /**
+         * @return The size
+         */
+
+        public int getSize() {
+            return size;
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder sb = new StringBuilder("Volume{");
+            sb.append("type='").append(type).append('\'');
+            sb.append(", size=").append(size);
+            sb.append('}');
+            return sb.toString();
+        }
+    }
+
+    public class InstanceDatastore {
+
+        private String type;
+
+        private String version;
+
+        public String getType() {
+            return type;
+        }
+
+        public String getVersion() {
+            return version;
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder sb = new StringBuilder("InstanceDatastore{");
+            sb.append("type='").append(type).append('\'');
+            sb.append(", version='").append(version).append('\'');
+            sb.append('}');
+            return sb.toString();
+        }
     }
 }

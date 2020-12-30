@@ -1,15 +1,15 @@
 package org.openstack4j.openstack.dns.v2.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.dns.v2.RecordsetService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.dns.v2.Recordset;
 import org.openstack4j.openstack.dns.v2.domain.DesignateRecordset;
 
-import java.util.List;
-
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.openstack4j.core.transport.ClientConstants.PATH_ZONES;
 import static org.openstack4j.core.transport.ClientConstants.PATH_RECORDSETS;
+import static org.openstack4j.core.transport.ClientConstants.PATH_ZONES;
 
 public class RecordsetServiceImpl extends BaseDNSServices implements RecordsetService {
 
