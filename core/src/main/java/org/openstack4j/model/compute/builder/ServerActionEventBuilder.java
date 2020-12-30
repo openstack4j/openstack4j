@@ -7,7 +7,6 @@ import org.openstack4j.model.compute.ServerActionEvent;
  * Builder which create server action events
  *
  * @author sujit sah
- *
  */
 public interface ServerActionEventBuilder extends Buildable.Builder<ServerActionEventBuilder, ServerActionEvent> {
     /**

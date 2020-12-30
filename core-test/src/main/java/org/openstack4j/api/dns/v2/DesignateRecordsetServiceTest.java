@@ -1,13 +1,13 @@
 package org.openstack4j.api.dns.v2;
 
+import java.util.List;
+
 import com.google.common.collect.ImmutableList;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.dns.v2.Action;
 import org.openstack4j.model.dns.v2.Recordset;
 import org.openstack4j.model.dns.v2.Status;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;

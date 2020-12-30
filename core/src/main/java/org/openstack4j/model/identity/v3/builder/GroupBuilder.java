@@ -7,8 +7,6 @@ import org.openstack4j.model.identity.v3.Group;
 
 /**
  * A Builder which creates a identity v3 group
- * 
- * 
  */
 public interface GroupBuilder extends Builder<GroupBuilder, Group> {
 

@@ -1,5 +1,7 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.Access;
@@ -9,8 +11,6 @@ import org.openstack4j.model.manila.ShareUpdateOptions;
 import org.openstack4j.model.manila.actions.AccessOptions;
 import org.openstack4j.model.manila.builder.ShareCreateBuilder;
 import org.openstack4j.openstack.common.Metadata;
-
-import java.util.List;
 
 /**
  * Shares Service for Manila Shared File Systems.
@@ -128,7 +128,7 @@ public interface SharesService extends RestService {
     ActionResponse revokeAccess(String shareId, String accessId);
 
     /**
-     *  List access rules for a share.
+     * List access rules for a share.
      *
      * @param shareId the share ID
      * @return a list fo all access rules for the given share
@@ -137,6 +137,7 @@ public interface SharesService extends RestService {
 
     /**
      * Administrators only. Explicitly updates the state of a share.
+     *
      * @param shareId the share ID
      * @param status the status to set
      * @return the action response

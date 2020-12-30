@@ -1,16 +1,16 @@
 package org.openstack4j.openstack.workflow.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.workflow.CronTriggerService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.workflow.CronTrigger;
 import org.openstack4j.openstack.workflow.domain.MistralCronTrigger;
 import org.openstack4j.openstack.workflow.domain.MistralCronTrigger.MistralCronTriggers;
 
-import java.util.List;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
-        
+
 /**
  * Cron trigger service implementation.
  *

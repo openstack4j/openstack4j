@@ -1,8 +1,8 @@
 package org.openstack4j.model.artifact.builder;
 
-import org.openstack4j.model.artifact.Metadata;
-
 import java.util.List;
+
+import org.openstack4j.model.artifact.Metadata;
 
 /**
  * A Builder which creates a Artifact

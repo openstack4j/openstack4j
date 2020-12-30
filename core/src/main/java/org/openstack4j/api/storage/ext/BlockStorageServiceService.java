@@ -11,12 +11,12 @@ import org.openstack4j.model.storage.block.ext.Service;
  */
 public interface BlockStorageServiceService {
 
-	/**
-	 * List services info
-	 *
-	 * NOTE: This is an extension and not all deployments support os-services
-	 *
-	 * @return a list of block storage services
-	 */
-	List<? extends Service> list();
+    /**
+     * List services info
+     * <p>
+     * NOTE: This is an extension and not all deployments support os-services
+     *
+     * @return a list of block storage services
+     */
+    List<? extends Service> list();
 }

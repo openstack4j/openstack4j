@@ -6,11 +6,11 @@ import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.network.ext.PortPair;
 
 /**
- *  A builder to create a port pair
- * @author Dmitry Gerenrot
+ * A builder to create a port pair
  *
+ * @author Dmitry Gerenrot
  */
-public interface PortPairBuilder  extends Builder<PortPairBuilder, PortPair> {
+public interface PortPairBuilder extends Builder<PortPairBuilder, PortPair> {
 
     /**
      * @param id : Port Pair identifer

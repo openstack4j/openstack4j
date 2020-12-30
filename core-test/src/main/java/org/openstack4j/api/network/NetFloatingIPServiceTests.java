@@ -23,17 +23,20 @@
  */
 package org.openstack4j.api.network;
 
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.exceptions.ClientResponseException;
 import org.openstack4j.model.network.NetFloatingIP;
 import org.testng.annotations.Test;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 
 @Test(suiteName = "Network Floating IPs Tests")
 public class NetFloatingIPServiceTests extends AbstractTest {

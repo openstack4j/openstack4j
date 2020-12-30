@@ -1,10 +1,5 @@
 package org.openstack4j.connectors.http;
 
-import org.openstack4j.api.exceptions.ClientResponseException;
-import org.openstack4j.core.transport.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.openstack4j.api.exceptions.ClientResponseException;
+import org.openstack4j.core.transport.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HttpResponseImpl implements HttpResponse {
 
@@ -33,9 +33,6 @@ public class HttpResponseImpl implements HttpResponse {
     /**
      * Wrap the given Response
      *
-     * @param headers
-     * @param responseCode
-     * @param responseMessage
      * @return the HttpResponse
      */
     public static HttpResponseImpl wrap(Map<String, List<String>> headers,
@@ -90,8 +87,8 @@ public class HttpResponseImpl implements HttpResponse {
      * @return the input stream
      */
     public InputStream getInputStream() {
-    	if (data == null)
-    		return null;
+        if (data == null)
+            return null;
 
         return new ByteArrayInputStream(data);
     }
@@ -103,14 +100,13 @@ public class HttpResponseImpl implements HttpResponse {
      * @return the header as a String or null if not found
      */
     public String header(String name) {
-    	if (name == null) return null;
-    	for (String key : headers.keySet()) {
-    		if (key != null && key.equalsIgnoreCase(name))
-    		{
-    			return headers.get(key).get(0);
-    		}
-    	}
-    	return null;
+        if (name == null) return null;
+        for (String key : headers.keySet()) {
+            if (key != null && key.equalsIgnoreCase(name)) {
+                return headers.get(key).get(0);
+            }
+        }
+        return null;
     }
 
     /**
@@ -147,13 +143,13 @@ public class HttpResponseImpl implements HttpResponse {
         }
     }
 
-		@Override
-		public void close() throws IOException {
-			// Not Implemented - closing handle by HttpCommand
-		}
+    @Override
+    public void close() throws IOException {
+        // Not Implemented - closing handle by HttpCommand
+    }
 
-        @Override
-        public String getContentType() {
-            return header(ClientConstants.HEADER_CONTENT_TYPE);
-        }
+    @Override
+    public String getContentType() {
+        return header(ClientConstants.HEADER_CONTENT_TYPE);
+    }
 }

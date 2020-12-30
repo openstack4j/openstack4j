@@ -1,13 +1,13 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ExtraSpecs;
 import org.openstack4j.model.manila.ShareType;
 import org.openstack4j.model.manila.ShareTypeAccess;
 import org.openstack4j.model.manila.ShareTypeCreate;
-
-import java.util.List;
 
 /**
  * Share Types Service for Manila Shared Filesystems.
@@ -57,7 +57,7 @@ public interface ShareTypeService extends RestService {
      * Sets an extra specification for the share type.
      *
      * @param shareTypeId the share type ID
-     * @param extraSpecs  the extra specifications to set
+     * @param extraSpecs the extra specifications to set
      * @return the extra specifications of the share type
      */
     ExtraSpecs setExtraSpec(String shareTypeId, ExtraSpecs extraSpecs);

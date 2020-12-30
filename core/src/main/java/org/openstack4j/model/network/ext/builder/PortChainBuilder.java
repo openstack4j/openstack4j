@@ -7,9 +7,9 @@ import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.network.ext.PortChain;
 
 /**
- *  A builder to create a port chain
- * @author Dmitry Gerenrot
+ * A builder to create a port chain
  *
+ * @author Dmitry Gerenrot
  */
 public interface PortChainBuilder extends Builder<PortChainBuilder, PortChain> {
 

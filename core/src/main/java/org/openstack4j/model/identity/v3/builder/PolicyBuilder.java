@@ -6,9 +6,7 @@ import org.openstack4j.common.Buildable.Builder;
 import org.openstack4j.model.identity.v3.Policy;
 
 /**
- *
  * the policy builder
- *
  */
 public interface PolicyBuilder extends Builder<PolicyBuilder, Policy> {
 

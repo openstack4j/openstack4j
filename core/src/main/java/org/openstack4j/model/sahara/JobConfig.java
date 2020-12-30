@@ -9,7 +9,7 @@ import org.openstack4j.model.sahara.builder.JobConfigBuilder;
 
 /**
  * An Configuration for Sahara Job Execution
- * 
+ *
  * @author ekasit.kijsipongse@nectec.or.th
  * @author siwat.pru@outlook.com
  */

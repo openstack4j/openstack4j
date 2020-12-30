@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.trove.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.trove.DatastoreService;
 import org.openstack4j.model.trove.Datastore;
 import org.openstack4j.model.trove.DatastoreVersion;
@@ -7,8 +9,6 @@ import org.openstack4j.openstack.trove.domain.TroveDatastore;
 import org.openstack4j.openstack.trove.domain.TroveDatastore.Datastores;
 import org.openstack4j.openstack.trove.domain.TroveDatastoreVersion;
 import org.openstack4j.openstack.trove.domain.TroveDatastoreVersion.Versions;
-
-import java.util.List;
 
 /**
  * Datastore API Implementation
@@ -29,12 +29,12 @@ public class DBDatastoreServiceImpl extends BaseTroveServices implements Datasto
 
     @Override
     public List<? extends DatastoreVersion> listDatastoreVersions(String datasoreId) {
-        return get(Versions.class, uri("/datastores/%s/versions",datasoreId)).execute().getList();
+        return get(Versions.class, uri("/datastores/%s/versions", datasoreId)).execute().getList();
     }
 
     @Override
     public DatastoreVersion getDatastoreVersion(String datastoreId, String versionId) {
-        return get(TroveDatastoreVersion.class, uri("/datastores/%s/versions/%s",datastoreId,versionId)).execute();
+        return get(TroveDatastoreVersion.class, uri("/datastores/%s/versions/%s", datastoreId, versionId)).execute();
     }
 
 }

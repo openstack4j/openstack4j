@@ -3,11 +3,10 @@ package org.openstack4j.model.identity.v3;
 import java.util.Date;
 import java.util.List;
 
+import com.google.common.collect.SortedSetMultimap;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.identity.AuthStore;
 import org.openstack4j.model.identity.AuthVersion;
-
-import com.google.common.collect.SortedSetMultimap;
 
 /**
  * V3 token model
@@ -20,6 +19,13 @@ public interface Token extends ModelEntity {
      * @return the id of the token
      */
     String getId();
+
+    /**
+     * sets the id of the token from response header value
+     *
+     * @param id the token id
+     */
+    void setId(String id);
 
     /**
      * @return the catalog of the token
@@ -85,13 +91,6 @@ public interface Token extends ModelEntity {
      * @return the internal UUID used for cache lookups
      */
     String getCacheIdentifier();
-
-    /**
-     * sets the id of the token from response header value
-     *
-     * @param id the token id
-     */
-    void setId(String id);
 
     /**
      * A Lazy loading Aggregated Service Catalog Mapping.  The key is a stripped version service type or name with a collection

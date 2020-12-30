@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.api.manila.ShareTypeService;
 import org.openstack4j.model.ModelEntity;
@@ -13,8 +15,6 @@ import org.openstack4j.openstack.manila.domain.ManilaShareType;
 import org.openstack4j.openstack.manila.domain.actions.ShareTypeAction;
 import org.openstack4j.openstack.manila.domain.actions.ShareTypeActions;
 
-import java.util.List;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -23,19 +23,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Daniel Gonzalez Nothnagel
  */
 public class ShareTypeServiceImpl extends BaseShareServices implements ShareTypeService {
-    /**
-     * Manila API creates both a <code>volume_type</code> object and a <code>share_type</code> object for many of its
-     * responses. The use of <code>volume_type</code> is deprecated, but still supported by manila.
-     * Therefore this wrapper class is used to unserialize the responses and extract the
-     * {@see org.openstack4j.model.manila.ShareType} object.
-     */
-    private static class ShareVolumeTypeWrapper implements ModelEntity {
-        @JsonProperty("volume_type")
-        private ManilaShareType volumeType;
-        @JsonProperty("share_type")
-        private ManilaShareType shareType;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -153,5 +140,18 @@ public class ShareTypeServiceImpl extends BaseShareServices implements ShareType
         checkNotNull(shareTypeId);
         return get(ShareTypeAccess.ShareTypeAccessList.class, uri("/types/%s/os-share-type-access", shareTypeId))
                 .execute().getList();
+    }
+
+    /**
+     * Manila API creates both a <code>volume_type</code> object and a <code>share_type</code> object for many of its
+     * responses. The use of <code>volume_type</code> is deprecated, but still supported by manila.
+     * Therefore this wrapper class is used to unserialize the responses and extract the
+     * {@see org.openstack4j.model.manila.ShareType} object.
+     */
+    private static class ShareVolumeTypeWrapper implements ModelEntity {
+        @JsonProperty("volume_type")
+        private ManilaShareType volumeType;
+        @JsonProperty("share_type")
+        private ManilaShareType shareType;
     }
 }

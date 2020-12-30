@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.gbp.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.gbp.NetworkServicePolicy;
 import org.openstack4j.model.gbp.PolicyTargetGroup;
 import org.openstack4j.model.gbp.builder.NetworkServicePolicyBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * Created by sumit gandhi on 7/4/2016.
@@ -27,6 +27,10 @@ public class GbpNetworkServicePolicy implements NetworkServicePolicy {
     @JsonProperty("policy_target_groups")
     private List<PolicyTargetGroup> policyTargetGroupList;
 
+    public static NetworkServicePolicyBuilder builder() {
+        return new NetworkServicePolicyConcreteBuilder();
+    }
+
     public String getName() {
         return name;
     }
@@ -41,7 +45,9 @@ public class GbpNetworkServicePolicy implements NetworkServicePolicy {
     }
 
     @Override
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;
@@ -116,37 +122,33 @@ public class GbpNetworkServicePolicy implements NetworkServicePolicy {
 
         @Override
         public NetworkServicePolicyBuilder from(NetworkServicePolicy in) {
-            this.networkServicePolicy=(GbpNetworkServicePolicy) in;
+            this.networkServicePolicy = (GbpNetworkServicePolicy) in;
             return this;
         }
 
         @Override
         public NetworkServicePolicyBuilder name(String name) {
-            this.networkServicePolicy.name=name;
+            this.networkServicePolicy.name = name;
             return this;
         }
 
         @Override
         public NetworkServicePolicyBuilder description(String description) {
-            this.networkServicePolicy.description=description;
+            this.networkServicePolicy.description = description;
             return this;
         }
 
         @Override
         public NetworkServicePolicyBuilder isShared(boolean shared) {
-            this.networkServicePolicy.shared=shared;
+            this.networkServicePolicy.shared = shared;
             return this;
         }
 
         @Override
         public NetworkServicePolicyBuilder gbpNetworkServiceParams(List<GbpNetworkServiceParams> gbpNetworkServiceParamsList) {
-            this.networkServicePolicy.gbpNetworkServiceParamsList=gbpNetworkServiceParamsList;
+            this.networkServicePolicy.gbpNetworkServiceParamsList = gbpNetworkServiceParamsList;
             return this;
         }
 
-    }
-
-    public static NetworkServicePolicyBuilder builder() {
-        return new NetworkServicePolicyConcreteBuilder();
     }
 }

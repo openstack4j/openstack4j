@@ -4,22 +4,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.openstack4j.model.compute.BlockDeviceMappingCreate;
-import org.openstack4j.model.compute.Flavor;
-import org.openstack4j.model.compute.Image;
-import org.openstack4j.model.compute.NetworkCreate;
-import org.openstack4j.model.compute.Personality;
-import org.openstack4j.model.compute.SecurityGroup;
-import org.openstack4j.model.compute.Server.DiskConfig;
-import org.openstack4j.model.compute.ServerCreate;
-import org.openstack4j.model.compute.builder.ServerCreateBuilder;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.node.BinaryNode;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.openstack4j.model.compute.*;
+import org.openstack4j.model.compute.Server.DiskConfig;
+import org.openstack4j.model.compute.builder.ServerCreateBuilder;
 
 @JsonRootName("server")
 public class NovaServerCreate implements ServerCreate {
@@ -47,7 +40,7 @@ public class NovaServerCreate implements ServerCreate {
     private String availabilityZone;
     @JsonProperty("config_drive")
     private Boolean configDrive;
-    
+
     @JsonIgnore
     private transient Map<String, Object> schedulerHints;
 
@@ -75,14 +68,17 @@ public class NovaServerCreate implements ServerCreate {
     public String getName() {
         return name;
     }
+
     @Override
     public String getAdminPass() {
         return adminPass;
     }
+
     @Override
     public String getImageRef() {
         return imageRef;
     }
+
     @Override
     public String getFlavorRef() {
         return flavorRef;
@@ -102,14 +98,17 @@ public class NovaServerCreate implements ServerCreate {
     public Integer getMin() {
         return min;
     }
+
     @Override
     public Integer getMax() {
         return max;
     }
+
     @Override
     public DiskConfig getDiskConfig() {
         return diskConfig;
     }
+
     @Override
     public String getKeyName() {
         return keyName;
@@ -135,7 +134,7 @@ public class NovaServerCreate implements ServerCreate {
     public String getAvailabilityZone() {
         return availabilityZone;
     }
-    
+
     @JsonIgnore
     @Override
     public Map<String, Object> getSchedulerHints() {
@@ -152,7 +151,7 @@ public class NovaServerCreate implements ServerCreate {
     @JsonIgnore
     @Override
     public List<? extends NetworkCreate> getNetworks() {
-        return (List<? extends NetworkCreate>) (networks != null ? networks : Collections.emptyList());
+        return (List<? extends NetworkCreate>) (networks != null ? networks: Collections.emptyList());
     }
 
     @Override
@@ -183,21 +182,25 @@ public class NovaServerCreate implements ServerCreate {
     @Override
     public void addNetworkPort(String id) {
         initNetworks();
-        networks.add(new NovaNetworkCreate(null,null,id));
+        networks.add(new NovaNetworkCreate(null, null, id));
     }
 
     private void initNetworks() {
         if (networks == null)
             networks = Lists.newArrayList();
     }
-    
+
     static class SecurityGroupInternal implements SecurityGroup {
 
         private static final long serialVersionUID = 1L;
         private String name;
 
-        SecurityGroupInternal() { }
-        SecurityGroupInternal(String name) { this.name = name; }
+        SecurityGroupInternal() {
+        }
+
+        SecurityGroupInternal(String name) {
+            this.name = name;
+        }
 
         @Override
         public String getName() {
@@ -305,7 +308,7 @@ public class NovaServerCreate implements ServerCreate {
 
         @Override
         public ServerCreateConcreteBuilder from(ServerCreate in) {
-            m = (NovaServerCreate)in;
+            m = (NovaServerCreate) in;
             return this;
         }
 
@@ -329,7 +332,7 @@ public class NovaServerCreate implements ServerCreate {
         public ServerCreateBuilder addMetadataItem(String key, String value) {
             if (m.metadata == null)
                 m.metadata = Maps.newHashMap();
-            
+
             m.metadata.put(key, value);
             return this;
         }
@@ -344,16 +347,16 @@ public class NovaServerCreate implements ServerCreate {
         public ServerCreateBuilder addSchedulerHint(String key, String value) {
             return addSchedulerHintItem(key, value);
         }
-        
+
         @Override
         public ServerCreateBuilder addSchedulerHint(String key, List<String> value) {
             return addSchedulerHintItem(key, value);
         }
-        
+
         private ServerCreateBuilder addSchedulerHintItem(String key, Object value) {
             if (m.schedulerHints == null)
                 m.schedulerHints = Maps.newHashMap();
-            
+
             m.schedulerHints.put(key, value);
             return this;
         }
@@ -363,18 +366,18 @@ public class NovaServerCreate implements ServerCreate {
             m.schedulerHints = schedulerHints;
             return this;
         }
-        
+
         @Override
-        public ServerCreateBuilder addAdminPass(String adminPass){
-        	m.adminPass = adminPass;
-        	return this;
+        public ServerCreateBuilder addAdminPass(String adminPass) {
+            m.adminPass = adminPass;
+            return this;
         }
         
         @Override
-	    public ServerCreateBuilder configDrive(boolean configDrive){
-		    m.configDrive=configDrive;
-		    return this;
-	    }
+        public ServerCreateBuilder configDrive(boolean configDrive) {
+            m.configDrive = configDrive;
+            return this;
+        }
 	    
 	    @Override
         public ServerCreateBuilder max(int maxCount) {

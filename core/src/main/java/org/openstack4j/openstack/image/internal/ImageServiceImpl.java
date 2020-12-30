@@ -1,5 +1,10 @@
 package org.openstack4j.openstack.image.internal;
 
+import javax.annotation.Nullable;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.client.CloudProvider;
 import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.api.image.ImageService;
@@ -19,11 +24,6 @@ import org.openstack4j.openstack.image.domain.GlanceImageMember.Members;
 import org.openstack4j.openstack.image.domain.functions.ImageForUpdateToHeaders;
 import org.openstack4j.openstack.image.domain.functions.ImageFromHeadersFunction;
 
-import javax.annotation.Nullable;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.openstack4j.core.transport.ClientConstants.CONTENT_TYPE_OCTECT_STREAM;
 import static org.openstack4j.core.transport.ClientConstants.HEADER_ACCEPT;
@@ -32,7 +32,7 @@ import static org.openstack4j.core.transport.HttpEntityHandler.statusAndClose;
 
 /**
  * OpenStack (Glance) Image based Operations
- * 
+ *
  * @author Jeremy Unruh
  */
 public class ImageServiceImpl extends BaseImageServices implements ImageService {
@@ -47,8 +47,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
         try {
             return get(CachedImages.class, uri("/cached_images"))
                     .execute(ExecutionOptions.<CachedImages>create(PropagateOnStatus.on(404))).getList();
-        }
-        catch (ResponseException e) {
+        } catch (ResponseException e) {
             return null;
         }
     }
@@ -58,7 +57,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public List<? extends Image> list() {
-        String uri = getProvider() == CloudProvider.RACKSPACE ? "/images" : "/images/detail";
+        String uri = getProvider() == CloudProvider.RACKSPACE ? "/images": "/images/detail";
         return get(Images.class, uri(uri)).execute().getList();
     }
 
@@ -70,31 +69,31 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
         Invocation<Images> imageInvocation = buildInvocation(filteringParams);
         return imageInvocation.execute().getList();
     }
-    
+
     public List<? extends Image> listAll(Map<String, String> filteringParams) {
         Invocation<Images> imageInvocation = buildInvocation(filteringParams);
-        
+
         int limit = DEFAULT_PAGE_SIZE;
-        if(filteringParams != null && filteringParams.containsKey("limit")) {
+        if (filteringParams != null && filteringParams.containsKey("limit")) {
             limit = Integer.parseInt(filteringParams.get("limit"));
         }
-        
+
         List<GlanceImage> totalList = imageInvocation.execute().getList();
         List<GlanceImage> currList = totalList;
         while (currList.size() == limit) {
-          
+
             imageInvocation.updateParam("marker", currList.get(limit - 1).getId());
             currList = imageInvocation.execute().getList();
             totalList.addAll(currList);
-        }        
-        
+        }
+
         return totalList;
     }
 
     public List<? extends Image> listAll() {
         return listAll(null);
     }
-    
+
     private Invocation<Images> buildInvocation(Map<String, String> filteringParams) {
         Invocation<Images> imageInvocation = get(Images.class, "/images/detail");
         if (filteringParams == null) {
@@ -109,7 +108,6 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override

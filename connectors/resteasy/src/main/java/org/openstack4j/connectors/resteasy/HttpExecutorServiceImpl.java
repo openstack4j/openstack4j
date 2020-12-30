@@ -1,5 +1,7 @@
 package org.openstack4j.connectors.resteasy;
 
+import javax.ws.rs.core.Response;
+
 import org.openstack4j.api.exceptions.ConnectionException;
 import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.ClientConstants;
@@ -9,19 +11,17 @@ import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.openstack.internal.OSAuthenticator;
 import org.openstack4j.openstack.internal.OSClientSession;
 
-import javax.ws.rs.core.Response;
-
 /**
  * HttpExecutor is the default implementation for HttpExecutorService which is responsible for interfacing with Resteasy and mapping common status codes, requests and responses
  * back to the common API
- * 
+ *
  * @author Jeremy Unruh
  */
 public class HttpExecutorServiceImpl implements HttpExecutorService {
 
     private static final String NAME = "Resteasy Connector";
 
-    
+
     /**
      * {@inheritDoc}
      */
@@ -29,11 +29,9 @@ public class HttpExecutorServiceImpl implements HttpExecutorService {
     public <R> HttpResponse execute(HttpRequest<R> request) {
         try {
             return invoke(request);
-        }
-        catch (ResponseException re) {
+        } catch (ResponseException re) {
             throw re;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -60,8 +58,7 @@ public class HttpExecutorServiceImpl implements HttpExecutorService {
 
     private <R> HttpResponse invokeRequest(HttpCommand<R> command) throws Exception {
         Response response = command.execute();
-        if (command.getRetries() == 0 && response.getStatus() == 401 && !command.getRequest().getHeaders().containsKey(ClientConstants.HEADER_OS4J_AUTH))
-        {
+        if (command.getRetries() == 0 && response.getStatus() == 401 && !command.getRequest().getHeaders().containsKey(ClientConstants.HEADER_OS4J_AUTH)) {
             OSAuthenticator.reAuthenticate();
             command.getRequest().getHeaders().put(ClientConstants.HEADER_X_AUTH_TOKEN, OSClientSession.getCurrent().getTokenId());
             return invokeRequest(command.incrementRetriesAndReturn());

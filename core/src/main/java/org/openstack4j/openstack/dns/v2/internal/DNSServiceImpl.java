@@ -8,7 +8,6 @@ import org.openstack4j.api.dns.v2.ZoneService;
 
 /**
  * DNS/Designate V2 service implementation
- *
  */
 public class DNSServiceImpl extends BaseDNSServices implements DNSService {
 

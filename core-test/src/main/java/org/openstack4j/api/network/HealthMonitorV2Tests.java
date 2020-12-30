@@ -1,5 +1,10 @@
 package org.openstack4j.api.network;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,21 +13,14 @@ import org.openstack4j.model.network.ext.HealthMonitorV2;
 import org.openstack4j.model.network.ext.HealthMonitorV2Update;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 /**
- *
  * @author ashleykasim
- *
  */
-@Test(suiteName="Network/healthMonitor", enabled = true)
+@Test(suiteName = "Network/healthMonitor", enabled = true)
 public class HealthMonitorV2Tests extends AbstractTest {
     private static final String HEALTHMONITORSV2_JSON = "/network/healthmonitorsv2.json";
     private static final String HEALTHMONITORV2_JSON = "/network/healthmonitorv2.json";

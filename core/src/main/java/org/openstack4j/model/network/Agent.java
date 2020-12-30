@@ -2,11 +2,10 @@ package org.openstack4j.model.network;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.network.builder.AgentBuilder;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
  * This class represents a neutron agent
@@ -14,36 +13,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * @author Yin Zhang
  */
 public interface Agent extends ModelEntity, Buildable<AgentBuilder> {
-    /**
-     * neutron agent type
-     */
-    public enum Type {
-        DHCP("DHCP agent"), L3("L3 agent"), OPEN_VSWITCH("Open vSwitch agent"), METADATA("Metadata agent"), UNRECOGNIZED(
-                "");
-
-        private String mValue;
-
-        Type(String value) {
-            mValue = value;
-        }
-
-        @JsonCreator
-        public static Type forValue(String value) {
-            if (value != null) {
-                for (Type s : Type.values()) {
-                    if (s.value().equalsIgnoreCase(value)) {
-                        return s;
-                    }
-                }
-            }
-            return Type.UNRECOGNIZED;
-        }
-
-        public String value() {
-            return mValue;
-        }
-    }
-
     /**
      * @return the admin state up for the agent
      */
@@ -98,4 +67,34 @@ public interface Agent extends ModelEntity, Buildable<AgentBuilder> {
      * @return the topic of the agent
      */
     String getTopic();
+
+    /**
+     * neutron agent type
+     */
+    public enum Type {
+        DHCP("DHCP agent"), L3("L3 agent"), OPEN_VSWITCH("Open vSwitch agent"), METADATA("Metadata agent"), UNRECOGNIZED(
+                "");
+
+        private String mValue;
+
+        Type(String value) {
+            mValue = value;
+        }
+
+        @JsonCreator
+        public static Type forValue(String value) {
+            if (value != null) {
+                for (Type s : Type.values()) {
+                    if (s.value().equalsIgnoreCase(value)) {
+                        return s;
+                    }
+                }
+            }
+            return Type.UNRECOGNIZED;
+        }
+
+        public String value() {
+            return mValue;
+        }
+    }
 }

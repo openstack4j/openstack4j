@@ -1,8 +1,8 @@
 package org.openstack4j.api.workflow;
 
-import org.openstack4j.api.AbstractTest;
-
 import java.util.UUID;
+
+import org.openstack4j.api.AbstractTest;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;

@@ -4,6 +4,7 @@ javadoc
 !.travis.yml
 !.gitignore
 !.github
+!.editorconfig
 .classpath
 .project
 .orig

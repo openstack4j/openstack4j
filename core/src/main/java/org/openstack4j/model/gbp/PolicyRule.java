@@ -8,10 +8,10 @@ import org.openstack4j.model.gbp.builder.PolicyRuleBuilder;
 
 /**
  * Policy rule Model Entity
- * 
+ *
  * @author vinod borole
  */
-public interface PolicyRule extends Resource,Buildable<PolicyRuleBuilder> {
+public interface PolicyRule extends Resource, Buildable<PolicyRuleBuilder> {
 
     /**
      * Is policy rule enabled
@@ -49,4 +49,3 @@ public interface PolicyRule extends Resource,Buildable<PolicyRuleBuilder> {
     String getDescription();
 
 }
- 

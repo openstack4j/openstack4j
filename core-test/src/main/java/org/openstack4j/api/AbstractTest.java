@@ -1,5 +1,12 @@
 package org.openstack4j.api;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,13 +27,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Base Test class which handles Mocking a Webserver to fullfill and test
  * against JSON response objects from an OpenStack deployment
@@ -35,47 +35,14 @@ import java.util.Map;
  */
 public abstract class AbstractTest {
 
-    protected enum Service {
-        IDENTITY(5000),
-        NETWORK(9696),
-        OCTAVIA(9876),
-        COMPUTE(8774),
-        BLOCK_STORAGE(8776),
-        METERING(8087),
-        TELEMETRY(8087),
-        SAHARA(8386),
-        SHARE(8786),
-        OBJECT_STORAGE(8800),
-        BARBICAN(9311),
-        MAGNUM(9511),
-        ORCHESTRATION(8004),
-        DATABASE(8779),
-        TACKER(9890),
-        IMAGE(9292),
-        ARTIFACT(9494),
-        CLUSTERING(8778),
-        APP_CATALOG(8082),
-        DNS(9001),
-        WORKFLOW(8989);
-
-        private final int port;
-
-        private Service(int port) {
-            this.port = port;
-        }
-
-    }
-
-    private final Logger LOG = LoggerFactory.getLogger(getClass().getName());
-
     protected static final String JSON_ACCESS = "/identity/v2/access.json";
     protected static final String JSON_TOKEN = "/identity/v3/authv3_project.json";
     protected static final String TOKEN_ID = "123456789";
-
+    private final Logger LOG = LoggerFactory.getLogger(getClass().getName());
     protected OSClientV2 osv2;
     protected OSClientV3 osv3;
-    private String host;
     protected MockWebServer server = new MockWebServer();
+    private String host;
 
     /**
      * @return the service the API is using
@@ -123,7 +90,7 @@ public abstract class AbstractTest {
     /**
      * Responds with specified status code, no body and optional headers
      *
-     * @param headers    optional headers
+     * @param headers optional headers
      * @param statusCode the status code to respond with
      */
     protected void respondWith(Map<String, String> headers, int statusCode) {
@@ -134,7 +101,7 @@ public abstract class AbstractTest {
      * Responds with specified status code and json body
      *
      * @param statusCode the status code to respond with
-     * @param jsonBody   the json body
+     * @param jsonBody the json body
      */
     protected void respondWith(int statusCode, String jsonBody) {
         Map<String, String> headers = new HashMap<String, String>();
@@ -145,9 +112,9 @@ public abstract class AbstractTest {
     /**
      * Responds with specified status code, body and optional headers
      *
-     * @param headers    optional headers
+     * @param headers optional headers
      * @param statusCode the status code to respond with
-     * @param body       the response body
+     * @param body the response body
      */
     protected void respondWith(Map<String, String> headers, int statusCode, String body) {
         MockResponse r = new MockResponse();
@@ -164,9 +131,9 @@ public abstract class AbstractTest {
     /**
      * Responds with given header, status code, body from json resource file.
      *
-     * @param headers    the specified header
+     * @param headers the specified header
      * @param statusCode the status code to respond with
-     * @param resource   the json resource file
+     * @param resource the json resource file
      * @throws IOException Signals that an I/O exception has occurred
      */
     protected void respondWithHeaderAndResource(Map<String, String> headers, int statusCode, String resource)
@@ -289,5 +256,36 @@ public abstract class AbstractTest {
             return "127.0.0.1";
 
         return host;
+    }
+
+    protected enum Service {
+        IDENTITY(5000),
+        NETWORK(9696),
+        OCTAVIA(9876),
+        COMPUTE(8774),
+        BLOCK_STORAGE(8776),
+        METERING(8087),
+        TELEMETRY(8087),
+        SAHARA(8386),
+        SHARE(8786),
+        OBJECT_STORAGE(8800),
+        BARBICAN(9311),
+        MAGNUM(9511),
+        ORCHESTRATION(8004),
+        DATABASE(8779),
+        TACKER(9890),
+        IMAGE(9292),
+        ARTIFACT(9494),
+        CLUSTERING(8778),
+        APP_CATALOG(8082),
+        DNS(9001),
+        WORKFLOW(8989);
+
+        private final int port;
+
+        private Service(int port) {
+            this.port = port;
+        }
+
     }
 }

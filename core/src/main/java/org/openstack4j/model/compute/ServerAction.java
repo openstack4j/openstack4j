@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.compute.ServerActionEvent;
 
 /**
  * This interface describes the getter-methods (and thus components) of a {@link ServerAction}.
@@ -12,9 +11,8 @@ import org.openstack4j.model.compute.ServerActionEvent;
  * <code> GET /v2.1/servers/{server_id}/os-instance-actions​</code>
  * <code> GET /v2.1/servers/{server_id}/os-instance-actions/{request_id}​</code>
  *
- * @see https://docs.openstack.org/api-ref/compute/index.html
  * @author sujit sah
- *
+ * @see https://docs.openstack.org/api-ref/compute/index.html
  */
 public interface ServerAction extends ModelEntity {
     /**

@@ -18,20 +18,6 @@ import org.openstack4j.model.ModelEntity;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface ShareNetwork extends ModelEntity {
-    enum NetworkType {
-        VLAN, VXLAN, GRE, FLAT;
-
-        @JsonCreator
-        public static NetworkType value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     /**
      * @return the share network ID
      */
@@ -96,4 +82,18 @@ public interface ShareNetwork extends ModelEntity {
      * @return the date and time stamp when the share network was updated
      */
     String getUpdatedAt();
+
+    enum NetworkType {
+        VLAN, VXLAN, GRE, FLAT;
+
+        @JsonCreator
+        public static NetworkType value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 }

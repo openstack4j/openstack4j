@@ -1,5 +1,7 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,16 +10,16 @@ import org.openstack4j.model.manila.ShareNetworkCreate;
 import org.openstack4j.model.manila.ShareNetworkUpdateOptions;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Test cases for share networks
  *
  * @author Daniel Gonzalez Nothnagel
  */
-@Test(suiteName="ShareNetwork")
+@Test(suiteName = "ShareNetwork")
 public class ShareNetworkTests extends AbstractTest {
     private static final String JSON_SHARE_NETWORK = "/manila/share_network.json";
     private static final String JSON_SHARE_NETWORK_CREATE = "/manila/share_network_create.json";

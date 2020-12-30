@@ -3,18 +3,16 @@ package org.openstack4j.openstack.networking.domain.ext;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.network.ext.Ethertype;
 import org.openstack4j.model.network.ext.FlowClassifier;
 import org.openstack4j.model.network.ext.builder.FlowClassifierBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 /**
  * @author Dmitry Gerenrot
- *
  */
 @JsonRootName("flow_classifier")
 public class NeutronFlowClassifier implements FlowClassifier {
@@ -64,6 +62,10 @@ public class NeutronFlowClassifier implements FlowClassifier {
     private Map<String, String> l7Parameters;
 
     private Ethertype ethertype;
+
+    public static FlowClassifierBuilder builder() {
+        return new FlowClassifierConcreteBuilder();
+    }
 
     @Override
     public String getId() {
@@ -158,10 +160,6 @@ public class NeutronFlowClassifier implements FlowClassifier {
 
     public FlowClassifierBuilder toBuilder() {
         return new FlowClassifierConcreteBuilder(this);
-    }
-
-    public static FlowClassifierBuilder builder() {
-        return new FlowClassifierConcreteBuilder();
     }
 
     public static class FlowClassifiers extends ListResult<NeutronFlowClassifier> {

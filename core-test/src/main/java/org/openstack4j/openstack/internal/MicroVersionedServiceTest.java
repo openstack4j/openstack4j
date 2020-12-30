@@ -1,21 +1,19 @@
 package org.openstack4j.openstack.internal;
 
+import java.util.Map;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.core.transport.HttpMethod;
-import org.openstack4j.openstack.internal.MicroVersion;
-import org.openstack4j.openstack.internal.MicroVersionedOpenStackService;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 
 public class MicroVersionedServiceTest extends AbstractTest {
-    private TestService service;
     private static final MicroVersion MICRO_VERSION = new MicroVersion(1, 0);
     private static final String API_VERSION_HEADER = "X-Openstack-Test-Api-Version";
+    private TestService service;
 
     @Override
     protected Service service() {

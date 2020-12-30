@@ -1,5 +1,10 @@
 package org.openstack4j.api.octavia;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,21 +13,14 @@ import org.openstack4j.model.octavia.HealthMonitorV2;
 import org.openstack4j.model.octavia.HealthMonitorV2Update;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 /**
- *
  * @author wei
- *
  */
-@Test(suiteName="Octavia/healthMonitor", enabled = true)
+@Test(suiteName = "Octavia/healthMonitor", enabled = true)
 public class HealthMonitorV2Tests extends AbstractTest {
     private static final String HEALTHMONITORSV2_JSON = "/octavia/healthmonitorsv2.json";
     private static final String HEALTHMONITORV2_JSON = "/octavia/healthmonitorv2.json";

@@ -12,19 +12,18 @@ public enum ArtifactType {
 
     ALL, HEAT_ENVIRONMENTS, HEAT__TEMPLATES, IMAGES, TOSCA_TEMPLATES, MURANO_PACKAGES;
 
-    @JsonValue
-    public String value() {
-        return name().toLowerCase();
-    }
-
     @JsonCreator
-    public static ArtifactType value(String v)
-    {
+    public static ArtifactType value(String v) {
         if (v == null) return ALL;
         try {
             return valueOf(v.toUpperCase());
         } catch (IllegalArgumentException e) {
             return ALL;
         }
+    }
+
+    @JsonValue
+    public String value() {
+        return name().toLowerCase();
     }
 }

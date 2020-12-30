@@ -1,12 +1,12 @@
 package org.openstack4j.core.transport;
 
+import java.io.IOException;
+
 import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.functions.ResponseToActionResponse;
 import org.openstack4j.model.common.ActionResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * Handles retrieving an Entity from an HttpResponse while validating resulting

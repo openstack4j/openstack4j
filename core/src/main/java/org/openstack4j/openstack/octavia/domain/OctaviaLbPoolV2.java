@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.octavia.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -11,10 +13,9 @@ import org.openstack4j.model.octavia.SessionPersistence;
 import org.openstack4j.model.octavia.builder.LbPoolV2Builder;
 import org.openstack4j.openstack.common.ListResult;
 
-import java.util.List;
-
 /**
  * Lbaas V2 load balancer pool
+ *
  * @author wei
  */
 @JsonRootName("pool")
@@ -54,6 +55,10 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
     @JsonProperty("healthmonitor_id")
     private String healthMonitorId;
 
+    public static LbPoolV2Builder builder() {
+        return new LbPoolV2ConcreteBuilder();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -62,12 +67,11 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
         return new LbPoolV2ConcreteBuilder(this);
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getId(){
+    public String getId() {
         return id;
     }
 
@@ -75,7 +79,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getProjectId(){
+    public String getProjectId() {
         return projectId;
     }
 
@@ -83,7 +87,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -91,7 +95,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
@@ -99,7 +103,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public Protocol getProtocol(){
+    public Protocol getProtocol() {
         return protocol;
     }
 
@@ -107,7 +111,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public LbMethod getLbMethod(){
+    public LbMethod getLbMethod() {
         return lbMethod;
     }
 
@@ -115,7 +119,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public SessionPersistence getSessionPersistence(){
+    public SessionPersistence getSessionPersistence() {
         return sessionPersistence;
     }
 
@@ -123,7 +127,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public boolean isAdminStateUp(){
+    public boolean isAdminStateUp() {
         return adminStateUp;
     }
 
@@ -131,7 +135,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public List<ListItem> getListeners(){
+    public List<ListItem> getListeners() {
         return listeners;
     }
 
@@ -139,7 +143,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public List<ListItem> getMembers(){
+    public List<ListItem> getMembers() {
         return members;
     }
 
@@ -147,12 +151,12 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
      * {@inheritDoc}
      */
     @Override
-    public String getHealthMonitorId(){
+    public String getHealthMonitorId() {
         return healthMonitorId;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("id", id)
                 .add("projectId", projectId)
@@ -170,14 +174,9 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
                 .toString();
     }
 
-    public static class LbPoolV2ConcreteBuilder implements LbPoolV2Builder{
+    public static class LbPoolV2ConcreteBuilder implements LbPoolV2Builder {
 
         private OctaviaLbPoolV2 m;
-
-        @Override
-        public LbPoolV2 build() {
-            return m;
-        }
 
         public LbPoolV2ConcreteBuilder() {
             this(new OctaviaLbPoolV2());
@@ -188,7 +187,12 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
         }
 
         @Override
-        public LbPoolV2Builder from(LbPoolV2 in){
+        public LbPoolV2 build() {
+            return m;
+        }
+
+        @Override
+        public LbPoolV2Builder from(LbPoolV2 in) {
             m = (OctaviaLbPoolV2) in;
             return this;
         }
@@ -197,7 +201,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder projectId(String projectId){
+        public LbPoolV2Builder projectId(String projectId) {
             m.projectId = projectId;
             return this;
         }
@@ -206,7 +210,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder name(String name){
+        public LbPoolV2Builder name(String name) {
             m.name = name;
             return this;
         }
@@ -215,7 +219,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder description(String description){
+        public LbPoolV2Builder description(String description) {
             m.description = description;
             return this;
         }
@@ -224,7 +228,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder protocol(Protocol protocol){
+        public LbPoolV2Builder protocol(Protocol protocol) {
             m.protocol = protocol;
             return this;
         }
@@ -233,7 +237,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder lbMethod(LbMethod lbMethod){
+        public LbPoolV2Builder lbMethod(LbMethod lbMethod) {
             m.lbMethod = lbMethod;
             return this;
         }
@@ -242,7 +246,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder sessionPersistence(SessionPersistence sessionPersistence){
+        public LbPoolV2Builder sessionPersistence(SessionPersistence sessionPersistence) {
             m.sessionPersistence = sessionPersistence;
             return this;
         }
@@ -251,7 +255,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder adminStateUp(boolean adminStateUp){
+        public LbPoolV2Builder adminStateUp(boolean adminStateUp) {
             m.adminStateUp = adminStateUp;
             return this;
         }
@@ -260,7 +264,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder listenerId(String listenerId){
+        public LbPoolV2Builder listenerId(String listenerId) {
             m.listenerId = listenerId;
             return this;
         }
@@ -269,7 +273,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
          * {@inheritDoc}
          */
         @Override
-        public LbPoolV2Builder loadbalancerId(String loadbalancerId){
+        public LbPoolV2Builder loadbalancerId(String loadbalancerId) {
             m.loadbalancerId = loadbalancerId;
             return this;
         }
@@ -278,23 +282,20 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
     public static class LbPoolsV2 extends ListResult<OctaviaLbPoolV2> {
         @JsonProperty("pools")
         List<OctaviaLbPoolV2> lbPools;
+
         /**
          * {@inheritDoc}
          */
         @Override
-        protected List<OctaviaLbPoolV2> value(){
+        protected List<OctaviaLbPoolV2> value() {
             return lbPools;
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return MoreObjects.toStringHelper(this)
                     .add("lbPools", lbPools)
                     .toString();
         }
-    }
-
-    public static LbPoolV2Builder builder() {
-        return new LbPoolV2ConcreteBuilder();
     }
 }

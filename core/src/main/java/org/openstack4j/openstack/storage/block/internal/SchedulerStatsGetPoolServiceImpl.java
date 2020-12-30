@@ -1,10 +1,10 @@
 package org.openstack4j.openstack.storage.block.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.storage.SchedulerStatsGetPoolService;
 import org.openstack4j.openstack.storage.block.domain.CinderBackendStoragePool;
 import org.openstack4j.openstack.storage.block.domain.VolumeBackendPool;
-
-import java.util.List;
 
 public class SchedulerStatsGetPoolServiceImpl extends BaseBlockStorageServices implements SchedulerStatsGetPoolService {
 
@@ -20,7 +20,7 @@ public class SchedulerStatsGetPoolServiceImpl extends BaseBlockStorageServices i
 
     private List<? extends VolumeBackendPool> list(boolean detail) {
         return get(CinderBackendStoragePool.VolumeBackendPools.class, uri("/scheduler-stats/get_pools"))
-                .param("detail" , detail)
+                .param("detail", detail)
                 .execute()
                 .getList();
     }

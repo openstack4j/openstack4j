@@ -1,9 +1,11 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.manila.*;
-import org.openstack4j.model.common.Extension;
 import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.common.Extension;
 import org.openstack4j.model.manila.*;
 import org.openstack4j.openstack.common.ExtensionValue;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
@@ -12,8 +14,6 @@ import org.openstack4j.openstack.manila.domain.ManilaLimits;
 import org.openstack4j.openstack.manila.domain.ManilaService;
 import org.openstack4j.openstack.manila.domain.ManilaShare;
 import org.openstack4j.openstack.manila.domain.actions.ServiceAction;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

@@ -1,9 +1,9 @@
 package org.openstack4j.api.manila;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.manila.BackendStoragePool;
-
-import java.util.List;
 
 /**
  * Scheduler Stats Service for Manila Shared Filesystems.
@@ -20,6 +20,7 @@ public interface SchedulerStatsService extends RestService {
 
     /**
      * Lists all storage pools for a back end, with details.
+     *
      * @return a list of all back-end storage pools with details
      */
     List<? extends BackendStoragePool> poolsDetail();

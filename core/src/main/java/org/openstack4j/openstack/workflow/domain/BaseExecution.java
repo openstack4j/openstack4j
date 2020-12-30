@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.workflow.domain;
 
+import java.util.Date;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.workflow.Execution;
 import org.openstack4j.model.workflow.State;
 import org.openstack4j.model.workflow.builder.ExecutionBuilder;
-
-import java.util.Date;
-import java.util.List;
 
 
 /**

@@ -6,7 +6,7 @@ import org.openstack4j.model.common.Resource;
 
 /**
  * Policy Target group Model Entity
- * 
+ *
  * @author vinod borole
  */
 public interface PolicyTargetGroup extends Resource {
@@ -75,4 +75,3 @@ public interface PolicyTargetGroup extends Resource {
     String getDescription();
 
 }
- 

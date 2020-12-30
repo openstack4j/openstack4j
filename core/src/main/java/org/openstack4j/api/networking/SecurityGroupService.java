@@ -50,7 +50,7 @@ public interface SecurityGroupService extends RestService {
     /**
      * Updates a SecurityGroup associated by the specified {@code securityGroupId}
      *
-     * @param securityGroupId     the security group identifier
+     * @param securityGroupId the security group identifier
      * @param securityGroupUpdate the security group options to update (see {@link Builders#securityGroupUpdate()}
      * @return the updated security group
      */
@@ -58,8 +58,8 @@ public interface SecurityGroupService extends RestService {
 
     /**
      * Get list of security groups accessible by the current tenant
-     * @param filteringParams map (name, value) of filtering parameters
      *
+     * @param filteringParams map (name, value) of filtering parameters
      * @return the list<? extends security group>
      */
     List<? extends SecurityGroup> list(Map<String, String> filteringParams);

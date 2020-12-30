@@ -7,8 +7,6 @@ import org.openstack4j.model.identity.v3.Domain;
 
 /**
  * A Builder which creates a identity v3 domain.
- * 
- * 
  */
 public interface DomainBuilder extends Builder<DomainBuilder, Domain> {
 

@@ -1,13 +1,13 @@
 package org.openstack4j.model.telemetry;
 
-import org.openstack4j.model.ModelEntity;
-
 import java.util.List;
+
+import org.openstack4j.model.ModelEntity;
 
 /**
  * Event represents the state of an object in an OpenStack service
  * at a point in time when something of interest has occurred
- * 
+ *
  * @author Miroslav Lacina
  */
 public interface Event extends ModelEntity {

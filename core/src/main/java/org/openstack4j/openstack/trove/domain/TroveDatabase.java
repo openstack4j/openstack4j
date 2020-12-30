@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.trove.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.trove.Database;
 import org.openstack4j.model.trove.builder.DatabaseBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import java.util.List;
 
 /**
  * Model implementation for Database
@@ -20,6 +20,10 @@ public class TroveDatabase implements Database {
     private String dbCharacterSet;
     @JsonProperty("collate")
     private String dbCollation;
+
+    public static DatabaseBuilder builder() {
+        return new DatabaseConcreteBuilder();
+    }
 
     public String getName() {
         return name;
@@ -93,7 +97,7 @@ public class TroveDatabase implements Database {
 
         @Override
         public DatabaseBuilder from(Database in) {
-            this.database = (TroveDatabase)in;
+            this.database = (TroveDatabase) in;
             return this;
         }
 
@@ -115,10 +119,6 @@ public class TroveDatabase implements Database {
             return this;
         }
 
-    }
-
-    public static DatabaseBuilder builder() {
-        return new DatabaseConcreteBuilder();
     }
 
 }

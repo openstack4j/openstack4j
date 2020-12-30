@@ -1,8 +1,5 @@
 package org.openstack4j.api.storage;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
 
 import org.openstack4j.api.AbstractTest;
@@ -10,6 +7,9 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.block.VolumeType;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 @Test(suiteName = "Block Storage Tests")
 public class VolumeTypeTests extends AbstractTest {

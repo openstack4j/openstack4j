@@ -7,8 +7,6 @@ import org.openstack4j.model.identity.v3.Service;
 
 /**
  * A Builder which creates an identity v3 service
- *
- *
  */
 public interface ServiceBuilder extends Builder<ServiceBuilder, Service> {
 

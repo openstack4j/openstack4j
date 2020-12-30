@@ -1,5 +1,10 @@
 package org.openstack4j.api.barbican;
 
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
@@ -7,12 +12,9 @@ import org.openstack4j.model.barbican.Secret;
 import org.openstack4j.model.common.ActionResponse;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by reneschollmeyer on 18.08.17.

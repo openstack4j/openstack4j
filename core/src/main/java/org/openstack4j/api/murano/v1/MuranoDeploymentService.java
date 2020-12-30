@@ -1,10 +1,10 @@
 package org.openstack4j.api.murano.v1;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.murano.v1.domain.Deployment;
 import org.openstack4j.model.murano.v1.domain.Report;
-
-import java.util.List;
 
 /**
  * @author Nikolay Mahotkin.
@@ -27,5 +27,6 @@ public interface MuranoDeploymentService extends RestService {
      * @return Report list.
      */
     List<? extends Report> reports(String environmentId, String deploymentId, List<String> serviceIds);
+
     List<? extends Report> reports(String environmentId, String deploymentId);
 }

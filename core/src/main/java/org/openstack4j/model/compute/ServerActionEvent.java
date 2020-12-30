@@ -8,7 +8,6 @@ import org.openstack4j.model.compute.builder.ServerActionEventBuilder;
  * Model for the generic events
  *
  * @author sujit sah
- *
  */
 public interface ServerActionEvent extends ModelEntity, Buildable<ServerActionEventBuilder> {
     /**

@@ -1,11 +1,11 @@
 package org.openstack4j.model.manila;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openstack4j.model.ModelEntity;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a back-end storage pool.
@@ -13,20 +13,6 @@ import java.util.Map;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface BackendStoragePool extends ModelEntity {
-    enum ConsistencyGroupSupport {
-        POOL, HOST, FALSE;
-
-        @JsonCreator
-        public static ConsistencyGroupSupport value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     /**
      * @return the name of the back end
      */
@@ -51,6 +37,20 @@ public interface BackendStoragePool extends ModelEntity {
      * @return the capabilities for the storage back end
      */
     Capabilities getCapabilities();
+
+    enum ConsistencyGroupSupport {
+        POOL, HOST, FALSE;
+
+        @JsonCreator
+        public static ConsistencyGroupSupport value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 
     interface Capabilities {
         /**

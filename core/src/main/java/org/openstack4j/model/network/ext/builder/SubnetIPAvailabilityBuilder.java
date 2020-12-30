@@ -14,15 +14,15 @@ import org.openstack4j.model.network.ext.SubnetIPAvailability;
 public interface SubnetIPAvailabilityBuilder extends Builder<SubnetIPAvailabilityBuilder, SubnetIPAvailability> {
 
     public SubnetIPAvailabilityBuilder subnetName(String subnetName);
-    
+
     public SubnetIPAvailabilityBuilder subnetId(String subnetId);
-    
+
     public SubnetIPAvailabilityBuilder tenantId(IPVersionType ipVersion);
-    
+
     public SubnetIPAvailabilityBuilder cidr(String cidr);
-    
+
     public SubnetIPAvailabilityBuilder totalIps(BigInteger totalIps);
-    
+
     public SubnetIPAvailabilityBuilder usedIps(BigInteger usedIps);
 
 }

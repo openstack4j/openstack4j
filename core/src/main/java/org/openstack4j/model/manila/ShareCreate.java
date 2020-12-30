@@ -1,10 +1,10 @@
 package org.openstack4j.model.manila;
 
+import java.util.Map;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.manila.builder.ShareCreateBuilder;
-
-import java.util.Map;
 
 /**
  * Object used to create new shares.

@@ -1,11 +1,14 @@
 package org.openstack4j.core.transport;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.net.ssl.*;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Contains an open SSL Context which allows self signed certs and an open hostname verifier
@@ -22,8 +25,7 @@ public class UntrustedSSL {
     private X509TrustManager trustManager;
 
     private UntrustedSSL() {
-        try
-        {
+        try {
             trustManager = new X509TrustManager() {
                 public X509Certificate[] getAcceptedIssuers() {
                     return new X509Certificate[]{};
@@ -36,12 +38,11 @@ public class UntrustedSSL {
                 }
             };
             SSLContext ssc = SSLContext.getInstance("TLS");
-            ssc.init(null, new TrustManager[] {trustManager}, new SecureRandom());
+            ssc.init(null, new TrustManager[]{trustManager}, new SecureRandom());
 
             this.context = ssc;
             this.verifier = (s, session) -> true;
-        }
-        catch (Throwable t) {
+        } catch (Throwable t) {
             LOG.error(t.getMessage(), t);
         }
     }

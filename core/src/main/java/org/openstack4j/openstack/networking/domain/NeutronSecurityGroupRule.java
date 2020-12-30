@@ -2,13 +2,12 @@ package org.openstack4j.openstack.networking.domain;
 
 import java.util.List;
 
-import org.openstack4j.model.network.SecurityGroupRule;
-import org.openstack4j.model.network.builder.NetSecurityGroupRuleBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.network.SecurityGroupRule;
+import org.openstack4j.model.network.builder.NetSecurityGroupRuleBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * An OpenStack Neutron Security Group Rule model.
@@ -50,16 +49,16 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
     @JsonProperty("remote_group_id")
     private String remoteGroupId;
 
+    public static NetSecurityGroupRuleBuilder builder() {
+        return new SecurityGroupRuleConcreteBuilder();
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public NetSecurityGroupRuleBuilder toBuilder() {
         return new SecurityGroupRuleConcreteBuilder(this);
-    }
-
-    public static NetSecurityGroupRuleBuilder builder() {
-        return new SecurityGroupRuleConcreteBuilder();
     }
 
     /**
@@ -200,7 +199,6 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
     /**
      * The Class SecurityGroupRules.
      *
-     *
      * @author Nathan Anderson
      */
     public static class SecurityGroupRules extends ListResult<NeutronSecurityGroupRule> {
@@ -221,7 +219,6 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
 
     /**
      * The Class SecurityGroupRuleConcreteBuilder.
-     *
      *
      * @author Nathan Anderson
      */

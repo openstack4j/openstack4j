@@ -1,10 +1,10 @@
 package org.openstack4j.model.manila.builder;
 
+import java.util.Map;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.manila.Share;
 import org.openstack4j.model.manila.ShareCreate;
-
-import java.util.Map;
 
 /**
  * Builds a {@link org.openstack4j.model.manila.ShareCreate}.
@@ -31,7 +31,7 @@ public interface ShareCreateBuilder extends Buildable.Builder<ShareCreateBuilder
     /**
      * Set the share name.
      *
-     * @param name  the share name
+     * @param name the share name
      * @return ShareCreateBuilder
      */
     ShareCreateBuilder name(String name);
@@ -94,7 +94,7 @@ public interface ShareCreateBuilder extends Buildable.Builder<ShareCreateBuilder
 
     /**
      * Adds a new metadata item to the share.
-     * 
+     *
      * @param key the key of the metadata item
      * @param value the value of the metadata item
      * ShareCreateBuilder

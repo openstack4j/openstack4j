@@ -2,13 +2,12 @@ package org.openstack4j.openstack.networking.domain.ext;
 
 import java.math.BigInteger;
 
-import org.openstack4j.model.network.IPVersionType;
-import org.openstack4j.model.network.ext.SubnetIPAvailability;
-import org.openstack4j.model.network.ext.builder.SubnetIPAvailabilityBuilder;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.network.IPVersionType;
+import org.openstack4j.model.network.ext.SubnetIPAvailability;
+import org.openstack4j.model.network.ext.builder.SubnetIPAvailabilityBuilder;
 
 /**
  * A subnet IP availabitiy that is bound to a network
@@ -25,16 +24,16 @@ public class NeutronSubnetIPAvailability implements SubnetIPAvailability {
 
     @JsonProperty("total_ips")
     private BigInteger totalIps;
-    
+
     @JsonProperty("subnet_id")
     private String subnetId;
-    
+
     @JsonProperty("subnet_name")
     private String subnetName;
-    
+
     @JsonProperty("ip_version")
     private IPVersionType ipVersion;
-    
+
     @JsonProperty("cidr")
     private String cidr;
 
@@ -91,7 +90,7 @@ public class NeutronSubnetIPAvailability implements SubnetIPAvailability {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("usedIps", usedIps)
                 .add("totalIps", totalIps)
@@ -159,6 +158,6 @@ public class NeutronSubnetIPAvailability implements SubnetIPAvailability {
             model.usedIps = usedIps;
             return this;
         }
-        
+
     }
 }

@@ -1,10 +1,10 @@
 package org.openstack4j.model.network;
 
+import java.util.List;
+
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.common.Resource;
 import org.openstack4j.model.network.builder.TrunkBuilder;
-
-import java.util.List;
 
 /**
  * A network Trunk

@@ -8,11 +8,7 @@ import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.Response;
 import org.openstack4j.api.exceptions.ClientResponseException;
-import org.openstack4j.core.transport.ClientConstants;
-import org.openstack4j.core.transport.ExecutionOptions;
-import org.openstack4j.core.transport.HttpEntityHandler;
-import org.openstack4j.core.transport.HttpResponse;
-import org.openstack4j.core.transport.ObjectMapperSingleton;
+import org.openstack4j.core.transport.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -108,7 +104,7 @@ public class HttpResponseImpl implements HttpResponse {
      */
     public Map<String, String> headers() {
         Map<String, String> retHeaders = new HashMap<String, String>();
-        Headers headers =  response.headers();
+        Headers headers = response.headers();
 
         for (String name : headers.names()) {
             retHeaders.put(name, headers.get(name));

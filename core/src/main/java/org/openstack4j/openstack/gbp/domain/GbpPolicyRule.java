@@ -2,13 +2,12 @@ package org.openstack4j.openstack.gbp.domain;
 
 import java.util.List;
 
-import org.openstack4j.model.gbp.PolicyRule;
-import org.openstack4j.model.gbp.builder.PolicyRuleBuilder;
-import org.openstack4j.openstack.common.ListResult;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.gbp.PolicyRule;
+import org.openstack4j.model.gbp.builder.PolicyRuleBuilder;
+import org.openstack4j.openstack.common.ListResult;
 
 /**
  * Model implementation for Policy rule
@@ -31,11 +30,16 @@ public class GbpPolicyRule implements PolicyRule {
     private Boolean shared;
     private Boolean enabled;
 
+    public static PolicyRuleBuilder builder() {
+        return new PolicyRuleConcreteBuilder();
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description)
                 .add("tenantId", tenantId).add("policyClassifierId", policyClassifierId).add("policyActions", policyActions).add("shared", shared).add("enabled", enabled).toString();
     }
+
     @Override
     public String getTenantId() {
         return tenantId;
@@ -43,7 +47,7 @@ public class GbpPolicyRule implements PolicyRule {
 
     @Override
     public void setTenantId(String tenantId) {
-        this.tenantId=tenantId;
+        this.tenantId = tenantId;
     }
 
     @Override
@@ -53,7 +57,7 @@ public class GbpPolicyRule implements PolicyRule {
 
     @Override
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     @Override
@@ -63,16 +67,19 @@ public class GbpPolicyRule implements PolicyRule {
 
     @Override
     public void setId(String id) {
-        this.id=id;
+        this.id = id;
     }
+
     @Override
     public String getDescription() {
         return description;
     }
+
     @Override
     public String getPolicyClassifierId() {
         return policyClassifierId;
     }
+
     @Override
     public List<String> getPolicyActions() {
         return policyActions;
@@ -80,12 +87,12 @@ public class GbpPolicyRule implements PolicyRule {
 
     @Override
     public boolean isShared() {
-        return this.shared == null ? false : shared;
+        return this.shared == null ? false: shared;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.enabled == null ? false : shared;
+        return this.enabled == null ? false: shared;
     }
 
     @Override
@@ -93,11 +100,12 @@ public class GbpPolicyRule implements PolicyRule {
         return new PolicyRuleConcreteBuilder(this);
     }
 
-    public static class PolicyRules extends ListResult<GbpPolicyRule>{
+    public static class PolicyRules extends ListResult<GbpPolicyRule> {
 
         private static final long serialVersionUID = 1L;
         @JsonProperty("policy_rules")
         private List<GbpPolicyRule> policyRules;
+
         @Override
         protected List<GbpPolicyRule> value() {
             return policyRules;
@@ -105,12 +113,12 @@ public class GbpPolicyRule implements PolicyRule {
 
     }
 
-    public static class PolicyRuleConcreteBuilder implements PolicyRuleBuilder{
+    public static class PolicyRuleConcreteBuilder implements PolicyRuleBuilder {
 
         private GbpPolicyRule policyRule;
 
         public PolicyRuleConcreteBuilder(GbpPolicyRule gbpPolicyRule) {
-            this.policyRule=gbpPolicyRule;
+            this.policyRule = gbpPolicyRule;
         }
 
         public PolicyRuleConcreteBuilder() {
@@ -124,45 +132,41 @@ public class GbpPolicyRule implements PolicyRule {
 
         @Override
         public PolicyRuleBuilder from(PolicyRule in) {
-            this.policyRule=(GbpPolicyRule) in;
+            this.policyRule = (GbpPolicyRule) in;
             return this;
         }
 
         @Override
         public PolicyRuleBuilder name(String name) {
-            this.policyRule.name=name;
+            this.policyRule.name = name;
             return this;
         }
 
         @Override
         public PolicyRuleBuilder description(String description) {
-            this.policyRule.description=description;
+            this.policyRule.description = description;
             return this;
         }
 
         @Override
         public PolicyRuleBuilder shared(boolean shared) {
-            this.policyRule.shared=shared;
+            this.policyRule.shared = shared;
             return this;
         }
 
         @Override
         public PolicyRuleBuilder classifier(String classifierId) {
-            this.policyRule.policyClassifierId=classifierId;
+            this.policyRule.policyClassifierId = classifierId;
             return this;
         }
 
         @Override
         public PolicyRuleBuilder actions(List<String> actionIds) {
-            this.policyRule.policyActions=actionIds;
+            this.policyRule.policyActions = actionIds;
             return this;
         }
 
 
-    }
-
-    public static PolicyRuleBuilder builder() {
-        return new PolicyRuleConcreteBuilder();
     }
 
 }

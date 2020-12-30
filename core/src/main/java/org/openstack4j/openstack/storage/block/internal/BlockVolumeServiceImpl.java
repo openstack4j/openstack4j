@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.storage.block.internal;
 
+import java.util.List;
+import java.util.Map;
+
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.storage.BlockVolumeService;
@@ -13,9 +16,6 @@ import org.openstack4j.model.storage.block.options.UploadImageData;
 import org.openstack4j.openstack.storage.block.domain.*;
 import org.openstack4j.openstack.storage.block.domain.CinderVolume.Volumes;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeType.VolumeTypes;
-
-import java.util.List;
-import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -112,7 +112,7 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
                 .execute();
     }
 
-    
+
     /**
      * {@inheritDoc}
      */
@@ -251,10 +251,6 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
      * You should set instanceId or hostName.
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @param volumeId
-     * @param instanceId
-     * @param mountpoint
-     * @param hostName
      * @return ActionResponse
      */
     @Override
@@ -271,10 +267,6 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
      * <p>Description:Force detach a volume</p>
      * <p>Author:Wang Ting/王婷</p>
      *
-     * @param volumeId
-     * @param initiator
-     * @param attachmentId
-     * @return
      * @Title: forceDetach
      * @see org.openstack4j.api.storage.BlockVolumeService#forceDetach(java.lang.String, java.lang.String, java.lang.String)
      */
@@ -287,20 +279,18 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
         ForceDetachAction detach = new ForceDetachAction(attachmentId, connector);
         return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
     }
-    
-	/**
-	 * Detach volume from server
-	 * @author capitek-xuning（首信科技-徐宁）
-	 * @param volumeId
-	 * @param attachmentId
-	 * @return
-	 */
-	@Override
-	public ActionResponse detach(String volumeId, String attachmentId) {
-		checkNotNull(volumeId);
-		checkNotNull(attachmentId);
-		DetachAction detach = new DetachAction(attachmentId);
-		return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
-	}
-    
+
+    /**
+     * Detach volume from server
+     *
+     * @author capitek-xuning（首信科技-徐宁）
+     */
+    @Override
+    public ActionResponse detach(String volumeId, String attachmentId) {
+        checkNotNull(volumeId);
+        checkNotNull(attachmentId);
+        DetachAction detach = new DetachAction(attachmentId);
+        return post(ActionResponse.class, uri("/volumes/%s/action", volumeId)).entity(detach).execute();
+    }
+
 }

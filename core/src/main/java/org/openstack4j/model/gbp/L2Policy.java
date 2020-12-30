@@ -8,7 +8,7 @@ import org.openstack4j.model.gbp.builder.L2PolicyBuilder;
 
 /**
  * L2 Policy Model Entity
- * 
+ *
  * @author vinod borole
  */
 public interface L2Policy extends Resource, Buildable<L2PolicyBuilder> {

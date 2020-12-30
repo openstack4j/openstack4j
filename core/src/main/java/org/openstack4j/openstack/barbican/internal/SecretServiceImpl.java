@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.barbican.internal;
 
+import java.util.List;
+import java.util.Map;
+
 import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.barbican.SecretService;
 import org.openstack4j.model.barbican.Secret;
@@ -7,14 +10,11 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.openstack.barbican.domain.BarbicanSecret;
 import org.openstack4j.openstack.barbican.domain.BarbicanSecret.Secrets;
 
-import java.util.List;
-import java.util.Map;
-
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Created by reneschollmeyer on 02.08.17.
- *
+ * <p>
  * {@inheritDoc}
  */
 public class SecretServiceImpl extends BaseBarbicanServices implements SecretService {

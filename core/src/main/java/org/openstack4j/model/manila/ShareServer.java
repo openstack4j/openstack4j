@@ -1,10 +1,10 @@
 package org.openstack4j.model.manila;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openstack4j.model.ModelEntity;
-
-import java.util.Map;
 
 /**
  * A share server is created by multi-tenant back-end drivers where shares are hosted.
@@ -15,19 +15,6 @@ import java.util.Map;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface ShareServer extends ModelEntity {
-    enum Status {
-        ACTIVE, ERROR, DELETING, CREATING;
-
-        @JsonCreator
-        public static Status value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
     /**
      * @return the share server ID
      */
@@ -72,4 +59,18 @@ public interface ShareServer extends ModelEntity {
      * @return the date and time stamp when the share server was updated
      */
     String getUpdatedAt();
+
+    enum Status {
+        ACTIVE, ERROR, DELETING, CREATING;
+
+        @JsonCreator
+        public static Status value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 }

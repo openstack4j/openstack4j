@@ -2,13 +2,13 @@ package org.openstack4j.openstack.gbp.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.google.common.base.MoreObjects;
 import org.openstack4j.model.gbp.L2Policy;
 import org.openstack4j.model.gbp.builder.L2PolicyBuilder;
 import org.openstack4j.openstack.common.ListResult;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
 /**
  * Model implementation for L2 Policy
  *
@@ -31,6 +31,10 @@ public class GbpL2Policy implements L2Policy {
     @JsonProperty("policy_target_groups")
     private List<String> policyTargetGroups;
 
+    public static L2PolicyBuilder builder() {
+        return new L2PolicyConcreteBuilder();
+    }
+
     @Override
     public String getTenantId() {
         return tenantId;
@@ -38,7 +42,7 @@ public class GbpL2Policy implements L2Policy {
 
     @Override
     public void setTenantId(String tenantId) {
-        this.tenantId=tenantId;
+        this.tenantId = tenantId;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class GbpL2Policy implements L2Policy {
 
     @Override
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     @Override
@@ -58,13 +62,14 @@ public class GbpL2Policy implements L2Policy {
 
     @Override
     public void setId(String id) {
-        this.id=id;
+        this.id = id;
     }
 
     @Override
     public L2PolicyBuilder toBuilder() {
-        return new L2PolicyConcreteBuilder(this) ;
+        return new L2PolicyConcreteBuilder(this);
     }
+
     @Override
     public String getDescription() {
         return description;
@@ -82,7 +87,7 @@ public class GbpL2Policy implements L2Policy {
 
     @Override
     public boolean isShared() {
-        return this.shared == null ? false : shared;
+        return this.shared == null ? false: shared;
     }
 
     @Override
@@ -97,8 +102,7 @@ public class GbpL2Policy implements L2Policy {
                 .add("policyTargetGroups", policyTargetGroups).toString();
     }
 
-
-    public static class L2Policies extends ListResult<GbpL2Policy>{
+    public static class L2Policies extends ListResult<GbpL2Policy> {
         private static final long serialVersionUID = 1L;
         @JsonProperty("l2_policies")
         private List<GbpL2Policy> l2Policies;
@@ -110,12 +114,12 @@ public class GbpL2Policy implements L2Policy {
 
     }
 
-    public static class L2PolicyConcreteBuilder implements L2PolicyBuilder{
+    public static class L2PolicyConcreteBuilder implements L2PolicyBuilder {
 
         private GbpL2Policy l2Policy;
 
         public L2PolicyConcreteBuilder(GbpL2Policy gbpL2Policy) {
-            this.l2Policy=gbpL2Policy;
+            this.l2Policy = gbpL2Policy;
         }
 
         public L2PolicyConcreteBuilder() {
@@ -129,51 +133,46 @@ public class GbpL2Policy implements L2Policy {
 
         @Override
         public L2PolicyBuilder from(L2Policy in) {
-            l2Policy= (GbpL2Policy) in;
+            l2Policy = (GbpL2Policy) in;
             return this;
         }
 
         @Override
         public L2PolicyBuilder name(String name) {
-            l2Policy.name=name;
+            l2Policy.name = name;
             return this;
         }
 
         @Override
         public L2PolicyBuilder description(String description) {
-            l2Policy.description=description;
+            l2Policy.description = description;
             return this;
         }
 
         @Override
         public L2PolicyBuilder isShared(boolean shared) {
-            l2Policy.shared=shared;
+            l2Policy.shared = shared;
             return this;
         }
 
         @Override
         public L2PolicyBuilder networkId(String id) {
-            l2Policy.id=id;
+            l2Policy.id = id;
             return this;
         }
 
         @Override
         public L2PolicyBuilder l3PolicyId(String id) {
-            l2Policy.l3PolicyId=id;
+            l2Policy.l3PolicyId = id;
             return this;
         }
 
         @Override
         public L2PolicyBuilder policyTargetGroups(List<String> ids) {
-            l2Policy.policyTargetGroups=ids;
+            l2Policy.policyTargetGroups = ids;
             return this;
         }
     }
-
-    public static L2PolicyBuilder builder() {
-        return new L2PolicyConcreteBuilder();
-    }
-
 
 
 }

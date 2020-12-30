@@ -9,6 +9,7 @@ import org.openstack4j.model.image.v2.Image;
 
 /**
  * Builder which creates a v2 Image
+ *
  * @author emjburns
  */
 public interface ImageBuilder extends Buildable.Builder<ImageBuilder, Image> {

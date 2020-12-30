@@ -8,11 +8,11 @@ import org.openstack4j.model.sahara.builder.JobBinaryBuilder;
 
 /**
  * An Openstack Sahara Job Binary
- * 
+ *
  * @author ekasit.kijsipongse@nectec.or.th
  * @author siwat.pru@outlook.com
  */
-public interface JobBinary extends ModelEntity, Buildable<JobBinaryBuilder>  {
+public interface JobBinary extends ModelEntity, Buildable<JobBinaryBuilder> {
 
     /**
      * @return the description of the job binary

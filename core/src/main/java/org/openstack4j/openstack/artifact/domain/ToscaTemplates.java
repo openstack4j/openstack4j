@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.artifact.domain;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.artifact.Metadata;
 import org.openstack4j.model.artifact.Template;
 import org.openstack4j.model.artifact.ToscaTemplatesArtifact;
 import org.openstack4j.model.artifact.builder.ToscaTemplatesArtifactBuilder;
 import org.openstack4j.model.common.builder.BasicResourceBuilder;
-
-import java.util.List;
 
 /**
  * A Glare Tosca Templates Artifact implementation model
@@ -21,6 +21,9 @@ public class ToscaTemplates extends ArtifactImpl implements ToscaTemplatesArtifa
     @JsonProperty("template")
     private TemplateImpl template;
 
+    public static ToscaTemplatesArtifactBuilder builder() {
+        return new ToscaTemplatesConcreteBuilder();
+    }
 
     @Override
     public TemplateImpl getTemplate() {
@@ -39,17 +42,12 @@ public class ToscaTemplates extends ArtifactImpl implements ToscaTemplatesArtifa
         this.templateFormat = templateFormat;
     }
 
-
     @Override
     public ToscaTemplatesArtifactBuilder toBuilder() {
         return new ToscaTemplatesConcreteBuilder(this);
     }
 
-    public static ToscaTemplatesArtifactBuilder builder() {
-        return new ToscaTemplatesConcreteBuilder();
-    }
-
-    public static class ToscaTemplatesConcreteBuilder extends BasicResourceBuilder<ToscaTemplatesArtifact,ToscaTemplatesConcreteBuilder> implements ToscaTemplatesArtifactBuilder {
+    public static class ToscaTemplatesConcreteBuilder extends BasicResourceBuilder<ToscaTemplatesArtifact, ToscaTemplatesConcreteBuilder> implements ToscaTemplatesArtifactBuilder {
 
         private ToscaTemplates artifact;
 

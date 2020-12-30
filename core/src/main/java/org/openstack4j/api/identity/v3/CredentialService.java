@@ -8,7 +8,6 @@ import org.openstack4j.model.identity.v3.Credential;
 
 /**
  * Identity V3 Credential service
- *
  */
 public interface CredentialService extends RestService {
 
@@ -27,7 +26,6 @@ public interface CredentialService extends RestService {
      * @param type the credential type such as 'ec2', 'cert', ..
      * @param projectId the id of the associated project
      * @param userId the id of the user who owns the credential
-     * @return
      */
     Credential create(String blob, String type, String projectId, String userId);
 

@@ -1,11 +1,11 @@
 package org.openstack4j.model.manila;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.Link;
-
-import java.util.List;
 
 /**
  * A share snapshot is a point-in-time, read-only copy of the data that is contained in a share.
@@ -13,20 +13,6 @@ import java.util.List;
  * @author Daniel Gonzalez Nothnagel
  */
 public interface ShareSnapshot extends ModelEntity {
-    enum Status {
-        AVAILABLE, ERROR, CREATING, DELETING, ERROR_DELETING;
-
-        @JsonCreator
-        public static Status value(String v) {
-            return valueOf(v.toUpperCase());
-        }
-
-        @JsonValue
-        public String value() {
-            return name().toLowerCase();
-        }
-    }
-
     /**
      * @return the UUID of the snapshot
      */
@@ -76,4 +62,18 @@ public interface ShareSnapshot extends ModelEntity {
      * @return the snapshot size, in GBs
      */
     Integer getSize();
+
+    enum Status {
+        AVAILABLE, ERROR, CREATING, DELETING, ERROR_DELETING;
+
+        @JsonCreator
+        public static Status value(String v) {
+            return valueOf(v.toUpperCase());
+        }
+
+        @JsonValue
+        public String value() {
+            return name().toLowerCase();
+        }
+    }
 }

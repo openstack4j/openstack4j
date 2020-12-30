@@ -1,18 +1,6 @@
 package org.openstack4j.openstack.image.v2.domain;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.openstack4j.model.common.builder.BasicResourceBuilder;
-import org.openstack4j.model.image.v2.ContainerFormat;
-import org.openstack4j.model.image.v2.DiskFormat;
-import org.openstack4j.model.image.v2.Image;
-import org.openstack4j.model.image.v2.builder.ImageBuilder;
-import org.openstack4j.openstack.common.ListResult;
-import org.openstack4j.openstack.common.Metadata;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -21,6 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import org.openstack4j.model.common.builder.BasicResourceBuilder;
+import org.openstack4j.model.image.v2.ContainerFormat;
+import org.openstack4j.model.image.v2.DiskFormat;
+import org.openstack4j.model.image.v2.Image;
+import org.openstack4j.model.image.v2.builder.ImageBuilder;
+import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.openstack.common.Metadata;
 
 /**
  * A glance v2.0-2.3 image model implementation
@@ -30,7 +25,7 @@ import com.google.common.collect.Sets;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GlanceImage implements Image {
 
-    private static final Set<String> RESERVED_KEYS = Sets.newHashSet(Arrays.asList(new String[] {
+    private static final Set<String> RESERVED_KEYS = Sets.newHashSet(Arrays.asList(new String[]{
             "id",
             "name",
             "tags",
@@ -57,7 +52,7 @@ public class GlanceImage implements Image {
             "os_version",
             "os_distro",
             "ramdisk_id",
-            "virtual_size" }));
+            "virtual_size"}));
 
     private static final long serialVersionUID = 1L;
 
@@ -131,20 +126,8 @@ public class GlanceImage implements Image {
 
     private Map<String, String> additionalProperties = Maps.newHashMap();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setId(String id) {
-        this.id = id;
+    public static ImageBuilder builder() {
+        return new ImageConcreteBuilder();
     }
 
     /**
@@ -161,6 +144,14 @@ public class GlanceImage implements Image {
     @Override
     public String getName() {
         return name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -225,6 +216,14 @@ public class GlanceImage implements Image {
     @Override
     public String getId() {
         return id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -388,10 +387,6 @@ public class GlanceImage implements Image {
         return new ImageConcreteBuilder(this);
     }
 
-    public static ImageBuilder builder() {
-        return new ImageConcreteBuilder();
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -441,14 +436,14 @@ public class GlanceImage implements Image {
         }
     }
 
-	@JsonInclude(JsonInclude.Include.NON_NULL)
-	public static class Location {
-		@JsonProperty("url")
-		private String url;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class Location {
+        @JsonProperty("url")
+        private String url;
 
-		@JsonProperty("metadata")
-		private Metadata metadat;
-	}
+        @JsonProperty("metadata")
+        private Metadata metadat;
+    }
 
     public static class ImageConcreteBuilder extends BasicResourceBuilder<Image, ImageConcreteBuilder> implements ImageBuilder {
         private GlanceImage m;

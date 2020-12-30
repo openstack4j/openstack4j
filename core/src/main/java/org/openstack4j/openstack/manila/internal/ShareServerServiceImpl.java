@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.List;
+
 import org.openstack4j.api.manila.ShareServerService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareServer;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.manila.domain.ManilaShareServer;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

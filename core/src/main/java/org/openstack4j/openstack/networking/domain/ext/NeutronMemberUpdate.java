@@ -1,126 +1,126 @@
 package org.openstack4j.openstack.networking.domain.ext;
 
-import org.openstack4j.model.network.ext.MemberUpdate;
-import org.openstack4j.model.network.ext.builder.MemberUpdateBuilder;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
+import org.openstack4j.model.network.ext.MemberUpdate;
+import org.openstack4j.model.network.ext.builder.MemberUpdateBuilder;
 
 /**
  * A updated member of a Lbaas pool
+ *
  * @author liujunpeng
  */
 @JsonRootName("member")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NeutronMemberUpdate implements MemberUpdate {
 
-	private static final long serialVersionUID = 1L;
-   /**
-    * 1~100
-    */
+    private static final long serialVersionUID = 1L;
+    /**
+     * 1~100
+     */
     private Integer weight;
     @JsonProperty("admin_state_up")
     private boolean adminStateUp;
-	@JsonProperty("pool_id")
-	private String poolId;
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean isAdminStateUp() {
-		return adminStateUp;
-	}
+    @JsonProperty("pool_id")
+    private String poolId;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Integer getWeight() {
-		return weight;
-	}
+    public static MemberUpdateBuilder builder() {
+        return new MemberUpdateConcreteBuilder();
+    }
 
-	@Override
-	public String toString() {
-		return MoreObjects.toStringHelper(this).omitNullValues()
-			    .add("adminStateUp", adminStateUp)
-			    .add("weight",weight)
-			    .add("poolId", poolId)
-			    .toString();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isAdminStateUp() {
+        return adminStateUp;
+    }
 
-	/**
-	 * Member create builder
-	 * @author liujunpeng
-	 *
-	 */
-	public static class MemberUpdateConcreteBuilder implements MemberUpdateBuilder{
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Integer getWeight() {
+        return weight;
+    }
 
-		private NeutronMemberUpdate m;
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this).omitNullValues()
+                .add("adminStateUp", adminStateUp)
+                .add("weight", weight)
+                .add("poolId", poolId)
+                .toString();
+    }
 
-		public MemberUpdateConcreteBuilder() {
-			this(new NeutronMemberUpdate());
-		}
+    /**
+     * Wraps this MemberUpdate into a Builder
+     *
+     * @return the network builder
+     */
+    public MemberUpdateBuilder toBuilder() {
+        return new MemberUpdateConcreteBuilder(this);
+    }
 
-		public MemberUpdateConcreteBuilder(NeutronMemberUpdate m) {
-			this.m = m;
-		}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getPoolId() {
 
-		@Override
-		public MemberUpdateBuilder from(MemberUpdate in) {
-			m = (NeutronMemberUpdate) in;
-			return this;
-		}
+        return poolId;
+    }
 
-		@Override
-		public MemberUpdate build() {
-			return m;
-		}
+    /**
+     * Member create builder
+     *
+     * @author liujunpeng
+     */
+    public static class MemberUpdateConcreteBuilder implements MemberUpdateBuilder {
 
-		@Override
-		public MemberUpdateBuilder adminStateUp(boolean adminStateUp) {
-			m.adminStateUp = adminStateUp;
-			return this;
-		}
+        private NeutronMemberUpdate m;
 
-		@Override
-		public MemberUpdateBuilder weight(Integer weight) {
-			m.weight = weight;
-			return this;
-		}
+        public MemberUpdateConcreteBuilder() {
+            this(new NeutronMemberUpdate());
+        }
 
-		/**
-		 *
-		 * {@inheritDoc}
-		 */
-		@Override
-		public MemberUpdateBuilder poolId(String poolId) {
-			m.poolId = poolId;
-			return this;
-		}
-	}
+        public MemberUpdateConcreteBuilder(NeutronMemberUpdate m) {
+            this.m = m;
+        }
 
-	/**
-	 * Wraps this MemberUpdate into a Builder
-	 * @return the network builder
-	 */
-	public MemberUpdateBuilder toBuilder() {
-		return new MemberUpdateConcreteBuilder(this);
-	}
+        @Override
+        public MemberUpdateBuilder from(MemberUpdate in) {
+            m = (NeutronMemberUpdate) in;
+            return this;
+        }
 
-	public static MemberUpdateBuilder builder(){
-		return new MemberUpdateConcreteBuilder();
-	}
+        @Override
+        public MemberUpdate build() {
+            return m;
+        }
 
-	/**
-	 *
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getPoolId() {
+        @Override
+        public MemberUpdateBuilder adminStateUp(boolean adminStateUp) {
+            m.adminStateUp = adminStateUp;
+            return this;
+        }
 
-		return poolId;
-	}
+        @Override
+        public MemberUpdateBuilder weight(Integer weight) {
+            m.weight = weight;
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MemberUpdateBuilder poolId(String poolId) {
+            m.poolId = poolId;
+            return this;
+        }
+    }
 
 }

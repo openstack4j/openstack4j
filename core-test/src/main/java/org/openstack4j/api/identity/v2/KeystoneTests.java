@@ -1,8 +1,5 @@
 package org.openstack4j.api.identity.v2;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,17 +8,16 @@ import java.util.List;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import org.openstack4j.model.common.Extension;
-import org.openstack4j.model.identity.v2.Role;
-import org.openstack4j.model.identity.v2.Tenant;
-import org.openstack4j.model.identity.v2.TenantUser;
-import org.openstack4j.model.identity.v2.TokenV2;
-import org.openstack4j.model.identity.v2.User;
+import org.openstack4j.model.identity.v2.*;
 import org.openstack4j.openstack.OSFactory;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
+
 /**
  * Tests the Identity/Keystone API
- * 
+ *
  * @author Jeremy Unruh
  */
 @Test(suiteName = "Identity/Keystone_V2")
@@ -107,8 +103,6 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests finding an endpoint for Region Two which does exist
-     *
-     * @throws Exception
      */
 
     public void testRegionTwo() throws Exception {
@@ -127,10 +121,8 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests finding an endpoint for which does not exist
-     *
-     * @throws Exception
      */
-    @Test(expectedExceptions = { RegionEndpointNotFoundException.class })
+    @Test(expectedExceptions = {RegionEndpointNotFoundException.class})
     public void testInvalidRegion() throws Exception {
         osv2().useRegion("RegionInvalid");
         try {
@@ -155,8 +147,6 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests tenant based operations
-     *
-     * @throws Exception
      */
     public void testTenants() throws Exception {
         respondWith(JSON_TENANTS);
@@ -177,8 +167,6 @@ public class KeystoneTests extends AbstractTest {
 
     /**
      * Tests retrieving Extensions
-     *
-     * @throws Exception
      */
     public void testExtensions() throws Exception {
         respondWith(JSON_EXTENSIONS);

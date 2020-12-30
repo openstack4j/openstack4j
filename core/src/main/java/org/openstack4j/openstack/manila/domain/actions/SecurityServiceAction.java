@@ -9,7 +9,7 @@ import org.openstack4j.model.ModelEntity;
  *
  * @author Daniel Gonzalez Nothnagel
  */
-public class SecurityServiceAction implements ModelEntity  {
+public class SecurityServiceAction implements ModelEntity {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("security_service_id")
@@ -17,13 +17,6 @@ public class SecurityServiceAction implements ModelEntity  {
 
     protected SecurityServiceAction(String securityServiceId) {
         this.securityServiceId = securityServiceId;
-    }
-
-    /**
-     * @return the security service ID
-     */
-    public String getSecurityServiceId() {
-        return securityServiceId;
     }
 
     /**
@@ -44,6 +37,13 @@ public class SecurityServiceAction implements ModelEntity  {
      */
     public static Remove remove(String securityServiceId) {
         return new Remove(securityServiceId);
+    }
+
+    /**
+     * @return the security service ID
+     */
+    public String getSecurityServiceId() {
+        return securityServiceId;
     }
 
     @JsonRootName("add_security_service")

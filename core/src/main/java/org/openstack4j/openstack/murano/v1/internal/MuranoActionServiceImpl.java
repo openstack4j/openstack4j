@@ -1,5 +1,10 @@
 package org.openstack4j.openstack.murano.v1.internal;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openstack4j.api.murano.v1.MuranoActionService;
 import org.openstack4j.model.murano.v1.domain.ActionInfo;
@@ -9,11 +14,6 @@ import org.openstack4j.model.murano.v1.domain.Environment;
 import org.openstack4j.openstack.common.MapEntity;
 import org.openstack4j.openstack.murano.v1.domain.MuranoActionResult;
 import org.openstack4j.openstack.murano.v1.domain.MuranoEnvironment;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -137,7 +137,7 @@ public class MuranoActionServiceImpl extends BaseMuranoServices implements Muran
                 .entity(entity)
                 .execute();
 
-        return (String)result.get("task_id");
+        return (String) result.get("task_id");
     }
 
     /**

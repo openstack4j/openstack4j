@@ -16,10 +16,10 @@ public interface ServiceInfo extends ModelEntity {
      * @return the information
      */
     String get(String name);
-    
+
     /**
      * @return map of all information or null
      */
     Map<String, String> getInfos();
-    
+
 }

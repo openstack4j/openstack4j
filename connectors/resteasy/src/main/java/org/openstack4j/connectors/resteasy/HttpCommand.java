@@ -1,12 +1,5 @@
 package org.openstack4j.connectors.resteasy;
 
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
-import org.openstack4j.connectors.resteasy.executors.ApacheHttpClientEngine;
-import org.openstack4j.core.transport.ClientConstants;
-import org.openstack4j.core.transport.HttpRequest;
-import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
-
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
@@ -14,17 +7,22 @@ import javax.ws.rs.core.UriBuilder;
 import java.util.List;
 import java.util.Map;
 
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
+import org.openstack4j.connectors.resteasy.executors.ApacheHttpClientEngine;
+import org.openstack4j.core.transport.ClientConstants;
+import org.openstack4j.core.transport.HttpRequest;
+import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
+
 /**
  * HttpCommand is responsible for executing the actual request driven by the HttpExecutor.
- *
- * @param <R>
  */
 public final class HttpCommand<R> {
 
     private HttpRequest<R> request;
     private ResteasyWebTarget resteasyWebTarget;
     private int retries;
-    private Invocation.Builder resteasyRequest ;
+    private Invocation.Builder resteasyRequest;
 
     private HttpCommand(HttpRequest<R> request) {
         this.request = request;
@@ -32,6 +30,7 @@ public final class HttpCommand<R> {
 
     /**
      * Creates a new HttpCommand from the given request
+     *
      * @param request the request
      * @return the command
      */
@@ -43,7 +42,7 @@ public final class HttpCommand<R> {
 
     private void initialize() {
 
-       resteasyWebTarget = new ResteasyClientBuilder().httpEngine(ApacheHttpClientEngine.create(request.getConfig()))
+        resteasyWebTarget = new ResteasyClientBuilder().httpEngine(ApacheHttpClientEngine.create(request.getConfig()))
                 .providerFactory(ResteasyClientFactory.getInstance()).build()
                 .target(UriBuilder.fromUri(new EndpointURIFromRequestFunction().apply(request)));
 
@@ -57,14 +56,14 @@ public final class HttpCommand<R> {
      *
      * @return the response
      */
-    public Response execute(){
+    public Response execute() {
 
         Invocation webRequest;
         if (request.getEntity() != null) {
             webRequest = resteasyRequest.build(request.getMethod().name(), Entity.entity(request.getEntity(), request.getContentType()));
         } else if (request.hasJson()) {
-            webRequest= resteasyRequest.build(request.getMethod().name() , Entity.entity(request.getJson(),ClientConstants.CONTENT_TYPE_JSON));
-        }else{
+            webRequest = resteasyRequest.build(request.getMethod().name(), Entity.entity(request.getJson(), ClientConstants.CONTENT_TYPE_JSON));
+        } else {
             webRequest = resteasyRequest.build(request.getMethod().name());
         }
 

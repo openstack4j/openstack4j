@@ -1,14 +1,15 @@
 package org.openstack4j.api.network;
 
+import java.io.IOException;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.network.NetQuota;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 import static org.testng.Assert.assertEquals;
 
 /**
+ *
  */
 @Test(suiteName = "Network/quota", enabled = true)
 public class NetQuotaTest extends AbstractTest {

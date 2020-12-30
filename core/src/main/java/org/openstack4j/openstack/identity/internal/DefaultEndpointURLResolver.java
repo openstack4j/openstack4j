@@ -5,17 +5,17 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentHashMap;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.SortedSetMultimap;
-
 import org.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import org.openstack4j.api.identity.EndpointURLResolver;
 import org.openstack4j.api.types.Facing;
 import org.openstack4j.api.types.ServiceType;
-import org.openstack4j.model.identity.v3.Token;
+import org.openstack4j.model.identity.URLResolverParams;
 import org.openstack4j.model.identity.v2.Access;
 import org.openstack4j.model.identity.v2.Endpoint;
-import org.openstack4j.model.identity.URLResolverParams;
+import org.openstack4j.model.identity.v3.Token;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,12 +25,12 @@ import org.slf4j.LoggerFactory;
  * @author Jeremy Unruh
  */
 public class DefaultEndpointURLResolver implements EndpointURLResolver {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(DefaultEndpointURLResolver.class);
     private static final Map<Key, String> CACHE = new ConcurrentHashMap<Key, String>();
     private static boolean LEGACY_EP_HANDLING = Boolean.getBoolean(LEGACY_EP_RESOLVING_PROP);
     private String publicHostIP;
-    
+
     @Override
     public String findURLV2(URLResolverParams p) {
         if (p.type == null) {
@@ -100,13 +100,13 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
                     return getEndpointURL(p.access, ep);
 
                 switch (p.perspective) {
-                case ADMIN:
-                    return ep.getAdminURL().toString();
-                case INTERNAL:
-                    return ep.getInternalURL().toString();
-                case PUBLIC:
-                default:
-                    return ep.getPublicURL().toString();
+                    case ADMIN:
+                        return ep.getAdminURL().toString();
+                    case INTERNAL:
+                        return ep.getInternalURL().toString();
+                    case PUBLIC:
+                    default:
+                        return ep.getPublicURL().toString();
                 }
             }
         } else {
@@ -152,10 +152,6 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
     /**
      * Returns <code>true</code> for any endpoint that matches a given
      * {@link URLResolverParams}.
-     *
-     * @param endpoint
-     * @param p
-     * @return
      */
     private boolean matches(org.openstack4j.model.identity.v3.Endpoint endpoint, URLResolverParams p) {
         boolean matches = endpoint.getIface() == p.perspective;
@@ -208,16 +204,16 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
         }
 
         static Key of(String uid, ServiceType type, Facing perspective, String region) {
-            return new Key((region == null) ? uid : uid + region, type, perspective);
+            return new Key((region == null) ? uid: uid + region, type, perspective);
         }
 
         @Override
         public int hashCode() {
             final int prime = 31;
             int result = 1;
-            result = prime * result + ((perspective == null) ? 0 : perspective.hashCode());
-            result = prime * result + ((type == null) ? 0 : type.hashCode());
-            result = prime * result + ((uid == null) ? 0 : uid.hashCode());
+            result = prime * result + ((perspective == null) ? 0: perspective.hashCode());
+            result = prime * result + ((type == null) ? 0: type.hashCode());
+            result = prime * result + ((uid == null) ? 0: uid.hashCode());
             return result;
         }
 
