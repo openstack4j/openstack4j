@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.openstack4j.core</groupId>
     <artifactId>openstack4j-parent</artifactId>
-    <version>3.10-SNAPSHOT</version>
+    <version>3.10-RELEASE</version>
     <name>OpenStack4j Parent</name>
     <description>OpenStack Java API</description>
     <url>http://github.com/openstack4j/openstack4j/</url>
@@ -288,8 +288,8 @@
         </snapshotRepository>
 
         <repository>
-            <id>nexus-release</id>
-            <url>https://nexus.deepblueai.com/repository/maven-release/</url>
+            <id>nexus-releases</id>
+            <url>https://nexus.deepblueai.com/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
@@ -337,12 +337,12 @@
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
                         <version>1.6.7</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
+                        <extensions>false</extensions>
+<!--                        <configuration>-->
+<!--                            <serverId>ossrh</serverId>-->
+<!--                            <nexusUrl>https://nexus.deepblueai.com/</nexusUrl>-->
+<!--                            <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+<!--                        </configuration>-->
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
