@@ -253,7 +253,7 @@ public abstract class AbstractTest {
          * e.printStackTrace(); }
          */
         if (host == null)
-            return "127.0.0.1";
+            return "10.16.140.30";
 
         return host;
     }
