@@ -1,5 +1,8 @@
 package org.openstack4j.openstack.networking.domain.ext;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.List;
 import java.util.Map;
 
@@ -30,10 +33,12 @@ public class NeutronNetQosPolicy implements NetQosPolicy {
     @JsonProperty("revision_number")
     private String revisionNumber;
     @JsonProperty
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private boolean shared;
     @JsonProperty
     private String id;
     @JsonProperty("is_default")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private boolean isDefault;
     @JsonProperty
     private List<Map<String, String>> rules;
@@ -77,6 +82,7 @@ public class NeutronNetQosPolicy implements NetQosPolicy {
         return id;
     }
 
+    @JsonIgnore
     @Override
     public boolean isDefault() {
         return isDefault;
