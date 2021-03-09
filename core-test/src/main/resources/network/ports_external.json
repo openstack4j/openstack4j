@@ -2,7 +2,6 @@
     "ports": [
         {
             "admin_state_up": false,
-            "allowed_address_pairs": [],
             "data_plane_status": null,
             "description": "",
             "device_id": "",
@@ -13,10 +12,12 @@
                     "subnet_id": "a0304c3a-4f08-4c43-88af-d796509c97d2"
                 }
             ],
-	        "allowed_address_pairs": [{
-	        	"ip_address": "192.168.0.100",
-	        	"mac_address": "00:60:2f:38:62:8d"
-	        }],
+            "allowed_address_pairs": [
+                {
+                    "ip_address": "192.168.0.100",
+                    "mac_address": "00:60:2f:38:62:8d"
+                }
+            ],
             "id": "94225baa-9d3f-4b93-bf12-b41e7ce49cdb",
             "mac_address": "fa:16:3e:48:b8:9f",
             "name": "sample_port_1",
@@ -32,7 +33,6 @@
         },
         {
             "admin_state_up": false,
-            "allowed_address_pairs": [],
             "data_plane_status": null,
             "description": "",
             "device_id": "",
@@ -43,10 +43,12 @@
                     "subnet_id": "a0304c3a-4f08-4c43-88af-d796509c97d2"
                 }
             ],
-	        "allowed_address_pairs": [{
-	        	"ip_address": "192.168.0.101",
-	        	"mac_address": "fa:16:3e:f4:73:df"
-	        }],
+            "allowed_address_pairs": [
+                {
+                    "ip_address": "192.168.0.101",
+                    "mac_address": "fa:16:3e:f4:73:df"
+                }
+            ],
             "id": "235b09e0-63c4-47f1-b221-66ba54c21760",
             "mac_address": "fa:16:3e:f4:73:df",
             "name": "sample_port_2",
