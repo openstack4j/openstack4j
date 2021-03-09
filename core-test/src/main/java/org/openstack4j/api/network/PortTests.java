@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
+import org.openstack4j.model.network.AllowedAddressPair;
 import org.openstack4j.model.network.Port;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertNotNull;
 import static org.testng.Assert.assertEquals;
 
 /**
