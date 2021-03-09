@@ -42,6 +42,10 @@ public class PortTests extends AbstractTest {
         assertEquals(port.getNetworkId(), NETWORK_ID);
         assertEquals(port.getCreatedTime(), DATE);
         assertEquals(port.getUpdatedTime(), DATE);
+        
+        AllowedAddressPair allowedAddressPair = port.getAllowedAddressPairs().iterator().next();
+        assertNotNull(allowedAddressPair.getIpAddress());
+        assertNotNull(allowedAddressPair.getMacAddress());
     }
 
     private Port getPort() {
