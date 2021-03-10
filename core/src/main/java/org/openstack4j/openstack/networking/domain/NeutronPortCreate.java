@@ -33,7 +33,10 @@ public class NeutronPortCreate implements ModelEntity {
 
     @JsonProperty("mac_address")
     private String macAddress;
-
+    
+    @JsonProperty("allowed_address_pairs")
+    private Set<NeutronAllowedAddressPair> allowedAddressPairs;
+    
     @JsonProperty("network_id")
     private String networkId;
 
@@ -89,6 +92,7 @@ public class NeutronPortCreate implements ModelEntity {
         c.deviceOwner = port.getDeviceOwner();
         c.securityGroups = port.getSecurityGroups();
         c.fixedIps = (Set<NeutronIP>) port.getFixedIps();
+        c.allowedAddressPairs = (Set<NeutronAllowedAddressPair>) port.getAllowedAddressPairs();
         c.portSecurityEnabled = port.isPortSecurityEnabled();
         c.hostId = port.getHostId();
         c.vifType = port.getVifType();
