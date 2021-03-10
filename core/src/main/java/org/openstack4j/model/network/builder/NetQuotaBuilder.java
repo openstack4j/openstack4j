@@ -66,4 +66,20 @@ public interface NetQuotaBuilder extends Builder<NetQuotaBuilder, NetQuota> {
      */
     NetQuotaBuilder securityGroupRule(int securityGroupRule);
 
+
+    /**
+     * See {@link NetQuota#getRbacPolicy()} for details
+     *
+     * @param rbacPolicy
+     * @return NetQuotaBuilder
+     */
+    NetQuotaBuilder rbacPolicy(Integer rbacPolicy);
+
+    /**
+     * See {@link NetQuota#getSubnetPool()} for details
+     *
+     * @param subnetPool
+     * @return NetQuotaBuilder
+     */
+    NetQuotaBuilder subnetpool(Integer subnetpool);
 }

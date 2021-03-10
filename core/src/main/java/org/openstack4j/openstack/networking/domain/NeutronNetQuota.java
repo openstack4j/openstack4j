@@ -35,6 +35,10 @@ public class NeutronNetQuota implements NetQuota {
     private int securityGroup;
     @JsonProperty("security_group_rule")
     private int securityGroupRule;
+    @JsonProperty("subnetpool")
+    private int subnetpool;
+    @JsonProperty("rbac_policy")
+    private int rbacPolicy;
 
     public static NetQuotaBuilder builder() {
         return new NetQuotaConcreteBuilder();
@@ -77,6 +81,16 @@ public class NeutronNetQuota implements NetQuota {
     }
 
     @Override
+    public int getSubnetpool() {
+        return subnetpool;
+    }
+
+    @Override
+    public int getRbacPolicy() {
+        return rbacPolicy;
+    }
+
+    @Override
     public int getSecurityGroupRule() {
         return securityGroupRule;
     }
@@ -85,8 +99,8 @@ public class NeutronNetQuota implements NetQuota {
     public String toString() {
         return toStringHelper(this)
                 .add("subnet", subnet).add("router", router).add("port", port)
-                .add("network", network).add("floatingIp", floatingIp)
-                .toString();
+                .add("network", network).add("floatingIp", floatingIp).add("subnetpool", subnetpool)
+                .add("rbacPolicy", rbacPolicy).toString();
     }
 
     public static class NetQuotaConcreteBuilder implements NetQuotaBuilder {
@@ -151,6 +165,18 @@ public class NeutronNetQuota implements NetQuota {
         @Override
         public NetQuotaBuilder securityGroupRule(int securityGroupRule) {
             model.securityGroupRule = securityGroupRule;
+            return this;
+        }
+
+        @Override
+        public NetQuotaBuilder subnetpool(Integer subnetpool) {
+            model.subnetpool = subnetpool;
+            return this;
+        }
+
+        @Override
+        public NetQuotaBuilder rbacPolicy(Integer rbacPolicy) {
+            model.rbacPolicy = rbacPolicy;
             return this;
         }
     }

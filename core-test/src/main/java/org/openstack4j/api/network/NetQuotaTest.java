@@ -25,6 +25,8 @@ public class NetQuotaTest extends AbstractTest {
         assertEquals(14, netQuota.getFloatingIP());
         assertEquals(15, netQuota.getSecurityGroup());
         assertEquals(16, netQuota.getSecurityGroupRule());
+        assertEquals(17, netQuota.getSubnetpool());
+        assertEquals(18, netQuota.getRbacPolicy());
     }
 
     @Override
