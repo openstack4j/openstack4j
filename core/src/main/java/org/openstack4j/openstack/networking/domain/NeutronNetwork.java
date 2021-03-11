@@ -50,6 +50,8 @@ public class NeutronNetwork implements Network {
     private List<String> availabilityZoneHints;
     @JsonProperty("availability_zones")
     private List<String> availabilityZones;
+    @JsonProperty("port_security_enabled")
+    private Boolean portSecurityEnabled;
     @JsonProperty("created_at")
     private Date createdTime;
     @JsonProperty("updated_at")
@@ -225,7 +227,15 @@ public class NeutronNetwork implements Network {
     public List<String> getAvailabilityZones() {
         return availabilityZones;
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean isPortSecurityEnabled() {
+        return portSecurityEnabled;
+    }
+    
     /**
      * {@inheritDoc}
      */
@@ -252,6 +262,7 @@ public class NeutronNetwork implements Network {
                 .add("adminStateUp", adminStateUp).add("tenantId", tenantId).add("provider:network_type", networkType).add("router:external", routerExternal)
                 .add("id", id).add("shared", shared).add("provider:segmentation_id", providerSegID)
                 .add("mtu", mtu).add("availabilityZoneHints", availabilityZoneHints).add("availabilityZones", availabilityZones)
+                .add("portSecurityEnabled", portSecurityEnabled)
                 .add("created_at", createdTime).add("updated_at", updatedTime)
                 .toString();
     }
@@ -263,7 +274,7 @@ public class NeutronNetwork implements Network {
     public int hashCode() {
         return java.util.Objects.hash(name, status, subnets,
                 providerPhyNet, adminStateUp, tenantId, networkType,
-                routerExternal, id, shared, providerSegID, availabilityZoneHints, availabilityZones,
+                routerExternal, id, shared, providerSegID, availabilityZoneHints, availabilityZones, portSecurityEnabled,
                 createdTime, updatedTime);
     }
 
@@ -291,6 +302,7 @@ public class NeutronNetwork implements Network {
                     java.util.Objects.equals(providerSegID, that.providerSegID) &&
                     java.util.Objects.equals(availabilityZoneHints, that.availabilityZoneHints) &&
                     java.util.Objects.equals(availabilityZones, that.availabilityZones) &&
+                    java.util.Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
                     java.util.Objects.equals(createdTime, that.createdTime) &&
                     java.util.Objects.equals(updatedTime, that.updatedTime)) {
                 return true;
@@ -388,6 +400,12 @@ public class NeutronNetwork implements Network {
                 m.availabilityZoneHints = new ArrayList<>();
             }
             m.availabilityZoneHints.add(availabilityZone);
+            return this;
+        }
+        
+        @Override
+        public NetworkBuilder isPortSecurityEnabled(Boolean portSecurityEnabled) {
+            m.portSecurityEnabled = portSecurityEnabled;
             return this;
         }
     }
