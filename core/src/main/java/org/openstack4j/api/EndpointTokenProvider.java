@@ -23,4 +23,12 @@ public interface EndpointTokenProvider {
      * @return the auth token identifier
      */
     String getTokenId();
+    
+    /**
+	 * Gets the micro version.
+	 * If it is seted, the version will be used to set headers.
+	 * 
+	 * @return the micro version.
+	 */
+	String getMicroVersion();
 }

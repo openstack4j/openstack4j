@@ -445,6 +445,9 @@ public class HttpRequest<R> {
                 request.endpoint = provider.getEndpoint(service);
                 if (provider.getTokenId() != null)
                     request.getHeaders().put(ClientConstants.HEADER_X_AUTH_TOKEN, provider.getTokenId());
+                if (provider.getMicroVersion() != null)
+                    request.getHeaders().put(ClientConstants.HEADER_X_OPENSTACK_NOVA_API_VERSION,
+                        provider.getMicroVersion());
             }
             return request;
         }

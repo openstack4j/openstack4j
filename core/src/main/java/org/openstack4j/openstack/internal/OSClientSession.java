@@ -389,7 +389,8 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
     public static class OSClientSessionV2 extends OSClientSession<OSClientSessionV2, OSClientV2> implements OSClientV2 {
 
         Access access;
-
+        String microVersion;
+        
         private OSClientSessionV2(Access access, String endpoint, Facing perspective, CloudProvider provider, Config config) {
             this.access = access;
             this.config = config;
@@ -458,7 +459,16 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
         public String getTokenId() {
             return access.getToken().getId();
         }
-
+        
+        @Override
+        public String getMicroVersion() {
+            return microVersion;
+        }
+        
+        public void setMicroVersion(String microVersion) {
+            this.microVersion = microVersion;
+        }
+        
         /**
          * {@inheritDoc}
          */
@@ -481,6 +491,7 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 
         protected String reqId;
         Token token;
+        String microVersion;
 
         private OSClientSessionV3(Token token, String endpoint, Facing perspective, CloudProvider provider, Config config) {
             this.token = token;
@@ -511,6 +522,15 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
         @Override
         public Token getToken() {
             return token;
+        }
+        
+        @Override
+        public String getMicroVersion() {
+            return microVersion;
+        }
+
+        public void setMicroVersion(String microVersion) {
+            this.microVersion = microVersion;
         }
 
         /**

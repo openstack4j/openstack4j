@@ -3,8 +3,10 @@ package org.openstack4j.openstack.internal;
 import java.util.Map;
 
 import org.openstack4j.api.AbstractTest;
+import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.core.transport.HttpMethod;
+import org.openstack4j.openstack.internal.OSClientSession.OSClientSessionV3;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -74,6 +76,13 @@ public class MicroVersionedServiceTest extends AbstractTest {
     public void request() {
         Map<String, Object> headers = service.request(HttpMethod.GET, Object.class, "path").req.build().getHeaders();
         assertEquals(headers.get(API_VERSION_HEADER), MICRO_VERSION.toString());
+    }
+    
+    @Test
+    public void microVersionParameterTest() throws Exception {
+        OSClientV3 clientV3 = osv3();
+        ((OSClientSessionV3) clientV3).setMicroVersion("latest");
+        assertEquals("latest", ((OSClientSessionV3) clientV3).getMicroVersion());
     }
 
     private static class TestService extends MicroVersionedOpenStackService {

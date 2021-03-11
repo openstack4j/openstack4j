@@ -15,6 +15,7 @@ public final class ClientConstants {
     public static final String HEADER_X_PROJECT_DOMAIN_NAME = "X-Project-Domain-Name";
     public static final String HEADER_X_DOMAIN_ID = "X-Domain-Id";
     public static final String HEADER_X_DOMAIN_NAME = "X-Domain-Name";
+    public static final String HEADER_X_OPENSTACK_NOVA_API_VERSION = "X-OpenStack-Nova-API-Version";
     public static final String HEADER_CONTENT_LANGUAGE = "Content-Language";
     public static final String HEADER_CONTENT_ENCODING = "Content-Encoding";
     public static final String HEADER_CONTENT_TYPE = "Content-Type";
