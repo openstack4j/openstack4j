@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.openstack4j.model.compute.Personality;
-import org.openstack4j.model.compute.actions.RebuildOptions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.compute.actions.RebuildOptions;
 
 /**
  * An Action which Rebuilds an existing Server Instance

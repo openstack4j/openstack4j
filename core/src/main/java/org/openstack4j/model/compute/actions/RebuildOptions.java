@@ -103,7 +103,7 @@ public final class RebuildOptions extends BaseActionOptions {
     }
     
     private enum Option implements OptionEnum {
-    	IMAGE("imageRef"),
+        IMAGE("imageRef"),
         NAME("name"),
         ADMIN_PASS("adminPass"),
         USER_DATA("user_data"),
