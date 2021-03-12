@@ -56,10 +56,11 @@ public class NetworkTests extends AbstractTest {
     public void createNetwork() throws Exception {
         respondWith(JSON_NETWORK_EXTERNAL);
         Network n = osv3().networking().network()
-                .create(Builders.network().name(NETWORK_NAME).isRouterExternal(true).adminStateUp(true).build());
+                .create(Builders.network().name(NETWORK_NAME).isRouterExternal(true).adminStateUp(true).isPortSecurityEnabled(true).build());
         server.takeRequest();
         assertEquals(n.getName(), NETWORK_NAME);
         assertEquals(n.getStatus(), State.ACTIVE);
+        assertTrue(n.isPortSecurityEnabled());
         assertTrue(n.isRouterExternal());
     }
 

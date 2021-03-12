@@ -74,5 +74,8 @@ public interface Network extends Resource, TimeEntity, Buildable<NetworkBuilder>
      */
     List<String> getAvailabilityZones();
 
-
+    /**
+     * @return true if the port security enabled is shared
+     */
+    Boolean isPortSecurityEnabled();
 }
