@@ -169,13 +169,13 @@ public class NeutronNetQuota implements NetQuota {
         }
 
         @Override
-        public NetQuotaBuilder subnetpool(Integer subnetpool) {
+        public NetQuotaBuilder subnetpool(int subnetpool) {
             model.subnetpool = subnetpool;
             return this;
         }
 
         @Override
-        public NetQuotaBuilder rbacPolicy(Integer rbacPolicy) {
+        public NetQuotaBuilder rbacPolicy(int rbacPolicy) {
             model.rbacPolicy = rbacPolicy;
             return this;
         }
