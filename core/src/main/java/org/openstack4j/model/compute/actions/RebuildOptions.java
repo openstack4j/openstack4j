@@ -6,7 +6,6 @@ import java.util.Map;
 import org.openstack4j.model.compute.Personality;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Lists;
 
 /**
  * Options used to invoke the Rebuild Action on a Server
@@ -14,8 +13,6 @@ import com.google.common.collect.Lists;
  * @author Jeremy Unruh
  */
 public final class RebuildOptions extends BaseActionOptions {
-	private List<Personality> personality;
-    
     private RebuildOptions() {
         super();
     }
@@ -54,12 +51,8 @@ public final class RebuildOptions extends BaseActionOptions {
         return this;
     }
     
-    public void addPersonality(String path, String contents) {
-        if (personality == null) {
-            personality = Lists.newArrayList();
-            add(Option.PERSONALITY, personality);
-        }
-        personality.add(new Personality(path, contents));
+    public void addPersonality(List<Personality> personality) {
+        add(Option.PERSONALITY, personality);
     }
     
     public void setMetadata(Map<String, String> metadata) {
