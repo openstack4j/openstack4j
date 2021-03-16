@@ -51,11 +51,11 @@ public final class RebuildOptions extends BaseActionOptions {
         return this;
     }
     
-    public void addPersonality(List<Personality> personality) {
+    public void personality(List<Personality> personality) {
         add(Option.PERSONALITY, personality);
     }
     
-    public void setMetadata(Map<String, String> metadata) {
+    public void metadata(Map<String, String> metadata) {
         add(Option.METADATA, metadata);
     }
 
