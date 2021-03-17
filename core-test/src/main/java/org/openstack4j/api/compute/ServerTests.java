@@ -8,10 +8,12 @@ import okhttp3.mockwebserver.RecordedRequest;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.exceptions.ServerResponseException;
+import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.compute.Server;
 import org.openstack4j.model.compute.Server.Status;
 import org.openstack4j.model.compute.ServerPassword;
 import org.openstack4j.model.compute.actions.EvacuateOptions;
+import org.openstack4j.model.compute.actions.RebuildOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -33,6 +35,7 @@ public class ServerTests extends AbstractTest {
     private static final String JSON_SERVER_CREATE = "/compute/server_create.json";
     private static final String JSON_SERVER_EVACUATE = "/compute/server_evacuate.json";
     private static final String JSON_SERVER_CONSOLE_OUTPUT = "/compute/server_console_output.json";
+    private static final String JSON_SERVER_REBUILD = "/compute/server_rebuild.json";
 
     @Test
     public void listServer() throws Exception {
@@ -153,6 +156,19 @@ public class ServerTests extends AbstractTest {
 
         String console = osv3().compute().servers().getConsoleOutput("non-existing-uuid", 0);
         assertNull(console);
+
+        takeRequest();
+    }
+
+    @Test
+    public void rebuildServer() throws Exception {
+        respondWith(JSON_SERVER_REBUILD);
+
+        RebuildOptions rebuildOptions = RebuildOptions.create().image("70a599e0-31e7-49b7-b260-868f441e862b").userData("ZWNobyAiaGVsbG8gd29ybGQi");
+        
+        ActionResponse actionResponse = osv3().compute().servers().rebuild("0c37a84a-c757-4f22-8c7f-0bf8b6970886", rebuildOptions);
+        assertNotNull(actionResponse);
+        assertTrue(actionResponse.isSuccess());
 
         takeRequest();
     }
