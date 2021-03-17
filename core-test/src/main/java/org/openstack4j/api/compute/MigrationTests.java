@@ -25,6 +25,7 @@ public class MigrationTests extends AbstractTest {
 
         assertEquals(2, migrations.size());
         assertEquals(Status.DONE, migrations.get(0).getStatus());
+        assertEquals(Status.CONFIRMED, migrations.get(1).getStatus());
     }
 
     @Override

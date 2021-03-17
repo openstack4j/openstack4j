@@ -75,7 +75,9 @@ public interface Migration extends ModelEntity {
     public enum Status {
         MIGRATING,
         ERROR,
-        DONE;
+        DONE,
+        FINISHED, 
+        CONFIRMED;
 
         @JsonCreator
         public static Status forValue(String value) {
