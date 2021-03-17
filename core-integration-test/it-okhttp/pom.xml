@@ -3,7 +3,7 @@
     <parent>
         <groupId>com.github.openstack4j.core</groupId>
         <artifactId>openstack4j-core-integration-test</artifactId>
-        <version>3.10-SNAPSHOT</version>
+        <version>3.10</version>
     </parent>
     <artifactId>it-okhttp</artifactId>
     <name>OpenStack4j IntegrationTest OKHttp Connector</name>
