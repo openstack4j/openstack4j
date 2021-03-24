@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.networking.domain.ext;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.network.ext.NetQosPolicyBandwidthLimitRule;
@@ -25,6 +26,7 @@ public class NeutronNetQosPolicyBandwidthLimitRule implements NetQosPolicyBandwi
     @JsonProperty("max_kbps")
     private Integer maxKbps;
     @JsonProperty("max_burst_kbps")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer maxBurstKbps;
     @JsonProperty
     private String direction;

@@ -3,7 +3,12 @@ package org.openstack4j.openstack.networking.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
+
+
+import java.util.Set;
+
 import org.openstack4j.model.network.ExternalGateway;
+import org.openstack4j.model.network.IP;
 
 /**
  * Configurable external gateway modes extension model.  By default, when a gateway is attached to a router using the Neutron L3 extension,
@@ -23,6 +28,9 @@ public class NeutronExternalGateway implements ExternalGateway {
     @JsonProperty("enable_snat")
     private Boolean enableSnat;
 
+    @JsonProperty("external_fixed_ips")
+    private Set<NeutronIP> externalFixedIps;
+
     public NeutronExternalGateway() {
     }
 
@@ -35,6 +43,11 @@ public class NeutronExternalGateway implements ExternalGateway {
         this.enableSnat = enableSnat;
     }
 
+    public NeutronExternalGateway(String networkId, Boolean enableSnat,Set<NeutronIP> fixedIps) {
+        this.networkId = networkId;
+        this.enableSnat = enableSnat;
+        this.externalFixedIps=fixedIps;
+    }
     /**
      * {@inheritDoc}
      */
@@ -53,12 +66,31 @@ public class NeutronExternalGateway implements ExternalGateway {
     }
 
     /**
+     * 获取外部固定ip （floating ip）
+     */
+    @Override
+    public Set<? extends IP> getExternalFixedIps() {
+        return externalFixedIps;
+    }
+
+    /**
+     * 设置外部ip
+     */
+
+    public void setFixedIps(Set<NeutronIP> externalFixedIps) {
+        this.externalFixedIps = externalFixedIps;
+    }
+
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
-                .add("networkId", networkId).add("enable_snat", enableSnat).toString();
+                .add("networkId", networkId)
+                .add("enable_snat", enableSnat)
+                .add("external_fixed_ips",externalFixedIps).toString();
     }
 
 }
