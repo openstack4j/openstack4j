@@ -1,10 +1,9 @@
 package org.openstack4j.openstack.networking.domain;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -92,6 +91,10 @@ public class NeutronPort implements Port {
 
     @JsonProperty("updated_at")
     private Date updatedTime;
+
+    @JsonProperty("qos_policy)id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String qosPolicyId;
 
     public static PortBuilder builder() {
         return new PortConcreteBuilder();
@@ -276,6 +279,15 @@ public class NeutronPort implements Port {
     @Override
     public Map<String, Object> getProfile() {
         return profile;
+    }
+
+    /**
+     * @return qos_policy_id
+     */
+    @Override
+    @JsonIgnore
+    public String getQosPolicyId() {
+        return qosPolicyId;
     }
 
     public void setProfile(Map<String, Object> profile) {
@@ -577,6 +589,12 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder profile(Map<String, Object> profile) {
             m.profile = profile;
+            return this;
+        }
+
+        @Override
+        public PortBuilder qosPolicyId(String qos_policy_id) {
+            m.qosPolicyId=qos_policy_id;
             return this;
         }
 
