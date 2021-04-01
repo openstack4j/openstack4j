@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.IPVersionType;
 import org.openstack4j.model.network.ext.SubnetIPAvailability;
 import org.openstack4j.model.network.ext.builder.SubnetIPAvailabilityBuilder;
@@ -91,7 +91,7 @@ public class NeutronSubnetIPAvailability implements SubnetIPAvailability {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("usedIps", usedIps)
                 .add("totalIps", totalIps)
                 .add("subnetId", subnetId)

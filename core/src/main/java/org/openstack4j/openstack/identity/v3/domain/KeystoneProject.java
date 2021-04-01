@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.*;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -212,7 +212,7 @@ public class KeystoneProject implements Project {
             dId = domain.getId();
         }
 
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("domainId", dId)
                 .add("description", description)
@@ -222,7 +222,7 @@ public class KeystoneProject implements Project {
                 .add("subtree", subtree)
                 .add("parents", parents)
                 .add("enabled", enabled)
-                .omitNullValues()
+
                 .toString();
     }
 

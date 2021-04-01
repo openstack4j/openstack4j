@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.gbp.domain;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.PolicyActionUpdate;
 import org.openstack4j.model.gbp.builder.PolicyActionUpdateBuilder;
 
@@ -43,7 +43,7 @@ public class GbpPolicyActionUpdate implements PolicyActionUpdate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("name", name).add("desription", description)
+        return new ToStringHelper(this).add("name", name).add("desription", description)
                 .add("shared", shared).toString();
     }
 

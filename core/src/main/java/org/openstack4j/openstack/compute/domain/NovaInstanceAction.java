@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.InstanceAction;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -68,7 +68,7 @@ public class NovaInstanceAction implements InstanceAction {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("action", action).add("instance_uuid", instanceUuid)
+        return new ToStringHelper(this).add("action", action).add("instance_uuid", instanceUuid)
                 .add("message", message).add("project_id", projectId).add("request_id", requestId)
                 .add("start_time", startTime).add("user_id", userId).toString();
     }

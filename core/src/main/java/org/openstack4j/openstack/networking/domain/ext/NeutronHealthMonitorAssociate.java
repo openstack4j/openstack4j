@@ -2,7 +2,7 @@ package org.openstack4j.openstack.networking.domain.ext;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.HealthMonitorAssociate;
 import org.openstack4j.model.network.ext.builder.HealthMonitorAssociateBuilder;
 
@@ -41,7 +41,7 @@ public class NeutronHealthMonitorAssociate implements HealthMonitorAssociate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("id", id).toString();
+        return new ToStringHelper(this).add("id", id).toString();
     }
 
     public static class HealthMonitorAssociateConcreteBuilder implements HealthMonitorAssociateBuilder {

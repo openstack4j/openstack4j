@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.networking.domain;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.HostRoute;
 
 /**
@@ -44,7 +44,7 @@ public class NeutronHostRoute implements HostRoute {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("destination", destination).add("nexthop", nexthop).toString();
     }
 

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.RateLimit;
 
 /**
@@ -44,7 +44,7 @@ public class NovaRateLimit implements RateLimit {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("limit", limit).add("regex", regex).add("uri", uri)
                 .toString();
     }
@@ -122,7 +122,7 @@ public class NovaRateLimit implements RateLimit {
          */
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("next-available", nextAvailable).add("remaining", remaining).add("unit", unit)
                     .add("value", value).add("available", available).add("verb", verb)
                     .toString();

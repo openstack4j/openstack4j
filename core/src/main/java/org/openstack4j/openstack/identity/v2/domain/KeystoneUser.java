@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.identity.v2.Role;
 import org.openstack4j.model.identity.v2.Tenant;
 import org.openstack4j.model.identity.v2.User;
@@ -70,7 +70,7 @@ public class KeystoneUser implements User {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", name)
                 .add("id", id)
                 .add("username", username)

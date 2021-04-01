@@ -2,7 +2,7 @@ package org.openstack4j.api.exceptions;
 
 import javax.annotation.Nullable;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.HttpResponse;
 
@@ -90,7 +90,7 @@ public class ResponseException extends OS4JException {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("message", getMessage())
                 .add("status", getStatus())
                 .add("X-Openstack-Request-Id", requestId)

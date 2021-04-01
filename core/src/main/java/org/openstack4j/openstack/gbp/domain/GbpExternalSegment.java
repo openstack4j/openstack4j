@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
 import org.openstack4j.model.gbp.ExternalRoutes;
 import org.openstack4j.model.gbp.ExternalSegment;
@@ -133,7 +133,7 @@ public class GbpExternalSegment implements ExternalSegment {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description).add("tenantId", tenantId).add("externalPolicies", externalPolicies)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("desription", description).add("tenantId", tenantId).add("externalPolicies", externalPolicies)
                 .add("l3Policies", l3Policies).add("natpools", natpools).add("ipVersion", ipVersion).add("cidr", cidr).add("shared", shared)
                 .add("subnetId", subnetId).add("portAddressTranslation", portAddressTranslation).add("externalRoutes", externalRoutes).toString();
     }

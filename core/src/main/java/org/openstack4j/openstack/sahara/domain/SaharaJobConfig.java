@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
 import org.openstack4j.model.sahara.JobConfig;
 import org.openstack4j.model.sahara.builder.JobConfigBuilder;
@@ -61,7 +61,7 @@ public class SaharaJobConfig implements JobConfig {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("configs", configs)
                 .add("args", args)
                 .add("params", params)

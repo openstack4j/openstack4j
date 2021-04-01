@@ -10,8 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.compute.ext.AvailabilityZone;
 import org.openstack4j.openstack.common.ListResult;
-
-import static com.google.common.base.MoreObjects.toStringHelper;
+import org.openstack4j.util.ToStringHelper;
 
 public class ExtAvailabilityZone implements AvailabilityZone {
 
@@ -53,7 +52,7 @@ public class ExtAvailabilityZone implements AvailabilityZone {
 
     @Override
     public String toString() {
-        return toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("zoneState", zoneState).add("zoneName", zoneName).add("hosts", hosts)
                 .toString();
     }
@@ -74,7 +73,7 @@ public class ExtAvailabilityZone implements AvailabilityZone {
 
         @Override
         public String toString() {
-            return toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("available", available)
                     .toString();
         }
@@ -115,7 +114,7 @@ public class ExtAvailabilityZone implements AvailabilityZone {
 
         @Override
         public String toString() {
-            return toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("available", available).add("active", statusActive).add("updateTime", updateTime)
                     .toString();
         }

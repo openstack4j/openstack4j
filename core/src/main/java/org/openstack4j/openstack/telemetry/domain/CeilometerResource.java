@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.telemetry.Resource;
 
 /**
@@ -92,7 +92,7 @@ public class CeilometerResource implements Resource {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("userId", userId).add("projectId", projectId).add("source", source).add("firstSanpleTimestamp", firstSampleTimestamp)
+        return new ToStringHelper(this).add("id", id).add("userId", userId).add("projectId", projectId).add("source", source).add("firstSanpleTimestamp", firstSampleTimestamp)
                 .add("lastSanpleTimestamp", lastSampleTimeStamp).toString();
     }
 

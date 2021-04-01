@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.Link;
 import org.openstack4j.model.compute.IPProtocol;
 import org.openstack4j.model.compute.SecGroupExtension;
@@ -98,7 +98,7 @@ public class NovaSecGroupExtension implements SecGroupExtension {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("description", description)
                 .add("tenantId", tenantId).add("rules", rules).add("links", links)
                 .toString();
@@ -214,7 +214,7 @@ public class NovaSecGroupExtension implements SecGroupExtension {
         }
 
         public String toString() {
-            return MoreObjects.toStringHelper("Rule").omitNullValues()
+            return new ToStringHelper(this)
                     .add("id", id).add("name", name).add("parentGroupId", parentGroupId)
                     .add("fromPort", fromPort).add("toPort", toPort).add("ipProtocol", ipProtocol)
                     .add("range", ipRange).add("group", group)
@@ -318,7 +318,7 @@ public class NovaSecGroupExtension implements SecGroupExtension {
              */
             @Override
             public String toString() {
-                return MoreObjects.toStringHelper(this).omitNullValues().add("name", name).add("tenantId", tenantId).toString();
+                return new ToStringHelper(this).add("name", name).add("tenantId", tenantId).toString();
             }
 
         }
@@ -344,7 +344,7 @@ public class NovaSecGroupExtension implements SecGroupExtension {
              */
             @Override
             public String toString() {
-                return MoreObjects.toStringHelper(this).add("cidr", cidr).toString();
+                return new ToStringHelper(this).add("cidr", cidr).toString();
             }
 
         }

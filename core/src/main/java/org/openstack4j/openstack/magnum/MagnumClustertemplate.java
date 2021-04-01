@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Clustertemplate;
 import org.openstack4j.model.magnum.ClustertemplateBuilder;
 import org.openstack4j.model.magnum.Label;
@@ -219,7 +219,7 @@ public class MagnumClustertemplate implements Clustertemplate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("insecureRegistry", insecureRegistry)
+        return new ToStringHelper(this).add("insecureRegistry", insecureRegistry)
                 .add("links", links).add("httpProxy", httpProxy).add("updatedAt", updatedAt)
                 .add("floatingIpEnabled", floatingIpEnabled).add("fixedSubnet", fixedSubnet)
                 .add("masterFlavorId", masterFlavorId).add("uuid", uuid).add("noProxy", noProxy)

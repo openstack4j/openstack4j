@@ -7,7 +7,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
 import org.openstack4j.model.heat.SoftwareConfig;
 import org.openstack4j.model.heat.builder.SoftwareConfigBuilder;
@@ -79,7 +79,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(SoftwareConfig.class).omitNullValues()
+        return new ToStringHelper(SoftwareConfig.class)
                 .add("id", id).add("name", name).add("group", group).addValue("\n")
                 .add("inputs", inputs).addValue("\n").add("outputs", outputs)
                 .addValue("\n").add("config", config).add("options", options)
@@ -128,7 +128,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         }
 
         public String toString() {
-            return MoreObjects.toStringHelper(Input.class).omitNullValues()
+            return new ToStringHelper(Input.class)
                     .add("name", name).add("type", type)
                     .add("description", description).add("default", defaultValue)
                     .toString();
@@ -177,7 +177,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         }
 
         public String toString() {
-            return MoreObjects.toStringHelper(Output.class).omitNullValues()
+            return new ToStringHelper(Output.class)
                     .add("name", name).add("type", type)
                     .add("description", description).add("errorOutput", errorOutput)
                     .toString();

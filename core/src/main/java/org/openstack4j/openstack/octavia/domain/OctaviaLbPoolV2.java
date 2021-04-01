@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.LbMethod;
 import org.openstack4j.model.octavia.LbPoolV2;
 import org.openstack4j.model.octavia.Protocol;
@@ -157,7 +157,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("projectId", projectId)
                 .add("name", name)
@@ -293,7 +293,7 @@ public class OctaviaLbPoolV2 implements LbPoolV2 {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this)
+            return new ToStringHelper(this)
                     .add("lbPools", lbPools)
                     .toString();
         }

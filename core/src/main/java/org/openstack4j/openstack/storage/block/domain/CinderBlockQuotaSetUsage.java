@@ -6,8 +6,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.common.QuotaDetails;
 import org.openstack4j.model.storage.block.BlockQuotaSetUsage;
 import org.openstack4j.openstack.common.QuotaDetailsEntity;
-
-import static com.google.common.base.MoreObjects.toStringHelper;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Block Quota-Set Usage Details
@@ -45,7 +44,7 @@ public class CinderBlockQuotaSetUsage implements BlockQuotaSetUsage {
 
     @Override
     public String toString() {
-        return toStringHelper(this).add("snapshots", snapshots).add("volumes", volumes).add("gigabytes", gigabytes).toString();
+        return new ToStringHelper(this).add("snapshots", snapshots).add("volumes", volumes).add("gigabytes", gigabytes).toString();
     }
 
 }

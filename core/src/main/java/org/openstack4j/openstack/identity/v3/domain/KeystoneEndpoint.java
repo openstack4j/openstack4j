@@ -7,7 +7,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.base.Objects;
 import org.openstack4j.api.types.Facing;
 import org.openstack4j.model.identity.v3.Endpoint;
@@ -158,7 +158,7 @@ public class KeystoneEndpoint implements Endpoint {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("type", type)
                 .add("name", name)

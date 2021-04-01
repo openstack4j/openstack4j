@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Label;
 import org.openstack4j.model.magnum.Pod;
 import org.openstack4j.model.magnum.PodBuilder;
@@ -73,7 +73,7 @@ public class MagnumPod implements Pod {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("uuid", uuid).add("name", name)
+        return new ToStringHelper(this).add("id", id).add("uuid", uuid).add("name", name)
                 .add("desc", desc).add("bayUuid", bayUuid).add("images", images).add("labels", labels)
                 .add("status", status).toString();
     }

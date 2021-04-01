@@ -5,9 +5,9 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
 import org.openstack4j.model.gbp.PolicyTargetGroup;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Model implementation for Policy target group
@@ -117,7 +117,7 @@ public class GbpPolicyTargetGroup implements PolicyTargetGroup {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("desription", description)
                 .add("tenantId", tenantId).add("consumedPolicyRuleSets", consumedPolicyRuleSets).add("providedPolicyRuleSets", providedPolicyRuleSets)
                 .add("l2PolicyId", l2PolicyId).add("networkServicePolicyId", networkServicePolicyId)
                 .add("policyTargets", policyTargets).add("serviceManagement", serviceManagement).add("shared", shared).add("subnets", subnets).toString();

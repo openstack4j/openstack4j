@@ -2,7 +2,7 @@ package org.openstack4j.model.common;
 
 import java.io.Serializable;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A response that is returned when an Action is performed against the server.
@@ -65,8 +65,7 @@ public class ActionResponse implements Serializable {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).
-                omitNullValues().
+        return new ToStringHelper(this).
                 add("success", message == null).
                 add("fault", message).
                 add("code", code).

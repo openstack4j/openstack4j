@@ -8,7 +8,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
 import org.openstack4j.model.sahara.NodeGroupTemplate;
 import org.openstack4j.model.sahara.ServiceConfig;
@@ -228,7 +228,7 @@ public class SaharaNodeGroupTemplate implements NodeGroupTemplate {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("name", name)
                 .add("description", description)

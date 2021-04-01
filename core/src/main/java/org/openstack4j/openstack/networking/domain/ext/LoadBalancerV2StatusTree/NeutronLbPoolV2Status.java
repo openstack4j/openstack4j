@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.status.HealthMonitorV2Status;
 import org.openstack4j.model.network.ext.status.LbPoolV2Status;
 import org.openstack4j.model.network.ext.status.MemberV2Status;
@@ -44,7 +44,7 @@ public class NeutronLbPoolV2Status extends Status implements LbPoolV2Status {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("name", name)
                 .add("memberStatuses", memberStatuses)

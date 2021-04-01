@@ -2,7 +2,7 @@ package org.openstack4j.openstack.storage.block.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.storage.block.VolumeAttachment;
 
 /**
@@ -65,7 +65,7 @@ public class CinderVolumeAttachment implements VolumeAttachment {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("device", device).add("id", id).add("serverId", server_id)
                 .add("volumeId", volume_id).add("hostname", host_name)
                 .add("attachmentId", attachment_id).toString();

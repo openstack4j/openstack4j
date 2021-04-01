@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.storage.ObjectStorageObjectService;
 import org.openstack4j.model.common.DLPayload;
@@ -113,7 +113,7 @@ public class SwiftObjectImpl implements SwiftObject {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", name).add("last_modified", lastModified).add("mimeType", mimeType)
                 .add("size_bytes", sizeBytes).add("ETag", eTag).add("directory", isDirectory())
                 .add("containerName", containerName).add("metadata", metadata)

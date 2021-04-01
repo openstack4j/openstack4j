@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.openstack4j.model.compute.Address;
@@ -46,7 +46,7 @@ public class NovaAddresses implements Addresses {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("addresses", addresses).addValue("\n")
                 .toString();
     }
@@ -91,7 +91,7 @@ public class NovaAddresses implements Addresses {
          */
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("address", addr).add("type", type).add("version", version)
                     .add("macaddr", macAddr).addValue("\n")
                     .toString();

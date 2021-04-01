@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
 import org.openstack4j.model.compute.Keypair;
 import org.openstack4j.openstack.common.ListResult;
@@ -137,7 +137,7 @@ public class NovaKeypair implements Keypair {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", name).add("public_key", publicKey).add("private_key", privateKey).add("fingerprint", fingerprint)
                 .add("user_id", userId).add("deleted", deleted).add("created_at", createdAt).add("updated_at", updatedAt)
                 .add("deleted_at", deletedAt).add("id", id).toString();

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Maps;
 import org.openstack4j.model.gbp.ExternalPolicyCreate;
 import org.openstack4j.model.gbp.builder.ExternalPolicyBuilder;
@@ -137,7 +137,7 @@ public class GbpExternalPolicyCreate implements ExternalPolicyCreate {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("name", name).add("tenantId", tenantId).add("externalSegments", externalSegments).add("id", id).add("description", description).add("shared", shared).add("consumedPolicyRuleSets", consumedPolicyRuleSets).add("providedPolicyRuleSets", providedPolicyRuleSets).toString();
+        return new ToStringHelper(this).add("name", name).add("tenantId", tenantId).add("externalSegments", externalSegments).add("id", id).add("description", description).add("shared", shared).add("consumedPolicyRuleSets", consumedPolicyRuleSets).add("providedPolicyRuleSets", providedPolicyRuleSets).toString();
     }
 
     public static class ExternalPolicyConcreteBuilder implements ExternalPolicyBuilder {

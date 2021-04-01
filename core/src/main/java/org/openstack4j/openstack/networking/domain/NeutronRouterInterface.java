@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.networking.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.RouterInterface;
 
 /**
@@ -70,7 +70,7 @@ public class NeutronRouterInterface implements RouterInterface {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("subnetId", subnetId).add("portId", portId).add("tenantId", tenantId).toString();
     }
 

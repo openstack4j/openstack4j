@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.image.v2.Task;
 import org.openstack4j.model.image.v2.builder.TaskBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -114,7 +114,7 @@ public class GlanceTask implements Task {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("createdAt", createdAt)
                 .add("expiresAt", expiresAt)
                 .add("updatedAt", updatedAt)

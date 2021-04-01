@@ -2,7 +2,7 @@ package org.openstack4j.openstack.networking.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ExternalGateway;
 
 /**
@@ -57,7 +57,7 @@ public class NeutronExternalGateway implements ExternalGateway {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("networkId", networkId).add("enable_snat", enableSnat).toString();
     }
 

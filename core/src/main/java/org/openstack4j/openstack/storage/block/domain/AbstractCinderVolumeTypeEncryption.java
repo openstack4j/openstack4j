@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.storage.block.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.storage.block.VolumeTypeEncryption;
 import org.openstack4j.model.storage.block.builder.VolumeTypeEncryptionBuilder;
 
@@ -96,7 +96,7 @@ public class AbstractCinderVolumeTypeEncryption implements VolumeTypeEncryption 
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("volumeTypeId", volumeTypeId)
+        return new ToStringHelper(this).add("id", id).add("volumeTypeId", volumeTypeId)
                 .add("provider", provider).add("cipher", cipher).add("keySize", keySize)
                 .add("controlLocation", controlLocation).toString();
     }

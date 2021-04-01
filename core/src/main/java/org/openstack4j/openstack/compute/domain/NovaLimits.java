@@ -3,7 +3,7 @@ package org.openstack4j.openstack.compute.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.AbsoluteLimit;
 import org.openstack4j.model.compute.Limits;
 import org.openstack4j.model.compute.RateLimit;
@@ -45,7 +45,7 @@ public class NovaLimits implements Limits {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("rate", rate).add("absolute", absolute)
                 .toString();
     }

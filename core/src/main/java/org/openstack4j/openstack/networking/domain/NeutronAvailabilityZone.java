@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.AvailabilityZone;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -54,7 +54,7 @@ public class NeutronAvailabilityZone implements AvailabilityZone {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("state", state).add("resource", resource).add("name", name).toString();
+        return new ToStringHelper(this).add("state", state).add("resource", resource).add("name", name).toString();
     }
 
     /**

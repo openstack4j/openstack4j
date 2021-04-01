@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.Instance;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -106,7 +106,7 @@ public class SaharaInstance implements Instance {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("instance_name", name)
                 .add("created_at", createdAt)
                 .add("updated_at", updatedAt)

@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.base.Objects;
 import org.openstack4j.model.identity.v3.Region;
 import org.openstack4j.model.identity.v3.builder.RegionBuilder;
@@ -57,7 +57,7 @@ public class KeystoneRegion implements Region {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("description", description)
                 .add("parentRegionId", parentRegionId)

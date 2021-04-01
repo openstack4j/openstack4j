@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.ListenerProtocol;
 import org.openstack4j.model.octavia.ListenerV2;
 import org.openstack4j.model.octavia.builder.ListenerV2Builder;
@@ -167,7 +167,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("adminStateUp", adminStateUp)
                 .add("projectId", projectId)
@@ -314,7 +314,7 @@ public class OctaviaListenerV2 implements ListenerV2 {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this)
+            return new ToStringHelper(this)
                     .add("listeners", listeners)
                     .toString();
         }

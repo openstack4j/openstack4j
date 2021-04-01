@@ -3,7 +3,7 @@ package org.openstack4j.openstack.compute.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.Link;
 import org.openstack4j.model.compute.Flavor;
 import org.openstack4j.model.compute.builder.FlavorBuilder;
@@ -164,7 +164,7 @@ public class NovaFlavor implements Flavor {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("vcpus", vcpus)
                 .add("ram", ram).add("disk", disk).add("ephemeral", ephemeral)
                 .add("swap", swap).add("rxtx_factor", rxtxFactor).add("disabled", disabled)

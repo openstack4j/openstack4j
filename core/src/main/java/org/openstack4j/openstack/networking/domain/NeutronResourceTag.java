@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.ModelEntity;
 
 /**
@@ -32,7 +32,7 @@ public class NeutronResourceTag implements ModelEntity {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("tags", tags).toString();
+        return new ToStringHelper(this).add("tags", tags).toString();
     }
 
 }

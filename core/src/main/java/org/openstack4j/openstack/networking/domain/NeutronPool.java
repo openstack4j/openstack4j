@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.networking.domain;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.Pool;
 
 /**
@@ -44,7 +44,7 @@ public class NeutronPool implements Pool {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("start", start).add("end", end).toString();
+        return new ToStringHelper(this).add("start", start).add("end", end).toString();
     }
 
     /**

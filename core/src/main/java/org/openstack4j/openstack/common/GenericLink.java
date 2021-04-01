@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.common;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.Link;
 import org.openstack4j.model.common.builder.LinkBuilder;
 
@@ -64,7 +64,7 @@ public class GenericLink implements Link {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("href", href).add("rel", rel).add("type", type)
                 .toString();
     }

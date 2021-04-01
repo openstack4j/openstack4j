@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.FirewallUpdate;
 import org.openstack4j.model.network.ext.builder.FirewallUpdateBuilder;
 
@@ -84,7 +84,7 @@ public class NeutronFirewallUpdate implements FirewallUpdate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", name).add("policyId", policyId)
                 .add("shared", shared).add("adminStateUp", adminStateUp)
                 .add("tenantId", tenantId).add("description", description)

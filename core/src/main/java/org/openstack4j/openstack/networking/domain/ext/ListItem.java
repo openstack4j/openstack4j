@@ -2,7 +2,7 @@ package org.openstack4j.openstack.networking.domain.ext;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Lbaas V2 lists of objects take the form
@@ -33,7 +33,7 @@ public class ListItem {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .toString();
     }

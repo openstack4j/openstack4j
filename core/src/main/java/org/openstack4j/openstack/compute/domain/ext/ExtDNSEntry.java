@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.compute.ext.DNSEntry;
 import org.openstack4j.model.compute.ext.DNSRecordType;
 import org.openstack4j.openstack.common.ListResult;
-
-import static com.google.common.base.MoreObjects.toStringHelper;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A Floating IP DNS Extension - DNS Entry
@@ -71,7 +70,7 @@ public class ExtDNSEntry implements DNSEntry {
 
     @Override
     public String toString() {
-        return toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("domain", domain).add("ip", ipAddress)
                 .add("name", name).add("type", type)
                 .toString();
@@ -89,7 +88,5 @@ public class ExtDNSEntry implements DNSEntry {
         protected List<ExtDNSEntry> value() {
             return result;
         }
-
     }
-
 }

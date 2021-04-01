@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Bay;
 import org.openstack4j.model.magnum.BayBuilder;
 import org.openstack4j.openstack.common.GenericLink;
@@ -127,7 +127,7 @@ public class MagnumBay implements Bay {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("status", status).add("uuid", uuid).add("links", links)
+        return new ToStringHelper(this).add("status", status).add("uuid", uuid).add("links", links)
                 .add("stackId", stackId).add("createdAt", createdAt).add("apiAddress", apiAddress)
                 .add("discoveryUrl", discoveryUrl).add("updatedAt", updatedAt).add("masterCount", masterCount)
                 .add("coeVersion", coeVersion).add("baymodelId", baymodelId).add("masterAddresses", masterAddresses)

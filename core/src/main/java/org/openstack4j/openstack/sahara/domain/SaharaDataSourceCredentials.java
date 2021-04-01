@@ -2,7 +2,7 @@ package org.openstack4j.openstack.sahara.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.DataSourceCredentials;
 
 /**
@@ -43,7 +43,7 @@ public class SaharaDataSourceCredentials implements DataSourceCredentials {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("password", password)
                 .add("user", user)
                 .toString();

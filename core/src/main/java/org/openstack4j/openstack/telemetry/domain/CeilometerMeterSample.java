@@ -3,7 +3,7 @@ package org.openstack4j.openstack.telemetry.domain;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.telemetry.Meter.Type;
 import org.openstack4j.model.telemetry.MeterSample;
 
@@ -214,7 +214,7 @@ public class CeilometerMeterSample implements MeterSample {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", counterName).add("type", counterType).add("unit", counterUnit)
                 .add("volume", counterVolume).add("timestamp", timestamp).add("source", source)
                 .add("project", projectId).add("user", userId).add("resource", resourceId)

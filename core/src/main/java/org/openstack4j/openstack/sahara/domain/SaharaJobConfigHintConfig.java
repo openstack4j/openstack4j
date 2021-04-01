@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.sahara.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.JobConfigHintConfig;
 
 /**
@@ -46,7 +46,7 @@ public class SaharaJobConfigHintConfig implements JobConfigHintConfig {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", name)
                 .add("value", value)
                 .add("description", description)

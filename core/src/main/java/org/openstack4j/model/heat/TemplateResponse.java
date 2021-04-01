@@ -1,6 +1,6 @@
 package org.openstack4j.model.heat;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Response returned during Template validation
@@ -45,6 +45,6 @@ public final class TemplateResponse {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("valid", message == null).add("message", message).toString();
+        return new ToStringHelper(this).add("valid", message == null).add("message", message).toString();
     }
 }

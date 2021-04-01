@@ -2,7 +2,7 @@ package org.openstack4j.openstack.tacker.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.tacker.VnfUpdate;
 import org.openstack4j.model.tacker.builder.VnfUpdateBuilder;
 
@@ -44,7 +44,7 @@ public class TackerVnfUpdate implements VnfUpdate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("attributes", attributes).toString();
+        return new ToStringHelper(this).add("attributes", attributes).toString();
     }
 
     public static class VnfUpdateConcreteBuilder implements VnfUpdateBuilder {

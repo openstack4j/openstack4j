@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.InterfaceAttachment;
 import org.openstack4j.model.compute.PortState;
 import org.openstack4j.openstack.common.ListResult;
@@ -59,7 +59,7 @@ public class NovaInterfaceAttachment implements InterfaceAttachment {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("mac_addr", macAddr).add("net_id", netId).add("port_id", portId)
                 .add("port_state", portState).add("fixed_ips", fixedIps)
                 .toString();
@@ -100,7 +100,7 @@ public class NovaInterfaceAttachment implements InterfaceAttachment {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("ip_address", ipAddress).add("subnet_id", subnetId).toString();
         }
     }

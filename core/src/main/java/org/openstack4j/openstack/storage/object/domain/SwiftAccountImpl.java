@@ -2,7 +2,7 @@ package org.openstack4j.openstack.storage.object.domain;
 
 import java.util.Map;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.storage.object.SwiftAccount;
 
 /**
@@ -54,7 +54,7 @@ public class SwiftAccountImpl implements SwiftAccount {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("containerCount", containerCount).add("objectCount", objectCount)
                 .add("bytesUsed", bytesUsed).add("temporaryUrlKey", temporaryUrlKey)
                 .add("metadata", metadata)

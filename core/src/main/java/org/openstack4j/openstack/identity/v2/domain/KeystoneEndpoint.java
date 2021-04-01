@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.base.Objects;
 import org.openstack4j.model.identity.v2.Endpoint;
 import org.openstack4j.model.identity.v2.builder.EndpointBuilder;
@@ -139,7 +139,7 @@ public class KeystoneEndpoint implements Endpoint {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("type", type)
                 .add("region", region).add("publicURL", publicURL)
                 .add("internalURL", internalURL).add("adminURL", adminURL)

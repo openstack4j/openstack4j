@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.ExternalGateway;
@@ -149,7 +149,7 @@ public class NeutronRouter implements Router {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("tenantId", tenantId).add("admin_state_up", adminStateUp)
                 .add("external_gateway_info", externalGatewayInfo).add("routes", routes)
                 .add("distributed", distributed)

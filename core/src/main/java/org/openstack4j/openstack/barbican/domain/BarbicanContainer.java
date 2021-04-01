@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.barbican.Container;
 import org.openstack4j.model.barbican.ContainerConsumer;
 import org.openstack4j.model.barbican.ContainerSecret;
@@ -109,7 +109,7 @@ public class BarbicanContainer implements Container {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("status", status).add("name", name).add("updated", updatedTime)
                 .add("created", createdTime).add("consumers", consumers).add("reference", containerReference)
                 .add("creatorId", creatorId).add("secrets", secretReferences).add("type", type)

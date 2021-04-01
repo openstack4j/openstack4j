@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.compute.domain;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.AbsoluteLimit;
 
 /**
@@ -306,7 +306,7 @@ public class NovaAbsoluteLimit implements AbsoluteLimit {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("maxServerMeta", maxServerMeta).add("serverMetaUsed", serverMetaUsed).add("maxPersonality", maxPersonality)
                 .add("personalityUsed", personalityUsed).add("maxImageMeta", maxImageMeta).add("imageMetaUsed", imageMetaUsed)
                 .add("maxPersonalitySize", maxPersonalitySize).add("personalitySizeUsed", personalitySizeUsed).add("maxTotalCores", maxTotalCores)
