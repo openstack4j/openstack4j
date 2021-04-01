@@ -1,10 +1,8 @@
 package org.openstack4j.api
 
-import com.google.common.collect.ImmutableMap
 import groovy.util.logging.Slf4j
 import org.junit.Rule
 import org.junit.rules.TestName
-import org.openstack4j.api.Builders
 import org.openstack4j.model.compute.Flavor
 import org.openstack4j.model.identity.v2.Tenant
 import org.openstack4j.model.identity.v3.User
@@ -53,7 +51,7 @@ class BuilderSpec extends Specification {
     def static final String VOLUME_IMAGEREF = "imageId"
     def static final String STACK_NAME = "newStack"
     def static final String STACK_TEMPLATE = "template_url"
-    def static final ImmutableMap<String, String> STACK_PARAMS = ImmutableMap.of("param", "bogus");
+    def static final Map<String, String> STACK_PARAMS = Collections.singletonMap("param", "bogus");
     def static final String SHARE_DESCRIPTION = "My third share"
     def static final Protocol SHARE_PROTOCOL = Share.Protocol.NFS
     def static final String SHARE_NAME = "my_first_share"
