@@ -1,10 +1,10 @@
 package org.openstack4j.model.telemetry;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.common.collect.Lists;
 import org.openstack4j.openstack.internal.Parser;
 
 /**
@@ -15,7 +15,7 @@ import org.openstack4j.openstack.internal.Parser;
  */
 public class EventCriteria {
 
-    private List<NameOpValue> params = Lists.newArrayList();
+    private List<NameOpValue> params = new ArrayList<>();
 
     public static EventCriteria create() {
         return new EventCriteria();

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.*;
@@ -530,7 +529,7 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder extraDhcpOpt(ExtraDhcpOptCreate extraDhcpOptCreate) {
             if (m.extraDhcpOptCreates == null)
-                m.extraDhcpOptCreates = Lists.newArrayList();
+                m.extraDhcpOptCreates = new ArrayList<>();
             m.extraDhcpOptCreates.add((NeutronExtraDhcpOptCreate) extraDhcpOptCreate);
             return this;
         }

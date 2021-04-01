@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.compute.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +8,6 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Lists;
 import org.openstack4j.model.compute.Address;
 import org.openstack4j.model.compute.Addresses;
 
@@ -21,7 +21,7 @@ public class NovaAddresses implements Addresses {
     @Override
     public void add(String key, Address value) {
         if (!addresses.containsKey(key))
-            addresses.put(key, Lists.<NovaAddress>newArrayList());
+            addresses.put(key, new ArrayList());
 
         addresses.get(key).add((NovaAddress) value);
     }

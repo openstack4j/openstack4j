@@ -1,15 +1,11 @@
 package org.openstack4j.openstack.sahara.domain;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Lists;
 import org.openstack4j.model.sahara.Instance;
 import org.openstack4j.model.sahara.NodeGroup;
 import org.openstack4j.model.sahara.ServiceConfig;
@@ -309,7 +305,7 @@ public class SaharaNodeGroup implements NodeGroup {
         public NodeGroupBuilder addSecurityGroup(String id) {
             if (id != null && !id.isEmpty()) {
                 if (m.securityGroups == null)
-                    m.securityGroups = Lists.newArrayList();
+                    m.securityGroups = new ArrayList<>();
                 m.securityGroups.add(id);
             }
             return this;
@@ -319,7 +315,7 @@ public class SaharaNodeGroup implements NodeGroup {
         public NodeGroupBuilder addNodeProcess(String name) {
             if (name != null && !name.isEmpty()) {
                 if (m.nodeProcesses == null)
-                    m.nodeProcesses = Lists.newArrayList();
+                    m.nodeProcesses = new ArrayList<>();
                 m.nodeProcesses.add(name);
             }
             return this;

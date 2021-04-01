@@ -1,8 +1,8 @@
 package org.openstack4j.model.storage.block.options;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
 import org.openstack4j.model.common.functions.RangesToHeaderNameValue;
 import org.openstack4j.model.common.header.HeaderNameValue;
 import org.openstack4j.model.common.header.IfCondition;
@@ -16,7 +16,7 @@ import org.openstack4j.model.common.header.Range;
  */
 public class DownloadOptions {
 
-    List<HeaderNameValue> headers = Lists.newArrayList();
+    List<HeaderNameValue> headers = new ArrayList<>();
 
     private DownloadOptions() {
     }

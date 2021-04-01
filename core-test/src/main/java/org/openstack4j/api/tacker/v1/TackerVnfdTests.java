@@ -1,11 +1,12 @@
 package org.openstack4j.api.tacker.v1;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.collect.Lists;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -62,7 +63,7 @@ public class TackerVnfdTests extends AbstractTest {
 
         VnfdServiceTypes serviceTypes = VnfdServiceTypes.create().serviceType("vnfd");
 
-        List<VnfdServiceTypes> serviceTypesList = Lists.newArrayList(serviceTypes);
+        List<VnfdServiceTypes> serviceTypesList = Collections.singletonList(serviceTypes);
 
         Vnfd vnfd = Builders.tacker().vnfd()
                 .name("test-vnfd")

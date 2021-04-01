@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Lists;
 import org.openstack4j.api.Apis;
 import org.openstack4j.model.common.Link;
 import org.openstack4j.model.common.functions.IdEntityToString;

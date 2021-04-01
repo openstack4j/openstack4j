@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +8,6 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.*;
 import org.openstack4j.util.ToStringHelper;
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 import org.openstack4j.model.identity.v3.Domain;
 import org.openstack4j.model.identity.v3.Project;
 import org.openstack4j.model.identity.v3.builder.ProjectBuilder;
@@ -41,7 +41,7 @@ public class KeystoneProject implements Project {
     private String subtree;
     private String parents;
     private Boolean enabled = true;
-    private List<String> tags = Lists.newArrayList();
+    private List<String> tags = new ArrayList<>();
 
     /**
      * Extra API properties served

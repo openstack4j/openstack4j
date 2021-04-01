@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import com.google.common.collect.Lists;
 import org.openstack4j.api.storage.ObjectStorageObjectService;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.common.ActionResponse;

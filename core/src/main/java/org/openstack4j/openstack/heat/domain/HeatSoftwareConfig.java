@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.heat.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Lists;
 import org.openstack4j.model.heat.SoftwareConfig;
 import org.openstack4j.model.heat.builder.SoftwareConfigBuilder;
 
@@ -233,7 +233,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         @Override
         public SoftwareConfigBuilder input(String name, String type, String description, String defaultValue) {
             if (sc.inputs == null)
-                sc.inputs = Lists.newArrayList();
+                sc.inputs = new ArrayList<>();
 
             sc.inputs.add(new SCInput(name, type, description, defaultValue));
             return this;
@@ -254,7 +254,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         @Override
         public SoftwareConfigBuilder output(String name, String type, String description, boolean isErrorOutput) {
             if (sc.outputs == null)
-                sc.outputs = Lists.newArrayList();
+                sc.outputs = new ArrayList<>();
 
             sc.outputs.add(new SCOutput(name, type, description, isErrorOutput));
             return this;

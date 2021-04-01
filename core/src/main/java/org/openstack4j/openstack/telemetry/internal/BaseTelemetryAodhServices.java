@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.telemetry.internal;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.Lists;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.openstack.common.functions.EnforceVersionToURL;
 import org.openstack4j.openstack.internal.BaseOpenStackService;
@@ -16,7 +16,7 @@ public class BaseTelemetryAodhServices extends BaseOpenStackService {
 
     protected <T> List<T> wrapList(T[] type) {
         if (type != null)
-            return Lists.newArrayList(type);
+            return Arrays.asList(type);
         return Collections.emptyList();
 
     }

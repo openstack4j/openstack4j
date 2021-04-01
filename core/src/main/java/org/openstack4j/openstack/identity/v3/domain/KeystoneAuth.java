@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.collect.Lists;
 import org.openstack4j.model.common.Identifier;
 import org.openstack4j.model.identity.AuthStore;
 import org.openstack4j.model.identity.AuthVersion;
@@ -113,7 +113,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
         private AuthPassword password;
         private AuthToken token;
-        private List<String> methods = Lists.newArrayList();
+        private List<String> methods = new ArrayList<>();
 
         static AuthIdentity createTokenType(String tokenId) {
             AuthIdentity identity = new AuthIdentity();

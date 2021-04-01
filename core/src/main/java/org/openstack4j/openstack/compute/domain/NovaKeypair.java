@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.compute.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Lists;
 import org.openstack4j.model.compute.Keypair;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -154,7 +154,7 @@ public class NovaKeypair implements Keypair {
         @Override
         protected List<NovaKeypair> value() {
             if (wrapped != null && unwrapped == null) {
-                unwrapped = Lists.newArrayList();
+                unwrapped = new ArrayList<>();
                 for (KeyPairWrapper kp : wrapped)
                     unwrapped.add(kp.keypair);
             }

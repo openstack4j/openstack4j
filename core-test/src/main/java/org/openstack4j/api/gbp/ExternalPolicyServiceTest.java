@@ -1,5 +1,6 @@
 package org.openstack4j.api.gbp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -55,9 +56,9 @@ public class ExternalPolicyServiceTest extends AbstractTest {
     @Test
     public void testCreateExternalPolicy() throws Exception {
         respondWith(EXTERNAL_POLICY);
-        List<String> externalSegmentIds = Lists.newArrayList();
+        List<String> externalSegmentIds = new ArrayList<>();
         externalSegmentIds.add("f062e3b9-a668-4265-95d0-239c2061ca12");
-        List<String> consumedPolicyRuleSet = Lists.newArrayList();
+        List<String> consumedPolicyRuleSet = new ArrayList<>();
         consumedPolicyRuleSet.add("1bbc10a8-aeb2-4e53-ab31-a1fed18763f4");
         consumedPolicyRuleSet.add("ec0b5a7d-f963-45de-b4e4-864d59dc8c0b");
         consumedPolicyRuleSet.add("c3207474-19ee-4241-81e5-9e20995f2065");
@@ -67,7 +68,7 @@ public class ExternalPolicyServiceTest extends AbstractTest {
         consumedPolicyRuleSet.add("408a5153-efc5-4bea-a3ef-2c838e330254");
         consumedPolicyRuleSet.add("de829eb3-4867-442f-bac7-c59906c610b0");
 
-        List<String> providedPolicyRuleSet = Lists.newArrayList();
+        List<String> providedPolicyRuleSet = new ArrayList<>();
         providedPolicyRuleSet.add("1bbc10a8-aeb2-4e53-ab31-a1fed18763f4");
         providedPolicyRuleSet.add("ec0b5a7d-f963-45de-b4e4-864d59dc8c0b");
         providedPolicyRuleSet.add("c3207474-19ee-4241-81e5-9e20995f2065");

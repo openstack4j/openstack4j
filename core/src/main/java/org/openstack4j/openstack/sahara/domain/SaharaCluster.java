@@ -1,16 +1,12 @@
 package org.openstack4j.openstack.sahara.domain;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Lists;
 import org.openstack4j.model.compute.Image;
 import org.openstack4j.model.sahara.Cluster;
 import org.openstack4j.model.sahara.NodeGroup;
@@ -355,7 +351,7 @@ public class SaharaCluster implements Cluster {
         @Override
         public ClusterBuilder addNodeGroup(NodeGroup nodeGroup) {
             if (m.nodeGroups == null)
-                m.nodeGroups = Lists.newArrayList();
+                m.nodeGroups = new ArrayList<>();
             m.nodeGroups.add((SaharaNodeGroup) nodeGroup);
             return this;
         }
