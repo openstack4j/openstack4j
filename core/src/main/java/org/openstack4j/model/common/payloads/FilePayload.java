@@ -2,7 +2,6 @@ package org.openstack4j.model.common.payloads;
 
 import java.io.*;
 
-import com.google.common.base.Throwables;
 import org.openstack4j.model.common.Payload;
 
 /**
@@ -28,7 +27,7 @@ public class FilePayload implements Payload<File> {
             is = new FileInputStream(file);
             return is;
         } catch (FileNotFoundException e) {
-            throw Throwables.propagate(e);
+            throw new RuntimeException(e);
         }
     }
 

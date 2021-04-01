@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.base.Preconditions;
-import com.google.common.base.Strings;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.*;
 import org.openstack4j.model.network.builder.SubnetBuilder;
@@ -409,7 +407,7 @@ public class NeutronSubnet implements Subnet {
 
         @Override
         public SubnetBuilder addDNSNameServer(String host) {
-            if (Strings.isNullOrEmpty(host))
+            if (host == null || host.isEmpty())
                 return this;
 
             if (m.dnsNames == null)
@@ -421,7 +419,7 @@ public class NeutronSubnet implements Subnet {
 
         @Override
         public SubnetBuilder addHostRoute(String destination, String nexthop) {
-            Preconditions.checkArgument(nexthop != null && destination != null, "NextHop and Destination must have a value");
+            if (nexthop == null || destination == null) throw new IllegalArgumentException("NextHop and Destination must have a value");
             if (m.hostRoutes == null)
                 m.hostRoutes = new ArrayList<>();
 

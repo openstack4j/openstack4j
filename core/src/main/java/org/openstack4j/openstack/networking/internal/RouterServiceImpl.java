@@ -17,8 +17,6 @@ import org.openstack4j.openstack.networking.domain.NeutronRouter;
 import org.openstack4j.openstack.networking.domain.NeutronRouter.Routers;
 import org.openstack4j.openstack.networking.domain.NeutronRouterInterface;
 
-import static com.google.common.base.Preconditions.checkState;
-
 /**
  * RouterService implementation that provides Neutron Router based Service Operations.
  *
@@ -113,7 +111,9 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
     @Override
     public RouterInterface detachInterface(String routerId, String subnetId, String portId) {
         Objects.requireNonNull(routerId);
-        checkState(!(subnetId == null && portId == null), "Either a Subnet or Port identifier must be set");
+        if (subnetId == null && portId == null) {
+            throw new IllegalStateException("Either a Subnet or Port identifier must be set");
+        }
         return put(NeutronRouterInterface.class, uri("/routers/%s/remove_router_interface", routerId))
                 .entity(new NeutronRouterInterface(subnetId, portId))
                 .execute(ExecutionOptions.<NeutronRouterInterface>create(PropagateOnStatus.on(404)));

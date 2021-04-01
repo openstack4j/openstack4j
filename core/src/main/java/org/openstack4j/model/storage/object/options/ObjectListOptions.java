@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-
-import static com.google.common.base.Preconditions.checkState;
-
 /**
  * List options used for Object based queries
  *
@@ -27,8 +24,8 @@ public final class ObjectListOptions {
      * list operation returns no more than this amount.
      */
     public ObjectListOptions limit(int limit) {
-        checkState(limit >= 0, "limit must be >= 0");
-        checkState(limit <= 10000, "limit must be <= 10000");
+        if (limit < 0) throw new IllegalStateException("limit must be >= 0");
+        if (limit > 10000) throw new IllegalStateException("limit must be <= 10000");
         queryParams.put("limit", Integer.toString(limit));
         return this;
     }

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Sets;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.*;
 import org.openstack4j.model.network.builder.PortBuilder;
@@ -440,7 +439,7 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder fixedIp(String address, String subnetId) {
             if (m.fixedIps == null)
-                m.fixedIps = Sets.newHashSet();
+                m.fixedIps = new HashSet<>();
 
             m.fixedIps.add(new NeutronIP(address, subnetId));
             return this;
@@ -449,7 +448,7 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder removeFixedIp(String address, String subnetId) {
             if (m.fixedIps == null)
-                m.fixedIps = Sets.newHashSet();
+                m.fixedIps = new HashSet<>();
 
             m.fixedIps.removeIf(fixedIP ->
                     fixedIP.getSubnetId() != null && fixedIP.getSubnetId().equals(subnetId) &&
@@ -461,7 +460,7 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder allowedAddressPair(String ipAddress, String macAddress) {
             if (m.allowedAddressPairs == null)
-                m.allowedAddressPairs = Sets.newHashSet();
+                m.allowedAddressPairs = new HashSet<>();
 
             m.allowedAddressPairs.add(new NeutronAllowedAddressPair(ipAddress, macAddress));
             return this;
@@ -470,7 +469,7 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder removeAddressPair(String ipAddress, String macAddress) {
             if (m.allowedAddressPairs == null)
-                m.allowedAddressPairs = Sets.newHashSet();
+                m.allowedAddressPairs = new HashSet<>();
 
             m.allowedAddressPairs.removeIf(allowedAddress ->
                     allowedAddress.getIpAddress() != null && allowedAddress.getIpAddress().equals(ipAddress) &&

@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.google.common.base.Preconditions.checkState;
-
 /**
  * List options used for Container and Object based queries
  *
@@ -36,8 +34,8 @@ public final class ContainerListOptions {
      * For an integer value n, limits the number of results to n.
      */
     public ContainerListOptions limit(int limit) {
-        checkState(limit >= 0, "limit must be >= 0");
-        checkState(limit <= 10000, "limit must be <= 10000");
+        if (limit < 0) throw new IllegalStateException("limit must be >= 0");
+        if (limit > 10000) throw new IllegalStateException("limit must be <= 10000");
         add("limit", Integer.toString(limit));
         return this;
     }

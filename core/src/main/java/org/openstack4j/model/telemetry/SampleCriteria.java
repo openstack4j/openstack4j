@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.openstack.internal.Parser;
 
 /**
@@ -91,7 +90,7 @@ public class SampleCriteria {
     }
 
     public SampleCriteria limit(int limit) {
-        Preconditions.checkArgument(limit > 0, "Limit must be greater than zero");
+        if (limit <= 0) throw new IllegalArgumentException("Limit must be greater than zero");
         this.limit = limit;
         return this;
     }

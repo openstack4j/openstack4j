@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.EndpointTokenProvider;
@@ -76,7 +74,6 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
     }
 
     @SuppressWarnings("unchecked")
-    @VisibleForTesting
     public R useConfig(Config config) {
         this.config = config;
         return (R) this;

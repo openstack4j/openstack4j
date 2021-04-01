@@ -1,10 +1,10 @@
 package org.openstack4j.openstack.barbican.internal;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.barbican.SecretService;
 import org.openstack4j.model.barbican.Secret;
 import org.openstack4j.model.common.ActionResponse;
@@ -40,7 +40,7 @@ public class SecretServiceImpl extends BaseBarbicanServices implements SecretSer
      */
     @Override
     public List<? extends Secret> list(final String name) {
-        return list(ImmutableMap.of("name", name));
+        return list(Collections.singletonMap("name", name));
     }
 
     /**

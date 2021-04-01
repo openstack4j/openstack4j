@@ -3,10 +3,10 @@ package org.openstack4j.openstack.identity.internal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
+import java.util.Optional;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.SortedSetMultimap;
 import org.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import org.openstack4j.api.identity.EndpointURLResolver;
@@ -155,7 +155,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
      */
     private boolean matches(org.openstack4j.model.identity.v3.Endpoint endpoint, URLResolverParams p) {
         boolean matches = endpoint.getIface() == p.perspective;
-        if (Optional.fromNullable(p.region).isPresent()) {
+        if (p.region != null) {
             matches &= endpoint.getRegion().equals(p.region);
         }
         return matches;

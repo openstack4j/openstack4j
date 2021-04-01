@@ -5,11 +5,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import org.yaml.snakeyaml.Yaml;
 
@@ -20,7 +20,7 @@ public class Environment {
     private URL baseUrl;
 
     public Environment(URL environmentRes) throws JsonParseException, IOException, URISyntaxException {
-        setEnvContent(Resources.toString(environmentRes, Charsets.UTF_8));
+        setEnvContent(Resources.toString(environmentRes, StandardCharsets.UTF_8));
         setBaseUrl(TemplateUtils.baseUrl(environmentRes.toString()));
         getFileContent();
     }

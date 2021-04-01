@@ -3,7 +3,7 @@ package org.openstack4j.openstack.internal;
 import java.util.*;
 
 import java.util.function.Function;
-import com.google.common.base.Joiner;
+
 import org.openstack4j.api.client.CloudProvider;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.core.transport.*;
@@ -96,7 +96,7 @@ public class BaseOpenStackService {
     }
 
     private <R> Invocation<R> builder(Class<R> returnType, String[] path, HttpMethod method) {
-        return builder(returnType, Joiner.on("").join(path), method);
+        return builder(returnType, String.join("", path), method);
     }
 
     private <R> Invocation<R> builder(Class<R> returnType, String path, HttpMethod method) {

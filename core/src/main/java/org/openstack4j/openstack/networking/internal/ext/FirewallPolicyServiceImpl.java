@@ -18,8 +18,6 @@ import org.openstack4j.openstack.networking.domain.ext.NeutronFirewallPolicy;
 import org.openstack4j.openstack.networking.domain.ext.NeutronFirewallPolicyRule;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
 
-import static com.google.common.base.Preconditions.checkState;
-
 /**
  * Networking (Neutron) FwaaS FirewallPolicy Extension API
  *
@@ -107,8 +105,6 @@ public class FirewallPolicyServiceImpl extends BaseNetworkingServices implements
     public FirewallPolicy removeFirewallRuleFromPolicy(String firewallPolicyId, String firewallRuleId) {
         Objects.requireNonNull(firewallPolicyId);
         Objects.requireNonNull(firewallRuleId);
-        checkState(!(firewallPolicyId == null && firewallRuleId == null),
-                "Either a Firewall Policy or Firewall Rule identifier must be set");
         return put(NeutronFirewallPolicyRule.class, uri("/fw/firewall_policies/%s/remove_rule", firewallPolicyId))
                 .entity(FirewallRuleStrategy.remove(firewallRuleId))
                 .execute(ExecutionOptions.<NeutronFirewallPolicyRule>create(PropagateOnStatus.on(404)));
