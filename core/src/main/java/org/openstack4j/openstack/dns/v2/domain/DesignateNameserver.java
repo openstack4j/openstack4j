@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.base.Objects;
+import java.util.Objects;
 import org.openstack4j.model.dns.v2.Nameserver;
 import org.openstack4j.model.dns.v2.builder.NameserverBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -58,7 +58,7 @@ public class DesignateNameserver implements Nameserver {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(hostname, priority);
+        return Objects.hash(hostname, priority);
     }
 
     /**
@@ -71,8 +71,8 @@ public class DesignateNameserver implements Nameserver {
         if (obj == null || getClass() != obj.getClass())
             return false;
         DesignateNameserver that = DesignateNameserver.class.cast(obj);
-        return Objects.equal(this.hostname, that.hostname)
-                && Objects.equal(this.priority, that.priority);
+        return Objects.equals(this.hostname, that.hostname)
+                && Objects.equals(this.priority, that.priority);
     }
 
     public static class NameserverConcreteBuilder implements NameserverBuilder {

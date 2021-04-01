@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.base.Objects;
+import java.util.Objects;
 import org.openstack4j.api.types.Facing;
 import org.openstack4j.model.identity.v3.Endpoint;
 import org.openstack4j.model.identity.v3.builder.EndpointBuilder;
@@ -177,7 +177,7 @@ public class KeystoneEndpoint implements Endpoint {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, type, name, description, iface, serviceId, regionId, url, links, enabled);
+        return Objects.hash(id, type, name, description, iface, serviceId, regionId, url, links, enabled);
     }
 
     /**
@@ -190,16 +190,16 @@ public class KeystoneEndpoint implements Endpoint {
         if (obj == null || getClass() != obj.getClass())
             return false;
         KeystoneEndpoint that = KeystoneEndpoint.class.cast(obj);
-        return Objects.equal(this.id, that.id)
-                && Objects.equal(this.type, that.type)
-                && Objects.equal(this.name, that.name)
-                && Objects.equal(this.description, that.description)
-                && Objects.equal(this.iface, that.iface)
-                && Objects.equal(this.serviceId, that.serviceId)
-                && Objects.equal(this.regionId, that.regionId)
-                && Objects.equal(this.url, that.url)
-                && Objects.equal(this.links, that.links)
-                && Objects.equal(this.enabled, that.enabled);
+        return Objects.equals(this.id, that.id)
+                && Objects.equals(this.type, that.type)
+                && Objects.equals(this.name, that.name)
+                && Objects.equals(this.description, that.description)
+                && Objects.equals(this.iface, that.iface)
+                && Objects.equals(this.serviceId, that.serviceId)
+                && Objects.equals(this.regionId, that.regionId)
+                && Objects.equals(this.url, that.url)
+                && Objects.equals(this.links, that.links)
+                && Objects.equals(this.enabled, that.enabled);
     }
 
     public static class Endpoints extends ListResult<KeystoneEndpoint> {

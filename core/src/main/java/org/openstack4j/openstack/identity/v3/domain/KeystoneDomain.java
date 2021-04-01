@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.base.Objects;
+import java.util.Objects;
 import org.openstack4j.model.identity.v3.Domain;
 import org.openstack4j.model.identity.v3.builder.DomainBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -106,7 +106,7 @@ public class KeystoneDomain implements Domain {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, description, enabled, name, links);
+        return Objects.hash(id, description, enabled, name, links);
     }
 
     public static class DomainConcreteBuilder implements DomainBuilder {

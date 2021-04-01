@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.base.Objects;
+import java.util.Objects;
 import org.openstack4j.model.identity.v3.Credential;
 import org.openstack4j.model.identity.v3.builder.CredentialBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -82,7 +82,7 @@ public class KeystoneCredential implements Credential {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, userId, projectId, type, blob, links);
+        return Objects.hash(id, userId, projectId, type, blob, links);
     }
 
     public static class CredentialConcreteBuilder implements CredentialBuilder {
