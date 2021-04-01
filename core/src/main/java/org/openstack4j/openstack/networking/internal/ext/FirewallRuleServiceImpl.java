@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.FirewallRuleService;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -13,8 +14,6 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.networking.domain.ext.NeutronFirewallRule;
 import org.openstack4j.openstack.networking.domain.ext.NeutronFirewallRule.FirewallRules;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Networking (Neutron) FwaaS FirewallRule Rule Extension API
@@ -50,7 +49,7 @@ public class FirewallRuleServiceImpl extends BaseNetworkingServices implements F
      */
     @Override
     public FirewallRule get(String firewallRuleId) {
-        checkNotNull(firewallRuleId);
+        Objects.requireNonNull(firewallRuleId);
         return get(NeutronFirewallRule.class, uri("/fw/firewall_rules/%s", firewallRuleId)).execute();
     }
 
@@ -59,7 +58,7 @@ public class FirewallRuleServiceImpl extends BaseNetworkingServices implements F
      */
     @Override
     public ActionResponse delete(String firewallRuleId) {
-        checkNotNull(firewallRuleId);
+        Objects.requireNonNull(firewallRuleId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class,
                 uri("/fw/firewall_rules/%s", firewallRuleId)).executeWithResponse());
     }
@@ -78,8 +77,8 @@ public class FirewallRuleServiceImpl extends BaseNetworkingServices implements F
      */
     @Override
     public FirewallRule update(String firewallRuleId, FirewallRuleUpdate firewallRuleUpdate) {
-        checkNotNull(firewallRuleId);
-        checkNotNull(firewallRuleUpdate);
+        Objects.requireNonNull(firewallRuleId);
+        Objects.requireNonNull(firewallRuleUpdate);
         return put(NeutronFirewallRule.class, uri("/fw/firewall_rules/%s", firewallRuleId)).entity(firewallRuleUpdate).execute();
     }
 

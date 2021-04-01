@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.storage.block.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.storage.BlockVolumeTransferService;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,8 +9,6 @@ import org.openstack4j.model.storage.block.VolumeTransfer;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeTransfer;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeTransfer.VolumeTransferList;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeTransferAccept;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Related services for managing volume transfers (os-volume-transfer)
@@ -31,7 +30,7 @@ public class BlockVolumeTransferServiceImpl extends BaseBlockStorageServices imp
 
     @Override
     public VolumeTransfer get(String transferId) {
-        checkNotNull(transferId, "TransferId must contain a value");
+        Objects.requireNonNull(transferId, "TransferId must contain a value");
         return get(CinderVolumeTransfer.class, uri("/os-volume-transfer/%s", transferId)).execute();
     }
 
@@ -42,21 +41,21 @@ public class BlockVolumeTransferServiceImpl extends BaseBlockStorageServices imp
 
     @Override
     public VolumeTransfer create(String volumeId, String name) {
-        checkNotNull(volumeId, "VolumeId must contain a value");
+        Objects.requireNonNull(volumeId, "VolumeId must contain a value");
         return post(CinderVolumeTransfer.class, "/os-volume-transfer").entity(CinderVolumeTransfer.create(volumeId, name)).execute();
     }
 
     @Override
     public VolumeTransfer accept(String transferId, String authKey) {
-        checkNotNull(transferId, "TransferId must contain a value");
-        checkNotNull(authKey, "AuthKey must contain a value");
+        Objects.requireNonNull(transferId, "TransferId must contain a value");
+        Objects.requireNonNull(authKey, "AuthKey must contain a value");
         return post(CinderVolumeTransfer.class, uri("/os-volume-transfer/%s/accept", transferId))
                 .entity(CinderVolumeTransferAccept.create(authKey)).execute();
     }
 
     @Override
     public ActionResponse delete(String transferId) {
-        checkNotNull(transferId, "TransferId must contain a value");
+        Objects.requireNonNull(transferId, "TransferId must contain a value");
         return delete(ActionResponse.class, uri("/os-volume-transfer/%s", transferId)).execute();
     }
 }

@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.sahara.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.sahara.ClusterTemplateService;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,8 +9,6 @@ import org.openstack4j.model.sahara.ClusterTemplate;
 import org.openstack4j.openstack.sahara.domain.SaharaClusterTemplate;
 import org.openstack4j.openstack.sahara.domain.SaharaClusterTemplate.ClusterTemplates;
 import org.openstack4j.openstack.sahara.domain.SaharaClusterTemplateUnwrapped;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Sahara Data Processing Operations
@@ -31,7 +30,7 @@ public class ClusterTemplateServiceImpl extends BaseSaharaServices implements Cl
      */
     @Override
     public ClusterTemplate get(String templateId) {
-        checkNotNull(templateId);
+        Objects.requireNonNull(templateId);
         return get(SaharaClusterTemplate.class, uri("/cluster-templates/%s", templateId)).execute();
     }
 
@@ -41,7 +40,7 @@ public class ClusterTemplateServiceImpl extends BaseSaharaServices implements Cl
      */
     @Override
     public ClusterTemplate create(ClusterTemplate template) {
-        checkNotNull(template);
+        Objects.requireNonNull(template);
         SaharaClusterTemplateUnwrapped unwrapped = new SaharaClusterTemplateUnwrapped(template);
         return post(SaharaClusterTemplate.class, uri("/cluster-templates"))
                 .entity(unwrapped)  // setup request
@@ -54,7 +53,7 @@ public class ClusterTemplateServiceImpl extends BaseSaharaServices implements Cl
      */
     @Override
     public ActionResponse delete(String templateId) {
-        checkNotNull(templateId);
+        Objects.requireNonNull(templateId);
         return deleteWithResponse(uri("/cluster-templates/%s", templateId)).execute();
     }
 

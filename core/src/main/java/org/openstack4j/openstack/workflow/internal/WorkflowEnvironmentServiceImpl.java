@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.workflow.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.workflow.WorkflowEnvironmentService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.workflow.WorkflowEnvironment;
 import org.openstack4j.openstack.workflow.domain.MistralWorkflowEnvironment;
 import org.openstack4j.openstack.workflow.domain.MistralWorkflowEnvironment.MistralWorkflowEnvironments;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Workflow environment service implementation.
@@ -24,7 +23,7 @@ public class WorkflowEnvironmentServiceImpl extends BaseMistralService implement
 
     @Override
     public WorkflowEnvironment create(WorkflowEnvironment env) {
-        checkNotNull(env);
+        Objects.requireNonNull(env);
 
         Invocation<MistralWorkflowEnvironment> invocation = post(
                 MistralWorkflowEnvironment.class,

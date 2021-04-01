@@ -2,9 +2,9 @@ package org.openstack4j.api.network.firewalls;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -36,7 +36,7 @@ public class FirewallRuleTests extends AbstractTest {
         respondWith(FIREWALL_RULES);
         List<? extends FirewallRule> list = osv3().networking().firewalls().firewallrule().list();
         assertEquals(1, list.size());
-        Preconditions.checkNotNull(list.get(0));
+        Objects.requireNonNull(list.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : FirewallRule from List : " + list.get(0));
         assertEquals(list.get(0).getId(), "8722e0e0-9cc9-4490-9660-8c9a5732fbb0");
     }

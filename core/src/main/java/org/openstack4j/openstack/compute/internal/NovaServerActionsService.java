@@ -1,13 +1,12 @@
 package org.openstack4j.openstack.compute.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.ServerActionsService;
 import org.openstack4j.model.compute.ServerAction;
 import org.openstack4j.openstack.compute.domain.ServerEvent;
 import org.openstack4j.openstack.compute.domain.ServerEvent.Events;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class implements some methods for manipulation of {@link ServerAction}
@@ -20,14 +19,14 @@ public class NovaServerActionsService extends BaseComputeServices implements Ser
 
     @Override
     public List<? extends ServerAction> list(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return get(Events.class, uri("servers/%s/os-instance-actions", serverId)).execute().getList();
     }
 
     @Override
     public ServerAction show(String serverId, String requestId) {
-        checkNotNull(serverId);
-        checkNotNull(requestId);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(requestId);
         return get(ServerEvent.class, uri("/servers/%s/os-instance-actions/%s", serverId, requestId)).execute();
     }
 

@@ -5,7 +5,7 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.openstack.murano.v1.domain.MuranoEnvironment;
 import org.openstack4j.openstack.murano.v1.domain.MuranoSession;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 /**
  * This class implements all methods for manipulation of {@link MuranoEnvironment} objects.
@@ -18,8 +18,8 @@ public class MuranoSessionServiceImpl extends BaseMuranoServices implements Mura
      */
     @Override
     public MuranoSession get(String environmentId, String sessionId) {
-        checkNotNull(environmentId);
-        checkNotNull(sessionId);
+        Objects.requireNonNull(environmentId);
+        Objects.requireNonNull(sessionId);
         return get(MuranoSession.class, uri("/environments/%s/sessions/%s", environmentId, sessionId)).execute();
     }
 
@@ -28,7 +28,7 @@ public class MuranoSessionServiceImpl extends BaseMuranoServices implements Mura
      */
     @Override
     public MuranoSession configure(String environmentId) {
-        checkNotNull(environmentId);
+        Objects.requireNonNull(environmentId);
         return post(MuranoSession.class, uri("/environments/%s/configure", environmentId))
                 .execute();
     }
@@ -38,8 +38,8 @@ public class MuranoSessionServiceImpl extends BaseMuranoServices implements Mura
      */
     @Override
     public ActionResponse delete(String environmentId, String sessionId) {
-        checkNotNull(environmentId);
-        checkNotNull(sessionId);
+        Objects.requireNonNull(environmentId);
+        Objects.requireNonNull(sessionId);
         return deleteWithResponse(uri("/environments/%s/sessions/%s", environmentId, sessionId)).execute();
     }
 
@@ -48,8 +48,8 @@ public class MuranoSessionServiceImpl extends BaseMuranoServices implements Mura
      */
     @Override
     public ActionResponse deploy(String environmentId, String sessionId) {
-        checkNotNull(environmentId);
-        checkNotNull(sessionId);
+        Objects.requireNonNull(environmentId);
+        Objects.requireNonNull(sessionId);
         return post(ActionResponse.class, uri("/environments/%s/sessions/%s/deploy", environmentId, sessionId))
                 .execute();
     }

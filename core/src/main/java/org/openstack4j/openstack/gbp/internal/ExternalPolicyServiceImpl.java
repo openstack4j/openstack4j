@@ -2,6 +2,7 @@ package org.openstack4j.openstack.gbp.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.gbp.ExternalPolicyService;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.gbp.ExternalPolicyCreate;
 import org.openstack4j.openstack.gbp.domain.GbpExternalPolicy;
 import org.openstack4j.openstack.gbp.domain.GbpExternalPolicy.ExternalPolicies;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * External Policy API Implementation
@@ -55,7 +54,7 @@ public class ExternalPolicyServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public ExternalPolicy get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(GbpExternalPolicy.class, uri("/grouppolicy/external_policies/%s", id)).execute();
     }
 
@@ -64,7 +63,7 @@ public class ExternalPolicyServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/grouppolicy/external_policies/%s", id)).execute();
     }
 
@@ -81,8 +80,8 @@ public class ExternalPolicyServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public ExternalPolicy update(String externalPolicyId, ExternalPolicyCreate externalPolicy) {
-        checkNotNull(externalPolicyId);
-        checkNotNull(externalPolicy);
+        Objects.requireNonNull(externalPolicyId);
+        Objects.requireNonNull(externalPolicy);
         return put(GbpExternalPolicy.class, uri("/grouppolicy/external_policies/%s", externalPolicyId)).entity(externalPolicy).execute();
     }
 

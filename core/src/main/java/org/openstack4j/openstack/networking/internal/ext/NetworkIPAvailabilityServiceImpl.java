@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.NetworkIPAvailabilityService;
 import org.openstack4j.model.network.ext.NetworkIPAvailability;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetworkIPAvailability;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetworkIPAvailability.NeutronNetworkIPAvailabilities;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Network IP availability and usage stats Extension API
@@ -24,7 +23,7 @@ public class NetworkIPAvailabilityServiceImpl extends BaseNetworkingServices imp
 
     @Override
     public NetworkIPAvailability get(String networkId) {
-        checkNotNull(networkId, "NetworkId must not be null");
+        Objects.requireNonNull(networkId, "NetworkId must not be null");
         return get(NeutronNetworkIPAvailability.class, uri("/network-ip-availabilities/%s", networkId)).execute();
     }
 

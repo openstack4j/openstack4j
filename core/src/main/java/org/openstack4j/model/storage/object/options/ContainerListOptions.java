@@ -1,10 +1,10 @@
 package org.openstack4j.model.storage.object.options;
 
 import java.util.Map;
+import java.util.Objects;
 
 import com.google.common.collect.Maps;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
@@ -30,7 +30,7 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions startsWith(String prefix) {
-        return add("prefix", checkNotNull(prefix));
+        return add("prefix", Objects.requireNonNull(prefix));
     }
 
     /**
@@ -50,7 +50,7 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions marker(String marker) {
-        add("marker", checkNotNull(marker, "marker"));
+        add("marker", Objects.requireNonNull(marker, "marker"));
         return this;
     }
 
@@ -61,7 +61,7 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions endMarker(String endMarker) {
-        add("end_marker", checkNotNull(endMarker, "endMarker"));
+        add("end_marker", Objects.requireNonNull(endMarker, "endMarker"));
         return this;
     }
 
@@ -83,7 +83,7 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions path(String path) {
-        return add("path", checkNotNull(path));
+        return add("path", Objects.requireNonNull(path));
     }
 
     private ContainerListOptions add(String param, String value) {

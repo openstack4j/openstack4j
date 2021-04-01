@@ -2,6 +2,7 @@ package org.openstack4j.openstack.tacker.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.tacker.VnfService;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -12,8 +13,6 @@ import org.openstack4j.model.tacker.VnfUpdate;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.tacker.domain.TackerVnf;
 import org.openstack4j.openstack.tacker.domain.TackerVnf.TackerVnfs;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * @author Vishvesh Deshmukh
@@ -48,7 +47,7 @@ public class VnfServiceImpl extends BaseTackerServices implements VnfService {
      */
     @Override
     public TackerVnf get(String vnfId) {
-        checkNotNull(vnfId);
+        Objects.requireNonNull(vnfId);
         return get(TackerVnf.class, uri("/vnfs/%s", vnfId)).execute();
     }
 
@@ -57,7 +56,7 @@ public class VnfServiceImpl extends BaseTackerServices implements VnfService {
      */
     @Override
     public ActionResponse delete(String vnfId) {
-        checkNotNull(vnfId);
+        Objects.requireNonNull(vnfId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class, uri("/vnfs/%s", vnfId)).executeWithResponse());
     }
 
@@ -74,8 +73,8 @@ public class VnfServiceImpl extends BaseTackerServices implements VnfService {
      */
     @Override
     public Vnf update(String vnfId, VnfUpdate vnfUpdate) {
-        checkNotNull(vnfId);
-        checkNotNull(vnfUpdate);
+        Objects.requireNonNull(vnfId);
+        Objects.requireNonNull(vnfUpdate);
         return put(TackerVnf.class, uri("/vnfs/%s", vnfId)).entity(vnfUpdate).execute();
     }
 }

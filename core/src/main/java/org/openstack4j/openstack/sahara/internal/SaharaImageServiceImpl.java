@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.sahara.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.sahara.SaharaImageService;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -10,8 +11,6 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.sahara.Image;
 import org.openstack4j.openstack.sahara.domain.SaharaImage;
 import org.openstack4j.openstack.sahara.domain.SaharaImage.SaharaImages;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Sahara Data Processing Operations
@@ -45,7 +44,7 @@ public class SaharaImageServiceImpl extends BaseSaharaServices implements Sahara
      */
     @Override
     public Image get(String imageId) {
-        checkNotNull(imageId);
+        Objects.requireNonNull(imageId);
         return get(SaharaImage.class, uri("/images/%s", imageId)).execute();
     }
 
@@ -54,8 +53,8 @@ public class SaharaImageServiceImpl extends BaseSaharaServices implements Sahara
      */
     @Override
     public Image register(String imageId, String username, String description) {
-        checkNotNull(imageId);
-        checkNotNull(username);
+        Objects.requireNonNull(imageId);
+        Objects.requireNonNull(username);
         RegisterImageRequest reg = new RegisterImageRequest(username, description);
         return post(SaharaImage.class, uri("/images/%s", imageId))
                 .entity(reg)  // setup request
@@ -67,7 +66,7 @@ public class SaharaImageServiceImpl extends BaseSaharaServices implements Sahara
      */
     @Override
     public ActionResponse unregister(String imageId) {
-        checkNotNull(imageId);
+        Objects.requireNonNull(imageId);
         return deleteWithResponse(uri("/images/%s", imageId)).execute();
     }
 
@@ -76,8 +75,8 @@ public class SaharaImageServiceImpl extends BaseSaharaServices implements Sahara
      */
     @Override
     public Image tag(String imageId, String... tags) {
-        checkNotNull(imageId);
-        checkNotNull(tags);
+        Objects.requireNonNull(imageId);
+        Objects.requireNonNull(tags);
         return post(SaharaImage.class, uri("/images/%s/tag", imageId)).entity(new UpdateTagsRequest(tags)).execute(ExecutionOptions.<SaharaImage>create(PropagateOnStatus.on(404))); // Use respongse progagation for "Not found" status to throw exception instead of return null
     }
 
@@ -86,8 +85,8 @@ public class SaharaImageServiceImpl extends BaseSaharaServices implements Sahara
      */
     @Override
     public Image untag(String imageId, String... tags) {
-        checkNotNull(imageId);
-        checkNotNull(tags);
+        Objects.requireNonNull(imageId);
+        Objects.requireNonNull(tags);
         return post(SaharaImage.class, uri("/images/%s/untag", imageId)).entity(new UpdateTagsRequest(tags)).execute(ExecutionOptions.<SaharaImage>create(PropagateOnStatus.on(404))); // Use respongse progagation for "Not found" status to throw exception instead of return null
     }
 

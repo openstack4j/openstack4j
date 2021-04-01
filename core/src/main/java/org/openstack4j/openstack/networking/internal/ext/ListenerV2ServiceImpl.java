@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.ListenerV2Service;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.network.ext.ListenerV2Update;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.networking.domain.ext.NeutronListenerV2;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Lbaas listener imlementation
@@ -46,7 +45,7 @@ public class ListenerV2ServiceImpl extends BaseNetworkingServices implements Lis
      */
     @Override
     public ListenerV2 get(String listenerId) {
-        checkNotNull(listenerId);
+        Objects.requireNonNull(listenerId);
         return get(NeutronListenerV2.class, uri("/lbaas/listeners/%s", listenerId)).execute();
     }
 
@@ -55,7 +54,7 @@ public class ListenerV2ServiceImpl extends BaseNetworkingServices implements Lis
      */
     @Override
     public ActionResponse delete(String listenerId) {
-        checkNotNull(listenerId);
+        Objects.requireNonNull(listenerId);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/lbaas/listeners/%s", listenerId)).executeWithResponse());
     }
@@ -65,14 +64,14 @@ public class ListenerV2ServiceImpl extends BaseNetworkingServices implements Lis
      */
     @Override
     public ListenerV2 create(ListenerV2 listener) {
-        checkNotNull(listener);
+        Objects.requireNonNull(listener);
         return post(NeutronListenerV2.class, uri("/lbaas/listeners")).entity(listener).execute();
     }
 
     @Override
     public ListenerV2 update(String listenerId, ListenerV2Update listener) {
-        checkNotNull(listenerId);
-        checkNotNull(listener);
+        Objects.requireNonNull(listenerId);
+        Objects.requireNonNull(listener);
         return put(NeutronListenerV2.class, uri("/lbaas/listeners/%s", listenerId)).entity(listener).execute();
     }
 }

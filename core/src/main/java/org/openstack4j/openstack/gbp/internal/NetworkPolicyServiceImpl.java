@@ -2,6 +2,7 @@ package org.openstack4j.openstack.gbp.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.gbp.NetworkPolicyService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.gbp.NetworkServicePolicy;
 import org.openstack4j.openstack.gbp.domain.GbpNetworkServicePolicy;
 import org.openstack4j.openstack.gbp.domain.GbpNetworkServicePolicy.NetworkServicePolicies;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Network service policy API Implementation
@@ -55,7 +54,7 @@ public class NetworkPolicyServiceImpl extends BaseNetworkingServices implements 
      */
     @Override
     public NetworkServicePolicy get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(GbpNetworkServicePolicy.class, uri("/grouppolicy/network_service_policies/%s", id)).execute();
     }
 
@@ -72,7 +71,7 @@ public class NetworkPolicyServiceImpl extends BaseNetworkingServices implements 
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/grouppolicy/network_service_policies/%s", id)).execute();
     }
 
@@ -81,8 +80,8 @@ public class NetworkPolicyServiceImpl extends BaseNetworkingServices implements 
      */
     @Override
     public NetworkServicePolicy update(String gbpServicePolicyId, NetworkServicePolicy gbpServicePolicy) {
-        checkNotNull(gbpServicePolicy);
-        checkNotNull(gbpServicePolicyId);
+        Objects.requireNonNull(gbpServicePolicy);
+        Objects.requireNonNull(gbpServicePolicyId);
         return put(GbpNetworkServicePolicy.class, uri("/grouppolicy/network_service_policies/%s", gbpServicePolicyId)).
                 entity(gbpServicePolicy).execute();
     }

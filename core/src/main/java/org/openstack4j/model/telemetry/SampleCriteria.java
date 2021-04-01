@@ -3,11 +3,10 @@ package org.openstack4j.model.telemetry;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import com.google.common.base.Preconditions;
 import org.openstack4j.openstack.internal.Parser;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Query options used in retreiving Samples
@@ -31,7 +30,7 @@ public class SampleCriteria {
      * @return SampleCriteria
      */
     public SampleCriteria timestamp(Oper operator, Date value) {
-        checkNotNull(value, "Date must not be null");
+        Objects.requireNonNull(value, "Date must not be null");
         return add("timestamp", operator, Parser.toISO8601DateFormat(value));
     }
 
@@ -43,7 +42,7 @@ public class SampleCriteria {
      * @return SampleCriteria
      */
     public SampleCriteria timestamp(Oper operator, long value) {
-        checkNotNull(value, "Date must not be null");
+        Objects.requireNonNull(value, "Date must not be null");
         return add("timestamp", operator, Parser.toISO8601DateFormat(new Date(value)));
     }
 
@@ -54,7 +53,7 @@ public class SampleCriteria {
      * @return SampleCriteria
      */
     public SampleCriteria resource(String resourceId) {
-        checkNotNull(resourceId, "resourceId must not be null");
+        Objects.requireNonNull(resourceId, "resourceId must not be null");
         return add("resource_id", Oper.EQUALS, resourceId);
     }
 
@@ -65,7 +64,7 @@ public class SampleCriteria {
      * @return SampleCriteria
      */
     public SampleCriteria project(String projectId) {
-        checkNotNull(projectId, "projectId must not be null");
+        Objects.requireNonNull(projectId, "projectId must not be null");
         return add("project_id", Oper.EQUALS, projectId);
     }
 
@@ -78,14 +77,14 @@ public class SampleCriteria {
      * @return SampleCriteria
      */
     public SampleCriteria add(String field, Oper operator, Number value) {
-        checkNotNull(value, "Value must not be null");
+        Objects.requireNonNull(value, "Value must not be null");
         return add(field, operator, value.toString());
     }
 
     public SampleCriteria add(String field, Oper operator, String value) {
-        checkNotNull(field, "Field must not be null");
-        checkNotNull(operator, "Operator must not be null");
-        checkNotNull(value, "Value must not be null");
+        Objects.requireNonNull(field, "Field must not be null");
+        Objects.requireNonNull(operator, "Operator must not be null");
+        Objects.requireNonNull(value, "Value must not be null");
 
         params.add(new NameOpValue(field, operator, value));
         return this;

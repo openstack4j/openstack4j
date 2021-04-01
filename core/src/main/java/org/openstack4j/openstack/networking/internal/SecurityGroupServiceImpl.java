@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.SecurityGroupService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.network.SecurityGroup;
 import org.openstack4j.model.network.SecurityGroupUpdate;
 import org.openstack4j.openstack.networking.domain.NeutronSecurityGroup;
 import org.openstack4j.openstack.networking.domain.NeutronSecurityGroup.SecurityGroups;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * FloatingIPService implementation that provides Neutron Floating-IP based Service Operations.
@@ -24,7 +23,7 @@ public class SecurityGroupServiceImpl extends BaseNetworkingServices implements 
      */
     @Override
     public SecurityGroup get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(NeutronSecurityGroup.class, uri("/security-groups/%s", id)).execute();
     }
 
@@ -33,7 +32,7 @@ public class SecurityGroupServiceImpl extends BaseNetworkingServices implements 
      */
     @Override
     public ActionResponse delete(String groupId) {
-        checkNotNull(groupId);
+        Objects.requireNonNull(groupId);
         return deleteWithResponse(uri("/security-groups/%s", groupId)).execute();
     }
 
@@ -42,7 +41,7 @@ public class SecurityGroupServiceImpl extends BaseNetworkingServices implements 
      */
     @Override
     public SecurityGroup create(SecurityGroup securityGroup) {
-        checkNotNull(securityGroup);
+        Objects.requireNonNull(securityGroup);
         return post(NeutronSecurityGroup.class, uri("/security-groups")).entity(securityGroup).execute();
     }
 
@@ -51,8 +50,8 @@ public class SecurityGroupServiceImpl extends BaseNetworkingServices implements 
      */
     @Override
     public SecurityGroup update(String securityGroupId, SecurityGroupUpdate securityGroupUpdate) {
-        checkNotNull(securityGroupId);
-        checkNotNull(securityGroupUpdate);
+        Objects.requireNonNull(securityGroupId);
+        Objects.requireNonNull(securityGroupUpdate);
         return put(NeutronSecurityGroup.class, uri("/security-groups/%s", securityGroupId)).entity(securityGroupUpdate).execute();
     }
 

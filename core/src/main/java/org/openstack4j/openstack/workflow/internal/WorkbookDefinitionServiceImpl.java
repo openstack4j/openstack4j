@@ -2,6 +2,7 @@ package org.openstack4j.openstack.workflow.internal;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.workflow.WorkbookDefinitionService;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.workflow.Scope;
 import org.openstack4j.model.workflow.WorkbookDefinition;
 import org.openstack4j.openstack.workflow.domain.MistralWorkbookDefinition;
 import org.openstack4j.openstack.workflow.domain.MistralWorkbookDefinition.MistralWorkbookDefinitions;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Workbook definition service implementation.
@@ -27,8 +26,8 @@ public class WorkbookDefinitionServiceImpl extends BaseMistralService implements
 
     @Override
     public WorkbookDefinition create(InputStream wfText, Scope scope) {
-        checkNotNull(wfText);
-        checkNotNull(scope);
+        Objects.requireNonNull(wfText);
+        Objects.requireNonNull(scope);
 
         Invocation<MistralWorkbookDefinition> invocation = post(
                 MistralWorkbookDefinition.class,

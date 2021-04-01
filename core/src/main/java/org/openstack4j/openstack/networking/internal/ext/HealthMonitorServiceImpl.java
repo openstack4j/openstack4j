@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.HealthMonitorService;
 import org.openstack4j.model.common.ActionResponse;
@@ -11,8 +12,6 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.networking.domain.ext.NeutronHealthMonitor;
 import org.openstack4j.openstack.networking.domain.ext.NeutronHealthMonitor.HealthMonitors;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Neutron) Lbaas healthmonitor based Operations
@@ -49,7 +48,7 @@ public class HealthMonitorServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public HealthMonitor get(String healthMonitorId) {
-        checkNotNull(healthMonitorId);
+        Objects.requireNonNull(healthMonitorId);
         return get(NeutronHealthMonitor.class, uri("/lb/health_monitors/%s", healthMonitorId)).execute();
     }
 
@@ -58,7 +57,7 @@ public class HealthMonitorServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public ActionResponse delete(String healthMonitorId) {
-        checkNotNull(healthMonitorId);
+        Objects.requireNonNull(healthMonitorId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class, uri("/lb/health_monitors/%s", healthMonitorId)).executeWithResponse());
     }
 
@@ -67,7 +66,7 @@ public class HealthMonitorServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public HealthMonitor create(HealthMonitor healthMonitor) {
-        checkNotNull(healthMonitor);
+        Objects.requireNonNull(healthMonitor);
         return post(NeutronHealthMonitor.class, uri("/lb/health_monitors")).entity(healthMonitor).execute();
     }
 
@@ -77,8 +76,8 @@ public class HealthMonitorServiceImpl extends BaseNetworkingServices implements
     @Override
     public HealthMonitor update(String healthMonitorId,
             HealthMonitorUpdate healthMonitor) {
-        checkNotNull(healthMonitorId);
-        checkNotNull(healthMonitor);
+        Objects.requireNonNull(healthMonitorId);
+        Objects.requireNonNull(healthMonitor);
         return put(NeutronHealthMonitor.class, uri("/lb/health_monitors/%s", healthMonitorId)).entity(healthMonitor).execute();
     }
 

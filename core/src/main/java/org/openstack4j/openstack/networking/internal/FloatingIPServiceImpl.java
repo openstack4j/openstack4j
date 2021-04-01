@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.networking.NetFloatingIPService;
@@ -12,8 +13,6 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.openstack.networking.domain.NeutronFloatingIP;
 import org.openstack4j.openstack.networking.domain.NeutronFloatingIP.FloatingIPs;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * FloatingIPService implementation that provides Neutron Floating-IP based Service Operations.
@@ -49,7 +48,7 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      */
     @Override
     public NetFloatingIP get(String fipId) {
-        checkNotNull(fipId);
+        Objects.requireNonNull(fipId);
         return get(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).execute();
     }
 
@@ -58,7 +57,7 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      */
     @Override
     public ActionResponse delete(String fipId) {
-        checkNotNull(fipId);
+        Objects.requireNonNull(fipId);
         return deleteWithResponse(uri("/floatingips/%s", fipId)).execute();
     }
 
@@ -67,8 +66,8 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      */
     @Override
     public NetFloatingIP create(NetFloatingIP floatingIp) {
-        checkNotNull(floatingIp);
-        checkNotNull(floatingIp.getFloatingNetworkId());
+        Objects.requireNonNull(floatingIp);
+        Objects.requireNonNull(floatingIp.getFloatingNetworkId());
         return post(NeutronFloatingIP.class, uri("/floatingips")).entity(floatingIp)
                 .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));
     }
@@ -78,8 +77,8 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      */
     @Override
     public NetFloatingIP associateToPort(String fipId, String portId) {
-        checkNotNull(fipId);
-        checkNotNull(portId);
+        Objects.requireNonNull(fipId);
+        Objects.requireNonNull(portId);
         String inner = String.format("{ \"port_id\":\"%s\" }", portId);
         String json = String.format("{ \"%s\": %s }", "floatingip", inner);
         return put(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).json(json)
@@ -91,7 +90,7 @@ public class FloatingIPServiceImpl extends BaseNetworkingServices implements Net
      */
     @Override
     public NetFloatingIP disassociateFromPort(String fipId) {
-        checkNotNull(fipId);
+        Objects.requireNonNull(fipId);
         String json = String.format("{ \"%s\": %s }", "floatingip", "{ \"port_id\":null }");
         return put(NeutronFloatingIP.class, uri("/floatingips/%s", fipId)).json(json)
                 .execute(ExecutionOptions.create(PropagateOnStatus.on(404)));

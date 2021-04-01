@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.VipService;
 import org.openstack4j.model.common.ActionResponse;
@@ -11,8 +12,6 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.networking.domain.ext.NeutronVip;
 import org.openstack4j.openstack.networking.domain.ext.NeutronVip.Vips;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Neutron) Lbaas vip based Operations
@@ -49,7 +48,7 @@ public class VipServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public Vip get(String vipId) {
-        checkNotNull(vipId);
+        Objects.requireNonNull(vipId);
         return get(NeutronVip.class, uri("/lb/vips/%s", vipId)).execute();
     }
 
@@ -58,7 +57,7 @@ public class VipServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public ActionResponse delete(String vipId) {
-        checkNotNull(vipId);
+        Objects.requireNonNull(vipId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class, uri("/lb/vips/%s", vipId)).executeWithResponse());
     }
 
@@ -67,7 +66,7 @@ public class VipServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public Vip create(Vip vip) {
-        checkNotNull(vip);
+        Objects.requireNonNull(vip);
         return post(NeutronVip.class, uri("/lb/vips")).entity(vip).execute();
     }
 
@@ -76,8 +75,8 @@ public class VipServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public Vip update(String vipId, VipUpdate vip) {
-        checkNotNull(vipId);
-        checkNotNull(vip);
+        Objects.requireNonNull(vipId);
+        Objects.requireNonNull(vip);
         return put(NeutronVip.class, uri("/lb/vips/%s", vipId)).entity(vip).execute();
     }
 

@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.storage.object.internal;
 
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.storage.ObjectStorageAccountService;
 import org.openstack4j.model.storage.object.SwiftAccount;
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
 import org.openstack4j.openstack.storage.object.functions.ParseAccountFunction;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.openstack4j.model.storage.object.SwiftHeaders.ACCOUNT_METADATA_PREFIX;
 import static org.openstack4j.model.storage.object.SwiftHeaders.ACCOUNT_REMOVE_METADATA_PREFIX;
 import static org.openstack4j.model.storage.object.SwiftHeaders.ACCOUNT_TEMPORARY_URL_KEY;
@@ -32,7 +32,7 @@ public class ObjectStorageAccountServiceImpl extends BaseObjectStorageService im
      */
     @Override
     public boolean updateMetadata(Map<String, String> metadata) {
-        checkNotNull(metadata);
+        Objects.requireNonNull(metadata);
         return invokeMetadata(ACCOUNT_METADATA_PREFIX, metadata);
     }
 
@@ -41,7 +41,7 @@ public class ObjectStorageAccountServiceImpl extends BaseObjectStorageService im
      */
     @Override
     public boolean deleteMetadata(Map<String, String> metadata) {
-        checkNotNull(metadata);
+        Objects.requireNonNull(metadata);
         return invokeMetadata(ACCOUNT_REMOVE_METADATA_PREFIX, metadata);
     }
 
@@ -50,7 +50,7 @@ public class ObjectStorageAccountServiceImpl extends BaseObjectStorageService im
      */
     @Override
     public boolean updateTemporaryUrlKey(String temporaryUrlKey) {
-        checkNotNull(temporaryUrlKey);
+        Objects.requireNonNull(temporaryUrlKey);
         return isResponseSuccess(post(Void.class).header(ACCOUNT_TEMPORARY_URL_KEY, temporaryUrlKey).executeWithResponse(), 204);
     }
 

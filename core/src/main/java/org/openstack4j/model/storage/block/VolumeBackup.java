@@ -1,13 +1,12 @@
 package org.openstack4j.model.storage.block;
 
 import java.util.Date;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.CaseFormat;
 import org.openstack4j.model.ModelEntity;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public interface VolumeBackup extends ModelEntity {
 
@@ -88,7 +87,7 @@ public interface VolumeBackup extends ModelEntity {
         @JsonCreator
         public static Status fromValue(String status) {
             try {
-                return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, checkNotNull(status, "status")));
+                return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, Objects.requireNonNull(status, "status")));
             } catch (IllegalArgumentException e) {
                 return UNRECOGNIZED;
             }

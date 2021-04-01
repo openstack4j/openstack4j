@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.trove.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.trove.InstanceService;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,8 +9,6 @@ import org.openstack4j.model.trove.Instance;
 import org.openstack4j.model.trove.InstanceCreate;
 import org.openstack4j.openstack.trove.domain.TroveInstance;
 import org.openstack4j.openstack.trove.domain.TroveInstance.DBInstances;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * InstanceService API Implementation
@@ -32,7 +31,7 @@ public class DBInstanceServiceImpl extends BaseTroveServices implements Instance
      */
     @Override
     public Instance get(String instanceId) {
-        checkNotNull(instanceId);
+        Objects.requireNonNull(instanceId);
         TroveInstance instance = get(TroveInstance.class, uri("/instances/%s", instanceId)).execute();
         return instance;
     }
@@ -51,7 +50,7 @@ public class DBInstanceServiceImpl extends BaseTroveServices implements Instance
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/instances/%s", id)).execute();
     }
 }

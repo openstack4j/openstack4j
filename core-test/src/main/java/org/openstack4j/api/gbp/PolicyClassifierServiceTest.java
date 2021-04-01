@@ -1,9 +1,9 @@
 package org.openstack4j.api.gbp;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -40,7 +40,7 @@ public class PolicyClassifierServiceTest extends AbstractTest {
         respondWith(POLICY_CLASSIFIERS);
         List<? extends PolicyClassifier> policyClasifierList = osv2().gbp().policyClassifier().list();
         assertEquals(2, policyClasifierList.size());
-        Preconditions.checkNotNull(policyClasifierList.get(0));
+        Objects.requireNonNull(policyClasifierList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Policy Classifier from List : " + policyClasifierList.get(0));
         assertEquals(policyClasifierList.get(0).getId(), "36e41adb-0b9b-4a11-abd5-66e5386139d4");
     }

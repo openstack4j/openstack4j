@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.manila.ShareInstanceService;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,8 +9,6 @@ import org.openstack4j.model.manila.ShareInstance;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.manila.domain.ManilaShareInstance;
 import org.openstack4j.openstack.manila.domain.actions.ShareInstanceActions;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ShareInstanceServiceImpl extends BaseShareServices implements ShareInstanceService {
     @Override
@@ -21,14 +20,14 @@ public class ShareInstanceServiceImpl extends BaseShareServices implements Share
 
     @Override
     public ShareInstance get(String shareInstanceId) {
-        checkNotNull(shareInstanceId);
+        Objects.requireNonNull(shareInstanceId);
         return get(ManilaShareInstance.class, uri("/share_instances/%s", shareInstanceId)).execute();
     }
 
     @Override
     public ActionResponse resetState(String shareInstanceId, ShareInstance.Status status) {
-        checkNotNull(shareInstanceId);
-        checkNotNull(status);
+        Objects.requireNonNull(shareInstanceId);
+        Objects.requireNonNull(status);
 
         return ToActionResponseFunction.INSTANCE.apply(
                 post(Void.class, uri("/share_instances/%s/action", shareInstanceId))
@@ -38,7 +37,7 @@ public class ShareInstanceServiceImpl extends BaseShareServices implements Share
 
     @Override
     public ActionResponse forceDelete(String shareInstanceId) {
-        checkNotNull(shareInstanceId);
+        Objects.requireNonNull(shareInstanceId);
 
         return ToActionResponseFunction.INSTANCE.apply(
                 post(Void.class, uri("/share_instances/%s/action", shareInstanceId))

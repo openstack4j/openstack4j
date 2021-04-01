@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.workflow.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.workflow.CronTriggerService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.workflow.CronTrigger;
 import org.openstack4j.openstack.workflow.domain.MistralCronTrigger;
 import org.openstack4j.openstack.workflow.domain.MistralCronTrigger.MistralCronTriggers;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 
 /**
@@ -25,7 +24,7 @@ public class CronTriggerServiceImpl extends BaseMistralService implements CronTr
 
     @Override
     public CronTrigger create(CronTrigger trigger) {
-        checkNotNull(trigger);
+        Objects.requireNonNull(trigger);
 
         Invocation<MistralCronTrigger> invocation = post(
                 MistralCronTrigger.class,

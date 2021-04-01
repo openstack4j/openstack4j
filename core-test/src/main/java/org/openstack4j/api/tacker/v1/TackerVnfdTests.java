@@ -2,9 +2,9 @@ package org.openstack4j.api.tacker.v1;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
@@ -38,7 +38,7 @@ public class TackerVnfdTests extends AbstractTest {
         respondWith(TACKER_VNFDS);
         List<? extends Vnfd> vnfds = osv3().tacker().vnfd().list();
         assertEquals(1, vnfds.size());
-        Preconditions.checkNotNull(vnfds.get(0));
+        Objects.requireNonNull(vnfds.get(0));
         Logger.getLogger(getClass().getName())
                 .info(getClass().getName() + " : Tacker VNFD from List : " + vnfds.get(0));
         assertEquals(vnfds.get(0).getName(), "test-vnfd");

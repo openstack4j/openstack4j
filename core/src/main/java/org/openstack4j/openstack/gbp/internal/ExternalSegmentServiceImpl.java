@@ -2,6 +2,7 @@ package org.openstack4j.openstack.gbp.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.gbp.ExternalSegmentService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.gbp.ExternalSegment;
 import org.openstack4j.openstack.gbp.domain.GbpExternalSegment;
 import org.openstack4j.openstack.gbp.domain.GbpExternalSegment.ExternalSegments;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * External Segment API Implementation
@@ -54,7 +53,7 @@ public class ExternalSegmentServiceImpl extends BaseNetworkingServices implement
      */
     @Override
     public ExternalSegment get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(GbpExternalSegment.class, uri("/grouppolicy/external_segments/%s", id)).execute();
     }
 
@@ -63,7 +62,7 @@ public class ExternalSegmentServiceImpl extends BaseNetworkingServices implement
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/grouppolicy/external_segments/%s", id)).execute();
     }
 
@@ -80,8 +79,8 @@ public class ExternalSegmentServiceImpl extends BaseNetworkingServices implement
      */
     @Override
     public ExternalSegment update(String externalSegmentId, ExternalSegment externalSegment) {
-        checkNotNull(externalSegmentId);
-        checkNotNull(externalSegment);
+        Objects.requireNonNull(externalSegmentId);
+        Objects.requireNonNull(externalSegment);
         return put(GbpExternalSegment.class, uri("/grouppolicy/external_segments/%s", externalSegmentId)).entity(externalSegment).execute();
     }
 

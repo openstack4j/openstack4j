@@ -2,6 +2,7 @@ package org.openstack4j.openstack.octavia.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.octavia.HealthMonitorV2Service;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.octavia.HealthMonitorV2Update;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.octavia.domain.OctaviaHealthMonitorV2;
 import org.openstack4j.openstack.octavia.domain.OctaviaHealthMonitorV2.HealthMonitorsV2;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Octavia) lbaas v2 health monitor operations
@@ -46,7 +45,7 @@ public class HealthMonitorV2ServiceImpl extends BaseOctaviaServices implements H
      */
     @Override
     public HealthMonitorV2 get(String healthMonitorId) {
-        checkNotNull(healthMonitorId);
+        Objects.requireNonNull(healthMonitorId);
         return get(OctaviaHealthMonitorV2.class, uri("/lbaas/healthmonitors/%s", healthMonitorId)).execute();
     }
 
@@ -55,7 +54,7 @@ public class HealthMonitorV2ServiceImpl extends BaseOctaviaServices implements H
      */
     @Override
     public ActionResponse delete(String healthMonitorId) {
-        checkNotNull(healthMonitorId);
+        Objects.requireNonNull(healthMonitorId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class, uri("/lbaas/healthmonitors/%s", healthMonitorId)).executeWithResponse());
     }
 
@@ -64,7 +63,7 @@ public class HealthMonitorV2ServiceImpl extends BaseOctaviaServices implements H
      */
     @Override
     public HealthMonitorV2 create(HealthMonitorV2 healthMonitor) {
-        checkNotNull(healthMonitor);
+        Objects.requireNonNull(healthMonitor);
         return post(OctaviaHealthMonitorV2.class, uri("/lbaas/healthmonitors")).entity(healthMonitor).execute();
     }
 
@@ -74,8 +73,8 @@ public class HealthMonitorV2ServiceImpl extends BaseOctaviaServices implements H
     @Override
     public HealthMonitorV2 update(String healthMonitorId,
             HealthMonitorV2Update healthMonitor) {
-        checkNotNull(healthMonitorId);
-        checkNotNull(healthMonitor);
+        Objects.requireNonNull(healthMonitorId);
+        Objects.requireNonNull(healthMonitor);
         return put(OctaviaHealthMonitorV2.class, uri("/lbaas/healthmonitors/%s", healthMonitorId)).entity(healthMonitor).execute();
     }
 }

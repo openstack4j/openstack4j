@@ -3,6 +3,7 @@ package org.openstack4j.openstack.sahara.internal;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.sahara.JobBinaryInternalService;
 import org.openstack4j.core.transport.HttpEntityHandler;
@@ -13,8 +14,6 @@ import org.openstack4j.model.common.Payloads;
 import org.openstack4j.model.sahara.JobBinaryInternal;
 import org.openstack4j.openstack.sahara.domain.SaharaJobBinaryInternal;
 import org.openstack4j.openstack.sahara.domain.SaharaJobBinaryInternal.JobBinaryInternals;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Sahara Data Processing Operations
@@ -37,7 +36,7 @@ public class JobBinaryInternalServiceImpl extends BaseSaharaServices implements 
      */
     @Override
     public JobBinaryInternal get(String jobBinaryInternalId) {
-        checkNotNull(jobBinaryInternalId);
+        Objects.requireNonNull(jobBinaryInternalId);
         return get(SaharaJobBinaryInternal.class, uri("/job-binary-internals/%s", jobBinaryInternalId)).execute();
     }
 
@@ -46,7 +45,7 @@ public class JobBinaryInternalServiceImpl extends BaseSaharaServices implements 
      */
     @Override
     public ActionResponse delete(String jobBinaryInternalId) {
-        checkNotNull(jobBinaryInternalId);
+        Objects.requireNonNull(jobBinaryInternalId);
         return deleteWithResponse(uri("/job-binary-internals/%s", jobBinaryInternalId)).execute();
     }
 
@@ -55,7 +54,7 @@ public class JobBinaryInternalServiceImpl extends BaseSaharaServices implements 
      */
     @Override
     public JobBinaryInternal create(Payload<File> payload) {
-        checkNotNull(payload);
+        Objects.requireNonNull(payload);
         return put(SaharaJobBinaryInternal.class, uri("/job-binary-internals/%s", payload.getRaw().getName()))
                 .entity(payload)
                 .execute();

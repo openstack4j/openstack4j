@@ -2,9 +2,9 @@ package org.openstack4j.api.senlin.v1;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.senlin.ActionID;
@@ -42,7 +42,7 @@ public class ClusterServiceTest extends AbstractTest {
         respondWith(CLUSTERS);
         List<? extends Cluster> clusterList = osv3().senlin().cluster().list();
         assertEquals(4, clusterList.size());
-        Preconditions.checkNotNull(clusterList.get(0));
+        Objects.requireNonNull(clusterList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Cluster from List : " + clusterList.get(0));
         assertEquals(clusterList.get(0).getId(), "7e0c9843-54bf-4823-b545-d2f6ffb4ed25");
     }

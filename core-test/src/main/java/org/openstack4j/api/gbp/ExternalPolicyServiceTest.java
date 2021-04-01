@@ -1,9 +1,9 @@
 package org.openstack4j.api.gbp;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -37,7 +37,7 @@ public class ExternalPolicyServiceTest extends AbstractTest {
         respondWith(EXTERNAL_POLICIES);
         List<? extends ExternalPolicy> externalPolicyList = osv2().gbp().externalPolicy().list();
         assertEquals(2, externalPolicyList.size());
-        Preconditions.checkNotNull(externalPolicyList.get(0));
+        Objects.requireNonNull(externalPolicyList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : External Policyfrom List : " + externalPolicyList.get(0));
         assertEquals(externalPolicyList.get(0).getId(), "6294837a-8f35-4071-b766-3a4ff3d8afbb");
     }

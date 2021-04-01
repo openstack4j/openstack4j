@@ -1,10 +1,10 @@
 package org.openstack4j.model.storage.object.options;
 
 import java.util.Map;
+import java.util.Objects;
 
 import com.google.common.collect.Maps;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
@@ -37,7 +37,7 @@ public final class ObjectListOptions {
      * Objects greater in value than the specified marker are returned.
      */
     public ObjectListOptions marker(String marker) {
-        queryParams.put("marker", checkNotNull(marker, "marker"));
+        queryParams.put("marker", Objects.requireNonNull(marker, "marker"));
         return this;
     }
 
@@ -45,7 +45,7 @@ public final class ObjectListOptions {
      * Objects less in value than the specified marker are returned.
      */
     public ObjectListOptions endMarker(String endMarker) {
-        queryParams.put("end_marker", checkNotNull(endMarker, "endMarker"));
+        queryParams.put("end_marker", Objects.requireNonNull(endMarker, "endMarker"));
         return this;
     }
 
@@ -53,7 +53,7 @@ public final class ObjectListOptions {
      * Objects beginning with this substring are returned.
      */
     public ObjectListOptions startsWith(String prefix) {
-        queryParams.put("prefix", checkNotNull(prefix, "prefix"));
+        queryParams.put("prefix", Objects.requireNonNull(prefix, "prefix"));
         return this;
     }
 
@@ -69,7 +69,7 @@ public final class ObjectListOptions {
      * Objects nested in the pseudo path are returned.
      */
     public ObjectListOptions path(String path) {
-        queryParams.put("path", checkNotNull(path, "path"));
+        queryParams.put("path", Objects.requireNonNull(path, "path"));
         return this;
     }
 

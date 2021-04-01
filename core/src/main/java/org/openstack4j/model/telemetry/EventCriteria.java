@@ -2,11 +2,10 @@ package org.openstack4j.model.telemetry;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import com.google.common.collect.Lists;
 import org.openstack4j.openstack.internal.Parser;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Query options used in retrieving Events
@@ -29,7 +28,7 @@ public class EventCriteria {
      * @return EventCriteria
      */
     public EventCriteria eventType(String eventType) {
-        checkNotNull(eventType, "eventType must not be null");
+        Objects.requireNonNull(eventType, "eventType must not be null");
         return add("event_type", Oper.EQUALS, eventType);
     }
 
@@ -40,7 +39,7 @@ public class EventCriteria {
      * @return EventCriteria
      */
     public EventCriteria messageId(String messageId) {
-        checkNotNull(messageId, "messageId must not be null");
+        Objects.requireNonNull(messageId, "messageId must not be null");
         return add("message_id", Oper.EQUALS, messageId);
     }
 
@@ -52,7 +51,7 @@ public class EventCriteria {
      * @return EventCriteria
      */
     public EventCriteria startTimestamp(Oper operator, Date value) {
-        checkNotNull(value, "Date must not be null");
+        Objects.requireNonNull(value, "Date must not be null");
         return add("start_timestamp", operator, Parser.toISO8601DateFormat(value));
     }
 
@@ -64,7 +63,7 @@ public class EventCriteria {
      * @return EventCriteria
      */
     public EventCriteria endTimestamp(Oper operator, Date value) {
-        checkNotNull(value, "Date must not be null");
+        Objects.requireNonNull(value, "Date must not be null");
         return add("end_timestamp", operator, Parser.toISO8601DateFormat(value));
     }
 
@@ -77,7 +76,7 @@ public class EventCriteria {
      * @return EventCriteria
      */
     public EventCriteria add(String field, Oper operator, Number value) {
-        checkNotNull(value, "Value must not be null");
+        Objects.requireNonNull(value, "Value must not be null");
         return add(field, operator, value.toString());
     }
 
@@ -90,9 +89,9 @@ public class EventCriteria {
      * @return EventCriteria
      */
     public EventCriteria add(String field, Oper operator, String value) {
-        checkNotNull(field, "Field must not be null");
-        checkNotNull(operator, "Operator must not be null");
-        checkNotNull(value, "Value must not be null");
+        Objects.requireNonNull(field, "Field must not be null");
+        Objects.requireNonNull(operator, "Operator must not be null");
+        Objects.requireNonNull(value, "Value must not be null");
 
         params.add(new NameOpValue(field, operator, value));
         return this;

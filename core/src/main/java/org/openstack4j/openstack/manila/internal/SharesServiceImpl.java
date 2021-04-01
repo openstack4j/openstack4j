@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.manila.SharesService;
 import org.openstack4j.model.common.ActionResponse;
@@ -20,15 +21,13 @@ import org.openstack4j.openstack.manila.domain.ManilaShareUpdate;
 import org.openstack4j.openstack.manila.domain.actions.ShareAction;
 import org.openstack4j.openstack.manila.domain.actions.ShareActions;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class SharesServiceImpl extends BaseShareServices implements SharesService {
     /**
      * {@inheritDoc}
      */
     @Override
     public Share create(ShareCreate shareCreate) {
-        checkNotNull(shareCreate);
+        Objects.requireNonNull(shareCreate);
         return post(ManilaShare.class, uri("/shares"))
                 .entity(shareCreate)
                 .execute();
@@ -61,7 +60,7 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public Share get(String shareId) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return get(ManilaShare.class, uri("/shares/%s", shareId)).execute();
     }
 
@@ -70,8 +69,8 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public Share update(String shareId, ShareUpdateOptions shareUpdateOptions) {
-        checkNotNull(shareId);
-        checkNotNull(shareUpdateOptions);
+        Objects.requireNonNull(shareId);
+        Objects.requireNonNull(shareUpdateOptions);
 
         return put(ManilaShare.class, uri("/shares/%s", shareId))
                 .entity(ManilaShareUpdate.fromOptions(shareUpdateOptions))
@@ -83,14 +82,14 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public ActionResponse delete(String shareId) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/shares/%s", shareId)).executeWithResponse());
     }
 
     @Override
     public ActionResponse delete(String shareId, String consistencyGroupId) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/shares/%s", shareId))
                         .param(consistencyGroupId != null, "consistency_group_id ", consistencyGroupId)
@@ -102,7 +101,7 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public Metadata getMetadata(String shareId) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return get(Metadata.class, uri("/shares/%s/metadata", shareId)).execute();
     }
 
@@ -111,8 +110,8 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public Metadata updateMetadata(String shareId, Metadata metadata) {
-        checkNotNull(shareId);
-        checkNotNull(metadata);
+        Objects.requireNonNull(shareId);
+        Objects.requireNonNull(metadata);
 
         return put(Metadata.class, uri("/shares/%s/metadata", shareId))
                 .entity(metadata)
@@ -124,8 +123,8 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public Metadata setMetadata(String shareId, Metadata metadata) {
-        checkNotNull(shareId);
-        checkNotNull(metadata);
+        Objects.requireNonNull(shareId);
+        Objects.requireNonNull(metadata);
 
         return post(Metadata.class, uri("/shares/%s/metadata/", shareId))
                 .entity(metadata)
@@ -137,8 +136,8 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public ActionResponse unsetMetadata(String shareId, String metadataKey) {
-        checkNotNull(shareId);
-        checkNotNull(metadataKey);
+        Objects.requireNonNull(shareId);
+        Objects.requireNonNull(metadataKey);
 
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/shares/%s/metadata/%s", shareId, metadataKey)).executeWithResponse());
@@ -149,8 +148,8 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public Access grantAccess(String shareId, AccessOptions options) {
-        checkNotNull(shareId);
-        checkNotNull(options);
+        Objects.requireNonNull(shareId);
+        Objects.requireNonNull(options);
 
         return invokeAction(ManilaAccess.class, shareId, ShareActions.grantAccess(options));
     }
@@ -160,8 +159,8 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public ActionResponse revokeAccess(String shareId, String accessId) {
-        checkNotNull(shareId);
-        checkNotNull(accessId);
+        Objects.requireNonNull(shareId);
+        Objects.requireNonNull(accessId);
 
         return invokeAction(shareId, ShareActions.revokeAccess(accessId));
     }
@@ -171,7 +170,7 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public List<? extends Access> listAccess(String shareId) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return invokeAction(AccessList.class, shareId, ShareActions.listAccessRules()).getList();
     }
 
@@ -180,8 +179,8 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public ActionResponse resetState(String shareId, Share.Status status) {
-        checkNotNull(shareId);
-        checkNotNull(status);
+        Objects.requireNonNull(shareId);
+        Objects.requireNonNull(status);
 
         return invokeAction(shareId, ShareActions.resetState(status));
     }
@@ -191,7 +190,7 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public ActionResponse forceDelete(String shareId) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return invokeAction(shareId, ShareActions.forceDelete());
     }
 
@@ -200,7 +199,7 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public ActionResponse extend(String shareId, int newSize) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return invokeAction(shareId, ShareActions.extend(newSize));
     }
 
@@ -209,7 +208,7 @@ public class SharesServiceImpl extends BaseShareServices implements SharesServic
      */
     @Override
     public ActionResponse shrink(String shareId, int newSize) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
         return invokeAction(shareId, ShareActions.shrink(newSize));
     }
 

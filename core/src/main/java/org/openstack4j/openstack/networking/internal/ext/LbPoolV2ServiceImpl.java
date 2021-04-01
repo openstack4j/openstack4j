@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.LbPoolV2Service;
 import org.openstack4j.model.common.ActionResponse;
@@ -13,8 +14,6 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.networking.domain.ext.NeutronLbPoolV2;
 import org.openstack4j.openstack.networking.domain.ext.NeutronMemberV2;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Neutron) lbaas v2 lb pool operations
@@ -49,7 +48,7 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public LbPoolV2 get(String lbPoolId) {
-        checkNotNull(lbPoolId);
+        Objects.requireNonNull(lbPoolId);
         return get(NeutronLbPoolV2.class, uri("/lbaas/pools/%s", lbPoolId)).execute();
     }
 
@@ -58,7 +57,7 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public LbPoolV2 create(LbPoolV2 lbPool) {
-        checkNotNull(lbPool);
+        Objects.requireNonNull(lbPool);
         return post(NeutronLbPoolV2.class, uri("/lbaas/pools")).entity(lbPool).execute();
     }
 
@@ -67,8 +66,8 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public LbPoolV2 update(String lbPoolId, LbPoolV2Update lbPool) {
-        checkNotNull(lbPoolId);
-        checkNotNull(lbPool);
+        Objects.requireNonNull(lbPoolId);
+        Objects.requireNonNull(lbPool);
         return put(NeutronLbPoolV2.class, uri("/lbaas/pools/%s", lbPoolId)).entity(lbPool).execute();
     }
 
@@ -77,7 +76,7 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public ActionResponse delete(String lbPoolId) {
-        checkNotNull(lbPoolId);
+        Objects.requireNonNull(lbPoolId);
         return ToActionResponseFunction.INSTANCE.apply(delete(void.class, uri("/lbaas/pools/%s", lbPoolId)).executeWithResponse());
     }
 
@@ -108,8 +107,8 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public MemberV2 getMember(String lbPoolId, String memberId) {
-        checkNotNull(lbPoolId);
-        checkNotNull(memberId);
+        Objects.requireNonNull(lbPoolId);
+        Objects.requireNonNull(memberId);
         return get(NeutronMemberV2.class, uri("/lbaas/pools/%s/members/%s", lbPoolId, memberId)).execute();
     }
 
@@ -118,8 +117,8 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public MemberV2 createMember(String lbPoolId, MemberV2 member) {
-        checkNotNull(lbPoolId);
-        checkNotNull(member);
+        Objects.requireNonNull(lbPoolId);
+        Objects.requireNonNull(member);
         return post(NeutronMemberV2.class, uri("/lbaas/pools/%s/members", lbPoolId)).entity(member).execute();
     }
 
@@ -128,9 +127,9 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public MemberV2 updateMember(String lbPoolId, String memberId, MemberV2Update member) {
-        checkNotNull(lbPoolId);
-        checkNotNull(memberId);
-        checkNotNull(member);
+        Objects.requireNonNull(lbPoolId);
+        Objects.requireNonNull(memberId);
+        Objects.requireNonNull(member);
         return put(NeutronMemberV2.class, uri("/lbaas/pools/%s/members/%s", lbPoolId, memberId)).entity(member).execute();
     }
 
@@ -139,8 +138,8 @@ public class LbPoolV2ServiceImpl extends BaseNetworkingServices implements LbPoo
      */
     @Override
     public ActionResponse deleteMember(String lbPoolId, String memberId) {
-        checkNotNull(lbPoolId);
-        checkNotNull(memberId);
+        Objects.requireNonNull(lbPoolId);
+        Objects.requireNonNull(memberId);
         return ToActionResponseFunction.INSTANCE.apply(delete(void.class, uri("/lbaas/pools/%s/members/%s", lbPoolId, memberId)).executeWithResponse());
     }
 }

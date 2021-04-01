@@ -1,9 +1,9 @@
 package org.openstack4j.api.trove;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.trove.Datastore;
 import org.openstack4j.model.trove.DatastoreVersion;
@@ -33,7 +33,7 @@ public class DBDatastoreServiceImplTest extends AbstractTest {
         respondWith(TROVE_DATASTORES);
         List<? extends Datastore> datastores = osv2().trove().datastoreService().list();
         assertEquals(2, datastores.size());
-        Preconditions.checkNotNull(datastores.get(0));
+        Objects.requireNonNull(datastores.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Datastore from List : " + datastores.get(0));
     }
 
@@ -42,7 +42,7 @@ public class DBDatastoreServiceImplTest extends AbstractTest {
         String datastoreId = "648d260d-c346-4145-8a2d-bbd4d78aedf6";
         respondWith(TROVE_DATASTORE);
         Datastore datastore = osv2().trove().datastoreService().get(datastoreId);
-        Preconditions.checkNotNull(datastore);
+        Objects.requireNonNull(datastore);
         assertEquals(datastore.getId(), datastoreId);
     }
 
@@ -52,7 +52,7 @@ public class DBDatastoreServiceImplTest extends AbstractTest {
         respondWith(TROVE_DATASTORE_VERSIONS);
         List<? extends DatastoreVersion> datastoreVersions = osv2().trove().datastoreService().listDatastoreVersions(datastoreId);
         assertEquals(2, datastoreVersions.size());
-        Preconditions.checkNotNull(datastoreVersions.get(0));
+        Objects.requireNonNull(datastoreVersions.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Datastore version from List : " + datastoreVersions.get(0));
     }
 
@@ -62,7 +62,7 @@ public class DBDatastoreServiceImplTest extends AbstractTest {
         String datastoreVersionId = "15b7d828-49a5-4d05-af65-e974e0aca7eb";
         respondWith(TROVE_DATASTORE_VERSION);
         DatastoreVersion datastoreVersion = osv2().trove().datastoreService().getDatastoreVersion(datastoreId, datastoreVersionId);
-        Preconditions.checkNotNull(datastoreVersion);
+        Objects.requireNonNull(datastoreVersion);
         assertEquals(datastoreVersion.getId(), datastoreVersionId);
     }
 

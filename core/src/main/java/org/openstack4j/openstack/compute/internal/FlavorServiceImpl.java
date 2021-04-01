@@ -3,6 +3,7 @@ package org.openstack4j.openstack.compute.internal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.FlavorService;
 import org.openstack4j.model.common.ActionResponse;
@@ -14,8 +15,6 @@ import org.openstack4j.openstack.compute.domain.NovaFlavor.Flavors;
 import org.openstack4j.openstack.compute.domain.NovaFlavorAccess.AddTenantAccess;
 import org.openstack4j.openstack.compute.domain.NovaFlavorAccess.FlavorAccesses;
 import org.openstack4j.openstack.compute.domain.NovaFlavorAccess.RemoveTenantAccess;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Flavor service provides CRUD capabilities for Flavor(s).  A flavor is an available hardware configuration/template for a server
@@ -68,7 +67,7 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public Flavor get(String flavorId) {
-        checkNotNull(flavorId);
+        Objects.requireNonNull(flavorId);
         return get(NovaFlavor.class, uri("/flavors/%s", flavorId)).execute();
     }
 
@@ -77,7 +76,7 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public ActionResponse delete(String flavorId) {
-        checkNotNull(flavorId);
+        Objects.requireNonNull(flavorId);
         return deleteWithResponse(uri("/flavors/%s", flavorId)).execute();
     }
 
@@ -86,7 +85,7 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public Flavor create(Flavor flavor) {
-        checkNotNull(flavor);
+        Objects.requireNonNull(flavor);
         return post(NovaFlavor.class, uri("/flavors"))
                 .entity(flavor)
                 .execute();
@@ -97,7 +96,7 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public Flavor create(String name, int ram, int vcpus, int disk, int ephemeral, int swap, float rxtxFactor, boolean isPublic) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         return create(NovaFlavor.builder().name(name).ram(ram).vcpus(vcpus).disk(disk).swap(swap).ephemeral(ephemeral).rxtxFactor(rxtxFactor).isPublic(isPublic).build());
     }
 
@@ -106,7 +105,7 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public Map<String, String> listExtraSpecs(String flavorId) {
-        checkNotNull(flavorId);
+        Objects.requireNonNull(flavorId);
         ExtraSpecsWrapper wrapper = get(ExtraSpecsWrapper.class, uri("/flavors/%s/os-extra_specs", flavorId)).execute();
         return wrapper != null ? wrapper.getExtraSpecs(): null;
     }
@@ -116,8 +115,8 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public Map<String, String> createAndUpdateExtraSpecs(String flavorId, Map<String, String> spec) {
-        checkNotNull(flavorId);
-        checkNotNull(spec);
+        Objects.requireNonNull(flavorId);
+        Objects.requireNonNull(spec);
         return post(ExtraSpecsWrapper.class, uri("/flavors/%s/os-extra_specs", flavorId)).entity(ExtraSpecsWrapper.wrap(spec)).execute().getExtraSpecs();
     }
 
@@ -126,8 +125,8 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public void deleteExtraSpecs(String flavorId, String key) {
-        checkNotNull(flavorId);
-        checkNotNull(key);
+        Objects.requireNonNull(flavorId);
+        Objects.requireNonNull(key);
         delete(Void.class, uri("/flavors/%s/os-extra_specs/%s", flavorId, key)).execute();
     }
 
@@ -137,8 +136,8 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
     @SuppressWarnings("rawtypes")
     @Override
     public String getSpec(String flavorId, String key) {
-        checkNotNull(flavorId);
-        checkNotNull(key);
+        Objects.requireNonNull(flavorId);
+        Objects.requireNonNull(key);
         Map extraSpec = get(HashMap.class, uri("/flavors/%s/os-extra_specs/%s", flavorId, key)).execute();
         return extraSpec == null ? null: (String) extraSpec.get(key);
     }
@@ -148,7 +147,7 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public List<? extends FlavorAccess> listFlavorAccess(String flavorId) {
-        checkNotNull(flavorId);
+        Objects.requireNonNull(flavorId);
         return get(FlavorAccesses.class, uri("/flavors/%s/os-flavor-access", flavorId))
                 .execute().getList();
     }
@@ -158,8 +157,8 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public List<? extends FlavorAccess> addTenantAccess(String flavorId, String tenantId) {
-        checkNotNull(flavorId);
-        checkNotNull(tenantId);
+        Objects.requireNonNull(flavorId);
+        Objects.requireNonNull(tenantId);
 
         AddTenantAccess addTenantAccess = new AddTenantAccess();
         addTenantAccess.setTenantId(tenantId);
@@ -175,8 +174,8 @@ public class FlavorServiceImpl extends BaseComputeServices implements FlavorServ
      */
     @Override
     public List<? extends FlavorAccess> removeTenantAccess(String flavorId, String tenantId) {
-        checkNotNull(flavorId);
-        checkNotNull(tenantId);
+        Objects.requireNonNull(flavorId);
+        Objects.requireNonNull(tenantId);
 
         RemoveTenantAccess removeTenantAccess = new RemoveTenantAccess();
         removeTenantAccess.setTenantId(tenantId);

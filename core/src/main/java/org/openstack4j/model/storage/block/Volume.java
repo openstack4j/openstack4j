@@ -3,6 +3,7 @@ package org.openstack4j.model.storage.block;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -11,8 +12,6 @@ import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.storage.block.builder.VolumeBuilder;
 import org.slf4j.LoggerFactory;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * An OpenStack Volume
@@ -137,7 +136,7 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
         @JsonCreator
         public static Status fromValue(String status) {
             try {
-                return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, checkNotNull(status, "status")));
+                return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, Objects.requireNonNull(status, "status")));
             } catch (IllegalArgumentException e) {
                 return UNRECOGNIZED;
             }
@@ -161,7 +160,7 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
         public static MigrationStatus fromValue(String migrationStatus) {
             if (migrationStatus != null) {
                 try {
-                    return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, checkNotNull(migrationStatus, "migrationStatus")));
+                    return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, Objects.requireNonNull(migrationStatus, "migrationStatus")));
                 } catch (IllegalArgumentException e) {
                     LoggerFactory.getLogger(MigrationStatus.class).error(e.getMessage(), e);
                 }

@@ -2,6 +2,7 @@ package org.openstack4j.openstack.gbp.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.gbp.GroupService;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.gbp.PolicyTargetGroupCreate;
 import org.openstack4j.openstack.gbp.domain.GbpPolicyTargetGroup;
 import org.openstack4j.openstack.gbp.domain.GbpPolicyTargetGroup.PolicyTargetGroups;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Policy target group API Implementation
@@ -55,7 +54,7 @@ public class GroupServiceImpl extends BaseNetworkingServices implements GroupSer
      */
     @Override
     public PolicyTargetGroup get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(GbpPolicyTargetGroup.class, uri("/grouppolicy/policy_target_groups/%s", id)).execute();
     }
 
@@ -64,7 +63,7 @@ public class GroupServiceImpl extends BaseNetworkingServices implements GroupSer
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/grouppolicy/policy_target_groups/%s", id)).execute();
     }
 
@@ -81,8 +80,8 @@ public class GroupServiceImpl extends BaseNetworkingServices implements GroupSer
      */
     @Override
     public PolicyTargetGroup update(String policyTargetGroupId, PolicyTargetGroupCreate policyTargetGroup) {
-        checkNotNull(policyTargetGroupId);
-        checkNotNull(policyTargetGroup);
+        Objects.requireNonNull(policyTargetGroupId);
+        Objects.requireNonNull(policyTargetGroup);
         return put(GbpPolicyTargetGroup.class, uri("/grouppolicy/policy_target_groups/%s", policyTargetGroupId)).entity(policyTargetGroup).execute();
     }
 

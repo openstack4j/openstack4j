@@ -2,6 +2,7 @@ package org.openstack4j.openstack.heat.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.heat.StackService;
@@ -16,8 +17,6 @@ import org.openstack4j.openstack.heat.domain.HeatStack;
 import org.openstack4j.openstack.heat.domain.HeatStack.Stacks;
 import org.openstack4j.openstack.heat.domain.HeatStackAdopt;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
  * This class implements all methods for manipulation of {@link HeatStack} objects. The
  * non-exhaustive list of methods is oriented along
@@ -29,7 +28,7 @@ public class StackServiceImpl extends BaseHeatServices implements StackService {
 
     @Override
     public Stack create(StackCreate newStack) {
-        checkNotNull(newStack);
+        Objects.requireNonNull(newStack);
         return post(HeatStack.class, uri("/stacks")).entity(newStack).execute();
     }
 
@@ -37,10 +36,10 @@ public class StackServiceImpl extends BaseHeatServices implements StackService {
     public Stack create(String name, String template,
             Map<String, String> parameters, boolean disableRollback,
             Long timeoutMins) {
-        checkNotNull(name);
-        checkNotNull(template);
-        checkNotNull(parameters);
-        checkNotNull(timeoutMins);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(template);
+        Objects.requireNonNull(parameters);
+        Objects.requireNonNull(timeoutMins);
 
         return create(Builders.stack().name(name).template(template)
                 .parameters(parameters).timeoutMins(timeoutMins).build());
@@ -64,22 +63,22 @@ public class StackServiceImpl extends BaseHeatServices implements StackService {
 
     @Override
     public ActionResponse delete(String stackName, String stackId) {
-        checkNotNull(stackId);
+        Objects.requireNonNull(stackId);
         return deleteWithResponse(uri("/stacks/%s/%s", stackName, stackId)).execute();
     }
 
     @Override
     public Stack getDetails(String stackName, String stackId) {
-        checkNotNull(stackName);
-        checkNotNull(stackId);
+        Objects.requireNonNull(stackName);
+        Objects.requireNonNull(stackId);
         return get(HeatStack.class, uri("/stacks/%s/%s", stackName, stackId)).execute();
     }
 
     @Override
     public ActionResponse update(String stackName, String stackId, StackUpdate stackUpdate) {
-        checkNotNull(stackName);
-        checkNotNull(stackId);
-        checkNotNull(stackUpdate);
+        Objects.requireNonNull(stackName);
+        Objects.requireNonNull(stackId);
+        Objects.requireNonNull(stackUpdate);
 
         return ToActionResponseFunction.INSTANCE
                 .apply(put(Void.class, uri("/stacks/%s/%s", stackName, stackId))
@@ -89,21 +88,21 @@ public class StackServiceImpl extends BaseHeatServices implements StackService {
 
     @Override
     public Stack getStackByName(String stackName) {
-        checkNotNull(stackName);
+        Objects.requireNonNull(stackName);
         return get(HeatStack.class, uri("/stacks/%s", stackName)).execute();
     }
 
     @Override
     public AdoptStackData abandon(String stackName, String stackId) {
-        checkNotNull(stackId);
+        Objects.requireNonNull(stackId);
         return delete(HeatAdoptStackData.class, uri("/stacks/%s/%s/abandon", stackName, stackId)).execute();
     }
 
     @Override
     public Stack adopt(AdoptStackData adoptStackData, Map<String, String> parameters, boolean disableRollback, Long timeoutMins, String template) {
-        checkNotNull(adoptStackData);
-        checkNotNull(parameters);
-        checkNotNull(timeoutMins);
+        Objects.requireNonNull(adoptStackData);
+        Objects.requireNonNull(parameters);
+        Objects.requireNonNull(timeoutMins);
         HeatStackAdopt heatStackAdopt = HeatStackAdopt.builder()
                 .adoptStackData(adoptStackData)
                 .template(template)

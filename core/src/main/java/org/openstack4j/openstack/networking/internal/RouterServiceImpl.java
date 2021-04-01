@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.networking.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.RouterService;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -16,7 +17,6 @@ import org.openstack4j.openstack.networking.domain.NeutronRouter;
 import org.openstack4j.openstack.networking.domain.NeutronRouter.Routers;
 import org.openstack4j.openstack.networking.domain.NeutronRouterInterface;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 /**
@@ -39,7 +39,7 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
      */
     @Override
     public Router get(String routerId) {
-        checkNotNull(routerId);
+        Objects.requireNonNull(routerId);
         return get(NeutronRouter.class, uri("/routers/%s", routerId)).execute();
     }
 
@@ -48,7 +48,7 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
      */
     @Override
     public ActionResponse delete(String routerId) {
-        checkNotNull(routerId);
+        Objects.requireNonNull(routerId);
         return deleteWithResponse(uri("/routers/%s", routerId)).execute();
     }
 
@@ -57,7 +57,7 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
      */
     @Override
     public Router create(String name, boolean adminStateUp) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         return post(NeutronRouter.class, uri("/routers")).entity(NeutronRouter.builder().name(name).adminStateUp(adminStateUp).build()).execute();
     }
 
@@ -66,7 +66,7 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
      */
     @Override
     public Router create(Router router) {
-        checkNotNull(router);
+        Objects.requireNonNull(router);
         return post(NeutronRouter.class, uri("/routers")).entity(router).execute();
     }
 
@@ -75,8 +75,8 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
      */
     @Override
     public Router update(Router router) {
-        checkNotNull(router);
-        checkNotNull(router.getId());
+        Objects.requireNonNull(router);
+        Objects.requireNonNull(router.getId());
 
         RouterBuilder rb = NeutronRouter.builder().name(router.getName()).adminStateUp(router.isAdminStateUp()).externalGateway(router.getExternalGatewayInfo());
         List<? extends HostRoute> routes = router.getRoutes();
@@ -96,15 +96,15 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
 
     @Override
     public Router toggleAdminStateUp(String routerId, boolean adminStateUp) {
-        checkNotNull(routerId);
+        Objects.requireNonNull(routerId);
         return put(NeutronRouter.class, uri("/routers/%s", routerId)).entity(NeutronRouter.builder().adminStateUp(adminStateUp).build()).execute();
     }
 
     @Override
     public RouterInterface attachInterface(String routerId, AttachInterfaceType type, String portOrSubnetId) {
-        checkNotNull(routerId);
-        checkNotNull(type);
-        checkNotNull(portOrSubnetId);
+        Objects.requireNonNull(routerId);
+        Objects.requireNonNull(type);
+        Objects.requireNonNull(portOrSubnetId);
         return put(NeutronRouterInterface.class, uri("/routers/%s/add_router_interface", routerId))
                 .entity(AddRouterInterfaceAction.create(type, portOrSubnetId))
                 .execute();
@@ -112,7 +112,7 @@ public class RouterServiceImpl extends BaseNetworkingServices implements RouterS
 
     @Override
     public RouterInterface detachInterface(String routerId, String subnetId, String portId) {
-        checkNotNull(routerId);
+        Objects.requireNonNull(routerId);
         checkState(!(subnetId == null && portId == null), "Either a Subnet or Port identifier must be set");
         return put(NeutronRouterInterface.class, uri("/routers/%s/remove_router_interface", routerId))
                 .entity(new NeutronRouterInterface(subnetId, portId))

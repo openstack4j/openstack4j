@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.identity.v2.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.identity.v2.ServiceManagerService;
 import org.openstack4j.model.common.ActionResponse;
@@ -11,8 +12,6 @@ import org.openstack4j.openstack.identity.v2.domain.KeystoneService.Services;
 import org.openstack4j.openstack.identity.v2.domain.KeystoneServiceEndpoint;
 import org.openstack4j.openstack.identity.v2.domain.KeystoneServiceEndpoint.ServiceEndpoints;
 import org.openstack4j.openstack.internal.BaseOpenStackService;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Manages OpenStack service(s), such as Compute (Nova), Object Storage (Swift), or Image Service (Glance).
@@ -34,7 +33,7 @@ public class ServiceManagerServiceImpl extends BaseOpenStackService implements S
      */
     @Override
     public Service get(String serviceId) {
-        checkNotNull(serviceId);
+        Objects.requireNonNull(serviceId);
         return get(KeystoneService.class, uri("/OS-KSADM/services/%s", serviceId)).execute();
     }
 
@@ -43,9 +42,9 @@ public class ServiceManagerServiceImpl extends BaseOpenStackService implements S
      */
     @Override
     public Service create(String name, String type, String description) {
-        checkNotNull(name);
-        checkNotNull(type);
-        checkNotNull(description);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(type);
+        Objects.requireNonNull(description);
         return post(KeystoneService.class, uri("/OS-KSADM/services"))
                 .entity(KeystoneService.builder().name(name).type(type).description(description).build())
                 .execute();
@@ -56,7 +55,7 @@ public class ServiceManagerServiceImpl extends BaseOpenStackService implements S
      */
     @Override
     public ActionResponse delete(String serviceId) {
-        checkNotNull(serviceId);
+        Objects.requireNonNull(serviceId);
         return deleteWithResponse(uri("/OS-KSADM/services/%s", serviceId)).execute();
     }
 
@@ -73,11 +72,11 @@ public class ServiceManagerServiceImpl extends BaseOpenStackService implements S
      */
     @Override
     public ServiceEndpoint createEndpoint(String region, String serviceId, String publicURL, String adminURL, String internalURL) {
-        checkNotNull(region);
-        checkNotNull(serviceId);
-        checkNotNull(publicURL);
-        checkNotNull(adminURL);
-        checkNotNull(internalURL);
+        Objects.requireNonNull(region);
+        Objects.requireNonNull(serviceId);
+        Objects.requireNonNull(publicURL);
+        Objects.requireNonNull(adminURL);
+        Objects.requireNonNull(internalURL);
 
         return post(KeystoneServiceEndpoint.class, uri("/endpoints"))
                 .entity(KeystoneServiceEndpoint.builder().region(region).serviceId(serviceId).publicURL(publicURL).adminURL(adminURL).internalURL(internalURL).build())
@@ -89,7 +88,7 @@ public class ServiceManagerServiceImpl extends BaseOpenStackService implements S
      */
     @Override
     public ActionResponse deleteEndpoint(String endpointId) {
-        checkNotNull(endpointId);
+        Objects.requireNonNull(endpointId);
         return deleteWithResponse(uri("/endpoints/%s", endpointId)).execute();
     }
 

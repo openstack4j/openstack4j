@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.compute.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.ComputeFloatingIPService;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -14,8 +15,6 @@ import org.openstack4j.openstack.compute.domain.NovaFloatingIP.NovaFloatingIPs;
 import org.openstack4j.openstack.compute.domain.NovaFloatingIPPools;
 import org.openstack4j.openstack.compute.domain.actions.FloatingIpActions;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack Floating-IP API Implementation
@@ -55,7 +54,7 @@ public class ComputeFloatingIPServiceImpl extends BaseComputeServices implements
      */
     @Override
     public ActionResponse deallocateIP(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/os-floating-ips/%s", id)).executeWithResponse()
         );
@@ -66,8 +65,8 @@ public class ComputeFloatingIPServiceImpl extends BaseComputeServices implements
      */
     @Override
     public ActionResponse addFloatingIP(Server server, String fixedIpAddress, String ipAddress) {
-        checkNotNull(server);
-        checkNotNull(ipAddress);
+        Objects.requireNonNull(server);
+        Objects.requireNonNull(ipAddress);
 
         return invokeAction(server.getId(), FloatingIpActions.Add.create(ipAddress, fixedIpAddress));
     }
@@ -85,8 +84,8 @@ public class ComputeFloatingIPServiceImpl extends BaseComputeServices implements
      */
     @Override
     public ActionResponse removeFloatingIP(Server server, String ipAddress) {
-        checkNotNull(server);
-        checkNotNull(ipAddress);
+        Objects.requireNonNull(server);
+        Objects.requireNonNull(ipAddress);
 
         return invokeAction(server.getId(), FloatingIpActions.Remove.create(ipAddress));
     }
@@ -96,8 +95,8 @@ public class ComputeFloatingIPServiceImpl extends BaseComputeServices implements
      */
     @Override
     public ActionResponse addFloatingIP(String serverId, String fixedIpAddress, String ipAddress) {
-        checkNotNull(serverId);
-        checkNotNull(ipAddress);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(ipAddress);
         return invokeAction(serverId, FloatingIpActions.Add.create(ipAddress, fixedIpAddress));
     }
 
@@ -114,8 +113,8 @@ public class ComputeFloatingIPServiceImpl extends BaseComputeServices implements
      */
     @Override
     public ActionResponse removeFloatingIP(String serverId, String ipAddress) {
-        checkNotNull(serverId);
-        checkNotNull(ipAddress);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(ipAddress);
 
         return invokeAction(serverId, FloatingIpActions.Remove.create(ipAddress));
     }

@@ -2,6 +2,7 @@ package org.openstack4j.openstack.identity.v3.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,8 +15,6 @@ import org.openstack4j.model.identity.v3.Authentication;
 import org.openstack4j.openstack.common.Auth.Type;
 import org.openstack4j.openstack.common.BasicResourceEntity;
 import org.openstack4j.openstack.common.IdResourceEntity;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Represents an v3 Auth object.
@@ -263,12 +262,12 @@ public class KeystoneAuth implements Authentication, AuthStore {
         }
 
         public static AuthScope domain(Identifier domain) {
-            checkNotNull(domain, "Domain Scope: domain identifier or name cannot be null");
+            Objects.requireNonNull(domain, "Domain Scope: domain identifier or name cannot be null");
             return new AuthScope(new AuthDomain(domain));
         }
 
         public static AuthScope trust(String id) {
-            checkNotNull(id, "Trust Scope: trust id cannot be null");
+            Objects.requireNonNull(id, "Trust Scope: trust id cannot be null");
             return new AuthScope(new ScopeTrust(id));
         }
 
@@ -292,7 +291,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
             private String name;
 
             public static ScopeProject create(Identifier project) {
-                checkNotNull(project, "Project Scope: project identifier or name cannot be null");
+                Objects.requireNonNull(project, "Project Scope: project identifier or name cannot be null");
 
                 ScopeProject scope = new ScopeProject();
 
@@ -304,8 +303,8 @@ public class KeystoneAuth implements Authentication, AuthStore {
             }
 
             public static ScopeProject create(Identifier project, Identifier domain) {
-                checkNotNull(project, "Project Scope: project identifier or name cannot be null");
-                checkNotNull(domain, "Project Scope: domain identifier or name cannot be null");
+                Objects.requireNonNull(project, "Project Scope: project identifier or name cannot be null");
+                Objects.requireNonNull(domain, "Project Scope: domain identifier or name cannot be null");
 
                 ScopeProject scope = new ScopeProject();
                 scope.domain = new AuthDomain(domain);

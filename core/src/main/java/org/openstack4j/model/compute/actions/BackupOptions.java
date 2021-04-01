@@ -1,6 +1,6 @@
 package org.openstack4j.model.compute.actions;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 /**
  * Options for Creating a Backup schedule
@@ -20,7 +20,7 @@ public final class BackupOptions extends BaseActionOptions {
      * @return BackupOptions
      */
     public static BackupOptions create(String backupName) {
-        checkNotNull(backupName);
+        Objects.requireNonNull(backupName);
         return new BackupOptions(backupName);
     }
 

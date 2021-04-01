@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.senlin.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.senlin.SenlinPolicyService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.senlin.Policy;
 import org.openstack4j.model.senlin.PolicyCreate;
 import org.openstack4j.openstack.senlin.domain.SenlinPolicy;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class contains getters for all implementation of the available policy services
@@ -24,26 +23,26 @@ public class SenlinPolicyServiceImpl extends BaseSenlinServices implements Senli
 
     @Override
     public Policy create(PolicyCreate newPolicy) {
-        checkNotNull(newPolicy);
+        Objects.requireNonNull(newPolicy);
         return post(SenlinPolicy.class, uri("/policies")).entity(newPolicy).execute();
     }
 
     @Override
     public Policy get(String policyID) {
-        checkNotNull(policyID);
+        Objects.requireNonNull(policyID);
         return get(SenlinPolicy.class, uri("/policies/%s", policyID)).execute();
     }
 
     @Override
     public Policy update(String policyID, PolicyCreate newPolicy) {
-        checkNotNull(policyID);
-        checkNotNull(newPolicy);
+        Objects.requireNonNull(policyID);
+        Objects.requireNonNull(newPolicy);
         return patch(SenlinPolicy.class, uri("/policies/%s", policyID)).entity(newPolicy).execute();
     }
 
     @Override
     public ActionResponse delete(String policyID) {
-        checkNotNull(policyID);
+        Objects.requireNonNull(policyID);
         return deleteWithResponse(uri("/policies/%s", policyID)).execute();
     }
 

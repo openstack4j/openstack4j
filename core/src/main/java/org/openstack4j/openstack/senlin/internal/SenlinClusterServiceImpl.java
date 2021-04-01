@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.senlin.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.senlin.SenlinClusterService;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.senlin.ClusterActionCreate;
 import org.openstack4j.model.senlin.ClusterCreate;
 import org.openstack4j.openstack.senlin.domain.SenlinActionID;
 import org.openstack4j.openstack.senlin.domain.SenlinCluster;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class contains getters for all implementation of the available cluster services
@@ -27,33 +26,33 @@ public class SenlinClusterServiceImpl extends BaseSenlinServices implements Senl
 
     @Override
     public Cluster get(String clusterID) {
-        checkNotNull(clusterID);
+        Objects.requireNonNull(clusterID);
         return get(SenlinCluster.class, uri("/clusters/%s", clusterID)).execute();
     }
 
     @Override
     public Cluster create(ClusterCreate newCluster) {
-        checkNotNull(newCluster);
+        Objects.requireNonNull(newCluster);
         return post(SenlinCluster.class, uri("/clusters")).entity(newCluster).execute();
     }
 
     @Override
     public ActionResponse delete(String clusterID) {
-        checkNotNull(clusterID);
+        Objects.requireNonNull(clusterID);
         return deleteWithResponse(uri("/clusters/%s", clusterID)).execute();
     }
 
     @Override
     public Cluster update(String clusterID, ClusterCreate newCluster) {
-        checkNotNull(clusterID);
-        checkNotNull(newCluster);
+        Objects.requireNonNull(clusterID);
+        Objects.requireNonNull(newCluster);
         return patch(SenlinCluster.class, uri("/clusters/%s", clusterID)).entity(newCluster).execute();
     }
 
     @Override
     public ActionID action(String clusterID, ClusterActionCreate newClusterAction) {
-        checkNotNull(clusterID);
-        checkNotNull(newClusterAction);
+        Objects.requireNonNull(clusterID);
+        Objects.requireNonNull(newClusterAction);
         return post(SenlinActionID.class, uri("/clusters/%s/actions", clusterID)).entity(newClusterAction).execute();
     }
 

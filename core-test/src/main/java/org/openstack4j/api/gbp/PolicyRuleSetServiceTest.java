@@ -1,9 +1,9 @@
 package org.openstack4j.api.gbp;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -37,7 +37,7 @@ public class PolicyRuleSetServiceTest extends AbstractTest {
         respondWith(POLICY_RULE_SETS);
         List<? extends PolicyRuleSet> policyRuleSetList = osv2().gbp().policyRuleSet().list();
         assertEquals(10, policyRuleSetList.size());
-        Preconditions.checkNotNull(policyRuleSetList.get(0));
+        Objects.requireNonNull(policyRuleSetList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Policy Rule Set from List : " + policyRuleSetList.get(0));
         assertEquals(policyRuleSetList.get(0).getId(), "1bbc10a8-aeb2-4e53-ab31-a1fed18763f4");
     }

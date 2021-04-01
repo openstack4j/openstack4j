@@ -2,6 +2,7 @@ package org.openstack4j.openstack.tacker.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.tacker.VnfdService;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -11,8 +12,6 @@ import org.openstack4j.model.tacker.Vnfd;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.tacker.domain.TackerVnfd;
 import org.openstack4j.openstack.tacker.domain.TackerVnfd.TackerVnfds;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * @author Vishvesh Deshmukh
@@ -47,7 +46,7 @@ public class VnfdServiceImpl extends BaseTackerServices implements VnfdService {
      */
     @Override
     public TackerVnfd get(String vnfdId) {
-        checkNotNull(vnfdId);
+        Objects.requireNonNull(vnfdId);
         return get(TackerVnfd.class, uri("/vnfds/%s", vnfdId)).execute();
     }
 
@@ -56,7 +55,7 @@ public class VnfdServiceImpl extends BaseTackerServices implements VnfdService {
      */
     @Override
     public ActionResponse delete(String vnfdId) {
-        checkNotNull(vnfdId);
+        Objects.requireNonNull(vnfdId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class, uri("/vnfds/%s", vnfdId)).executeWithResponse());
     }
 

@@ -1,13 +1,12 @@
 package org.openstack4j.openstack.telemetry.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.telemetry.SampleService;
 import org.openstack4j.model.telemetry.Sample;
 import org.openstack4j.model.telemetry.SampleCriteria;
 import org.openstack4j.openstack.telemetry.domain.CeiloMeterSample;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Provides Measurements for Samples within an OpenStack deployment
@@ -35,7 +34,7 @@ public class SampleServiceImpl extends BaseTelemetryServices implements SampleSe
      */
     @Override
     public List<? extends Sample> list(SampleCriteria criteria) {
-        checkNotNull(criteria);
+        Objects.requireNonNull(criteria);
         Invocation<CeiloMeterSample[]> invocation = get(CeiloMeterSample[].class, uri("/samples"));
         if (criteria.getLimit() > 0) {
             invocation.param("limit", criteria.getLimit());
@@ -55,7 +54,7 @@ public class SampleServiceImpl extends BaseTelemetryServices implements SampleSe
      */
     @Override
     public Sample get(String sampleId) {
-        checkNotNull(sampleId);
+        Objects.requireNonNull(sampleId);
 
         CeiloMeterSample sample = get(CeiloMeterSample.class, uri("/samples/%s", sampleId)).execute();
         return sample;

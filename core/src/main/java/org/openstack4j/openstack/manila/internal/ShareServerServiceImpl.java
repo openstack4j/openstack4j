@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.manila.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.manila.ShareServerService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.ShareServer;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.manila.domain.ManilaShareServer;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ShareServerServiceImpl extends BaseShareServices implements ShareServerService {
     @Override
@@ -20,13 +19,13 @@ public class ShareServerServiceImpl extends BaseShareServices implements ShareSe
 
     @Override
     public ShareServer get(String shareServerId) {
-        checkNotNull(shareServerId);
+        Objects.requireNonNull(shareServerId);
         return get(ManilaShareServer.class, uri("/share-servers/%s", shareServerId)).execute();
     }
 
     @Override
     public ActionResponse delete(String shareServerId) {
-        checkNotNull(shareServerId);
+        Objects.requireNonNull(shareServerId);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/share-servers/%s", shareServerId)).executeWithResponse());
     }

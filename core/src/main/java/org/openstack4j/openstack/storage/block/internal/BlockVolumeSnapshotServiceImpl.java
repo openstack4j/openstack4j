@@ -2,6 +2,7 @@ package org.openstack4j.openstack.storage.block.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.storage.BlockVolumeSnapshotService;
@@ -9,8 +10,6 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.block.VolumeSnapshot;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshot;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshot.VolumeSnapshots;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Cinder) Volume Snapshot Operations API Implementation.
@@ -41,7 +40,7 @@ public class BlockVolumeSnapshotServiceImpl extends BaseBlockStorageServices imp
      */
     @Override
     public VolumeSnapshot get(String snapshotId) {
-        checkNotNull(snapshotId);
+        Objects.requireNonNull(snapshotId);
         return get(CinderVolumeSnapshot.class, uri("/snapshots/%s", snapshotId)).execute();
     }
 
@@ -50,7 +49,7 @@ public class BlockVolumeSnapshotServiceImpl extends BaseBlockStorageServices imp
      */
     @Override
     public ActionResponse delete(String snapshotId) {
-        checkNotNull(snapshotId);
+        Objects.requireNonNull(snapshotId);
         return deleteWithResponse(uri("/snapshots/%s", snapshotId)).execute();
     }
 
@@ -59,7 +58,7 @@ public class BlockVolumeSnapshotServiceImpl extends BaseBlockStorageServices imp
      */
     @Override
     public ActionResponse update(String snapshotId, String name, String description) {
-        checkNotNull(snapshotId);
+        Objects.requireNonNull(snapshotId);
         if (name == null && description == null)
             return ActionResponse.actionFailed("Both Name and Description are required", 412);
 
@@ -73,8 +72,8 @@ public class BlockVolumeSnapshotServiceImpl extends BaseBlockStorageServices imp
      */
     @Override
     public VolumeSnapshot create(VolumeSnapshot snapshot) {
-        checkNotNull(snapshot);
-        checkNotNull(snapshot.getVolumeId());
+        Objects.requireNonNull(snapshot);
+        Objects.requireNonNull(snapshot.getVolumeId());
         return post(CinderVolumeSnapshot.class, uri("/snapshots")).entity(snapshot).execute();
     }
 

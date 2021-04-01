@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.sahara.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.sahara.JobService;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.openstack.sahara.domain.SaharaJob;
 import org.openstack4j.openstack.sahara.domain.SaharaJob.Jobs;
 import org.openstack4j.openstack.sahara.domain.SaharaJobConfigHint;
 import org.openstack4j.openstack.sahara.domain.SaharaJobUnwrapped;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Sahara Data Processing Operations
@@ -34,7 +33,7 @@ public class JobServiceImpl extends BaseSaharaServices implements JobService {
      */
     @Override
     public Job get(String JobId) {
-        checkNotNull(JobId);
+        Objects.requireNonNull(JobId);
         return get(SaharaJob.class, uri("/jobs/%s", JobId)).execute();
     }
 
@@ -43,7 +42,7 @@ public class JobServiceImpl extends BaseSaharaServices implements JobService {
      */
     @Override
     public Job create(Job job) {
-        checkNotNull(job);
+        Objects.requireNonNull(job);
         SaharaJobUnwrapped unwrapped = new SaharaJobUnwrapped(job);
         return post(SaharaJob.class, uri("/jobs"))
                 .entity(unwrapped)  // setup request
@@ -55,7 +54,7 @@ public class JobServiceImpl extends BaseSaharaServices implements JobService {
      */
     @Override
     public ActionResponse delete(String JobId) {
-        checkNotNull(JobId);
+        Objects.requireNonNull(JobId);
         return deleteWithResponse(uri("/jobs/%s", JobId)).execute();
     }
 
@@ -64,7 +63,7 @@ public class JobServiceImpl extends BaseSaharaServices implements JobService {
      */
     @Override
     public JobConfigHint getConfigHint(String type) {
-        checkNotNull(type);
+        Objects.requireNonNull(type);
         return get(SaharaJobConfigHint.class, uri("/jobs/config-hints/%s", type)).execute();
     }
 

@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.gbp.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -122,7 +123,6 @@ public class GbpPolicyTargetGroup implements PolicyTargetGroup {
                 .add("policyTargets", policyTargets).add("serviceManagement", serviceManagement).add("shared", shared).add("subnets", subnets).toString();
     }
 
-
     public static class PolicyTargetGroups extends ListResult<GbpPolicyTargetGroup> {
         private static final long serialVersionUID = 1L;
 
@@ -134,6 +134,4 @@ public class GbpPolicyTargetGroup implements PolicyTargetGroup {
             return policyTargetGroups;
         }
     }
-
-
 }

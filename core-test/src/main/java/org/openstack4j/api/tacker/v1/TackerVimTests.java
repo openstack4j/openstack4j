@@ -2,9 +2,9 @@ package org.openstack4j.api.tacker.v1;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.exceptions.ServerResponseException;
@@ -39,7 +39,7 @@ public class TackerVimTests extends AbstractTest {
         respondWith(TACKER_VIMS);
         List<? extends Vim> vims = osv3().tacker().vim().list();
         assertEquals(1, vims.size());
-        Preconditions.checkNotNull(vims.get(0));
+        Objects.requireNonNull(vims.get(0));
         Logger.getLogger(getClass().getName())
                 .info(getClass().getName() + " : Tacker VIM from List : " + vims.get(0));
         assertEquals(vims.get(0).getName(), "test-vim");

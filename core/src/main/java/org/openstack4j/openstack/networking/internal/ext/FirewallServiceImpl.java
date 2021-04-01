@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.FirewallService;
 import org.openstack4j.core.transport.ExecutionOptions;
@@ -13,8 +14,6 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.networking.domain.ext.NeutronFirewall;
 import org.openstack4j.openstack.networking.domain.ext.NeutronFirewall.Firewalls;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Networking (Neutron) FwaaS Firewall Extension API
@@ -50,7 +49,7 @@ public class FirewallServiceImpl extends BaseNetworkingServices implements Firew
      */
     @Override
     public Firewall get(String firewallId) {
-        checkNotNull(firewallId);
+        Objects.requireNonNull(firewallId);
         return get(NeutronFirewall.class, uri("/fw/firewalls/%s", firewallId)).execute();
     }
 
@@ -59,7 +58,7 @@ public class FirewallServiceImpl extends BaseNetworkingServices implements Firew
      */
     @Override
     public ActionResponse delete(String firewallId) {
-        checkNotNull(firewallId);
+        Objects.requireNonNull(firewallId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class,
                 uri("/fw/firewalls/%s", firewallId)).executeWithResponse());
     }
@@ -78,8 +77,8 @@ public class FirewallServiceImpl extends BaseNetworkingServices implements Firew
      */
     @Override
     public Firewall update(String firewallId, FirewallUpdate firewallUpdate) {
-        checkNotNull(firewallId);
-        checkNotNull(firewallUpdate);
+        Objects.requireNonNull(firewallId);
+        Objects.requireNonNull(firewallUpdate);
         return put(NeutronFirewall.class, uri("/fw/firewalls/%s", firewallId)).entity(firewallUpdate).execute();
     }
 
