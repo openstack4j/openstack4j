@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
@@ -26,7 +24,7 @@ public class Template {
     private URL baseUrl;
 
     public Template(URL templateRes) throws JsonParseException, IOException {
-        setTplContent(Resources.toString(templateRes, Charsets.UTF_8));
+        setTplContent(TemplateUtils.readToString(templateRes));
         baseUrl = TemplateUtils.baseUrl(templateRes.toString());
         getFileContents();
     }
