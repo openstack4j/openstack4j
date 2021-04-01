@@ -10,7 +10,6 @@ import java.net.Proxy.Type;
 import java.util.Map;
 
 import com.google.common.io.ByteStreams;
-import com.google.common.net.MediaType;
 import org.openstack4j.core.transport.Config;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.HttpResponse;
@@ -192,7 +191,7 @@ public final class HttpCommand<R> {
             connection = (HttpURLConnection) connectionUrl.openConnection();
         }
         connection.setRequestProperty("Content-Type", request.getContentType());
-        connection.setRequestProperty("Accept", MediaType.JSON_UTF_8.toString());
+        connection.setRequestProperty("Accept", "application/json; charset=utf-8");
 
         if (!request.hasHeaders()) {
             return;
@@ -200,6 +199,5 @@ public final class HttpCommand<R> {
         for (Map.Entry<String, Object> h : request.getHeaders().entrySet()) {
             connection.setRequestProperty(h.getKey(), String.valueOf(h.getValue()));
         }
-
     }
 }
