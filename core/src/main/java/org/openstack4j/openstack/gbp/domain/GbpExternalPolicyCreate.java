@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.gbp.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.gbp.ExternalPolicyCreate;
 import org.openstack4j.model.gbp.builder.ExternalPolicyBuilder;
 
@@ -183,7 +183,7 @@ public class GbpExternalPolicyCreate implements ExternalPolicyCreate {
 
         @Override
         public ExternalPolicyBuilder consumedPolicyRuleSets(List<String> policyRuleSet) {
-            this.extPolicy.consumedPolicyRuleSets = Maps.newHashMap();
+            this.extPolicy.consumedPolicyRuleSets = new HashMap<>();
             for (String id : policyRuleSet) {
                 this.extPolicy.consumedPolicyRuleSets.put(id, "");
             }
@@ -192,7 +192,7 @@ public class GbpExternalPolicyCreate implements ExternalPolicyCreate {
 
         @Override
         public ExternalPolicyBuilder providedPolicyRuleSets(List<String> policyRuleSet) {
-            this.extPolicy.providedPolicyRuleSets = Maps.newHashMap();
+            this.extPolicy.providedPolicyRuleSets = new HashMap<>();
             for (String id : policyRuleSet) {
                 this.extPolicy.providedPolicyRuleSets.put(id, "");
             }

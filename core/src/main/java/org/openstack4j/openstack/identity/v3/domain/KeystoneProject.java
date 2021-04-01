@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +8,6 @@ import com.fasterxml.jackson.annotation.*;
 import org.openstack4j.util.ToStringHelper;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.identity.v3.Domain;
 import org.openstack4j.model.identity.v3.Project;
 import org.openstack4j.model.identity.v3.builder.ProjectBuilder;
@@ -33,7 +33,7 @@ public class KeystoneProject implements Project {
     @JsonProperty("domain_id")
     private String domainId;
     private String description;
-    private Map<String, String> options = Maps.newHashMap();
+    private Map<String, String> options = new HashMap<>();
     @JsonIgnore
     private Map<String, String> links;
     @JsonProperty("parent_id")
@@ -46,7 +46,7 @@ public class KeystoneProject implements Project {
     /**
      * Extra API properties served
      */
-    private Map<String, String> extra = Maps.newHashMap();
+    private Map<String, String> extra = new HashMap<>();
 
     /**
      * @return the Project builder

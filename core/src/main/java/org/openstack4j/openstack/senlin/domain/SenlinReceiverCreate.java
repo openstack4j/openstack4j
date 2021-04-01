@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.senlin.ReceiverCreate;
 import org.openstack4j.model.senlin.builder.ReceiverCreateBuilder;
 
@@ -65,8 +64,8 @@ public class SenlinReceiverCreate implements ReceiverCreate {
         public SenlinReceiverCreateConcreteBuilder(SenlinReceiverCreate model) {
             this.model = model;
 
-            this.model.receiver = Maps.newHashMap();
-            HashMap<String, Object> params = Maps.newHashMap();
+            this.model.receiver = new HashMap<>();
+            HashMap<String, Object> params = new HashMap<>();
             this.model.receiver.put("params", params);
         }
 

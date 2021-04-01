@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.identity.v3.Role;
 import org.openstack4j.model.identity.v3.builder.RoleBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -27,7 +27,7 @@ public class KeystoneRole implements Role {
     @JsonProperty("domain_id")
     private String domainId;
     private Map<String, String> links;
-    private Map<String, String> options = Maps.newHashMap();
+    private Map<String, String> options = new HashMap<>();
 
     public static RoleBuilder builder() {
         return new RoleConcreteBuilder();

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.senlin.NodeCreate;
 import org.openstack4j.model.senlin.builder.NodeCreateBuilder;
 
@@ -65,8 +64,8 @@ public class SenlinNodeCreate implements NodeCreate {
         public SenlinNodeCreateConcreteBuilder(SenlinNodeCreate model) {
             this.model = model;
 
-            this.model.node = Maps.newHashMap();
-            HashMap<String, Object> metadata = Maps.newHashMap();
+            this.model.node = new HashMap<>();
+            HashMap<String, Object> metadata = new HashMap<>();
             this.model.node.put("metadata", metadata);
         }
 

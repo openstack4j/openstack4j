@@ -1,10 +1,9 @@
 package org.openstack4j.model.storage.object.options;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
 
 /**
  * Options used for the deletion of Objects
@@ -13,7 +12,7 @@ public final class ObjectDeleteOptions {
 
     public static final ObjectDeleteOptions NONE = new ObjectDeleteOptions();
 
-    private Map<String, List<Object>> queryParams = Maps.newHashMap();
+    private Map<String, List<Object>> queryParams = new HashMap<>();
 
     private ObjectDeleteOptions() {
     }

@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.util.ToStringHelper;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.openstack4j.model.common.builder.BasicResourceBuilder;
 import org.openstack4j.model.image.v2.ContainerFormat;
@@ -124,7 +123,7 @@ public class GlanceImage implements Image {
     @JsonProperty("virtual_size")
     private Long virtualSize;
 
-    private Map<String, String> additionalProperties = Maps.newHashMap();
+    private Map<String, String> additionalProperties = new HashMap<>();
 
     public static ImageBuilder builder() {
         return new ImageConcreteBuilder();

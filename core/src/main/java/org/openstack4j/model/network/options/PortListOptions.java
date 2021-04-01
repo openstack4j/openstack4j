@@ -1,8 +1,8 @@
 package org.openstack4j.model.network.options;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
 
 /**
  * Provides server-side filtering options for listing ports
@@ -11,7 +11,7 @@ import com.google.common.collect.Maps;
  */
 public class PortListOptions {
 
-    private Map<String, String> queryParams = Maps.newHashMap();
+    private Map<String, String> queryParams = new HashMap<>();
 
     private PortListOptions() {
     }

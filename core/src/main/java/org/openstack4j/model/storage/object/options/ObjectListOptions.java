@@ -1,9 +1,9 @@
 package org.openstack4j.model.storage.object.options;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import com.google.common.collect.Maps;
 
 import static com.google.common.base.Preconditions.checkState;
 
@@ -14,7 +14,7 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public final class ObjectListOptions {
 
-    private Map<String, String> queryParams = Maps.newHashMap();
+    private Map<String, String> queryParams = new HashMap<>();
 
     private ObjectListOptions() {
     }

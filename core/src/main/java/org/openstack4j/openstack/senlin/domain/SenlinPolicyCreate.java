@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.senlin.PolicyCreate;
 import org.openstack4j.model.senlin.builder.PolicyCreateBuilder;
 
@@ -65,10 +64,10 @@ public class SenlinPolicyCreate implements PolicyCreate {
         public SenlinPolicyCreateConcreteBuilder(SenlinPolicyCreate model) {
             this.model = model;
 
-            this.model.policy = Maps.newHashMap();
-            HashMap<String, Object> spec = Maps.newHashMap();
-            HashMap<String, Object> properties = Maps.newHashMap();
-            HashMap<String, Object> adjustment = Maps.newHashMap();
+            this.model.policy = new HashMap<>();
+            HashMap<String, Object> spec = new HashMap<>();
+            HashMap<String, Object> properties = new HashMap<>();
+            HashMap<String, Object> adjustment = new HashMap<>();
             properties.put("adjustment", adjustment);
             spec.put("properties", properties);
             this.model.policy.put("spec", spec);

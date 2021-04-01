@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.senlin.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.senlin.ClusterCreate;
 import org.openstack4j.model.senlin.builder.ClusterCreateBuilder;
 
@@ -65,8 +65,8 @@ public class SenlinClusterCreate implements ClusterCreate {
         public SenlinClusterCreateConcreteBuilder(SenlinClusterCreate model) {
             this.model = model;
 
-            this.model.cluster = Maps.newHashMap();
-            Map<String, String> metadata = Maps.newHashMap();
+            this.model.cluster = new HashMap<>();
+            Map<String, String> metadata = new HashMap<>();
             this.model.cluster.put("metadata", metadata);
         }
 

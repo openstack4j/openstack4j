@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.senlin.ProfileCreate;
 import org.openstack4j.model.senlin.builder.ProfileCreateBuilder;
 
@@ -65,9 +64,9 @@ public class SenlinProfileCreate implements ProfileCreate {
         public SenlinProfileCreateConcreteBuilder(SenlinProfileCreate model) {
             this.model = model;
 
-            this.model.profile = Maps.newHashMap();
-            HashMap<String, Object> metadata = Maps.newHashMap();
-            HashMap<String, Object> spec = Maps.newHashMap();
+            this.model.profile = new HashMap<>();
+            HashMap<String, Object> metadata = new HashMap<>();
+            HashMap<String, Object> spec = new HashMap<>();
             this.model.profile.put("metadata", metadata);
             this.model.profile.put("spec", spec);
         }

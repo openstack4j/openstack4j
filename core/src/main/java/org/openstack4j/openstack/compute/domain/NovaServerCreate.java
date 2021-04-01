@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.compute.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.node.BinaryNode;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.compute.*;
 import org.openstack4j.model.compute.Server.DiskConfig;
 import org.openstack4j.model.compute.builder.ServerCreateBuilder;
@@ -329,7 +329,7 @@ public class NovaServerCreate implements ServerCreate {
         @Override
         public ServerCreateBuilder addMetadataItem(String key, String value) {
             if (m.metadata == null)
-                m.metadata = Maps.newHashMap();
+                m.metadata = new HashMap<>();
 
             m.metadata.put(key, value);
             return this;
@@ -353,7 +353,7 @@ public class NovaServerCreate implements ServerCreate {
 
         private ServerCreateBuilder addSchedulerHintItem(String key, Object value) {
             if (m.schedulerHints == null)
-                m.schedulerHints = Maps.newHashMap();
+                m.schedulerHints = new HashMap<>();
 
             m.schedulerHints.put(key, value);
             return this;

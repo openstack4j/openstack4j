@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.compute.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.compute.Address;
 import org.openstack4j.model.compute.Addresses;
 
@@ -16,7 +16,7 @@ public class NovaAddresses implements Addresses {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("addresses")
-    private Map<String, List<NovaAddress>> addresses = Maps.newHashMap();
+    private Map<String, List<NovaAddress>> addresses = new HashMap<>();
 
     @Override
     public void add(String key, Address value) {

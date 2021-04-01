@@ -1,10 +1,10 @@
 package org.openstack4j.openstack.manila.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.collect.Maps;
 import org.openstack4j.model.manila.Share;
 import org.openstack4j.model.manila.ShareManage;
 import org.openstack4j.model.manila.builder.ShareManageBuilder;
@@ -104,7 +104,7 @@ public class ManilaShareManage implements ShareManage {
         @Override
         public ShareManageBuilder addDriverOption(String key, String value) {
             if (shareManage.driverOptions == null)
-                shareManage.driverOptions = Maps.newHashMap();
+                shareManage.driverOptions = new HashMap<>();
 
             shareManage.driverOptions.put(key, value);
             return this;

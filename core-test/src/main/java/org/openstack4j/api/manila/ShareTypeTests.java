@@ -1,5 +1,6 @@
 package org.openstack4j.api.manila;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -119,7 +120,7 @@ public class ShareTypeTests extends AbstractTest {
     public void setExtraSpec() throws Exception {
         respondWith(JSON_EXTRA_SPECS_SET);
 
-        Map<String, String> extraSpecMap = Maps.newHashMap();
+        Map<String, String> extraSpecMap = new HashMap<>();
         extraSpecMap.put("my_key", "my_value");
 
         ExtraSpecs extraSpecs = osv3().share().shareTypes().setExtraSpec(

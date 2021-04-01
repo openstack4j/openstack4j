@@ -1,8 +1,8 @@
 package org.openstack4j.model.common;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
 
 /**
  * Base Filter class for building Filter Request options
@@ -11,7 +11,7 @@ import com.google.common.collect.Maps;
  */
 public class BaseFilter {
 
-    private Map<String, Object> constraints = Maps.newHashMap();
+    private Map<String, Object> constraints = new HashMap<>();
 
     protected BaseFilter() {
 
