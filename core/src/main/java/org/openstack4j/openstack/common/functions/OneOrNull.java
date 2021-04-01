@@ -2,7 +2,7 @@ package org.openstack4j.openstack.common.functions;
 
 import java.util.List;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 
 /**
  * A Function which returns one entry from a List or null

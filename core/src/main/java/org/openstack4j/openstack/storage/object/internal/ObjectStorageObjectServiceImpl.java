@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
 import org.openstack4j.api.storage.ObjectStorageObjectService;
@@ -50,7 +51,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
             return Collections.emptyList();
         }
 
-        return Lists.transform(objs, ApplyContainerToObjectFunction.create(containerName));
+        return objs.stream().map(ApplyContainerToObjectFunction.create(containerName)).collect(Collectors.toList());
     }
 
     @Override
@@ -64,7 +65,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         if (objs == null) {
             return Collections.emptyList();
         }
-        return Lists.transform(objs, ApplyContainerToObjectFunction.create(containerName));
+        return objs.stream().map(ApplyContainerToObjectFunction.create(containerName)).collect(Collectors.toList());
 
     }
 

@@ -1,6 +1,6 @@
 package org.openstack4j.core.transport;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 
 /**
  * HTTP Execution Options

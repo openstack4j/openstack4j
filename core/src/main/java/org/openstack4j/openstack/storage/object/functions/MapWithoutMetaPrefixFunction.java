@@ -2,7 +2,7 @@ package org.openstack4j.openstack.storage.object.functions;
 
 import java.util.Map;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import com.google.common.collect.ImmutableMap;
 
 /**

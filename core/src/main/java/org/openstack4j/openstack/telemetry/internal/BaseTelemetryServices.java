@@ -3,7 +3,7 @@ package org.openstack4j.openstack.telemetry.internal;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import com.google.common.collect.Lists;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.openstack.internal.BaseOpenStackService;

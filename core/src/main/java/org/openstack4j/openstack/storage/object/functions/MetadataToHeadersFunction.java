@@ -3,7 +3,7 @@ package org.openstack4j.openstack.storage.object.functions;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 
 /**
  * Transforms a MetaHeaderRequestWrapper which applies headers based on a prefix to the outbound

@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import org.openstack4j.model.image.ContainerFormat;
 import org.openstack4j.model.image.DiskFormat;
 import org.openstack4j.model.image.Image;

@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.compute.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -259,7 +260,7 @@ public class NovaServer implements Server {
     public List<String> getOsExtendedVolumesAttached() {
         return (List<String>) ((osExtendedVolumesAttached == null)
                 ? Collections.emptyList()
-                : Lists.transform(osExtendedVolumesAttached, IdEntityToString.INSTANCE));
+                : osExtendedVolumesAttached.stream().map(IdEntityToString.INSTANCE).collect(Collectors.toList()));
     }
 
     @Override

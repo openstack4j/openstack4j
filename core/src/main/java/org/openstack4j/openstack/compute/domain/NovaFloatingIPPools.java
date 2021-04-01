@@ -4,8 +4,9 @@ import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import org.openstack4j.openstack.common.ListResult;
 
 /**
@@ -26,7 +27,7 @@ public class NovaFloatingIPPools extends ListResult<String> {
     @Override
     protected List<String> value() {
         if (values != null)
-            return Lists.transform(values, WrapperToStringFunc.instance);
+            return values.stream().map(WrapperToStringFunc.instance).collect(Collectors.toList());
         return Collections.emptyList();
     }
 

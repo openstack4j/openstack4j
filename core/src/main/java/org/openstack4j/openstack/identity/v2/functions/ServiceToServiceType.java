@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.identity.v2.functions;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.model.identity.v2.Access.Service;
 

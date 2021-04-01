@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.common.functions;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 
 /**
  * Removes a trailing version and appends the specified version to an endpoint URL

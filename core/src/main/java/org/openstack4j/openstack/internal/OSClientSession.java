@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
@@ -470,8 +471,9 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
         @Override
         public Set<ServiceType> getSupportedServices() {
             if (supports == null)
-                supports = Sets.immutableEnumSet(Iterables.transform(access.getServiceCatalog(),
-                        new org.openstack4j.openstack.identity.v2.functions.ServiceToServiceType()));
+                supports = Sets.immutableEnumSet(
+                        access.getServiceCatalog().stream().map(new org.openstack4j.openstack.identity.v2.functions.ServiceToServiceType()).collect(Collectors.toList())
+                );
             return supports;
         }
 
@@ -575,8 +577,7 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
         @Override
         public Set<ServiceType> getSupportedServices() {
             if (supports == null)
-                supports = Sets.immutableEnumSet(Iterables.transform(token.getCatalog(),
-                        new org.openstack4j.openstack.identity.v3.functions.ServiceToServiceType()));
+                supports = Sets.immutableEnumSet(token.getCatalog().stream().map(new org.openstack4j.openstack.identity.v3.functions.ServiceToServiceType()).collect(Collectors.toList()));
             return supports;
         }
 

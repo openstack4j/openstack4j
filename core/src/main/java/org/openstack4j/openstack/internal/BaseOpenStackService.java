@@ -2,7 +2,7 @@ package org.openstack4j.openstack.internal;
 
 import java.util.*;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import com.google.common.base.Joiner;
 import org.openstack4j.api.client.CloudProvider;
 import org.openstack4j.api.types.ServiceType;
