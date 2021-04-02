@@ -13,10 +13,7 @@ import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.common.payloads.FilePayload;
 import org.openstack4j.model.storage.block.options.DownloadOptions;
 import org.openstack4j.model.storage.object.SwiftObject;
-import org.openstack4j.model.storage.object.options.ObjectDeleteOptions;
-import org.openstack4j.model.storage.object.options.ObjectListOptions;
-import org.openstack4j.model.storage.object.options.ObjectLocation;
-import org.openstack4j.model.storage.object.options.ObjectPutOptions;
+import org.openstack4j.model.storage.object.options.*;
 import org.openstack4j.openstack.common.DLPayloadEntity;
 import org.openstack4j.openstack.common.functions.HeaderNameValuesToHeaderMap;
 import org.openstack4j.openstack.storage.object.domain.SwiftObjectImpl;
@@ -159,12 +156,22 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
      */
     @Override
     public String copy(ObjectLocation source, ObjectLocation dest) {
+        return copy(source, dest, ObjectCopyOptions.create());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String copy(ObjectLocation source, ObjectLocation dest, ObjectCopyOptions options) {
         checkNotNull(source);
         checkNotNull(dest);
+        checkNotNull(options);
 
         HttpResponse resp = put(Void.class, dest.getURI())
                 .header(X_COPY_FROM, source.getURI())
                 .header(CONTENT_LENGTH, 0)
+                .headers(options.getHeaders())
                 .executeWithResponse();
         try {
             return resp.header(ETAG);
