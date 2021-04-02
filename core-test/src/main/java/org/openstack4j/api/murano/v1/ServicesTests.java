@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.ByteStreams;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.murano.v1.domain.ActionInfo;
 import org.openstack4j.model.murano.v1.domain.Application;
 import org.openstack4j.model.murano.v1.domain.ServiceInfo;
+import org.openstack4j.util.IOUtil;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -30,7 +30,7 @@ public class ServicesTests extends AbstractTest {
 
     private String getResourceAsString(String path) throws IOException {
         InputStream is = getClass().getResourceAsStream(path);
-        return new String(ByteStreams.toByteArray(is));
+        return new String(IOUtil.readBytes(is));
     }
 
     public void testListServices() throws IOException {

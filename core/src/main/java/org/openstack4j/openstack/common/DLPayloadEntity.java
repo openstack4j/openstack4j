@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-import com.google.common.io.ByteStreams;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.common.DLPayload;
 
@@ -42,7 +41,11 @@ public class DLPayloadEntity implements DLPayload {
         Objects.requireNonNull(file);
         try (InputStream inputStream = response.getInputStream();
                 FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ByteStreams.copy(inputStream, fileOutputStream);
+            byte[] buf = new byte[8192];
+            int length;
+            while ((length = inputStream.read(buf)) > 0) {
+                fileOutputStream.write(buf, 0, length);
+            }
         }
     }
 

@@ -116,25 +116,15 @@ public class BaseOpenStackService {
         OSClientSession<?, ?> session = OSClientSession.getCurrent();
         if (session.getAuthVersion() == AuthVersion.V3) {
             SortedSet<? extends Service> services = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType());
-            Service service = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType()).first();
-
-            if (services.isEmpty()) {
-                return 1;
-            }
+            Service service = services.first();
 
             return service.getVersion();
-
         } else {
             SortedSet<? extends Access.Service> services = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType());
-            Access.Service service = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType()).first();
-
-            if (services.isEmpty()) {
-                return 1;
-            }
+            Access.Service service = services.first();
 
             return service.getVersion();
         }
-
     }
 
     protected <T> List<T> toList(T[] arr) {

@@ -9,11 +9,11 @@ import java.net.*;
 import java.net.Proxy.Type;
 import java.util.Map;
 
-import com.google.common.io.ByteStreams;
 import org.openstack4j.core.transport.Config;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
+import org.openstack4j.util.IOUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -100,7 +100,7 @@ public final class HttpCommand<R> {
 
         if (request.getEntity() != null) {
             if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
-                requestBody = ByteStreams.toByteArray((InputStream) request.getEntity());
+                requestBody = IOUtil.readBytes((InputStream) request.getEntity());
             } else {
                 String content = ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer().writeValueAsString(request.getEntity());
                 requestBody = content.getBytes();
@@ -144,7 +144,7 @@ public final class HttpCommand<R> {
         }
 
         if (is != null) {
-            return ByteStreams.toByteArray(is);
+            return IOUtil.readBytes(is);
         }
         return null;
     }
