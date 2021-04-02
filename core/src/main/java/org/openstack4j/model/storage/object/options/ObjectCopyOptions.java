@@ -4,7 +4,9 @@ import com.google.common.collect.Maps;
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
 
 import javax.annotation.Nullable;
+import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static org.openstack4j.model.storage.object.SwiftHeaders.CONTENT_TYPE;
 import static org.openstack4j.model.storage.object.SwiftHeaders.OBJECT_METADATA_PREFIX;
@@ -15,6 +17,8 @@ import static org.openstack4j.model.storage.object.SwiftHeaders.OBJECT_METADATA_
  * @author Lukas Alt
  */
 public class ObjectCopyOptions {
+
+    public static final ObjectCopyOptions NONE = new ObjectCopyOptions();
     private final Map<String, String> headers = Maps.newHashMap();
 
     private ObjectCopyOptions() {
@@ -72,6 +76,30 @@ public class ObjectCopyOptions {
         this.headers.put(key, value);
         return this;
     }
+
+    /**
+     * Sets a header which indicates when the copy should be deleted
+     * @param date The date after which the copy should be deleted
+     * @return ObjectCopyOptions
+     */
+    public ObjectCopyOptions deleteAt(Date date) {
+        return this.header("X-Delete-At", Long.toString(TimeUnit.MILLISECONDS.toSeconds(date.getTime())));
+    }
+
+    /**
+     * Sets an header which indicates after which period of time the copy should be deleted
+     * @param t the delay
+     * @param unit the unit of the delay
+     * @return ObjectCopyOptions
+     */
+    public ObjectCopyOptions deleteAfter(long t, TimeUnit unit) {
+        final long secs = unit.toSeconds(t);
+        if(secs < 1) {
+            throw new IllegalArgumentException("TTL has to be at least 1 seconds (" + t + " " + unit + ")");
+        }
+        return this.header("X-Delete-After", Long.toString(secs));
+    }
+
 
     public Map<String, String> getHeaders() {
         return headers;

@@ -156,7 +156,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
      */
     @Override
     public String copy(ObjectLocation source, ObjectLocation dest) {
-        return copy(source, dest, ObjectCopyOptions.create());
+        return copy(source, dest, ObjectCopyOptions.NONE);
     }
 
     /**
