@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.google.common.base.CaseFormat;
 import org.openstack4j.model.ModelEntity;
 
 public interface VolumeBackup extends ModelEntity {
@@ -80,14 +79,13 @@ public interface VolumeBackup extends ModelEntity {
     /**
      * The volume backup Status
      */
-
-    public enum Status {
+    enum Status {
         AVAILABLE, CREATING, DELETING, ERROR, ERROR_RESTORING, RESTORING, UNRECOGNIZED;
 
         @JsonCreator
         public static Status fromValue(String status) {
             try {
-                return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, Objects.requireNonNull(status, "status")));
+                return valueOf(Objects.requireNonNull(status, "migrationStatus").toUpperCase().replace('-', '_'));
             } catch (IllegalArgumentException e) {
                 return UNRECOGNIZED;
             }
@@ -95,7 +93,7 @@ public interface VolumeBackup extends ModelEntity {
 
         @JsonValue
         public String value() {
-            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, name());
+            return name().toLowerCase().replace('_', '-');
         }
 
         @Override

@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.google.common.base.CaseFormat;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.storage.block.builder.VolumeBuilder;
@@ -130,13 +129,13 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
     /**
      * The current Volume Status
      */
-    public enum Status {
+    enum Status {
         AVAILABLE, ATTACHING, BACKING_UP, CREATING, DELETING, DOWNLOADING, UPLOADING, ERROR, ERROR_DELETING, ERROR_RESTORING, IN_USE, RESTORING_BACKUP, DETACHING, UNRECOGNIZED;
 
         @JsonCreator
         public static Status fromValue(String status) {
             try {
-                return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, Objects.requireNonNull(status, "status")));
+                return valueOf(Objects.requireNonNull(status, "migrationStatus").toUpperCase().replace('-', '_'));
             } catch (IllegalArgumentException e) {
                 return UNRECOGNIZED;
             }
@@ -144,7 +143,7 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
 
         @JsonValue
         public String value() {
-            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, name());
+            return name().toLowerCase().replace('_', '-');
         }
 
         @Override
@@ -153,24 +152,23 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
         }
     }
 
-    public enum MigrationStatus {
+    enum MigrationStatus {
         NONE, MIGRATING;
 
         @JsonCreator
         public static MigrationStatus fromValue(String migrationStatus) {
-            if (migrationStatus != null) {
-                try {
-                    return valueOf(CaseFormat.LOWER_HYPHEN.to(CaseFormat.UPPER_UNDERSCORE, Objects.requireNonNull(migrationStatus, "migrationStatus")));
-                } catch (IllegalArgumentException e) {
-                    LoggerFactory.getLogger(MigrationStatus.class).error(e.getMessage(), e);
-                }
+            try {
+                return valueOf(Objects.requireNonNull(migrationStatus, "migrationStatus").toUpperCase().replace('-', '_'));
+            } catch (IllegalArgumentException e) {
+                LoggerFactory.getLogger(MigrationStatus.class).error(e.getMessage(), e);
             }
+
             return NONE;
         }
 
         @JsonValue
         public String value() {
-            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, name());
+            return name().toLowerCase().replace('_', '-');
         }
 
         @Override

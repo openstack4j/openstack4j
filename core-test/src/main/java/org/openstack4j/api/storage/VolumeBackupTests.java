@@ -13,7 +13,12 @@ import org.openstack4j.model.storage.block.VolumeBackupCreate;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
+import static org.openstack4j.model.storage.block.VolumeBackup.Status.CREATING;
+import static org.openstack4j.model.storage.block.VolumeBackup.Status.ERROR_RESTORING;
+import static org.openstack4j.model.storage.block.VolumeBackup.Status.UNRECOGNIZED;
+import static org.openstack4j.model.storage.block.VolumeBackup.Status.fromValue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -200,4 +205,14 @@ public class VolumeBackupTests extends AbstractTest {
 
     }
 
+    @Test
+    public void statusFromValue() {
+        assertEquals(UNRECOGNIZED, fromValue("foo"));
+        assertEquals(CREATING, fromValue("creating"));
+        assertEquals(ERROR_RESTORING, fromValue("error-restoring"));
+
+        assertEquals("unrecognized", UNRECOGNIZED.value());
+        assertEquals("creating", CREATING.value());
+        assertEquals("error-restoring", ERROR_RESTORING.value());
+    }
 }

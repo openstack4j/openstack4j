@@ -12,6 +12,11 @@ import org.openstack4j.model.storage.block.VolumeAttachment;
 import org.openstack4j.model.storage.block.builder.VolumeBuilder;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.*;
+import static org.openstack4j.model.storage.block.Volume.Status.ERROR;
+import static org.openstack4j.model.storage.block.Volume.Status.IN_USE;
+import static org.openstack4j.model.storage.block.Volume.Status.UNRECOGNIZED;
+import static org.openstack4j.model.storage.block.Volume.Status.fromValue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -160,5 +165,26 @@ public class VolumeTests extends AbstractTest {
 
         assertEquals(volume.getSize(), 10);
         assertEquals(volume.multiattach(), Boolean.TRUE);
+    }
+
+    @Test
+    public void statusFromValue() {
+        assertEquals(Volume.Status.UNRECOGNIZED, Volume.Status.fromValue("foo"));
+        assertEquals(Volume.Status.ERROR, Volume.Status.fromValue("error"));
+        assertEquals(Volume.Status.IN_USE, Volume.Status.fromValue("in-use"));
+
+        assertEquals("unrecognized", Volume.Status.UNRECOGNIZED.value());
+        assertEquals("error", Volume.Status.ERROR.value());
+        assertEquals("in-use", Volume.Status.IN_USE.value());
+    }
+
+    @Test
+    public void migrationStatusFromValue() {
+        assertEquals(Volume.MigrationStatus.NONE, Volume.MigrationStatus.fromValue("foo"));
+        assertEquals(Volume.MigrationStatus.NONE, Volume.MigrationStatus.fromValue("none"));
+        assertEquals(Volume.MigrationStatus.MIGRATING, Volume.MigrationStatus.fromValue("migrating"));
+
+        assertEquals("none", Volume.MigrationStatus.NONE.value());
+        assertEquals("migrating", Volume.MigrationStatus.MIGRATING.value());
     }
 }
