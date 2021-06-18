@@ -28,6 +28,7 @@ import org.openstack4j.api.murano.v1.AppCatalogService;
 import org.openstack4j.api.networking.NetworkingService;
 import org.openstack4j.api.networking.ext.ServiceFunctionChainService;
 import org.openstack4j.api.octavia.OctaviaService;
+import org.openstack4j.api.placement.PlacementService;
 import org.openstack4j.api.sahara.SaharaService;
 import org.openstack4j.api.senlin.SenlinService;
 import org.openstack4j.api.storage.BlockStorageService;
@@ -123,6 +124,13 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
      */
     public NetworkingService networking() {
         return Apis.getNetworkingServices();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public PlacementService placement() {
+        return Apis.getPlacementServices();
     }
 
     /**
@@ -292,6 +300,13 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
      */
     public boolean supportsNetwork() {
         return getSupportedServices().contains(ServiceType.NETWORK);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean supportsPlacement() {
+        return getSupportedServices().contains(ServiceType.PLACEMENT);
     }
 
     /**

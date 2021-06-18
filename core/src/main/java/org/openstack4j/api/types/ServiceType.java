@@ -12,6 +12,7 @@ public enum ServiceType {
     OBJECT_STORAGE("object-store", "object-store"),
     NETWORK("neutron", "network"),
     OCTAVIA("octavia", "load-balancer"),
+    PLACEMENT("placement", "placement"),
     EC2("ec2", "ec2"),
     TELEMETRY("ceilometer", "metering"),
     TELEMETRY_AODH("aodh", "alarming"),

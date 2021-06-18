@@ -30,6 +30,8 @@ import org.openstack4j.api.murano.v1.*;
 import org.openstack4j.api.networking.*;
 import org.openstack4j.api.networking.ext.*;
 import org.openstack4j.api.octavia.OctaviaService;
+import org.openstack4j.api.placement.PlacementService;
+import org.openstack4j.api.placement.ext.ResourceProviderService;
 import org.openstack4j.api.sahara.*;
 import org.openstack4j.api.senlin.*;
 import org.openstack4j.api.storage.*;
@@ -114,6 +116,8 @@ public class DefaultAPIProvider implements APIProvider {
         bind(QuotaSetService.class, QuotaSetServiceImpl.class);
         bind(HostService.class, HostServiceImpl.class);
         bind(NetworkingService.class, NetworkingServiceImpl.class);
+        bind(PlacementService.class, PlacementServiceImpl.class);
+        bind(ResourceProviderService.class, ResourceProviderServiceImpl.class);
         bind(NetworkService.class, NetworkServiceImpl.class);
         bind(ServiceFunctionChainService.class, ServiceFunctionChainServiceImpl.class);
         bind(FlowClassifierService.class, FlowClassifierServiceImpl.class);
