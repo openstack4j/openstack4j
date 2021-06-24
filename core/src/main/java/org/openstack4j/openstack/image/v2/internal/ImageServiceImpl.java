@@ -22,6 +22,7 @@ import org.openstack4j.model.image.v2.CachedImage;
 import org.openstack4j.model.image.v2.Image;
 import org.openstack4j.model.image.v2.ImageUpdate;
 import org.openstack4j.model.image.v2.Member;
+import org.openstack4j.openstack.common.FileUploadProgressListener;
 import org.openstack4j.openstack.image.v2.domain.CachedGlanceImage.CachedImages;
 import org.openstack4j.openstack.image.v2.domain.GlanceImage;
 import org.openstack4j.openstack.image.v2.domain.GlanceImageUpdate;
@@ -160,6 +161,20 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
         checkNotNull(imageId);
         checkNotNull(payload);
         return put(ActionResponse.class, uri("/images/%s/file", imageId)).header(HEADER_CONTENT_TYPE, CONTENT_TYPE_OCTECT_STREAM).entity(payload).execute();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ActionResponse upload(String imageId, Payload<?> payload, @Nullable Image image, int bufferSize,
+        FileUploadProgressListener listener)
+    {
+        checkNotNull(imageId);
+        checkNotNull(payload);
+        return put(ActionResponse.class, uri("/images/%s/file", imageId))
+            .header(HEADER_CONTENT_TYPE, CONTENT_TYPE_OCTECT_STREAM).entity(payload)
+            .fileUploadProgressListener(listener).bufferSize(bufferSize).execute();
     }
 
     /**

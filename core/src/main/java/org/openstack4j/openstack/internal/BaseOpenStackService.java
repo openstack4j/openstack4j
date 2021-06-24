@@ -16,6 +16,7 @@ import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.identity.AuthVersion;
 import org.openstack4j.model.identity.v2.Access;
 import org.openstack4j.model.identity.v3.Service;
+import org.openstack4j.openstack.common.FileUploadProgressListener;
 
 import static org.openstack4j.core.transport.ClientConstants.HEADER_USER_AGENT;
 import static org.openstack4j.core.transport.ClientConstants.USER_AGENT;
@@ -229,6 +230,18 @@ public class BaseOpenStackService {
             return this;
         }
 
+        public Invocation<R> fileUploadProgressListener(FileUploadProgressListener fileUploadProgressListener)
+        {
+            req.fileUploadProgressListener(fileUploadProgressListener);
+            return this;
+        }
+
+        public Invocation<R> bufferSize(int bufferSize)
+        {
+            req.bufferSize(bufferSize);
+            return this;
+        }
+        
         public Invocation<R> header(String name, Object value) {
             req.header(name, value);
             return this;
