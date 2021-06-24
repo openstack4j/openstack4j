@@ -8,6 +8,7 @@ import org.openstack4j.model.compute.Limits;
 import org.openstack4j.model.compute.QuotaSet;
 import org.openstack4j.model.compute.QuotaSetUpdate;
 import org.openstack4j.model.compute.SimpleTenantUsage;
+import org.openstack4j.model.compute.ComputeQuotaDetail;
 
 /**
  * OpenStack Quota-Set Operation API
@@ -32,6 +33,14 @@ public interface QuotaSetService extends RestService {
      * @return the quota set
      */
     QuotaSet get(String tenantId, String userId);
+
+    /**
+     * Gets the QuotaSetDetail for the given tenant ID
+     *
+     * @param tenantId the tenant id
+     * @return the quota set detail
+     */
+    ComputeQuotaDetail getDetail(String tenantId);
 
     /**
      * Updates quota for a specified class

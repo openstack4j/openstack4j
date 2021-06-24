@@ -7,12 +7,14 @@ import org.openstack4j.model.compute.Limits;
 import org.openstack4j.model.compute.QuotaSet;
 import org.openstack4j.model.compute.QuotaSetUpdate;
 import org.openstack4j.model.compute.SimpleTenantUsage;
+import org.openstack4j.model.compute.ComputeQuotaDetail;
 import org.openstack4j.openstack.compute.domain.NovaLimits;
 import org.openstack4j.openstack.compute.domain.NovaQuotaSet;
+import org.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage;
+import org.openstack4j.openstack.compute.domain.NovaComputeQuotaDetail;
 import org.openstack4j.openstack.compute.domain.NovaQuotaSet.NovaQuotaSetClass;
 import org.openstack4j.openstack.compute.domain.NovaQuotaSetUpdate.NovaQuotaSetUpdateClass;
 import org.openstack4j.openstack.compute.domain.NovaQuotaSetUpdate.NovaQuotaSetUpdateTenant;
-import org.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage;
 import org.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage.NovaSimpleTenantUsages;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -30,6 +32,17 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
     @Override
     public QuotaSet get(String tenantId) {
         return get(tenantId, null);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @return
+     */
+    @Override
+    public ComputeQuotaDetail getDetail(String tenantId) {
+        checkNotNull(tenantId);
+        String uri = uri("/os-quota-sets/%s/detail", tenantId);
+        return get(NovaComputeQuotaDetail.class, uri).execute();
     }
 
     /**
