@@ -1,8 +1,10 @@
 package org.openstack4j.model.storage.object.options;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.google.common.collect.Maps;
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
@@ -82,6 +84,42 @@ public final class ObjectPutOptions {
             queryParams.put(key, list);
         }
         return this;
+    }
+
+
+    /**
+     * Sets the specified header
+     * @param key The key of the header
+     * @param value The value of the header
+     * @return ObjectPutOptions
+     */
+    public ObjectPutOptions header(String key, String value) {
+        this.headers.put(key, value);
+        return this;
+    }
+
+
+    /**
+     * Sets a header which indicates when the copy should be deleted
+     * @param date The date after which the copy should be deleted
+     * @return ObjectPutOptions
+     */
+    public ObjectPutOptions deleteAt(Date date) {
+        return this.header("X-Delete-At", Long.toString(TimeUnit.MILLISECONDS.toSeconds(date.getTime())));
+    }
+
+    /**
+     * Sets an header which indicates after which period of time the copy should be deleted
+     * @param t the delay
+     * @param unit the unit of the delay
+     * @return ObjectPutOptions
+     */
+    public ObjectPutOptions deleteAfter(long t, TimeUnit unit) {
+        final long secs = unit.toSeconds(t);
+        if(secs < 1) {
+            throw new IllegalArgumentException("TTL has to be at least 1 seconds (" + t + " " + unit + ")");
+        }
+        return this.header("X-Delete-After", Long.toString(secs));
     }
 
     public Map<String, List<Object>> getQueryParams() {
