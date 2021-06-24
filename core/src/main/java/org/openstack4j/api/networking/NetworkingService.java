@@ -21,6 +21,11 @@ public interface NetworkingService extends RestService {
     SubnetService subnet();
 
     /**
+     * @return the Subnet Service API
+     */
+    SubnetPoolService subnetPool();
+
+    /**
      * @return the Port Service API
      */
     PortService port();
