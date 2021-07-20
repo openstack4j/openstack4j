@@ -129,13 +129,8 @@ public class HttpResponseImpl implements HttpResponse {
             // Normal case if the response has no content, e.g. for a HEAD request
             return null;
         }
-        try {
-            InputStream content = checkNotNull(entity.getContent(), "Entity content should not be null.");
-            return ObjectMapperSingleton.getContext(typeToReadAs).readerFor(typeToReadAs).readValue(content);
-        } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            throw new ClientResponseException(e.getMessage(), 0, e);
-        }
+        InputStream content = checkNotNull(entity.getContent(), "Entity content should not be null.");
+        return ObjectMapperSingleton.getContext(typeToReadAs).readerFor(typeToReadAs).readValue(content);
     }
 
     @Override
