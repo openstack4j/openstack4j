@@ -64,6 +64,8 @@ import org.openstack4j.openstack.murano.v1.internal.*;
 import org.openstack4j.openstack.networking.internal.*;
 import org.openstack4j.openstack.networking.internal.ext.*;
 import org.openstack4j.openstack.octavia.internal.OctaviaServiceImpl;
+import org.openstack4j.openstack.placement.internal.PlacementServiceImpl;
+import org.openstack4j.openstack.placement.internal.ext.ResourceProviderServiceImpl;
 import org.openstack4j.openstack.sahara.internal.*;
 import org.openstack4j.openstack.senlin.internal.*;
 import org.openstack4j.openstack.storage.block.internal.*;
