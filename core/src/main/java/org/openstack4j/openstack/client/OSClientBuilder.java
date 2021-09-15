@@ -176,7 +176,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
                 }
             // credential based authentication
             if (user != null && user.length() > 0)
-                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope), endpoint, perspective, config, provider);
+                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope, passcode), endpoint, perspective, config, provider);
             // Use tokenless auth finally
             return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(scope, Auth.Type.TOKENLESS), endpoint, perspective, config, provider);
         }
