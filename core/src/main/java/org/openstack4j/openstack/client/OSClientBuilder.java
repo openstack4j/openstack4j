@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.client;
 
+import jdk.internal.joptsimple.internal.Strings;
 import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.client.CloudProvider;
@@ -168,15 +169,23 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         @Override
         public OSClientV3 authenticate() throws AuthenticationException {
             // token based authentication
-            if (tokenId != null && tokenId.length() > 0)
+            if (!Strings.isNullOrEmpty(tokenId))
                 if (scope != null) {
                     return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId, scope), endpoint, perspective, config, provider);
                 } else {
                     return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId), endpoint, perspective, config, provider);
                 }
             // credential based authentication
-            if (user != null && user.length() > 0)
-                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope, passcode), endpoint, perspective, config, provider);
+            if (!Strings.isNullOrEmpty(user)) {
+                KeystoneAuth keystoneAuth;
+                if (Strings.isNullOrEmpty(passcode)) {
+                    keystoneAuth = new KeystoneAuth(user, password, domain, scope);
+                } else {
+                    //with totp multifactor authentication
+                    keystoneAuth = new KeystoneAuth(user, password, domain, scope, passcode);
+                }
+                return (OSClientV3) OSAuthenticator.invoke(keystoneAuth, endpoint, perspective, config, provider);
+            }
             // Use tokenless auth finally
             return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(scope, Auth.Type.TOKENLESS), endpoint, perspective, config, provider);
         }
