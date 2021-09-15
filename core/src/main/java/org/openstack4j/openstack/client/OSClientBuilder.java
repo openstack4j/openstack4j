@@ -130,6 +130,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         Identifier domain;
         AuthScope scope;
         String tokenId;
+        String passcode;
 
         @Override
         public ClientV3 domainName(String domainName) {
@@ -145,9 +146,16 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
 
         @Override
         public ClientV3 credentials(String user, String password, Identifier domain) {
+            credentials(user, password, domain, null);
+            return this;
+        }
+
+        @Override
+        public ClientV3 credentials(String user, String password, Identifier domain, String passcode) {
             this.user = user;
             this.password = password;
             this.domain = domain;
+            this.passcode = passcode;
             return this;
         }
 
