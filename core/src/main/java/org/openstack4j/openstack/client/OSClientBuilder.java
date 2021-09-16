@@ -1,6 +1,5 @@
 package org.openstack4j.openstack.client;
 
-import jdk.internal.joptsimple.internal.Strings;
 import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.api.client.CloudProvider;
@@ -169,16 +168,16 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         @Override
         public OSClientV3 authenticate() throws AuthenticationException {
             // token based authentication
-            if (!Strings.isNullOrEmpty(tokenId))
+            if (tokenId != null && tokenId.length() > 0)
                 if (scope != null) {
                     return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId, scope), endpoint, perspective, config, provider);
                 } else {
                     return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId), endpoint, perspective, config, provider);
                 }
             // credential based authentication
-            if (!Strings.isNullOrEmpty(user)) {
+            if (user != null && user.length() > 0) {
                 KeystoneAuth keystoneAuth;
-                if (Strings.isNullOrEmpty(passcode)) {
+                if (passcode == null || passcode.isEmpty()) {
                     keystoneAuth = new KeystoneAuth(user, password, domain, scope);
                 } else {
                     //with totp multifactor authentication
