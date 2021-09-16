@@ -2,7 +2,6 @@ package org.openstack4j.api.identity.v3;
 
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.OSClient.OSClientV3;
@@ -162,7 +161,6 @@ public class KeystoneAuthenticationTests extends AbstractTest {
                 .scopeToProject(Identifier.byId(PROJECT_ID))
                 .authenticate());
 
-        System.out.println(new ObjectMapper().writer().writeValueAsString(osv3));
         assertEquals(osv3.getToken().getVersion(), AuthVersion.V3);
         assertEquals(osv3.getToken().getUser().getId(), USER_ID);
         assertEquals(osv3.getToken().getProject().getId(), PROJECT_ID);
