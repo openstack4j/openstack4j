@@ -1,12 +1,11 @@
 package org.openstack4j.api
 
 import groovy.util.logging.Slf4j
+import java.nio.file.Paths
 import org.openstack4j.core.transport.Config
 import org.openstack4j.core.transport.ProxyHost
 import org.openstack4j.core.transport.internal.HttpExecutor
 import spock.lang.Specification
-
-import java.nio.file.Paths
 
 @Slf4j
 abstract class AbstractSpec extends Specification {
@@ -22,6 +21,8 @@ abstract class AbstractSpec extends Specification {
     def static String USER_ID = System.getenv('OS_USER_ID') ?: '71a7dcb0d60a43088a6c8e9b69a39e69'
     def static String USER_NAME = System.getenv('OS_USERNAME') ?: 'admin'
     def static String USER_DOMAIN_ID = System.getenv('OS_USER_DOMAIN_ID') ?: DOMAIN_ID
+    def static String USER_TOTP_SECRET = System.getenv('OS_USER_TOTP_SECRET')
+    def static String USER_TOTP_PASSCODE = System.getenv('OS_USER_TOTP_PASSCODE') ?: '123456'
     def static String AUTH_URL = System.getenv('OS_AUTH_URL') ?: 'http://devstack.openstack.stack:5000/v3'
     def static String PASSWORD = System.getenv('OS_PASSWORD') ?: 'devstack'
     def static String PROJECT_ID = System.getenv('OS_PROJECT_ID') ?: '194dfdddb6bc43e09701035b52edb0d9'
