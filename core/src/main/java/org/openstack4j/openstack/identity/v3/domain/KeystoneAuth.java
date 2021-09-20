@@ -147,7 +147,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
         static AuthIdentity createMfaCredentialType(String username, String password, Identifier domain, String passcode) {
             AuthIdentity identity = new AuthIdentity();
             identity.password = new AuthPassword(username, password, domain);
-            identity.totp = new AuthTotp(username, passcode);
+            identity.totp = new AuthTotp(username, passcode, domain);
             identity.methods.addAll(Arrays.asList("password", "totp"));
             return identity;
         }
@@ -243,12 +243,13 @@ public class KeystoneAuth implements Authentication, AuthStore {
                     return password;
                 }
 
-                public static final class AuthDomain extends BasicResourceEntity implements Domain {
-
-                    private static final long serialVersionUID = -2351227462530931791L;
-
-                }
             }
+        }
+
+        public static final class AuthDomain extends BasicResourceEntity implements Domain {
+
+            private static final long serialVersionUID = -2351227462530931791L;
+
         }
 
         public static final class AuthTotp extends BasicResourceEntity implements Totp {
@@ -260,8 +261,8 @@ public class KeystoneAuth implements Authentication, AuthStore {
             public AuthTotp() {
             }
 
-            public AuthTotp(String username, String passcode) {
-                this.user = new AuthTotpUser(username, passcode);
+            public AuthTotp(String username, String passcode, Identifier domainIdentifier) {
+                this.user = new AuthTotpUser(username, passcode, domainIdentifier);
             }
 
             @Override
@@ -271,18 +272,32 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
             public static final class AuthTotpUser extends BasicResourceEntity implements Totp.User {
                 private String passcode;
+                private AuthDomain domain;
 
                 public AuthTotpUser() {
                 }
 
-                public AuthTotpUser(String id, String passcode) {
-                    setId(id);
+                public AuthTotpUser(String username, String passcode, Identifier domainIdentifier) {
                     this.passcode = passcode;
+                    if (domainIdentifier != null) {
+                        domain = new AuthDomain();
+                        if (domainIdentifier.isTypeID())
+                            domain.setId(domainIdentifier.getId());
+                        else
+                            domain.setName(domainIdentifier.getId());
+                        setName(username);
+                    } else
+                        setId(username);
                 }
 
                 @Override
                 public String getPasscode() {
                     return passcode;
+                }
+
+                @Override
+                public Domain getDomain() {
+                    return domain;
                 }
             }
         }

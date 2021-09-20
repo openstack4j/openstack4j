@@ -30,10 +30,10 @@ public interface Authentication extends ModelEntity {
                 Domain getDomain();
 
                 String getPassword();
-
-                public interface Domain extends ResourceEntity {
-                }
             }
+        }
+
+        public interface Domain extends ResourceEntity {
         }
 
         public interface Totp {
@@ -43,6 +43,8 @@ public interface Authentication extends ModelEntity {
             public interface User extends ResourceEntity {
 
                 String getPasscode();
+
+                Domain getDomain();
             }
         }
 

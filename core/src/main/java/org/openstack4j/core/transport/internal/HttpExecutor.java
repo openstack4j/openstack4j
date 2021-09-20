@@ -3,6 +3,8 @@ package org.openstack4j.core.transport.internal;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openstack4j.api.exceptions.ConnectorNotFoundException;
 import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.core.transport.HttpExecutorService;
@@ -48,11 +50,21 @@ public class HttpExecutor {
      * Delegate to {@link HttpExecutorService#execute(HttpRequest)}
      */
     public <R> HttpResponse execute(HttpRequest<R> request) {
-
-        LOG.debug("Executing Request: {} {}", request.getMethod(), request.getUrl());
+        LOG.info("Executing Request: {} {}", request.getMethod(), request.getUrl());
+        if (request.hasJson()) {
+            LOG.info("Request json Content: {}", request.getJson());
+        } else {
+            try {
+                LOG.info("Request entity Content: {}", new ObjectMapper().writer().writeValueAsString(request.getEntity()));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+        LOG.info("Request Headers {}", request.getHeaders());
         try {
             return service().execute(request);
         } catch (ResponseException ex) {
+            ex.printStackTrace();
             ex.setRequestInfo(request);
             throw ex;
         }
