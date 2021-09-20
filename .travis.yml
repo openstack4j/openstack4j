@@ -25,10 +25,11 @@ script:
         set -x
         # TRAVIS_BRANCH is name of the branch built OR the name of the target branch in case of PRs
         if [ "$TRAVIS_BRANCH" == "master" -a -z "$TRAVIS_PULL_REQUEST_BRANCH" ]; then
-          echo "Run sonar analysis for master only"
+          echo "Run jacoco analysis for master only"
           jacoco_goal="org.jacoco:jacoco-maven-plugin:prepare-agent"
-          sonar_goal="org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar"
-          sonar_opts="-Dsonar.projectKey=openstack4j_openstack4j"
+          # disable sonar due to java 11 requirement
+          # sonar_goal="org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar"
+          # sonar_opts="-Dsonar.projectKey=openstack4j_openstack4j"
         else
           echo "Skipping sonar analysis"
         fi
