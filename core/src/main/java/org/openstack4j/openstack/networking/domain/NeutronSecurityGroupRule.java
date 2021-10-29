@@ -49,6 +49,9 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
     @JsonProperty("remote_group_id")
     private String remoteGroupId;
 
+    @JsonProperty("description")
+    private String description;
+
     public static NetSecurityGroupRuleBuilder builder() {
         return new SecurityGroupRuleConcreteBuilder();
     }
@@ -140,6 +143,13 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
     public String getSecurityGroupId() {
         return this.securityGroupId;
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDescription() {
+        return this.description;
+    }
 
     /**
      * {@inheritDoc}
@@ -156,6 +166,7 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
                 .add("protocol", protocol)
                 .add("remoteGroup", remoteGroupId)
                 .add("remoteIpPrefix", remoteIpPrefix)
+                .add("description", description)
                 .addValue("\n")
                 .toString();
     }
@@ -166,7 +177,7 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
     @Override
     public int hashCode() {
         return java.util.Objects.hash(id, tenantId, securityGroupId, direction, etherType,
-                portRangeMin, portRangeMax, protocol, remoteGroupId, remoteIpPrefix);
+                portRangeMin, portRangeMax, protocol, remoteGroupId, remoteIpPrefix, description);
     }
 
     /**
@@ -189,7 +200,8 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
                     java.util.Objects.equals(portRangeMax, that.portRangeMax) &&
                     java.util.Objects.equals(protocol, that.protocol) &&
                     java.util.Objects.equals(remoteGroupId, that.remoteGroupId) &&
-                    java.util.Objects.equals(remoteIpPrefix, that.remoteIpPrefix)) {
+                    java.util.Objects.equals(remoteIpPrefix, that.remoteIpPrefix) &&
+                    java.util.Objects.equals(description, that.description)) {
                 return true;
             }
         }
@@ -346,6 +358,15 @@ public class NeutronSecurityGroupRule implements SecurityGroupRule {
         @Override
         public NetSecurityGroupRuleBuilder remoteIpPrefix(String prefix) {
             r.remoteIpPrefix = prefix;
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public NetSecurityGroupRuleBuilder description(String description) {
+            r.description = description;
             return this;
         }
     }

@@ -31,7 +31,7 @@ public interface NetSecurityGroupRuleBuilder extends Builder<NetSecurityGroupRul
     NetSecurityGroupRuleBuilder direction(String direction);
 
     /**
-     * @see SecurityGroupRule#getEthertype()
+     * @see SecurityGroupRule#getEtherType()
      */
     NetSecurityGroupRuleBuilder ethertype(String ethertype);
 
@@ -59,5 +59,9 @@ public interface NetSecurityGroupRuleBuilder extends Builder<NetSecurityGroupRul
      * @see SecurityGroupRule#getRemoteIpPrefix()
      */
     NetSecurityGroupRuleBuilder remoteIpPrefix(String prefix);
+    /**
+     * @see SecurityGroupRule#getDescription()
+     */
+    NetSecurityGroupRuleBuilder description(String description);
 
 }
