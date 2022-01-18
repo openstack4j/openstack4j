@@ -72,6 +72,9 @@ public class NeutronPort implements Port {
     @JsonProperty("port_security_enabled")
     private Boolean portSecurityEnabled;
 
+    @JsonProperty("propagate_uplink_status")
+    private Boolean propagateUplinkStatus;
+
     @JsonProperty("binding:host_id")
     private String hostId;
 
@@ -323,9 +326,12 @@ public class NeutronPort implements Port {
     public Boolean isPortSecurityEnabled() {
         return portSecurityEnabled;
     }
+    
+    public Boolean isPropagateUplinkStatus() {
+		return propagateUplinkStatus;
+	}
 
-
-    /**
+	/**
      * {@inheritDoc}
      */
     @Override
@@ -336,9 +342,9 @@ public class NeutronPort implements Port {
                 .add("deviceOwner", deviceOwner).add("fixedIps", fixedIps).add("macAddress", macAddress)
                 .add("networkId", networkId).add("tenantId", tenantId).add("securityGroups", securityGroups)
                 .add("allowed_address_pairs", allowedAddressPairs).add("port_security_enabled ", portSecurityEnabled)
-                .add("binding:host_id", hostId).add("binding:vif_type", vifType).add("binding:vif_details", vifDetails)
-                .add("binding:vnic_type", vNicType).add("binding:profile", profile)
-                .add("created_at", createdTime).add("updated_at", updatedTime)
+                .add("propagate_uplink_status ", propagateUplinkStatus).add("binding:host_id", hostId)
+                .add("binding:vif_type", vifType).add("binding:vif_details", vifDetails).add("binding:vnic_type", vNicType)
+                .add("binding:profile", profile).add("created_at", createdTime).add("updated_at", updatedTime)
                 .toString();
     }
 
@@ -349,7 +355,7 @@ public class NeutronPort implements Port {
     public int hashCode() {
         return java.util.Objects.hash(id, name, adminStateUp, deviceId,
                 deviceOwner, fixedIps, macAddress, networkId, tenantId,
-                securityGroups, allowedAddressPairs, portSecurityEnabled, hostId,
+                securityGroups, allowedAddressPairs, portSecurityEnabled, propagateUplinkStatus, hostId,
                 vifType, vifDetails, vNicType, profile, createdTime, updatedTime);
     }
 
@@ -376,6 +382,7 @@ public class NeutronPort implements Port {
                     java.util.Objects.equals(securityGroups, that.securityGroups) &&
                     java.util.Objects.equals(allowedAddressPairs, that.allowedAddressPairs) &&
                     java.util.Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
+                    java.util.Objects.equals(propagateUplinkStatus , that.propagateUplinkStatus) &&
                     java.util.Objects.equals(hostId, that.hostId) &&
                     java.util.Objects.equals(vifType, that.vifType) &&
                     java.util.Objects.equals(vifDetails, that.vifDetails) &&
@@ -547,6 +554,12 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder portSecurityEnabled(Boolean portSecurityEnabled) {
             m.portSecurityEnabled = portSecurityEnabled;
+            return this;
+        }
+        
+        @Override
+        public PortBuilder propagateUplinkStatus(Boolean propagateUplinkStatus) {
+            m.propagateUplinkStatus = propagateUplinkStatus;
             return this;
         }
 

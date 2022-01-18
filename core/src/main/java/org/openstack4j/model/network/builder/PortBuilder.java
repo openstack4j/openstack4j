@@ -128,6 +128,8 @@ public interface PortBuilder extends Builder<PortBuilder, Port> {
     PortBuilder securityGroup(String groupName);
 
     PortBuilder portSecurityEnabled(Boolean portSecurityEnabled);
+    
+    PortBuilder propagateUplinkStatus(Boolean propagateUplinkStatus);
 
     PortBuilder hostId(String hostId);
 

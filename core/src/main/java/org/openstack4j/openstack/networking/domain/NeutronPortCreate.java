@@ -54,6 +54,9 @@ public class NeutronPortCreate implements ModelEntity {
 
     @JsonProperty("port_security_enabled")
     private Boolean portSecurityEnabled;
+    
+    @JsonProperty("propagate_uplink_status")
+    private Boolean propagateUplinkStatus;
 
     @JsonProperty("binding:host_id")
     private String hostId;
@@ -94,6 +97,7 @@ public class NeutronPortCreate implements ModelEntity {
         c.fixedIps = (Set<NeutronIP>) port.getFixedIps();
         c.allowedAddressPairs = (Set<NeutronAllowedAddressPair>) port.getAllowedAddressPairs();
         c.portSecurityEnabled = port.isPortSecurityEnabled();
+        c.propagateUplinkStatus = port.isPropagateUplinkStatus();
         c.hostId = port.getHostId();
         c.vifType = port.getVifType();
         c.vifDetails = port.getVifDetails();
