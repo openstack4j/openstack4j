@@ -13,6 +13,8 @@ import org.openstack4j.model.storage.block.VolumeType;
 import org.openstack4j.model.storage.block.VolumeTypeEncryption;
 import org.openstack4j.model.storage.block.VolumeUploadImage;
 import org.openstack4j.model.storage.block.options.UploadImageData;
+import org.openstack4j.openstack.common.MapEntity;
+import org.openstack4j.openstack.common.Metadata;
 import org.openstack4j.openstack.storage.block.domain.*;
 import org.openstack4j.openstack.storage.block.domain.CinderVolume.Volumes;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeType.VolumeTypes;
@@ -148,6 +150,45 @@ public class BlockVolumeServiceImpl extends BaseBlockStorageServices implements 
                 .entity(Builders.volume().name(name).description(description).build())
                 .execute();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+	public ActionResponse updateMetadata(String volumeId, Map<String, String> metadata) {
+		checkNotNull(volumeId);
+		if (metadata == null)
+			return ActionResponse.actionFailed("Metadata is required", 412);
+
+		return put(ActionResponse.class, uri("/volumes/%s/metadata", volumeId))
+				.entity(Metadata.toMetadata(metadata))
+				.execute();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+	public ActionResponse updateMetadata(String volumeId, String key, String value) {
+		checkNotNull(volumeId);
+		if (key == null || null == value)
+			return ActionResponse.actionFailed("Key and Value are both required", 412);
+
+		return put(ActionResponse.class, uri("/volumes/%s/metadata/%s", volumeId, key))
+				.entity(MapEntity.create("meta", MapEntity.create(key, value))).execute();
+	}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+	public ActionResponse deleteMetadata(String volumeId, String key) {
+		checkNotNull(volumeId);
+		if (key == null)
+			return ActionResponse.actionFailed("Key is required", 412);
+
+		return delete(ActionResponse.class, uri("/volumes/%s/metadata/%s", volumeId, key)).execute();
+	}
 
     /**
      * {@inheritDoc}
