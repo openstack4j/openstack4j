@@ -21,7 +21,7 @@ import org.openstack4j.model.image.v2.Member;
 public interface ImageService extends RestService {
 
     /**
-     * List all available operating system images
+     * Returns list of public VM images filtered by parameters when the result greater than the default page size defined by openstack
      *
      * @return list of images
      */
@@ -36,6 +36,13 @@ public interface ImageService extends RestService {
      * @return list of images fitered by filteringParams
      */
     List<? extends Image> list(Map<String, String> filteringParams);
+
+    /**
+     * * Returns list of public VM images filtered by parameters when the result greater than the default page size defined by openstack
+     *
+     * @return list of images
+     */
+    List<? extends Image> listAll();
 
     /**
      * List images currently in the glance image cache.
