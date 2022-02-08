@@ -58,16 +58,26 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
         return get(GlanceImage.Images.class, uri("/images")).params(filteringParams).execute().getList();
     }
 
-
     /**
      * {@inheritDoc}
      */
     @Override
     public List<? extends Image> listAll() {
+        return listAll(null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<? extends Image> listAll(Map<String, String> filteringParams) {
 
         Invocation<GlanceImage.Images> imageInvocation = get(GlanceImage.Images.class, uri("/images"));
 
         int limit = DEFAULT_PAGE_SIZE;
+        if (filteringParams != null && filteringParams.containsKey("limit")) {
+            limit = Integer.parseInt(filteringParams.get("limit"));
+        }
 
         List<GlanceImage> totalList = imageInvocation.execute().getList();
         List<GlanceImage> currList = totalList;
@@ -80,7 +90,6 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
 
         return totalList;
     }
-
 
     /**
      * {@inheritDoc}

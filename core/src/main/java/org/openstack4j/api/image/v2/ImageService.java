@@ -38,11 +38,19 @@ public interface ImageService extends RestService {
     List<? extends Image> list(Map<String, String> filteringParams);
 
     /**
-     * * Returns list of public VM images filtered by parameters when the result greater than the default page size defined by openstack
+     * * Returns list of public VM images when the result greater than the default page size defined by openstack
      *
      * @return list of images
      */
     List<? extends Image> listAll();
+
+    /**
+     * * Returns list of public VM images filtered by parameters when the result greater than the default page size defined by openstack
+     *
+     * @param filteringParams map (name, value) of filtering parameters
+     */
+    List<? extends Image> listAll(Map<String, String> filteringParams);
+
 
     /**
      * List images currently in the glance image cache.
