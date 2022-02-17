@@ -155,7 +155,7 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
     }
 
     public enum MigrationStatus {
-        NONE, MIGRATING;
+        MIGRATING, ERROR, SUCCESS, COMPLETING, NONE, STARTING;
 
         @JsonCreator
         public static MigrationStatus fromValue(String migrationStatus) {
