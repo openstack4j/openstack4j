@@ -164,7 +164,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
             // application_credentials
             if (applicationId != null && !applicationId.isEmpty()
                     && applicationSecret != null && !applicationSecret.isEmpty()) {
-                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope, Auth.Type.APPLICATION_CREDENTIALS), endpoint, perspective, config, provider);
+                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(applicationId, applicationSecret, domain, scope, Auth.Type.APPLICATION_CREDENTIALS), endpoint, perspective, config, provider);
             }
 
             // token based authentication

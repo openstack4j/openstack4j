@@ -53,7 +53,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
         this.type = type;
         this.scope = scope;
 
-        if (this.type == Type.CREDENTIALS) {
+        if (this.type == Type.APPLICATION_CREDENTIALS) {
             this.identity = AuthIdentity.createApplicationType(userOrApplicationId, passcode);
         } else {
             this.identity = AuthIdentity.createCredentialType(userOrApplicationId, passcode, domain);
