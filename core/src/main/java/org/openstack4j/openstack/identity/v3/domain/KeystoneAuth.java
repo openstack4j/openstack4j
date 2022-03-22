@@ -46,13 +46,19 @@ public class KeystoneAuth implements Authentication, AuthStore {
     }
 
     public KeystoneAuth(String userId, String password) {
-        this(userId, password, null, null);
+        this(userId, password, null, null, Type.CREDENTIALS);
     }
 
-    public KeystoneAuth(String user, String password, Identifier domain, AuthScope scope) {
-        this.identity = AuthIdentity.createCredentialType(user, password, domain);
+    public KeystoneAuth(String userOrApplicationId, String passcode, Identifier domain, AuthScope scope, Type type) {
+        this.type = type;
         this.scope = scope;
-        this.type = Type.CREDENTIALS;
+
+        if (this.type == Type.CREDENTIALS) {
+            this.identity = AuthIdentity.createApplicationType(userOrApplicationId, passcode);
+        } else {
+            this.identity = AuthIdentity.createCredentialType(userOrApplicationId, passcode, domain);
+
+        }
     }
 
     public KeystoneAuth(AuthScope scope, Type type) {
@@ -115,6 +121,8 @@ public class KeystoneAuth implements Authentication, AuthStore {
         private AuthPassword password;
         private AuthToken token;
         private List<String> methods = Lists.newArrayList();
+        @JsonProperty("application_credentials")
+        private ApplicationCredentials applicationCredentials;
 
         static AuthIdentity createTokenType(String tokenId) {
             AuthIdentity identity = new AuthIdentity();
@@ -134,6 +142,13 @@ public class KeystoneAuth implements Authentication, AuthStore {
             return identity;
         }
 
+        static AuthIdentity createApplicationType(String userOrApplicationId, String passcode) {
+            AuthIdentity identity = new AuthIdentity();
+            identity.applicationCredentials = new ApplicationCredentials(userOrApplicationId, passcode);
+            identity.methods.add("application_credential");
+            return identity;
+        }
+
         @Override
         public Password getPassword() {
             return password;
@@ -147,6 +162,14 @@ public class KeystoneAuth implements Authentication, AuthStore {
         @Override
         public List<String> getMethods() {
             return methods;
+        }
+
+        public ApplicationCredentials getApplicationCredentials() {
+            return applicationCredentials;
+        }
+
+        public void setApplicationCredentials(ApplicationCredentials applicationCredentials) {
+            this.applicationCredentials = applicationCredentials;
         }
 
         public static final class AuthToken implements Token, Serializable {
@@ -225,6 +248,38 @@ public class KeystoneAuth implements Authentication, AuthStore {
                     private static final long serialVersionUID = 1L;
 
                 }
+            }
+        }
+
+        public static final class ApplicationCredentials implements Serializable {
+
+            private static final long serialVersionUID = 1L;
+
+            private String id;
+            private String secret;
+
+            public ApplicationCredentials() {
+            }
+
+            public ApplicationCredentials(String id, String secret) {
+                this.id = id;
+                this.secret = secret;
+            }
+
+            public String getSecret() {
+                return secret;
+            }
+
+            public void setSecret(String secret) {
+                this.secret = secret;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
             }
         }
     }

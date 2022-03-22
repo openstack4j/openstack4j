@@ -130,6 +130,8 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         Identifier domain;
         AuthScope scope;
         String tokenId;
+        String applicationId;
+        String applicationSecret;
 
         @Override
         public ClientV3 domainName(String domainName) {
@@ -159,6 +161,12 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
 
         @Override
         public OSClientV3 authenticate() throws AuthenticationException {
+            // application_credentials
+            if (applicationId != null && !applicationId.isEmpty()
+                    && applicationSecret != null && !applicationSecret.isEmpty()) {
+                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope, Auth.Type.APPLICATION_CREDENTIALS), endpoint, perspective, config, provider);
+            }
+
             // token based authentication
             if (tokenId != null && tokenId.length() > 0)
                 if (scope != null) {
@@ -168,7 +176,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
                 }
             // credential based authentication
             if (user != null && user.length() > 0)
-                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope), endpoint, perspective, config, provider);
+                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope, Auth.Type.CREDENTIALS), endpoint, perspective, config, provider);
             // Use tokenless auth finally
             return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(scope, Auth.Type.TOKENLESS), endpoint, perspective, config, provider);
         }
@@ -191,5 +199,11 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
             return this;
         }
 
+        @Override
+        public V3 applicationCredentials(String applicationId, String applicationSecret) {
+            this.applicationId = applicationId;
+            this.applicationSecret = applicationSecret;
+            return this;
+        }
     }
 }
