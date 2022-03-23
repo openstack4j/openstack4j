@@ -121,7 +121,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
         private AuthPassword password;
         private AuthToken token;
         private List<String> methods = Lists.newArrayList();
-        @JsonProperty("application_credentials")
+        @JsonProperty("application_credential")
         private ApplicationCredentials applicationCredentials;
 
         static AuthIdentity createTokenType(String tokenId) {
