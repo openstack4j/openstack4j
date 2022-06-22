@@ -129,7 +129,7 @@ OSClientV3 os = OSFactory.builderV3()
         .endpoint("http://<fqdn>:5000/v3")
         .credentials("admin", "secret", Identifier.byId("user domain id"))
         .scopeToProject(Identifier.byId("project id"))
-        .authenticate());
+        .authenticate();
 ```
 (2) authenticate with domain-scope
 ```java
@@ -137,7 +137,7 @@ OSClientV3 os = OSFactory.builderV3()
         .endpoint("http://<fqdn>:5000/v3")
         .credentials("admin", "secret", Identifier.byId("user domain id"))
         .scopeToDomain(Identifier.byId("domain id"))
-        .authenticate());
+        .authenticate();
 ```
 
 (3) authenticate unscoped
@@ -154,7 +154,7 @@ OSClientV3 os = OSFactory.builderV3()
         .endpoint("http://<fqdn>:5000/v3")
         .token("token id")
         .scopeToProject(Identifier.byId("project id"))
-        .authenticate());
+        .authenticate();
 ```
 (5) authenticate using client certificate
 ```bash
