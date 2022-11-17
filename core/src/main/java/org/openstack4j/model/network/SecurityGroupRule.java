@@ -81,5 +81,12 @@ public interface SecurityGroupRule extends ModelEntity, Buildable<NetSecurityGro
      */
     String getTenantId();
 
+    /**
+     * Gets A human-readable description.
+     *
+     * @return the description
+     */
+    String getDescription();
+
 
 }
