@@ -9,10 +9,7 @@ import org.openstack4j.model.common.DLPayload;
 import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.storage.block.options.DownloadOptions;
 import org.openstack4j.model.storage.object.SwiftObject;
-import org.openstack4j.model.storage.object.options.ObjectDeleteOptions;
-import org.openstack4j.model.storage.object.options.ObjectListOptions;
-import org.openstack4j.model.storage.object.options.ObjectLocation;
-import org.openstack4j.model.storage.object.options.ObjectPutOptions;
+import org.openstack4j.model.storage.object.options.*;
 
 /**
  * A service responsible for maintaining directory and file objects within containers for
@@ -139,6 +136,16 @@ public interface ObjectStorageObjectService extends RestService {
      * @return the ETAG checksum if successful
      */
     String copy(ObjectLocation source, ObjectLocation dest);
+
+    /**
+     * Copies an object to another object in the object store
+     *
+     * @param source the source container and object name
+     * @param dest the destination container and object name
+     * @param options the copy options
+     * @return the ETAG checksum if successful
+     */
+    String copy(ObjectLocation source, ObjectLocation dest, ObjectCopyOptions options);
 
     /**
      * Gets the metadata for the specified object location
