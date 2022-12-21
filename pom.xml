@@ -11,7 +11,7 @@
         <release.version>2.0.0</release.version>
         <aries.spifly.version>1.0.0</aries.spifly.version>
         <slf4j.version>1.7.21</slf4j.version>
-        <jackson.version>2.13.4.1</jackson.version>
+        <jackson.version>2.14.1</jackson.version>
         <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
         <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
@@ -54,6 +54,11 @@
         <module>distribution</module>
     </modules>
     <dependencies>
+	<dependency>
+		<groupId>org.apache.felix</groupId>
+		<artifactId>maven-bundle-plugin</artifactId>
+		<version>5.1.8</version>
+	</dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -229,7 +234,7 @@
                                             maven-bundle-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [2.5.3,)
+                                            [5.1.8,)
                                         </versionRange>
                                         <goals>
                                             <goal>manifest</goal>
