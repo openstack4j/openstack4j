@@ -17,6 +17,8 @@ public interface Authentication extends ModelEntity {
 
         Token getToken();
 
+        Totp getTotp();
+
         List<String> getMethods();
 
         public interface Password {
@@ -28,9 +30,21 @@ public interface Authentication extends ModelEntity {
                 Domain getDomain();
 
                 String getPassword();
+            }
+        }
 
-                public interface Domain extends ResourceEntity {
-                }
+        public interface Domain extends ResourceEntity {
+        }
+
+        public interface Totp {
+
+            User getUser();
+
+            public interface User extends ResourceEntity {
+
+                String getPasscode();
+
+                Domain getDomain();
             }
         }
 

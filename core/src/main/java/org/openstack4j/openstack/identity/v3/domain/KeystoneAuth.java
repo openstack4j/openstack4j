@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import org.openstack4j.openstack.common.BasicResourceEntity;
 import org.openstack4j.openstack.common.IdResourceEntity;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.openstack4j.openstack.common.Auth.Type.CREDENTIALS;
+import static org.openstack4j.openstack.common.Auth.Type.TOKEN;
 
 /**
  * Represents an v3 Auth object.
@@ -23,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 @JsonRootName("auth")
 public class KeystoneAuth implements Authentication, AuthStore {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 8837823134060387955L;
     @JsonProperty
     private AuthIdentity identity;
     private AuthScope scope;
@@ -36,13 +39,13 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
     public KeystoneAuth(String tokenId) {
         this.identity = AuthIdentity.createTokenType(tokenId);
-        this.type = Type.TOKEN;
+        this.type = TOKEN;
     }
 
     public KeystoneAuth(String tokenId, AuthScope scope) {
         this.identity = AuthIdentity.createTokenType(tokenId);
         this.scope = scope;
-        this.type = Type.TOKEN;
+        this.type = TOKEN;
     }
 
     public KeystoneAuth(String userId, String password) {
@@ -52,7 +55,13 @@ public class KeystoneAuth implements Authentication, AuthStore {
     public KeystoneAuth(String user, String password, Identifier domain, AuthScope scope) {
         this.identity = AuthIdentity.createCredentialType(user, password, domain);
         this.scope = scope;
-        this.type = Type.CREDENTIALS;
+        this.type = CREDENTIALS;
+    }
+
+    public KeystoneAuth(String user, String password, Identifier domain, AuthScope scope, String passcode) {
+        this.identity = AuthIdentity.createMfaCredentialType(user, password, domain, passcode);
+        this.scope = scope;
+        this.type = CREDENTIALS;
     }
 
     public KeystoneAuth(AuthScope scope, Type type) {
@@ -110,9 +119,10 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
     public static final class AuthIdentity implements Identity, Serializable {
 
-        private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = -8563838155355541485L;
 
         private AuthPassword password;
+        private AuthTotp totp;
         private AuthToken token;
         private List<String> methods = Lists.newArrayList();
 
@@ -134,9 +144,22 @@ public class KeystoneAuth implements Authentication, AuthStore {
             return identity;
         }
 
+        static AuthIdentity createMfaCredentialType(String username, String password, Identifier domain, String passcode) {
+            AuthIdentity identity = new AuthIdentity();
+            identity.password = new AuthPassword(username, password, domain);
+            identity.totp = new AuthTotp(username, passcode, domain);
+            identity.methods.addAll(Arrays.asList("password", "totp"));
+            return identity;
+        }
+
         @Override
         public Password getPassword() {
             return password;
+        }
+
+        @Override
+        public Totp getTotp() {
+            return totp;
         }
 
         @Override
@@ -151,7 +174,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
         public static final class AuthToken implements Token, Serializable {
 
-            private static final long serialVersionUID = 1L;
+            private static final long serialVersionUID = 1935770288647712823L;
 
             @JsonProperty
             private String id;
@@ -171,7 +194,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
         public static final class AuthPassword implements Password, Serializable {
 
-            private static final long serialVersionUID = 1L;
+            private static final long serialVersionUID = 8972613021102760104L;
 
             private AuthUser user;
 
@@ -189,7 +212,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
             public static final class AuthUser extends BasicResourceEntity implements User {
 
-                private static final long serialVersionUID = 1L;
+                private static final long serialVersionUID = -4167608519825308470L;
 
                 private AuthDomain domain;
                 private String password;
@@ -220,10 +243,61 @@ public class KeystoneAuth implements Authentication, AuthStore {
                     return password;
                 }
 
-                public static final class AuthDomain extends BasicResourceEntity implements Domain {
+            }
+        }
 
-                    private static final long serialVersionUID = 1L;
+        public static final class AuthDomain extends BasicResourceEntity implements Domain {
 
+            private static final long serialVersionUID = -2351227462530931791L;
+
+        }
+
+        public static final class AuthTotp extends BasicResourceEntity implements Totp {
+
+            private static final long serialVersionUID = -6562863874386663500L;
+
+            private AuthTotpUser user;
+
+            public AuthTotp() {
+            }
+
+            public AuthTotp(String username, String passcode, Identifier domainIdentifier) {
+                this.user = new AuthTotpUser(username, passcode, domainIdentifier);
+            }
+
+            @Override
+            public AuthTotpUser getUser() {
+                return user;
+            }
+
+            public static final class AuthTotpUser extends BasicResourceEntity implements Totp.User {
+                private String passcode;
+                private AuthDomain domain;
+
+                public AuthTotpUser() {
+                }
+
+                public AuthTotpUser(String username, String passcode, Identifier domainIdentifier) {
+                    this.passcode = passcode;
+                    if (domainIdentifier != null) {
+                        domain = new AuthDomain();
+                        if (domainIdentifier.isTypeID())
+                            domain.setId(domainIdentifier.getId());
+                        else
+                            domain.setName(domainIdentifier.getId());
+                        setName(username);
+                    } else
+                        setId(username);
+                }
+
+                @Override
+                public String getPasscode() {
+                    return passcode;
+                }
+
+                @Override
+                public Domain getDomain() {
+                    return domain;
                 }
             }
         }
@@ -231,7 +305,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
     public static final class AuthScope implements Scope, Serializable {
 
-        private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1101142581222192941L;
 
         @JsonProperty("project")
         private ScopeProject project;
@@ -284,7 +358,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
         public static final class ScopeProject extends BasicResourceEntity implements Project {
 
-            private static final long serialVersionUID = 1L;
+            private static final long serialVersionUID = -2834855123690060228L;
             private AuthDomain domain;
             @JsonProperty
             private String id;
@@ -335,7 +409,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
         public static final class AuthDomain extends BasicResourceEntity implements Domain {
 
-            private static final long serialVersionUID = 1L;
+            private static final long serialVersionUID = -5768566757928958611L;
 
             @JsonProperty
             private String id;
@@ -362,7 +436,7 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
         public static final class ScopeTrust extends IdResourceEntity {
 
-            private static final long serialVersionUID = 1L;
+            private static final long serialVersionUID = -4572825712927854311L;
 
             public ScopeTrust(String id) {
                 this.setId(id);

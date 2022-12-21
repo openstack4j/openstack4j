@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -24,6 +25,7 @@ public class KeystoneAuthenticationTests extends AbstractTest {
 
     private static final String JSON_AUTH_PROJECT = "/identity/v3/authv3_project.json";
     private static final String JSON_AUTH_DOMAIN = "/identity/v3/authv3_domain.json";
+    private static final String JSON_AUTH_TOTP_DOMAIN = "/identity/v3/authv3_totp_project.json";
     private static final String JSON_AUTH_TOKEN = "/identity/v3/authv3_token.json";
     private static final String JSON_AUTH_TOKEN_UNSCOPED = "/identity/v3/authv3_token_unscoped.json";
     private static final String JSON_AUTH_UNSCOPED = "/identity/v3/authv3_unscoped.json";
@@ -147,6 +149,22 @@ public class KeystoneAuthenticationTests extends AbstractTest {
         assertEquals(osv3.getToken().getUser().getId(), USER_ID);
         assertEquals(osv3.getToken().getDomain().getId(), DOMAIN_ID);
 
+    }
+
+    public void authenticate_userName_password_totp_projectId_Test() throws Exception {
+
+        respondWith(JSON_AUTH_TOTP_DOMAIN);
+
+        associateClientV3(OSFactory.builderV3()
+                .endpoint(authURL("/v3"))
+                .credentials(USER_NAME, PASSWORD, Identifier.byId(DOMAIN_ID), "passcode")
+                .scopeToProject(Identifier.byId(PROJECT_ID))
+                .authenticate());
+
+        assertEquals(osv3.getToken().getVersion(), AuthVersion.V3);
+        assertEquals(osv3.getToken().getUser().getId(), USER_ID);
+        assertEquals(osv3.getToken().getProject().getId(), PROJECT_ID);
+        assertNull(osv3.getToken().getDomain());
     }
 
     /**

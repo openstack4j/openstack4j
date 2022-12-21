@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.client.HttpUrlConnectorProvider;
 import org.glassfish.jersey.client.RequestEntityProcessing;
-import org.glassfish.jersey.filter.LoggingFilter;
+import org.glassfish.jersey.logging.LoggingFeature;
 import org.openstack4j.core.transport.ClientConstants;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.internal.HttpLoggingFilter;
@@ -54,7 +54,7 @@ public final class HttpCommand<R> {
         WebTarget target = client.target(request.getEndpoint()).path(request.getPath());
 
         if (HttpLoggingFilter.isLoggingEnabled())
-            target.register(new LoggingFilter(Logger.getLogger("os"), 10000));
+            target.register(new LoggingFeature(Logger.getLogger("os"), 10000));
 
         target = populateQueryParams(target, request);
         invocation = target.request(MediaType.APPLICATION_JSON);

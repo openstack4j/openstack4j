@@ -1,5 +1,9 @@
 package org.openstack4j.api.identity.v3
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import dev.samstevens.totp.code.CodeGenerator
+import dev.samstevens.totp.code.DefaultCodeGenerator
+import dev.samstevens.totp.time.SystemTimeProvider
 import groovy.util.logging.Slf4j
 import org.junit.Rule
 import org.junit.rules.TestName
@@ -7,6 +11,7 @@ import org.openstack4j.api.AbstractSpec
 import org.openstack4j.api.OSClient.OSClientV3
 import org.openstack4j.api.exceptions.RegionEndpointNotFoundException
 import org.openstack4j.api.types.ServiceType
+import org.openstack4j.core.transport.internal.HttpLoggingFilter
 import org.openstack4j.model.common.Identifier
 import org.openstack4j.model.identity.AuthVersion
 import org.openstack4j.model.identity.v3.User
@@ -56,11 +61,13 @@ class KeystoneAuthenticationSpec extends AbstractSpec {
 
     def setupSpec() {
 
-        if (skipTest != true) {
+        if (!skipTest) {
             log.info("USER_ID: " + USER_ID)
             log.info("USER_NAME: " + USER_NAME)
             log.info("USER_DOMAIN_ID: " + USER_DOMAIN_ID)
             log.info("AUTH_URL: " + AUTH_URL)
+            log.info("USER_TOTP_SECRET: " + USER_TOTP_SECRET)
+            log.info("USER_TOTP_PASSCODE: " + USER_TOTP_PASSCODE)
             log.info("PASSWORD: " + PASSWORD)
             log.info("PROJECT_ID: " + PROJECT_ID)
             log.info("PROJECT_NAME: " + PROJECT_NAME)
@@ -117,6 +124,49 @@ class KeystoneAuthenticationSpec extends AbstractSpec {
         os.getToken().getProject().getName() == PROJECT_NAME
         os.getToken().getProject().getDomain().getId() == PROJECT_DOMAIN_ID
 
+    }
+
+    /**
+     * To record a tape for this test set the environment variable USER_TOTP_SECRET to generate a correct.
+     * If no USER_TOTP_SECRET environment variable is set, the environment variable USER_TOTP_PASSCODE
+     * will be used instead.
+     * @return
+     */
+    @Betamax(tape = "authenticate_v3_userId_password_passcode_projectName_projectDomainId")
+    def "authenticate with userId, password, passcode and scope projectName, projectDomainId"() {
+
+        given: "authenticate with using credentials, totp and scope given by projectName and the projects domain to get a valid token"
+        HttpLoggingFilter.toggleLogging(true)
+
+        def passcode
+        if (USER_TOTP_SECRET) {
+            log.info("Using totp secret to generate totp passcode.")
+            passcode = generateTotpPasscodeBySecret(USER_TOTP_SECRET)
+        } else {
+            log.info("Using static totp passcode. For new recordings set USER_TOTP_SECRET to generate a correct passcode on demand.")
+            passcode = USER_TOTP_PASSCODE
+        }
+        OSClientV3 os = OSFactory.builderV3()
+                .endpoint(AUTH_URL)
+                .credentials(USER_NAME, PASSWORD, Identifier.byName(DOMAIN_NAME), passcode)
+                .scopeToProject(Identifier.byId(PROJECT_ID))
+                .withConfig(CONFIG_PROXY_BETAMAX)
+                .authenticate()
+
+        expect: "token is v3 and user, project match the ones used for authentication"
+        println new ObjectMapper().writer().writeValueAsString(os)
+        os.getToken().getVersion() == AuthVersion.V3
+        os.getToken().getUser().getName() == USER_NAME
+        os.getToken().getProject().getName() == PROJECT_NAME
+        os.getToken().getProject().getDomain().getName() == DOMAIN_NAME
+        os.getToken().getMethods() == ["password", "totp"]
+    }
+
+    private static def generateTotpPasscodeBySecret(String totpSecret) {
+        CodeGenerator codeGenerator = new DefaultCodeGenerator();
+        def timeProvider = new SystemTimeProvider()
+        long counter = Math.floorDiv(timeProvider.getTime(), 30);
+        return codeGenerator.generate(totpSecret, counter);
     }
 
     @IgnoreIf({ skipTest })

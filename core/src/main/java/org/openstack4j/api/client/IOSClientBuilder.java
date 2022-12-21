@@ -147,6 +147,17 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
         V3 credentials(String userName, String password, Identifier domain);
 
         /**
+         * The authentication credentials and default scoped domain
+         *
+         * @param userName the user name to authenticate with
+         * @param password the password to authenticate with
+         * @param domain the domain if using "default scoped"
+         * @param passcode the totp generated passcode for Multi-Factor Authentication
+         * @return self for method chaining
+         */
+        V3 credentials(String userName, String password, Identifier domain, String passcode);
+
+        /**
          * DEPRECATED: Please use
          * {@link #credentials(String, String, Identifier)
          * <p>

@@ -130,6 +130,7 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         Identifier domain;
         AuthScope scope;
         String tokenId;
+        String passcode;
 
         @Override
         public ClientV3 domainName(String domainName) {
@@ -145,9 +146,16 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
 
         @Override
         public ClientV3 credentials(String user, String password, Identifier domain) {
+            credentials(user, password, domain, null);
+            return this;
+        }
+
+        @Override
+        public ClientV3 credentials(String user, String password, Identifier domain, String passcode) {
             this.user = user;
             this.password = password;
             this.domain = domain;
+            this.passcode = passcode;
             return this;
         }
 
@@ -167,8 +175,16 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
                     return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(tokenId), endpoint, perspective, config, provider);
                 }
             // credential based authentication
-            if (user != null && user.length() > 0)
-                return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(user, password, domain, scope), endpoint, perspective, config, provider);
+            if (user != null && user.length() > 0) {
+                KeystoneAuth keystoneAuth;
+                if (passcode == null || passcode.isEmpty()) {
+                    keystoneAuth = new KeystoneAuth(user, password, domain, scope);
+                } else {
+                    //with totp multifactor authentication
+                    keystoneAuth = new KeystoneAuth(user, password, domain, scope, passcode);
+                }
+                return (OSClientV3) OSAuthenticator.invoke(keystoneAuth, endpoint, perspective, config, provider);
+            }
             // Use tokenless auth finally
             return (OSClientV3) OSAuthenticator.invoke(new KeystoneAuth(scope, Auth.Type.TOKENLESS), endpoint, perspective, config, provider);
         }
