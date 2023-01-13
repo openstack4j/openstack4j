@@ -38,7 +38,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
+                            <doclint>none</doclint>
                             <includeDependencySources>true</includeDependencySources>
                             <dependencySourceIncludes>com.github.openstack4j.core</dependencySourceIncludes>
                             <excludePackageNames>*.internal</excludePackageNames>

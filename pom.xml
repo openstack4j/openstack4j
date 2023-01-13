@@ -14,9 +14,9 @@
         <jackson.version>2.14.1</jackson.version>
         <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
-        <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+        <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
 
-        <additionalparam>-Xdoclint:none</additionalparam>
+        <doclint>none</doclint>
     </properties>
     <licenses>
         <license>
@@ -259,7 +259,7 @@
                     <excludePackageNames>*.internal</excludePackageNames>
                     <reportOutputDirectory>docs</reportOutputDirectory>
                     <destDir>javadoc</destDir>
-                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <doclint>none</doclint>
                 </configuration>
             </plugin>
         </plugins>
