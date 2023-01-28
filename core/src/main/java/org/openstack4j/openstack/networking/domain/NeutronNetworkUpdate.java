@@ -23,6 +23,8 @@ public class NeutronNetworkUpdate implements NetworkUpdate {
     private Boolean shared;
     @JsonProperty("admin_state_up")
     private Boolean adminStateUp;
+    @JsonProperty("is_default")
+    private Boolean isDefault;
 
     public static NetworkUpdateBuilder builder() {
         return new NetworkUpdateConcreteBuilder();
@@ -50,10 +52,18 @@ public class NeutronNetworkUpdate implements NetworkUpdate {
         return shared == null ? false: shared;
     }
 
+    @JsonIgnore
+    @Override
+    public boolean isDefault() {
+        return isDefault == null ? false: isDefault;
+    }
+
+
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
-                .add("name", name).add("adminStateUp", adminStateUp).add("shared", shared)
+                .add("name", name).add("adminStateUp", adminStateUp).add("shared", shared).add("isDefault", isDefault)
                 .toString();
     }
 
@@ -95,6 +105,12 @@ public class NeutronNetworkUpdate implements NetworkUpdate {
         @Override
         public NetworkUpdateBuilder shared(boolean shared) {
             model.shared = shared;
+            return this;
+        }
+
+        @Override
+        public NetworkUpdateBuilder isDefault(boolean isDefault) {
+            model.isDefault = isDefault;
             return this;
         }
 

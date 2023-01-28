@@ -56,6 +56,8 @@ public class NeutronNetwork implements Network {
     private Date createdTime;
     @JsonProperty("updated_at")
     private Date updatedTime;
+    @JsonProperty("is_default")
+    private Boolean isDefault;
 
     /**
      * The maximum transmission unit (MTU) value to address fragmentation. Minimum value is 68 for IPv4, and 1280 for IPv6.
@@ -256,6 +258,14 @@ public class NeutronNetwork implements Network {
      * {@inheritDoc}
      */
     @Override
+    public boolean isDefault() {
+        return isDefault != null && isDefault;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).omitNullValues()
                 .add("name", name).add("status", status).add("subnets", subnets).add("provider:physical_network", providerPhyNet)
@@ -263,7 +273,7 @@ public class NeutronNetwork implements Network {
                 .add("id", id).add("shared", shared).add("provider:segmentation_id", providerSegID)
                 .add("mtu", mtu).add("availabilityZoneHints", availabilityZoneHints).add("availabilityZones", availabilityZones)
                 .add("portSecurityEnabled", portSecurityEnabled)
-                .add("created_at", createdTime).add("updated_at", updatedTime)
+                .add("created_at", createdTime).add("updated_at", updatedTime).add("isDefault", isDefault)
                 .toString();
     }
 
@@ -275,7 +285,7 @@ public class NeutronNetwork implements Network {
         return java.util.Objects.hash(name, status, subnets,
                 providerPhyNet, adminStateUp, tenantId, networkType,
                 routerExternal, id, shared, providerSegID, availabilityZoneHints, availabilityZones, portSecurityEnabled,
-                createdTime, updatedTime);
+                createdTime, updatedTime, isDefault);
     }
 
     /**
@@ -304,7 +314,8 @@ public class NeutronNetwork implements Network {
                     java.util.Objects.equals(availabilityZones, that.availabilityZones) &&
                     java.util.Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
                     java.util.Objects.equals(createdTime, that.createdTime) &&
-                    java.util.Objects.equals(updatedTime, that.updatedTime)) {
+                    java.util.Objects.equals(updatedTime, that.updatedTime) &&
+                    java.util.Objects.equals(isDefault, that.isDefault)) {
                 return true;
             }
         }
@@ -402,10 +413,16 @@ public class NeutronNetwork implements Network {
             m.availabilityZoneHints.add(availabilityZone);
             return this;
         }
-        
+
         @Override
         public NetworkBuilder isPortSecurityEnabled(Boolean portSecurityEnabled) {
             m.portSecurityEnabled = portSecurityEnabled;
+            return this;
+        }
+
+        @Override
+        public NetworkBuilder isDefault(Boolean isDefault) {
+            m.isDefault = isDefault;
             return this;
         }
     }

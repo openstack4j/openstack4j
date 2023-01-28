@@ -1,5 +1,6 @@
 package org.openstack4j.model.network;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.network.builder.NetworkUpdateBuilder;
@@ -32,4 +33,11 @@ public interface NetworkUpdate extends ModelEntity, Buildable<NetworkUpdateBuild
      */
     boolean isShared();
 
+    /**
+     * The network is default pool or not.
+     *
+     * @return true if is a default network
+     */
+    @JsonProperty("is_default")
+    boolean isDefault();
 }

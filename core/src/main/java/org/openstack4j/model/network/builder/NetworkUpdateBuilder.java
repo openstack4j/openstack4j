@@ -33,4 +33,12 @@ public interface NetworkUpdateBuilder extends Builder<NetworkUpdateBuilder, Netw
      * @return the builder
      */
     NetworkUpdateBuilder shared(boolean shared);
+
+    /**
+     * The network is default pool or not.
+     *
+     * @param isDefault if true the network is default
+     * @return the builder
+     */
+    NetworkUpdateBuilder isDefault(boolean isDefault);
 }

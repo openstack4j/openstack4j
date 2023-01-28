@@ -2,6 +2,7 @@ package org.openstack4j.model.network;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.common.Resource;
 import org.openstack4j.model.common.TimeEntity;
@@ -78,4 +79,10 @@ public interface Network extends Resource, TimeEntity, Buildable<NetworkBuilder>
      * @return true if the port security enabled is shared
      */
     Boolean isPortSecurityEnabled();
+
+    /**
+     * @return true if the network is default pool
+     */
+    @JsonProperty("is_default")
+    boolean isDefault();
 }
