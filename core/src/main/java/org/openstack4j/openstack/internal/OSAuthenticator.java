@@ -204,11 +204,10 @@ public class OSAuthenticator {
         } else {
             if (token.getProject() != null) {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(),
-                        auth.getScope().getProject().getName(), auth.getScope().getProject().getId()));
-
+                        token.getProject().getName(), token.getProject().getId()));
             } else if (token.getDomain() != null) {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(),
-                        auth.getScope().getDomain().getName(), auth.getScope().getDomain().getId()));
+                        token.getDomain().getName(), token.getDomain().getId()));
             } else {
                 token = token.applyContext(info.endpoint, new TokenAuth(token.getId(), null, null));
             }

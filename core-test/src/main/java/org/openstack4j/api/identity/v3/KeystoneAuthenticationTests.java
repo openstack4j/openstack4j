@@ -25,23 +25,27 @@ public class KeystoneAuthenticationTests extends AbstractTest {
     private static final String JSON_AUTH_PROJECT = "/identity/v3/authv3_project.json";
     private static final String JSON_AUTH_DOMAIN = "/identity/v3/authv3_domain.json";
     private static final String JSON_AUTH_TOKEN = "/identity/v3/authv3_token.json";
+    private static final String JSON_AUTH_APPLICATION_CREDENTIAL = "/identity/v3/authv3_application_credential.json";
     private static final String JSON_AUTH_TOKEN_UNSCOPED = "/identity/v3/authv3_token_unscoped.json";
     private static final String JSON_AUTH_UNSCOPED = "/identity/v3/authv3_unscoped.json";
     private static final String JSON_AUTH_ERROR_401 = "/identity/v3/authv3_authorizationerror.json";
     private static final String JSON_USERS = "/identity/v3/users.json";
     private static final ImmutableMap<String, String> HEADER_AUTH_PROJECT_RESPONSE = ImmutableMap.of("X-Subject-Token", "763fd7e197ab4e00b2e6e0a8d22a8e87", "Content-Type", "application/json");
     private static final ImmutableMap<String, String> HEADER_AUTH_TOKEN_RESPONSE = ImmutableMap.of("X-Subject-Token", "3ecb5c2063904566be4b10406c0f7568", "Content-Type", "application/json");
+    private static final ImmutableMap<String, String> HEADER_AUTH_APPLICATION_CREDENTIAL_RESPONSE = ImmutableMap.of("X-Subject-Token", "7c2b6a2063904566be4b10406c0f6268", "Content-Type", "application/json");
     private static final ImmutableMap<String, String> HEADER_REAUTH_TOKEN_RESPONSE = ImmutableMap.of("X-Subject-Token", "3e3f7ec1180e4f1b8ca884d32e04ccfb", "Content-Type", "application/json");
     private static final ImmutableMap<String, String> HEADER_REAUTH_PROJECT_RESPONSE = ImmutableMap.of("X-Subject-Token", "8f57cce49fd04b3cb72afdf8c0445b87", "Content-Type", "application/json");
 
     private static final String USER_NAME = "admin";
     private static final String USER_ID = "aa9f25defa6d4cafb48466df83106065";
+    private static final String APPLICATION_ID = "56ff25defa6d4cafb48466d5a2c2b765";
     private static final String DOMAIN_ID = "default";
     private static final String DOMAIN_NAME = "Default";
     private static final String PROJECT_ID = "123ac695d4db400a9001b91bb3b8aa46";
     private static final String PROJECT_NAME = "admin";
     private static final String PROJECT_DOMAIN_ID = "default";
     private static final String PASSWORD = "test";
+    private static final String APPLICATION_SECRET = "test";
     private static final String REGION_EUROPE = "europe";
     private static final String TOKEN_UNSCOPED_ID = "3ecb5c2063904566be4b10406c0f7568";
 
@@ -196,6 +200,24 @@ public class KeystoneAuthenticationTests extends AbstractTest {
         assertTrue(newTokenId != tokenId);
         assertEquals(osv3.getToken().getVersion(), AuthVersion.V3);
         assertEquals(osv3.getToken().getProject().getId(), PROJECT_ID);
+    }
+
+    /**
+     * authenticates with an application credential
+     */
+    public void auth_application_credential_test() throws Exception {
+
+        respondWithHeaderAndResource(HEADER_AUTH_APPLICATION_CREDENTIAL_RESPONSE, 201, JSON_AUTH_APPLICATION_CREDENTIAL);
+
+        OSClientV3 client = OSFactory.builderV3()
+                .endpoint(authURL("/v3"))
+                .applicationCredentials(APPLICATION_ID, APPLICATION_SECRET)
+                .authenticate();
+
+        assertNotNull(client.getToken());
+        assertNotNull(client.getToken().getProject());
+        assertEquals(PROJECT_ID, client.getToken().getProject().getId());
+        assertEquals(USER_ID, client.getToken().getUser().getId());
     }
 
     /**
