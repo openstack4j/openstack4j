@@ -15,7 +15,6 @@ import com.google.common.io.ByteStreams;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
-import org.bouncycastle.util.io.Streams;
 import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;
 import org.openstack4j.core.transport.internal.HttpExecutor;
@@ -188,16 +187,10 @@ public abstract class AbstractTest {
 
     protected OSClientV2 osv2() {
         if (osv2 == null) {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.setSerializationInclusion(Include.NON_NULL);
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
-            mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
-            mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            ObjectMapper mapper = getObjectMapper();
 
             try {
-                String json = new String(Streams.readAll(getClass().getResourceAsStream(JSON_ACCESS)));
+                String json = getResource(JSON_ACCESS);
                 LOG.info(getClass().getName());
                 //LOG.info(getClass().getName() + ", JSON Access = " + json);
                 json = json.replaceAll("127.0.0.1", getHost());
@@ -207,7 +200,7 @@ public abstract class AbstractTest {
                         new org.openstack4j.openstack.identity.v2.domain.Credentials("test", "test"));
                 osv2 = OSFactory.clientFromAccess(a);
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new Error(e);
             }
         }
         return osv2;
@@ -215,16 +208,10 @@ public abstract class AbstractTest {
 
     protected OSClientV3 osv3() {
         if (osv3 == null) {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.setSerializationInclusion(Include.NON_NULL);
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
-            mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
-            mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            ObjectMapper mapper = getObjectMapper();
 
             try {
-                String json = new String(Streams.readAll(getClass().getResourceAsStream(JSON_TOKEN)));
+                String json = getResource(JSON_TOKEN);
                 LOG.info(getClass().getName());
                 json = json.replaceAll("devstack.openstack.stack", getHost());
                 KeystoneToken token = mapper.readValue(json, KeystoneToken.class);
@@ -235,10 +222,21 @@ public abstract class AbstractTest {
                 osv3 = OSFactory.clientFromToken(token);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new Error(e);
             }
         }
         return osv3;
+    }
+
+    private static ObjectMapper getObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(Include.NON_NULL);
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+        mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        return mapper;
     }
 
     protected String getResource(String resource) throws IOException {
