@@ -1,7 +1,7 @@
 OpenStack4j
 ===========
 
-[![Build Status](https://travis-ci.org/openstack4j/openstack4j.svg?branch=master)](https://travis-ci.org/openstack4j/openstack4j)
+[![Build Status](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml/badge.svg)](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j)
 [![javadoc](https://javadoc.io/badge2/com.github.openstack4j.core/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/com.github.openstack4j.core/openstack4j-core)
