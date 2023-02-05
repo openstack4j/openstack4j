@@ -6,7 +6,7 @@ import org.openstack4j.model.placement.ext.ResourceProvider;
 import org.openstack4j.openstack.common.ListResult;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * The resource provider instance
@@ -43,7 +43,7 @@ public class ExtResourceProvider implements ResourceProvider {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(ResourceProvider.class).add("id", uuid).add("name", name).toString();
+        return new ToStringHelper(this).add("id", uuid).add("name", name).toString();
     }
 
     public static class ResourceProviders extends ListResult<ExtResourceProvider> {

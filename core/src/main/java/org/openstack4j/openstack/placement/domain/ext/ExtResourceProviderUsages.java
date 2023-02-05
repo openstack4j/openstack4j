@@ -4,7 +4,7 @@ import org.openstack4j.model.placement.ext.ResourceProviderUsages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * The resource provider usages instance
@@ -61,7 +61,7 @@ public class ExtResourceProviderUsages implements ResourceProviderUsages {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("vcpu", vcpu).add("pcpu", pcpu)
+        return new ToStringHelper(this).add("vcpu", vcpu).add("pcpu", pcpu)
                 .add("memoryMb", memoryMb).add("diskGb", diskGb).toString();
     }
 }

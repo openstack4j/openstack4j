@@ -5,7 +5,7 @@ import org.openstack4j.model.placement.ext.ResourceProviderInventories;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * The resource provider inventories instance
@@ -66,7 +66,7 @@ public class ExtResourceProviderInventories implements ResourceProviderInventori
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("vcpu", vcpu).add("pcpu", pcpu)
+        return new ToStringHelper(this).add("vcpu", vcpu).add("pcpu", pcpu)
                 .add("memoryMb", memoryMb).add("diskGb", diskGb).toString();
     }
 
@@ -140,7 +140,7 @@ public class ExtResourceProviderInventories implements ResourceProviderInventori
          */
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues().add("total", total).add("reserved", reserved)
+            return new ToStringHelper(this).add("total", total).add("reserved", reserved)
                     .add("min_unit", minUnit).add("max_unit", maxUnit).add("step_size", stepSize)
                     .add("allocation_ratio", allocationRatio).toString();
         }
@@ -216,7 +216,7 @@ public class ExtResourceProviderInventories implements ResourceProviderInventori
          */
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues().add("total", total).add("reserved", reserved)
+            return new ToStringHelper(this).add("total", total).add("reserved", reserved)
                     .add("min_unit", minUnit).add("max_unit", maxUnit).add("step_size", stepSize)
                     .add("allocation_ratio", allocationRatio).toString();
         }
@@ -292,7 +292,7 @@ public class ExtResourceProviderInventories implements ResourceProviderInventori
          */
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues().add("total", total).add("reserved", reserved)
+            return new ToStringHelper(this).add("total", total).add("reserved", reserved)
                     .add("min_unit", minUnit).add("max_unit", maxUnit).add("step_size", stepSize)
                     .add("allocation_ratio", allocationRatio).toString();
         }
@@ -368,7 +368,7 @@ public class ExtResourceProviderInventories implements ResourceProviderInventori
          */
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues().add("total", total).add("reserved", reserved)
+            return new ToStringHelper(this).add("total", total).add("reserved", reserved)
                     .add("min_unit", minUnit).add("max_unit", maxUnit).add("step_size", stepSize)
                     .add("allocation_ratio", allocationRatio).toString();
         }
