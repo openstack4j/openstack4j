@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.gbp.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Maps;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.PolicyTargetGroupCreate;
 import org.openstack4j.model.gbp.builder.PolicyTargetGroupBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -127,7 +127,7 @@ public class GbpPolicyTargetGroupCreate implements PolicyTargetGroupCreate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("desription", description)
                 .add("tenantId", tenantId).add("consumedPolicyRuleSets", consumedPolicyRuleSets).add("providedPolicyRuleSets", providedPolicyRuleSets)
                 .add("l2PolicyId", l2PolicyId).add("networkServicePolicyId", networkServicePolicyId)
                 .add("policyTargets", policyTargets).add("serviceManagement", serviceManagement).add("shared", shared).add("subnets", subnets).toString();
@@ -187,7 +187,7 @@ public class GbpPolicyTargetGroupCreate implements PolicyTargetGroupCreate {
 
         @Override
         public PolicyTargetGroupBuilder consumedPolicyRuleSets(List<String> policyRuleSet) {
-            this.policyTargetGroup.consumedPolicyRuleSets = Maps.newHashMap();
+            this.policyTargetGroup.consumedPolicyRuleSets = new HashMap<>();
             for (String id : policyRuleSet) {
                 this.policyTargetGroup.consumedPolicyRuleSets.put(id, "");
             }
@@ -196,7 +196,7 @@ public class GbpPolicyTargetGroupCreate implements PolicyTargetGroupCreate {
 
         @Override
         public PolicyTargetGroupBuilder providedPolicyRuleSets(List<String> policyRuleSet) {
-            this.policyTargetGroup.providedPolicyRuleSets = Maps.newHashMap();
+            this.policyTargetGroup.providedPolicyRuleSets = new HashMap<>();
             for (String id : policyRuleSet) {
                 this.policyTargetGroup.providedPolicyRuleSets.put(id, "");
             }

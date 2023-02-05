@@ -1,10 +1,10 @@
 package org.openstack4j.openstack.common.functions;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
+import java.util.function.Function;
 import org.openstack4j.model.common.header.HeaderNameValue;
 
 /**
@@ -18,7 +18,7 @@ public class HeaderNameValuesToHeaderMap implements Function<List<HeaderNameValu
 
     @Override
     public Map<String, Object> apply(List<HeaderNameValue> input) {
-        Map<String, Object> result = Maps.newHashMap();
+        Map<String, Object> result = new HashMap<>();
 
         for (HeaderNameValue nv : input) {
             result.put(nv.getName(), nv.getValue());

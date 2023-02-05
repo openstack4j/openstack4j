@@ -1,6 +1,6 @@
 package org.openstack4j.core.transport.functions;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import org.openstack4j.core.transport.HttpRequest;
 
 import static org.openstack4j.core.transport.ClientConstants.URI_SEP;

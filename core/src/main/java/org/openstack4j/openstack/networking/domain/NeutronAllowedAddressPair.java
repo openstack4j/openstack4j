@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.networking.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.AllowedAddressPair;
 
 /**
@@ -45,7 +45,7 @@ public class NeutronAllowedAddressPair implements AllowedAddressPair {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("ipAddress", ipAddress).add("macAddress", macAddress).toString();
     }
 

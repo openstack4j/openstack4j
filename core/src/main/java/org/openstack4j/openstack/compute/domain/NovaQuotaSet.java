@@ -2,7 +2,7 @@ package org.openstack4j.openstack.compute.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.QuotaSet;
 
 /**
@@ -164,7 +164,7 @@ public class NovaQuotaSet implements QuotaSet {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("metadataItems", metadataItems).add("injectedFileContentBytes", injectedFileContentBytes)
                 .add("injectedFileContentBytes", injectedFileContentBytes).add("injectedFiles", injectedFiles).add("gigabytes", gigabytes)
                 .add("ram", "ram").add("securityGroups", securityGroups).add("securityGroupRules", securityGroupRules)

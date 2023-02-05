@@ -1,12 +1,11 @@
 package org.openstack4j.openstack.senlin.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.senlin.SenlinEventService;
 import org.openstack4j.model.senlin.Event;
 import org.openstack4j.openstack.senlin.domain.SenlinEvent;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class contains getters for all implementation of the available event services
@@ -22,7 +21,7 @@ public class SenlinEventServiceImpl extends BaseSenlinServices implements Senlin
 
     @Override
     public Event get(String eventID) {
-        checkNotNull(eventID);
+        Objects.requireNonNull(eventID);
         return get(SenlinEvent.class, uri("/events/%s", eventID)).execute();
     }
 }

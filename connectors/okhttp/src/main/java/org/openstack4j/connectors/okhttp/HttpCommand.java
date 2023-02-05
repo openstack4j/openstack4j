@@ -7,12 +7,12 @@ import java.net.Proxy.Type;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import com.google.common.io.ByteStreams;
 import okhttp3.*;
 import okhttp3.internal.Util;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.openstack4j.core.transport.*;
 import org.openstack4j.core.transport.internal.HttpLoggingFilter;
+import org.openstack4j.util.IOUtil;
 
 /**
  * HttpCommand is responsible for executing the actual request driven by the HttpExecutor.
@@ -96,7 +96,7 @@ public final class HttpCommand<R> {
         RequestBody body = null;
         if (request.getEntity() != null) {
             if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
-                byte[] content = ByteStreams.toByteArray((InputStream) request.getEntity());
+                byte[] content = IOUtil.readBytes((InputStream) request.getEntity());
                 body = RequestBody.create(MediaType.parse(request.getContentType()), content);
             } else {
                 String content = ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer().writeValueAsString(request.getEntity());

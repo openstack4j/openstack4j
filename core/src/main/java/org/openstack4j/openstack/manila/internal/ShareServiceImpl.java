@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.manila.*;
@@ -14,8 +15,6 @@ import org.openstack4j.openstack.manila.domain.ManilaLimits;
 import org.openstack4j.openstack.manila.domain.ManilaService;
 import org.openstack4j.openstack.manila.domain.ManilaShare;
 import org.openstack4j.openstack.manila.domain.actions.ServiceAction;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Shared File Systems API (Manila)
@@ -115,8 +114,8 @@ public class ShareServiceImpl extends BaseShareServices implements ShareService 
      */
     @Override
     public ManilaService.ServiceStatus enableService(String binary, String host) {
-        checkNotNull(binary);
-        checkNotNull(host);
+        Objects.requireNonNull(binary);
+        Objects.requireNonNull(host);
 
         return put(ManilaService.ServiceStatus.class, uri("/os-services/enable"))
                 .entity(ServiceAction.enable(binary, host))
@@ -128,8 +127,8 @@ public class ShareServiceImpl extends BaseShareServices implements ShareService 
      */
     @Override
     public ManilaService.ServiceStatus disableService(String binary, String host) {
-        checkNotNull(binary);
-        checkNotNull(host);
+        Objects.requireNonNull(binary);
+        Objects.requireNonNull(host);
 
         return put(ManilaService.ServiceStatus.class, uri("/os-services/disable"))
                 .entity(ServiceAction.disable(binary, host))
@@ -149,7 +148,7 @@ public class ShareServiceImpl extends BaseShareServices implements ShareService 
      */
     @Override
     public Share manageShare(ShareManage shareManage) {
-        checkNotNull(shareManage);
+        Objects.requireNonNull(shareManage);
 
         return post(ManilaShare.class, uri("/os-share-manage"))
                 .entity(shareManage)
@@ -161,7 +160,7 @@ public class ShareServiceImpl extends BaseShareServices implements ShareService 
      */
     @Override
     public ActionResponse unmanageShare(String shareId) {
-        checkNotNull(shareId);
+        Objects.requireNonNull(shareId);
 
         return ToActionResponseFunction.INSTANCE.apply(
                 post(Void.class, uri("/os-share-unmanage/%s/unmanage", shareId)).executeWithResponse());

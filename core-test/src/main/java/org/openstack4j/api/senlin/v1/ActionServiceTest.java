@@ -1,9 +1,9 @@
 package org.openstack4j.api.senlin.v1;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.senlin.Action;
 import org.testng.annotations.Test;
@@ -32,7 +32,7 @@ public class ActionServiceTest extends AbstractTest {
         respondWith(ACTIONS);
         List<? extends Action> actionList = osv3().senlin().action().list();
         assertEquals(4, actionList.size());
-        Preconditions.checkNotNull(actionList.get(0));
+        Objects.requireNonNull(actionList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Action from List : " + actionList.get(0));
         assertEquals(actionList.get(0).getId(), "1ac0a47b-06de-44cd-a014-79981f1dec19");
     }

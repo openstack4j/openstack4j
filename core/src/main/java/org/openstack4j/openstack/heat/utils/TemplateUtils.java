@@ -6,20 +6,22 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 import static org.openstack4j.core.transport.ClientConstants.URI_SEP;
 
 public class TemplateUtils {
 
     public static String readToString(String filename) throws IOException {
-        return Resources.toString(new URL(filename), Charsets.UTF_8);
+        return readToString(new URL(filename));
     }
 
     public static String readToString(URL url) throws IOException {
-        return Resources.toString(url, Charsets.UTF_8);
+        try (Scanner scanner = new Scanner(url.openStream(), StandardCharsets.UTF_8.toString())) {
+            scanner.useDelimiter("\\A");
+            return scanner.hasNext() ? scanner.next() : "";
+        }
     }
 
     public static URL baseUrl(String url) throws MalformedURLException {

@@ -3,7 +3,7 @@ package org.openstack4j.openstack.tacker.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * @author Vishvesh Deshmukh
@@ -41,7 +41,7 @@ public class AuthCredentials {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("username", username).add("projectName", projectName)
+        return new ToStringHelper(this).add("username", username).add("projectName", projectName)
                 .add("userId", userId).add("userDomainName", userDomainName).add("projectId", projectId)
                 .add("authUrl", authUrl).add("password", password).add("projectDomainName", projectDomainName)
                 .toString();

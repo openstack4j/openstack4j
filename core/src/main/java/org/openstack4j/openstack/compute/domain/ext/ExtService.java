@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.ext.Service;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -90,7 +90,7 @@ public class ExtService implements Service {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("binary", binary).add("host", host)
+        return new ToStringHelper(this).add("id", id).add("binary", binary).add("host", host)
                 .add("zone", zone).add("status", status).add("state", state).add("updated_at", updatedAt)
                 .add("disabled_reason", disabledReason).add("forced_down", forcedDown).toString();
     }

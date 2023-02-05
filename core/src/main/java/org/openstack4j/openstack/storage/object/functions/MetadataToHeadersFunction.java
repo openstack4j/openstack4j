@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.storage.object.functions;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
+import java.util.function.Function;
 
 /**
  * Transforms a MetaHeaderRequestWrapper which applies headers based on a prefix to the outbound
@@ -38,7 +38,7 @@ public class MetadataToHeadersFunction implements Function<Map<String, String>, 
     @Override
     public Map<String, String> apply(Map<String, String> metadata) {
 
-        Map<String, String> headers = Maps.newHashMap();
+        Map<String, String> headers = new HashMap<>();
 
         for (String key : metadata.keySet()) {
             String keyLower = key.toLowerCase();

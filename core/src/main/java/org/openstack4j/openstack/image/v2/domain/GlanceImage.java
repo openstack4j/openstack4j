@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.builder.BasicResourceBuilder;
 import org.openstack4j.model.image.v2.ContainerFormat;
 import org.openstack4j.model.image.v2.DiskFormat;
@@ -25,7 +23,7 @@ import org.openstack4j.openstack.common.Metadata;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class GlanceImage implements Image {
 
-    private static final Set<String> RESERVED_KEYS = Sets.newHashSet(Arrays.asList(new String[]{
+    private static final Set<String> RESERVED_KEYS = new HashSet<>(Arrays.asList(
             "id",
             "name",
             "tags",
@@ -52,7 +50,7 @@ public class GlanceImage implements Image {
             "os_version",
             "os_distro",
             "ramdisk_id",
-            "virtual_size"}));
+            "virtual_size"));
 
     private static final long serialVersionUID = 1L;
 
@@ -124,7 +122,7 @@ public class GlanceImage implements Image {
     @JsonProperty("virtual_size")
     private Long virtualSize;
 
-    private Map<String, String> additionalProperties = Maps.newHashMap();
+    private Map<String, String> additionalProperties = new HashMap<>();
 
     public static ImageBuilder builder() {
         return new ImageConcreteBuilder();
@@ -392,7 +390,7 @@ public class GlanceImage implements Image {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("name", name)
                 .add("tags", tags)

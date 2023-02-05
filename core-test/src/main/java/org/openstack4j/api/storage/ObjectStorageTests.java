@@ -1,9 +1,9 @@
 package org.openstack4j.api.storage;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.storage.object.SwiftContainer;
 import org.openstack4j.model.storage.object.SwiftObject;
@@ -48,14 +48,14 @@ public class ObjectStorageTests extends AbstractTest {
     }
 
     private Map<String, String> generateContainerMetadataMap() {
-        Map<String, String> metadata = Maps.newHashMap();
+        Map<String, String> metadata = new HashMap<>();
         metadata.put(CONTAINER_METADATA_PREFIX + NAME_BOOK, "TestBook");
         metadata.put(CONTAINER_METADATA_PREFIX + NAME_YEAR, "2000");
         return metadata;
     }
 
     public void objectRetrievalTest() throws Exception {
-        Map<String, String> headers = Maps.newHashMap();
+        Map<String, String> headers = new HashMap<>();
         headers.put(CONTENT_LENGTH, "15");
         headers.put(CONTENT_TYPE, "application/json");
         headers.put(ETAG, "12345678901234567890");

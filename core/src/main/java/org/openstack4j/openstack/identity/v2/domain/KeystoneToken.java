@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.identity.AuthVersion;
 import org.openstack4j.model.identity.v2.Tenant;
 import org.openstack4j.model.identity.v2.TokenV2;
@@ -36,7 +36,7 @@ public final class KeystoneToken implements TokenV2 {
      * {@inheritDoc}
      */
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("created", created).add("expires", expires).add("tenant", tenant)
                 .toString();
     }

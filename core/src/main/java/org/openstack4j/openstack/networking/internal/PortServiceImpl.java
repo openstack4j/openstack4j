@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.networking.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.PortService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.network.options.PortListOptions;
 import org.openstack4j.openstack.networking.domain.NeutronPort;
 import org.openstack4j.openstack.networking.domain.NeutronPort.Ports;
 import org.openstack4j.openstack.networking.domain.NeutronPortCreate;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Neutron) Port based Operations Implementation
@@ -40,7 +39,7 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
      */
     @Override
     public Port get(String portId) {
-        checkNotNull(portId);
+        Objects.requireNonNull(portId);
         return get(NeutronPort.class, uri("/ports/%s", portId)).execute();
     }
 
@@ -49,7 +48,7 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
      */
     @Override
     public ActionResponse delete(String portId) {
-        checkNotNull(portId);
+        Objects.requireNonNull(portId);
         return deleteWithResponse(uri("/ports/%s", portId)).execute();
     }
 
@@ -58,8 +57,8 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
      */
     @Override
     public Port create(Port port) {
-        checkNotNull(port);
-        checkNotNull(port.getNetworkId(), "NetworkId is a required field");
+        Objects.requireNonNull(port);
+        Objects.requireNonNull(port.getNetworkId(), "NetworkId is a required field");
         return post(NeutronPort.class, uri("/ports")).entity(NeutronPortCreate.fromPort(port)).execute();
     }
 
@@ -68,9 +67,9 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
      */
     @Override
     public List<? extends Port> create(List<? extends Port> ports) {
-        checkNotNull(ports);
+        Objects.requireNonNull(ports);
         for (Port port : ports) {
-            checkNotNull(port.getNetworkId(), "NetworkId is a required field");
+            Objects.requireNonNull(port.getNetworkId(), "NetworkId is a required field");
         }
         return post(Ports.class, uri("/ports")).entity(NeutronPortCreate.NeutronPortsCreate.fromPorts(ports))
                 .execute().getList();
@@ -81,8 +80,8 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
      */
     @Override
     public Port update(Port port) {
-        checkNotNull(port);
-        checkNotNull(port.getId());
+        Objects.requireNonNull(port);
+        Objects.requireNonNull(port.getId());
         Port p = port.toBuilder().networkId(null).state(null).tenantId(null).macAddress(null)
                 .vifType(null).vifDetails(null)
                 .build();

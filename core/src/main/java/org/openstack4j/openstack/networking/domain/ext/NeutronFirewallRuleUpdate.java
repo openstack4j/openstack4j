@@ -3,7 +3,7 @@ package org.openstack4j.openstack.networking.domain.ext;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.IPVersionType;
 import org.openstack4j.model.network.ext.FirewallRuleUpdate;
 import org.openstack4j.model.network.ext.builder.FirewallRuleUpdateBuilder;
@@ -130,7 +130,7 @@ public class NeutronFirewallRuleUpdate implements FirewallRuleUpdate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", name).add("action", action).add("ipVersion", ipVersion)
                 .add("enabled", enabled).add("shared", shared).add("tenantId", tenantId)
                 .add("sourceIpAddress", sourceIpAddress)

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import com.google.common.collect.SortedSetMultimap;
 import com.google.common.collect.TreeMultimap;
 import org.openstack4j.api.types.ServiceType;
@@ -122,7 +122,7 @@ public class KeystoneAccess implements Access {
      * {@inheritDoc}
      */
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("token", token).add("serviceCatalog", serviceCatalog).add("user", user)
                 .toString();
     }
@@ -196,7 +196,7 @@ public class KeystoneAccess implements Access {
          * {@inheritDoc}
          */
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("id", id).add("name", name).add("username", username).add("enabled", enabled)
                     .add("roles", roles).add("rolesLinks", rolesLinks)
                     .toString();
@@ -210,7 +210,7 @@ public class KeystoneAccess implements Access {
              * {@inheritDoc}
              */
             public String toString() {
-                return MoreObjects.toStringHelper(this).omitNullValues()
+                return new ToStringHelper(this)
                         .add("id", getId()).add("name", getName()).add("tenantId", getTenantId())
                         .toString();
             }
@@ -290,7 +290,7 @@ public class KeystoneAccess implements Access {
          * {@inheritDoc}
          */
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("name", name).add("type", type).add("version", getVersion()).add("endpoints", endpoints).addValue("\n")
                     .toString();
         }

@@ -7,7 +7,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.HostAggregate;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -123,7 +123,7 @@ public class NovaHostAggregate implements HostAggregate {
     @Override
     public String toString() {
 
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("availabilityZone", availabilityZone)
                 .add("createdAt", createdAt)
                 .add("deleted", deleted)

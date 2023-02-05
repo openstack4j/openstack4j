@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.heat.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -7,8 +8,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.heat.SoftwareConfig;
 import org.openstack4j.model.heat.builder.SoftwareConfigBuilder;
 
@@ -79,7 +79,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
     }
 
     public String toString() {
-        return MoreObjects.toStringHelper(SoftwareConfig.class).omitNullValues()
+        return new ToStringHelper(SoftwareConfig.class)
                 .add("id", id).add("name", name).add("group", group).addValue("\n")
                 .add("inputs", inputs).addValue("\n").add("outputs", outputs)
                 .addValue("\n").add("config", config).add("options", options)
@@ -128,7 +128,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         }
 
         public String toString() {
-            return MoreObjects.toStringHelper(Input.class).omitNullValues()
+            return new ToStringHelper(Input.class)
                     .add("name", name).add("type", type)
                     .add("description", description).add("default", defaultValue)
                     .toString();
@@ -177,7 +177,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         }
 
         public String toString() {
-            return MoreObjects.toStringHelper(Output.class).omitNullValues()
+            return new ToStringHelper(Output.class)
                     .add("name", name).add("type", type)
                     .add("description", description).add("errorOutput", errorOutput)
                     .toString();
@@ -233,7 +233,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         @Override
         public SoftwareConfigBuilder input(String name, String type, String description, String defaultValue) {
             if (sc.inputs == null)
-                sc.inputs = Lists.newArrayList();
+                sc.inputs = new ArrayList<>();
 
             sc.inputs.add(new SCInput(name, type, description, defaultValue));
             return this;
@@ -254,7 +254,7 @@ public class HeatSoftwareConfig implements SoftwareConfig {
         @Override
         public SoftwareConfigBuilder output(String name, String type, String description, boolean isErrorOutput) {
             if (sc.outputs == null)
-                sc.outputs = Lists.newArrayList();
+                sc.outputs = new ArrayList<>();
 
             sc.outputs.add(new SCOutput(name, type, description, isErrorOutput));
             return this;

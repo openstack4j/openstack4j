@@ -2,7 +2,6 @@ package org.openstack4j.api.storage;
 
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
 import org.openstack4j.openstack.storage.block.domain.CinderBlockQuotaSet;
@@ -28,14 +27,14 @@ public class VolumeTypeQuotaTests extends AbstractTest {
         String volumeTypeVolumesQuotaKey = "volumes_ruby";
         String notAVolumeTypeQuotaKey = "i_dont_want_that_key";
 
+        Map<String, Integer> volumeTypesQuotas = new java.util.HashMap<>();
+        volumeTypesQuotas.put(volumeTypeGigabytesQuotaKey, 100);
+        volumeTypesQuotas.put(volumeTypeSnapshotsQuotaKey, 5);
+        volumeTypesQuotas.put(volumeTypeVolumesQuotaKey, -1);
         BlockQuotaSet blockQuotaSet = new CinderBlockQuotaSet()
                 .toBuilder()
                 .volumeTypesQuotas(
-                        ImmutableMap.of(
-                                volumeTypeGigabytesQuotaKey, 100,
-                                volumeTypeSnapshotsQuotaKey, 5,
-                                volumeTypeVolumesQuotaKey, -1
-                        )
+                        volumeTypesQuotas
                 )
                 .build();
 

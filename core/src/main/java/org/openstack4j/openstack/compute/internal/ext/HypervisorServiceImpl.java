@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.compute.internal.ext;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.ext.HypervisorService;
 import org.openstack4j.model.compute.ext.Hypervisor;
@@ -9,8 +10,6 @@ import org.openstack4j.openstack.compute.domain.ext.ExtHypervisor;
 import org.openstack4j.openstack.compute.domain.ext.ExtHypervisor.Hypervisors;
 import org.openstack4j.openstack.compute.domain.ext.ExtHypervisorStatistics;
 import org.openstack4j.openstack.compute.internal.BaseComputeServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Implementation for the OSHypervisors.
@@ -42,7 +41,7 @@ public class HypervisorServiceImpl extends BaseComputeServices implements Hyperv
      */
     @Override
     public Hypervisor get(String hypervisorId) {
-        checkNotNull(hypervisorId);
+        Objects.requireNonNull(hypervisorId);
         return get(ExtHypervisor.class, uri("/os-hypervisors/%s", hypervisorId)).execute();
     }
 }

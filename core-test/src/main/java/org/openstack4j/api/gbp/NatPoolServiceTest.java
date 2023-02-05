@@ -1,9 +1,9 @@
 package org.openstack4j.api.gbp;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -36,7 +36,7 @@ public class NatPoolServiceTest extends AbstractTest {
         respondWith(NAT_POOLS);
         List<? extends NatPool> natpoolList = osv2().gbp().natPool().list();
         assertEquals(2, natpoolList.size());
-        Preconditions.checkNotNull(natpoolList.get(0));
+        Objects.requireNonNull(natpoolList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Nat Pool from List : " + natpoolList.get(0));
         assertEquals(natpoolList.get(0).getId(), "f2e4fce7-4c55-497b-ac4c-290dd202c71a");
     }

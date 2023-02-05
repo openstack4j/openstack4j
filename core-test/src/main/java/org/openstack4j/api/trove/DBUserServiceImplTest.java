@@ -2,9 +2,9 @@ package org.openstack4j.api.trove;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.trove.DatabaseUser;
@@ -36,7 +36,7 @@ public class DBUserServiceImplTest extends AbstractTest {
         respondWith(TROVE_DATABASE_USERS);
         List<? extends DatabaseUser> databaseUsers = osv2().trove().databaseUsersService().list(databaseInstanceId);
         assertEquals(2, databaseUsers.size());
-        Preconditions.checkNotNull(databaseUsers.get(0));
+        Objects.requireNonNull(databaseUsers.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Database User from List : " + databaseUsers.get(0));
     }
 

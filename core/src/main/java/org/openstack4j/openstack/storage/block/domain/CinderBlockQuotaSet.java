@@ -9,8 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
 import org.openstack4j.model.storage.block.builder.BlockQuotaSetBuilder;
-
-import static com.google.common.base.MoreObjects.toStringHelper;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An OpenStack Quota-Set
@@ -78,7 +77,7 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
 
     @Override
     public String toString() {
-        return toStringHelper(this).add("snapshots", snapshots).add("volumes", volumes).add("gigabytes", gigabytes).toString();
+        return new ToStringHelper(this).add("snapshots", snapshots).add("volumes", volumes).add("gigabytes", gigabytes).toString();
     }
 
     public static class BlockQuotaSetConcreteBuilder implements BlockQuotaSetBuilder {
@@ -127,7 +126,5 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
             model.volumeTypesQuotas = volumeTypesQuotas;
             return this;
         }
-
     }
-
 }

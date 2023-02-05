@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.sahara.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.JobConfig;
 import org.openstack4j.model.sahara.builder.JobConfigBuilder;
 
@@ -61,7 +61,7 @@ public class SaharaJobConfig implements JobConfig {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("configs", configs)
                 .add("args", args)
                 .add("params", params)
@@ -110,7 +110,7 @@ public class SaharaJobConfig implements JobConfig {
         @Override
         public JobConfigBuilder addArg(Object arg) {
             if (m.args == null)
-                m.args = Lists.newArrayList();
+                m.args = new ArrayList<>();
             m.args.add(arg);
             return this;
         }

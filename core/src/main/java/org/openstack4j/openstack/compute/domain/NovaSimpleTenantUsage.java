@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.Server.Status;
 import org.openstack4j.model.compute.SimpleTenantUsage;
 import org.openstack4j.openstack.common.ListResult;
@@ -104,7 +104,7 @@ public class NovaSimpleTenantUsage implements SimpleTenantUsage {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("tenantId", tenantId).add("totalMemoryMbUsage", totalMemoryMbUsage).add("totalVcpusUsage", totalVcpusUsage).add("totalLocalGbUsage", totalLocalGbUsage)
                 .add("start", start).add("stop", stop).add("totalHours", totalHours).addValue("\n").add("serverUsages", serverUsages)
                 .toString();
@@ -247,7 +247,7 @@ public class NovaSimpleTenantUsage implements SimpleTenantUsage {
          */
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("instanceId", instanceId).add("name", name).add("uptime", uptime).add("startedAt", startedAt)
                     .add("endedAt", endedAt).add("memoryMb", memoryMb).add("tenantId", tenantId).add("state", state)
                     .add("hours", hours).add("vcpus", vcpus).add("flavor", flavor).add("localDiskSize", localDiskSize)

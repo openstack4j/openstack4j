@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.storage.block.VolumeType;
 import org.openstack4j.model.storage.block.builder.VolumeTypeBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -69,7 +69,7 @@ public class CinderVolumeType implements VolumeType {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("extras", extraSpecs)
                 .toString();
     }

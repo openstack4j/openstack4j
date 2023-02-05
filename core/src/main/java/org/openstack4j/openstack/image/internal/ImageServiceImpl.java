@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.client.CloudProvider;
 import org.openstack4j.api.exceptions.ResponseException;
@@ -24,7 +25,6 @@ import org.openstack4j.openstack.image.domain.GlanceImageMember.Members;
 import org.openstack4j.openstack.image.domain.functions.ImageForUpdateToHeaders;
 import org.openstack4j.openstack.image.domain.functions.ImageFromHeadersFunction;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.openstack4j.core.transport.ClientConstants.CONTENT_TYPE_OCTECT_STREAM;
 import static org.openstack4j.core.transport.ClientConstants.HEADER_ACCEPT;
 import static org.openstack4j.core.transport.HttpEntityHandler.statusAndClose;
@@ -112,7 +112,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public Image get(String imageId) {
-        checkNotNull(imageId);
+        Objects.requireNonNull(imageId);
         return head(Image.class, uri("/images/%s", imageId)).execute(ExecutionOptions.create(ImageFromHeadersFunction.instance()));
     }
 
@@ -121,7 +121,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public ActionResponse delete(String imageId) {
-        checkNotNull(imageId);
+        Objects.requireNonNull(imageId);
         return deleteWithResponse(uri("/images/%s", imageId)).param("format", "json").execute();
     }
 
@@ -130,8 +130,8 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public Image update(Image image) {
-        checkNotNull(image);
-        checkNotNull(image.getId());
+        Objects.requireNonNull(image);
+        Objects.requireNonNull(image.getId());
         return put(GlanceImage.class, uri("/images/%s", image.getId())).headers(ImageForUpdateToHeaders.instance().apply(image)).execute();
     }
 
@@ -140,7 +140,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public InputStream getAsStream(String imageId) {
-        checkNotNull(imageId);
+        Objects.requireNonNull(imageId);
         HttpResponse response = get(Void.class, uri("/images/%s", imageId)).header(HEADER_ACCEPT, CONTENT_TYPE_OCTECT_STREAM).executeWithResponse();
         if (response.getStatus() < 400)
             return response.getInputStream();
@@ -152,7 +152,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public Image create(Image image, Payload<?> payload) {
-        checkNotNull(image);
+        Objects.requireNonNull(image);
         if (payload == null)
             return reserve(image);
 
@@ -164,7 +164,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public Image reserve(Image image) {
-        checkNotNull(image);
+        Objects.requireNonNull(image);
         return post(GlanceImage.class, uri("/images")).headers(ImageForUpdateToHeaders.instance().apply(image)).execute();
     }
 
@@ -173,8 +173,8 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public Image upload(String imageId, Payload<?> payload, @Nullable Image image) {
-        checkNotNull(imageId);
-        checkNotNull(payload);
+        Objects.requireNonNull(imageId);
+        Objects.requireNonNull(payload);
         return put(GlanceImage.class, uri("/images/%s", imageId)).headers(ImageForUpdateToHeaders.instance().apply(image)).entity(payload).execute();
     }
 
@@ -183,7 +183,7 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public List<? extends ImageMember> listMembers(String imageId) {
-        checkNotNull(imageId);
+        Objects.requireNonNull(imageId);
         return get(Members.class, uri("/images/%s/members", imageId)).execute().getList();
     }
 
@@ -192,8 +192,8 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public boolean addMember(String imageId, String tenantId) {
-        checkNotNull(imageId);
-        checkNotNull(tenantId);
+        Objects.requireNonNull(imageId);
+        Objects.requireNonNull(tenantId);
         return statusAndClose(put(Void.class, uri("/images/%s/members/%s", imageId, tenantId)).executeWithResponse()) == 204;
     }
 
@@ -202,8 +202,8 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public boolean addMember(String imageId, String tenantId, boolean canShare) {
-        checkNotNull(imageId);
-        checkNotNull(tenantId);
+        Objects.requireNonNull(imageId);
+        Objects.requireNonNull(tenantId);
         return statusAndClose(put(Void.class, uri("/images/%s/members/%s", imageId, tenantId)).entity(new GlanceImageMember(null, canShare)).executeWithResponse()) == 204;
     }
 
@@ -212,8 +212,8 @@ public class ImageServiceImpl extends BaseImageServices implements ImageService 
      */
     @Override
     public boolean removeMember(String imageId, String tenantId) {
-        checkNotNull(imageId);
-        checkNotNull(tenantId);
+        Objects.requireNonNull(imageId);
+        Objects.requireNonNull(tenantId);
         return statusAndClose(delete(Void.class, uri("/images/%s/members/%s", imageId, tenantId)).executeWithResponse()) == 204;
     }
 }

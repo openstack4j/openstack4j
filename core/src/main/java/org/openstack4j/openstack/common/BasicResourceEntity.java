@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.common;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.BasicResource;
 
 /**
@@ -32,7 +32,7 @@ public class BasicResourceEntity extends IdResourceEntity implements BasicResour
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(getClass()).omitNullValues()
+        return new ToStringHelper(getClass())
                 .add("id", getId()).add("name", name)
                 .toString();
     }

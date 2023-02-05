@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.sahara.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.sahara.JobExecutionService;
 import org.openstack4j.model.common.ActionResponse;
@@ -8,8 +9,6 @@ import org.openstack4j.model.sahara.JobExecution;
 import org.openstack4j.openstack.sahara.domain.SaharaJobExecution;
 import org.openstack4j.openstack.sahara.domain.SaharaJobExecution.JobExecutions;
 import org.openstack4j.openstack.sahara.domain.SaharaJobExecutionUnwrapped;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Sahara Data Processing Operations
@@ -21,7 +20,7 @@ public class JobExecutionServiceImpl extends BaseSaharaServices implements JobEx
 
     @Override
     public JobExecution create(JobExecution jobExecution) {
-        checkNotNull(jobExecution);
+        Objects.requireNonNull(jobExecution);
         SaharaJobExecutionUnwrapped unwrapped = new SaharaJobExecutionUnwrapped(jobExecution);
         return post(SaharaJobExecution.class, uri("/jobs/%s/execute", jobExecution.getJobIdForExecution()))
                 .entity(unwrapped)  // setup request
@@ -35,25 +34,25 @@ public class JobExecutionServiceImpl extends BaseSaharaServices implements JobEx
 
     @Override
     public JobExecution get(String jobExecutionId) {
-        checkNotNull(jobExecutionId);
+        Objects.requireNonNull(jobExecutionId);
         return get(SaharaJobExecution.class, uri("/job-executions/%s", jobExecutionId)).execute();
     }
 
     @Override
     public JobExecution refreshStatus(String jobExecutionId) {
-        checkNotNull(jobExecutionId);
+        Objects.requireNonNull(jobExecutionId);
         return get(SaharaJobExecution.class, uri("/job-executions/%s/refresh-status", jobExecutionId)).execute();
     }
 
     @Override
     public JobExecution cancel(String jobExecutionId) {
-        checkNotNull(jobExecutionId);
+        Objects.requireNonNull(jobExecutionId);
         return get(SaharaJobExecution.class, uri("/job-executions/%s/cancel", jobExecutionId)).execute();
     }
 
     @Override
     public ActionResponse delete(String jobExecutionId) {
-        checkNotNull(jobExecutionId);
+        Objects.requireNonNull(jobExecutionId);
         return deleteWithResponse(uri("/job-executions/%s", jobExecutionId)).execute();
     }
 }

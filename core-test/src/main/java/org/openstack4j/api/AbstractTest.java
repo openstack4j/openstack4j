@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.common.io.ByteStreams;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -21,6 +20,7 @@ import org.openstack4j.core.transport.internal.HttpExecutor;
 import org.openstack4j.openstack.OSFactory;
 import org.openstack4j.openstack.identity.v2.domain.KeystoneAccess;
 import org.openstack4j.openstack.identity.v3.domain.KeystoneToken;
+import org.openstack4j.util.IOUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
@@ -138,14 +138,14 @@ public abstract class AbstractTest {
     protected void respondWithHeaderAndResource(Map<String, String> headers, int statusCode, String resource)
             throws IOException {
         InputStream is = getClass().getResourceAsStream(resource);
-        respondWith(headers, statusCode, new String(ByteStreams.toByteArray(is)));
+        respondWith(headers, statusCode, new String(IOUtil.readBytes(is)));
     }
 
     protected void respondWithCodeAndResource(int statusCode, String resource) throws IOException {
         InputStream is = getClass().getResourceAsStream(resource);
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json");
-        respondWith(headers, statusCode, new String(ByteStreams.toByteArray(is)));
+        respondWith(headers, statusCode, new String(IOUtil.readBytes(is)));
     }
 
     /**
@@ -241,7 +241,7 @@ public abstract class AbstractTest {
 
     protected String getResource(String resource) throws IOException {
         InputStream is = getClass().getResourceAsStream(resource);
-        return new String(ByteStreams.toByteArray(is));
+        return new String(IOUtil.readBytes(is));
     }
 
     private String getHost() {

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.JobBinary;
 import org.openstack4j.model.sahara.JobBinaryCredentials;
 import org.openstack4j.model.sahara.builder.JobBinaryBuilder;
@@ -118,7 +118,7 @@ public class SaharaJobBinary implements JobBinary {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("description", description)
                 .add("url", url)
                 .add("tenant_id", tenantId)

@@ -9,8 +9,7 @@ import org.openstack4j.model.common.Link;
 import org.openstack4j.model.storage.block.VolumeTransfer;
 import org.openstack4j.openstack.common.GenericLink;
 import org.openstack4j.openstack.common.ListResult;
-
-import static com.google.common.base.MoreObjects.toStringHelper;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Represents a Volume Transfer Entity which is used for creating a volume transfer
@@ -73,7 +72,7 @@ public class CinderVolumeTransfer implements VolumeTransfer {
 
     @Override
     public String toString() {
-        return toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("authKey", authKey)
                 .add("volumeId", volumeId).add("createdAt", createdAt).add("links", links)
                 .toString();

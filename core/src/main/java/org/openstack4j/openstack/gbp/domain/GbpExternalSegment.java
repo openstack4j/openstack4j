@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.gbp.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.ExternalRoutes;
 import org.openstack4j.model.gbp.ExternalSegment;
 import org.openstack4j.model.gbp.builder.ExternalSegmentBuilder;
@@ -133,7 +133,7 @@ public class GbpExternalSegment implements ExternalSegment {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description).add("tenantId", tenantId).add("externalPolicies", externalPolicies)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("desription", description).add("tenantId", tenantId).add("externalPolicies", externalPolicies)
                 .add("l3Policies", l3Policies).add("natpools", natpools).add("ipVersion", ipVersion).add("cidr", cidr).add("shared", shared)
                 .add("subnetId", subnetId).add("portAddressTranslation", portAddressTranslation).add("externalRoutes", externalRoutes).toString();
     }
@@ -212,7 +212,7 @@ public class GbpExternalSegment implements ExternalSegment {
 
         @Override
         public ExternalSegmentBuilder externalRoutes(List<ExternalRoutes> extRoutes) {
-            this.extSegment.externalRoutes = Lists.newArrayList();
+            this.extSegment.externalRoutes = new ArrayList<>();
             for (ExternalRoutes externalRoute : extRoutes) {
                 this.extSegment.externalRoutes.add((GbpExternalRoutes) externalRoute);
             }

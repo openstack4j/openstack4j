@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.magnum;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Label;
 import org.openstack4j.model.magnum.LabelBuilder;
 
@@ -25,7 +25,7 @@ public class MagnumLabel implements Label {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("key", key).toString();
+        return new ToStringHelper(this).add("key", key).toString();
     }
 
     /**

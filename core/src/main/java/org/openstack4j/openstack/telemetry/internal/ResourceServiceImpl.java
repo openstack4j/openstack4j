@@ -1,12 +1,11 @@
 package org.openstack4j.openstack.telemetry.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.telemetry.ResourceService;
 import org.openstack4j.model.telemetry.Resource;
 import org.openstack4j.openstack.telemetry.domain.CeilometerResource;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Provides Measurements for Telemetry resources within an OpenStack deployment
@@ -29,7 +28,7 @@ public class ResourceServiceImpl extends BaseTelemetryServices implements Resour
      */
     @Override
     public Resource get(String resourceId) {
-        checkNotNull(resourceId);
+        Objects.requireNonNull(resourceId);
         CeilometerResource resource = get(CeilometerResource.class, uri("/resources/%s", resourceId)).execute();
         return resource;
     }

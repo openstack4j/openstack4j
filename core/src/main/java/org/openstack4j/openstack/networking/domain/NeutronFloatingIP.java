@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.NetFloatingIP;
 import org.openstack4j.model.network.builder.NetFloatingIPBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -242,7 +242,7 @@ public class NeutronFloatingIP implements NetFloatingIP {
     public String toString() {
         // Report tenantId iff it differs from projectId
         String distinctTenantId = Objects.equals(tenantId, projectId) ? null: tenantId;
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("routerId", routerId).add("floatingNetworkId", floatingNetworkId)
                 .add("projectId", projectId).add("tenantId", distinctTenantId)
                 .add("floatingIpAddress", floatingIpAddress).add("fixedIpAddress", fixedIpAddress).add("portId", portId).add("status", status)

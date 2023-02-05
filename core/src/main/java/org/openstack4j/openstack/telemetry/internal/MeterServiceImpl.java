@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.telemetry.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.telemetry.MeterService;
 import org.openstack4j.model.telemetry.Meter;
@@ -12,8 +13,6 @@ import org.openstack4j.openstack.common.ListEntity;
 import org.openstack4j.openstack.telemetry.domain.CeilometerMeter;
 import org.openstack4j.openstack.telemetry.domain.CeilometerMeterSample;
 import org.openstack4j.openstack.telemetry.domain.CeilometerStatistics;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Provides Measurements against Meters within an OpenStack deployment
@@ -41,7 +40,7 @@ public class MeterServiceImpl extends BaseTelemetryServices implements MeterServ
      */
     @Override
     public List<? extends MeterSample> samples(String meterName) {
-        checkNotNull(meterName);
+        Objects.requireNonNull(meterName);
 
         CeilometerMeterSample[] samples = get(CeilometerMeterSample[].class, uri("/meters/%s", meterName)).execute();
         return wrapList(samples);
@@ -52,8 +51,8 @@ public class MeterServiceImpl extends BaseTelemetryServices implements MeterServ
      */
     @Override
     public List<? extends MeterSample> samples(String meterName, SampleCriteria criteria) {
-        checkNotNull(meterName);
-        checkNotNull(criteria);
+        Objects.requireNonNull(meterName);
+        Objects.requireNonNull(criteria);
         Invocation<CeilometerMeterSample[]> invocation = get(CeilometerMeterSample[].class, uri("/meters/%s", meterName));
         if (criteria.getLimit() > 0) {
             invocation.param(LIMIT, criteria.getLimit());
@@ -90,8 +89,8 @@ public class MeterServiceImpl extends BaseTelemetryServices implements MeterServ
 
     @Override
     public List<? extends Statistics> statistics(String meterName, SampleCriteria criteria, int period) {
-        checkNotNull(meterName);
-        checkNotNull(criteria);
+        Objects.requireNonNull(meterName);
+        Objects.requireNonNull(criteria);
         Invocation<CeilometerStatistics[]> invocation = get(CeilometerStatistics[].class, uri("/meters/%s/statistics", meterName))
                 .param(period > 0, "period", period);
         if (criteria.getLimit() > 0) {

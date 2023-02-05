@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.NetworkService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.network.Network;
 import org.openstack4j.model.network.NetworkUpdate;
 import org.openstack4j.openstack.networking.domain.NeutronNetwork;
 import org.openstack4j.openstack.networking.domain.NeutronNetwork.Networks;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Neutron) Network based Operations
@@ -55,26 +54,26 @@ public class NetworkServiceImpl extends BaseNetworkingServices implements Networ
      */
     @Override
     public ActionResponse delete(String networkId) {
-        checkNotNull(networkId);
+        Objects.requireNonNull(networkId);
         return deleteWithResponse(uri("/networks/%s", networkId)).execute();
     }
 
     @Override
     public Network get(String networkId) {
-        checkNotNull(networkId);
+        Objects.requireNonNull(networkId);
         return get(NeutronNetwork.class, uri("/networks/%s", networkId)).execute();
     }
 
     @Override
     public Network create(Network network) {
-        checkNotNull(network);
+        Objects.requireNonNull(network);
         return post(NeutronNetwork.class, uri("/networks")).entity(network).execute();
     }
 
     @Override
     public Network update(String networkId, NetworkUpdate network) {
-        checkNotNull(networkId);
-        checkNotNull(network, "network");
+        Objects.requireNonNull(networkId);
+        Objects.requireNonNull(network, "network");
         return put(NeutronNetwork.class, uri("/networks/%s", networkId)).entity(network).execute();
     }
 

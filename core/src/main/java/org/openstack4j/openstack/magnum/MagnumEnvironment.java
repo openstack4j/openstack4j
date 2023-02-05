@@ -3,7 +3,7 @@ package org.openstack4j.openstack.magnum;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Environment;
 import org.openstack4j.model.magnum.EnvironmentBuilder;
 
@@ -34,7 +34,7 @@ public class MagnumEnvironment implements Environment {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("path", path).add("ldLibraryPath", ldLibraryPath)
+        return new ToStringHelper(this).add("path", path).add("ldLibraryPath", ldLibraryPath)
                 .toString();
     }
 

@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.identity.v2.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.identity.v2.RoleService;
 import org.openstack4j.core.transport.HttpMethod;
@@ -10,8 +11,6 @@ import org.openstack4j.openstack.identity.v2.domain.KeystoneCreateRole;
 import org.openstack4j.openstack.identity.v2.domain.KeystoneRole;
 import org.openstack4j.openstack.identity.v2.domain.KeystoneRole.Roles;
 import org.openstack4j.openstack.internal.BaseOpenStackService;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Identity Role based Operations Implementation
@@ -62,8 +61,8 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
      * @param the action response
      */
     private ActionResponse addRemoveRoles(HttpMethod method, String tenantId, String userId, String roleId) {
-        checkNotNull(userId);
-        checkNotNull(roleId);
+        Objects.requireNonNull(userId);
+        Objects.requireNonNull(roleId);
         String uri = (tenantId != null) ? uri("/tenants/%s/users/%s/roles/OS-KSADM/%s", tenantId, userId, roleId): uri("/users/%s/roles/OS-KSADM/%s", userId, roleId);
         return request(method, ActionResponse.class, uri).execute();
     }
@@ -90,7 +89,7 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
      */
     @Override
     public List<? extends Role> listRolesForUser(String userId, String tenantId) {
-        checkNotNull(userId);
+        Objects.requireNonNull(userId);
         String uri = (tenantId != null) ? uri("/tenants/%s/users/%s/roles", tenantId, userId): uri("/users/%s/roles", userId);
         return get(Roles.class, uri).execute().getList();
     }
@@ -100,7 +99,7 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
      */
     @Override
     public ActionResponse delete(String roleId) {
-        checkNotNull(roleId);
+        Objects.requireNonNull(roleId);
         return deleteWithResponse(uri("/OS-KSADM/roles/%s", roleId)).execute();
     }
 
@@ -109,7 +108,7 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
      */
     @Override
     public Role get(String roleId) {
-        checkNotNull(roleId);
+        Objects.requireNonNull(roleId);
         return get(KeystoneRole.class, uri("/OS-KSADM/roles/%s", roleId)).execute();
     }
 
@@ -118,7 +117,7 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
      */
     @Override
     public Role create(String name) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         return post(KeystoneRole.class, uri("/OS-KSADM/roles")).entity(new KeystoneCreateRole(name)).execute();
     }
 
@@ -129,7 +128,7 @@ public class RoleServiceImpl extends BaseOpenStackService implements RoleService
     public Role getByName(String name) {
         // Due to a bug in OpenStack Rest Service (not returning documented query) we will manually match on the list until it's resolved. Since the contract of the
         // API is against the interface we can change this anytime
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         List<? extends Role> roles = list();
         for (Role r : roles) {
             if (name.equalsIgnoreCase(r.getName()))

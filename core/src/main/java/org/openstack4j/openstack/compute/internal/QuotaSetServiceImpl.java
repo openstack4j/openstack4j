@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.compute.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.QuotaSetService;
 import org.openstack4j.model.compute.Limits;
@@ -16,8 +17,6 @@ import org.openstack4j.openstack.compute.domain.NovaQuotaSetUpdate.NovaQuotaSetU
 import org.openstack4j.openstack.compute.domain.NovaQuotaSetUpdate.NovaQuotaSetUpdateTenant;
 import org.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage;
 import org.openstack4j.openstack.compute.domain.NovaSimpleTenantUsage.NovaSimpleTenantUsages;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack Quota-Set API Implementation
@@ -39,7 +38,7 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
      */
     @Override
     public ComputeQuotaDetail getDetail(String tenantId) {
-        checkNotNull(tenantId);
+        Objects.requireNonNull(tenantId);
         String uri = uri("/os-quota-sets/%s/detail", tenantId);
         return get(NovaComputeQuotaDetail.class, uri).execute();
     }
@@ -49,7 +48,7 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
      */
     @Override
     public QuotaSet get(String tenantId, String userId) {
-        checkNotNull(tenantId);
+        Objects.requireNonNull(tenantId);
         String uri = (userId != null) ? uri("/os-quota-sets/%s?user_id=%s", tenantId, userId): uri("/os-quota-sets/%s", tenantId);
         return get(NovaQuotaSet.class, uri).execute();
     }
@@ -59,8 +58,8 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
      */
     @Override
     public QuotaSet updateForClass(String classId, QuotaSetUpdate qs) {
-        checkNotNull(classId);
-        checkNotNull(qs);
+        Objects.requireNonNull(classId);
+        Objects.requireNonNull(qs);
 
         return put(NovaQuotaSetClass.class, uri("/os-quota-class-sets/%s", classId)).entity(NovaQuotaSetUpdateClass.from(qs)).execute();
     }
@@ -70,8 +69,8 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
      */
     @Override
     public QuotaSet updateForTenant(String tenantId, QuotaSetUpdate qs) {
-        checkNotNull(tenantId);
-        checkNotNull(qs);
+        Objects.requireNonNull(tenantId);
+        Objects.requireNonNull(qs);
 
         return put(NovaQuotaSet.class, uri("/os-quota-sets/%s", tenantId)).entity(NovaQuotaSetUpdateTenant.from(qs)).execute();
     }
@@ -97,7 +96,7 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
      */
     @Override
     public SimpleTenantUsage getTenantUsage(String tenantId) {
-        checkNotNull(tenantId);
+        Objects.requireNonNull(tenantId);
         return get(NovaSimpleTenantUsage.class, uri("/os-simple-tenant-usage/%s", tenantId)).execute();
     }
 
@@ -107,8 +106,8 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
     @Override
     public List<? extends SimpleTenantUsage> listTenantUsages(String startTime,
             String endTime) {
-        checkNotNull(startTime);
-        checkNotNull(endTime);
+        Objects.requireNonNull(startTime);
+        Objects.requireNonNull(endTime);
         return get(NovaSimpleTenantUsages.class, uri("/os-simple-tenant-usage"))
                 .param("start", startTime)
                 .param("end", endTime)
@@ -121,9 +120,9 @@ public class QuotaSetServiceImpl extends BaseComputeServices implements QuotaSet
     @Override
     public SimpleTenantUsage getTenantUsage(String tenantId, String startTime,
             String endTime) {
-        checkNotNull(tenantId);
-        checkNotNull(startTime);
-        checkNotNull(endTime);
+        Objects.requireNonNull(tenantId);
+        Objects.requireNonNull(startTime);
+        Objects.requireNonNull(endTime);
         return get(NovaSimpleTenantUsage.class, uri("/os-simple-tenant-usage/%s", tenantId))
                 .param("start", startTime)
                 .param("end", endTime)

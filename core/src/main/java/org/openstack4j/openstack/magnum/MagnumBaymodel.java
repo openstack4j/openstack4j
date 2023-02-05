@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Baymodel;
 import org.openstack4j.model.magnum.BaymodelBuilder;
 import org.openstack4j.openstack.common.GenericLink;
@@ -217,7 +217,7 @@ public class MagnumBaymodel implements Baymodel {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("insecureRegistry", insecureRegistry)
                 .add("links", links)
                 .add("httpProxy", httpProxy)

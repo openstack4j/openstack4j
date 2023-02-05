@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-import com.google.common.base.Throwables;
 import org.openstack4j.model.common.Payload;
 
 /**
@@ -39,7 +38,7 @@ public class URLPayload implements Payload<URL> {
             is = url.openStream();
             return is;
         } catch (IOException e) {
-            throw Throwables.propagate(e);
+            throw new RuntimeException(e);
         }
     }
 

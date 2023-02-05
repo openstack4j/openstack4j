@@ -2,6 +2,7 @@ package org.openstack4j.openstack.storage.block.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -14,8 +15,6 @@ import org.openstack4j.model.storage.block.VolumeBackupRestore;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackup;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackup.VolumeBackups;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackupRestore;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Cinder) Volume Backup Operations API Implementation.
@@ -58,7 +57,7 @@ public class BlockVolumeBackupServiceImpl extends BaseBlockStorageServices imple
      */
     @Override
     public VolumeBackup get(String backupId) {
-        checkNotNull(backupId);
+        Objects.requireNonNull(backupId);
         return get(CinderVolumeBackup.class, uri("/backups/%s", backupId)).execute();
 
     }
@@ -68,7 +67,7 @@ public class BlockVolumeBackupServiceImpl extends BaseBlockStorageServices imple
      */
     @Override
     public ActionResponse delete(String backupId) {
-        checkNotNull(backupId);
+        Objects.requireNonNull(backupId);
         return deleteWithResponse(uri("/backups/%s", backupId)).execute();
     }
 
@@ -77,8 +76,8 @@ public class BlockVolumeBackupServiceImpl extends BaseBlockStorageServices imple
      */
     @Override
     public VolumeBackup create(VolumeBackupCreate vbc) {
-        checkNotNull(vbc);
-        checkNotNull(vbc.getVolumeId());
+        Objects.requireNonNull(vbc);
+        Objects.requireNonNull(vbc.getVolumeId());
         return post(CinderVolumeBackup.class, uri("/backups")).entity(vbc).execute();
     }
 

@@ -1,9 +1,9 @@
 package org.openstack4j.api.senlin.v1;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.senlin.ClusterPolicy;
 import org.testng.annotations.Test;
@@ -32,7 +32,7 @@ public class ClusterPolicyServiceTest extends AbstractTest {
         respondWith(CLUSTERPOLICYS);
         List<? extends ClusterPolicy> clusterPolicyList = osv3().senlin().clusterPolicy().list("7d85f602-a948-4a30-afd4-e84f47471c15");
         assertEquals(2, clusterPolicyList.size());
-        Preconditions.checkNotNull(clusterPolicyList.get(0));
+        Objects.requireNonNull(clusterPolicyList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : ClusterPolicy from List : " + clusterPolicyList.get(0));
         assertEquals(clusterPolicyList.get(0).getId(), "06be3a1f-b238-4a96-a737-ceec5714087e");
     }

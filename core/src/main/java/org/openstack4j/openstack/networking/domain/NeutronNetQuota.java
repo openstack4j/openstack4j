@@ -8,8 +8,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.network.NetQuota;
 import org.openstack4j.model.network.builder.NetQuotaBuilder;
 import org.openstack4j.openstack.common.ListResult;
-
-import static com.google.common.base.MoreObjects.toStringHelper;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Network quotas that are bound to a Tenant
@@ -97,7 +96,7 @@ public class NeutronNetQuota implements NetQuota {
 
     @Override
     public String toString() {
-        return toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("subnet", subnet).add("router", router).add("port", port)
                 .add("network", network).add("floatingIp", floatingIp).add("subnetpool", subnetpool)
                 .add("rbacPolicy", rbacPolicy).toString();

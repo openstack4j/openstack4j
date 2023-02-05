@@ -1,8 +1,8 @@
 package org.openstack4j.test.common;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
 import org.openstack4j.openstack.storage.object.functions.MapWithoutMetaPrefixFunction;
 import org.testng.annotations.Test;
 
@@ -15,12 +15,14 @@ import static org.testng.Assert.assertTrue;
  */
 public class MapWithoutMetaPrefixFunctionTest {
 
-    private static Map<String, String> VALUES = ImmutableMap.of(
-            "X-Meta-Value1", "Value1",
-            "X-Meta-Value2", "value2",
-            "x-meta-value3", "Value3",
-            "x-meta-value4", "value4" // Test case-sensitiveness of X- or -Meta- detection to be RFC-compliant
-    );
+    private static Map<String, String> VALUES = new HashMap<>();
+    static {
+        // Test case-sensitiveness of X- or -Meta- detection to be RFC-compliant
+        VALUES.put("X-Meta-Value1", "Value1");
+        VALUES.put("X-Meta-Value2", "value2");
+        VALUES.put("x-meta-value3", "Value3");
+        VALUES.put("x-meta-value4", "value4");
+    }
 
     @Test
     public void keyTest() {

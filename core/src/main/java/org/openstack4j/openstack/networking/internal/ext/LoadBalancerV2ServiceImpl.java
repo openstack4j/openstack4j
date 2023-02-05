@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.LoadBalancerV2Service;
 import org.openstack4j.model.common.ActionResponse;
@@ -14,8 +15,6 @@ import org.openstack4j.openstack.networking.domain.ext.LoadBalancerV2StatusTree.
 import org.openstack4j.openstack.networking.domain.ext.NeutronLoadBalancerV2;
 import org.openstack4j.openstack.networking.domain.ext.NeutronLoadBalancerV2Stats;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Openstack (Neutron) lbaas v2 load balancer operations
@@ -50,7 +49,7 @@ public class LoadBalancerV2ServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public LoadBalancerV2 get(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return get(NeutronLoadBalancerV2.class, uri("/lbaas/loadbalancers/%s", loadbalancerId)).execute();
     }
 
@@ -59,7 +58,7 @@ public class LoadBalancerV2ServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public LoadBalancerV2 create(LoadBalancerV2 loadbalancer) {
-        checkNotNull(loadbalancer);
+        Objects.requireNonNull(loadbalancer);
         return post(NeutronLoadBalancerV2.class, uri("/lbaas/loadbalancers")).entity(loadbalancer).execute();
     }
 
@@ -68,8 +67,8 @@ public class LoadBalancerV2ServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public LoadBalancerV2 update(String loadbalancerId, LoadBalancerV2Update loadbalancer) {
-        checkNotNull(loadbalancerId);
-        checkNotNull(loadbalancer);
+        Objects.requireNonNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancer);
         return put(NeutronLoadBalancerV2.class, uri("/lbaas/loadbalancers/%s", loadbalancerId)).entity(loadbalancer).execute();
     }
 
@@ -78,7 +77,7 @@ public class LoadBalancerV2ServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public ActionResponse delete(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class, uri("/lbaas/loadbalancers/%s", loadbalancerId)).executeWithResponse());
     }
 
@@ -87,7 +86,7 @@ public class LoadBalancerV2ServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public LoadBalancerV2Stats stats(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return get(NeutronLoadBalancerV2Stats.class, uri("/lbaas/loadbalancers/%s/stats", loadbalancerId)).execute();
     }
 
@@ -96,7 +95,7 @@ public class LoadBalancerV2ServiceImpl extends BaseNetworkingServices implements
      */
     @Override
     public LoadBalancerV2StatusTree statusTree(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return get(NeutronLoadBalancerV2StatusTree.class, uri("/lbaas/loadbalancers/%s/statuses", loadbalancerId)).execute();
     }
 }

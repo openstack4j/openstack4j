@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.tacker.Vim;
 import org.openstack4j.model.tacker.builder.VimBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -57,7 +57,7 @@ public class TackerVim implements Vim {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("id", id).add("name", name).add("tenantId", tenantId)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("tenantId", tenantId)
                 .add("description", description).add("type", type).add("status", status).add("isDefault", isDefault)
                 .add("authCredentials", authCredentials).add("authUrl", authUrl)
                 .add("placementAttribute", placementAttribute).add("vimProject", vimProject).toString();
@@ -165,7 +165,7 @@ public class TackerVim implements Vim {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("vims", vims).toString();
         }
     }

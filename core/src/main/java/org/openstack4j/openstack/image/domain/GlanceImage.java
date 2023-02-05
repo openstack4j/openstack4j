@@ -2,14 +2,14 @@ package org.openstack4j.openstack.image.domain;
 
 import javax.annotation.Nullable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Maps;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.builder.BasicResourceBuilder;
 import org.openstack4j.model.image.ContainerFormat;
 import org.openstack4j.model.image.DiskFormat;
@@ -323,7 +323,7 @@ public class GlanceImage implements Image {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("status", status).add("location", location).add("diskFormat", diskFormat)
                 .add("containerFormat", containerFormat).add("size", size).add("owner", owner).add("minRam", minRam).add("minDisk", minDisk)
                 .add("created", createdAt).add("updated", updatedAt).add("deleted", deletedAt).add("isPublic", isPublic)
@@ -430,7 +430,7 @@ public class GlanceImage implements Image {
         public ImageBuilder property(String key, String value) {
             if (key != null && value != null) {
                 if (m.properties == null)
-                    m.properties = Maps.newHashMap();
+                    m.properties = new HashMap<>();
                 m.properties.put(key, value);
             }
             return this;

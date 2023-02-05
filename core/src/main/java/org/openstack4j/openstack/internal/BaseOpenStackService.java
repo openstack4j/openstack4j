@@ -2,10 +2,9 @@ package org.openstack4j.openstack.internal;
 
 import java.util.*;
 
-import com.google.common.base.Function;
-import com.google.common.base.Joiner;
+import java.util.function.Function;
+
 import org.openstack4j.api.client.CloudProvider;
-import org.openstack4j.api.exceptions.OS4JException;
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.core.transport.*;
 import org.openstack4j.core.transport.HttpRequest.RequestBuilder;
@@ -97,15 +96,12 @@ public class BaseOpenStackService {
     }
 
     private <R> Invocation<R> builder(Class<R> returnType, String[] path, HttpMethod method) {
-        return builder(returnType, Joiner.on("").join(path), method);
+        return builder(returnType, String.join("", path), method);
     }
 
     private <R> Invocation<R> builder(Class<R> returnType, String path, HttpMethod method) {
         OSClientSession<?, ?> ses = OSClientSession.getCurrent();
-        if (ses == null) {
-            throw new OS4JException(
-                    "Unable to retrieve current session. Please verify thread has a current session available.");
-        }
+        Objects.requireNonNull(ses, "Unable to retrieve current session. Please verify thread has a current session available.");
         RequestBuilder<R> req = HttpRequest.builder(returnType).endpointTokenProvider(ses).config(ses.getConfig())
                 .method(method).path(path);
         Map<String, String> headers = ses.getHeaders();
@@ -120,25 +116,15 @@ public class BaseOpenStackService {
         OSClientSession<?, ?> session = OSClientSession.getCurrent();
         if (session.getAuthVersion() == AuthVersion.V3) {
             SortedSet<? extends Service> services = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType());
-            Service service = ((OSClientSession.OSClientSessionV3) session).getToken().getAggregatedCatalog().get(serviceType.getType()).first();
-
-            if (services.isEmpty()) {
-                return 1;
-            }
+            Service service = services.first();
 
             return service.getVersion();
-
         } else {
             SortedSet<? extends Access.Service> services = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType());
-            Access.Service service = ((OSClientSession.OSClientSessionV2) session).getAccess().getAggregatedCatalog().get(serviceType.getType()).first();
-
-            if (services.isEmpty()) {
-                return 1;
-            }
+            Access.Service service = services.first();
 
             return service.getVersion();
         }
-
     }
 
     protected <T> List<T> toList(T[] arr) {

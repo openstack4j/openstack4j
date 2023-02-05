@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
-import com.google.common.io.ByteStreams;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.common.DLPayload;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A Payload which encapsulates downstream data
@@ -40,10 +38,14 @@ public class DLPayloadEntity implements DLPayload {
 
     @Override
     public void writeToFile(File file) throws IOException {
-        checkNotNull(file);
+        Objects.requireNonNull(file);
         try (InputStream inputStream = response.getInputStream();
                 FileOutputStream fileOutputStream = new FileOutputStream(file)) {
-            ByteStreams.copy(inputStream, fileOutputStream);
+            byte[] buf = new byte[8192];
+            int length;
+            while ((length = inputStream.read(buf)) > 0) {
+                fileOutputStream.write(buf, 0, length);
+            }
         }
     }
 

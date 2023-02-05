@@ -8,7 +8,7 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.manila.domain.ManilaQuotaSet;
 import org.openstack4j.openstack.manila.domain.ManilaQuotaSetUpdate;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 public class QuotaSetServiceImpl extends BaseShareServices implements QuotaSetService {
     @Override
@@ -18,7 +18,7 @@ public class QuotaSetServiceImpl extends BaseShareServices implements QuotaSetSe
 
     @Override
     public QuotaSet get(String tenantId, String userId) {
-        checkNotNull(tenantId);
+        Objects.requireNonNull(tenantId);
 
         return get(ManilaQuotaSet.class, uri("/os-quota-sets/%s", tenantId))
                 .param(userId != null, "user_id", userId)
@@ -32,8 +32,8 @@ public class QuotaSetServiceImpl extends BaseShareServices implements QuotaSetSe
 
     @Override
     public QuotaSet update(String tenantId, String userId, QuotaSetUpdateOptions options) {
-        checkNotNull(tenantId);
-        checkNotNull(options);
+        Objects.requireNonNull(tenantId);
+        Objects.requireNonNull(options);
 
         return put(ManilaQuotaSet.class, uri("/os-quota-sets/%s", tenantId))
                 .param(userId != null, "user_id", userId)
@@ -48,7 +48,7 @@ public class QuotaSetServiceImpl extends BaseShareServices implements QuotaSetSe
 
     @Override
     public ActionResponse delete(String tenantId, String userId) {
-        checkNotNull(tenantId);
+        Objects.requireNonNull(tenantId);
 
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/os-quota-sets/%s", tenantId))
@@ -58,7 +58,7 @@ public class QuotaSetServiceImpl extends BaseShareServices implements QuotaSetSe
 
     @Override
     public QuotaSet getDefault(String tenantId) {
-        checkNotNull(tenantId);
+        Objects.requireNonNull(tenantId);
 
         return get(ManilaQuotaSet.class, uri("/os-quota-sets/%s/defaults", tenantId)).execute();
     }

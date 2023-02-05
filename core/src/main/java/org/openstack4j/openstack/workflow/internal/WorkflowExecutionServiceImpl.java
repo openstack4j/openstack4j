@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.workflow.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.workflow.WorkflowExecutionService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.workflow.WorkflowExecution;
 import org.openstack4j.openstack.workflow.domain.MistralWorkflowExecution;
 import org.openstack4j.openstack.workflow.domain.MistralWorkflowExecution.MistralWorkflowExecutions;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Workflow execution service implementation.
@@ -24,7 +23,7 @@ public class WorkflowExecutionServiceImpl extends BaseMistralService implements 
 
     @Override
     public WorkflowExecution create(WorkflowExecution wfExec) {
-        checkNotNull(wfExec);
+        Objects.requireNonNull(wfExec);
 
         Invocation<MistralWorkflowExecution> invocation = post(
                 MistralWorkflowExecution.class,

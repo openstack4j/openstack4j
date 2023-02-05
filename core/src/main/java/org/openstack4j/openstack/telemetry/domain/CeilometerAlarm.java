@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.builder.BasicResourceBuilder;
 import org.openstack4j.model.telemetry.Alarm;
 import org.openstack4j.model.telemetry.builder.AlarmBuilder;
@@ -154,7 +154,7 @@ public class CeilometerAlarm implements Alarm {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", alarmId).add("name", name).add("enabled", isEnabled)
                 .add("project_id", projectId).add("type", type)
                 .add("user_id", userId)

@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.manila.ShareNetworkService;
 import org.openstack4j.model.common.ActionResponse;
@@ -14,15 +15,13 @@ import org.openstack4j.openstack.manila.domain.ManilaShareNetworkCreate;
 import org.openstack4j.openstack.manila.domain.ManilaShareNetworkUpdate;
 import org.openstack4j.openstack.manila.domain.actions.SecurityServiceAction;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class ShareNetworkServiceImpl extends BaseShareServices implements ShareNetworkService {
     /**
      * {@inheritDoc}
      */
     @Override
     public ShareNetwork create(ShareNetworkCreate shareNetworkCreate) {
-        checkNotNull(shareNetworkCreate);
+        Objects.requireNonNull(shareNetworkCreate);
         return post(ManilaShareNetwork.class, uri("/share-networks"))
                 .entity(shareNetworkCreate)
                 .execute();
@@ -55,7 +54,7 @@ public class ShareNetworkServiceImpl extends BaseShareServices implements ShareN
      */
     @Override
     public ShareNetwork get(String shareNetworkId) {
-        checkNotNull(shareNetworkId);
+        Objects.requireNonNull(shareNetworkId);
         return get(ManilaShareNetwork.class, uri("/share-networks/%s", shareNetworkId)).execute();
     }
 
@@ -64,8 +63,8 @@ public class ShareNetworkServiceImpl extends BaseShareServices implements ShareN
      */
     @Override
     public ShareNetwork update(String shareNetworkId, ShareNetworkUpdateOptions shareNetworkUpdateOptions) {
-        checkNotNull(shareNetworkId);
-        checkNotNull(shareNetworkUpdateOptions);
+        Objects.requireNonNull(shareNetworkId);
+        Objects.requireNonNull(shareNetworkUpdateOptions);
 
         return put(ManilaShareNetwork.class, uri("/share-networks/%s", shareNetworkId))
                 .entity(ManilaShareNetworkUpdate.fromOptions(shareNetworkUpdateOptions))
@@ -77,7 +76,7 @@ public class ShareNetworkServiceImpl extends BaseShareServices implements ShareN
      */
     @Override
     public ActionResponse delete(String shareNetworkId) {
-        checkNotNull(shareNetworkId);
+        Objects.requireNonNull(shareNetworkId);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/share-networks/%s", shareNetworkId)).executeWithResponse());
     }
@@ -87,8 +86,8 @@ public class ShareNetworkServiceImpl extends BaseShareServices implements ShareN
      */
     @Override
     public ShareNetwork addSecurityService(String shareNetworkId, String securityServiceId) {
-        checkNotNull(shareNetworkId);
-        checkNotNull(securityServiceId);
+        Objects.requireNonNull(shareNetworkId);
+        Objects.requireNonNull(securityServiceId);
 
         return invokeSecurityServiceAction(shareNetworkId, SecurityServiceAction.add(securityServiceId));
     }
@@ -98,8 +97,8 @@ public class ShareNetworkServiceImpl extends BaseShareServices implements ShareN
      */
     @Override
     public ShareNetwork removeSecurityService(String shareNetworkId, String securityServiceId) {
-        checkNotNull(shareNetworkId);
-        checkNotNull(securityServiceId);
+        Objects.requireNonNull(shareNetworkId);
+        Objects.requireNonNull(securityServiceId);
 
         return invokeSecurityServiceAction(shareNetworkId, SecurityServiceAction.remove(securityServiceId));
     }

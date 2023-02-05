@@ -1,10 +1,10 @@
 package org.openstack4j.openstack.image.domain.functions;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
+import java.util.function.Function;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.image.ContainerFormat;
 import org.openstack4j.model.image.DiskFormat;
@@ -82,7 +82,7 @@ public class ImageFromHeadersFunction implements Function<HttpResponse, Image> {
         for (String k : from.headers().keySet()) {
             if (k.indexOf(property) > -1) {
                 if (properties == null)
-                    properties = Maps.newHashMap();
+                    properties = new HashMap<>();
                 properties.put(k.substring(property.length()).toLowerCase(), from.headers().get(k));
             }
         }

@@ -8,7 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.LbMethod;
 import org.openstack4j.model.network.ext.LbPool;
 import org.openstack4j.model.network.ext.Protocol;
@@ -170,7 +170,7 @@ public class NeutronLbPool implements LbPool {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("adminStateUp", adminStateUp)
                 .add("description", description)
@@ -308,7 +308,7 @@ public class NeutronLbPool implements LbPool {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this)
+            return new ToStringHelper(this)
                     .add("lbPools", lbPools)
                     .toString();
         }

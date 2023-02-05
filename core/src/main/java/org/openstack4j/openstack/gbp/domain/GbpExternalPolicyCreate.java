@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.gbp.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Maps;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.ExternalPolicyCreate;
 import org.openstack4j.model.gbp.builder.ExternalPolicyBuilder;
 
@@ -137,7 +137,7 @@ public class GbpExternalPolicyCreate implements ExternalPolicyCreate {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("name", name).add("tenantId", tenantId).add("externalSegments", externalSegments).add("id", id).add("description", description).add("shared", shared).add("consumedPolicyRuleSets", consumedPolicyRuleSets).add("providedPolicyRuleSets", providedPolicyRuleSets).toString();
+        return new ToStringHelper(this).add("name", name).add("tenantId", tenantId).add("externalSegments", externalSegments).add("id", id).add("description", description).add("shared", shared).add("consumedPolicyRuleSets", consumedPolicyRuleSets).add("providedPolicyRuleSets", providedPolicyRuleSets).toString();
     }
 
     public static class ExternalPolicyConcreteBuilder implements ExternalPolicyBuilder {
@@ -183,7 +183,7 @@ public class GbpExternalPolicyCreate implements ExternalPolicyCreate {
 
         @Override
         public ExternalPolicyBuilder consumedPolicyRuleSets(List<String> policyRuleSet) {
-            this.extPolicy.consumedPolicyRuleSets = Maps.newHashMap();
+            this.extPolicy.consumedPolicyRuleSets = new HashMap<>();
             for (String id : policyRuleSet) {
                 this.extPolicy.consumedPolicyRuleSets.put(id, "");
             }
@@ -192,7 +192,7 @@ public class GbpExternalPolicyCreate implements ExternalPolicyCreate {
 
         @Override
         public ExternalPolicyBuilder providedPolicyRuleSets(List<String> policyRuleSet) {
-            this.extPolicy.providedPolicyRuleSets = Maps.newHashMap();
+            this.extPolicy.providedPolicyRuleSets = new HashMap<>();
             for (String id : policyRuleSet) {
                 this.extPolicy.providedPolicyRuleSets.put(id, "");
             }

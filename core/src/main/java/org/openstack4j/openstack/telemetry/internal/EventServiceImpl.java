@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.telemetry.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.telemetry.EventService;
 import org.openstack4j.model.telemetry.Event;
@@ -10,8 +11,6 @@ import org.openstack4j.model.telemetry.TraitDescription;
 import org.openstack4j.openstack.telemetry.domain.CeilometerEvent;
 import org.openstack4j.openstack.telemetry.domain.CeilometerTrait;
 import org.openstack4j.openstack.telemetry.domain.CeilometerTraitDescription;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * OpenStack (Ceilometer) Event based Operations
@@ -67,7 +66,7 @@ public class EventServiceImpl extends BaseTelemetryServices implements EventServ
      */
     @Override
     public Event get(String messageId) {
-        checkNotNull(messageId);
+        Objects.requireNonNull(messageId);
         return get(CeilometerEvent.class, uri("/events/%s", messageId)).execute();
     }
 
@@ -85,7 +84,7 @@ public class EventServiceImpl extends BaseTelemetryServices implements EventServ
      */
     @Override
     public List<? extends TraitDescription> listTraitDescriptions(String eventType) {
-        checkNotNull(eventType);
+        Objects.requireNonNull(eventType);
         CeilometerTraitDescription[] traitDescriptions = get(CeilometerTraitDescription[].class, uri("/event_types/%s/traits", eventType)).execute();
         return wrapList(traitDescriptions);
     }
@@ -95,8 +94,8 @@ public class EventServiceImpl extends BaseTelemetryServices implements EventServ
      */
     @Override
     public List<? extends Trait> listTraits(String eventType, String traitName) {
-        checkNotNull(eventType);
-        checkNotNull(traitName);
+        Objects.requireNonNull(eventType);
+        Objects.requireNonNull(traitName);
         CeilometerTrait[] traits = get(CeilometerTrait[].class, uri("/event_types/%s/traits/%s", eventType, traitName)).execute();
         return wrapList(traits);
     }

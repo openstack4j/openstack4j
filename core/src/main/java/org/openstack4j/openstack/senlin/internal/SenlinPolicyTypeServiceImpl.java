@@ -1,12 +1,11 @@
 package org.openstack4j.openstack.senlin.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.senlin.SenlinPolicyTypeService;
 import org.openstack4j.model.senlin.PolicyType;
 import org.openstack4j.openstack.senlin.domain.SenlinPolicyType;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class contains getters for all implementation of the available policy-type services
@@ -22,7 +21,7 @@ public class SenlinPolicyTypeServiceImpl extends BaseSenlinServices implements S
 
     @Override
     public PolicyType get(String policyType) {
-        checkNotNull(policyType);
+        Objects.requireNonNull(policyType);
         return get(SenlinPolicyType.class, uri("/policy-types/%s", policyType)).execute();
     }
 }

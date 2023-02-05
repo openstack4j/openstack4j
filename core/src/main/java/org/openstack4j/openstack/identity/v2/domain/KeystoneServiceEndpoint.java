@@ -8,8 +8,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import org.openstack4j.util.ToStringHelper;
+import java.util.Objects;
 import org.openstack4j.model.identity.v2.Service;
 import org.openstack4j.model.identity.v2.ServiceEndpoint;
 import org.openstack4j.model.identity.v2.builder.ServiceEndpointBuilder;
@@ -103,7 +103,7 @@ public class KeystoneServiceEndpoint implements ServiceEndpoint {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, region, publicURL, internalURL, adminURL, serviceId);
+        return Objects.hash(id, region, publicURL, internalURL, adminURL, serviceId);
     }
 
     /**
@@ -116,10 +116,10 @@ public class KeystoneServiceEndpoint implements ServiceEndpoint {
         if (obj == null || getClass() != obj.getClass())
             return false;
         KeystoneServiceEndpoint that = KeystoneServiceEndpoint.class.cast(obj);
-        return Objects.equal(this.id, that.id)
-                && Objects.equal(this.publicURL, that.publicURL) && Objects.equal(this.region, that.region)
-                && Objects.equal(this.internalURL, that.internalURL) && Objects.equal(this.adminURL, that.adminURL)
-                && Objects.equal(this.serviceId, that.serviceId);
+        return Objects.equals(this.id, that.id)
+                && Objects.equals(this.publicURL, that.publicURL) && Objects.equals(this.region, that.region)
+                && Objects.equals(this.internalURL, that.internalURL) && Objects.equals(this.adminURL, that.adminURL)
+                && Objects.equals(this.serviceId, that.serviceId);
     }
 
     /**
@@ -127,7 +127,7 @@ public class KeystoneServiceEndpoint implements ServiceEndpoint {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("region", region).add("publicURL", publicURL)
                 .add("internalURL", internalURL).add("adminURL", adminURL)
                 .add("serviceId", serviceId)

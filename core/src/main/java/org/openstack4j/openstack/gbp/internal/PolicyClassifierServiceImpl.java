@@ -2,6 +2,7 @@ package org.openstack4j.openstack.gbp.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.gbp.PolicyClassifierService;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.gbp.PolicyClassifierUpdate;
 import org.openstack4j.openstack.gbp.domain.GbpPolicyClassifier;
 import org.openstack4j.openstack.gbp.domain.GbpPolicyClassifier.PolicyClassifiers;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Policy Classifier API Implementation
@@ -55,7 +54,7 @@ public class PolicyClassifierServiceImpl extends BaseNetworkingServices implemen
      */
     @Override
     public PolicyClassifier get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(GbpPolicyClassifier.class, uri("/grouppolicy/policy_classifiers/%s", id)).execute();
     }
 
@@ -64,7 +63,7 @@ public class PolicyClassifierServiceImpl extends BaseNetworkingServices implemen
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/grouppolicy/policy_classifiers/%s", id)).execute();
     }
 
@@ -81,8 +80,8 @@ public class PolicyClassifierServiceImpl extends BaseNetworkingServices implemen
      */
     @Override
     public PolicyClassifier update(String policyClassifierId, PolicyClassifierUpdate policyClassifier) {
-        checkNotNull(policyClassifierId);
-        checkNotNull(policyClassifier);
+        Objects.requireNonNull(policyClassifierId);
+        Objects.requireNonNull(policyClassifier);
         return put(GbpPolicyClassifier.class, uri("/grouppolicy/policy_classifiers/%s", policyClassifierId)).entity(policyClassifier).execute();
     }
 

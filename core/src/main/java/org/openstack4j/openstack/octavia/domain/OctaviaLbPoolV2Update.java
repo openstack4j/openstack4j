@@ -3,7 +3,7 @@ package org.openstack4j.openstack.octavia.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.LbMethod;
 import org.openstack4j.model.octavia.LbPoolV2Update;
 import org.openstack4j.model.octavia.SessionPersistence;
@@ -71,7 +71,7 @@ public class OctaviaLbPoolV2Update implements LbPoolV2Update {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("adminStateUp", adminStateUp)
                 .add("description", description)
                 .add("lbMethod", lbMethod)

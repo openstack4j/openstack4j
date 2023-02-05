@@ -1,6 +1,6 @@
 package org.openstack4j.model.common.functions;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import org.openstack4j.model.common.header.HeaderNameValue;
 import org.openstack4j.model.common.header.Range;
 

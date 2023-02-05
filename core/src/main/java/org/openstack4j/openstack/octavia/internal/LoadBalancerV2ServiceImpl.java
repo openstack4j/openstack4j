@@ -2,6 +2,7 @@ package org.openstack4j.openstack.octavia.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.octavia.LoadBalancerV2Service;
 import org.openstack4j.model.common.ActionResponse;
@@ -13,8 +14,6 @@ import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.octavia.domain.LoadBalancerV2StatusTree.OctaviaLoadBalancerV2StatusTree;
 import org.openstack4j.openstack.octavia.domain.OctaviaLoadBalancerV2;
 import org.openstack4j.openstack.octavia.domain.OctaviaLoadBalancerV2Stats;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Openstack (Octavia) lbaas v2 load balancer operations
@@ -49,7 +48,7 @@ public class LoadBalancerV2ServiceImpl extends BaseOctaviaServices implements Lo
      */
     @Override
     public LoadBalancerV2 get(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return get(OctaviaLoadBalancerV2.class, uri("/lbaas/loadbalancers/%s", loadbalancerId)).execute();
     }
 
@@ -58,7 +57,7 @@ public class LoadBalancerV2ServiceImpl extends BaseOctaviaServices implements Lo
      */
     @Override
     public LoadBalancerV2 create(LoadBalancerV2 loadbalancer) {
-        checkNotNull(loadbalancer);
+        Objects.requireNonNull(loadbalancer);
         return post(OctaviaLoadBalancerV2.class, uri("/lbaas/loadbalancers")).entity(loadbalancer).execute();
     }
 
@@ -67,8 +66,8 @@ public class LoadBalancerV2ServiceImpl extends BaseOctaviaServices implements Lo
      */
     @Override
     public LoadBalancerV2 update(String loadbalancerId, LoadBalancerV2Update loadbalancer) {
-        checkNotNull(loadbalancerId);
-        checkNotNull(loadbalancer);
+        Objects.requireNonNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancer);
         return put(OctaviaLoadBalancerV2.class, uri("/lbaas/loadbalancers/%s", loadbalancerId)).entity(loadbalancer).execute();
     }
 
@@ -77,7 +76,7 @@ public class LoadBalancerV2ServiceImpl extends BaseOctaviaServices implements Lo
      */
     @Override
     public ActionResponse delete(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return ToActionResponseFunction.INSTANCE.apply(delete(Void.class, uri("/lbaas/loadbalancers/%s", loadbalancerId)).executeWithResponse());
     }
 
@@ -86,7 +85,7 @@ public class LoadBalancerV2ServiceImpl extends BaseOctaviaServices implements Lo
      */
     @Override
     public ActionResponse cascadeDelete(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         Invocation<Void> req = delete(Void.class, uri("/lbaas/loadbalancers/%s", loadbalancerId));
         req = req.param("cascade", "true");
         return ToActionResponseFunction.INSTANCE.apply(req.executeWithResponse());
@@ -97,7 +96,7 @@ public class LoadBalancerV2ServiceImpl extends BaseOctaviaServices implements Lo
      */
     @Override
     public LoadBalancerV2Stats stats(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return get(OctaviaLoadBalancerV2Stats.class, uri("/lbaas/loadbalancers/%s/stats", loadbalancerId)).execute();
     }
 
@@ -106,7 +105,7 @@ public class LoadBalancerV2ServiceImpl extends BaseOctaviaServices implements Lo
      */
     @Override
     public LoadBalancerV2StatusTree statusTree(String loadbalancerId) {
-        checkNotNull(loadbalancerId);
+        Objects.requireNonNull(loadbalancerId);
         return get(OctaviaLoadBalancerV2StatusTree.class, uri("/lbaas/loadbalancers/%s/status", loadbalancerId)).execute();
     }
 }

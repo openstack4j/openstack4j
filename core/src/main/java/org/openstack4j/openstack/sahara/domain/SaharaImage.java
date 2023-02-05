@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.Image;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -145,7 +145,7 @@ public class SaharaImage implements Image {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("status", status).add("description", description).add("username", username)
                 .add("progress", progress).add("size", size).add("minRam", minRam)
                 .add("minDisk", minDisk).add("created", created).add("updated", updated)

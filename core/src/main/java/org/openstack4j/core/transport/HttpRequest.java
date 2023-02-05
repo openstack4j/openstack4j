@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
+import java.util.function.Function;
 import org.openstack4j.api.EndpointTokenProvider;
 import org.openstack4j.api.exceptions.ConnectionException;
 import org.openstack4j.api.types.ServiceType;
@@ -367,7 +366,7 @@ public class HttpRequest<R> {
                 return this;
 
             if (request.queryParams == null)
-                request.queryParams = Maps.newHashMap();
+                request.queryParams = new HashMap<>();
 
             if (request.queryParams.containsKey(key)) {
                 List<Object> values = request.queryParams.get(key);
@@ -392,7 +391,7 @@ public class HttpRequest<R> {
                 return this;
 
             if (request.queryParams == null)
-                request.queryParams = Maps.newHashMap();
+                request.queryParams = new HashMap<>();
 
             List<Object> values = new ArrayList<Object>();
             values.add(value);

@@ -7,7 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.Extension;
 import org.openstack4j.model.common.Link;
 
@@ -73,7 +73,7 @@ public class ExtensionValue implements Extension {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(Extension.class).omitNullValues()
+        return new ToStringHelper(Extension.class)
                 .add("name", name)
                 .add("namespace", namespace)
                 .add("description", description)

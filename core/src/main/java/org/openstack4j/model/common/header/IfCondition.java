@@ -1,10 +1,9 @@
 package org.openstack4j.model.common.header;
 
 import java.util.Date;
+import java.util.Objects;
 
 import org.openstack4j.openstack.internal.Parser;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A delegate class which contains calls to create various conditional header options
@@ -62,7 +61,7 @@ public class IfCondition implements HeaderOption {
      * @return if modified since condition
      */
     public static IfModifiedSince modifiedSince(Date date) {
-        checkNotNull(date, "Date must not be null");
+        Objects.requireNonNull(date, "Date must not be null");
         return new IfModifiedSince(date);
     }
 
@@ -74,7 +73,7 @@ public class IfCondition implements HeaderOption {
      * @see http://www.ietf.org/rfc/rfc2616.txt
      */
     public static IfNoneMatch noneMatch(String matchCondition) {
-        checkNotNull(matchCondition, "Match condition must not be null");
+        Objects.requireNonNull(matchCondition, "Match condition must not be null");
         return new IfNoneMatch(matchCondition);
     }
 
@@ -86,7 +85,7 @@ public class IfCondition implements HeaderOption {
      * @see http://www.ietf.org/rfc/rfc2616.txt
      */
     public static IfMatch match(String matchValue) {
-        checkNotNull(matchValue, "Match value must not be null");
+        Objects.requireNonNull(matchValue, "Match value must not be null");
         return new IfMatch(matchValue);
     }
 

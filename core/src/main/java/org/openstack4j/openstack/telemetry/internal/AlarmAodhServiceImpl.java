@@ -1,13 +1,12 @@
 package org.openstack4j.openstack.telemetry.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.telemetry.AlarmAodhService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.telemetry.Alarm;
 import org.openstack4j.openstack.telemetry.domain.CeilometerAlarm;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 
 public class AlarmAodhServiceImpl extends BaseTelemetryAodhServices implements AlarmAodhService {
@@ -26,7 +25,7 @@ public class AlarmAodhServiceImpl extends BaseTelemetryAodhServices implements A
      */
     @Override
     public Alarm getById(String alarmId) {
-        checkNotNull(alarmId);
+        Objects.requireNonNull(alarmId);
         return get(CeilometerAlarm.class, uri("/alarms/%s", alarmId)).execute();
 
     }
@@ -36,8 +35,8 @@ public class AlarmAodhServiceImpl extends BaseTelemetryAodhServices implements A
      */
     @Override
     public void update(String alarmId, Alarm alarm) {
-        checkNotNull(alarmId);
-        checkNotNull(alarm);
+        Objects.requireNonNull(alarmId);
+        Objects.requireNonNull(alarm);
 
         put(CeilometerAlarm.class, uri("/alarms/%s", alarmId)).entity(alarm).execute();
     }
@@ -47,7 +46,7 @@ public class AlarmAodhServiceImpl extends BaseTelemetryAodhServices implements A
      */
     @Override
     public Alarm create(Alarm alarm) {
-        checkNotNull(alarm);
+        Objects.requireNonNull(alarm);
         return post(CeilometerAlarm.class, uri("/alarms")).entity((alarm)).execute();
     }
 
@@ -56,7 +55,7 @@ public class AlarmAodhServiceImpl extends BaseTelemetryAodhServices implements A
      */
     @Override
     public ActionResponse delete(String alarmId) {
-        checkNotNull(alarmId);
+        Objects.requireNonNull(alarmId);
         return deleteWithResponse(uri("/alarms/%s", alarmId)).execute();
     }
 }

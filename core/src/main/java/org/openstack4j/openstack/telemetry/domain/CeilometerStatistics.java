@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.telemetry.Statistics;
 import org.openstack4j.openstack.common.TelemetryDateDeserializer;
 
@@ -160,7 +160,7 @@ public class CeilometerStatistics implements Statistics {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("avg", avg).add("count", count).add("duration", duration)
                 .add("durationStart", durationStart).add("durationEnd", durationEnd)
                 .add("min", min).add("max", max).add("sum", sum).add("period", period)

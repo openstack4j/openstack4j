@@ -3,8 +3,9 @@ package org.openstack4j.openstack.storage.object.internal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
-import com.google.common.collect.Lists;
 import org.openstack4j.api.storage.ObjectStorageObjectService;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.common.ActionResponse;
@@ -26,7 +27,6 @@ import org.openstack4j.openstack.storage.object.functions.MapWithoutMetaPrefixFu
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
 import org.openstack4j.openstack.storage.object.functions.ParseObjectFunction;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.openstack4j.core.transport.HttpEntityHandler.closeQuietly;
 import static org.openstack4j.model.storage.object.SwiftHeaders.CONTENT_LENGTH;
 import static org.openstack4j.model.storage.object.SwiftHeaders.ETAG;
@@ -43,14 +43,14 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
     @Override
     public List<? extends SwiftObject> list(String containerName) {
-        checkNotNull(containerName);
+        Objects.requireNonNull(containerName);
         List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").execute();
 
         if (objs == null) {
             return Collections.emptyList();
         }
 
-        return Lists.transform(objs, ApplyContainerToObjectFunction.create(containerName));
+        return objs.stream().map(ApplyContainerToObjectFunction.create(containerName)).collect(Collectors.toList());
     }
 
     @Override
@@ -58,13 +58,13 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         if (options == null)
             return list(containerName);
 
-        checkNotNull(containerName);
+        Objects.requireNonNull(containerName);
 
         List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").params(options.getOptions()).execute();
         if (objs == null) {
             return Collections.emptyList();
         }
-        return Lists.transform(objs, ApplyContainerToObjectFunction.create(containerName));
+        return objs.stream().map(ApplyContainerToObjectFunction.create(containerName)).collect(Collectors.toList());
 
     }
 
@@ -73,7 +73,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
      */
     @Override
     public SwiftObject get(ObjectLocation location) {
-        checkNotNull(location);
+        Objects.requireNonNull(location);
 
         HttpResponse resp = head(Void.class, location.getURI()).executeWithResponse();
         try {
@@ -107,13 +107,13 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
      */
     @Override
     public String put(String containerName, String name, Payload<?> payload, ObjectPutOptions options) {
-        checkNotNull(containerName);
-        checkNotNull(options);
+        Objects.requireNonNull(containerName);
+        Objects.requireNonNull(options);
 
         if (payload != null && FilePayload.class.isAssignableFrom(payload.getClass()) && name == null)
             name = FilePayload.class.cast(payload).getRaw().getName();
         else
-            checkNotNull(name);
+            Objects.requireNonNull(name);
 
 
         if (options.getPath() != null && name.indexOf('/') == -1)
@@ -134,8 +134,8 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
     @Override
     public ActionResponse delete(String containerName, String name) {
-        checkNotNull(containerName);
-        checkNotNull(name);
+        Objects.requireNonNull(containerName);
+        Objects.requireNonNull(name);
 
         return delete(ObjectLocation.create(containerName, name));
     }
@@ -147,8 +147,8 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
     @Override
     public ActionResponse delete(ObjectLocation location, ObjectDeleteOptions options) {
-        checkNotNull(location);
-        checkNotNull(options);
+        Objects.requireNonNull(location);
+        Objects.requireNonNull(options);
         return delete(ActionResponse.class, location.getURI())
                 .paramLists(options.getQueryParams())
                 .execute();
@@ -159,8 +159,8 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
      */
     @Override
     public String copy(ObjectLocation source, ObjectLocation dest) {
-        checkNotNull(source);
-        checkNotNull(dest);
+        Objects.requireNonNull(source);
+        Objects.requireNonNull(dest);
 
         HttpResponse resp = put(Void.class, dest.getURI())
                 .header(X_COPY_FROM, source.getURI())
@@ -175,7 +175,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
     @Override
     public Map<String, String> getMetadata(ObjectLocation location) {
-        checkNotNull(location);
+        Objects.requireNonNull(location);
 
         HttpResponse resp = head(Void.class, location.getURI()).executeWithResponse();
         try {
@@ -187,15 +187,15 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
     @Override
     public Map<String, String> getMetadata(String containerName, String name) {
-        checkNotNull(containerName);
-        checkNotNull(name);
+        Objects.requireNonNull(containerName);
+        Objects.requireNonNull(name);
         return getMetadata(ObjectLocation.create(containerName, name));
     }
 
     @Override
     public boolean updateMetadata(ObjectLocation location, Map<String, String> metadata) {
-        checkNotNull(location);
-        checkNotNull(metadata);
+        Objects.requireNonNull(location);
+        Objects.requireNonNull(metadata);
 
         //the successfull response state of updateMetadata is 202 instead of 204
         //I test it by curl and this api
@@ -211,17 +211,17 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
     @Override
     public DLPayload download(String containerName, String name, DownloadOptions options) {
-        checkNotNull(containerName);
-        checkNotNull(name);
-        checkNotNull(options);
+        Objects.requireNonNull(containerName);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(options);
 
         return download(ObjectLocation.create(containerName, name), options);
     }
 
     @Override
     public DLPayload download(ObjectLocation location, DownloadOptions options) {
-        checkNotNull(location);
-        checkNotNull(options);
+        Objects.requireNonNull(location);
+        Objects.requireNonNull(options);
 
         return DLPayloadEntity.create(
                 get(Void.class, location.getURI())

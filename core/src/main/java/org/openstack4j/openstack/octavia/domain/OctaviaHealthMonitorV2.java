@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.HealthMonitorType;
 import org.openstack4j.model.octavia.HealthMonitorV2;
 import org.openstack4j.model.octavia.builder.HealthMonitorV2Builder;
@@ -148,7 +148,7 @@ public class OctaviaHealthMonitorV2 implements HealthMonitorV2 {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("projectId", projectId)
                 .add("type", type)
@@ -177,7 +177,7 @@ public class OctaviaHealthMonitorV2 implements HealthMonitorV2 {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("healthMonitors", healthMonitors).toString();
         }
     }

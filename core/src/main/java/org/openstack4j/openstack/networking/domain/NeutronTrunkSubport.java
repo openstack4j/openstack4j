@@ -6,7 +6,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.TrunkSubport;
@@ -138,7 +138,7 @@ public class NeutronTrunkSubport implements TrunkSubport, ModelEntity {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("segmentationId", segmentationId)
+        return new ToStringHelper(this).add("segmentationId", segmentationId)
                 .add("portId", portId).add("segmentationType", segmentationType).toString();
 
     }

@@ -2,6 +2,7 @@ package org.openstack4j.openstack.sahara.internal;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.sahara.JobBinaryService;
 import org.openstack4j.core.transport.HttpEntityHandler;
@@ -13,8 +14,6 @@ import org.openstack4j.model.sahara.JobBinary;
 import org.openstack4j.openstack.sahara.domain.SaharaJobBinary;
 import org.openstack4j.openstack.sahara.domain.SaharaJobBinary.JobBinaries;
 import org.openstack4j.openstack.sahara.domain.SaharaJobBinaryUnwrapped;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Sahara Data Processing Operations
@@ -38,7 +37,7 @@ public class JobBinaryServiceImpl extends BaseSaharaServices implements JobBinar
      */
     @Override
     public JobBinary get(String JobBinaryId) {
-        checkNotNull(JobBinaryId);
+        Objects.requireNonNull(JobBinaryId);
         return get(SaharaJobBinary.class, uri("/job-binaries/%s", JobBinaryId)).execute();
     }
 
@@ -47,7 +46,7 @@ public class JobBinaryServiceImpl extends BaseSaharaServices implements JobBinar
      */
     @Override
     public JobBinary create(JobBinary jobBinary) {
-        checkNotNull(jobBinary);
+        Objects.requireNonNull(jobBinary);
         SaharaJobBinaryUnwrapped unwrapped = new SaharaJobBinaryUnwrapped(jobBinary);
         return post(SaharaJobBinary.class, uri("/job-binaries"))
                 .entity(unwrapped)  // setup request
@@ -59,7 +58,7 @@ public class JobBinaryServiceImpl extends BaseSaharaServices implements JobBinar
      */
     @Override
     public ActionResponse delete(String JobBinaryId) {
-        checkNotNull(JobBinaryId);
+        Objects.requireNonNull(JobBinaryId);
         return deleteWithResponse(uri("/job-binaries/%s", JobBinaryId)).execute();
     }
 

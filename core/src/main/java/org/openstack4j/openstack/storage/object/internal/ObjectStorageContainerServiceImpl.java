@@ -2,6 +2,7 @@ package org.openstack4j.openstack.storage.object.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.storage.ObjectStorageContainerService;
@@ -17,7 +18,6 @@ import org.openstack4j.openstack.storage.object.domain.SwiftContainerImpl;
 import org.openstack4j.openstack.storage.object.functions.MapWithoutMetaPrefixFunction;
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.openstack4j.core.transport.ClientConstants.CONTENT_TYPE_DIRECTORY;
 import static org.openstack4j.core.transport.ClientConstants.URI_SEP;
 import static org.openstack4j.core.transport.HttpEntityHandler.closeQuietly;
@@ -63,7 +63,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
      */
     @Override
     public ActionResponse create(String name, CreateUpdateContainerOptions options) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         return put(ActionResponse.class, URI_SEP, name).headers(options != null ? options.getOptions(): null).execute();
     }
 
@@ -72,8 +72,8 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
      */
     @Override
     public String createPath(String containerName, String path) {
-        checkNotNull(containerName);
-        checkNotNull(path);
+        Objects.requireNonNull(containerName);
+        Objects.requireNonNull(path);
         return Apis.get(ObjectStorageObjectService.class).put(containerName, path, null,
                 ObjectPutOptions.create().contentType(CONTENT_TYPE_DIRECTORY));
     }
@@ -83,7 +83,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
      */
     @Override
     public ActionResponse update(String name, CreateUpdateContainerOptions options) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
 
         return post(ActionResponse.class, URI_SEP, name)
                 .headers(options != null ? options.getOptions(): null)
@@ -95,7 +95,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
      */
     @Override
     public ActionResponse delete(String name) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         HttpResponse resp = delete(Void.class, URI_SEP, name).executeWithResponse();
 
         try {
@@ -113,7 +113,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
      */
     @Override
     public Map<String, String> getMetadata(String name) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         HttpResponse resp = head(Void.class, URI_SEP, name).executeWithResponse();
         try {
             return MapWithoutMetaPrefixFunction.INSTANCE.apply(resp.headers());
@@ -139,8 +139,8 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
     }
 
     private boolean invokeMetadata(String name, String prefix, Map<String, String> metadata) {
-        checkNotNull(name);
-        checkNotNull(metadata);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(metadata);
 
         return isResponseSuccess(post(Void.class, URI_SEP, name)
                 .headers(MetadataToHeadersFunction.create(prefix).apply(metadata))

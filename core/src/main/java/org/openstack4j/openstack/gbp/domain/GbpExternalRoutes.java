@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.gbp.domain;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.ExternalRoutes;
 import org.openstack4j.model.gbp.builder.ExternalRoutesBuilder;
 
@@ -50,7 +50,7 @@ public class GbpExternalRoutes implements ExternalRoutes {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("destination", destination).add("nexthop", nexthop).toString();
     }
 

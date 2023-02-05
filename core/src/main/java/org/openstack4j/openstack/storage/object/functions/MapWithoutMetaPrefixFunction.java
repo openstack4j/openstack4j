@@ -1,9 +1,10 @@
 package org.openstack4j.openstack.storage.object.functions;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableMap;
+import java.util.function.Function;
 
 /**
  * Transforms a Swift Metadata Map into a Map without the meta prefix as key values
@@ -16,7 +17,7 @@ public class MapWithoutMetaPrefixFunction implements Function<Map<String, String
 
     @Override
     public Map<String, String> apply(Map<String, String> input) {
-        ImmutableMap.Builder<String, String> metadata = ImmutableMap.builder();
+        Map<String, String> metadata = new HashMap<>();
         for (String key : input.keySet()) {
             if (key == null) {
                 continue;
@@ -29,7 +30,7 @@ public class MapWithoutMetaPrefixFunction implements Function<Map<String, String
                 metadata.put(key, input.get(key));
             }
         }
-        return metadata.build();
+        return Collections.unmodifiableMap(metadata);
     }
 
 

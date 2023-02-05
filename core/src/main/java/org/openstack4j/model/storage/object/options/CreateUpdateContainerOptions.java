@@ -1,8 +1,8 @@
 package org.openstack4j.model.storage.object.options;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
 
 import static org.openstack4j.model.storage.object.SwiftHeaders.CONTAINER_ACL_ANYBODY_READ;
@@ -19,7 +19,7 @@ import static org.openstack4j.model.storage.object.SwiftHeaders.VERSIONS_LOCATIO
  */
 public final class CreateUpdateContainerOptions {
 
-    private Map<String, String> headers = Maps.newHashMap();
+    private Map<String, String> headers = new HashMap<>();
 
     private CreateUpdateContainerOptions() {
     }

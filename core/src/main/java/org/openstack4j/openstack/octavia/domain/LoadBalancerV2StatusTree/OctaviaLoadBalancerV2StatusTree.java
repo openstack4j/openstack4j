@@ -3,7 +3,7 @@ package org.openstack4j.openstack.octavia.domain.LoadBalancerV2StatusTree;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.LoadBalancerV2StatusTree;
 import org.openstack4j.model.octavia.status.LoadBalancerV2Status;
 
@@ -26,7 +26,7 @@ public class OctaviaLoadBalancerV2StatusTree implements LoadBalancerV2StatusTree
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("loadbalancer", loadBalancerStatus)
                 .toString();
     }

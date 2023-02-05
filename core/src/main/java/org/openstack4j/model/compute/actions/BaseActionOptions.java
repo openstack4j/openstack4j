@@ -1,14 +1,14 @@
 package org.openstack4j.model.compute.actions;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
 
 public class BaseActionOptions {
 
     private static final String OPT_FMT = "\"%s\": \"%s\"";
-    private Map<OptionEnum, Object> options = Maps.newHashMap();
+    private Map<OptionEnum, Object> options = new HashMap<>();
 
     protected BaseActionOptions() {
     }

@@ -6,8 +6,8 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import org.openstack4j.util.ToStringHelper;
+import java.util.Objects;
 import org.openstack4j.model.identity.v3.Policy;
 import org.openstack4j.model.identity.v3.builder.PolicyBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -91,7 +91,7 @@ public class KeystonePolicy implements Policy {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("projectId", projectId)
                 .add("userId", userId)
@@ -106,7 +106,7 @@ public class KeystonePolicy implements Policy {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, projectId, userId, type, blob, links);
+        return Objects.hash(id, projectId, userId, type, blob, links);
     }
 
 
@@ -120,12 +120,12 @@ public class KeystonePolicy implements Policy {
         if (obj == null || getClass() != obj.getClass())
             return false;
         KeystonePolicy that = KeystonePolicy.class.cast(obj);
-        return Objects.equal(this.id, that.id)
-                && Objects.equal(this.type, that.type)
-                && Objects.equal(this.projectId, that.projectId)
-                && Objects.equal(this.userId, that.userId)
-                && Objects.equal(this.blob, that.blob)
-                && Objects.equal(this.links, that.links);
+        return Objects.equals(this.id, that.id)
+                && Objects.equals(this.type, that.type)
+                && Objects.equals(this.projectId, that.projectId)
+                && Objects.equals(this.userId, that.userId)
+                && Objects.equals(this.blob, that.blob)
+                && Objects.equals(this.links, that.links);
     }
 
 

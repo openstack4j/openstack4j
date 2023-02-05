@@ -3,7 +3,7 @@ package org.openstack4j.openstack.storage.block.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.storage.block.BlockLimits;
 
 /**
@@ -25,7 +25,7 @@ public class CinderBlockLimits implements BlockLimits {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("absolute", absolute).toString();
+        return new ToStringHelper(this).add("absolute", absolute).toString();
     }
 
     public static class CinderAbsoluteLimit implements Absolute {
@@ -93,7 +93,7 @@ public class CinderBlockLimits implements BlockLimits {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this)
+            return new ToStringHelper(this)
                     .add("totalSnapshotsUsed", totalSnapshotsUsed).add("maxTotalBackups", maxTotalBackups)
                     .add("maxTotalVolumeGigabytes", maxTotalVolumeGigabytes).add("maxTotalSnapshots", maxTotalSnapshots)
                     .add("maxTotalBackupGigabytes", maxTotalBackupGigabytes).add("totalBackupGigabytesUsed", totalBackupGigabytesUsed)

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.barbican.Secret;
 import org.openstack4j.model.barbican.builder.SecretCreateBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -174,7 +174,7 @@ public class BarbicanSecret implements Secret {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("algorithm", algorithm).add("bit_length", bitLength)
                 .add("content_types", contentTypes).add("created", createTime)
                 .add("creator_id", creatorId).add("expiration", expiration)

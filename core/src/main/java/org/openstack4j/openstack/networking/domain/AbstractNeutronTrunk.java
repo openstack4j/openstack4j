@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.State;
 import org.openstack4j.model.network.Trunk;
@@ -142,7 +142,7 @@ public abstract class AbstractNeutronTrunk implements Trunk {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name)
+        return new ToStringHelper(this).add("id", id).add("name", name)
                 .add("adminStateUp", adminStateUp).add("parentPortId", parentPortId)
                 .add("revisionNumber", revisionNumber).add("state", state).add("tenantId", tenantId)
                 .add("trunkSubports", trunkSubports).add("description", description).toString();

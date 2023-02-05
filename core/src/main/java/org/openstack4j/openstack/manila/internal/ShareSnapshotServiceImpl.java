@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.manila.ShareSnapshotService;
 import org.openstack4j.model.common.ActionResponse;
@@ -13,12 +14,10 @@ import org.openstack4j.openstack.manila.domain.ManilaShareSnapshotUpdate;
 import org.openstack4j.openstack.manila.domain.actions.ShareSnapshotAction;
 import org.openstack4j.openstack.manila.domain.actions.ShareSnapshotActions;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 public class ShareSnapshotServiceImpl extends BaseShareServices implements ShareSnapshotService {
     @Override
     public ShareSnapshot create(ShareSnapshotCreate snapshotCreate) {
-        checkNotNull(snapshotCreate);
+        Objects.requireNonNull(snapshotCreate);
         return post(ManilaShareSnapshot.class, uri("/snapshots"))
                 .entity(snapshotCreate)
                 .execute();
@@ -42,14 +41,14 @@ public class ShareSnapshotServiceImpl extends BaseShareServices implements Share
 
     @Override
     public ShareSnapshot get(String snapshotId) {
-        checkNotNull(snapshotId);
+        Objects.requireNonNull(snapshotId);
         return get(ManilaShareSnapshot.class, uri("/snapshots/%s", snapshotId)).execute();
     }
 
     @Override
     public ShareSnapshot update(String snapshotId, ShareSnapshotUpdateOptions snapshotUpdateOptions) {
-        checkNotNull(snapshotId);
-        checkNotNull(snapshotUpdateOptions);
+        Objects.requireNonNull(snapshotId);
+        Objects.requireNonNull(snapshotUpdateOptions);
 
         return put(ManilaShareSnapshot.class, uri("/snapshots/%s", snapshotId))
                 .entity(ManilaShareSnapshotUpdate.fromOptions(snapshotUpdateOptions))
@@ -58,22 +57,22 @@ public class ShareSnapshotServiceImpl extends BaseShareServices implements Share
 
     @Override
     public ActionResponse delete(String snapshotId) {
-        checkNotNull(snapshotId);
+        Objects.requireNonNull(snapshotId);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/snapshots/%s", snapshotId)).executeWithResponse());
     }
 
     @Override
     public ActionResponse resetState(String snapshotId, ShareSnapshot.Status status) {
-        checkNotNull(snapshotId);
-        checkNotNull(status);
+        Objects.requireNonNull(snapshotId);
+        Objects.requireNonNull(status);
 
         return invokeAction(snapshotId, ShareSnapshotActions.resetState(status));
     }
 
     @Override
     public ActionResponse forceDelete(String snapshotId) {
-        checkNotNull(snapshotId);
+        Objects.requireNonNull(snapshotId);
         return invokeAction(snapshotId, ShareSnapshotActions.forceDelete());
     }
 

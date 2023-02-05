@@ -3,7 +3,7 @@ package org.openstack4j.openstack.compute.functions;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 
 /**
  * Attempts to extract an error message from a JSON payload.  If the message cannot be found then the original

@@ -2,7 +2,7 @@ package org.openstack4j.openstack.compute.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.compute.VNCConsole;
 
@@ -50,7 +50,7 @@ public class NovaVNCConsole implements VNCConsole {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("type", type).add("url", url).toString();
+        return new ToStringHelper(this).add("type", type).add("url", url).toString();
     }
 
     public static class NovaConsole implements ModelEntity {

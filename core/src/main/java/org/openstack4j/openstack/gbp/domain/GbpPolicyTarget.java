@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.PolicyTarget;
 import org.openstack4j.model.gbp.builder.PolicyTargetBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -91,7 +91,7 @@ public class GbpPolicyTarget implements PolicyTarget {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("desription", description)
                 .add("tenantId", tenantId).add("clusterId", clusterId).add("policyTargetGroupId", policyTargetGroupId).add("portId", portId).toString();
     }
 

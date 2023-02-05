@@ -1,15 +1,11 @@
 package org.openstack4j.openstack.sahara.domain;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.NodeGroupTemplate;
 import org.openstack4j.model.sahara.ServiceConfig;
 import org.openstack4j.model.sahara.builder.NodeGroupTemplateBuilder;
@@ -228,7 +224,7 @@ public class SaharaNodeGroupTemplate implements NodeGroupTemplate {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("name", name)
                 .add("description", description)
@@ -332,7 +328,7 @@ public class SaharaNodeGroupTemplate implements NodeGroupTemplate {
         public NodeGroupTemplateBuilder addSecurityGroup(String id) {
             if (id != null && !id.isEmpty()) {
                 if (m.securityGroups == null)
-                    m.securityGroups = Lists.newArrayList();
+                    m.securityGroups = new ArrayList<>();
                 m.securityGroups.add(id);
             }
             return this;
@@ -342,7 +338,7 @@ public class SaharaNodeGroupTemplate implements NodeGroupTemplate {
         public NodeGroupTemplateBuilder addNodeProcess(String name) {
             if (name != null && !name.isEmpty()) {
                 if (m.nodeProcesses == null)
-                    m.nodeProcesses = Lists.newArrayList();
+                    m.nodeProcesses = new ArrayList<>();
                 m.nodeProcesses.add(name);
             }
             return this;

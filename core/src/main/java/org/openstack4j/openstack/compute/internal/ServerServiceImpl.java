@@ -3,6 +3,7 @@ package org.openstack4j.openstack.compute.internal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import org.openstack4j.api.Apis;
@@ -32,7 +33,6 @@ import org.openstack4j.openstack.compute.functions.WrapServerIfApplicableFunctio
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static org.openstack4j.openstack.compute.domain.actions.CreateSnapshotAction.create;
 
 /**
@@ -94,7 +94,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public Server get(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return get(NovaServer.class, uri("/servers/%s", serverId)).execute();
     }
 
@@ -103,7 +103,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public Server boot(ServerCreate server) {
-        checkNotNull(server);
+        Objects.requireNonNull(server);
         return post(NovaServer.class, uri("/servers"))
                 .entity(WrapServerIfApplicableFunction.INSTANCE.apply(server))
                 .execute();
@@ -122,7 +122,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse delete(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/servers/%s", serverId)).executeWithResponse()
         );
@@ -133,7 +133,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse action(String serverId, Action action) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
 
         ServerAction instance = BasicActions.actionInstanceFor(action);
         if (instance == null)
@@ -159,8 +159,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
     }
 
     private String invokeCreateSnapshotAction(String serverId, String snapshotName, Map<String, String> metadata) {
-        checkNotNull(serverId);
-        checkNotNull(snapshotName);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(snapshotName);
         CreateSnapshotAction createSnapshotAction = metadata != null && !metadata.isEmpty() ? create(snapshotName, metadata): create(snapshotName);
         HttpResponse response = invokeActionWithResponse(serverId, createSnapshotAction);
         String id = null;
@@ -180,7 +180,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse reboot(String serverId, RebootType type) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return invokeAction(serverId, new Reboot(type));
     }
 
@@ -189,7 +189,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse rebuild(String serverId, RebuildOptions options) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return invokeAction(serverId, RebuildAction.create(options));
     }
 
@@ -198,8 +198,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse resize(String serverId, String flavorId) {
-        checkNotNull(serverId);
-        checkNotNull(flavorId);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(flavorId);
 
         return invokeAction(serverId, new Resize(flavorId));
     }
@@ -209,8 +209,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse addSecurityGroup(String serverId, String secGroupName) {
-        checkNotNull(serverId);
-        checkNotNull(secGroupName);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(secGroupName);
         return invokeAction(serverId, SecurityGroupActions.add(secGroupName));
     }
 
@@ -219,8 +219,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse removeSecurityGroup(String serverId, String secGroupName) {
-        checkNotNull(serverId);
-        checkNotNull(secGroupName);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(secGroupName);
         return invokeAction(serverId, SecurityGroupActions.remove(secGroupName));
     }
 
@@ -229,7 +229,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse confirmResize(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return invokeAction(serverId, BasicActions.instanceFor(ConfirmResize.class));
     }
 
@@ -238,7 +238,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse revertResize(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return invokeAction(serverId, BasicActions.instanceFor(RevertResize.class));
     }
 
@@ -247,7 +247,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public String getConsoleOutput(String serverId, int numLines) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
 
         // Build options with the given numLines or default to full output
         ConsoleOutputOptions consoleOutputOptions;
@@ -266,7 +266,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public VNCConsole getVNCConsole(String serverId, Type type) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         if (type == null)
             type = Type.NOVNC;
 
@@ -317,7 +317,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse migrateServer(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return invokeAction(serverId, BasicActions.instanceFor(Migrate.class));
     }
 
@@ -326,7 +326,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse liveMigrate(String serverId, LiveMigrateOptions options) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         if (options == null)
             options = LiveMigrateOptions.create();
         return invokeAction(serverId, LiveMigrationAction.create(options));
@@ -337,8 +337,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse resetState(String serverId, Status state) {
-        checkNotNull(serverId);
-        checkNotNull(state);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(state);
         return invokeAction(serverId, ResetStateAction.create(state));
     }
 
@@ -347,8 +347,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse backupServer(String serverId, BackupOptions options) {
-        checkNotNull(serverId);
-        checkNotNull(options);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(options);
         return invokeAction(serverId, BackupAction.create(options));
     }
 
@@ -357,8 +357,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse changeAdminPassword(String serverId, String adminPassword) {
-        checkNotNull(serverId);
-        checkNotNull(adminPassword);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(adminPassword);
         return invokeAction(serverId, new ChangePassword(adminPassword));
     }
 
@@ -367,7 +367,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public Server waitForServerStatus(String serverId, Status status, int maxWait, TimeUnit maxWaitUnit) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         Server server = null;
         long duration = 0;
         long maxTime = maxWaitUnit.toMillis(maxWait);
@@ -387,7 +387,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public Map<String, String> getMetadata(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return get(Metadata.class, uri("/servers/%s/metadata", serverId)).execute();
     }
 
@@ -396,8 +396,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public Map<String, String> updateMetadata(String serverId, Map<String, String> metadata) {
-        checkNotNull(serverId);
-        checkNotNull(metadata);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(metadata);
         return put(Metadata.class, uri("/servers/%s/metadata", serverId)).entity(Metadata.toMetadata(metadata)).execute();
     }
 
@@ -406,8 +406,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ActionResponse deleteMetadataItem(String serverId, String key) {
-        checkNotNull(serverId);
-        checkNotNull(key);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(key);
         return ToActionResponseFunction.INSTANCE.apply(
                 delete(Void.class, uri("/servers/%s/metadata/%s", serverId, key)).executeWithResponse()
         );
@@ -424,8 +424,8 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 
     @Override
     public Server update(String serverId, ServerUpdateOptions options) {
-        checkNotNull(serverId);
-        checkNotNull(options);
+        Objects.requireNonNull(serverId);
+        Objects.requireNonNull(options);
 
         return put(NovaServer.class, uri("/servers/%s", serverId)).entity(NovaServerUpdate.fromOptions(options)).execute();
     }
@@ -445,7 +445,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ServerPassword getPassword(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return get(NovaPassword.class, uri("/servers/%s/os-server-password", serverId)).execute();
     }
 
@@ -454,7 +454,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
      */
     @Override
     public ServerPassword evacuate(String serverId, EvacuateOptions options) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
 
         return post(AdminPass.class, uri("/servers/%s/action", serverId))
                 .entity(EvacuateAction.create(options))

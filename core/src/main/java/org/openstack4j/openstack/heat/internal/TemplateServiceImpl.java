@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.heat.internal;
 
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.Builders;
 import org.openstack4j.api.heat.TemplateService;
 import org.openstack4j.model.heat.Template;
 import org.openstack4j.model.heat.TemplateResponse;
 import org.openstack4j.openstack.heat.domain.HeatTemplate;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class implements all methods for manipulation of {@link HeatTemplate}
@@ -24,7 +23,7 @@ public class TemplateServiceImpl extends BaseHeatServices implements TemplateSer
      */
     @Override
     public TemplateResponse validateTemplate(String template) {
-        checkNotNull(template);
+        Objects.requireNonNull(template);
         return validateTemplate(Builders.template().templateJson(template).build());
     }
 
@@ -33,7 +32,7 @@ public class TemplateServiceImpl extends BaseHeatServices implements TemplateSer
      */
     @Override
     public TemplateResponse validateTemplateByURL(String templateURL) {
-        checkNotNull(templateURL);
+        Objects.requireNonNull(templateURL);
         return validateTemplate(Builders.template().templateURL(templateURL).build());
     }
 
@@ -42,7 +41,7 @@ public class TemplateServiceImpl extends BaseHeatServices implements TemplateSer
      */
     @Override
     public TemplateResponse validateTemplate(Template template) {
-        checkNotNull(template);
+        Objects.requireNonNull(template);
 
         try {
             post(String.class, uri("/validate")).entity(template).execute();
@@ -57,8 +56,8 @@ public class TemplateServiceImpl extends BaseHeatServices implements TemplateSer
      */
     @Override
     public String getTemplateAsString(String stackName, String stackId) {
-        checkNotNull(stackName);
-        checkNotNull(stackId);
+        Objects.requireNonNull(stackName);
+        Objects.requireNonNull(stackId);
         return get(String.class, uri("/stacks/%s/%s/template", stackName, stackId)).execute();
     }
 
@@ -68,8 +67,8 @@ public class TemplateServiceImpl extends BaseHeatServices implements TemplateSer
     @SuppressWarnings("unchecked")
     @Override
     public Map<String, Object> getTemplateAsMap(String stackName, String stackId) {
-        checkNotNull(stackName);
-        checkNotNull(stackId);
+        Objects.requireNonNull(stackName);
+        Objects.requireNonNull(stackId);
         return get(Map.class, uri("/stacks/%s/%s/template", stackName, stackId)).execute();
     }
 
@@ -79,7 +78,7 @@ public class TemplateServiceImpl extends BaseHeatServices implements TemplateSer
     @SuppressWarnings("unchecked")
     @Override
     public Map<String, Object> getTemplateAsMap(String stackNameOrId) {
-        checkNotNull(stackNameOrId);
+        Objects.requireNonNull(stackNameOrId);
         return get(Map.class, uri("/stacks/%s/template", stackNameOrId)).execute();
     }
 

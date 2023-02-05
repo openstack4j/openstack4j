@@ -2,6 +2,7 @@ package org.openstack4j.openstack.workflow.internal;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.workflow.WorkflowDefinitionService;
 import org.openstack4j.model.common.ActionResponse;
@@ -10,8 +11,6 @@ import org.openstack4j.model.workflow.Scope;
 import org.openstack4j.model.workflow.WorkflowDefinition;
 import org.openstack4j.openstack.workflow.domain.MistralWorkflowDefinition;
 import org.openstack4j.openstack.workflow.domain.MistralWorkflowDefinition.MistralWorkflowDefinitions;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Workflow definition service implementation.
@@ -27,8 +26,8 @@ public class WorkflowDefinitionServiceImpl extends BaseMistralService implements
 
     @Override
     public List<? extends WorkflowDefinition> create(InputStream wfText, Scope scope) {
-        checkNotNull(wfText);
-        checkNotNull(scope);
+        Objects.requireNonNull(wfText);
+        Objects.requireNonNull(scope);
 
         Invocation<MistralWorkflowDefinitions> invocation = post(
                 MistralWorkflowDefinitions.class,

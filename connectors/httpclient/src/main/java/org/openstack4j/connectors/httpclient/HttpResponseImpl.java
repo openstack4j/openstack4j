@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -12,8 +13,6 @@ import org.openstack4j.api.exceptions.ClientResponseException;
 import org.openstack4j.core.transport.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class HttpResponseImpl implements HttpResponse {
 
@@ -130,7 +129,7 @@ public class HttpResponseImpl implements HttpResponse {
             return null;
         }
         try {
-            InputStream content = checkNotNull(entity.getContent(), "Entity content should not be null.");
+            InputStream content = Objects.requireNonNull(entity.getContent(), "Entity content should not be null.");
             return ObjectMapperSingleton.getContext(typeToReadAs).readerFor(typeToReadAs).readValue(content);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);

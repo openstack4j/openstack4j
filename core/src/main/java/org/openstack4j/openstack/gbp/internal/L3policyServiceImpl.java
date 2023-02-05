@@ -2,6 +2,7 @@ package org.openstack4j.openstack.gbp.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.gbp.L3policyService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.gbp.L3Policy;
 import org.openstack4j.openstack.gbp.domain.GbpL3Policy;
 import org.openstack4j.openstack.gbp.domain.GbpL3Policy.L3Policies;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * L3 Policy API Implementation
@@ -54,7 +53,7 @@ public class L3policyServiceImpl extends BaseNetworkingServices implements L3pol
      */
     @Override
     public L3Policy get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(GbpL3Policy.class, uri("/grouppolicy/l3_policies/%s", id)).execute();
     }
 
@@ -63,7 +62,7 @@ public class L3policyServiceImpl extends BaseNetworkingServices implements L3pol
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/grouppolicy/l3_policies/%s", id)).execute();
     }
 
@@ -80,8 +79,8 @@ public class L3policyServiceImpl extends BaseNetworkingServices implements L3pol
      */
     @Override
     public L3Policy update(String l3PolicyId, L3Policy l3Policy) {
-        checkNotNull(l3PolicyId);
-        checkNotNull(l3Policy);
+        Objects.requireNonNull(l3PolicyId);
+        Objects.requireNonNull(l3Policy);
         return put(GbpL3Policy.class, uri("/grouppolicy/l3_policies/%s", l3PolicyId)).entity(l3Policy).execute();
     }
 

@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.compute.internal.ext;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.ext.InstanceActionsService;
 import org.openstack4j.model.compute.InstanceAction;
 import org.openstack4j.openstack.compute.domain.NovaInstanceAction;
 import org.openstack4j.openstack.compute.domain.NovaInstanceAction.NovaInstanceActions;
 import org.openstack4j.openstack.compute.internal.BaseComputeServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * API to list executed instance actions.
@@ -19,14 +18,14 @@ public class InstanceActionsServiceImpl extends BaseComputeServices implements I
 
     @Override
     public List<? extends InstanceAction> list(String serverId) {
-        checkNotNull(serverId, "serverId");
+        Objects.requireNonNull(serverId, "serverId");
         return get(NovaInstanceActions.class, uri("/servers/%s/os-instance-actions", serverId)).execute().getList();
     }
 
     @Override
     public InstanceAction get(String serverId, String requestId) {
-        checkNotNull(serverId, "serverId");
-        checkNotNull(requestId, "requestId");
+        Objects.requireNonNull(serverId, "serverId");
+        Objects.requireNonNull(requestId, "requestId");
         return get(NovaInstanceAction.class, uri("/servers/%s/os-instance-actions/%s", serverId, requestId)).execute();
     }
 

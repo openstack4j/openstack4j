@@ -1,14 +1,14 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-import com.google.common.collect.Maps;
+import org.openstack4j.util.ToStringHelper;
+import java.util.Objects;
 import org.openstack4j.model.identity.v3.Domain;
 import org.openstack4j.model.identity.v3.builder.DomainBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -23,7 +23,7 @@ public class KeystoneDomain implements Domain {
     @JsonProperty
     private String name;
     private String description;
-    private Map<String, String> options = Maps.newHashMap();
+    private Map<String, String> options = new HashMap<>();
     private Map<String, String> links;
     private boolean enabled;
 
@@ -95,7 +95,7 @@ public class KeystoneDomain implements Domain {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("description", description)
                 .add("name", name)
@@ -106,7 +106,7 @@ public class KeystoneDomain implements Domain {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, description, enabled, name, links);
+        return Objects.hash(id, description, enabled, name, links);
     }
 
     public static class DomainConcreteBuilder implements DomainBuilder {

@@ -1,11 +1,11 @@
 package org.openstack4j.api.barbican;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.ImmutableMap;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.barbican.Secret;
@@ -41,7 +41,7 @@ public class SecretTests extends AbstractTest {
 
     public void testListSecretWithFilter() throws IOException {
         respondWith(SECRETS_JSON);
-        Map<String, String> filters = ImmutableMap.of("limit", "1");
+        Map<String, String> filters = Collections.singletonMap("limit", "1");
         List<? extends Secret> list = osv3().barbican().secrets().list(filters);
         assertEquals(list.size(), 1);
     }

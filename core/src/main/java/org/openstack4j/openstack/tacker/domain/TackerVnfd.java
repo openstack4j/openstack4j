@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.tacker.Vnfd;
 import org.openstack4j.model.tacker.builder.VnfdBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -115,7 +115,7 @@ public class TackerVnfd implements Vnfd {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name)
                 .add("tenantId", tenantId).add("description", description)
                 .add("serviceTypes", serviceTypes).add("attributes", attributes)
@@ -137,7 +137,7 @@ public class TackerVnfd implements Vnfd {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("vnfds", vnfds).toString();
         }
     }

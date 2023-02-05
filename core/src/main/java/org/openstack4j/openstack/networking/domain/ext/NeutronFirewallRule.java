@@ -3,7 +3,7 @@ package org.openstack4j.openstack.networking.domain.ext;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.IPVersionType;
 import org.openstack4j.model.network.ext.FirewallRule;
 import org.openstack4j.model.network.ext.builder.FirewallRuleBuilder;
@@ -136,7 +136,7 @@ public class NeutronFirewallRule implements FirewallRule {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("position", position)
                 .add("action", action).add("ipVersion", ipVersion)
                 .add("policyId", policyId).add("enabled", enabled)
@@ -219,7 +219,7 @@ public class NeutronFirewallRule implements FirewallRule {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("firewall_rules", firewallRules).toString();
         }
     }

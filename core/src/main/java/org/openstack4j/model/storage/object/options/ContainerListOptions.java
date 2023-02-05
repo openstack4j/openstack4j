@@ -1,11 +1,8 @@
 package org.openstack4j.model.storage.object.options;
 
+import java.util.HashMap;
 import java.util.Map;
-
-import com.google.common.collect.Maps;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
+import java.util.Objects;
 
 /**
  * List options used for Container and Object based queries
@@ -14,7 +11,7 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public final class ContainerListOptions {
 
-    private Map<String, String> queryParams = Maps.newHashMap();
+    private Map<String, String> queryParams = new HashMap<>();
 
     private ContainerListOptions() {
     }
@@ -30,15 +27,15 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions startsWith(String prefix) {
-        return add("prefix", checkNotNull(prefix));
+        return add("prefix", Objects.requireNonNull(prefix));
     }
 
     /**
      * For an integer value n, limits the number of results to n.
      */
     public ContainerListOptions limit(int limit) {
-        checkState(limit >= 0, "limit must be >= 0");
-        checkState(limit <= 10000, "limit must be <= 10000");
+        if (limit < 0) throw new IllegalStateException("limit must be >= 0");
+        if (limit > 10000) throw new IllegalStateException("limit must be <= 10000");
         add("limit", Integer.toString(limit));
         return this;
     }
@@ -50,7 +47,7 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions marker(String marker) {
-        add("marker", checkNotNull(marker, "marker"));
+        add("marker", Objects.requireNonNull(marker, "marker"));
         return this;
     }
 
@@ -61,7 +58,7 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions endMarker(String endMarker) {
-        add("end_marker", checkNotNull(endMarker, "endMarker"));
+        add("end_marker", Objects.requireNonNull(endMarker, "endMarker"));
         return this;
     }
 
@@ -83,7 +80,7 @@ public final class ContainerListOptions {
      * @return ContainerListOptions
      */
     public ContainerListOptions path(String path) {
-        return add("path", checkNotNull(path));
+        return add("path", Objects.requireNonNull(path));
     }
 
     private ContainerListOptions add(String param, String value) {

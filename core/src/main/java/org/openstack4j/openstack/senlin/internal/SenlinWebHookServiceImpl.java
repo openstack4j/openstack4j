@@ -8,7 +8,7 @@ import org.openstack4j.openstack.internal.BaseOpenStackService;
 import org.openstack4j.openstack.senlin.domain.SenlinAction;
 import org.openstack4j.openstack.senlin.domain.SenlinActionID;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import java.util.Objects;
 
 /**
  * This class contains getters for all implementation of the available webHook services
@@ -19,7 +19,7 @@ public class SenlinWebHookServiceImpl extends BaseOpenStackService implements Se
 
     @Override
     public ActionID action(String webHookUrl) {
-        checkNotNull(webHookUrl);
+        Objects.requireNonNull(webHookUrl);
         HttpRequest newReq = new HttpRequest();
         newReq.toBuilder().methodPost().endpoint(webHookUrl).path("");
         newReq.builder(SenlinAction.class);

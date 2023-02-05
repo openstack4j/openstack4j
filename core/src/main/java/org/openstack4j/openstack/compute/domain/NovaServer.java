@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.compute.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.api.Apis;
 import org.openstack4j.model.common.Link;
 import org.openstack4j.model.common.functions.IdEntityToString;
@@ -259,7 +259,7 @@ public class NovaServer implements Server {
     public List<String> getOsExtendedVolumesAttached() {
         return (List<String>) ((osExtendedVolumesAttached == null)
                 ? Collections.emptyList()
-                : Lists.transform(osExtendedVolumesAttached, IdEntityToString.INSTANCE));
+                : osExtendedVolumesAttached.stream().map(IdEntityToString.INSTANCE).collect(Collectors.toList()));
     }
 
     @Override
@@ -274,7 +274,7 @@ public class NovaServer implements Server {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("image", image).add("flavor", flavor)
                 .add("status", status).add("diskconfig", diskConfig).add("userId", userId)
                 .add("admin-pass", adminPass).add("created", created).add("updated", updated)

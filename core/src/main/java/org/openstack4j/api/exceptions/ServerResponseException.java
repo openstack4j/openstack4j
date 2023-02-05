@@ -1,6 +1,6 @@
 package org.openstack4j.api.exceptions;
 
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Captures Server based Errors (Return Codes between 500 - 600)
@@ -32,7 +32,7 @@ public class ServerResponseException extends ResponseException {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("message", getMessage())
                 .add("status", getStatus())
                 .add("status-code", code)

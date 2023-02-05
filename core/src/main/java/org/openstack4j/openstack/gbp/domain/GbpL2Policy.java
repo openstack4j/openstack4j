@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.L2Policy;
 import org.openstack4j.model.gbp.builder.L2PolicyBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -97,7 +97,7 @@ public class GbpL2Policy implements L2Policy {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("desription", description)
                 .add("tenantId", tenantId).add("networkId", networkId).add("l3PolicyId", l3PolicyId).add("shared", shared)
                 .add("policyTargetGroups", policyTargetGroups).toString();
     }

@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.compute.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.ServerGroupService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.compute.ServerGroup;
 import org.openstack4j.openstack.compute.domain.NovaServerGroup;
 import org.openstack4j.openstack.compute.domain.NovaServerGroup.ServerGroups;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ServerGroupServiceImpl extends BaseComputeServices implements ServerGroupService {
 
@@ -19,13 +18,13 @@ public class ServerGroupServiceImpl extends BaseComputeServices implements Serve
 
     @Override
     public ServerGroup get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(NovaServerGroup.class, uri("/os-server-groups/%s", id)).execute();
     }
 
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/os-server-groups/%s", id)).execute();
     }
 

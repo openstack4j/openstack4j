@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.Member;
 import org.openstack4j.model.network.ext.builder.MemberBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -106,7 +106,7 @@ public class NeutronMember implements Member {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("address", address)
                 .add("adminStateUp", adminStateUp)
@@ -145,7 +145,7 @@ public class NeutronMember implements Member {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this).omitNullValues()
+            return new ToStringHelper(this)
                     .add("members", members).toString();
         }
     }

@@ -6,8 +6,8 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import org.openstack4j.util.ToStringHelper;
+import java.util.Objects;
 import org.openstack4j.model.identity.v3.Group;
 import org.openstack4j.model.identity.v3.builder.GroupBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -86,7 +86,7 @@ public class KeystoneGroup implements Group {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("name", name)
                 .add("description", description)
@@ -100,7 +100,7 @@ public class KeystoneGroup implements Group {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, name, description, links, domainId);
+        return Objects.hash(id, name, description, links, domainId);
     }
 
     /**
@@ -113,11 +113,11 @@ public class KeystoneGroup implements Group {
         if (obj == null || getClass() != obj.getClass())
             return false;
         KeystoneGroup that = KeystoneGroup.class.cast(obj);
-        return Objects.equal(this.id, that.id)
-                && Objects.equal(this.domainId, that.domainId)
-                && Objects.equal(this.description, that.description)
-                && Objects.equal(this.name, that.name)
-                && Objects.equal(this.links, that.links);
+        return Objects.equals(this.id, that.id)
+                && Objects.equals(this.domainId, that.domainId)
+                && Objects.equals(this.description, that.description)
+                && Objects.equals(this.name, that.name)
+                && Objects.equals(this.links, that.links);
     }
 
     public static class GroupConcreteBuilder implements GroupBuilder {

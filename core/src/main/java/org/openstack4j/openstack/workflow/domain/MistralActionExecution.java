@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.workflow.ActionExecution;
 import org.openstack4j.model.workflow.builder.ActionExecutionBuilder;
 import org.openstack4j.openstack.common.ListResult;
@@ -78,7 +78,7 @@ public class MistralActionExecution extends BaseExecution implements ActionExecu
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("createdAt", createdAt)
                 .add("updatedAt", updatedAt)
                 .add("id", id)

@@ -2,13 +2,12 @@ package org.openstack4j.openstack.networking.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.SecurityGroupRuleService;
 import org.openstack4j.model.network.SecurityGroupRule;
 import org.openstack4j.openstack.networking.domain.NeutronSecurityGroupRule;
 import org.openstack4j.openstack.networking.domain.NeutronSecurityGroupRule.SecurityGroupRules;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * FloatingIPService implementation that provides Neutron Floating-IP based Service Operations.
@@ -22,7 +21,7 @@ public class SecurityGroupRuleServiceImpl extends BaseNetworkingServices impleme
      */
     @Override
     public SecurityGroupRule get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(NeutronSecurityGroupRule.class, uri("/security-group-rules/%s", id)).execute();
     }
 
@@ -31,7 +30,7 @@ public class SecurityGroupRuleServiceImpl extends BaseNetworkingServices impleme
      */
     @Override
     public void delete(String ruleId) {
-        checkNotNull(ruleId);
+        Objects.requireNonNull(ruleId);
         delete(Void.class, uri("/security-group-rules/%s", ruleId)).execute();
     }
 
@@ -40,7 +39,7 @@ public class SecurityGroupRuleServiceImpl extends BaseNetworkingServices impleme
      */
     @Override
     public SecurityGroupRule create(SecurityGroupRule rule) {
-        checkNotNull(rule);
+        Objects.requireNonNull(rule);
         return post(NeutronSecurityGroupRule.class, uri("/security-group-rules")).entity(rule).execute();
     }
 

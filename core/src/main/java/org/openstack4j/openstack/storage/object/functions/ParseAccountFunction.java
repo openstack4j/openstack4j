@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.storage.object.functions;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.storage.object.SwiftAccount;
 import org.openstack4j.openstack.storage.object.domain.SwiftAccountImpl;

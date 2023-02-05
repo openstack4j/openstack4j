@@ -1,9 +1,9 @@
 package org.openstack4j.test.common;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.Lists;
 import org.openstack4j.model.common.header.HeaderNameValue;
 import org.openstack4j.openstack.common.functions.HeaderNameValuesToHeaderMap;
 import org.testng.annotations.Test;
@@ -17,7 +17,7 @@ import static org.testng.Assert.assertTrue;
  */
 public class HeaderNameValuesToHeaderMapTest {
 
-    private static List<HeaderNameValue> VALUES = Lists.newArrayList(
+    private static List<HeaderNameValue> VALUES = Arrays.asList(
             new HeaderNameValue("Test 1", "Value 1"),
             new HeaderNameValue("Test 2", "Value 2"),
             new HeaderNameValue("Test 3", "Value 3"),

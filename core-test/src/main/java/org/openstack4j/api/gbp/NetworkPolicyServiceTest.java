@@ -1,9 +1,9 @@
 package org.openstack4j.api.gbp;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -35,7 +35,7 @@ public class NetworkPolicyServiceTest extends AbstractTest {
         respondWith(NETWORK_SERVICE_POLICIES);
         List<? extends NetworkServicePolicy> gbpServicePolicies = osv2().gbp().networkPolicyService().list();
         assertEquals(2, gbpServicePolicies.size());
-        Preconditions.checkNotNull(gbpServicePolicies.get(0));
+        Objects.requireNonNull(gbpServicePolicies.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : Nat Pool from List : " + gbpServicePolicies.get(0));
         assertEquals(gbpServicePolicies.get(0).getId(), "d98e3cd5-3eb4-41ba-9069-6f5867ceb162");
         assertEquals(gbpServicePolicies.get(1).getId(), "e252a688-2b09-4aab-ae4a-ad57fd9154f2");
@@ -46,7 +46,7 @@ public class NetworkPolicyServiceTest extends AbstractTest {
         respondWith(NETWORK_SERVICE_POLICY);
         String id = "d98e3cd5-3eb4-41ba-9069-6f5867ceb162";
         NetworkServicePolicy gbpServicePolicy = osv2().gbp().networkPolicyService().get(id);
-        Preconditions.checkNotNull(gbpServicePolicy);
+        Objects.requireNonNull(gbpServicePolicy);
         assertEquals(gbpServicePolicy.getId(), "d98e3cd5-3eb4-41ba-9069-6f5867ceb162");
     }
 

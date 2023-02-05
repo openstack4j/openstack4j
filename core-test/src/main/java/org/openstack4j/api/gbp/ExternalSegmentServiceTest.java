@@ -1,9 +1,9 @@
 package org.openstack4j.api.gbp;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
-import com.google.common.base.Preconditions;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
@@ -36,7 +36,7 @@ public class ExternalSegmentServiceTest extends AbstractTest {
         respondWith(EXTERNAL_SEGMENTS);
         List<? extends ExternalSegment> externalSegList = osv2().gbp().externalSegment().list();
         assertEquals(2, externalSegList.size());
-        Preconditions.checkNotNull(externalSegList.get(0));
+        Objects.requireNonNull(externalSegList.get(0));
         Logger.getLogger(getClass().getName()).info(getClass().getName() + " : External Segment from List : " + externalSegList.get(0));
         assertEquals(externalSegList.get(0).getId(), "fff89eb8-8f9d-49a2-b66c-ad75d9a95287");
     }

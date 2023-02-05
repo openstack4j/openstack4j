@@ -5,8 +5,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
+import org.openstack4j.util.ToStringHelper;
+import java.util.Objects;
 import org.openstack4j.api.Apis;
 import org.openstack4j.model.identity.v2.Tenant;
 import org.openstack4j.model.identity.v2.builder.TenantBuilder;
@@ -120,7 +120,7 @@ public class KeystoneTenant implements Tenant {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, name, description);
+        return Objects.hash(id, name, description);
     }
 
     /**
@@ -131,16 +131,16 @@ public class KeystoneTenant implements Tenant {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         KeystoneTenant that = KeystoneTenant.class.cast(obj);
-        return Objects.equal(this.id, that.id)
-                && Objects.equal(this.name, that.name)
-                && Objects.equal(this.description, that.description);
+        return Objects.equals(this.id, that.id)
+                && Objects.equals(this.name, that.name)
+                && Objects.equals(this.description, that.description);
     }
 
     /**
      * {@inheritDoc}
      */
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("description", description)
                 .add("enabled", enabled)
                 .toString();

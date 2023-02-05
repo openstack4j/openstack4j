@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.Direction;
 import org.openstack4j.model.gbp.PolicyClassifier;
 import org.openstack4j.model.gbp.Protocol;
@@ -96,7 +96,7 @@ public class GbpPolicyClassifier implements PolicyClassifier {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("id", id).add("name", name).add("desription", description)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("desription", description)
                 .add("tenantId", tenantId).add("portRange", portRange).add("protocol", protocol).add("shared", shared).toString();
     }
 

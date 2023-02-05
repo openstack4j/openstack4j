@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Certificate;
 import org.openstack4j.model.magnum.CertificateBuilder;
 import org.openstack4j.openstack.common.GenericLink;
@@ -43,7 +43,7 @@ public class MagnumCertificate implements Certificate {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("pem", pem).add("bayUuid", bayUuid).add("links", links)
+        return new ToStringHelper(this).add("pem", pem).add("bayUuid", bayUuid).add("links", links)
                 .toString();
     }
 

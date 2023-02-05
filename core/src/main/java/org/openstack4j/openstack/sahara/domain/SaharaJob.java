@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.sahara.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,8 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.Job;
 import org.openstack4j.model.sahara.JobBinary;
 import org.openstack4j.model.sahara.builder.JobBuilder;
@@ -150,7 +150,7 @@ public class SaharaJob implements Job {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("description", description)
                 .add("url", url)
                 .add("tenant_id", tenantId)
@@ -230,7 +230,7 @@ public class SaharaJob implements Job {
         @JsonProperty("mains")
         public JobBuilder setMain(String jobBinaryId) {
             if (m.mainBinaryIds == null)
-                m.mainBinaryIds = Lists.newArrayList();
+                m.mainBinaryIds = new ArrayList<>();
             m.mainBinaryIds.add(jobBinaryId);
             return this;
         }
@@ -239,7 +239,7 @@ public class SaharaJob implements Job {
         @JsonProperty("libs")
         public JobBuilder addLibs(String jobBinaryId) {
             if (m.libBinaryIds == null)
-                m.libBinaryIds = Lists.newArrayList();
+                m.libBinaryIds = new ArrayList<>();
             m.libBinaryIds.add(jobBinaryId);
             return this;
         }

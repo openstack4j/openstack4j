@@ -1,10 +1,10 @@
 package org.openstack4j.openstack.image.domain.functions;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
+import java.util.function.Function;
 import org.openstack4j.model.image.ContainerFormat;
 import org.openstack4j.model.image.DiskFormat;
 import org.openstack4j.model.image.Image;
@@ -46,7 +46,7 @@ public class ImageForUpdateToHeaders implements Function<Image, Map<String, Obje
     public Map<String, Object> apply(@Nullable Image from) {
         if (from == null) return null;
 
-        Map<String, Object> headers = Maps.newHashMap();
+        Map<String, Object> headers = new HashMap<>();
 
         addIfNotNull(headers, ID, from.getId());
         addIfNotNull(headers, NAME, from.getName());

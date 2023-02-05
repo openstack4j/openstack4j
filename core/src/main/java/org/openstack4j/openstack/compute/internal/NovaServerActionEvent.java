@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.compute.internal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.ServerActionEvent;
 import org.openstack4j.model.compute.builder.ServerActionEventBuilder;
 
@@ -69,7 +69,7 @@ public class NovaServerActionEvent implements ServerActionEvent {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("start_time", start_time)
+        return new ToStringHelper(this).add("start_time", start_time)
                 .add("finish_time", finish_time).add("event", event).add("result", result).addValue("\n").toString();
     }
 

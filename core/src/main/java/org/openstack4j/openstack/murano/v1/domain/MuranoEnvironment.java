@@ -3,7 +3,7 @@ package org.openstack4j.openstack.murano.v1.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.murano.v1.builder.EnvironmentBuilder;
 import org.openstack4j.model.murano.v1.domain.Environment;
 import org.openstack4j.openstack.common.ListResult;
@@ -109,7 +109,7 @@ public class MuranoEnvironment implements Environment {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", this.id)
                 .add("name", this.name)
                 .add("status", this.status)

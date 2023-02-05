@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.image.ContainerFormat;
 import org.openstack4j.model.image.DiskFormat;
 import org.openstack4j.model.storage.block.Volume.Status;
@@ -83,7 +83,7 @@ public class CinderVolumeUploadImage implements VolumeUploadImage {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("status", status).add("display_description", displayDescription)
                 .add("updatedAt", updatedAt).add("image_id", imageId).add("image_name", imageName)
                 .add("container_format", containerFormat).add("disk_format", diskFormat)

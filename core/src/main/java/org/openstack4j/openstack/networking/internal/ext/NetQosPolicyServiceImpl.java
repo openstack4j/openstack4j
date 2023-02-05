@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.networking.internal.ext;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.networking.ext.NetQosPolicyService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.network.ext.NetQosPolicyUpdate;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicy;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicy.NeutronNetQosPolicies;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Networking (Neutron) Qos Policy Extension API
@@ -32,7 +31,7 @@ public class NetQosPolicyServiceImpl extends BaseNetworkingServices implements N
      */
     @Override
     public NetQosPolicy get(String policyId) {
-        checkNotNull(policyId, "qos policyId must not be null");
+        Objects.requireNonNull(policyId, "qos policyId must not be null");
         return get(NeutronNetQosPolicy.class, uri("/qos/policies/%s", policyId)).execute();
     }
 
@@ -41,8 +40,8 @@ public class NetQosPolicyServiceImpl extends BaseNetworkingServices implements N
      */
     @Override
     public NetQosPolicy update(NetQosPolicyUpdate update) {
-        checkNotNull(update, "netQosPolicy must not be null");
-        checkNotNull(update.getId(), "netQosPolicy id must not be null");
+        Objects.requireNonNull(update, "netQosPolicy must not be null");
+        Objects.requireNonNull(update.getId(), "netQosPolicy id must not be null");
         return put(NeutronNetQosPolicy.class, uri("/qos/policies/%s", getAndClearIdentifier(update))).entity(update).execute();
     }
 
@@ -51,7 +50,7 @@ public class NetQosPolicyServiceImpl extends BaseNetworkingServices implements N
      */
     @Override
     public NetQosPolicy create(NetQosPolicy netQosPolicy) {
-        checkNotNull(netQosPolicy, "netQosPolicy must not be null");
+        Objects.requireNonNull(netQosPolicy, "netQosPolicy must not be null");
         return post(NeutronNetQosPolicy.class, uri("/qos/policies")).entity(netQosPolicy).execute();
     }
 
@@ -60,7 +59,7 @@ public class NetQosPolicyServiceImpl extends BaseNetworkingServices implements N
      */
     @Override
     public ActionResponse delete(String policyId) {
-        checkNotNull(policyId);
+        Objects.requireNonNull(policyId);
         return deleteWithResponse(uri("/qos/policies/%s", policyId)).execute();
     }
 

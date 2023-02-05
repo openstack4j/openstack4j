@@ -5,7 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.MemberV2;
 import org.openstack4j.model.octavia.builder.MemberV2Builder;
 import org.openstack4j.openstack.common.ListResult;
@@ -101,7 +101,7 @@ public class OctaviaMemberV2 implements MemberV2 {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("projectId", projectId)
                 .add("address", address)
@@ -131,7 +131,7 @@ public class OctaviaMemberV2 implements MemberV2 {
 
         @Override
         public String toString() {
-            return MoreObjects.toStringHelper(this)
+            return new ToStringHelper(this)
                     .add("members", members)
                     .toString();
         }

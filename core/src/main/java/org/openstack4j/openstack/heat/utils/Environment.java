@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
 import org.yaml.snakeyaml.Yaml;
 
 public class Environment {
@@ -20,7 +18,7 @@ public class Environment {
     private URL baseUrl;
 
     public Environment(URL environmentRes) throws JsonParseException, IOException, URISyntaxException {
-        setEnvContent(Resources.toString(environmentRes, Charsets.UTF_8));
+        setEnvContent(TemplateUtils.readToString(environmentRes));
         setBaseUrl(TemplateUtils.baseUrl(environmentRes.toString()));
         getFileContent();
     }

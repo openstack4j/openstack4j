@@ -16,8 +16,6 @@ import org.openstack4j.openstack.identity.v3.domain.KeystoneAuth;
 import org.openstack4j.openstack.identity.v3.domain.KeystoneAuth.AuthScope;
 import org.openstack4j.openstack.internal.OSAuthenticator;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 /**
  * Builder definitions for creating a Client
  *
@@ -104,8 +102,9 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         @Override
         public OSClientV2 authenticate() throws AuthenticationException {
             if (tokenId != null) {
-                checkArgument(tenantName != null || tenantId != null,
-                        "TenantId or TenantName is required when using Token Auth");
+                if (!(tenantName != null || tenantId != null)) {
+                    throw new IllegalArgumentException("TenantId or TenantName is required when using Token Auth");
+                }
                 return (OSClientV2) OSAuthenticator.invoke(new TokenAuth(tokenId, tenantName, tenantId), endpoint, perspective,
                         config, provider);
             }

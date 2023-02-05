@@ -1,13 +1,11 @@
 package org.openstack4j.openstack.networking.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Preconditions;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.*;
 import org.openstack4j.model.network.builder.SubnetBuilder;
@@ -233,7 +231,7 @@ public class NeutronSubnet implements Subnet {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("id", id).add("name", name).add("enableDHCP", enableDHCP).add("network-id", networkId)
                 .add("tenant_id", tenantId).add("dns_nameservers", dnsNames).add("allocation_pools", pools)
                 .add("host_routes", hostRoutes).add("ip_version", ipVersion).add("gateway_ip", gateway).add("cidr", cidr)
@@ -359,7 +357,7 @@ public class NeutronSubnet implements Subnet {
         @Override
         public SubnetBuilder addPool(String start, String end) {
             if (m.pools == null)
-                m.pools = Lists.newArrayList();
+                m.pools = new ArrayList<>();
             m.pools.add(new NeutronPool(start, end));
             return this;
         }
@@ -409,11 +407,11 @@ public class NeutronSubnet implements Subnet {
 
         @Override
         public SubnetBuilder addDNSNameServer(String host) {
-            if (Strings.isNullOrEmpty(host))
+            if (host == null || host.isEmpty())
                 return this;
 
             if (m.dnsNames == null)
-                m.dnsNames = Lists.newArrayList();
+                m.dnsNames = new ArrayList<>();
 
             m.dnsNames.add(host);
             return this;
@@ -421,9 +419,9 @@ public class NeutronSubnet implements Subnet {
 
         @Override
         public SubnetBuilder addHostRoute(String destination, String nexthop) {
-            Preconditions.checkArgument(nexthop != null && destination != null, "NextHop and Destination must have a value");
+            if (nexthop == null || destination == null) throw new IllegalArgumentException("NextHop and Destination must have a value");
             if (m.hostRoutes == null)
-                m.hostRoutes = Lists.newArrayList();
+                m.hostRoutes = new ArrayList<>();
 
             m.hostRoutes.add(new NeutronHostRoute(destination, nexthop));
             return this;

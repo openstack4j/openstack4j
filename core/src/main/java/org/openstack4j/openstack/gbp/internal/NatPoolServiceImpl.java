@@ -2,6 +2,7 @@ package org.openstack4j.openstack.gbp.internal;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.openstack4j.api.gbp.NatPoolService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.gbp.NatPool;
 import org.openstack4j.openstack.gbp.domain.GbpNatPool;
 import org.openstack4j.openstack.gbp.domain.GbpNatPool.NatPools;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Nat Pool API Implementation
@@ -54,7 +53,7 @@ public class NatPoolServiceImpl extends BaseNetworkingServices implements NatPoo
      */
     @Override
     public NatPool get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(GbpNatPool.class, uri("/grouppolicy/nat_pools/%s", id)).execute();
     }
 
@@ -63,7 +62,7 @@ public class NatPoolServiceImpl extends BaseNetworkingServices implements NatPoo
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/grouppolicy/nat_pools/%s", id)).execute();
     }
 
@@ -80,8 +79,8 @@ public class NatPoolServiceImpl extends BaseNetworkingServices implements NatPoo
      */
     @Override
     public NatPool update(String natpoolId, NatPool natpool) {
-        checkNotNull(natpoolId);
-        checkNotNull(natpool);
+        Objects.requireNonNull(natpoolId);
+        Objects.requireNonNull(natpool);
         return put(GbpNatPool.class, uri("/grouppolicy/nat_pools/%s", natpoolId)).entity(natpool).execute();
     }
 

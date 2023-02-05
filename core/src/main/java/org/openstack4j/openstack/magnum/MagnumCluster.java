@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.magnum.Cluster;
 import org.openstack4j.model.magnum.ClusterBuilder;
 import org.openstack4j.openstack.common.GenericLink;
@@ -91,7 +91,7 @@ public class MagnumCluster implements Cluster {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues().add("status", status)
+        return new ToStringHelper(this).add("status", status)
                 .add("clusterTemplateId", clusterTemplateId).add("uuid", uuid).add("links", links)
                 .add("stackId", stackId).add("masterCount", masterCount).add("createTimeout", createTimeout)
                 .add("nodeCount", nodeCount).add("discoveryUrl", discoveryUrl).add("keypair", keypair).add("name", name)

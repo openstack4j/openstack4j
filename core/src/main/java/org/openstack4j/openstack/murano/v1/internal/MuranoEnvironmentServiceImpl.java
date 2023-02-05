@@ -1,14 +1,13 @@
 package org.openstack4j.openstack.murano.v1.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.murano.v1.MuranoEnvironmentService;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.murano.v1.domain.Environment;
 import org.openstack4j.openstack.murano.v1.domain.MuranoEnvironment;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class implements all methods for manipulation of {@link MuranoEnvironment} objects.
@@ -30,7 +29,7 @@ public class MuranoEnvironmentServiceImpl extends BaseMuranoServices implements 
      */
     @Override
     public Environment get(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return get(MuranoEnvironment.class, uri("/environments/%s", id)).execute();
     }
 
@@ -39,7 +38,7 @@ public class MuranoEnvironmentServiceImpl extends BaseMuranoServices implements 
      */
     @Override
     public Environment create(Environment env) {
-        checkNotNull(env);
+        Objects.requireNonNull(env);
         return post(MuranoEnvironment.class, uri("/environments"))
                 .entity(env)  // setup request
                 .execute();
@@ -50,7 +49,7 @@ public class MuranoEnvironmentServiceImpl extends BaseMuranoServices implements 
      */
     @Override
     public ActionResponse delete(String id) {
-        checkNotNull(id);
+        Objects.requireNonNull(id);
         return deleteWithResponse(uri("/environments/%s", id)).execute();
     }
 
@@ -59,8 +58,8 @@ public class MuranoEnvironmentServiceImpl extends BaseMuranoServices implements 
      */
     @Override
     public Environment rename(String id, String name) {
-        checkNotNull(id);
-        checkNotNull(name);
+        Objects.requireNonNull(id);
+        Objects.requireNonNull(name);
         return put(MuranoEnvironment.class, uri("/environments/%s", id))
                 .entity(new RenameEnvironmentRequest(name))
                 .execute();

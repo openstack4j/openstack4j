@@ -3,7 +3,7 @@ package org.openstack4j.openstack.tacker.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * @author Vishvesh Deshmukh
@@ -26,7 +26,7 @@ public class VimProject {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("id", id).add("name", name).add("projectDomainName", projectDomainName)
+        return new ToStringHelper(this).add("id", id).add("name", name).add("projectDomainName", projectDomainName)
                 .toString();
     }
 

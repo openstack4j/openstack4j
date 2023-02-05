@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.image.ImageMember;
 import org.openstack4j.openstack.common.ListResult;
 
@@ -52,7 +52,7 @@ public class GlanceImageMember implements ImageMember {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("memberId", memberId).add("canShare", canShare).toString();
+        return new ToStringHelper(this).add("memberId", memberId).add("canShare", canShare).toString();
     }
 
     public static class Members extends ListResult<GlanceImageMember> {

@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.networking.domain.ext;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.NetworkIPAvailability;
 import org.openstack4j.model.network.ext.SubnetIPAvailability;
 import org.openstack4j.model.network.ext.builder.NetworkIPAvailabilityBuilder;
@@ -129,7 +129,7 @@ public class NeutronNetworkIPAvailability implements NetworkIPAvailability {
      */
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("networkName", networkName)
                 .add("networkId", networkId)
                 .add("tenantId", tenantId)
@@ -202,7 +202,7 @@ public class NeutronNetworkIPAvailability implements NetworkIPAvailability {
         @Override
         public NetworkIPAvailabilityBuilder subnetIPAvailability(SubnetIPAvailability subnetIPAvailability) {
             if (model.subnetIPAvailabilities == null)
-                model.subnetIPAvailabilities = Lists.newArrayList();
+                model.subnetIPAvailabilities = new ArrayList<>();
             model.subnetIPAvailabilities.add((NeutronSubnetIPAvailability) subnetIPAvailability);
             return this;
         }

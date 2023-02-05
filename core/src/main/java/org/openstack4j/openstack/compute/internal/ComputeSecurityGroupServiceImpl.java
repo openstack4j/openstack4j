@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.compute.internal;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.compute.ComputeSecurityGroupService;
 import org.openstack4j.model.common.ActionResponse;
@@ -9,8 +10,6 @@ import org.openstack4j.model.compute.SecGroupExtension.Rule;
 import org.openstack4j.openstack.compute.domain.NovaSecGroupExtension;
 import org.openstack4j.openstack.compute.domain.NovaSecGroupExtension.SecurityGroupRule;
 import org.openstack4j.openstack.compute.domain.NovaSecGroupExtension.SecurityGroups;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Provides operations against the Security Group extension in OpenStack
@@ -35,7 +34,7 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
      */
     @Override
     public List<? extends SecGroupExtension> listServerGroups(String serverId) {
-        checkNotNull(serverId);
+        Objects.requireNonNull(serverId);
         return get(SecurityGroups.class, uri("/servers/%s/os-security-groups", serverId)).execute().getList();
     }
 
@@ -44,7 +43,7 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
      */
     @Override
     public SecGroupExtension get(String securityGroupId) {
-        checkNotNull(securityGroupId);
+        Objects.requireNonNull(securityGroupId);
         return get(NovaSecGroupExtension.class, uri("/os-security-groups/%s", securityGroupId)).execute();
     }
 
@@ -53,7 +52,7 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
      */
     @Override
     public ActionResponse delete(String securityGroupId) {
-        checkNotNull(securityGroupId);
+        Objects.requireNonNull(securityGroupId);
         return deleteWithResponse(uri("/os-security-groups/%s", securityGroupId)).execute();
     }
 
@@ -62,7 +61,7 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
      */
     @Override
     public SecGroupExtension create(String name, String description) {
-        checkNotNull(name);
+        Objects.requireNonNull(name);
         return post(NovaSecGroupExtension.class, uri("/os-security-groups"))
                 .entity(NovaSecGroupExtension.create(name, description))
                 .execute();
@@ -73,8 +72,8 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
      */
     @Override
     public SecGroupExtension update(String securityGroupId, String name, String description) {
-        checkNotNull(securityGroupId);
-        checkNotNull(name);
+        Objects.requireNonNull(securityGroupId);
+        Objects.requireNonNull(name);
         return put(NovaSecGroupExtension.class, uri("/os-security-groups/%s", securityGroupId))
                 .entity(NovaSecGroupExtension.create(name, description))
                 .execute();
@@ -85,7 +84,7 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
      */
     @Override
     public Rule createRule(Rule rule) {
-        checkNotNull(rule);
+        Objects.requireNonNull(rule);
         return post(SecurityGroupRule.class, uri("/os-security-group-rules")).entity(rule).execute();
     }
 
@@ -94,7 +93,7 @@ public class ComputeSecurityGroupServiceImpl extends BaseComputeServices impleme
      */
     @Override
     public ActionResponse deleteRule(String ruleId) {
-        checkNotNull(ruleId);
+        Objects.requireNonNull(ruleId);
         return deleteWithResponse(uri("/os-security-group-rules/%s", ruleId)).execute();
     }
 }

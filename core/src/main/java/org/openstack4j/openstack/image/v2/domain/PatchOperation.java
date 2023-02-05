@@ -3,7 +3,7 @@ package org.openstack4j.openstack.image.v2.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.ModelEntity;
 
 /**
@@ -57,7 +57,7 @@ public class PatchOperation implements ModelEntity {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("op", op)
                 .add("path", path)
                 .add("value", value)

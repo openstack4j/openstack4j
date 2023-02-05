@@ -6,7 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.google.common.base.MoreObjects;
+import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.ConfigInfo;
 import org.openstack4j.model.sahara.Plugin;
 import org.openstack4j.openstack.common.ListResult;
@@ -93,7 +93,7 @@ public class SaharaPlugin implements Plugin {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).omitNullValues()
+        return new ToStringHelper(this)
                 .add("name", name)
                 .add("title", title)
                 .add("description", description)

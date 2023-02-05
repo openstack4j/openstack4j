@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.*;
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import org.openstack4j.util.ToStringHelper;
+import java.util.Objects;
 import org.openstack4j.model.identity.v3.Domain;
 import org.openstack4j.model.identity.v3.Project;
 import org.openstack4j.model.identity.v3.builder.ProjectBuilder;
@@ -33,7 +33,7 @@ public class KeystoneProject implements Project {
     @JsonProperty("domain_id")
     private String domainId;
     private String description;
-    private Map<String, String> options = Maps.newHashMap();
+    private Map<String, String> options = new HashMap<>();
     @JsonIgnore
     private Map<String, String> links;
     @JsonProperty("parent_id")
@@ -41,12 +41,12 @@ public class KeystoneProject implements Project {
     private String subtree;
     private String parents;
     private Boolean enabled = true;
-    private List<String> tags = Lists.newArrayList();
+    private List<String> tags = new ArrayList<>();
 
     /**
      * Extra API properties served
      */
-    private Map<String, String> extra = Maps.newHashMap();
+    private Map<String, String> extra = new HashMap<>();
 
     /**
      * @return the Project builder
@@ -182,7 +182,7 @@ public class KeystoneProject implements Project {
     public void setExtra(String key, String value) {
         // is_domain is not necessary
         // if we don't ignore this, this will be set into extra field.
-        if (Objects.equal(key, "is_domain")) {
+        if (Objects.equals(key, "is_domain")) {
             return;
         }
         extra.put(key, value);
@@ -212,7 +212,7 @@ public class KeystoneProject implements Project {
             dId = domain.getId();
         }
 
-        return MoreObjects.toStringHelper(this)
+        return new ToStringHelper(this)
                 .add("id", id)
                 .add("domainId", dId)
                 .add("description", description)
@@ -222,7 +222,7 @@ public class KeystoneProject implements Project {
                 .add("subtree", subtree)
                 .add("parents", parents)
                 .add("enabled", enabled)
-                .omitNullValues()
+
                 .toString();
     }
 
@@ -231,7 +231,7 @@ public class KeystoneProject implements Project {
      */
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, domain != null ? domain.getId(): domainId, description, name, links, parentId, subtree, parents);
+        return Objects.hash(id, domain != null ? domain.getId(): domainId, description, name, links, parentId, subtree, parents);
     }
 
     /**
@@ -244,15 +244,15 @@ public class KeystoneProject implements Project {
         if (obj == null || getClass() != obj.getClass())
             return false;
         KeystoneProject that = KeystoneProject.class.cast(obj);
-        return Objects.equal(this.id, that.id)
-                && Objects.equal(this.domain, that.domain)
-                && Objects.equal(this.description, that.description)
-                && Objects.equal(this.name, that.name)
-                && Objects.equal(this.links, that.links)
-                && Objects.equal(this.parentId, that.parentId)
-                && Objects.equal(this.subtree, that.subtree)
-                && Objects.equal(this.parents, that.parents)
-                && Objects.equal(this.enabled, that.enabled);
+        return Objects.equals(this.id, that.id)
+                && Objects.equals(this.domain, that.domain)
+                && Objects.equals(this.description, that.description)
+                && Objects.equals(this.name, that.name)
+                && Objects.equals(this.links, that.links)
+                && Objects.equals(this.parentId, that.parentId)
+                && Objects.equals(this.subtree, that.subtree)
+                && Objects.equals(this.parents, that.parents)
+                && Objects.equals(this.enabled, that.enabled);
     }
 
     public static class ProjectConcreteBuilder implements ProjectBuilder {
