@@ -1,8 +1,7 @@
 package org.openstack4j.openstack.placement.internal.ext;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.List;
+import java.util.Objects;
 
 import org.openstack4j.api.placement.ext.ResourceProviderService;
 import org.openstack4j.model.placement.ext.ResourceProvider;
@@ -26,7 +25,7 @@ public class ResourceProviderServiceImpl extends BasePlacementServices implement
      */
     @Override
     public ResourceProvider get(String resourceProviderId) {
-        checkNotNull(resourceProviderId);
+        Objects.requireNonNull(resourceProviderId);
         return get(ExtResourceProvider.class, uri("/resource_providers/%s", resourceProviderId)).execute();
     }
 
@@ -43,7 +42,7 @@ public class ResourceProviderServiceImpl extends BasePlacementServices implement
      */
     @Override
     public ResourceProviderInventories resourceProviderInventories(String resourceProviderId) {
-        checkNotNull(resourceProviderId);
+        Objects.requireNonNull(resourceProviderId);
         return get(ResourceProviderInventoriesBody.class, uri("/resource_providers/%s/inventories", resourceProviderId))
                 .execute().getInventories();
     }
@@ -53,7 +52,7 @@ public class ResourceProviderServiceImpl extends BasePlacementServices implement
      */
     @Override
     public ResourceProviderUsages resourceProviderUsages(String resourceProviderId) {
-        checkNotNull(resourceProviderId);
+        Objects.requireNonNull(resourceProviderId);
         return get(ResourceProviderUsagesBody.class, uri("/resource_providers/%s/usages", resourceProviderId)).execute()
                 .getUsages();
     }
