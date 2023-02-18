@@ -1,7 +1,6 @@
 package org.openstack4j.openstack.identity.v3.internal;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 
