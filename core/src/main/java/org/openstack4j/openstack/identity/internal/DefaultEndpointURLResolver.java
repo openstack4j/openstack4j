@@ -139,7 +139,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
 
                 for (org.openstack4j.model.identity.v3.Endpoint ep : service.getEndpoints()) {
 
-                    if (matches(ep, p))
+                    if (matches(ep, p) && (ep.getUrl().getScheme().matches("^https?$")))
                         return ep.getUrl().toString();
                 }
             }

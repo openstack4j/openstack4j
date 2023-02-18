@@ -1,5 +1,6 @@
 package org.openstack4j.api.identity.v3;
 
+import java.net.URI;
 import java.net.URL;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public interface ServiceEndpointService extends RestService {
      * @param serviceId the service id of the service the endpoint belongs to
      * @param enabled the enabled status of the endpoint
      */
-    Endpoint createEndpoint(String name, URL url, Facing iface, String regionId, String serviceId, boolean enabled);
+    Endpoint createEndpoint(String name, URI url, Facing iface, String regionId, String serviceId, boolean enabled);
 
     /**
      * Get details for an endpoint
