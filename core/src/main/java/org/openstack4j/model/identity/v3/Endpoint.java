@@ -1,7 +1,6 @@
 package org.openstack4j.model.identity.v3;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.Map;
 
 import org.openstack4j.api.types.Facing;

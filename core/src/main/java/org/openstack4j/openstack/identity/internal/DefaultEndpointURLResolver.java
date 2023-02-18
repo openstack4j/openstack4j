@@ -3,7 +3,6 @@ package org.openstack4j.openstack.identity.internal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
-import java.util.Optional;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -139,7 +138,7 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
 
                 for (org.openstack4j.model.identity.v3.Endpoint ep : service.getEndpoints()) {
 
-                    if (matches(ep, p) && (ep.getUrl().getScheme().matches("^https?$")))
+                    if (matches(ep, p))
                         return ep.getUrl().toString();
                 }
             }

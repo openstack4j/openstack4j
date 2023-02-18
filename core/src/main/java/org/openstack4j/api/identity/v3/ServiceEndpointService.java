@@ -1,7 +1,6 @@
 package org.openstack4j.api.identity.v3;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.List;
 
 import org.openstack4j.api.types.Facing;
@@ -85,7 +84,7 @@ public interface ServiceEndpointService extends RestService {
      * Creates a new endpoint
      *
      * @param name the name of the endpoint
-     * @param url the url of the endpont
+     * @param url the url of the endpoint
      * @param iface the interface type of the endpoint
      * @param regionId the region id of the region that contains the endpoint
      * @param serviceId the service id of the service the endpoint belongs to
