@@ -14,7 +14,8 @@ public enum NetworkType {
     FLAT,
     VLAN,
     VXLAN,
-    GRE;
+    GRE,
+    GENEVE;
 
     @JsonCreator
     public static NetworkType forValue(String value) {
