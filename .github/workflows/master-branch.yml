@@ -1,0 +1,43 @@
+name: Release Management
+
+on:
+    push:
+        # branches to consider in the event; optional, defaults to all
+        branches:
+            - master
+
+jobs:
+    build_and_deploy:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Set up JDK 8
+                uses: actions/setup-java@v2
+                with:
+                    java-version: '8'
+                    distribution: 'adopt'
+                    cache: 'maven'
+            # Sonar lint analysis will currently fail du to the java 11 requirement
+            # TODO move sonar lint token into secrets
+            -   name: Execute sonar analysis (will fail until java 11)
+                continue-on-error: true
+                run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Dsonar.projectKey=openstack4j_openstack4 -Dsonar.login="S9xKYmp0TYrzEozGaNqYE3e6hSBV3nDnA1oy3V5vWXW8U1EYFy/kkQbkqN4s6xDkM0nWbbHm23INkTOrhl8clUxBeWt7Mt1PKeH45PgkCbS0oZoIvSlmASKxXsKkK34MniF6yOsn4+Z0iqAr4E2sdxcPmP1mT4I2pQJs4eRpmUy7SfUomBjd1TcV/r2DKlh6SUspJEi6NwnSdGr41gw1vbjtgTJBUmsvw9N04VCH1if8vgxrZGfkV1EjqJ3/SS7C+lLfdJQgUp4JFKrEoBU6RIwwBciKfW/3+jDuR5Lk6FbpSe4Vv98iGBw4NP079InLu6asglY2nEt8U9WC9BoTyVqCdCooz4j8b/FNyXU9cYEnNlOvtJ7vM9/BxZOqUplR4xpb9oMLLkWeT8N5OJCnCOyrk4myRSXEhLyX4SOj3gT+uxWhdBBbyH3XGrFMVci1WOe7upKUpM2MRsk7Ura0Xf7keiC13DFHdT3Hm+vIyEnzClk48TzIyvNVLuOBoBn5Ka0S5yBD8MKp0/FmoK1kuNtEhI5a877R/PF3ZxY2OxLyrUrAu0SL1Ncaz9Gyekcqa8V5yOVTyKF/fUErqd51u58Me23U1Hu2qjKk/TK3fFcK9Y8byvVqUGoVyLhW3uc3idPhCDiC6RvLn+FIsQ0rg5zOGMVJ4nDKw40UQ22ar78="
+            # TODO provide settings.xml from travis or deploy credentials
+            -   name: Build and deploy with Maven
+                run: mvn install deploy --settings distribution/settings.xml -B
+            # archive created jar
+            -   name: move build jar to staging folder
+                run: mkdir staging && cp core/target/openstack4j-core-*.jar staging
+            -   uses: actions/upload-artifact@v2
+                with:
+                    name: Package
+                    path: staging
+    update_draft_release:
+        needs:
+            - build_and_deploy
+        runs-on: ubuntu-latest
+        steps:
+            # Drafts your next Release notes as Pull Requests are merged into "master"
+            -   uses: toolmantim/release-drafter@v5.2.0
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
