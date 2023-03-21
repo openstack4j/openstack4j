@@ -96,4 +96,9 @@ public interface NetworkingService extends RestService {
      * @return the Networking (Neutron) Qos Policy Extension API
      */
     NetQosPolicyService netQosPolicy();
+
+    /**
+     * @return the Network Router Conntrack Helper Service API
+     */
+    RouterConntrackHelperService routerConntrackHelper();
 }
