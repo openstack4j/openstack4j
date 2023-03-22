@@ -31,6 +31,14 @@ public class NetworkingServiceImpl implements NetworkingService {
      * {@inheritDoc}
      */
     @Override
+    public SubnetPoolService subnetPool() {
+        return Apis.get(SubnetPoolService.class);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public PortService port() {
         return Apis.get(PortService.class);
     }
