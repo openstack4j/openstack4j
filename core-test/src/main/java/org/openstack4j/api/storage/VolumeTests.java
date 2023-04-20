@@ -7,6 +7,8 @@ import java.util.Map;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
+import org.openstack4j.core.transport.HttpMethod;
+import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.block.Volume;
 import org.openstack4j.model.storage.block.VolumeAttachment;
 import org.openstack4j.model.storage.block.builder.VolumeBuilder;
@@ -56,6 +58,48 @@ public class VolumeTests extends AbstractTest {
         assertNotNull(filteredListRequest.getHeader("X-Auth-Token"));
         assertTrue(filteredListRequest.getPath().matches("/v[12]/\\p{XDigit}*/volumes/detail\\?display_name=" + volName));
     }
+
+	@Test
+	public void testUpdateMetadata() throws Exception {
+		respondWith("/storage/v1/response-OK.json");
+		ActionResponse updateAll = osv3().blockStorage().volumes()
+				.updateMetadata("8a9287b7-4f4d-4213-8d75-63470f19f27c", new HashMap<>());
+		assertEquals(200, updateAll.getCode());
+
+		RecordedRequest updateRequest = server.takeRequest();
+		assertNotNull(updateRequest.getHeader("X-Auth-Token"));
+		assertEquals(HttpMethod.PUT.name(), updateRequest.getMethod());
+		assertTrue(updateRequest.getPath()
+				.matches("/v[12]/\\p{XDigit}*/volumes/8a9287b7-4f4d-4213-8d75-63470f19f27c/metadata"));
+	}
+
+	@Test
+	public void testUpdateSingleMetadata() throws Exception {
+		respondWith("/storage/v1/response-OK.json");
+		ActionResponse update = osv3().blockStorage().volumes().updateMetadata("8a9287b7-4f4d-4213-8d75-63470f19f27c",
+				"foo", "bar");
+		assertEquals(200, update.getCode());
+
+		RecordedRequest updateRequest = server.takeRequest();
+		assertNotNull(updateRequest.getHeader("X-Auth-Token"));
+		assertEquals(HttpMethod.PUT.name(), updateRequest.getMethod());
+		assertTrue(updateRequest.getPath()
+				.matches("/v[12]/\\p{XDigit}*/volumes/8a9287b7-4f4d-4213-8d75-63470f19f27c/metadata/foo"));
+	}
+
+	@Test
+	public void testDeleteSingleMetadata() throws Exception {
+		respondWith("/storage/v1/response-OK.json");
+		ActionResponse delete = osv3().blockStorage().volumes().deleteMetadata("8a9287b7-4f4d-4213-8d75-63470f19f27c",
+				"foo");
+		assertEquals(200, delete.getCode());
+
+		RecordedRequest deleteRequest = server.takeRequest();
+		assertNotNull(deleteRequest.getHeader("X-Auth-Token"));
+		assertEquals(HttpMethod.DELETE.name(), deleteRequest.getMethod());
+		assertTrue(deleteRequest.getPath()
+				.matches("/v[12]/\\p{XDigit}*/volumes/8a9287b7-4f4d-4213-8d75-63470f19f27c/metadata/foo"));
+	}
 
     @SuppressWarnings("unchecked")
     @Test
@@ -130,7 +174,6 @@ public class VolumeTests extends AbstractTest {
         assertEquals(attachments.get(0).getVolumeId(), "8a9287b7-4f4d-4213-8d75-63470f19f27c");
     }
 
-
     @Test
     public void testVolumesWithBootableAndEncyrpted() throws Exception {
         // Check list volumes
@@ -147,7 +190,6 @@ public class VolumeTests extends AbstractTest {
 
 
     }
-
 
     @Test
     public void CreateVolumeV2WithMultiattach() throws Exception {
