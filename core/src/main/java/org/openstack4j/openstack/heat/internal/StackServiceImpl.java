@@ -46,6 +46,18 @@ public class StackServiceImpl extends BaseHeatServices implements StackService {
     }
 
     @Override
+    public Stack preview(StackCreate newStack) {
+        Objects.requireNonNull(newStack);
+        return post(HeatStack.class, uri("/stacks/preview")).entity(newStack).execute();
+    }
+
+    @Override
+    public Stack preview(String name, String template, Map<String, String> parameters, Long timeOutMins) {
+        return preview(Builders.stack().name(name).template(template)
+                .parameters(parameters).timeoutMins(timeOutMins).build());
+    }
+
+    @Override
     public List<? extends Stack> list() {
         return get(Stacks.class, uri("/stacks")).execute().getList();
     }
