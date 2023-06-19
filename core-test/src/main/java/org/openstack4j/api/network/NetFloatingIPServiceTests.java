@@ -46,6 +46,17 @@ public class NetFloatingIPServiceTests extends AbstractTest {
         return Service.NETWORK;
     }
 
+    @Test
+    public void create() throws Exception {
+        respondWithCodeAndResource(201, "/network/network_fips_create.json");
+
+        NetFloatingIP fip = Builders.netFloatingIP().subnetId("9cf3a56a-0f93-4ca7-be18-6979a65f86cb").floatingNetworkId("1188f271-f3ab-491a-a998-7d7fc9e65e01").build();
+        NetFloatingIP created = osv3().networking().floatingip().create(fip);
+        assertEquals(created.getFloatingIpAddress(), "10.19.15.12");
+        assertEquals(created.getProjectId(), "2f0b5d3387f034dfb042c00c007afb4c");
+        assertEquals(created.getFloatingNetworkId(), "1188f271-f3ab-491a-a998-7d7fc9e65e01");
+    }
+
     public void testCreateFailure() throws Exception {
         respondWithCodeAndResource(404, "/network/network_fips_create_fail.json");
 
