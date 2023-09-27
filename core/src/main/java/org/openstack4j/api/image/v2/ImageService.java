@@ -12,6 +12,7 @@ import org.openstack4j.model.image.v2.CachedImage;
 import org.openstack4j.model.image.v2.Image;
 import org.openstack4j.model.image.v2.ImageUpdate;
 import org.openstack4j.model.image.v2.Member;
+import org.openstack4j.openstack.common.FileUploadProgressListener;
 
 /**
  * OpenStack (Glance) Image V2 support
@@ -154,6 +155,9 @@ public interface ImageService extends RestService {
      * Uploads binary image data
      */
     ActionResponse upload(String imageId, Payload<?> payload, @Nullable Image image);
+    
+    ActionResponse upload(String imageId, Payload<?> payload, @Nullable Image image, int bufferSize,
+            FileUploadProgressListener listener);
 
     /**
      * Downloads binary image data

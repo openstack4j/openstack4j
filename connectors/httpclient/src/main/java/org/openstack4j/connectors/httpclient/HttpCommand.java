@@ -13,9 +13,13 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.openstack4j.api.exceptions.ConnectionException;
+import org.openstack4j.core.transport.HttpMethod;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
+import org.openstack4j.openstack.common.FileEntity;
+
+import com.google.common.net.MediaType;
 
 /**
  * HttpCommand is responsible for executing the actual request driven by the
@@ -89,10 +93,15 @@ public final class HttpCommand<R> {
         EntityBuilder builder = null;
 
         if (request.getEntity() != null) {
-            if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
-                InputStreamEntity ise = new InputStreamEntity((InputStream) request.getEntity(),
-                        ContentType.create(request.getContentType()));
-                ((HttpEntityEnclosingRequestBase) clientReq).setEntity(ise);
+            if (request.getFileUploadProgressListener() != null && request.getMethod() == HttpMethod.PUT
+                    && request.getPath().startsWith("/images/") && request.getPath().endsWith("/file")) {
+                FileEntity fe = new FileEntity((InputStream) request.getEntity(), request.getContentType(),
+                    request.getBufferSize(), request.getFileUploadProgressListener());
+                ((HttpEntityEnclosingRequestBase) clientReq).setEntity(fe);
+            } else if (InputStream.class.isAssignableFrom(request.getEntity().getClass())) {
+            InputStreamEntity ise = new InputStreamEntity((InputStream) request.getEntity(),
+                    ContentType.create(request.getContentType()));
+            ((HttpEntityEnclosingRequestBase) clientReq).setEntity(ise);
             } else {
                 builder = EntityBuilder.create().setContentType(ContentType.create(request.getContentType(), "UTF-8"))
                         .setText(ObjectMapperSingleton.getContext(request.getEntity().getClass()).writer()

@@ -17,12 +17,15 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.common.Payloads;
 import org.openstack4j.model.image.v2.*;
+import org.openstack4j.openstack.image.v2.domain.GlanceImage;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
+
+import org.openstack4j.openstack.common.FileUploadProgressListener;
 
 /**
  * @author emjburns
@@ -249,7 +252,14 @@ public class ImageV2Tests extends AbstractTest {
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         InputStream s = new ByteArrayInputStream(BINARY_IMAGE_DATA.getBytes(StandardCharsets.UTF_8));
         Payload<InputStream> payload = Payloads.create(s);
-        ActionResponse upload = osv3().imagesV2().upload(imageId, payload, null);
+        org.openstack4j.model.image.v2.Image image = new GlanceImage();
+        image.setId(imageId);
+
+        int imageSize = BINARY_IMAGE_DATA.getBytes(StandardCharsets.UTF_8).length;
+        assertTrue(imageSize > 0);
+        FileUploadProgressListener listener = new ImageUploadProgressListener(imageId, imageSize);
+ 
+        ActionResponse upload = osv3().imagesV2().upload(imageId, payload, image, 4096, listener);
         assertTrue(upload.isSuccess());
     }
 
@@ -271,5 +281,31 @@ public class ImageV2Tests extends AbstractTest {
     @Override
     protected Service service() {
         return Service.IMAGE;
+    }
+    
+    public class ImageUploadProgressListener implements FileUploadProgressListener
+    {
+        private long totalByte;
+        private String imageId;
+
+        public ImageUploadProgressListener(String imageId, 
+            long totalByte)
+        {
+            this.imageId = imageId;
+            this.totalByte = totalByte;
+        }
+
+        @Override
+        public void updateTransferedByte(long transferedByte)
+        {
+            assertEquals(imageId, "4b434528-032b-4467-946c-b5880ce15c06");
+            assertTrue(transferedByte <= totalByte);
+        }
+
+        @Override
+        public long getFileSize()
+        {
+            return totalByte;
+        }
     }
 }
