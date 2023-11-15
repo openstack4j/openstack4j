@@ -77,6 +77,7 @@ public class NeutronNetQosPolicy implements NetQosPolicy {
     }
 
     @Override
+    @JsonProperty("is_default")
     public boolean isDefault() {
         return isDefault;
     }

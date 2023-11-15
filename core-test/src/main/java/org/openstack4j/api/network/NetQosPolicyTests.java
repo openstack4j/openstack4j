@@ -3,6 +3,8 @@ package org.openstack4j.api.network;
 import java.io.IOException;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.NetQosPolicy;
@@ -51,6 +53,14 @@ public class NetQosPolicyTests extends AbstractTest {
                 .create(NeutronNetQosPolicy.builder().name("name").build());
         assertEquals("8d4c70a21fed4aeba121a1a429ba0d04", qosPolicy.getTenantId());
         assertFalse(qosPolicy.isShared());
+    }
+
+    public void createSchema() throws IOException {
+        NetQosPolicy build = NeutronNetQosPolicy.builder().name("name").build();
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.valueToTree(build);
+        assertFalse(jsonNode.has("default"));
+        assertTrue(jsonNode.has("is_default"));
     }
 
     @Override
