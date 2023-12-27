@@ -51,9 +51,32 @@ public interface StackService {
             boolean disableRollback, Long timeOutMins);
 
     /**
+     * <code>POST /v1/{tenant_id}/stacks/preview</code><br \>
+     * <p>
+     * Preview a new {@link Stack} out of a {@link StackCreate} object
+     *
+     * @param newStack {@link StackCreate} object out of which stack is to be previewed
+     * @return new {@link Stack} as returned from the server
+     */
+    Stack preview(StackCreate newStack);
+
+    /**
+     * <code>POST /v1/{tenant_id}/stacks/preview</code><br \>
+     * <p>
+     * Create a new {@link StackCreate} object and preview the {@link Stack} as sent from the server
+     *
+     * @param name Name of Stack
+     * @param template Template in Json-Format or YAML format
+     * @param parameters Map of parameters
+     * @param timeOutMins timeout in minutes
+     * @return new {@link Stack} as returned from the server
+     */
+    Stack preview(String name, String template, Map<String, String> parameters, Long timeOutMins);
+
+    /**
      * returns details of a {@link Stack}.
      *
-     * @param stackName Name of {@link Stack}
+     * @param name Name of {@link Stack}
      * @return {@link Stack}
      */
     Stack getStackByName(String name);
