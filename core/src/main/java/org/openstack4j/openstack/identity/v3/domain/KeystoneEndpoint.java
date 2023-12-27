@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.identity.v3.domain;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +36,7 @@ public class KeystoneEndpoint implements Endpoint {
     @JsonProperty("region_id")
     private String regionId;
     @JsonProperty
-    private URL url;
+    private URI url;
     private Map<String, String> links;
     private Boolean enabled = true;
 
@@ -123,7 +123,7 @@ public class KeystoneEndpoint implements Endpoint {
      * @return {@inheritDoc}
      */
     @Override
-    public URL getUrl() {
+    public URI getUrl() {
         return url;
     }
 
@@ -302,7 +302,7 @@ public class KeystoneEndpoint implements Endpoint {
          * @see KeystoneEndpoint#getUrl()
          */
         @Override
-        public EndpointBuilder url(URL url) {
+        public EndpointBuilder url(URI url) {
             model.url = url;
             return this;
         }

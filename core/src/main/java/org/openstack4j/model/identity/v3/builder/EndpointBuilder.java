@@ -1,6 +1,6 @@
 package org.openstack4j.model.identity.v3.builder;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.Map;
 
 import org.openstack4j.api.types.Facing;
@@ -55,7 +55,7 @@ public interface EndpointBuilder extends Builder<EndpointBuilder, Endpoint> {
     /**
      * @see Endpoint#getUrl()
      */
-    EndpointBuilder url(URL url);
+    EndpointBuilder url(URI url);
 
     /**
      * @see Endpoint#getLinks()
