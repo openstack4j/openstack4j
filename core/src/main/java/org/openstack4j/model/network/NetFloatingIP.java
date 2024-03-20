@@ -104,4 +104,11 @@ public interface NetFloatingIP extends ModelEntity, Buildable<NetFloatingIPBuild
      * Revision number of a resource.
      */
     Integer getRevisionNumber();
+
+    /**
+     * Subnet id of the IP.
+     *
+     * @return the subnet id
+    */
+    String getSubnetId();
 }
