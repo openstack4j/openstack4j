@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.networking.internal;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.openstack4j.api.networking.PortService;
@@ -32,6 +33,14 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
             return list();
 
         return get(Ports.class, uri("/ports")).params(options.getOptions()).execute().getList();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<? extends Port> list(Map<String, ? extends Iterable<?>> params) {
+        return get(Ports.class, uri("/ports")).paramLists(params).execute().getList();
     }
 
     /**
