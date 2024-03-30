@@ -4,14 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.openstack4j.api.AbstractTest;
+import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.storage.block.VolumeSnapshot;
+import org.openstack4j.openstack.storage.block.domain.CinderVolumeSnapshot;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 
 @Test(suiteName = "Block Storage Tests")
@@ -45,6 +48,16 @@ public class VolumeSnapshotTests extends AbstractTest {
         RecordedRequest filteredListRequest = server.takeRequest();
         assertNotNull(filteredListRequest.getHeader("X-Auth-Token"));
         assertTrue(filteredListRequest.getPath().matches("/v[12]/\\p{XDigit}*/snapshots\\?display_name=" + volName));
+    }
+
+    @Test
+    public void createVolumeSnapshotV2() throws JsonProcessingException {
+        ObjectMapper objectMapper = ObjectMapperSingleton.getContext(Object.class);
+        VolumeSnapshot disc = CinderVolumeSnapshot.builder().description("disc").build();
+        String value = objectMapper.writeValueAsString(disc);
+        JsonNode jsonNode = objectMapper.valueToTree(value);
+        //see https://github.com/openstack4j/openstack4j/issues/152
+        assertFalse(jsonNode.has("display_description"));
     }
 
 }

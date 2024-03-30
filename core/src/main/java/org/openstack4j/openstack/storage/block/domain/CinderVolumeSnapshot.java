@@ -98,6 +98,7 @@ public class CinderVolumeSnapshot implements VolumeSnapshot {
      * {@inheritDoc}
      */
     @Override
+    @JsonIgnore
     public String getDisplayDescription() {
         return displayDescription;
     }
