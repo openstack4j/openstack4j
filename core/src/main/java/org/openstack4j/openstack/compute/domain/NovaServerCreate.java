@@ -32,6 +32,9 @@ public class NovaServerCreate implements ServerCreate {
     private String keyName;
     @JsonProperty("availability_zone")
     private String availabilityZone;
+    private String host;
+    @JsonProperty("hypervisor_hostname")
+    private String hypervisorHostName;
     @JsonProperty("config_drive")
     private Boolean configDrive;
 
@@ -127,6 +130,16 @@ public class NovaServerCreate implements ServerCreate {
     @Override
     public String getAvailabilityZone() {
         return availabilityZone;
+    }
+
+    @Override
+    public String getHost() {
+        return host;
+    }
+
+    @Override
+    public String getHypervisorHostName() {
+        return hypervisorHostName;
     }
 
     @JsonIgnore
@@ -292,6 +305,18 @@ public class NovaServerCreate implements ServerCreate {
         @Override
         public ServerCreateBuilder availabilityZone(String availabilityZone) {
             m.availabilityZone = availabilityZone;
+            return this;
+        }
+
+        @Override
+        public ServerCreateBuilder host(String host) {
+            m.host = host;
+            return this;
+        }
+
+        @Override
+        public ServerCreateBuilder hypervisorHostName(String hypervisorHostName) {
+            m.hypervisorHostName = hypervisorHostName;
             return this;
         }
 
