@@ -87,4 +87,6 @@ public interface Port extends Resource, TimeEntity, Buildable<PortBuilder> {
     String getvNicType();
 
     Map<String, Object> getProfile();
+
+    String getQosPolicyId();
 }

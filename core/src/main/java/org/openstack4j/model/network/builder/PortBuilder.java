@@ -16,6 +16,11 @@ import org.openstack4j.model.network.State;
 public interface PortBuilder extends Builder<PortBuilder, Port> {
 
     /**
+     * @see Port#getId()
+     */
+    PortBuilder id(String id);
+
+    /**
      * @see Port#getName()
      */
     PortBuilder name(String name);
@@ -128,6 +133,8 @@ public interface PortBuilder extends Builder<PortBuilder, Port> {
     PortBuilder securityGroup(String groupName);
 
     PortBuilder portSecurityEnabled(Boolean portSecurityEnabled);
+
+    PortBuilder qosPolicyId(String qosPolicyId);
 
     PortBuilder hostId(String hostId);
 

@@ -70,6 +70,9 @@ public class NeutronPortCreate implements ModelEntity {
     @JsonProperty("binding:profile")
     private Map<String, Object> profile;
 
+    @JsonProperty("qos_policy_id")
+    private String qosPolicyId;
+
 
     public NeutronPortCreate() {
     }
@@ -99,7 +102,7 @@ public class NeutronPortCreate implements ModelEntity {
         c.vifDetails = port.getVifDetails();
         c.vNicType = port.getvNicType();
         c.profile = port.getProfile();
-
+        c.qosPolicyId = port.getQosPolicyId();
 
         return c;
     }
