@@ -151,7 +151,7 @@ public class NetworkingServiceImpl implements NetworkingService {
      * {@inheritDoc}
      */
     @Override
-    public NetQosPolicyBLRuleService netQosPolicyBandWidthLimitRule() {
+    public NetQosPolicyBLRuleService netQosPolicyBandwidthLimitRule() {
         return Apis.get(NetQosPolicyBLRuleService.class);
     }
 

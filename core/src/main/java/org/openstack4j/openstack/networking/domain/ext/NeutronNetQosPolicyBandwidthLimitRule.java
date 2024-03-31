@@ -1,5 +1,6 @@
 package org.openstack4j.openstack.networking.domain.ext;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.network.ext.NetQosPolicyBandwidthLimitRule;
@@ -14,6 +15,7 @@ import static com.google.common.base.MoreObjects.toStringHelper;
  * Network qos policy band-width-limit that are bound to a Tenant
  *
  * @author bboyHan
+ * @author slankka
  */
 @JsonRootName("bandwidth_limit_rule")
 public class NeutronNetQosPolicyBandwidthLimitRule implements NetQosPolicyBandwidthLimitRule {
@@ -27,7 +29,7 @@ public class NeutronNetQosPolicyBandwidthLimitRule implements NetQosPolicyBandwi
     @JsonProperty("max_burst_kbps")
     private Integer maxBurstKbps;
     @JsonProperty
-    private String direction;
+    private Direction direction;
     @JsonProperty
     private NeutronNetQosPolicyRuleTag tags;
 
@@ -57,8 +59,14 @@ public class NeutronNetQosPolicyBandwidthLimitRule implements NetQosPolicyBandwi
         return maxBurstKbps;
     }
 
-    public String getDirection() {
+    public Direction getDirection() {
         return direction;
+    }
+
+    @Override
+    @JsonIgnore
+    public String getDirectionValue() {
+        return direction == null ? null: direction.name();
     }
 
     public NeutronNetQosPolicyRuleTag getTags() {
@@ -109,7 +117,7 @@ public class NeutronNetQosPolicyBandwidthLimitRule implements NetQosPolicyBandwi
         }
 
         @Override
-        public NetQosPolicyBandwidthLimitRuleBuilder direction(String direction) {
+        public NetQosPolicyBandwidthLimitRuleBuilder direction(Direction direction) {
             model.direction = direction;
             return this;
         }

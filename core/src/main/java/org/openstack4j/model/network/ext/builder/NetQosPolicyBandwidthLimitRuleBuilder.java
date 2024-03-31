@@ -7,6 +7,7 @@ import org.openstack4j.model.network.ext.NetQosPolicyBandwidthLimitRule;
  * A Builder which creates a NetQosPolicyBandwidthLimitRule entity
  *
  * @author bboyHan
+ * @author slankka
  */
 public interface NetQosPolicyBandwidthLimitRuleBuilder extends Builder<NetQosPolicyBandwidthLimitRuleBuilder, NetQosPolicyBandwidthLimitRule> {
 
@@ -32,6 +33,6 @@ public interface NetQosPolicyBandwidthLimitRuleBuilder extends Builder<NetQosPol
      * @param direction direction
      * @return NetQosPolicyBandwidthLimitRuleBuilder
      */
-    NetQosPolicyBandwidthLimitRuleBuilder direction(String direction);
+    NetQosPolicyBandwidthLimitRuleBuilder direction(NetQosPolicyBandwidthLimitRule.Direction direction);
 
 }

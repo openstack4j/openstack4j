@@ -16,6 +16,7 @@ import static org.testng.Assert.assertTrue;
  * Test cases for (Neutron) qos policy bandwidth limit rule extension based Services
  *
  * @author bboyHan
+ * @author slankka
  */
 @Test(suiteName = "Network/qosPolicyBandwidthLimitRule")
 public class NetQosBandwidthLimitRuleTests extends AbstractTest {
@@ -25,30 +26,32 @@ public class NetQosBandwidthLimitRuleTests extends AbstractTest {
 
     public void list() throws IOException {
         respondWith(QOS_POLICY_BANDWIDTH_LIMIT_RULES_JSON);
-        List<? extends NetQosPolicyBandwidthLimitRule> qosPolicyBandwidthLimitRules = osv3().networking().netQosPolicyBandWidthLimitRule().list("policyId");
+        List<? extends NetQosPolicyBandwidthLimitRule> qosPolicyBandwidthLimitRules = osv3().networking().netQosPolicyBandwidthLimitRule().list("policyId");
         assertEquals(1, qosPolicyBandwidthLimitRules.size());
         assertEquals(10000, (int)qosPolicyBandwidthLimitRules.get(0).getMaxKbps());
     }
 
     public void get() throws IOException {
         respondWith(QOS_POLICY_BANDWIDTH_LIMIT_RULE_JSON);
-        NetQosPolicyBandwidthLimitRule netQosPolicyBandwidthLimitRule = osv3().networking().netQosPolicyBandWidthLimitRule().get("networkId", "ruleId");
+        NetQosPolicyBandwidthLimitRule netQosPolicyBandwidthLimitRule = osv3().networking().netQosPolicyBandwidthLimitRule().get("networkId", "ruleId");
         assertEquals("5f126d84-551a-4dcf-bb01-0e9c0df0c793", netQosPolicyBandwidthLimitRule.getId());
-        assertEquals("egress", netQosPolicyBandwidthLimitRule.getDirection());
+        assertEquals("egress", netQosPolicyBandwidthLimitRule.getDirectionValue());
+        assertEquals(NetQosPolicyBandwidthLimitRule.Direction.egress, netQosPolicyBandwidthLimitRule.getDirection());
     }
 
     public void delete() {
         respondWith(204);
-        ActionResponse response = osv3().networking().netQosPolicyBandWidthLimitRule().delete("policyId", "ruleId");
+        ActionResponse response = osv3().networking().netQosPolicyBandwidthLimitRule().delete("policyId", "ruleId");
         assertTrue(response.isSuccess());
     }
 
     public void create() throws IOException {
         respondWith(QOS_POLICY_BANDWIDTH_LIMIT_RULE_JSON);
-        NetQosPolicyBandwidthLimitRule netQosPolicyBandwidthLimitRule = osv3().networking().netQosPolicyBandWidthLimitRule()
+        NetQosPolicyBandwidthLimitRule netQosPolicyBandwidthLimitRule = osv3().networking().netQosPolicyBandwidthLimitRule()
                 .create("policyId", NeutronNetQosPolicyBandwidthLimitRule.builder().maxKbps(10000).build());
         assertEquals("5f126d84-551a-4dcf-bb01-0e9c0df0c793", netQosPolicyBandwidthLimitRule.getId());
-        assertEquals("egress", netQosPolicyBandwidthLimitRule.getDirection());
+        assertEquals("egress", netQosPolicyBandwidthLimitRule.getDirectionValue());
+        assertEquals(NetQosPolicyBandwidthLimitRule.Direction.egress, netQosPolicyBandwidthLimitRule.getDirection());
     }
 
     @Override
