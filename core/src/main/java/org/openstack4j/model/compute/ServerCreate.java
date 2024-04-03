@@ -120,6 +120,10 @@ public interface ServerCreate extends ModelEntity, Buildable<ServerCreateBuilder
      */
     String getAvailabilityZone();
 
+    String getHost();
+
+    String getHypervisorHostName();
+
     /**
      * Gets the networks.
      *

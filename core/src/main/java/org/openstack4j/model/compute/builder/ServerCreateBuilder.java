@@ -134,6 +134,20 @@ public interface ServerCreateBuilder extends Buildable.Builder<ServerCreateBuild
     ServerCreateBuilder availabilityZone(String availabilityZone);
 
     /**
+     * The name of the compute service host on which the server is to be created.
+     * @param host The name of the compute service host
+     * @return this builder
+     */
+    ServerCreateBuilder host(String host);
+
+    /**
+     * The hostname of the hypervisor on which the server is to be created.
+     * @param hypervisorHostName The hostname of the hypervisor
+     * @return this builder
+     */
+    ServerCreateBuilder hypervisorHostName(String hypervisorHostName);
+
+    /**
      * Cloud-init userdata
      *
      * @param userData a base64 encoded string containing the userdata
@@ -144,7 +158,7 @@ public interface ServerCreateBuilder extends Buildable.Builder<ServerCreateBuild
     /**
      * Add admin password for launching the server.
      *
-     * @param password the password
+     * @param adminPass the password
      * @return this builder
      */
 
