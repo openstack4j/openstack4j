@@ -1,6 +1,7 @@
 package org.openstack4j.api.networking;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
@@ -28,6 +29,15 @@ public interface PortService extends RestService {
      * @return the list of ports
      */
     List<? extends Port> list(PortListOptions options);
+
+    /**
+     * Lists all Ports authorized by the current Tenant
+     * <br/>
+     * Supports multiple values, eg: fields=id&fields=name
+     * @param params filtering options
+     * @return the list of ports
+     */
+    List<? extends Port> list(Map<String, ? extends Iterable<?>> params);
 
     /**
      * Gets the Port by ID
