@@ -16,7 +16,6 @@ import org.openstack4j.openstack.common.ListResult;
  * information depending on the context it was retrieved in.
  *
  * @author Jeremy Unruh
- * @see <a href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/GET_listEndpointsForToken_v2.0_tokens__tokenId__endpoints_Token_Operations.html#GET_listEndpointsForToken_v2.0_tokens__tokenId__endpoints_Token_Operations-Response"
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class KeystoneEndpoint implements Endpoint {

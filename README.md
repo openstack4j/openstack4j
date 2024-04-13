@@ -21,11 +21,19 @@ OpenStack4j is a fluent OpenStack client that allows provisioning and control of
 
 * GitHub Issues: [Click Here](https://github.com/openstack4j/openstack4j/issues)
 
-## Requirements
+## Java version support
 
-* OpenStack4j 3.2.X - Java 8+
-* OpenStack4j 3.0.X - Java 7 (JDK 8 preferred)
-* OpenStack4j 2.0.X - Java 7
+| ----                                | Java 8 | Java 11 | Java 17 | Java 21 |
+|-------------------------------------|--------|---------|---------|---------|
+| OpenStack4j                         | ?      | 🟢      | 🟢      | 🟢      |
+| HttpURL Connector                   | ?      | 🟢      | *       | *       |
+| HttpComponents-HttpClient Connector | ?      | 🟢      | 🟢      | 🟢      |
+| Jersey2 Connector                   | ?      | 🟢      | *       | *       |
+| OKHttp Connector                    | ?      | 🟢      | 🟢      | 🟢      |
+| RestEasy Connector                  | ?      | 🟢      | 🟢      | 🟢      |
+
+*) Starting with Java 16, it is not possible to use HttpUrlConnection to perform PATH requests.
+Connectors depending on native JDK http stack will not work after Java 16.
 
 Maven
 -----

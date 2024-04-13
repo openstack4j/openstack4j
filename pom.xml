@@ -5,7 +5,7 @@
     <version>3.12-SNAPSHOT</version>
     <name>OpenStack4j Parent</name>
     <description>OpenStack Java API</description>
-    <url>http://github.com/openstack4j/openstack4j/</url>
+    <url>https://github.com/openstack4j/openstack4j/</url>
     <packaging>pom</packaging>
     <properties>
         <release.version>2.0.0</release.version>
@@ -34,7 +34,7 @@
     <scm>
         <connection>scm:git:git@github.com:openstack4j/openstack4j.git</connection>
         <developerConnection>scm:git:git@github.com:openstack4j/openstack4j.git</developerConnection>
-        <url>http://github.com/openstack4j/openstack4j/</url>
+        <url>https://github.com/openstack4j/openstack4j/</url>
         <tag>HEAD</tag>
     </scm>
     <mailingLists>

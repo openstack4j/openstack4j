@@ -22,7 +22,6 @@ public class DetachAction implements ModelEntity {
 
     /**
      * @param attachmentId The ID of the attachment.
-     * @author capitek-xuning（首信科技-徐宁）
      */
     public DetachAction(String attachmentId) {
         super();

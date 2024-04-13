@@ -8,7 +8,6 @@ import org.openstack4j.model.identity.v2.builder.TenantBuilder;
  * Tenant Model class use to group/isolate resources and/or identity objects
  *
  * @author Jeremy Unruh
- * @see <a href="http://docs.openstack.org/api/openstack-identity-service/2.0/content/GET_listTenants_v2.0_tenants_Tenant_Operations.html#GET_listTenants_v2.0_tenants_Tenant_Operations-Response"
  */
 public interface Tenant extends ModelEntity, Buildable<TenantBuilder> {
 

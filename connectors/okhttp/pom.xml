@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>openstack4j-okhttp</artifactId>
     <name>OpenStack4j OKHttp Connector</name>
-    <url>http://github.com/openstack4j/openstack4j/</url>
+    <url>https://github.com/openstack4j/openstack4j/</url>
     <packaging>jar</packaging>
 
     <properties>
