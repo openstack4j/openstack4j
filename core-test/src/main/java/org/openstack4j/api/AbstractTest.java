@@ -16,6 +16,7 @@ import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import org.openstack4j.api.OSClient.OSClientV2;
 import org.openstack4j.api.OSClient.OSClientV3;
+import org.openstack4j.api.exceptions.ConnectorNotFoundException;
 import org.openstack4j.core.transport.internal.HttpExecutor;
 import org.openstack4j.openstack.OSFactory;
 import org.openstack4j.openstack.identity.v2.domain.KeystoneAccess;
@@ -53,7 +54,12 @@ public abstract class AbstractTest {
 
         InetAddress inetAddress = InetAddress.getByName("localhost");
         LOG.info("localhost inet address: " + inetAddress.toString());
-        LOG.info("Tests using connector: " + HttpExecutor.create().getExecutorName() + " on " + getHost());
+
+        try {
+            LOG.info("Tests using connector: " + HttpExecutor.create().getExecutorName() + " on " + getHost());
+        } catch (ConnectorNotFoundException ex) {
+            LOG.info("Tests without any connector");
+        }
 
         try {
             LOG.info("Starting server on port " + service().port);
