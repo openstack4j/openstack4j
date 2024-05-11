@@ -70,6 +70,9 @@ public class NeutronPort implements Port {
     @JsonProperty("port_security_enabled")
     private Boolean portSecurityEnabled;
 
+    @JsonProperty("qos_policy_id")
+    private String qosPolicyId;
+
     @JsonProperty("binding:host_id")
     private String hostId;
 
@@ -280,6 +283,15 @@ public class NeutronPort implements Port {
         this.profile = profile;
     }
 
+    @Override
+    public String getQosPolicyId() {
+        return qosPolicyId;
+    }
+
+    public void setQosPolicyId(String qosPolicyId) {
+        this.qosPolicyId = qosPolicyId;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -334,6 +346,7 @@ public class NeutronPort implements Port {
                 .add("deviceOwner", deviceOwner).add("fixedIps", fixedIps).add("macAddress", macAddress)
                 .add("networkId", networkId).add("tenantId", tenantId).add("securityGroups", securityGroups)
                 .add("allowed_address_pairs", allowedAddressPairs).add("port_security_enabled ", portSecurityEnabled)
+                .add("qos_policy_id ", qosPolicyId)
                 .add("binding:host_id", hostId).add("binding:vif_type", vifType).add("binding:vif_details", vifDetails)
                 .add("binding:vnic_type", vNicType).add("binding:profile", profile)
                 .add("created_at", createdTime).add("updated_at", updatedTime)
@@ -347,7 +360,7 @@ public class NeutronPort implements Port {
     public int hashCode() {
         return java.util.Objects.hash(id, name, adminStateUp, deviceId,
                 deviceOwner, fixedIps, macAddress, networkId, tenantId,
-                securityGroups, allowedAddressPairs, portSecurityEnabled, hostId,
+                securityGroups, allowedAddressPairs, portSecurityEnabled, qosPolicyId, hostId,
                 vifType, vifDetails, vNicType, profile, createdTime, updatedTime);
     }
 
@@ -374,6 +387,7 @@ public class NeutronPort implements Port {
                     java.util.Objects.equals(securityGroups, that.securityGroups) &&
                     java.util.Objects.equals(allowedAddressPairs, that.allowedAddressPairs) &&
                     java.util.Objects.equals(portSecurityEnabled, that.portSecurityEnabled) &&
+                    java.util.Objects.equals(qosPolicyId, that.qosPolicyId) &&
                     java.util.Objects.equals(hostId, that.hostId) &&
                     java.util.Objects.equals(vifType, that.vifType) &&
                     java.util.Objects.equals(vifDetails, that.vifDetails) &&
@@ -545,6 +559,12 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder portSecurityEnabled(Boolean portSecurityEnabled) {
             m.portSecurityEnabled = portSecurityEnabled;
+            return this;
+        }
+
+        @Override
+        public PortBuilder qosPolicyId(String qosPolicyId) {
+            m.qosPolicyId = qosPolicyId;
             return this;
         }
 
