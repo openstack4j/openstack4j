@@ -42,4 +42,12 @@ public interface NetFloatingIPBuilder extends Builder<NetFloatingIPBuilder, NetF
      * @param description Maximum of 250 characters.
      */
     NetFloatingIPBuilder description(String description);
+
+    /**
+     * sets Id of subnet
+     *
+     * @param subnetId the subnet id
+     * @return the floating ip builder
+     */
+    NetFloatingIPBuilder subnetId(String subnetId);
 }

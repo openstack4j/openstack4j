@@ -63,6 +63,9 @@ public class NeutronFloatingIP implements NetFloatingIP {
     @JsonProperty("revision_number")
     private Integer revisionNumber;
 
+    @JsonProperty("subnet_id")
+    private String subnetId;
+
     /**
      * Builder.
      *
@@ -239,11 +242,26 @@ public class NeutronFloatingIP implements NetFloatingIP {
      * {@inheritDoc}
      */
     @Override
+    public String getSubnetId() {
+        return subnetId;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setSubnetId(String subnetId) {
+        this.subnetId = subnetId;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         // Report tenantId iff it differs from projectId
         String distinctTenantId = Objects.equals(tenantId, projectId) ? null: tenantId;
         return new ToStringHelper(this)
-                .add("id", id).add("routerId", routerId).add("floatingNetworkId", floatingNetworkId)
+                .add("id", id).add("routerId", routerId).add("floatingNetworkId", floatingNetworkId).add("subnetId", subnetId)
                 .add("projectId", projectId).add("tenantId", distinctTenantId)
                 .add("floatingIpAddress", floatingIpAddress).add("fixedIpAddress", fixedIpAddress).add("portId", portId).add("status", status)
                 .toString();
@@ -253,7 +271,7 @@ public class NeutronFloatingIP implements NetFloatingIP {
     public int hashCode() {
         return Objects.hash(
                 id, routerId, tenantId, projectId, floatingNetworkId, floatingIpAddress, fixedIpAddress, portId,
-                qosPolicyId, status, description, tags, createdAt, updatedAt, revisionNumber
+                qosPolicyId, status, description, tags, createdAt, updatedAt, revisionNumber, subnetId
         );
     }
 
@@ -276,7 +294,8 @@ public class NeutronFloatingIP implements NetFloatingIP {
                 Objects.equals(tags, that.tags) &&
                 Objects.equals(createdAt, that.createdAt) &&
                 Objects.equals(updatedAt, that.updatedAt) &&
-                Objects.equals(revisionNumber, that.revisionNumber);
+                Objects.equals(revisionNumber, that.revisionNumber) &&
+                Objects.equals(subnetId, that.subnetId);
     }
 
     /**
@@ -375,6 +394,12 @@ public class NeutronFloatingIP implements NetFloatingIP {
         @Override
         public NetFloatingIPBuilder description(String description) {
             f.description = description;
+            return this;
+        }
+
+        @Override
+        public NetFloatingIPBuilder subnetId(String subnetId) {
+            f.subnetId = subnetId;
             return this;
         }
     }
