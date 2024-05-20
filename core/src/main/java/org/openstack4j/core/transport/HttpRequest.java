@@ -14,6 +14,7 @@ import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.core.transport.functions.EndpointURIFromRequestFunction;
 import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.Payload;
+import org.openstack4j.openstack.common.FileUploadProgressListener;
 
 /**
  * A Request Delegate which aids in building the request that is compatible with the OpenStack Rest API. The request is used to encoding as well as keeping reference to
@@ -33,6 +34,8 @@ public class HttpRequest<R> {
     String contentType = ClientConstants.CONTENT_TYPE_JSON;
     HttpMethod method = HttpMethod.GET;
     String json;
+    private FileUploadProgressListener fileUploadProgressListener;
+    private int bufferSize;
     private Config config;
     private Map<String, List<Object>> queryParams;
     private Function<String, String> endpointFunc;
@@ -174,7 +177,23 @@ public class HttpRequest<R> {
     public Config getConfig() {
         return config != null ? config: Config.DEFAULT;
     }
+    
+    public void setFileUploadProgressListener(FileUploadProgressListener fileUploadProgressListener) {
+        this.fileUploadProgressListener = fileUploadProgressListener;
+    }
 
+    public FileUploadProgressListener getFileUploadProgressListener() {
+        return this.fileUploadProgressListener;
+    }
+
+    public void setBufferSize(int bufferSize) {
+        this.bufferSize = bufferSize;
+    }
+    
+    public int getBufferSize() {
+        return this.bufferSize;
+    }
+    
     /**
      * Append query parameters into the url.
      */
@@ -340,6 +359,16 @@ public class HttpRequest<R> {
          */
         public RequestBuilder<R> header(String name, Object value) {
             request.getHeaders().put(name, value);
+            return this;
+        }
+
+        public RequestBuilder<R> fileUploadProgressListener(FileUploadProgressListener fileUploadProgressListener) {
+            request.setFileUploadProgressListener(fileUploadProgressListener);
+            return this;
+        }
+
+        public RequestBuilder<R> bufferSize(int bufferSize) {
+            request.setBufferSize(bufferSize);
             return this;
         }
 

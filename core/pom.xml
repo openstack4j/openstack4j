@@ -196,6 +196,12 @@
             <artifactId>testng</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.12</version>
+        </dependency>
     </dependencies>
     <reporting>
         <plugins>
