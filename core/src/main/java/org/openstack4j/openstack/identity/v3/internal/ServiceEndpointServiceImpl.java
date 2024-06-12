@@ -1,6 +1,6 @@
 package org.openstack4j.openstack.identity.v3.internal;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 
@@ -72,7 +72,7 @@ public class ServiceEndpointServiceImpl extends BaseIdentityServices implements 
     }
 
     @Override
-    public Endpoint createEndpoint(String name, URL url, Facing iface, String regionId, String serviceId, boolean enabled) {
+    public Endpoint createEndpoint(String name, URI url, Facing iface, String regionId, String serviceId, boolean enabled) {
         Objects.requireNonNull(name);
         Objects.requireNonNull(url);
         Objects.requireNonNull(iface);

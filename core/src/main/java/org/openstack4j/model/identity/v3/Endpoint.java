@@ -1,6 +1,6 @@
 package org.openstack4j.model.identity.v3;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.Map;
 
 import org.openstack4j.api.types.Facing;
@@ -60,7 +60,7 @@ public interface Endpoint extends ModelEntity, Buildable<EndpointBuilder> {
     /**
      * @return the URL of the endpoint
      */
-    URL getUrl();
+    URI getUrl();
 
     /**
      * @return the Links of the endpoint

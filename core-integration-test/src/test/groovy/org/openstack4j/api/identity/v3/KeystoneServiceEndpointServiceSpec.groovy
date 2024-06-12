@@ -38,8 +38,8 @@ class KeystoneServiceEndpointServiceSpec extends AbstractSpec {
     def static final String SERVICE_CRUD_DESCRIPTION = "A service used for tests."
     def static final String SERVICE_CRUD_DESCRIPTION_UPDATE = "A updated service used for tests."
     def static final String ENDPOINT_CRUD_NAME = "Endpoint_CRUD"
-    def static final URL ENDPOINT_CRUD_URL = new URL("http", "devstack.openstack.stack", 5000, "/v3")
-    def static final URL ENDPOINT_CRUD_URL_UPDATE = new URL("http", "stack.openstack.devstack", 5000, "/v3");
+    def static final URI ENDPOINT_CRUD_URL = new URL("http", "devstack.openstack.stack", 5000, "/v3").toURI()
+    def static final URI ENDPOINT_CRUD_URL_UPDATE = new URL("http", "stack.openstack.devstack", 5000, "/v3").toURI();
     def static final Facing ENDPOINT_CRUD_IFACE = Facing.ADMIN
     def static final String ENDPOINT_CRUD_REGIONID = "RegionOne"
     def String SERVICE_CRUD_ID
