@@ -77,6 +77,11 @@ public interface Port extends Resource, TimeEntity, Buildable<PortBuilder> {
      * @return The port security status. A valid value is enabled (true) or disabled (false).
      */
     Boolean isPortSecurityEnabled();
+    
+    /**
+     * @return The uplink status propagation of the port. Valid values are enabled (true) and disabled (false).
+     */
+    Boolean isPropagateUplinkStatus();
 
     String getHostId();
 

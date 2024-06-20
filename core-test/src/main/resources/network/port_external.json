@@ -14,6 +14,7 @@
         "binding:vnic_type": "baremetal",
         "device_id": "d90a13da-be41-461f-9f99-1dbcf438fdf2",
         "device_owner": "baremetal:none",
+        "propagate_uplink_status":true,
         "allowed_address_pairs": [
             {
                    "ip_address": "192.168.0.100",

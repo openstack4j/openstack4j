@@ -23,7 +23,8 @@ public class PortTests extends AbstractTest {
     private static final String JSON_PORT_EXTERNAL = "/network/port_external.json";
     private static final String NETWORK_ID = "a87cc70a-3e15-4acf-8205-9b711a3531b7";
     private static final Date DATE = new Date(1604096161000L);
-
+    private static final Boolean PROPAGATE_UPLINK_STATUS = true;
+    
     @Test
     public void createPorts() throws Exception {
         respondWith(JSON_PORTS_EXTERNAL);
@@ -47,11 +48,13 @@ public class PortTests extends AbstractTest {
         
         AllowedAddressPair allowedAddressPair = port.getAllowedAddressPairs().iterator().next();
         assertNotNull(allowedAddressPair.getIpAddress());
-        assertNotNull(allowedAddressPair.getMacAddress());        
+        assertNotNull(allowedAddressPair.getMacAddress());   
+        
+        assertEquals(port.isPropagateUplinkStatus(), PROPAGATE_UPLINK_STATUS);
     }
 
     private Port getPort() {
-        return Builders.port().networkId(NETWORK_ID).build();
+        return Builders.port().networkId(NETWORK_ID).portSecurityEnabled(PROPAGATE_UPLINK_STATUS).propagateUplinkStatus(PROPAGATE_UPLINK_STATUS).build();
     }
 
     private List<? extends Port> getPorts() {
