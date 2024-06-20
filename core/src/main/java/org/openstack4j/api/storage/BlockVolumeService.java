@@ -157,6 +157,41 @@ public interface BlockVolumeService extends RestService {
     ActionResponse update(String volumeId, String name, String description);
 
     /**
+     * Replaces all the volume’s metadata.
+     * 
+     * @param volumeId the volume id
+     * @param metadata the volume metadata
+     * @return the action response
+     * 
+     * @since 3.11
+     */
+    ActionResponse updateMetadata(String volumeId, Map<String,String> metadata);
+
+    /**
+     * Updates a volume’s metadata for a specific key.
+     * 
+     * @param volumeId the volume id
+     * @param key the key
+     * @param value the value
+     * @return the action response
+     * 
+     * @since 3.11
+     */
+    ActionResponse updateMetadata(String volumeId, String key, String value);
+
+    /**
+     * Deletes a volume’s metadata for a specific key.
+     * 
+     * @param volumeId the volume id
+     * @param key the key
+     * @param value the value
+     * @return the action response
+     * 
+     * @since 3.11
+     */
+    ActionResponse deleteMetadata(String volumeId, String key);
+
+    /**
      * migrate a volume to another host and service
      *
      * @param volumeId the volume id
