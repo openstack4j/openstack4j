@@ -11,9 +11,13 @@ import org.openstack4j.model.ModelEntity;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.block.VolumeBackup;
 import org.openstack4j.model.storage.block.VolumeBackupCreate;
+import org.openstack4j.model.storage.block.VolumeBackupExport;
+import org.openstack4j.model.storage.block.VolumeBackupImport;
 import org.openstack4j.model.storage.block.VolumeBackupRestore;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackup;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackup.VolumeBackups;
+import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackupExport;
+import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackupImport;
 import org.openstack4j.openstack.storage.block.domain.CinderVolumeBackupRestore;
 
 /**
@@ -104,5 +108,38 @@ public class BlockVolumeBackupServiceImpl extends BaseBlockStorageServices imple
             this.volumeId = volumeId;
         }
     }
+  
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public VolumeBackupExport exportMetadata(String backupId) {
+        return get(CinderVolumeBackupExport.class, uri("/backups/%s/export_record", backupId)).execute();
+    }
+
+    @JsonRootName("backup-record")
+    private static class _VolumeBackupImport implements ModelEntity {
+
+        private static final long serialVersionUID = 1L;
+        @JsonProperty("backup_service")
+        private String backupService;
+        @JsonProperty("backup_url")
+        private String backupMetadata;
+
+        public _VolumeBackupImport(String backupService, String backupMetadata) {
+            this.backupService = backupService;
+            this.backupMetadata = backupMetadata;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public VolumeBackupImport importMetadata(String backupService, String backupMetadata) {
+        _VolumeBackupImport entity = new _VolumeBackupImport(backupService, backupMetadata);
+        return post(CinderVolumeBackupImport.class, uri("/backups/import_record")).entity(entity).execute();
+    }
 
 }
+
