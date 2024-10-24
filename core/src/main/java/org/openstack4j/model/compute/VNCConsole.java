@@ -28,6 +28,7 @@ public interface VNCConsole extends ModelEntity {
         NOVNC("novnc"),
         XVPVNC("xvpvnc"),
         SPICE("spice-html5"),
+        SERIAL("serial"),
         UNRECOGNIZED("unregonized");
 
         private final String value;

@@ -25,6 +25,8 @@ public class NovaVNCConsole implements VNCConsole {
     public static NovaConsole getConsoleForType(Type type) {
         if (type == Type.SPICE)
             return new NovaConsoleSPICE(type);
+        if (type == Type.SERIAL)
+            return new NovaConsoleSerial(type);
 
         return new NovaConsoleVNC(type);
     }
@@ -81,6 +83,16 @@ public class NovaVNCConsole implements VNCConsole {
         private static final long serialVersionUID = 1L;
 
         public NovaConsoleSPICE(Type type) {
+            super(type);
+        }
+    }
+
+    @JsonRootName("os-getSerialConsole")
+    public static class NovaConsoleSerial extends NovaConsole {
+
+        private static final long serialVersionUID = 1L;
+
+        public NovaConsoleSerial(Type type) {
             super(type);
         }
     }
