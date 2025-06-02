@@ -130,7 +130,13 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
      * The current Volume Status
      */
     enum Status {
-        AVAILABLE, ATTACHING, BACKING_UP, CREATING, DELETING, DOWNLOADING, UPLOADING, ERROR, ERROR_DELETING, ERROR_RESTORING, IN_USE, RESTORING_BACKUP, DETACHING, UNRECOGNIZED, RESERVERD;
+        AVAILABLE, ATTACHING, BACKING_UP, CREATING, DELETING, DOWNLOADING, UPLOADING, ERROR, ERROR_DELETING, ERROR_RESTORING, IN_USE, RESTORING_BACKUP, DETACHING, UNRECOGNIZED,
+        /**
+         * @deprecated Use {@link #RESERVED} instead
+         */
+        @Deprecated
+        RESERVERD,
+        RESERVED;
 
         @JsonCreator
         public static Status fromValue(String status) {
