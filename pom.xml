@@ -229,7 +229,7 @@
                                             maven-bundle-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [2.5.3,)
+                                            [5.1.1,)
                                         </versionRange>
                                         <goals>
                                             <goal>manifest</goal>
