@@ -62,11 +62,25 @@ public class KeystoneUserServiceTests extends AbstractTest {
 
         respondWith(JSON_USERS);
 
+        List<? extends User> userList = osv3().identity().users().list("default");
+
+        assertNotNull(userList);
+
+    }
+
+    /**
+     * gets a list of users for domain
+     */
+    public void listAllUsersForDomain_Test() throws Exception {
+
+        respondWith(JSON_USERS);
+
         List<? extends User> userList = osv3().identity().users().list();
 
         assertNotNull(userList);
 
     }
+
 
     /**
      * get speciific user by user identifier

@@ -102,4 +102,14 @@ public class KeystoneProjectServiceTests extends AbstractTest {
         assertEquals(project.getId(), "600905d353a84b20b644d2fe55a21e8a");
         assertEquals(project.getOptions(), Collections.emptyMap());
     }
+
+    @Test
+    public void project_with_domain() throws IOException {
+        respondWith("/identity/v3/projects_with_options.json");
+        List<? extends Project> list = osv3().identity().projects().list("default");
+        assertEquals(list.size(), 3);
+        Project project = list.stream().filter(p -> "demo".equals(p.getName())).findFirst().get();
+        assertEquals(project.getId(), "600905d353a84b20b644d2fe55a21e8a");
+        assertEquals(project.getOptions(), Collections.emptyMap());
+    }
 }

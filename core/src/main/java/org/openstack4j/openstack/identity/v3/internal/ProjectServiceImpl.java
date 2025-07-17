@@ -64,4 +64,10 @@ public class ProjectServiceImpl extends BaseIdentityServices implements ProjectS
         return get(Projects.class, uri(PATH_PROJECTS)).execute().getList();
     }
 
+    @Override
+    public List<? extends Project> list(String domainId) {
+        Objects.requireNonNull(domainId);
+        return get(Projects.class, uri(PATH_PROJECTS)).param("domain_id", domainId).execute().getList();
+    }
+
 }
