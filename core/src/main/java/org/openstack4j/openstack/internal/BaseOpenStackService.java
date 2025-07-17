@@ -162,8 +162,17 @@ public class BaseOpenStackService {
 
         public Invocation<R> params(Map<String, ?> params) {
             if (params != null) {
-                for (String name : params.keySet())
+                for (String name : params.keySet()) {
                     req.queryParam(name, params.get(name));
+                    Object obj = params.get(name);
+                    if (Collection.class.isAssignableFrom(obj.getClass())) {
+                        for (String value : (Collection<String>) obj) {
+                            req.queryParam(name, value);
+                        }
+                    } else {
+                        req.queryParam(name, obj);
+                    }
+                }
             }
             return this;
         }
