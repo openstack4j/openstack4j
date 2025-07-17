@@ -130,6 +130,15 @@ public class UserServiceImpl extends BaseIdentityServices implements UserService
      * {@inheritDoc}
      */
     @Override
+    public List<? extends User> list(String domainId) {
+        Objects.requireNonNull(domainId);
+        return get(Users.class, uri(PATH_USERS)).param("domain_id", domainId).execute().getList();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<? extends Role> listProjectUserRoles(String userId, String projectId) {
         Objects.requireNonNull(userId);
         Objects.requireNonNull(projectId);

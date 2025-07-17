@@ -258,7 +258,7 @@ public class ImageV2Tests extends AbstractTest {
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         URI uri = null;
         try {
-            uri = new URI("file:////test.iso");
+            uri = new URI("file:///randomFolder/test.iso");
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }

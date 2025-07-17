@@ -78,4 +78,11 @@ public interface ProjectService extends RestService {
      */
     List<? extends Project> list();
 
+    /**
+     * List all projects in domain
+     *
+     * @param domainId
+     * @return
+     */
+    List<? extends Project> list(String domainId);
 }
