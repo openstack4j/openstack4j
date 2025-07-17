@@ -225,6 +225,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
         return DLPayloadEntity.create(
                 get(Void.class, location.getURI())
+                        .params(options.getQueryParams())
                         .headers(HeaderNameValuesToHeaderMap.INSTANCE.apply(options.getHeaders()))
                         .executeWithResponse()
         );
