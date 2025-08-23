@@ -135,7 +135,7 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
         @JsonCreator
         public static Status fromValue(String status) {
             try {
-                return valueOf(Objects.requireNonNull(status, "migrationStatus").toUpperCase().replace('-', '_'));
+                return valueOf(Objects.requireNonNull(status, "status").toUpperCase().replace('-', '_'));
             } catch (IllegalArgumentException e) {
                 return UNRECOGNIZED;
             }
