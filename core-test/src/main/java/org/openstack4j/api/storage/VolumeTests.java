@@ -12,11 +12,6 @@ import org.openstack4j.model.storage.block.VolumeAttachment;
 import org.openstack4j.model.storage.block.builder.VolumeBuilder;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
-import static org.openstack4j.model.storage.block.Volume.Status.ERROR;
-import static org.openstack4j.model.storage.block.Volume.Status.IN_USE;
-import static org.openstack4j.model.storage.block.Volume.Status.UNRECOGNIZED;
-import static org.openstack4j.model.storage.block.Volume.Status.fromValue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -172,10 +167,12 @@ public class VolumeTests extends AbstractTest {
         assertEquals(Volume.Status.UNRECOGNIZED, Volume.Status.fromValue("foo"));
         assertEquals(Volume.Status.ERROR, Volume.Status.fromValue("error"));
         assertEquals(Volume.Status.IN_USE, Volume.Status.fromValue("in-use"));
+        assertEquals(Volume.Status.RESERVED, Volume.Status.fromValue("reserved"));
 
         assertEquals("unrecognized", Volume.Status.UNRECOGNIZED.value());
         assertEquals("error", Volume.Status.ERROR.value());
         assertEquals("in-use", Volume.Status.IN_USE.value());
+        assertEquals("reserved", Volume.Status.RESERVED.value());
     }
 
     @Test
