@@ -34,7 +34,7 @@
             <modules>
                 <!-- <module>http-connector</module> org.openstack4j.connectors.http.HttpCommand.setRequestMethodUsingWorkaroundForJREBug -->
                 <module>httpclient</module>
-                <!--<module>jersey2</module> https://github.com/eclipse-ee4j/jersey/issues/4825 -->
+                <module>jersey3</module>
                 <module>okhttp</module>
                 <module>resteasy</module>
             </modules>
