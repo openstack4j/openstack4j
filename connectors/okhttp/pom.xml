@@ -1,0 +1,65 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.github.openstack4j.core.connectors</groupId>
+        <artifactId>openstack4j-connectors</artifactId>
+        <version>3.13-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>openstack4j-okhttp</artifactId>
+    <name>OpenStack4j OKHttp Connector</name>
+    <url>https://github.com/openstack4j/openstack4j/</url>
+    <packaging>jar</packaging>
+
+    <properties>
+        <okhttp.version>3.14.9</okhttp.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Export-Package>
+                            org.openstack4j.connectors.okhttp
+                        </Export-Package>
+                        <Import-Package>
+                            !org.openstack4j.connectors.okhttp,
+                            *
+                        </Import-Package>
+                        <!--
+                        Required for SPI in OSGi:
+                        http://aries.apache.org/modules/spi-fly.html#specconf
+
+                        This bundle defines an implementation for following services in META-INF-services:
+                        org.openstack4j.core.transport.HttpExecutorService
+                         -->
+                        <Require-Capability>
+                            osgi.extender; filter:="(osgi.extender=osgi.serviceloader.registrar)"
+                        </Require-Capability>
+                        <Provide-Capability>
+                            osgi.serviceloader; osgi.serviceloader=org.openstack4j.core.transport.HttpExecutorService
+                        </Provide-Capability>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

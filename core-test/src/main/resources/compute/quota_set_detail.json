@@ -1,0 +1,40 @@
+{
+    "quota_set": {
+        "id": "04578a4e4c8944778f589f0f15fc0369",
+        "cores": {
+            "limit": -1,
+            "in_use": 23,
+            "reserved": 0
+        },
+        "instances": {
+            "limit": -1,
+            "in_use": 9,
+            "reserved": 0
+        },
+        "key_pairs": {
+            "limit": -1,
+            "in_use": 0,
+            "reserved": 0
+        },
+        "metadata_items": {
+            "limit": -1,
+            "in_use": 0,
+            "reserved": 0
+        },
+        "ram": {
+            "limit": -1,
+            "in_use": 46080,
+            "reserved": 0
+        },
+        "server_group_members": {
+            "limit": -1,
+            "in_use": 0,
+            "reserved": 0
+        },
+        "server_groups": {
+            "limit": -1,
+            "in_use": 0,
+            "reserved": 0
+        }
+    }
+}
