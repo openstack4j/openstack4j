@@ -10,6 +10,8 @@ public interface InstanceService {
 
     List<? extends Instance> list();
 
+    List<? extends Instance> adminList();
+
     Instance get(String instanceId);
 
     Instance create(InstanceCreate instanceCreate);

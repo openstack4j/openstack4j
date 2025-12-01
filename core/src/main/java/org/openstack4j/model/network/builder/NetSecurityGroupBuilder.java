@@ -30,4 +30,6 @@ public interface NetSecurityGroupBuilder extends Builder<NetSecurityGroupBuilder
      */
     NetSecurityGroupBuilder tenantId(String tenantId);
 
+    NetSecurityGroupBuilder stateful(Boolean stateful);
+
 }

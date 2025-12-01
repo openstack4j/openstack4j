@@ -1,6 +1,7 @@
 package org.openstack4j.api.identity.v3;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
@@ -78,4 +79,10 @@ public interface ProjectService extends RestService {
      */
     List<? extends Project> list();
 
+    /**
+     * Returns list of projects filtered by parameters.
+     *
+     * @param filteringParams map (name, value) of filtering parameters
+     */
+    List<? extends Project> list(Map<String, String> filteringParams);
 }

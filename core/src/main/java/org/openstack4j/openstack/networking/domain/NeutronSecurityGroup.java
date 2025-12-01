@@ -32,6 +32,9 @@ public class NeutronSecurityGroup implements SecurityGroup {
     @JsonProperty("name")
     private String name;
 
+    @JsonProperty("stateful")
+    private Boolean stateful;
+
     @JsonProperty("security_group_rules")
     private List<NeutronSecurityGroupRule> rules;
 
@@ -121,6 +124,7 @@ public class NeutronSecurityGroup implements SecurityGroup {
                 .add("name", name)
                 .add("description", description)
                 .add("security_group_rules", rules)
+                .add("stateful", stateful)
                 .addValue("\n")
                 .toString();
     }
@@ -130,7 +134,7 @@ public class NeutronSecurityGroup implements SecurityGroup {
      */
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(id, tenantId, name, description, rules);
+        return java.util.Objects.hash(id, tenantId, name, description, rules, stateful);
     }
 
     /**
@@ -251,6 +255,12 @@ public class NeutronSecurityGroup implements SecurityGroup {
         @Override
         public NetSecurityGroupBuilder tenantId(String tenantId) {
             g.tenantId = tenantId;
+            return this;
+        }
+
+        @Override
+        public NetSecurityGroupBuilder stateful(Boolean stateful) {
+            g.stateful = stateful;
             return this;
         }
     }

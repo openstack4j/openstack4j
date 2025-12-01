@@ -50,4 +50,8 @@ public class TroveServiceImpl extends BaseTroveServices implements TroveService 
         return Apis.get(InstanceService.class);
     }
 
+    @Override
+    public BackupService backupService() {
+        return Apis.get(BackupService.class);
+    }
 }

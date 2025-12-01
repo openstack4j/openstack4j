@@ -70,6 +70,8 @@ public class CinderVolume implements Volume {
     private Boolean encrypted;
     @JsonProperty("os-vol-host-attr:host")
     private String host;
+    @JsonProperty("user_id")
+    private String userId;
 
     /**
      * @return the Volume Builder
@@ -275,6 +277,14 @@ public class CinderVolume implements Volume {
                 .add("sourceVolid", sourceVolid).add("snapshotId", snapshotId).add("metadata", metadata)
                 .add("bootable", bootable)
                 .toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getUserId() {
+        return userId;
     }
 
     public static class Volumes extends ListResult<CinderVolume> {

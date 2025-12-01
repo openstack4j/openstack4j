@@ -44,4 +44,6 @@ public interface TroveService extends RestService {
      */
     InstanceService instanceService();
 
+    BackupService backupService();
+
 }

@@ -257,6 +257,7 @@ public class DefaultAPIProvider implements APIProvider {
         bind(DatabaseService.class, DBDatabaseServiceImpl.class);
         bind(org.openstack4j.api.trove.UserService.class, DBUserServiceImpl.class);
         bind(InstanceService.class, DBInstanceServiceImpl.class);
+        bind(BackupService.class, DBBackupServiceImpl.class);
         bind(SchedulerStatsGetPoolService.class, SchedulerStatsGetPoolServiceImpl.class);
         bind(BarbicanService.class, BarbicanServiceImpl.class);
         bind(ContainerService.class, ContainerServiceImpl.class);

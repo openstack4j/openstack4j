@@ -127,6 +127,11 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
     String host();
 
     /**
+     * @return the user id
+     */
+    String getUserId();
+
+    /**
      * The current Volume Status
      */
     enum Status {

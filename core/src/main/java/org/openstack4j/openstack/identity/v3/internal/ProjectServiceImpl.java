@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.identity.v3.internal;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.openstack4j.api.identity.v3.ProjectService;
@@ -64,4 +65,15 @@ public class ProjectServiceImpl extends BaseIdentityServices implements ProjectS
         return get(Projects.class, uri(PATH_PROJECTS)).execute().getList();
     }
 
+    @Override
+    public List<? extends Project> list(Map<String, String> filteringParams) {
+        Invocation<Projects> projectInvocation = get(Projects.class, uri(PATH_PROJECTS));
+        if (filteringParams != null) {
+            for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+                projectInvocation = projectInvocation.param(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return projectInvocation.execute().getList();
+    }
 }

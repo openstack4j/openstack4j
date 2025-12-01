@@ -26,6 +26,11 @@ public class DBInstanceServiceImpl extends BaseTroveServices implements Instance
 
     }
 
+    @Override
+    public List<? extends Instance> adminList() {
+        return get(DBInstances.class, uri("/mgmt/instances?include_clustered=False&deleted=False")).execute().getList();
+    }
+
     /**
      * {@inheritDoc}
      */
