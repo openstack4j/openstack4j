@@ -10,6 +10,7 @@ import org.openstack4j.model.network.AllowedAddressPair;
 import org.openstack4j.model.network.Port;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**

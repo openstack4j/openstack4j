@@ -6,6 +6,8 @@ import org.openstack4j.model.network.SecurityGroup;
 import org.openstack4j.model.network.builder.NetSecurityGroupUpdateBuilder;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Tests the Compute -> Network API against the mock webserver and spec based

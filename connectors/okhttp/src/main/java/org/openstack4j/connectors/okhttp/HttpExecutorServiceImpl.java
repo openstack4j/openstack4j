@@ -1,5 +1,6 @@
 package org.openstack4j.connectors.okhttp;
 
+
 import okhttp3.Response;
 import org.openstack4j.api.exceptions.ConnectionException;
 import org.openstack4j.core.transport.ClientConstants;
@@ -8,7 +9,6 @@ import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.openstack.internal.OSAuthenticator;
 import org.openstack4j.openstack.internal.OSClientSession;
-
 
 /**
  * HttpExecutor is the default implementation for HttpExecutorService which is responsible for interfacing with OKHttp and mapping common status codes, requests and responses

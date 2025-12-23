@@ -4,6 +4,8 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.compute.ComputeQuotaDetail;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
+
 @Test(suiteName = "QuotaSet")
 public class QuotaSetTests extends AbstractTest {
 

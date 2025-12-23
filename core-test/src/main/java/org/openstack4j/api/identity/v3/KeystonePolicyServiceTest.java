@@ -4,6 +4,8 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.identity.v3.Policy;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Tests the Identity/Keystone API version 3 PolicyService
  */

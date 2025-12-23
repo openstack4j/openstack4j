@@ -8,6 +8,8 @@ import org.openstack4j.core.transport.HttpMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class MicroVersionedServiceTest extends AbstractTest {
     private static final MicroVersion MICRO_VERSION = new MicroVersion(1, 0);
     private static final String API_VERSION_HEADER = "X-Openstack-Test-Api-Version";

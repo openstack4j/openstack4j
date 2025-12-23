@@ -13,6 +13,7 @@ import org.openstack4j.model.identity.v3.User;
 import org.openstack4j.openstack.OSFactory;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
@@ -130,6 +131,7 @@ public class KeystoneAuthenticationTests extends AbstractTest {
                 .scopeToDomain(Identifier.byId(DOMAIN_ID))
                 .authenticate());
 
+        
         assertEquals(osv3.getToken().getVersion(), AuthVersion.V3);
         assertEquals(osv3.getToken().getUser().getId(), USER_ID);
         assertEquals(osv3.getToken().getDomain().getId(), DOMAIN_ID);

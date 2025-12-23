@@ -8,6 +8,7 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.network.ext.*;
 import org.openstack4j.openstack.networking.domain.ext.NeutronFlowClassifier;
 import org.openstack4j.openstack.networking.domain.ext.NeutronPortChain;
 import org.openstack4j.openstack.networking.domain.ext.NeutronPortPair;

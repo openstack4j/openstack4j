@@ -11,6 +11,7 @@ import org.openstack4j.model.dns.v2.Zone;
 import org.openstack4j.model.dns.v2.ZoneType;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 

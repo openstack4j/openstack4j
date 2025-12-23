@@ -9,6 +9,7 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.core.transport.HttpMethod;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.common.Extension;
+import org.openstack4j.model.manila.*;
 import org.openstack4j.openstack.manila.domain.ManilaService;
 import org.testng.annotations.Test;
 

@@ -8,6 +8,7 @@ import java.util.Map;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
+import org.openstack4j.model.network.ext.*;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

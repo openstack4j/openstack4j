@@ -10,6 +10,7 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.openstack4j.api.exceptions.ClientResponseException;
+import org.openstack4j.core.transport.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

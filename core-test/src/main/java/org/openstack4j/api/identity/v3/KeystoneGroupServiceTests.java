@@ -5,6 +5,7 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.model.identity.v3.Group;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertNull;
 
 /**

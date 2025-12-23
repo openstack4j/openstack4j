@@ -8,6 +8,8 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.model.identity.v3.Domain;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Tests the Identity/Keystone API version 3 DomainService
  */

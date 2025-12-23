@@ -7,6 +7,8 @@ import org.openstack4j.model.storage.block.ext.Service.State;
 import org.openstack4j.model.storage.block.ext.Service.Status;
 import org.testng.annotations.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Test cases for Block Storage Services function
  *

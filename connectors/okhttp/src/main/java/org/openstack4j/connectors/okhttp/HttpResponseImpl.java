@@ -8,6 +8,7 @@ import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.Response;
 import org.openstack4j.api.exceptions.ClientResponseException;
+import org.openstack4j.core.transport.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
