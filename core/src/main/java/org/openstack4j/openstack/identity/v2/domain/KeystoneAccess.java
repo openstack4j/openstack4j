@@ -60,22 +60,23 @@ public class KeystoneAccess implements Access {
      */
     @Override
     @JsonIgnore
-    public SortedSetMultimap<String, AccessService> getAggregatedCatalog() {
-        if (aggregatedCatalog == null) {
-            synchronized (this) {
-                if (aggregatedCatalog == null) {
-                    aggregatedCatalog = TreeMultimap.create();
-                    for (AccessService sc : serviceCatalog) {
-                        String nameKey = TYPE_WITHOUT_VERSION.apply(sc.getName());
-                        String typeKey = TYPE_WITHOUT_VERSION.apply(sc.getType());
-                        aggregatedCatalog.put(nameKey, sc);
-                        aggregatedCatalog.put(typeKey, sc);
-                    }
-                }
-            }
-        }
-        return aggregatedCatalog;
-    }
+	public SortedSetMultimap<String, AccessService> getAggregatedCatalog() {
+	    if (aggregatedCatalog == null) {
+	        synchronized(this) {
+	            if (aggregatedCatalog == null) {
+					SortedSetMultimap<String, AccessService> tmpAggregatedCatalog = TreeMultimap.create();
+	                for (AccessService sc : serviceCatalog) {
+	                    String nameKey = TYPE_WITHOUT_VERSION.apply(sc.getName());
+	                    String typeKey = TYPE_WITHOUT_VERSION.apply(sc.getType());
+	                    tmpAggregatedCatalog.put(nameKey, sc);
+                        tmpAggregatedCatalog.put(typeKey, sc);
+	                }
+					this.aggregatedCatalog = tmpAggregatedCatalog;
+	            }
+	        }
+	    }
+	    return aggregatedCatalog;
+	}
 
     /**
      * @return the user
