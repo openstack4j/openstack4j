@@ -125,6 +125,7 @@
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <resources>
                                 <resource>
+                                    <!--suppress UnresolvedMavenProperty -->
                                     <directory>${project.build.resources[0].directory}</directory>
                                     <filtering>true</filtering>
                                 </resource>
@@ -251,7 +252,6 @@
                 <version>${maven.javadoc.plugin.version}</version>
                 <configuration>
                     <author>true</author>
-                    <protected>true</protected>
                     <excludePackageNames>*.internal</excludePackageNames>
                     <reportOutputDirectory>docs</reportOutputDirectory>
                     <destDir>javadoc</destDir>

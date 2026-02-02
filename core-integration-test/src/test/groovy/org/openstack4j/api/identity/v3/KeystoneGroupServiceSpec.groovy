@@ -44,11 +44,11 @@ class KeystoneGroupServiceSpec extends AbstractSpec {
 
     static {
         if (
-        USER_ID == null ||
-                AUTH_URL == null ||
-                PASSWORD == null ||
-                DOMAIN_ID == null ||
-                USER_DOMAIN_ID == null) {
+                USER_ID == null ||
+                        AUTH_URL == null ||
+                        PASSWORD == null ||
+                        DOMAIN_ID == null ||
+                        USER_DOMAIN_ID == null) {
 
             skipTest = false
         } else {

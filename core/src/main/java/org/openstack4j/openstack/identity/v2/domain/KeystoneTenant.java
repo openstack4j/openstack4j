@@ -1,18 +1,16 @@
 package org.openstack4j.openstack.identity.v2.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
-
-import java.util.Objects;
-
 import org.openstack4j.api.Apis;
 import org.openstack4j.model.identity.v2.Tenant;
 import org.openstack4j.model.identity.v2.builder.TenantBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Tenant Model class use to group/isolate resources and/or identity objects

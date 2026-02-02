@@ -20,9 +20,7 @@
                 <jdk>11</jdk>
             </activation>
             <modules>
-                <module>http-connector</module>
                 <module>httpclient</module>
-                <module>jersey2</module>
                 <module>okhttp</module>
                 <module>resteasy</module>
             </modules>
@@ -33,9 +31,7 @@
                 <jdk>17</jdk>
             </activation>
             <modules>
-                <!-- <module>http-connector</module> org.openstack4j.connectors.http.HttpCommand.setRequestMethodUsingWorkaroundForJREBug -->
                 <module>httpclient</module>
-                <!--<module>jersey2</module> https://github.com/eclipse-ee4j/jersey/issues/4825 -->
                 <module>okhttp</module>
                 <module>resteasy</module>
             </modules>
@@ -46,9 +42,7 @@
                 <jdk>21</jdk>
             </activation>
             <modules>
-                <!-- <module>http-connector</module> org.openstack4j.connectors.http.HttpCommand.setRequestMethodUsingWorkaroundForJREBug -->
                 <module>httpclient</module>
-                <!--<module>jersey2</module> https://github.com/eclipse-ee4j/jersey/issues/4825 -->
                 <module>okhttp</module>
                 <module>resteasy</module>
             </modules>

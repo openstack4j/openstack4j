@@ -18,16 +18,6 @@ Instead of depending on the normal "openstack4j" artifactId, change the dependen
 
 Now choose a connector by adding the applicable dependency below:
 
-**Jersey 2**
-
-```xml
-<dependency>
-    <groupId>com.github.openstack4j.core.connectors</groupId>
-    <artifactId>openstack4j-jersey2</artifactId>
-    <version>...</version>
-</dependency>
-```
-
 **Resteasy**
 
 ```xml

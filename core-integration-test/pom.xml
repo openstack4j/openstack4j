@@ -19,7 +19,6 @@
 
     <!-- dedicated module per connector to test -->
     <modules>
-        <module>it-jersey2</module>
         <module>it-resteasy</module>
         <module>it-okhttp</module>
         <module>it-httpclient</module>

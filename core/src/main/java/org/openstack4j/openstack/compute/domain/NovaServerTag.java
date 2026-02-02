@@ -3,8 +3,8 @@ package org.openstack4j.openstack.compute.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.ModelEntity;
+import org.openstack4j.util.ToStringHelper;
 
 public class NovaServerTag implements ModelEntity {
     private static final long serialVersionUID = 1L;

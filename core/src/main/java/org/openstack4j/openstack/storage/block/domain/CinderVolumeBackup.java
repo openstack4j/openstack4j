@@ -76,7 +76,7 @@ public class CinderVolumeBackup implements VolumeBackup {
     /**
      * {@inheritDoc}
      */
-    @Override
+    @Nullable @Override
     public String getZone() {
         return zone;
     }
@@ -84,7 +84,7 @@ public class CinderVolumeBackup implements VolumeBackup {
     /**
      * {@inheritDoc}
      */
-    @Override
+    @Nullable @Override
     public Status getStatus() {
         return status;
     }
@@ -156,11 +156,10 @@ public class CinderVolumeBackup implements VolumeBackup {
     /**
      * {@inheritDoc}
      */
-    @Override
+    @Nullable @Override
     public String getSnapshotId() {
         return snapshotId;
     }
-
 
     public static class VolumeBackups extends ListResult<CinderVolumeBackup> {
 
@@ -174,6 +173,4 @@ public class CinderVolumeBackup implements VolumeBackup {
             return backups;
         }
     }
-
-
 }

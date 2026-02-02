@@ -12,14 +12,14 @@
     <packaging>jar</packaging>
 
     <properties>
-        <httpclient-version>4.3.1</httpclient-version>
+        <httpclient-version>4.5.13</httpclient-version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.3</version>
+            <version>${httpclient-version}</version>
             <type>jar</type>
         </dependency>
     </dependencies>
@@ -58,5 +58,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
