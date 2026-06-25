@@ -44,7 +44,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
     @Override
     public List<? extends SwiftObject> list(String containerName) {
         Objects.requireNonNull(containerName);
-        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").execute();
+        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", ObjectLocation.encodePath(containerName))).param("format", "json").execute();
 
         if (objs == null) {
             return Collections.emptyList();
@@ -60,7 +60,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
         Objects.requireNonNull(containerName);
 
-        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").params(options.getOptions()).execute();
+        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", ObjectLocation.encodePath(containerName))).param("format", "json").params(options.getOptions()).execute();
         if (objs == null) {
             return Collections.emptyList();
         }
@@ -119,7 +119,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         if (options.getPath() != null && name.indexOf('/') == -1)
             name = options.getPath() + "/" + name;
 
-        HttpResponse resp = put(Void.class, uri("/%s/%s", containerName, name))
+        HttpResponse resp = put(Void.class, uri("/%s/%s", ObjectLocation.encodePath(containerName), ObjectLocation.encodePath(name)))
                 .entity(payload)
                 .headers(options.getOptions())
                 .contentType(options.getContentType())
