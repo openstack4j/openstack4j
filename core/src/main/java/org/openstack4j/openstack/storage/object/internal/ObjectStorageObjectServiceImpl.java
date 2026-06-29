@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.api.storage.ObjectStorageObjectService;
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.common.ActionResponse;
@@ -126,6 +127,11 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
                 .paramLists(options.getQueryParams())
                 .executeWithResponse();
         try {
+            // A non-2xx response otherwise slipped through as a null ETag,
+            // hiding errors such as a missing container or an ETag mismatch.
+            if (resp.getStatus() >= 400) {
+                throw ResponseException.mapException(resp);
+            }
             return resp.header(ETAG);
         } finally {
             closeQuietly(resp);
@@ -167,6 +173,11 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
                 .header(CONTENT_LENGTH, 0)
                 .executeWithResponse();
         try {
+            // A non-2xx response otherwise slipped through as a null ETag,
+            // hiding errors such as a missing container or an ETag mismatch.
+            if (resp.getStatus() >= 400) {
+                throw ResponseException.mapException(resp);
+            }
             return resp.header(ETAG);
         } finally {
             closeQuietly(resp);
