@@ -57,6 +57,20 @@ public interface SwiftObject extends ModelEntity {
     String getMimeType();
 
     /**
+     * The Cache-Control header stored with the object
+     *
+     * @return the Cache-Control header, or null if unset
+     */
+    String getCacheControl();
+
+    /**
+     * The Expires header stored with the object
+     *
+     * @return the Expires header, or null if unset
+     */
+    String getExpires();
+
+    /**
      * @return the container name this object belongs to
      */
     String getContainerName();

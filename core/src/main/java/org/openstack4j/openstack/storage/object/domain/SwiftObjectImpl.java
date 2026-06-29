@@ -36,6 +36,10 @@ public class SwiftObjectImpl implements SwiftObject {
     private String directoryName;
     @JsonProperty("content_type")
     private String mimeType;
+    @JsonIgnore
+    private String cacheControl;
+    @JsonIgnore
+    private String expires;
 
     @JsonIgnore
     private Map<String, String> metadata;
@@ -75,6 +79,16 @@ public class SwiftObjectImpl implements SwiftObject {
     @Override
     public String getMimeType() {
         return mimeType;
+    }
+
+    @Override
+    public String getCacheControl() {
+        return cacheControl;
+    }
+
+    @Override
+    public String getExpires() {
+        return expires;
     }
 
     @Override
@@ -155,6 +169,16 @@ public class SwiftObjectImpl implements SwiftObject {
 
         public Builder mimeType(String mimeType) {
             obj.mimeType = mimeType;
+            return this;
+        }
+
+        public Builder cacheControl(String cacheControl) {
+            obj.cacheControl = cacheControl;
+            return this;
+        }
+
+        public Builder expires(String expires) {
+            obj.expires = expires;
             return this;
         }
 

@@ -7,9 +7,11 @@ import org.openstack4j.model.storage.object.options.ObjectLocation;
 import org.openstack4j.openstack.internal.Parser;
 import org.openstack4j.openstack.storage.object.domain.SwiftObjectImpl;
 
+import static org.openstack4j.model.storage.object.SwiftHeaders.CACHE_CONTROL;
 import static org.openstack4j.model.storage.object.SwiftHeaders.CONTENT_LENGTH;
 import static org.openstack4j.model.storage.object.SwiftHeaders.CONTENT_TYPE;
 import static org.openstack4j.model.storage.object.SwiftHeaders.ETAG;
+import static org.openstack4j.model.storage.object.SwiftHeaders.EXPIRES;
 import static org.openstack4j.model.storage.object.SwiftHeaders.LAST_MODIFIED;
 import static org.openstack4j.openstack.internal.Parser.asLong;
 
@@ -37,6 +39,8 @@ public class ParseObjectFunction implements Function<HttpResponse, SwiftObject> 
                 .name(location.getObjectName())
                 .containerName(location.getContainerName())
                 .mimeType(resp.header(CONTENT_TYPE))
+                .cacheControl(resp.header(CACHE_CONTROL))
+                .expires(resp.header(EXPIRES))
                 .sizeBytes(asLong(resp.header(CONTENT_LENGTH)))
                 .eTag(resp.header(ETAG))
                 .metadata(MapWithoutMetaPrefixFunction.INSTANCE.apply(resp.headers()))
