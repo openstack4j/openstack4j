@@ -12,6 +12,7 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.object.SwiftContainer;
 import org.openstack4j.model.storage.object.options.ContainerListOptions;
 import org.openstack4j.model.storage.object.options.CreateUpdateContainerOptions;
+import org.openstack4j.model.storage.object.options.ObjectLocation;
 import org.openstack4j.model.storage.object.options.ObjectPutOptions;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.storage.object.domain.SwiftContainerImpl;
@@ -64,7 +65,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
     @Override
     public ActionResponse create(String name, CreateUpdateContainerOptions options) {
         Objects.requireNonNull(name);
-        return put(ActionResponse.class, URI_SEP, name).headers(options != null ? options.getOptions(): null).execute();
+        return put(ActionResponse.class, URI_SEP, ObjectLocation.encodePath(name)).headers(options != null ? options.getOptions(): null).execute();
     }
 
     /**
@@ -85,7 +86,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
     public ActionResponse update(String name, CreateUpdateContainerOptions options) {
         Objects.requireNonNull(name);
 
-        return post(ActionResponse.class, URI_SEP, name)
+        return post(ActionResponse.class, URI_SEP, ObjectLocation.encodePath(name))
                 .headers(options != null ? options.getOptions(): null)
                 .execute();
     }
@@ -96,7 +97,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
     @Override
     public ActionResponse delete(String name) {
         Objects.requireNonNull(name);
-        HttpResponse resp = delete(Void.class, URI_SEP, name).executeWithResponse();
+        HttpResponse resp = delete(Void.class, URI_SEP, ObjectLocation.encodePath(name)).executeWithResponse();
 
         try {
             if (resp.getStatus() == 409)
@@ -114,7 +115,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
     @Override
     public Map<String, String> getMetadata(String name) {
         Objects.requireNonNull(name);
-        HttpResponse resp = head(Void.class, URI_SEP, name).executeWithResponse();
+        HttpResponse resp = head(Void.class, URI_SEP, ObjectLocation.encodePath(name)).executeWithResponse();
         try {
             return MapWithoutMetaPrefixFunction.INSTANCE.apply(resp.headers());
         } finally {
@@ -142,7 +143,7 @@ public class ObjectStorageContainerServiceImpl extends BaseObjectStorageService 
         Objects.requireNonNull(name);
         Objects.requireNonNull(metadata);
 
-        return isResponseSuccess(post(Void.class, URI_SEP, name)
+        return isResponseSuccess(post(Void.class, URI_SEP, ObjectLocation.encodePath(name))
                 .headers(MetadataToHeadersFunction.create(prefix).apply(metadata))
                 .executeWithResponse(), 204);
     }

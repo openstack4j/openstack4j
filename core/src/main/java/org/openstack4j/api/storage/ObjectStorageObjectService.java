@@ -13,6 +13,7 @@ import org.openstack4j.model.storage.object.options.ObjectDeleteOptions;
 import org.openstack4j.model.storage.object.options.ObjectListOptions;
 import org.openstack4j.model.storage.object.options.ObjectLocation;
 import org.openstack4j.model.storage.object.options.ObjectPutOptions;
+import org.openstack4j.model.storage.object.options.SLOSegment;
 
 /**
  * A service responsible for maintaining directory and file objects within containers for
@@ -76,6 +77,31 @@ public interface ObjectStorageObjectService extends RestService {
      * @return the ETAG checksum
      */
     String put(String containerName, String name, Payload<?> payload, ObjectPutOptions options);
+
+    /**
+     * Creates a Static Large Object (SLO) by uploading a manifest that
+     * references previously-uploaded segment objects.  The resulting object's
+     * content is the in-order concatenation of the segments.
+     *
+     * @param containerName the manifest object's container
+     * @param name the manifest object's name
+     * @param segments the ordered segments composing the large object
+     * @return the ETag of the created large object
+     */
+    String createStaticLargeObject(String containerName, String name, List<? extends SLOSegment> segments);
+
+    /**
+     * Creates a Static Large Object (SLO) by uploading a manifest that
+     * references previously-uploaded segment objects.  The resulting object's
+     * content is the in-order concatenation of the segments.
+     *
+     * @param containerName the manifest object's container
+     * @param name the manifest object's name
+     * @param segments the ordered segments composing the large object
+     * @param options extended options (content type, metadata) for the manifest object
+     * @return the ETag of the created large object
+     */
+    String createStaticLargeObject(String containerName, String name, List<? extends SLOSegment> segments, ObjectPutOptions options);
 
     /**
      * Retrieves the Payload for the data backing the given {@code containerName} and {@code name}

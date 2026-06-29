@@ -1,6 +1,13 @@
 package org.openstack4j.openstack.storage.object.internal;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -8,9 +15,11 @@ import java.util.stream.Collectors;
 
 import org.openstack4j.api.storage.ObjectStorageObjectService;
 import org.openstack4j.core.transport.HttpResponse;
+import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.common.DLPayload;
 import org.openstack4j.model.common.Payload;
+import org.openstack4j.model.common.Payloads;
 import org.openstack4j.model.common.payloads.FilePayload;
 import org.openstack4j.model.storage.block.options.DownloadOptions;
 import org.openstack4j.model.storage.object.SwiftObject;
@@ -18,6 +27,7 @@ import org.openstack4j.model.storage.object.options.ObjectDeleteOptions;
 import org.openstack4j.model.storage.object.options.ObjectListOptions;
 import org.openstack4j.model.storage.object.options.ObjectLocation;
 import org.openstack4j.model.storage.object.options.ObjectPutOptions;
+import org.openstack4j.model.storage.object.options.SLOSegment;
 import org.openstack4j.openstack.common.DLPayloadEntity;
 import org.openstack4j.openstack.common.functions.HeaderNameValuesToHeaderMap;
 import org.openstack4j.openstack.storage.object.domain.SwiftObjectImpl;
@@ -44,7 +54,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
     @Override
     public List<? extends SwiftObject> list(String containerName) {
         Objects.requireNonNull(containerName);
-        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").execute();
+        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", ObjectLocation.encodePath(containerName))).param("format", "json").execute();
 
         if (objs == null) {
             return Collections.emptyList();
@@ -60,7 +70,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
 
         Objects.requireNonNull(containerName);
 
-        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", containerName)).param("format", "json").params(options.getOptions()).execute();
+        List<SwiftObjectImpl> objs = get(SwiftObjects.class, uri("/%s", ObjectLocation.encodePath(containerName))).param("format", "json").params(options.getOptions()).execute();
         if (objs == null) {
             return Collections.emptyList();
         }
@@ -119,7 +129,7 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
         if (options.getPath() != null && name.indexOf('/') == -1)
             name = options.getPath() + "/" + name;
 
-        HttpResponse resp = put(Void.class, uri("/%s/%s", containerName, name))
+        HttpResponse resp = put(Void.class, uri("/%s/%s", ObjectLocation.encodePath(containerName), ObjectLocation.encodePath(name)))
                 .entity(payload)
                 .headers(options.getOptions())
                 .contentType(options.getContentType())
@@ -129,6 +139,57 @@ public class ObjectStorageObjectServiceImpl extends BaseObjectStorageService imp
             return resp.header(ETAG);
         } finally {
             closeQuietly(resp);
+        }
+    }
+
+    @Override
+    public String createStaticLargeObject(String containerName, String name,
+            List<? extends SLOSegment> segments) {
+        return createStaticLargeObject(containerName, name, segments, ObjectPutOptions.NONE);
+    }
+
+    @Override
+    public String createStaticLargeObject(String containerName, String name,
+            List<? extends SLOSegment> segments, ObjectPutOptions options) {
+        Objects.requireNonNull(containerName);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(segments);
+        Objects.requireNonNull(options);
+
+        Payload<InputStream> payload = Payloads.create(new ByteArrayInputStream(
+                toManifestJson(segments).getBytes(StandardCharsets.UTF_8)));
+
+        // The ?multipart-manifest=put query parameter marks the JSON body as an
+        // SLO manifest; the request's Content-Type becomes the large object's.
+        HttpResponse resp = put(Void.class, uri("/%s/%s", ObjectLocation.encodePath(containerName), ObjectLocation.encodePath(name)))
+                .entity(payload)
+                .headers(options.getOptions())
+                .contentType(options.getContentType())
+                .param("multipart-manifest", "put")
+                .paramLists(options.getQueryParams())
+                .executeWithResponse();
+        try {
+            return resp.header(ETAG);
+        } finally {
+            closeQuietly(resp);
+        }
+    }
+
+    private static String toManifestJson(List<? extends SLOSegment> segments) {
+        List<Map<String, Object>> manifest = new ArrayList<>(segments.size());
+        for (SLOSegment segment : segments) {
+            Map<String, Object> entry = new LinkedHashMap<>();
+            entry.put("path", segment.getPath());
+            if (segment.getEtag() != null) {
+                entry.put("etag", segment.getEtag());
+            }
+            entry.put("size_bytes", segment.getSizeBytes());
+            manifest.add(entry);
+        }
+        try {
+            return ObjectMapperSingleton.getContext(List.class).writer().writeValueAsString(manifest);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Failed to serialize SLO manifest", e);
         }
     }
 
