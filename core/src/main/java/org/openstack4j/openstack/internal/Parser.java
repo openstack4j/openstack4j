@@ -33,6 +33,10 @@ public final class Parser {
 
     static {
         ISO8601_FORMAT.setTimeZone(new SimpleTimeZone(0, "GMT"));
+        // The "GMT" in the RFC822 pattern is a quoted literal, so without an
+        // explicit time zone the time would be parsed in the JVM's default zone
+        // instead of GMT, shifting the result by the local offset.
+        RFC822_FORMAT.setTimeZone(new SimpleTimeZone(0, "GMT"));
     }
 
     /**
