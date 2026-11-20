@@ -1,12 +1,11 @@
 package org.openstack4j.api.image.v2;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -281,18 +280,15 @@ public class ImageV2Tests extends AbstractTest {
     }
 
     public void DownloadImage() throws IOException {
-        respondWith(200);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
-        URI uri = null;
+        Path directory = Files.createTempDirectory("openstack4j-image-");
         try {
-            uri = new URI("file:////test.iso");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+            respondWith(200);
+            ActionResponse download = osv3().imagesV2().download(imageId, directory.toFile());
+            assertEquals(download.getCode(), 400);
+        } finally {
+            Files.delete(directory);
         }
-        File file = new File(uri);
-        ActionResponse download = osv3().imagesV2().download(imageId, file);
-        // Should fail to write to file
-        assertEquals(download.getCode(), 400);
     }
 
     @Override
