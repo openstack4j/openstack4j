@@ -31,23 +31,18 @@ import static org.testng.Assert.assertTrue;
 /**
  * @author emjburns
  */
-@Test(suiteName = "Image/imagesv2", enabled = true)
+@Test(suiteName = "Image/imagesv2")
 public class ImageV2Tests extends AbstractTest {
     private static final String IMAGES_JSON = "/image/v2/images.json";
     private static final String IMAGE_JSON = "/image/v2/image.json";
-    private static final String IMAGE_WIHT_LOCATION_JSON = "/image/v2/image-with-locations.json";
-    private static final String IMAGE_UPDATE_JSON = "/image/v2/image-update.json";
+    private static final String IMAGE_WITH_LOCATION_JSON = "/image/v2/image-with-locations.json";
     private static final String MEMBER_JSON = "/image/v2/member.json";
     private static final String MEMBER_UPDATE_JSON = "/image/v2/member-update.json";
     private static final String MEMBERS_JSON = "/image/v2/members.json";
     private static final String TASK_JSON = "/image/v2/task.json";
     private static final String TASKS_JSON = "/image/v2/tasks.json";
     private static final String TASKS_FILTERED_JSON = "/image/v2/tasks-filtered.json";
-    private static final String BINARY_IMAGE_DATA =
-            "943c 7b3c 3ef4 eac8 e906 b220 1efb f01f\n" +
-                    "00b4 5b1b b4fa 0707 c2ac 378b e722 514d\n" +
-                    "5fb9 e9a0 7f9f fa4c 645d 113c 0524 b380\n" +
-                    "acee 6344 1f45 b58b 1eb2 8776 3e9b 9aef";
+    private static final String BINARY_IMAGE_DATA = "943c 7b3c 3ef4 eac8 e906 b220 1efb f01f\n" + "00b4 5b1b b4fa 0707 c2ac 378b e722 514d\n" + "5fb9 e9a0 7f9f fa4c 645d 113c 0524 b380\n" + "acee 6344 1f45 b58b 1eb2 8776 3e9b 9aef";
 
     public void testListImages() throws IOException {
         respondWith(IMAGES_JSON);
@@ -74,35 +69,13 @@ public class ImageV2Tests extends AbstractTest {
     }
 
     public void testGetImageWithLocations() throws IOException {
-        respondWith(IMAGE_WIHT_LOCATION_JSON);
+        respondWith(IMAGE_WITH_LOCATION_JSON);
         String id = "c73056d6-c583-4d6c-9f70-04f3bfd8dff4";
         Image image = osv3().imagesV2().get(id);
         assertNotNull(image);
         assertNotNull(image.getId());
         assertEquals(image.getId(), id);
-        assertEquals(2, image.getLocations().size());
-    }
-
-    public void testUpdateImageSendsJsonPatch() throws IOException, InterruptedException {
-        ObjectMapper mapper = new ObjectMapper();
-        String originalJson = getResource(IMAGE_JSON);
-        Image image = mapper.readValue(originalJson, GlanceImage.class);
-        Image updated = image.toBuilder().name("renamed-image").build();
-        while (server.takeRequest(0, TimeUnit.SECONDS) != null) {
-            // Other tests in this class do not consume recorded requests.
-        }
-        respondWith(200, originalJson);
-        respondWith(200, mapper.writeValueAsString(updated));
-
-        assertEquals(osv3().imagesV2().update(updated).getName(), "renamed-image");
-        RecordedRequest get = server.takeRequest(1, TimeUnit.SECONDS);
-        RecordedRequest patch = server.takeRequest(1, TimeUnit.SECONDS);
-        assertNotNull(get);
-        assertNotNull(patch);
-        assertEquals(get.getMethod(), "GET");
-        assertEquals(patch.getMethod(), "PATCH");
-        JsonNode expected = mapper.readTree("[{\"op\":\"replace\",\"path\":\"/name\",\"value\":\"renamed-image\"}]");
-        assertEquals(mapper.readTree(patch.getBody().readUtf8()), expected);
+        assertEquals(image.getLocations().size(), 2);
     }
 
     public void testCreateImage() throws IOException {
@@ -146,19 +119,39 @@ public class ImageV2Tests extends AbstractTest {
         assertNull(image.getAdditionalPropertyValue(key3));
     }
 
-    public void testDeleteImage() throws IOException {
+    public void testUpdateImageSendsJsonPatch() throws IOException, InterruptedException {
+        ObjectMapper mapper = new ObjectMapper();
+        String originalJson = getResource("/image/v2/image.json");
+        Image image = mapper.readValue(originalJson, GlanceImage.class);
+        Image updated = image.toBuilder().name("renamed-image").build();
+        respondWith(200, originalJson);
+        respondWith(200, mapper.writeValueAsString(updated));
+
+        assertEquals(osv3().imagesV2().update(updated).getName(), "renamed-image");
+        RecordedRequest get = server.takeRequest(1, TimeUnit.SECONDS);
+        RecordedRequest patch = server.takeRequest(1, TimeUnit.SECONDS);
+        assertNotNull(get);
+        assertNotNull(patch);
+        assertEquals(get.getMethod(), "GET");
+        assertEquals(patch.getMethod(), "PATCH");
+        JsonNode expected = mapper.readTree("[{\"op\":\"replace\",\"path\":\"/name\",\"value\":\"renamed-image\"}]");
+        assertEquals(mapper.readTree(patch.getBody().readUtf8()), expected);
+    }
+
+
+    public void testDeleteImage() {
         respondWith(204);
         ActionResponse delete = osv3().imagesV2().delete("8a2ea42d-06b5-42c2-a54d-97105420f2bb");
         assertTrue(delete.isSuccess());
     }
 
-    public void testDeactivateImage() throws IOException {
+    public void testDeactivateImage() {
         respondWith(204);
         ActionResponse deactivate = osv3().imagesV2().deactivate("8a2ea42d-06b5-42c2-a54d-97105420f2bb");
         assertTrue(deactivate.isSuccess());
     }
 
-    public void testReactivateImage() throws IOException {
+    public void testReactivateImage() {
         respondWith(204);
         ActionResponse reactivate = osv3().imagesV2().reactivate("8a2ea42d-06b5-42c2-a54d-97105420f2bb");
         assertTrue(reactivate.isSuccess());
@@ -208,7 +201,7 @@ public class ImageV2Tests extends AbstractTest {
         assertEquals(member.getStatus(), ms);
     }
 
-    public void testDeleteMember() throws IOException {
+    public void testDeleteMember() {
         respondWith(204);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         String memberId = "66cabdfb14bd48d48402f7464bda7733";
@@ -216,7 +209,7 @@ public class ImageV2Tests extends AbstractTest {
         assertTrue(deleteMember.isSuccess());
     }
 
-    public void testUpdateImageTag() throws IOException {
+    public void testUpdateImageTag() {
         respondWith(204);
         String tag = "tag1";
         String imageId = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
@@ -224,7 +217,7 @@ public class ImageV2Tests extends AbstractTest {
         assertTrue(ur.isSuccess());
     }
 
-    public void testDeleteImageTag() throws IOException {
+    public void testDeleteImageTag() {
         respondWith(204);
         String tag = "tag1";
         String imageId = "8a2ea42d-06b5-42c2-a54d-97105420f2bb";
@@ -256,7 +249,7 @@ public class ImageV2Tests extends AbstractTest {
         respondWith(TASKS_JSON);
         List<? extends Task> list = osv3().imagesV2().tasks().list();
         assertNotNull(list);
-        assertTrue(list.size() == 2);
+        assertEquals(list.size(), 2);
     }
 
     public void listTaskWithParams() throws IOException {
@@ -266,11 +259,11 @@ public class ImageV2Tests extends AbstractTest {
         params.put("id", id);
         List<? extends Task> list = osv3().imagesV2().tasks().list(params);
         assertNotNull(list);
-        assertTrue(list.size() == 1);
+        assertEquals(list.size(), 1);
         assertEquals(list.get(0).getId(), id);
     }
 
-    public void UploadImage() throws IOException {
+    public void uploadImage() {
         respondWith(204);
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         InputStream s = new ByteArrayInputStream(BINARY_IMAGE_DATA.getBytes(StandardCharsets.UTF_8));
@@ -279,7 +272,7 @@ public class ImageV2Tests extends AbstractTest {
         assertTrue(upload.isSuccess());
     }
 
-    public void DownloadImage() throws IOException {
+    public void downloadImage() throws IOException {
         String imageId = "4b434528-032b-4467-946c-b5880ce15c06";
         Path directory = Files.createTempDirectory("openstack4j-image-");
         try {
@@ -291,8 +284,7 @@ public class ImageV2Tests extends AbstractTest {
         }
     }
 
-    @Override
-    protected Service service() {
+    @Override protected Service service() {
         return Service.IMAGE;
     }
 }

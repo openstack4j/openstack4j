@@ -53,7 +53,12 @@ To use another connector, see [the connector usage guide](connectors/README.md).
 
 #### Publishing a release
 
-Run the **Publish to Maven Central** workflow in `spechurkin/openstack4j` from a tag matching the version in `pom.xml`, for example `v4.0.0` for version `4.0.0`.
+Use a tag matching the release version in `pom.xml`, for example `v4.0.0` for version `4.0.0`.
+
+Publishing a GitHub release in `spechurkin/openstack4j` triggers **Publish to GitHub Packages**.
+The workflow uses the built-in `GITHUB_TOKEN` and requires no additional repository secrets.
+
+To publish to Maven Central, run the **Publish to Maven Central** workflow in `spechurkin/openstack4j` from the release tag.
 The Central Portal account must have access to the `io.github.spechurkin` namespace.
 Set the repository secrets `CENTRAL_USERNAME` and `CENTRAL_TOKEN` to the generated Central Portal token credentials.
 Set `GPG_PRIVATE_KEY` and `GPG_PASSPHRASE` for the signing key, and make its public key available to Central.
@@ -113,13 +118,13 @@ result with the authorized OSClient. OSClient allows you to invoke Compute, Iden
 You can use either pass the users name or id and password in the following way
 
 ```java
-.credentials("username", "secret", Identifier.byId("domain id"))
+.credentials("username", "secret", Identifier.byId("domain id"));
 ```
 
 or
 
 ```java
-.credentials("user id", "secret")
+.credentials("user id", "secret");
 ```
 
 to provide credentials in each of the following cases.
@@ -176,11 +181,8 @@ Verifying - Enter Export Password:encrypt
 ```java
 String encrypt = "encrypt";
 KeyStore keyStore = KeyStore.getInstance("PKCS12");
-keyStore.
+keyStore.load(new FileInputStream(new File("client-certificate-keystore.p12")),encrypt.toCharArray());
 
-load(new FileInputStream(new File("client-certificate-keystore.p12")),encrypt.
-
-toCharArray());
 SSLContext sslContext = SSLContexts.custom()
         //ignore server verify
         .loadTrustMaterial(new TrustStrategy() {
@@ -192,9 +194,7 @@ SSLContext sslContext = SSLContexts.custom()
         .loadKeyMaterial(keyStore, encrypt.toCharArray())
         .build();
 Config config = Config.newConfig();
-config.
-
-withSSLContext(sslContext);
+config.withSSLContext(sslContext);
 
 OSClient.OSClientV3 osClient = OSFactory.builderV3()
         .endpoint("https://<fqdn>:5000/v3")
@@ -405,8 +405,8 @@ InputStream is = os.images().getAsStream("imageId");
 
 ```java
 // (URL Payload in this example, File, InputStream are other payloads available)
-Payload<URL> create = Payloads.create(new URL("https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img"))
-Image req = Builders.image().name("Cirros 0.3.0 x64").isPublic(true).containerFormat(ContainerFormat.BARE).diskFormat(DiskFormat.QCOW2).build()
+Payload<URL> create = Payloads.create(new URI("https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img").toURL());
+Image req = Builders.image().name("Cirros 0.3.0 x64").isPublic(true).containerFormat(ContainerFormat.BARE).diskFormat(DiskFormat.QCOW2).build();
 Image image = c.images().create(req, create)
 ```
 

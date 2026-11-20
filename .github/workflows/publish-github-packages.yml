@@ -1,0 +1,38 @@
+name: Publish to GitHub Packages
+
+on:
+    release:
+        types: [published]
+
+jobs:
+    publish:
+        if: github.repository == 'spechurkin/openstack4j'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+        steps:
+            -   uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+                with:
+                    persist-credentials: false
+            -   uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+                with:
+                    distribution: temurin
+                    java-version: '17'
+                    server-id: github
+            -   name: Verify release version
+                run: |
+                    VERSION=$(python3 -c "from xml.etree import ElementTree as ET; print(ET.parse('pom.xml').findtext('{*}version'))")
+                    if [[ "$GITHUB_REF_NAME" != "v$VERSION" || "$VERSION" == *-SNAPSHOT ]]; then
+                        echo "::error::The tag must be v followed by the release version in pom.xml"
+                        exit 1
+                    fi
+            -   name: Verify Maven build
+                run: mvn -B --no-transfer-progress -Prelease verify
+            -   name: Publish to GitHub Packages
+                run: >-
+                    mvn -B --no-transfer-progress -Prelease -DskipTests
+                    "-DaltDeploymentRepository=github::https://maven.pkg.github.com/${GITHUB_REPOSITORY}"
+                    deploy
+                env:
+                    GITHUB_TOKEN: ${{ github.token }}
