@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.LbMethod;
 import org.openstack4j.model.network.ext.LbPoolV2;
 import org.openstack4j.model.network.ext.Protocol;
 import org.openstack4j.model.network.ext.SessionPersistence;
 import org.openstack4j.model.network.ext.builder.LbPoolV2Builder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Lbaas V2 load balancer pool

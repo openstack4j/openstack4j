@@ -3,8 +3,8 @@ package org.openstack4j.openstack.image.domain.functions;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-
 import java.util.function.Function;
+
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.image.ContainerFormat;
 import org.openstack4j.model.image.DiskFormat;

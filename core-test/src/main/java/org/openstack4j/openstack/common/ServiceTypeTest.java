@@ -9,7 +9,7 @@ import org.openstack4j.api.types.ServiceType;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ServiceTypeTest {
 

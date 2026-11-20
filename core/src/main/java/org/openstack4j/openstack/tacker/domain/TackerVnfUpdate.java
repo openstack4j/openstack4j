@@ -2,9 +2,9 @@ package org.openstack4j.openstack.tacker.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.tacker.VnfUpdate;
 import org.openstack4j.model.tacker.builder.VnfUpdateBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An entity used to update Tacker Vnf.

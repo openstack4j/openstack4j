@@ -5,11 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.core.transport.internal.OSBadBooleanDeserializer;
 import org.openstack4j.model.identity.v2.Role;
 import org.openstack4j.model.identity.v2.builder.RoleBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A User based Role - see {@link Role}

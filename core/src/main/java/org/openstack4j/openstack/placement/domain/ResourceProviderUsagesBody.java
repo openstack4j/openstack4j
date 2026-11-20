@@ -1,10 +1,9 @@
 package org.openstack4j.openstack.placement.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.placement.ext.ProviderUsagesBody;
 import org.openstack4j.model.placement.ext.ResourceProviderUsages;
 import org.openstack4j.openstack.placement.domain.ext.ExtResourceProviderUsages;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Resource Provider Usages Body contains Resource provider usages

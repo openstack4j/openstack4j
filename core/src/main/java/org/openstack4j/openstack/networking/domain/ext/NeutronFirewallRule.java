@@ -3,11 +3,11 @@ package org.openstack4j.openstack.networking.domain.ext;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.IPVersionType;
 import org.openstack4j.model.network.ext.FirewallRule;
 import org.openstack4j.model.network.ext.builder.FirewallRuleBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A Neutron Firewall (FwaaS) : Firewall Rule Entity.

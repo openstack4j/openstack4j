@@ -5,12 +5,12 @@ import java.util.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.Instance;
 import org.openstack4j.model.sahara.NodeGroup;
 import org.openstack4j.model.sahara.ServiceConfig;
 import org.openstack4j.model.sahara.builder.NodeGroupBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An OpenStack Sahara

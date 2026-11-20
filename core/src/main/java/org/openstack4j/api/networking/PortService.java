@@ -34,6 +34,7 @@ public interface PortService extends RestService {
      * Lists all Ports authorized by the current Tenant
      * <br/>
      * Supports multiple values, eg: fields=id&fields=name
+     *
      * @param params filtering options
      * @return the list of ports
      */

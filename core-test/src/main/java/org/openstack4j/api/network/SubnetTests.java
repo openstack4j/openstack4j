@@ -6,7 +6,7 @@ import org.openstack4j.model.network.Ipv6RaMode;
 import org.openstack4j.model.network.Subnet;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 /**

@@ -49,12 +49,11 @@ public class MigrationsFilter extends BaseFilter {
         filter("cell_name", cellName);
         return this;
     }
-    
+
     /**
      * Filters the instance UUID.
-     * 
-     * @param instanceUuid
-     *            Instance UUID
+     *
+     * @param instanceUuid Instance UUID
      * @return MigrationsFilter
      */
     public MigrationsFilter instanceUuid(String instanceUuid) {

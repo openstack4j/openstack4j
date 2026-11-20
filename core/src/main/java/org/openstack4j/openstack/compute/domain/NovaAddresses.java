@@ -7,9 +7,9 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.Address;
 import org.openstack4j.model.compute.Addresses;
+import org.openstack4j.util.ToStringHelper;
 
 public class NovaAddresses implements Addresses {
 

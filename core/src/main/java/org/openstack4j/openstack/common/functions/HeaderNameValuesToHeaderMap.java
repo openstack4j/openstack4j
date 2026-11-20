@@ -3,8 +3,8 @@ package org.openstack4j.openstack.common.functions;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.util.function.Function;
+
 import org.openstack4j.model.common.header.HeaderNameValue;
 
 /**

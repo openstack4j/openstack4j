@@ -147,6 +147,21 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
         V3 credentials(String userName, String password, Identifier domain);
 
         /**
+         * Authenticates with an application credential ID and its secret.
+         */
+        default V3 applicationCredential(String id, String secret) {
+            throw new UnsupportedOperationException("Application credentials are not supported by this builder");
+        }
+
+        /**
+         * Authenticates with a named application credential. Specify its owner by user ID, or by
+         * user name and domain.
+         */
+        default V3 applicationCredential(String name, String secret, Identifier user, Identifier userDomain) {
+            throw new UnsupportedOperationException("Application credentials are not supported by this builder");
+        }
+
+        /**
          * DEPRECATED: Please use
          * {@link #credentials(String, String, Identifier)
          * <p>

@@ -102,6 +102,7 @@ public interface BlockDeviceMappingBuilder extends Buildable.Builder<BlockDevice
 
     /**
      * This can be used to specify the type of volume which the compute service will create and attach to the server.
+     *
      * @param volumeType The device volume_type.
      * @return BlockDeviceMappingBuilder
      */

@@ -44,12 +44,23 @@ public abstract class AbstractTest {
     protected MockWebServer server = new MockWebServer();
     private String host;
 
+    private static ObjectMapper getObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(Include.NON_NULL);
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+        mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
+        mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        return mapper;
+    }
+
     /**
      * @return the service the API is using
      */
     protected abstract Service service();
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     protected void startServer() throws UnknownHostException {
 
         InetAddress inetAddress = InetAddress.getByName("localhost");
@@ -130,6 +141,8 @@ public abstract class AbstractTest {
         }
         r.setBody(body);
         r.setResponseCode(statusCode);
+        // Test classes reuse service ports after replacing the server.
+        r.setHeader("Connection", "close");
         server.enqueue(r);
     }
 
@@ -232,17 +245,6 @@ public abstract class AbstractTest {
             }
         }
         return osv3;
-    }
-
-    private static ObjectMapper getObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(Include.NON_NULL);
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
-        mapper.enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
-        mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        return mapper;
     }
 
     protected String getResource(String resource) throws IOException {

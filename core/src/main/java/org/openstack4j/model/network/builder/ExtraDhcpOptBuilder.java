@@ -12,4 +12,8 @@ public interface ExtraDhcpOptBuilder extends Builder<ExtraDhcpOptBuilder, ExtraD
 
     ExtraDhcpOptBuilder optName(String optName);
 
+    default ExtraDhcpOptBuilder ipVersion(Integer ipVersion) {
+        throw new UnsupportedOperationException("DHCP option IP version is not supported by this builder");
+    }
+
 }

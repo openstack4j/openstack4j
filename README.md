@@ -3,11 +3,13 @@ OpenStack4j
 
 [![Build Status](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml/badge.svg)](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j)
-[![javadoc](https://javadoc.io/badge2/com.github.openstack4j.core/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/com.github.openstack4j.core/openstack4j-core)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.spechurkin/openstack4j)](https://central.sonatype.com/artifact/io.github.spechurkin/openstack4j)
+[![javadoc](https://javadoc.io/badge2/io.github.spechurkin/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/io.github.spechurkin/openstack4j-core)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=openstack4j_openstack4j&metric=alert_status)](https://sonarcloud.io/dashboard?id=openstack4j_openstack4j)
 
-OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment.   This includes support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions (LBaaS, FWaaS, Quota-Sets, etc)
+OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment. This includes
+support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions
+(LBaaS, FWaaS, Quota-Sets, etc)
 
 ## Documentation and Support
 
@@ -23,29 +25,23 @@ OpenStack4j is a fluent OpenStack client that allows provisioning and control of
 
 ## Java version support
 
-| ----                                | Java 8 | Java 11 | Java 17 | Java 21 |
-|-------------------------------------|--------|---------|---------|---------|
-| OpenStack4j                         | ?      | 🟢      | 🟢      | 🟢      |
-| HttpURL Connector                   | ?      | 🟢      | *       | *       |
-| HttpComponents-HttpClient Connector | ?      | 🟢      | 🟢      | 🟢      |
-| Jersey2 Connector                   | ?      | 🟢      | *       | *       |
-| OKHttp Connector                    | ?      | 🟢      | 🟢      | 🟢      |
-| RestEasy Connector                  | ?      | 🟢      | 🟢      | 🟢      |
-
-*) Starting with Java 16, it is not possible to use HttpUrlConnection to perform PATH requests.
-Connectors depending on native JDK http stack will not work after Java 16.
+The SDK and its RESTEasy, Apache HttpClient and OkHttp connectors target Java 8.
+Building from source requires JDK 11 or later and Maven 3.6.3 or later.
 
 Maven
 -----
 
 #### Latest Release (Stable)
 
-OpenStack4j version 2.0.0+ is now modular.  One of the benefits to this is the ability to choose the connector that you would like to use in your environment.
+OpenStack4j version 2.0.0+ is now modular. One of the benefits to this is the ability to choose the connector that you
+would like to use in your environment.
 
-**Using OpenStack4j with the default Jersey2 Connector**
+**Using OpenStack4j with the default RESTEasy connector**
+
 ```xml
+
 <dependency>
-    <groupId>com.github.openstack4j.core</groupId>
+    <groupId>io.github.spechurkin</groupId>
     <artifactId>openstack4j</artifactId>
     <version>...</version>
 </dependency>
@@ -53,48 +49,37 @@ OpenStack4j version 2.0.0+ is now modular.  One of the benefits to this is the a
 
 **Using OpenStack4j with one of our connector modules**
 
-To configure OpenStack4j to use one of our supported connectors (Jersey 2, Resteasy, Apache HttpClient, OKHttp) [see the usage guide](https://github.com/openstack4j/openstack4j/tree/master/connectors)
+To use another connector, see [the connector usage guide](connectors/README.md).
 
-#### Current (Master Branch)
+#### Publishing a release
 
-See notes above about connectors (same rules apply) to development branches.
+Use a tag matching the release version in `pom.xml`, for example `v4.0.0` for version `4.0.0`.
 
-```xml
-<dependency>
-    <groupId>com.github.openstack4j.core</groupId>
-    <artifactId>openstack4j</artifactId>
-    <version>...</version>
-</dependency>
-```
+Publishing a GitHub release in `spechurkin/openstack4j` triggers **Publish to GitHub Packages**.
+The workflow uses the built-in `GITHUB_TOKEN` and requires no additional repository secrets.
 
-**A note about referencing Snapshots without Source**
+To publish to Maven Central, run the **Publish to Maven Central** workflow in `spechurkin/openstack4j` from the release tag.
+The Central Portal account must have access to the `io.github.spechurkin` namespace.
+Set the repository secrets `CENTRAL_USERNAME` and `CENTRAL_TOKEN` to the generated Central Portal token credentials.
+Set `GPG_PRIVATE_KEY` and `GPG_PASSPHRASE` for the signing key, and make its public key available to Central.
 
-Snapshots are deploys to sonatype.  We automatically deploy snapshots on every merge into the master branch.  Typically 5 - 10 snapshot releases before an official release.
-
-You will need to add the repository to your POM or Settings file.  Releases (above) are deployed to maven central and this step is not required.
-
-Example POM based repository declaration to grab snapshots:
-```xml
-<repositories>
-    <repository>
-        <id>st-snapshots</id>
-        <name>sonatype-snapshots</name>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-</repositories>
+```sh
+gh workflow run publish-central.yml --repo spechurkin/openstack4j --ref v4.0.0
 ```
 
 Contributing
 ------------
-If you would like to contribute please see our contributing [guidelines](https://github.com/openstack4j/openstack4j/blob/master/CONTRIBUTING.md)
+If you would like to contribute please see our
+contributing [guidelines](https://github.com/openstack4j/openstack4j/blob/master/CONTRIBUTING.md)
 
-The OpenStack4j project is a work of Jeremy Unruh as the original project author and the [community of contributors](https://github.com/openstack4j/openstack4j/graphs/contributors).
+The OpenStack4j project is a work of Jeremy Unruh as the original project author and
+the [community of contributors](https://github.com/openstack4j/openstack4j/graphs/contributors).
 
 Quick Usage Guide
 -----------------
 
-Below are some examples of the API usage.  Please visit [openstack4j.github.io](https://openstack4j.github.io/) for the full manual and getting started guides.
-
+Below are some examples of the API usage. Please visit [openstack4j.github.io](https://openstack4j.github.io/) for the
+full manual and getting started guides.
 
 ### Authenticating
 
@@ -104,34 +89,50 @@ OpenStack4j 3.0.0 introduced some breaking changes.
 The legacy Identity V2 API now uses the class ```OSClientV2``` in place of the class OSClient.
 
 ##### Using Identity V2 authentication:
+
 ```java
 // Identity V2 Authentication Example
 OSClientV2 os = OSFactory.builderV2()
-        .endpoint("http://127.0.0.1:5000/v2.0")
-        .credentials("admin","sample")
-        .tenantName("admin")
-        .authenticate();
+                .endpoint("http://127.0.0.1:5000/v2.0")
+                .credentials("admin", "sample")
+                .tenantName("admin")
+                .authenticate();
 ```
 
 ##### Using Identity V3 authentication
 
+To authenticate with a Keystone application credential, use its ID and secret.
+Keystone supplies the credential's project scope.
+
+```java
+OSClientV3 os = OSFactory.builderV3()
+        .endpoint("https://<fqdn>:5000/v3")
+        .applicationCredential(System.getenv("OS_APPLICATION_CREDENTIAL_ID"),
+                System.getenv("OS_APPLICATION_CREDENTIAL_SECRET"))
+        .authenticate();
+```
+
 Creating and authenticating against OpenStack is extremely simple. Below is an example of authenticating which will
-result with the authorized OSClient.  OSClient allows you to invoke Compute, Identity, Neutron operations fluently.
+result with the authorized OSClient. OSClient allows you to invoke Compute, Identity, Neutron operations fluently.
 
 You can use either pass the users name or id and password in the following way
-```java
-.credentials("username", "secret", Identifier.byId("domain id"))
-```
-or
-```java
-.credentials("user id", "secret")
-```
-to provide credentials in each of the following cases.
 
+```java
+.credentials("username", "secret", Identifier.byId("domain id"));
+```
+
+or
+
+```java
+.credentials("user id", "secret");
+```
+
+to provide credentials in each of the following cases.
 
 Using Identity V3 authentication you basically have 4 options:
 
 (1) authenticate with project-scope
+
 ```java
 OSClientV3 os = OSFactory.builderV3()
         .endpoint("http://<fqdn>:5000/v3")
@@ -139,7 +140,9 @@ OSClientV3 os = OSFactory.builderV3()
         .scopeToProject(Identifier.byId("project id"))
         .authenticate();
 ```
+
 (2) authenticate with domain-scope
+
 ```java
 OSClientV3 os = OSFactory.builderV3()
         .endpoint("http://<fqdn>:5000/v3")
@@ -149,6 +152,7 @@ OSClientV3 os = OSFactory.builderV3()
 ```
 
 (3) authenticate unscoped
+
 ```java
 OSClientV3 os = OSFactory.builderV3()
         .endpoint("http://<fqdn>:5000/v3")
@@ -157,6 +161,7 @@ OSClientV3 os = OSFactory.builderV3()
 ```
 
 (4) authenticate with a token
+
 ```java
 OSClientV3 os = OSFactory.builderV3()
         .endpoint("http://<fqdn>:5000/v3")
@@ -164,28 +169,33 @@ OSClientV3 os = OSFactory.builderV3()
         .scopeToProject(Identifier.byId("project id"))
         .authenticate();
 ```
+
 (5) authenticate using client certificate
+
 ```bash
 openssl pkcs12 -export -out client-certificate-keystore.p12  -inkey key.pem -in cert.pem -certfile ca.pem
 Enter Export Password:encrypt
 Verifying - Enter Export Password:encrypt
 ```
+
 ```java
-String encrypt =  "encrypt";
+String encrypt = "encrypt";
 KeyStore keyStore = KeyStore.getInstance("PKCS12");
-keyStore.load(new FileInputStream(new File("client-certificate-keystore.p12")), encrypt.toCharArray());
+keyStore.load(new FileInputStream(new File("client-certificate-keystore.p12")),encrypt.toCharArray());
+
 SSLContext sslContext = SSLContexts.custom()
         //ignore server verify
         .loadTrustMaterial(new TrustStrategy() {
             @Override
-            public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            public boolean isTrusted(X509Certificate[] chain, String authType) {
                 return true;
             }
         })
-        .loadKeyMaterial(keyStore,encrypt.toCharArray())
+        .loadKeyMaterial(keyStore, encrypt.toCharArray())
         .build();
 Config config = Config.newConfig();
 config.withSSLContext(sslContext);
+
 OSClient.OSClientV3 osClient = OSFactory.builderV3()
         .endpoint("https://<fqdn>:5000/v3")
         .withConfig(config)
@@ -199,20 +209,22 @@ OSClient.OSClientV3 osClient = OSFactory.builderV3()
 After successful v3 - authentication you can invoke any Identity (Keystone) V3 directly from the OSClientV3.
 
 Identity Services fully cover User, Role, Project, Domain, Group,.. service operations (in progess).
-The examples below are only a small fraction of the existing API so please refer to the API documentation for more details.
+The examples below are only a small fraction of the existing API so please refer to the API documentation for more
+details.
 
 **NOTE**: The ```os``` used here is an instance of ```org.openstack4j.api.OSClient.OSClientV3```.
 
 **User operations**
+
 ```java
 // Create a User associated to the new Project
 User user = os.identity().users().create(Builders.user()
-	      .domainId("domain id")
-	      .name("foobar")
-	      .password("secret")
-	      .email("foobar@example.com")
-	      .enabled(true)
-	      .build());
+                .domainId("domain id")
+                .name("foobar")
+                .password("secret")
+                .email("foobar@example.com")
+                .enabled(true)
+                .build());
 //or
 User user = os.identity().users().create("domain id", "foobar", "secret", "foobar@example.org", true);
 
@@ -232,6 +244,7 @@ os.identity().users().addUserToGroup("user id", "group id");
 ```
 
 **Role operations**
+
 ```java
 // Get a list of all roles
 os.identity().roles().list();
@@ -253,20 +266,22 @@ os.identity().project().create(
 
 After successful v2 - authentication you can invoke any Identity (Keystone) V2 directly from the OSClientV2.
 
-Identity V2 Services fully cover Tenants, Users, Roles, Services, Endpoints and Identity Extension listings.  The examples below are only a small fraction of the existing API so please refer to the API documentation for more details.
+Identity V2 Services fully cover Tenants, Users, Roles, Services, Endpoints and Identity Extension listings. The
+examples below are only a small fraction of the existing API so please refer to the API documentation for more details.
 
 **NOTE**: The ```os``` used here is an instance of ```org.openstack4j.api.OSClient.OSClientV2```.
 
 **Create a Tenant, User and associate a Role**
+
 ```java
 // Create a Tenant (could also be created fluent within user create)
 Tenant tenant = os.identity().tenants().create(
-    Builders.identityV2().tenant().name("MyNewTenant").build()
-);
+                Builders.identityV2().tenant().name("MyNewTenant").build()
+        );
 
 // Create a User associated to the new Tenant
 User user = os.identity().users().create(
-    Builders.identityV2().user().name("jack").password("sample").tenant(tenant).build()
+        Builders.identityV2().user().name("jack").password("sample").tenant(tenant).build()
 );
 
 // Add a Tenant based Role to the User
@@ -280,50 +295,56 @@ os.identity().roles().addUserRole(
 
 ### Compute Operations (Nova)
 
-OpenStack4j covers most the major common compute based operations.  With the simplistic API approach you can fully manage Servers, Flavors, Images, Quota-Sets, Diagnostics, Tenant Usage and more.  As the API evolves additional providers and extensions will be covered and documented within the API.
+OpenStack4j covers most the major common compute based operations. With the simplistic API approach you can fully manage
+Servers, Flavors, Images, Quota-Sets, Diagnostics, Tenant Usage and more. As the API evolves additional providers and
+extensions will be covered and documented within the API.
 
 **Create a Flavor and Boot a Server/VM**
+
 ```java
 // Create a Flavor for a special customer base
 Flavor flavor = os.compute().flavors().create(
-    Builders.flavor().name("Gold").vcpus(4).disk(80).ram(2048).build()
-);
+                Builders.flavor().name("Gold").vcpus(4).disk(80).ram(2048).build()
+        );
 
 // Create and Boot a new Server (minimal builder options shown in example)
 Server server = os.compute().servers().boot(
-    Builders.server().name("Ubuntu 2").flavor(flavor.getId()).image("imageId").build()
+        Builders.server().name("Ubuntu 2").flavor(flavor.getId()).image("imageId").build()
 );
 ```
 
 **Create a new Server Snapshot**
+
 ```java
 String imageId = os.compute().servers().createSnapshot(server.getId(), "Clean State Snapshot");
 ```
 
 **Server Diagnostics**
 
-Diagnostics are usage information about the server.  Usage includes CPU, Memory and IO.  Information is
-dependant on the hypervisor used by the OpenStack installation.  As of right now there is no concrete diagnostic
+Diagnostics are usage information about the server. Usage includes CPU, Memory and IO. Information is
+dependant on the hypervisor used by the OpenStack installation. As of right now there is no concrete diagnostic
 specification which is why the information is variable and in map form (key and value)
+
 ```java
 Map<String, ? extends Number> diagnostics = os.compute().servers().diagnostics("serverId");
 ```
 
-
 ### Networks (Neutron)
 
 **Network Operations**
+
 ```java
 // List the networks which the current authorized tenant has access to
 List<? extends Network> networks = os.networking().network().list();
 
 // Create a Network
 Network network = os.networking().network().create(
-    Builders.network().name("MyNewNet").tenantId(tenant.getId()).build()
+        Builders.network().name("MyNewNet").tenantId(tenant.getId()).build()
 );
 ```
 
 **Subnet Operations**
+
 ```java
 // List all subnets which the current authorized tenant has access to
 List<? extends Subnet> subnets = os.networking().subnet().list();
@@ -341,19 +362,21 @@ Subnet subnet = os.networking().subnet().create(Builders.subnet()
 ```
 
 **Router Operations**
+
 ```java
 // List all Routers
 List<? extends Router> = os.networking().router().list();
 
 // Create a Router
 Router router = os.networking().router().create(
-    Builders.router().name("ext_net").adminStateUp(true).externalGateway("networkId").build()
+        Builders.router().name("ext_net").adminStateUp(true).externalGateway("networkId").build()
 );
 ```
 
 ### Image Operations (Glance)
 
 **Basic Operations**
+
 ```java
 // List all Images
 List<? extends Image> images = os.images().list();
@@ -373,20 +396,23 @@ os.images().update(
 ```
 
 **Download the Image Data**
+
 ```java
 InputStream is = os.images().getAsStream("imageId");
 ```
 
-**Create a Image**
+**Create an Image**
+
 ```java
 // (URL Payload in this example, File, InputStream are other payloads available)
-Payload<URL> create = Payloads.create(new URL("https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img"))
-Image req = Builders.image().name("Cirros 0.3.0 x64").isPublic(true).containerFormat(ContainerFormat.BARE).diskFormat(DiskFormat.QCOW2).build()
+Payload<URL> create = Payloads.create(new URI("https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img").toURL());
+Image req = Builders.image().name("Cirros 0.3.0 x64").isPublic(true).containerFormat(ContainerFormat.BARE).diskFormat(DiskFormat.QCOW2).build();
 Image image = c.images().create(req, create)
 ```
 
 License
 -------
+
 ```
 This software is licensed under the Apache 2 license, quoted below.
 

@@ -135,6 +135,7 @@ public interface ServerCreateBuilder extends Buildable.Builder<ServerCreateBuild
 
     /**
      * The name of the compute service host on which the server is to be created.
+     *
      * @param host The name of the compute service host
      * @return this builder
      */
@@ -142,6 +143,7 @@ public interface ServerCreateBuilder extends Buildable.Builder<ServerCreateBuild
 
     /**
      * The hostname of the hypervisor on which the server is to be created.
+     *
      * @param hypervisorHostName The hostname of the hypervisor
      * @return this builder
      */

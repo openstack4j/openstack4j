@@ -10,7 +10,6 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.gbp.ExternalPolicy;
 import org.testng.annotations.Test;
-import org.testng.collections.Lists;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;

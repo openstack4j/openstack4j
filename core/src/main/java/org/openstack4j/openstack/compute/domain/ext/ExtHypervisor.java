@@ -5,10 +5,10 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.core.transport.ObjectMapperSingleton;
 import org.openstack4j.model.compute.ext.Hypervisor;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 import org.slf4j.LoggerFactory;
 
 public class ExtHypervisor implements Hypervisor {

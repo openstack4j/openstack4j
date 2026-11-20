@@ -8,18 +8,17 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.LbMethod;
 import org.openstack4j.model.network.ext.LbPool;
 import org.openstack4j.model.network.ext.Protocol;
 import org.openstack4j.model.network.ext.builder.LbPoolBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A pool of a load balancer
  *
  * @author liujunpeng
- *
  */
 @JsonRootName("pool")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -211,7 +210,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -221,7 +219,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -231,7 +228,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -241,7 +237,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -251,7 +246,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -261,7 +255,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -271,7 +264,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override
@@ -281,7 +273,6 @@ public class NeutronLbPool implements LbPool {
         }
 
         /**
-         *
          * {@inheritDoc}
          */
         @Override

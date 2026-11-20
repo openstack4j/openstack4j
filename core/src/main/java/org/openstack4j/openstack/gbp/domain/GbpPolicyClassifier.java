@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.Direction;
 import org.openstack4j.model.gbp.PolicyClassifier;
 import org.openstack4j.model.gbp.Protocol;
 import org.openstack4j.model.gbp.builder.PolicyClassifierBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Model implementation for Policy Classifier

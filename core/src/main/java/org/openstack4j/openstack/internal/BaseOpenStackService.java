@@ -1,7 +1,6 @@
 package org.openstack4j.openstack.internal;
 
 import java.util.*;
-
 import java.util.function.Function;
 
 import org.openstack4j.api.client.CloudProvider;
@@ -93,6 +92,10 @@ public class BaseOpenStackService {
         if (params.length == 0)
             return path;
         return String.format(path, params);
+    }
+
+    protected String pathSegment(String identifier) {
+        return PathSegment.encode(identifier);
     }
 
     private <R> Invocation<R> builder(Class<R> returnType, String[] path, HttpMethod method) {

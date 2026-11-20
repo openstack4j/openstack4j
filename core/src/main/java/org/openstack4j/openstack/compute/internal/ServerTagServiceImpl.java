@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.compute.internal;
 
+import java.util.Objects;
+
 import org.openstack4j.api.compute.ServerTagService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.openstack.compute.domain.NovaServerTag;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Objects;
 
 public class ServerTagServiceImpl extends BaseComputeServices implements ServerTagService {
 

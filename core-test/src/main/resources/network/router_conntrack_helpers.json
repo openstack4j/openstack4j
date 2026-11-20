@@ -1,0 +1,16 @@
+{
+    "conntrack_helpers": [
+        {
+            "protocol": "udp",
+            "id": "2fc1eebb-e0fa-4c40-868a-7ace444717e1",
+            "helper": "tftp",
+            "port": 6969
+        },
+        {
+            "protocol": "tcp",
+            "id": "ee7c890f-44fa-443d-9326-8574c1c3e5e1",
+            "helper": "ftp",
+            "port": 21
+        }
+    ]
+}

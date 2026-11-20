@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.telemetry.Resource;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A single measurement for resource.

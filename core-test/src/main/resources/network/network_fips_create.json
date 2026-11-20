@@ -1,0 +1,20 @@
+{
+    "floatingip": {
+        "status": "DOWN",
+        "description": "",
+        "tags": [],
+        "id": "dccdeb31-6654-4b55-bc0e-007776d7731e",
+        "router_id": null,
+        "tenant_id": "2f0b5d3387f034dfb042c00c007afb4c",
+        "project_id": "2f0b5d3387f034dfb042c00c007afb4c",
+        "floating_network_id": "1188f271-f3ab-491a-a998-7d7fc9e65e01",
+        "subnet_id": null,
+        "floating_ip_address": "10.19.15.12",
+        "fixed_ip_address": null,
+        "port_id": null,
+        "qos_policy_id": null,
+        "created_at": 1687168124000,
+        "updated_at": 1687168124000,
+        "revision_number": 0
+    }
+}

@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.common;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.BasicResource;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Basic Id/Name based Entity Model implementation

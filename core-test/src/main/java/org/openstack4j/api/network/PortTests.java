@@ -1,8 +1,5 @@
 package org.openstack4j.api.network;
 
-import static org.junit.Assert.assertNotNull;
-import static org.testng.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +9,9 @@ import org.openstack4j.api.Builders;
 import org.openstack4j.model.network.AllowedAddressPair;
 import org.openstack4j.model.network.Port;
 import org.testng.annotations.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Rizwan Qamar
@@ -44,10 +44,10 @@ public class PortTests extends AbstractTest {
         assertEquals(port.getNetworkId(), NETWORK_ID);
         assertEquals(port.getCreatedTime(), DATE);
         assertEquals(port.getUpdatedTime(), DATE);
-        
+
         AllowedAddressPair allowedAddressPair = port.getAllowedAddressPairs().iterator().next();
         assertNotNull(allowedAddressPair.getIpAddress());
-        assertNotNull(allowedAddressPair.getMacAddress());        
+        assertNotNull(allowedAddressPair.getMacAddress());
     }
 
     private Port getPort() {

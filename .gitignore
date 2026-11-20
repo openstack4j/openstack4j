@@ -1,7 +1,6 @@
 .*
 release.properties
 javadoc
-!.travis.yml
 !.gitignore
 !.github
 !.editorconfig
@@ -10,8 +9,11 @@ javadoc
 .orig
 .settings/**/*
 target/**/*
-*.class
 target
+**/target
+.idea/
+.openidea/
+*.class
 Thumbs.db
 test-output
 pom-shade.xml

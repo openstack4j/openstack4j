@@ -59,7 +59,7 @@ public interface NetQuota extends ModelEntity, Buildable<NetQuotaBuilder> {
      * @return number of security groups rules
      */
     int getSecurityGroupRule();
-    
+
     /**
      * The number of subnet pools allowed for each project. A value of -1 means no limit
      *

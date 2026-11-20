@@ -1,8 +1,8 @@
 package org.openstack4j.openstack.networking.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.IP;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A Fixed IP Address

@@ -1,5 +1,7 @@
 package org.openstack4j.model.manila;
 
+import java.util.Locale;
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -63,16 +65,20 @@ public interface ShareInstance extends ModelEntity {
     String getId();
 
     enum Status {
-        AVAILABLE, ERROR, CREATING, DELETING, ERROR_DELETING;
+        AVAILABLE, ERROR, CREATING, DELETING, ERROR_DELETING, UNRECOGNIZED;
 
         @JsonCreator
         public static Status value(String v) {
-            return valueOf(v.toUpperCase());
+            try {
+                return valueOf(v.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException e) {
+                return UNRECOGNIZED;
+            }
         }
 
         @JsonValue
         public String value() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.ROOT);
         }
     }
 }

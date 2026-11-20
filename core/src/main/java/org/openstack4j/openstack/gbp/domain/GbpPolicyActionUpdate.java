@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.gbp.domain;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.PolicyActionUpdate;
 import org.openstack4j.model.gbp.builder.PolicyActionUpdateBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Model implementation for Policy Action

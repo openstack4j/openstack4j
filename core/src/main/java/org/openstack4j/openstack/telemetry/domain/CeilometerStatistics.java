@@ -4,9 +4,9 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.telemetry.Statistics;
 import org.openstack4j.openstack.common.TelemetryDateDeserializer;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Computed Statistics for a Query against a Meter

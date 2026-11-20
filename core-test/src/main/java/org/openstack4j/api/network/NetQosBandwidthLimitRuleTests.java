@@ -1,13 +1,13 @@
 package org.openstack4j.api.network;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.NetQosPolicyBandwidthLimitRule;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicyBandwidthLimitRule;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -28,7 +28,7 @@ public class NetQosBandwidthLimitRuleTests extends AbstractTest {
         respondWith(QOS_POLICY_BANDWIDTH_LIMIT_RULES_JSON);
         List<? extends NetQosPolicyBandwidthLimitRule> qosPolicyBandwidthLimitRules = osv3().networking().netQosPolicyBandwidthLimitRule().list("policyId");
         assertEquals(1, qosPolicyBandwidthLimitRules.size());
-        assertEquals(10000, (int)qosPolicyBandwidthLimitRules.get(0).getMaxKbps());
+        assertEquals(10000, (int) qosPolicyBandwidthLimitRules.get(0).getMaxKbps());
     }
 
     public void get() throws IOException {

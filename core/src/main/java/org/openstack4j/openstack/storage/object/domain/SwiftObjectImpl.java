@@ -6,12 +6,12 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.storage.ObjectStorageObjectService;
 import org.openstack4j.model.common.DLPayload;
 import org.openstack4j.model.storage.block.options.DownloadOptions;
 import org.openstack4j.model.storage.object.SwiftObject;
+import org.openstack4j.util.ToStringHelper;
 
 import static org.openstack4j.core.transport.ClientConstants.CONTENT_TYPE_DIRECTORY;
 

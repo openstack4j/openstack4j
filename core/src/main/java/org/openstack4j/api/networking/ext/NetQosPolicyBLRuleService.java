@@ -1,10 +1,10 @@
 package org.openstack4j.api.networking.ext;
 
+import java.util.List;
+
 import org.openstack4j.common.RestService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.NetQosPolicyBandwidthLimitRule;
-
-import java.util.List;
 
 /**
  * Networking (Neutron) Qos Policy Bandwidth Limit Rule Extension API

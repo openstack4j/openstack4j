@@ -1,10 +1,9 @@
 package org.openstack4j.openstack.placement.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.model.placement.ext.ProviderInventoriesBody;
 import org.openstack4j.model.placement.ext.ResourceProviderInventories;
 import org.openstack4j.openstack.placement.domain.ext.ExtResourceProviderInventories;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Resource Provider Inventories Body contains Resource provider inventories

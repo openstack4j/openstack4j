@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.networking.domain;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.HostRoute;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A Network Host based Routing Entry.

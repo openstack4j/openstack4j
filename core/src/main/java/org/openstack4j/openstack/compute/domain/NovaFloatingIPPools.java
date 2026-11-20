@@ -2,11 +2,10 @@ package org.openstack4j.openstack.compute.domain;
 
 import java.util.Collections;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.openstack.common.ListResult;
 
 /**

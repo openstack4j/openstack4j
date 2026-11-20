@@ -1,8 +1,8 @@
 package org.openstack4j.openstack.common;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.Link;
 import org.openstack4j.model.common.builder.LinkBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A Link holds information about a URL, Relative URL and the type of the link

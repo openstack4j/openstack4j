@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.storage.object.functions;
 
 import java.util.function.Function;
+
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.storage.object.SwiftObject;
 import org.openstack4j.model.storage.object.options.ObjectLocation;

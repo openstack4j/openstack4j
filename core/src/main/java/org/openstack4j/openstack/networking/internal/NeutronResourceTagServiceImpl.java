@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.networking.internal;
 
+import java.util.Objects;
+
 import org.openstack4j.api.networking.NeutronResourceTagService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.Resource;
 import org.openstack4j.openstack.networking.domain.NeutronResourceTag;
-
-import java.util.Objects;
 
 /**
  * Allows users to set (Neutron) Resource tags on their resources.

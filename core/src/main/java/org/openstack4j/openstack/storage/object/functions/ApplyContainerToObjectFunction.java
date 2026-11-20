@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.storage.object.functions;
 
 import java.util.function.Function;
+
 import org.openstack4j.openstack.storage.object.domain.SwiftObjectImpl;
 
 /**

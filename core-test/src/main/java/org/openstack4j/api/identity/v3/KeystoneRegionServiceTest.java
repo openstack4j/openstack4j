@@ -4,7 +4,7 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.identity.v3.Region;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests the Identity/Keystone API version 3 RegionService

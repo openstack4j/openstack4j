@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.networking.domain;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.Pool;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An IP Address Pool which has a starting network and a ending network which becomes a pool of addresses

@@ -2,8 +2,8 @@ package org.openstack4j.openstack.storage.object.domain;
 
 import java.util.Map;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.storage.object.SwiftAccount;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An Account representation for OpenStack Object Storage (Swift)

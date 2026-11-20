@@ -3,9 +3,9 @@ package org.openstack4j.openstack.networking.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.NetworkUpdate;
 import org.openstack4j.model.network.builder.NetworkUpdateBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An entity used to update a network
@@ -57,7 +57,6 @@ public class NeutronNetworkUpdate implements NetworkUpdate {
     public boolean isDefault() {
         return isDefault == null ? false: isDefault;
     }
-
 
 
     @Override

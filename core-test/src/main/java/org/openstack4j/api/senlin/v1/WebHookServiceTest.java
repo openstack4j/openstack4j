@@ -7,7 +7,7 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.senlin.ActionID;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test cases for webhook on Senlin

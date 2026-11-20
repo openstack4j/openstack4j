@@ -14,8 +14,8 @@
             ],
             "allowed_address_pairs": [
                 {
-                       "ip_address": "192.168.0.100",
-                       "mac_address": "00:60:2f:38:62:8d"
+                    "ip_address": "192.168.0.100",
+                    "mac_address": "00:60:2f:38:62:8d"
                 }
             ],
             "id": "94225baa-9d3f-4b93-bf12-b41e7ce49cdb",
@@ -45,8 +45,8 @@
             ],
             "allowed_address_pairs": [
                 {
-                       "ip_address": "192.168.0.101",
-                       "mac_address": "fa:16:3e:f4:73:df"
+                    "ip_address": "192.168.0.101",
+                    "mac_address": "fa:16:3e:f4:73:df"
                 }
             ],
             "id": "235b09e0-63c4-47f1-b221-66ba54c21760",

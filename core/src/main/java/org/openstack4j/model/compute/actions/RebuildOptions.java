@@ -3,9 +3,8 @@ package org.openstack4j.model.compute.actions;
 import java.util.List;
 import java.util.Map;
 
-import org.openstack4j.model.compute.Personality;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.openstack4j.model.compute.Personality;
 
 /**
  * Options used to invoke the Rebuild Action on a Server
@@ -45,17 +44,17 @@ public final class RebuildOptions extends BaseActionOptions {
         add(Option.NAME, name);
         return this;
     }
-    
+
     public RebuildOptions userData(String userData) {
         add(Option.USER_DATA, userData);
         return this;
     }
-    
+
     public RebuildOptions personality(List<Personality> personality) {
         add(Option.PERSONALITY, personality);
         return this;
     }
-    
+
     public RebuildOptions metadata(Map<String, String> metadata) {
         add(Option.METADATA, metadata);
         return this;
@@ -83,12 +82,12 @@ public final class RebuildOptions extends BaseActionOptions {
     public String getImageRef() {
         return get(Option.IMAGE);
     }
-    
+
     @JsonProperty("user_data")
     public String getUserData() {
         return get(Option.USER_DATA);
     }
-    
+
     public List<Personality> getPersonality() {
         return get(Option.PERSONALITY);
     }
@@ -96,7 +95,7 @@ public final class RebuildOptions extends BaseActionOptions {
     public Map<String, String> getMetadata() {
         return get(Option.METADATA);
     }
-    
+
     private enum Option implements OptionEnum {
         IMAGE("imageRef"),
         NAME("name"),
@@ -104,7 +103,7 @@ public final class RebuildOptions extends BaseActionOptions {
         USER_DATA("user_data"),
         PERSONALITY("personality"),
         METADATA("metadata");
-    	
+
         private final String param;
 
         private Option(String param) {

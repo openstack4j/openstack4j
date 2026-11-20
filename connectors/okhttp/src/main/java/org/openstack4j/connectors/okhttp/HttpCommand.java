@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.*;
-import okhttp3.internal.Util;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.openstack4j.core.transport.*;
 import org.openstack4j.core.transport.internal.HttpLoggingFilter;
@@ -108,7 +107,7 @@ public final class HttpCommand<R> {
         //Added to address https://github.com/square/okhttp/issues/751
         //Set body as empty byte array if request is POST or PUT and body is sent as null
         if ((request.getMethod() == HttpMethod.POST || request.getMethod() == HttpMethod.PUT) && body == null) {
-            body = RequestBody.create(null, Util.EMPTY_BYTE_ARRAY);
+            body = RequestBody.create(new byte[0], null);
         }
         clientReq.method(request.getMethod().name(), body);
         Call call = client.newCall(clientReq.build());

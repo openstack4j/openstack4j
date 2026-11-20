@@ -6,7 +6,7 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.network.AvailabilityZone;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests the Neutron -> availability_zones API against the mock webserver and spec based

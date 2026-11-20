@@ -76,7 +76,7 @@ public interface Migration extends ModelEntity {
         MIGRATING,
         ERROR,
         DONE,
-        FINISHED, 
+        FINISHED,
         CONFIRMED;
 
         @JsonCreator

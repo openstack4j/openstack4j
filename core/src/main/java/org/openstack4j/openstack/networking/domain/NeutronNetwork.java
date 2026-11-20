@@ -7,7 +7,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.api.Apis;
 import org.openstack4j.model.network.Network;
 import org.openstack4j.model.network.NetworkType;
@@ -15,6 +14,7 @@ import org.openstack4j.model.network.State;
 import org.openstack4j.model.network.Subnet;
 import org.openstack4j.model.network.builder.NetworkBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 
 /**
@@ -229,7 +229,7 @@ public class NeutronNetwork implements Network {
     public List<String> getAvailabilityZones() {
         return availabilityZones;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -237,7 +237,7 @@ public class NeutronNetwork implements Network {
     public Boolean isPortSecurityEnabled() {
         return portSecurityEnabled;
     }
-    
+
     /**
      * {@inheritDoc}
      */

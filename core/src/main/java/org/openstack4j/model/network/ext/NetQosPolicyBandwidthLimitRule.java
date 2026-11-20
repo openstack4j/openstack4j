@@ -1,13 +1,14 @@
 package org.openstack4j.model.network.ext;
 
+import javax.annotation.Nullable;
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.common.IdEntity;
 import org.openstack4j.model.network.ext.builder.NetQosPolicyBandwidthLimitRuleBuilder;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicyRuleTag;
-
-import javax.annotation.Nullable;
-import java.util.Objects;
 
 /**
  * Network qos policy band-width-limit that are bound to a Tenant
@@ -16,6 +17,10 @@ import java.util.Objects;
  * @author slankka
  */
 public interface NetQosPolicyBandwidthLimitRule extends IdEntity, Buildable<NetQosPolicyBandwidthLimitRuleBuilder> {
+
+    @Override
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    String getId();
 
     /**
      * The maximum KBPS (kilobits per second) value.
@@ -55,9 +60,9 @@ public interface NetQosPolicyBandwidthLimitRule extends IdEntity, Buildable<NetQ
         egress;
 
         /**
-         * @see <a href="https://www.baeldung.com/jackson-serialize-enums">jackson-serialize-enums</a>
          * @param direction nullable direction
          * @return Direction
+         * @see <a href="https://www.baeldung.com/jackson-serialize-enums">jackson-serialize-enums</a>
          */
         @JsonCreator
         public static Direction forValues(@Nullable String direction) {

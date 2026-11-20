@@ -8,7 +8,7 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.storage.block.VolumeType;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 @Test(suiteName = "Block Storage Tests")

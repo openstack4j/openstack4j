@@ -1,7 +1,7 @@
 package org.openstack4j.openstack.compute.domain;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.AbsoluteLimit;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Absolute limits are specified as name/value pairs. The name of the absolute limit uniquely identifies the limit within a deployment.

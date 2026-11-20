@@ -3,16 +3,16 @@ package org.openstack4j.openstack.identity.v3.domain;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
-import java.util.Objects;
 import org.openstack4j.api.types.Facing;
 import org.openstack4j.model.identity.v3.Endpoint;
 import org.openstack4j.model.identity.v3.builder.EndpointBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Keystone V3 endpoint model class

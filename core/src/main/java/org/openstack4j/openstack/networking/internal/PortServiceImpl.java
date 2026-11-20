@@ -11,6 +11,7 @@ import org.openstack4j.model.network.options.PortListOptions;
 import org.openstack4j.openstack.networking.domain.NeutronPort;
 import org.openstack4j.openstack.networking.domain.NeutronPort.Ports;
 import org.openstack4j.openstack.networking.domain.NeutronPortCreate;
+import org.openstack4j.openstack.networking.domain.NeutronPortUpdate;
 
 /**
  * OpenStack (Neutron) Port based Operations Implementation
@@ -91,15 +92,7 @@ public class PortServiceImpl extends BaseNetworkingServices implements PortServi
     public Port update(Port port) {
         Objects.requireNonNull(port);
         Objects.requireNonNull(port.getId());
-        Port p = port.toBuilder().networkId(null).state(null).tenantId(null).macAddress(null)
-                .vifType(null).vifDetails(null)
-                .build();
-        return put(NeutronPort.class, uri("/ports/%s", getAndClearIdentifier(p))).entity(p).execute();
-    }
-
-    private String getAndClearIdentifier(Port port) {
-        String portId = port.getId();
-        port.setId(null);
-        return portId;
+        return put(NeutronPort.class, uri("/ports/%s", port.getId()))
+                .entity(new NeutronPortUpdate(port)).execute();
     }
 }

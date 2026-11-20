@@ -5,10 +5,10 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.status.HealthMonitorV2Status;
 import org.openstack4j.model.octavia.status.LbPoolV2Status;
 import org.openstack4j.model.octavia.status.MemberV2Status;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An object to hold status of lbaas v2 loadbalancer pool

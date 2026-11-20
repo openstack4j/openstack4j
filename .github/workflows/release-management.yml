@@ -2,15 +2,18 @@ name: Release Management
 
 on:
     push:
-        # branches to consider in the event; optional, defaults to all
         branches:
-            - master
+            - main
 
 jobs:
     update_draft_release:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: read
         steps:
-            # Drafts your next Release notes as Pull Requests are merged into "master"
-            -   uses: toolmantim/release-drafter@v5.2.0
+            -   uses: release-drafter/release-drafter@6a93d829887aa2e0748befe2e808c66c0ec6e4c7 # v6
+                with:
+                    disable-autolabeler: true
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

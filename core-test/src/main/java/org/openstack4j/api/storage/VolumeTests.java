@@ -12,11 +12,6 @@ import org.openstack4j.model.storage.block.VolumeAttachment;
 import org.openstack4j.model.storage.block.builder.VolumeBuilder;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
-import static org.openstack4j.model.storage.block.Volume.Status.ERROR;
-import static org.openstack4j.model.storage.block.Volume.Status.IN_USE;
-import static org.openstack4j.model.storage.block.Volume.Status.UNRECOGNIZED;
-import static org.openstack4j.model.storage.block.Volume.Status.fromValue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;

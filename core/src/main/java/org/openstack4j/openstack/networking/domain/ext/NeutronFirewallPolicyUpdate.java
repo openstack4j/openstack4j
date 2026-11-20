@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.FirewallPolicyUpdate;
 import org.openstack4j.model.network.ext.builder.FirewallPolicyUpdateBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An entity used to update Neutron Firewall Policy (FwaaS).

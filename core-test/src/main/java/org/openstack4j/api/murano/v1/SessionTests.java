@@ -7,9 +7,9 @@ import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.murano.v1.domain.AppCatalogSession;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * @author nmakhotkin

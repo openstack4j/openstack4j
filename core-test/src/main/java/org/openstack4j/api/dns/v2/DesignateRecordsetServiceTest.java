@@ -9,7 +9,7 @@ import org.openstack4j.model.dns.v2.Recordset;
 import org.openstack4j.model.dns.v2.Status;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
 /**

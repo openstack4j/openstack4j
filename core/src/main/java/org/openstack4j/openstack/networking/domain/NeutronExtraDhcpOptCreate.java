@@ -15,6 +15,8 @@ public class NeutronExtraDhcpOptCreate implements ExtraDhcpOptCreate {
     public String opt_value;
     @JsonProperty("opt_name")
     public String opt_name;
+    @JsonProperty("ip_version")
+    private Integer ipVersion;
 
     public static NeutronExtraDhcpOptBuilder builder() {
         return new NeutronExtraDhcpOptBuilder(new NeutronExtraDhcpOptCreate());
@@ -28,6 +30,11 @@ public class NeutronExtraDhcpOptCreate implements ExtraDhcpOptCreate {
     @Override
     public String getOptName() {
         return opt_name;
+    }
+
+    @Override
+    public Integer getIpVersion() {
+        return ipVersion;
     }
 
     @Override
@@ -52,6 +59,15 @@ public class NeutronExtraDhcpOptCreate implements ExtraDhcpOptCreate {
         @Override
         public ExtraDhcpOptBuilder optName(String optName) {
             create.opt_name = optName;
+            return this;
+        }
+
+        @Override
+        public ExtraDhcpOptBuilder ipVersion(Integer ipVersion) {
+            if (ipVersion != null && ipVersion != 4 && ipVersion != 6) {
+                throw new IllegalArgumentException("DHCP option IP version must be 4 or 6");
+            }
+            create.ipVersion = ipVersion;
             return this;
         }
 

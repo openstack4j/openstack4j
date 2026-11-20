@@ -3,10 +3,10 @@ package org.openstack4j.openstack.octavia.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.SessionPersistence;
 import org.openstack4j.model.octavia.SessionPersistenceType;
 import org.openstack4j.model.octavia.builder.SessionPersistenceBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 @JsonRootName("session_persistence")
 @JsonIgnoreProperties(ignoreUnknown = true)

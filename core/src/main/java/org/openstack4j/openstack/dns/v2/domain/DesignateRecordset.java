@@ -2,16 +2,16 @@ package org.openstack4j.openstack.dns.v2.domain;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
-import java.util.Objects;
 import org.openstack4j.model.dns.v2.Action;
 import org.openstack4j.model.dns.v2.Recordset;
 import org.openstack4j.model.dns.v2.Status;
 import org.openstack4j.model.dns.v2.builder.RecordsetBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * zone model class for designate/v2 zone

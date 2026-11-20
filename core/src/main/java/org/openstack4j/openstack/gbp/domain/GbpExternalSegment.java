@@ -5,11 +5,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.gbp.ExternalRoutes;
 import org.openstack4j.model.gbp.ExternalSegment;
 import org.openstack4j.model.gbp.builder.ExternalSegmentBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Model implementation for External Segments

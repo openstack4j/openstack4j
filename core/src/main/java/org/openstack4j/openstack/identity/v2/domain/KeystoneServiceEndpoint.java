@@ -4,16 +4,16 @@ package org.openstack4j.openstack.identity.v2.domain;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
-import java.util.Objects;
 import org.openstack4j.model.identity.v2.Service;
 import org.openstack4j.model.identity.v2.ServiceEndpoint;
 import org.openstack4j.model.identity.v2.builder.ServiceEndpointBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 import org.slf4j.LoggerFactory;
 
 

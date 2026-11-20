@@ -70,7 +70,6 @@ public interface NetQuotaBuilder extends Builder<NetQuotaBuilder, NetQuota> {
     /**
      * See {@link NetQuota#getRbacPolicy()} for details
      *
-     * @param rbacPolicy
      * @return NetQuotaBuilder
      */
     NetQuotaBuilder rbacPolicy(int rbacPolicy);
@@ -78,7 +77,6 @@ public interface NetQuotaBuilder extends Builder<NetQuotaBuilder, NetQuota> {
     /**
      * See {@link NetQuota#getSubnetPool()} for details
      *
-     * @param subnetPool
      * @return NetQuotaBuilder
      */
     NetQuotaBuilder subnetpool(int subnetpool);

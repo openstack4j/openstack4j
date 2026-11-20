@@ -13,7 +13,6 @@ import org.openstack4j.model.storage.block.VolumeBackupCreate;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.openstack4j.model.storage.block.VolumeBackup.Status.CREATING;
 import static org.openstack4j.model.storage.block.VolumeBackup.Status.ERROR_RESTORING;

@@ -2,8 +2,8 @@ package org.openstack4j.openstack.octavia.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.octavia.LoadBalancerV2Stats;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * The statistics about an lbaas v2 loadbalancer

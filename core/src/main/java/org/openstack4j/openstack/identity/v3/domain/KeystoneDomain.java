@@ -3,15 +3,15 @@ package org.openstack4j.openstack.identity.v3.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
-import java.util.Objects;
 import org.openstack4j.model.identity.v3.Domain;
 import org.openstack4j.model.identity.v3.builder.DomainBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 @JsonRootName("domain")
 @JsonIgnoreProperties(ignoreUnknown = true)

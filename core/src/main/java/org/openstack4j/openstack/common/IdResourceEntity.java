@@ -1,8 +1,8 @@
 package org.openstack4j.openstack.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.IdEntity;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Basic Id based Entity Model implementation

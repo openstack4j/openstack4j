@@ -20,7 +20,7 @@ public class TemplateUtils {
     public static String readToString(URL url) throws IOException {
         try (Scanner scanner = new Scanner(url.openStream(), StandardCharsets.UTF_8.toString())) {
             scanner.useDelimiter("\\A");
-            return scanner.hasNext() ? scanner.next() : "";
+            return scanner.hasNext() ? scanner.next(): "";
         }
     }
 

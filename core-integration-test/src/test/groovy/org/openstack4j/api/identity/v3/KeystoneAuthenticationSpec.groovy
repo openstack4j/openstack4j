@@ -36,17 +36,17 @@ class KeystoneAuthenticationSpec extends AbstractSpec {
     // skipTest will evaluate to true if not all mandatory attributes are set causing the project to build without running the tests.
     static {
         if (
-        USER_ID == null ||
-                USER_NAME == null ||
-                USER_DOMAIN_ID == null ||
-                AUTH_URL == null ||
-                PASSWORD == null ||
-                PROJECT_ID == null ||
-                PROJECT_NAME == null ||
-                PROJECT_DOMAIN_ID == null ||
-                DOMAIN_ID == null ||
-                DOMAIN_NAME == null ||
-                REGION_ONE == null) {
+                USER_ID == null ||
+                        USER_NAME == null ||
+                        USER_DOMAIN_ID == null ||
+                        AUTH_URL == null ||
+                        PASSWORD == null ||
+                        PROJECT_ID == null ||
+                        PROJECT_NAME == null ||
+                        PROJECT_DOMAIN_ID == null ||
+                        DOMAIN_ID == null ||
+                        DOMAIN_NAME == null ||
+                        REGION_ONE == null) {
 
             skipTest = true
         } else {

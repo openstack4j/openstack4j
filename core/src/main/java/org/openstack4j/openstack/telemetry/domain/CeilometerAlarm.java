@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.builder.BasicResourceBuilder;
 import org.openstack4j.model.telemetry.Alarm;
 import org.openstack4j.model.telemetry.builder.AlarmBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * An Alarm is triggered when a specificied rule is satisfied

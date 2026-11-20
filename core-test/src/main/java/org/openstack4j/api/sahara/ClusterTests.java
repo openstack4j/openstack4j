@@ -8,7 +8,7 @@ import org.openstack4j.model.sahara.NodeGroup;
 import org.openstack4j.model.sahara.ServiceConfig;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 /**

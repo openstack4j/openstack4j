@@ -1,11 +1,11 @@
 package org.openstack4j.openstack.heat.internal;
 
+import java.util.Objects;
+
 import org.openstack4j.api.heat.SoftwareConfigService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.heat.SoftwareConfig;
 import org.openstack4j.openstack.heat.domain.HeatSoftwareConfig;
-
-import java.util.Objects;
 
 /**
  * Software Configuration Service for HEAT Orchestration

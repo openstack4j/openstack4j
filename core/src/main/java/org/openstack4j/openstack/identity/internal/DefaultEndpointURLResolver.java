@@ -3,7 +3,6 @@ package org.openstack4j.openstack.identity.internal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
-import java.util.Optional;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentHashMap;
 

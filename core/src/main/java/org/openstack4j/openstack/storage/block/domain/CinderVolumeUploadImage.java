@@ -4,11 +4,11 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.image.ContainerFormat;
 import org.openstack4j.model.image.DiskFormat;
 import org.openstack4j.model.storage.block.Volume.Status;
 import org.openstack4j.model.storage.block.VolumeUploadImage;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Represents an action state when uploading a volume to the image service

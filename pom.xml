@@ -1,17 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.openstack4j.core</groupId>
+    <groupId>io.github.spechurkin</groupId>
     <artifactId>openstack4j-parent</artifactId>
-    <version>3.13-SNAPSHOT</version>
+    <version>4.0.0</version>
     <name>OpenStack4j Parent</name>
     <description>OpenStack Java API</description>
-    <url>https://github.com/openstack4j/openstack4j/</url>
+    <url>https://github.com/spechurkin/openstack4j/</url>
     <packaging>pom</packaging>
     <properties>
-        <release.version>2.0.0</release.version>
+        <release.version>4.0.0</release.version>
         <aries.spifly.version>1.0.0</aries.spifly.version>
-        <slf4j.version>1.7.21</slf4j.version>
-        <jackson.version>2.14.2</jackson.version>
+        <slf4j.version>2.0.20</slf4j.version>
+        <jackson.version>2.23.0</jackson.version>
+        <guava.version>33.8.0-jre</guava.version>
+        <jsr305.version>3.0.2</jsr305.version>
+        <httpclient.version>4.5.14</httpclient.version>
+        <commons-logging.version>1.4.0</commons-logging.version>
+        <okhttp.version>4.12.1</okhttp.version>
+        <mockito.version>5.24.0</mockito.version>
         <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.4.1</maven.javadoc.plugin.version>
@@ -20,21 +27,810 @@
     </properties>
     <licenses>
         <license>
-            <name>MIT License</name>
-            <url>http://opensource.org/licenses/MIT</url>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
     <developers>
         <developer>
             <name>Jeremy Unruh</name>
-            <url>http://www.pacesys.org</url>
+            <url>http://jbu.io</url>
+            <email>jeremy@containx.io</email>
+        </developer>
+        <developer>
+            <name>Nathan Anderson</name>
+            <url>https://github.com/n-r-anderson</url>
+            <email>nr_anderson@comcast.net</email>
+        </developer>
+        <developer>
+            <name>XiaoFei</name>
+            <url>https://github.com/xyfigo</url>
+            <email>xyfigo@163.com</email>
+        </developer>
+        <developer>
+            <name>Sandeep Kumar Singh</name>
+            <url>https://github.com/esasisa</url>
+            <email>sandeep.kumar.singh@ericsson.com</email>
+        </developer>
+        <developer>
+            <name>Octopus zhang</name>
+            <url>https://github.com/octupszhang</url>
+            <email>1004988384@qq.com</email>
+        </developer>
+        <developer>
+            <name>Matthias</name>
+            <url>https://github.com/mreisser</url>
+            <email>mreisser@de.ibm.com</email>
+        </developer>
+        <developer>
+            <name>Advait Deodhar</name>
+            <url>https://github.com/advaitdeodhar</url>
+            <email>advait.deodhar@gslab.com</email>
+        </developer>
+        <developer>
+            <name>Erik Kaareng-Sunde</name>
+            <url>https://github.com/drerik</url>
+            <email>esu@enonic.com</email>
+        </developer>
+        <developer>
+            <name>Jaroslav Sovicka</name>
+            <url>https://github.com/jsovicka</url>
+            <email>jaroslav.sovicka@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Aleš Kemr</name>
+            <url>https://github.com/akemr</url>
+            <email>ales.kemr@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Ana Ribeiro</name>
+            <url>https://github.com/RibeiroAna</url>
+            <email>aninhacostaribeiro@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Qin An</name>
+            <url>https://github.com/biogerm</url>
+            <email>qin.an@ericsson.com</email>
+        </developer>
+        <developer>
+            <name>Oded Shvartz</name>
+            <url>https://github.com/odedshvartz</url>
+            <email>oded.shvartz@alcatel-lucent.com</email>
+        </developer>
+        <developer>
+            <name>Dennis Chen</name>
+            <url>https://github.com/dennischen</url>
+            <email>atticcat@gmail.com</email>
+        </developer>
+        <developer>
+            <name>tr1st0n yu</name>
+            <url>https://github.com/magixyu</url>
+            <email>magix.yu@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Simon Lacroix</name>
+            <url>https://github.com/openstack4j/openstack4j/commit/e3666aa3038db72005f724e3cd0475c826f1535a</url>
+            <email>simon.lacroix@tektronix.com</email>
+        </developer>
+        <developer>
+            <name>maxrome</name>
+            <url>https://github.com/maxrome</url>
+            <email>max_rome@hotmail.com</email>
+        </developer>
+        <developer>
+            <name>Junpeng Liu</name>
+            <url>https://github.com/liujunpengwork</url>
+            <email>liujunpeng@inspur.com</email>
+        </developer>
+        <developer>
+            <name>Ekasit Kijsipongse</name>
+            <url>https://github.com/ekasitk</url>
+            <email>ekasit.kijsipongse@nectec.or.th</email>
+        </developer>
+        <developer>
+            <name>Isart Canyameres Giménez</name>
+            <url>https://github.com/isartcanyameres</url>
+            <email>isart.canyameres@i2cat.net</email>
+        </developer>
+        <developer>
+            <name>frank-zera</name>
+            <url>https://github.com/frank-zera</url>
+            <email>sihu123@163.com</email>
+        </developer>
+        <developer>
+            <name>Krishnakumar S</name>
+            <url>https://github.com/krishnabrucelee</url>
+            <email>krishna.it2329@gmail.com</email>
+        </developer>
+        <developer>
+            <name>intern</name>
+            <url>https://github.com/openstack4j/openstack4j/commit/7ce861f730f45dd65056c8c37ce1f77a79268dc5</url>
+        </developer>
+        <developer>
+            <name>Naresh kumar N</name>
+            <url>https://github.com/NareshkumarCIET</url>
+            <email>naresh.kibnc@gmail.com</email>
+        </developer>
+        <developer>
+            <name>e3ky</name>
+            <url>https://github.com/e3ky</url>
+            <email>ff1@abv.bg</email>
+        </developer>
+        <developer>
+            <name>Peter Nordquist</name>
+            <url>https://github.com/plnordquist-pnnl</url>
+            <email>peter.nordquist@pnnl.gov</email>
+        </developer>
+        <developer>
+            <name>Kevin Lee</name>
+            <url>https://github.com/kevinlee-code</url>
+            <email>ksylee@outlook.com</email>
+        </developer>
+        <developer>
+            <name>moodpo</name>
+            <url>http://moodpo.com</url>
+            <email>moodpo@outlook.com</email>
+        </developer>
+        <developer>
+            <name>Vishvesh Deshmukh</name>
+            <url>https://github.com/vishvesh</url>
+            <email>fragbait14@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Bruno Semperlotti</name>
+            <url>https://github.com/bsemp</url>
+            <email>bi9@3ds.com</email>
+        </developer>
+        <developer>
+            <name>Erik Ringsmuth</name>
+            <url>https://erikringsmuth.github.io/</url>
+            <email>erik.ringsmuth@thomsonreuters.com</email>
+        </developer>
+        <developer>
+            <name>Peter Gardfjäll</name>
+            <url>https://github.com/petergardfjall</url>
+            <email>peter.gardfjall.work@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Miron Aseev</name>
+            <url>https://github.com/maseev</url>
+            <email>aseev.miron@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Gintautas Gervė</name>
+            <url>https://github.com/ggerve</url>
+            <email>gintautas.gerve@nortal.com</email>
+        </developer>
+        <developer>
+            <name>Jeff Hu</name>
+            <url>https://github.com/csm1sh</url>
+            <email>jeff.hu1@alcatel-lucent.com</email>
+        </developer>
+        <developer>
+            <name>Sadayuki Furuhashi</name>
+            <url>https://frsyuki.hatenablog.com/</url>
+            <email>frsyuki@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Sajid Nasir</name>
+            <url>https://github.com/symcssn</url>
+            <email>sajid_nasir@symantec.com</email>
+        </developer>
+        <developer>
+            <name>Clement Agarini</name>
+            <url>https://github.com/imclem</url>
+            <email>crackers-belin-du-06@hotmail.fr</email>
+        </developer>
+        <developer>
+            <name>Arno Uhlig</name>
+            <url>https://github.com/auhlig</url>
+            <email>arno.uhlig@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Frédéric Gillouard</name>
+            <url>https://github.com/draoullig</url>
+            <email>frederic.gillouard@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Oliver Gondža</name>
+            <url>https://olivergondza.github.io/</url>
+            <email>ogondza@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Xianguang Zhou</name>
+            <url>https://github.com/Xianguang-Zhou</url>
+            <email>624146104@qq.com</email>
+        </developer>
+        <developer>
+            <name>mohammad</name>
+            <url>https://github.com/mohammad-zimory</url>
+            <email>mohammad.abareghi@zimory.com</email>
+        </developer>
+        <developer>
+            <name>Subhobrata Dey</name>
+            <url>https://github.com/sbcd90</url>
+            <email>subhobrata.dey@sap.com</email>
+        </developer>
+        <developer>
+            <name>Miroslav Lacina</name>
+            <url>https://github.com/iviireczech</url>
+            <email>miroslav.lacina@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Mark Ashton</name>
+            <url>https://github.com/mazimo</url>
+            <email>mark.ashton@zimory.com</email>
+        </developer>
+        <developer>
+            <name>Radoslav Veselinov</name>
+            <url>https://github.com/rvesselinov</url>
+            <email>radoslav.veselinov@sap.com</email>
+        </developer>
+        <developer>
+            <name>Darren Hague</name>
+            <url>http://fortybeans.com/</url>
+            <email>d.hague@sap.com</email>
+        </developer>
+        <developer>
+            <name>Gleb Schukin</name>
+            <url>https://github.com/gschukin</url>
+            <email>gs1983@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Daniel Gonzalez</name>
+            <url>https://github.com/gonzolino</url>
+            <email>daniel@gonzalez-nothnagel.de</email>
+        </developer>
+        <developer>
+            <name>Attila Kanto</name>
+            <url>https://github.com/akanto</url>
+            <email>attila.kanto@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Hyunsun Moon</name>
+            <url>https://github.com/hyunsun</url>
+            <email>hyunsun.moon@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Liangliang Huang</name>
+            <url>http://huangliangliang.me/</url>
+            <email>njuhll08@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Sachin Walia</name>
+            <url>https://github.com/sachinwalia2k8</url>
+            <email>sachinwalia@yahoo.com</email>
+        </developer>
+        <developer>
+            <name>Fabio Marinelli</name>
+            <url>https://github.com/fmarinelli</url>
+            <email>f.marinelli@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Desislav Bantchovski</name>
+            <url>https://github.com/dbantchovski</url>
+            <email>dbantchovski@abv.bg</email>
+        </developer>
+        <developer>
+            <name>Anne Raby</name>
+            <url>https://github.com/anneraby</url>
+            <email>anne.raby@ericsson.com</email>
+        </developer>
+        <developer>
+            <name>Yanjun Sun</name>
+            <url>http://stansun.com</url>
+            <email>yanjun.sun@qq.com</email>
+        </developer>
+        <developer>
+            <name>cbergamasco</name>
+            <url>https://github.com/cbergamasco</url>
+            <email>cbergamasco@uolcorp.com</email>
+        </developer>
+        <developer>
+            <name>Rodolfo Ribeiro Silva</name>
+            <url>https://github.com/tiodollar</url>
+            <email>rodolforibsilva@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Vinod Borole</name>
+            <url>http://www.vinodborole.com/</url>
+            <email>viborole@cisco.com</email>
+        </developer>
+        <developer>
+            <name>Ning Xie</name>
+            <url>https://github.com/L-I-O-N</url>
+            <email>xien@dtdream.com</email>
+        </developer>
+        <developer>
+            <name>ustbxyls</name>
+            <url>https://github.com/ustbxyls</url>
+            <email>310866659@qq.com</email>
+        </developer>
+        <developer>
+            <name>Shital Patil</name>
+            <url>https://github.com/ShitalPatil-GSLab</url>
+            <email>shital.patil@gslab.com</email>
+        </developer>
+        <developer>
+            <name>JunHo Yoon</name>
+            <url>https://junoyoon.tistory.com</url>
+            <email>juno.yoon@navercorp.com</email>
+        </developer>
+        <developer>
+            <name>Dan Maas</name>
+            <url>https://maas.build</url>
+            <email>daniel.maas@target.com</email>
+        </developer>
+        <developer>
+            <name>Sumit Gandhi</name>
+            <url>https://github.com/sumit74</url>
+            <email>sumigand@partnet.cisco.com</email>
+        </developer>
+        <developer>
+            <name>Christian Banse</name>
+            <url>https://github.com/oxisto</url>
+            <email>christian.banse@aisec.fraunhofer.de</email>
+        </developer>
+        <developer>
+            <name>Emily Burns</name>
+            <url>https://github.com/emjburns</url>
+            <email>emjeburns@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Jun Zhou</name>
+            <url>https://github.com/jzhoucliqr</url>
+            <email>jzhou@cliqr.com</email>
+        </developer>
+        <developer>
+            <name>Ashley Cutalo</name>
+            <url>https://github.com/ashleycutalo</url>
+            <email>ashleykasim1@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Simon Kollberg</name>
+            <url>https://github.com/simonklb</url>
+            <email>simonkollberg@gmail.com</email>
+        </developer>
+        <developer>
+            <name>gf-chen40</name>
+            <url>https://github.com/gf-chen40</url>
+            <email>gf.chen40@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Derek Olk</name>
+            <url>https://github.com/derekolk</url>
+            <email>derek.olk@target.com</email>
+        </developer>
+        <developer>
+            <name>EthanWei</name>
+            <url>https://github.com/zizhongwei</url>
+            <email>wzz@inspur.com</email>
+        </developer>
+        <developer>
+            <name>whaon</name>
+            <url>https://github.com/whaon</url>
+            <email>howfar7@126.com</email>
+        </developer>
+        <developer>
+            <name>Hao Tong</name>
+            <url>https://github.com/tongh-qtl</url>
+            <email>hao.tong@quantil.com</email>
+        </developer>
+        <developer>
+            <name>Olivier Lemasle</name>
+            <url>https://github.com/olivierlemasle</url>
+            <email>o.lemasle@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Nikolay Mahotkin</name>
+            <url>https://github.com/nmakhotkin</url>
+            <email>nmakhotkin@mirantis.com</email>
+        </developer>
+        <developer>
+            <name>Liran Yogev</name>
+            <url>https://github.com/liranyogev</url>
+            <email>liran.yogev@algosec.com</email>
+        </developer>
+        <developer>
+            <name>Bart Cornelis</name>
+            <url>http://www.fidecium.com</url>
+            <email>bart.cornelis@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Artem Atkin</name>
+            <url>https://github.com/atkinart</url>
+            <email>a.atkin@hostcomm.ru</email>
+        </developer>
+        <developer>
+            <name>Huang Yi</name>
+            <url>https://github.com/easyit</url>
+            <email>yi.huang@hpe.com</email>
+        </developer>
+        <developer>
+            <name>Sean R. Munoz</name>
+            <url>https://github.com/SeanRMunoz</url>
+            <email>SeanRMunoz@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Julien Coste</name>
+            <url>https://github.com/jcoste-orange</url>
+            <email>julien.coste@orange.com</email>
+        </developer>
+        <developer>
+            <name>David</name>
+            <url>https://github.com/openstack4j/openstack4j/commit/816e262faf0a6472e754a16da882695393fa9927</url>
+            <email>david@ayala.io</email>
+        </developer>
+        <developer>
+            <name>Jianwei Zhang</name>
+            <url>https://github.com/zhangjianweibj</url>
+            <email>zhangjianweibj@inspur.com</email>
+        </developer>
+        <developer>
+            <name>Gordon Hahn</name>
+            <url>https://github.com/suho-hahn</url>
+            <email>gordon.hahn@daumkakao.com</email>
+        </developer>
+        <developer>
+            <name>Elina Sommar</name>
+            <url>https://github.com/esommar</url>
+            <email>elina.sommar@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Silvan Strüby</name>
+            <url>https://github.com/silvanstrueby</url>
+            <email>silvan.strueby@bedag.ch</email>
+        </developer>
+        <developer>
+            <name>Mahmoud Kouchaji</name>
+            <url>https://github.com/m-kochaji</url>
+            <email>mkouchaj@cisco.com</email>
+        </developer>
+        <developer>
+            <name>Pavan Vadavi</name>
+            <url>https://github.com/PavanVadavi</url>
+            <email>pavan.vadavi@nokia.com</email>
+        </developer>
+        <developer>
+            <name>taemin77</name>
+            <url>https://github.com/test-1pro</url>
+            <email>taemin77@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Cherry</name>
+            <url>https://github.com/Cherry522</url>
+            <email>522581280@qq.com</email>
+        </developer>
+        <developer>
+            <name>Ayberk Çal</name>
+            <url>https://github.com/ayberkcal</url>
+            <email>a.cal@mrd.com.tr</email>
+        </developer>
+        <developer>
+            <name>Lorenzo Biava</name>
+            <url>https://github.com/lorenzo-biava</url>
+            <email>l.biava@reply.it</email>
+        </developer>
+        <developer>
+            <name>Neil Okamoto</name>
+            <url>https://gonewest818.github.io</url>
+            <email>neil.okamoto@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Evgeny Fedoruk</name>
+            <url>https://github.com/evgenyfedoruk</url>
+            <email>EvgenyF@radware.com</email>
+        </developer>
+        <developer>
+            <name>sohan</name>
+            <url>https://github.com/sohaninfo</url>
+            <email>sohaninfo@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Lei</name>
+            <url>https://github.com/baseman79</url>
+            <email>baseman@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Rizwan</name>
+            <url>https://github.com/Rizwan-Qamar</url>
+            <email>formanite07@gmail.com</email>
+        </developer>
+        <developer>
+            <name>ningyougang</name>
+            <url>https://github.com/ningyougang</url>
+            <email>ningyougang@navercorp.com</email>
+        </developer>
+        <developer>
+            <name>Roman Sakno</name>
+            <url>https://github.com/sakno</url>
+            <email>roman.sakno@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Renat Akhmerov</name>
+            <url>https://github.com/rakhmerov</url>
+            <email>renat.akhmerov@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Frank Wang</name>
+            <url>https://itec.pages.dev/</url>
+            <email>wangpeihuixyz@126.com</email>
+        </developer>
+        <developer>
+            <name>Erdős Péter</name>
+            <url>https://github.com/sodre90</url>
+            <email>erdos.peter.bme@gmail.com</email>
+        </developer>
+        <developer>
+            <name>tangxiaodong</name>
+            <url>https://github.com/openstack4j/openstack4j/commit/1e9876923ce4881116f50c73f1a08326d4a8f862</url>
+            <email>tangxiaodong@inspur.com</email>
+        </developer>
+        <developer>
+            <name>Chetan Birajdar</name>
+            <url>https://github.com/cbirajdar</url>
+            <email>birajdar.chetan@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Patrick Dube</name>
+            <url>https://github.com/pdube</url>
+            <email>pdube@cloudops.com</email>
+        </developer>
+        <developer>
+            <name>Anthony Nowell</name>
+            <url>https://anowell.com</url>
+            <email>anowell@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Kushal Agrawal</name>
+            <url>https://github.com/kushalagrawal1</url>
+            <email>kushal.agrawal@nokia.com</email>
+        </developer>
+        <developer>
+            <name>scc</name>
+            <url>https://github.com/scsunchen</url>
+            <email>scc@developer.cn.com</email>
+        </developer>
+        <developer>
+            <name>Rafael Bertoli</name>
+            <url>https://github.com/rafael-bertoli</url>
+            <email>rafael.bertoli@criarenet.com</email>
+        </developer>
+        <developer>
+            <name>René Schollmeyer</name>
+            <url>https://github.com/rschollmeyer</url>
+            <email>rschollmeyer@evoila.de</email>
+        </developer>
+        <developer>
+            <name>Wei Li</name>
+            <url>https://github.com/Grim-lock</url>
+            <email>realbaseball2008@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Peter Darton</name>
+            <url>https://github.com/pjdarton</url>
+            <email>pjdarton@gmail.com</email>
+        </developer>
+        <developer>
+            <name>npetrusenko</name>
+            <url>https://github.com/openstack4j/openstack4j/commit/a202a32b054c36b101c626d3ed0be2c127783eaf</url>
+            <email>npetrusenko@nic.ru</email>
+        </developer>
+        <developer>
+            <name>Wong Liong Hung</name>
+            <url>https://github.com/lhwong</url>
+            <email>lhwong@gmail.com</email>
+        </developer>
+        <developer>
+            <name>capitek-xun</name>
+            <url>https://github.com/capitek-xun</url>
+            <email>xun@capitek.com.cn</email>
+        </developer>
+        <developer>
+            <name>TonoMao</name>
+            <url>https://github.com/doufum</url>
+            <email>maochaochong@cloud-star.com.cn</email>
+        </developer>
+        <developer>
+            <name>Dmitry Gerenrot</name>
+            <url>https://github.com/dmitryintel</url>
+            <email>dmitry.mx.gerenrot@intel.com</email>
+        </developer>
+        <developer>
+            <name>Ingrid Niu</name>
+            <url>https://github.com/newinone</url>
+            <email>ingrid.niu@pason.com</email>
+        </developer>
+        <developer>
+            <name>Wonhyun Seo</name>
+            <url>https://github.com/ewhseo</url>
+            <email>ewhseo@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Arvind Nadendla</name>
+            <url>https://github.com/arvindn05</url>
+            <email>arvind.nadendla@intel.com</email>
+        </developer>
+        <developer>
+            <name>Thomas Briedigkeit</name>
+            <url>https://github.com/ThomasBri</url>
+            <email>thomas.briedigkeit@fokus.fraunhofer.de</email>
+        </developer>
+        <developer>
+            <name>Georgi Dankov</name>
+            <url>https://github.com/gdankov</url>
+            <email>georgi.dankov@sap.com</email>
+        </developer>
+        <developer>
+            <name>Jyothi Saroja Daggu</name>
+            <url>https://github.com/jyothisaroja</url>
+            <email>saroja.daggu@tcs.com</email>
+        </developer>
+        <developer>
+            <name>gaygauta</name>
+            <url>https://github.com/openstack4j/openstack4j/commit/d6b5f298cdbc2b5c7f0b760eb32bd0983be4539c</url>
+            <email>gautam.gayatri@nokia.com</email>
+        </developer>
+        <developer>
+            <name>Xiangbin Han</name>
+            <url>https://blog.csdn.net/taiyangdao</url>
+            <email>xiangbin.han@ericsson.com</email>
+        </developer>
+        <developer>
+            <name>Stian Brattland</name>
+            <url>https://github.com/sbrattla</url>
+            <email>stian@brattland.no</email>
+        </developer>
+        <developer>
+            <name>lifeifei</name>
+            <url>https://github.com/17862953931</url>
+            <email>lifeifei02@inspur.com</email>
+        </developer>
+        <developer>
+            <name>Manuel Mazzuola</name>
+            <url>https://manuelmazzuola.dev</url>
+            <email>manuel.mazzuola@eng.it</email>
+        </developer>
+        <developer>
+            <name>Nguyen Quoc Viet</name>
+            <url>https://github.com/axblueblader</url>
+            <email>nguyenqviet98@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Tom Schumann</name>
+            <url>https://github.com/hlxtsc</url>
+            <email>tsc@hylastix.com</email>
+        </developer>
+        <developer>
+            <name>Kashyap Jha</name>
+            <url>https://github.com/kashyapjha</url>
+            <email>kashyapjha1994@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Paweł Kiersznowski</name>
+            <url>https://github.com/pk044</url>
+            <email>pawel@kiersznowski.com</email>
+        </developer>
+        <developer>
+            <name>Allen Yin</name>
+            <url>https://github.com/allensap</url>
+            <email>allen.yin@sap.com</email>
+        </developer>
+        <developer>
+            <name>Benoit Devost</name>
+            <url>https://github.com/bdevost</url>
+            <email>benoit.devost@ubisoft.com</email>
+        </developer>
+        <developer>
+            <name>Sujit Sah</name>
+            <url>https://github.com/mrsujitsah</url>
+            <email>draj1750@gmail.com</email>
+        </developer>
+        <developer>
+            <name>aluomaidi</name>
+            <url>https://github.com/aluomaidi</url>
+            <email>aluomaidi419@gmail.com</email>
+        </developer>
+        <developer>
+            <name>bboyHan</name>
+            <url>https://github.com/bboyHan</url>
+            <email>wushaohan@inspur.com</email>
+        </developer>
+        <developer>
+            <name>Hareesha Chaduvu</name>
+            <url>https://github.com/neon-sudo</url>
+            <email>hareesha.chaduvu@tcs.com</email>
+        </developer>
+        <developer>
+            <name>Jung Bong-Hwa</name>
+            <url>https://github.com/flambeau4u</url>
+            <email>bh.freedom@yahoo.com</email>
+        </developer>
+        <developer>
+            <name>Lukas Alt</name>
+            <url>https://github.com/lukalt</url>
+            <email>lalt@nvidia.com</email>
+        </developer>
+        <developer>
+            <name>Mingshan</name>
+            <url>https://github.com/brighill</url>
+            <email>Mingshan.hou@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Code-Wu</name>
+            <url>https://github.com/Code-Wu</url>
+            <email>88568921@qq.com</email>
+        </developer>
+        <developer>
+            <name>Fabian Spottog</name>
+            <url>https://github.com/fapo85</url>
+            <email>fabian@spottog.de</email>
+        </developer>
+        <developer>
+            <name>Matthias Müller</name>
+            <url>https://github.com/madness-inc</url>
+            <email>Matthias.Mueller@aiticon.com</email>
+        </developer>
+        <developer>
+            <name>Christian Polzer</name>
+            <url>https://github.com/cpolzer</url>
+            <email>Christian.Polzer@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Lukas Harzenetter</name>
+            <url>https://github.com/lharzenetter</url>
+            <email>lharzenetter@gmx.de</email>
+        </developer>
+        <developer>
+            <name>Elvis Ciotti</name>
+            <url>https://github.com/elvisciotti</url>
+            <email>elvisciotti@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Pascal Lombard</name>
+            <url>https://github.com/plombard</url>
+            <email>pascal.lombard@gmail.com</email>
+        </developer>
+        <developer>
+            <name>slankka</name>
+            <url>https://www.cnblogs.com/slankka/</url>
+            <email>cor_twi@outlook.com</email>
+        </developer>
+        <developer>
+            <name>Nathan Fallet</name>
+            <url>https://www.nathanfallet.me</url>
+            <email>contact@nathanfallet.me</email>
+        </developer>
+        <developer>
+            <name>Svyatoslav Pechurkin</name>
+            <url>https://github.com/spechurkin</url>
+            <email>pechurkins@gmail.com</email>
+        </developer>
+        <developer>
+            <name>broGideon</name>
+            <url>https://github.com/broGideon</url>
+        </developer>
+        <developer>
+            <name>Nguyen Hung</name>
+            <url>https://github.com/hufngng</url>
+            <email>hung.nguyen@sunteco.io</email>
+        </developer>
+        <developer>
+            <name>Andrew Gaul</name>
+            <url>https://gaul.org/</url>
+            <email>andrew@gaul.org</email>
+        </developer>
+        <developer>
+            <name>DoGyeong Seo</name>
+            <url>https://github.com/seogineer</url>
+            <email>dgseo8981@gmail.com</email>
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:openstack4j/openstack4j.git</connection>
-        <developerConnection>scm:git:git@github.com:openstack4j/openstack4j.git</developerConnection>
-        <url>https://github.com/openstack4j/openstack4j/</url>
+        <connection>scm:git:git@github.com:spechurkin/openstack4j.git</connection>
+        <developerConnection>scm:git:git@github.com:spechurkin/openstack4j.git</developerConnection>
+        <url>https://github.com/spechurkin/openstack4j/</url>
         <tag>HEAD</tag>
     </scm>
     <mailingLists>
@@ -57,27 +853,20 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
-            <version>2.0.0</version>
+            <version>${jsr305.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.fge</groupId>
-            <artifactId>json-patch</artifactId>
-            <version>1.9</version>
         </dependency>
     </dependencies>
 
@@ -87,10 +876,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>8</release>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -124,6 +912,7 @@
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <resources>
                                 <resource>
+                                    <!--suppress UnresolvedMavenProperty -->
                                     <directory>${project.build.resources[0].directory}</directory>
                                     <filtering>true</filtering>
                                 </resource>
@@ -196,9 +985,11 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.0</version>
-                                    <message>Build FAILURE: Maven version 3.0+ REQUIRED!</message>
+                                    <version>3.6.3</version>
                                 </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>[11,)</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
@@ -231,7 +1022,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -250,7 +1041,6 @@
                 <version>${maven.javadoc.plugin.version}</version>
                 <configuration>
                     <author>true</author>
-                    <protected>true</protected>
                     <excludePackageNames>*.internal</excludePackageNames>
                     <reportOutputDirectory>docs</reportOutputDirectory>
                     <destDir>javadoc</destDir>
@@ -263,9 +1053,38 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.6.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.23.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp-bom</artifactId>
+                <version>${okhttp.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
-                <version>7.7.0</version>
+                <version>7.12.0</version>
                 <scope>test</scope>
                 <exclusions>
                     <exclusion>
@@ -277,54 +1096,39 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
     <profiles>
         <profile>
-            <id>release</id>
+            <id>snapshot</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.7</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts-for-release</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                         <version>${maven.source.plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>attach-sources-for-release</id>
+                                <id>attach-sources</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven.source.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>jar-no-fork</goal>
@@ -344,6 +1148,48 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>central</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.8</version>
+                        <configuration>
+                            <bestPractices>true</bestPractices>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-central-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.12.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>validated</waitUntil>
+                            <excludeArtifacts>
+                                <artifact>openstack4j-core-test</artifact>
+                                <artifact>openstack4j-core-integration-test</artifact>
+                                <artifact>it-httpclient</artifact>
+                                <artifact>it-okhttp</artifact>
+                                <artifact>it-resteasy</artifact>
+                            </excludeArtifacts>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

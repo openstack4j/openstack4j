@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.storage.block.BlockQuotaSet;
@@ -23,15 +24,17 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
     private static final long serialVersionUID = 1L;
 
     private static final String VOLUME_TYPE_QUOTA_PREFIXES_REGEX = "(gigabytes|snapshots|volumes)_.*";
+    private static final int SNAPSHOTS = 1;
+    private static final int VOLUMES = 2;
+    private static final int GIGABYTES = 4;
 
-    @JsonProperty
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String id;
-    @JsonProperty
     private int snapshots;
-    @JsonProperty
     private int volumes;
-    @JsonProperty
     private int gigabytes;
+    // Older serialized quota sets did not record which fields were supplied.
+    private Integer specifiedQuotas = 0;
 
     private Map<String, Integer> volumeTypesQuotas = new HashMap<>();
 
@@ -50,18 +53,62 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
     }
 
     @Override
+    @JsonIgnore
     public int getSnapshots() {
         return snapshots;
     }
 
     @Override
+    @JsonIgnore
     public int getVolumes() {
         return volumes;
     }
 
     @Override
+    @JsonIgnore
     public int getGigabytes() {
         return gigabytes;
+    }
+
+    @JsonProperty("snapshots")
+    private Integer requestSnapshots() {
+        return quotaValue(SNAPSHOTS, snapshots);
+    }
+
+    @JsonProperty("snapshots")
+    private void readSnapshots(Integer value) {
+        snapshots = readQuota(SNAPSHOTS, value);
+    }
+
+    @JsonProperty("volumes")
+    private Integer requestVolumes() {
+        return quotaValue(VOLUMES, volumes);
+    }
+
+    @JsonProperty("volumes")
+    private void readVolumes(Integer value) {
+        volumes = readQuota(VOLUMES, value);
+    }
+
+    @JsonProperty("gigabytes")
+    private Integer requestGigabytes() {
+        return quotaValue(GIGABYTES, gigabytes);
+    }
+
+    @JsonProperty("gigabytes")
+    private void readGigabytes(Integer value) {
+        gigabytes = readQuota(GIGABYTES, value);
+    }
+
+    private Integer quotaValue(int field, int value) {
+        return specifiedQuotas == null || (specifiedQuotas & field) != 0 ? value : null;
+    }
+
+    private int readQuota(int field, Integer value) {
+        if (specifiedQuotas != null) {
+            specifiedQuotas = value == null ? specifiedQuotas & ~field : specifiedQuotas | field;
+        }
+        return value == null ? 0 : value;
     }
 
     @Override
@@ -90,7 +137,6 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
 
         BlockQuotaSetConcreteBuilder(CinderBlockQuotaSet model) {
             this.model = model;
-            this.model.id = null;
         }
 
         @Override
@@ -105,19 +151,19 @@ public class CinderBlockQuotaSet implements BlockQuotaSet {
 
         @Override
         public BlockQuotaSetBuilder volumes(int volumes) {
-            model.volumes = volumes;
+            model.readVolumes(volumes);
             return this;
         }
 
         @Override
         public BlockQuotaSetBuilder snapshots(int snapshots) {
-            model.snapshots = snapshots;
+            model.readSnapshots(snapshots);
             return this;
         }
 
         @Override
         public BlockQuotaSetBuilder gigabytes(int gigabytes) {
-            model.gigabytes = gigabytes;
+            model.readGigabytes(gigabytes);
             return this;
         }
 

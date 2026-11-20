@@ -1,19 +1,24 @@
 openstack4j-integrationtest
 ===========================
 
-Integration tests for OpenStack4j written in [Groovy](http://www.groovy-lang.org/) using [Spock](http://spockframework.org/) test-framework and [Betamax](https://github.com/betamaxteam/betamax) to record/replay server-client communication.
+Integration tests for OpenStack4j written in [Groovy](http://www.groovy-lang.org/)
+using [Spock](http://spockframework.org/) test-framework and [Betamax](https://github.com/betamaxteam/betamax) to
+record/replay server-client communication.
 
 HOW TO
 ------
 
 ### Write Integration Tests (IT)
 
-Betamax is used to record and replay client-server communication to/from a tape. 
+Betamax is used to record and replay client-server communication to/from a tape.
 Therefore it is necessary to setup a RecorderRule, which specifies in which folder the tape can be found (tapeRoot),
- some match rules (e.g. by request/response method, path, query parameters) and a default mode for the tape which should always be read & write.  
-Each test method that wants to use the recordings needs to specify a tape via the annotation `@Betamax(tape="<tapeName>")`.
+some match rules (e.g. by request/response method, path, query parameters) and a default mode for the tape which should
+always be read & write.  
+Each test method that wants to use the recordings needs to specify a tape via the annotation
+`@Betamax(tape="<tapeName>")`.
 
 Here are the basics of how a Specification should look like:
+
 ```
 @Slf4j
 class KeystoneRegionServiceSpec extends AbstractSpec {
@@ -76,28 +81,29 @@ class KeystoneRegionServiceSpec extends AbstractSpec {
 }                    
 ``` 
 
-
 ### Run ITests
 
-* Integration tests are executed in the integration-test phase. Do a ```mvn clean integration-test``` or ```mvn clean verify``` (or any phase later) to trigger the tests.
+* Integration tests are executed in the integration-test phase. Do a ```mvn clean integration-test``` or
+  ```mvn clean verify``` (or any phase later) to trigger the tests.
 
 #### Recording
 
 In order to record the communication to the tapes the following environment attributes must be set:
+
 * attributes used: (incomplete)
-	* OS_AUTH_URL = ``` "http://<fqdn>:5000/v3" ```
-	* OS_USER_ID
-	* OS_USER_NAME
-	* OS_PASSWORD
-	* OS_PROJECT_ID
-	* OS_PROJECT_NAME
-	* OS_PROJECT_DOMAIN_ID
-	* OS_PROJECT_DOMAIN_NAME
-	* OS_DOMAIN_ID
-	* OS_DOMAIN_NAME 
-	
+    * OS_AUTH_URL = ``` "http://<fqdn>:5000/v3" ```
+    * OS_USER_ID
+    * OS_USER_NAME
+    * OS_PASSWORD
+    * OS_PROJECT_ID
+    * OS_PROJECT_NAME
+    * OS_PROJECT_DOMAIN_ID
+    * OS_PROJECT_DOMAIN_NAME
+    * OS_DOMAIN_ID
+    * OS_DOMAIN_NAME
+
 Afterwards these values in the tapes must be replaced using the default ones defined in the AbstractSpec.
-	
+
 #### Playback
 
 In playback mode the recordings are used. Make sure no OS_*-attributes are set.
@@ -106,5 +112,6 @@ In playback mode the recordings are used. Make sure no OS_*-attributes are set.
 Important
 ---------
 
-In case of `com.fasterxml.jackson.databind.JsonMappingException: Unexpected end-of-input in VALUE_STRING` 
-remove the Content-Length header from the recording. Use this regex for search & replace: `^\s*Content-Length: '[0-9]*'\R` .
+In case of `com.fasterxml.jackson.databind.JsonMappingException: Unexpected end-of-input in VALUE_STRING`
+remove the Content-Length header from the recording. Use this regex for search & replace:
+`^\s*Content-Length: '[0-9]*'\R` .

@@ -1,13 +1,13 @@
 package org.openstack4j.openstack.networking.internal.ext;
 
+import java.util.List;
+
 import org.openstack4j.api.networking.ext.NetQosPolicyBLRuleService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.network.ext.NetQosPolicyBandwidthLimitRule;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicyBandwidthLimitRule;
 import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicyBandwidthLimitRule.NeutronNetQosPolicyBLRules;
 import org.openstack4j.openstack.networking.internal.BaseNetworkingServices;
-
-import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -37,7 +37,7 @@ public class NetQosPolicyBLRuleServiceImpl extends BaseNetworkingServices implem
         checkNotNull(bandwidthLimitRule);
         checkNotNull(bandwidthLimitRule.getId(), "netQosPolicy rule id must not be null");
         return put(NeutronNetQosPolicyBandwidthLimitRule.class, uri("/qos/policies/%s/bandwidth_limit_rules/%s",
-                policyId, getAndClearIdentifier(bandwidthLimitRule)))
+                policyId, bandwidthLimitRule.getId()))
                 .entity(bandwidthLimitRule).execute();
     }
 
@@ -58,9 +58,4 @@ public class NetQosPolicyBLRuleServiceImpl extends BaseNetworkingServices implem
         return deleteWithResponse(uri("/qos/policies/%s/bandwidth_limit_rules/%s", policyId, ruleId)).execute();
     }
 
-    private String getAndClearIdentifier(NetQosPolicyBandwidthLimitRule update) {
-        String id = update.getId();
-        update.setId(null);
-        return id;
-    }
 }

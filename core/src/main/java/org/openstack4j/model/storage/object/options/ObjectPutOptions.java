@@ -1,9 +1,11 @@
 package org.openstack4j.model.storage.object.options;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.openstack4j.openstack.storage.object.functions.MetadataToHeadersFunction;
 
@@ -38,6 +40,19 @@ public final class ObjectPutOptions {
     public ObjectPutOptions contentType(String contentType) {
         headers.put(CONTENT_TYPE, contentType);
         return this;
+    }
+
+    public ObjectPutOptions header(String key, String value) {
+        headers.put(key, value);
+        return this;
+    }
+
+    public ObjectPutOptions deleteAt(Date date) {
+        return header("X-Delete-At", Long.toString(TimeUnit.MILLISECONDS.toSeconds(date.getTime())));
+    }
+
+    public ObjectPutOptions deleteAfter(long delay, TimeUnit unit) {
+        return header("X-Delete-After", Long.toString(unit.toSeconds(delay)));
     }
 
     public ObjectPutOptions path(String path) {

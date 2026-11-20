@@ -44,7 +44,7 @@ public class TemplateServiceImpl extends BaseHeatServices implements TemplateSer
         Objects.requireNonNull(template);
 
         try {
-            post(String.class, uri("/validate")).entity(template).execute();
+            post(Map.class, uri("/validate")).entity(template).execute();
         } catch (RuntimeException re) {
             return TemplateResponse.fail(re.getMessage());
         }

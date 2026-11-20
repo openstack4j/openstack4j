@@ -1,10 +1,9 @@
 package org.openstack4j.openstack.placement.domain.ext;
 
-import org.openstack4j.model.ModelEntity;
-import org.openstack4j.model.placement.ext.ResourceProviderInventories;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.ModelEntity;
+import org.openstack4j.model.placement.ext.ResourceProviderInventories;
 import org.openstack4j.util.ToStringHelper;
 
 /**
@@ -68,6 +67,142 @@ public class ExtResourceProviderInventories implements ResourceProviderInventori
     public String toString() {
         return new ToStringHelper(this).add("vcpu", vcpu).add("pcpu", pcpu)
                 .add("memoryMb", memoryMb).add("diskGb", diskGb).toString();
+    }
+
+    public interface DiskGb extends ModelEntity {
+
+        /**
+         * @return the allocation ratio of disk
+         */
+        float getAllocationRatio();
+
+        /**
+         * @return the max unit of disk
+         */
+        int getMaxUnit();
+
+        /**
+         * @return the min unit of disk
+         */
+        int getMinUnit();
+
+        /**
+         * @return the reserved disk
+         */
+        int getReserved();
+
+        /**
+         * @return the step size of disk
+         */
+        int getStepSize();
+
+        /**
+         * @return the total disk
+         */
+        int getTotal();
+
+    }
+
+    public interface MemoryMb extends ModelEntity {
+
+        /**
+         * @return the allocation ratio of memory
+         */
+        float getAllocationRatio();
+
+        /**
+         * @return the max unit of memory
+         */
+        int getMaxUnit();
+
+        /**
+         * @return the min unit of memory
+         */
+        int getMinUnit();
+
+        /**
+         * @return the reserved memory
+         */
+        int getReserved();
+
+        /**
+         * @return the step size of memory
+         */
+        int getStepSize();
+
+        /**
+         * @return the total memory
+         */
+        int getTotal();
+
+    }
+
+    public interface Pcpu extends ModelEntity {
+
+        /**
+         * @return the allocation ratio of pcpus
+         */
+        float getAllocationRatio();
+
+        /**
+         * @return the max unit of pcpus
+         */
+        int getMaxUnit();
+
+        /**
+         * @return the min unit of pcpus
+         */
+        int getMinUnit();
+
+        /**
+         * @return the reserved pcpus
+         */
+        int getReserved();
+
+        /**
+         * @return the step size of pcpus
+         */
+        int getStepSize();
+
+        /**
+         * @return the total pcpus
+         */
+        int getTotal();
+
+    }
+
+    public interface Vcpu extends ModelEntity {
+
+        /**
+         * @return the allocation ratio of vcpus
+         */
+        float getAllocationRatio();
+
+        /**
+         * @return the max unit of vcpus
+         */
+        int getMaxUnit();
+
+        /**
+         * @return the min unit of vcpus
+         */
+        int getMinUnit();
+
+        /**
+         * @return the reserved vcpus
+         */
+        int getReserved();
+
+        /**
+         * @return the step size of vcpus
+         */
+        int getStepSize();
+
+        /**
+         * @return the total vcpus
+         */
+        int getTotal();
+
     }
 
     @JsonRootName("DISK_GB")
@@ -372,141 +507,5 @@ public class ExtResourceProviderInventories implements ResourceProviderInventori
                     .add("min_unit", minUnit).add("max_unit", maxUnit).add("step_size", stepSize)
                     .add("allocation_ratio", allocationRatio).toString();
         }
-    }
-
-    public interface DiskGb extends ModelEntity {
-
-        /**
-         * @return the allocation ratio of disk
-         */
-        float getAllocationRatio();
-
-        /**
-         * @return the max unit of disk
-         */
-        int getMaxUnit();
-
-        /**
-         * @return the min unit of disk
-         */
-        int getMinUnit();
-
-        /**
-         * @return the reserved disk
-         */
-        int getReserved();
-
-        /**
-         * @return the step size of disk
-         */
-        int getStepSize();
-
-        /**
-         * @return the total disk
-         */
-        int getTotal();
-
-    }
-
-    public interface MemoryMb extends ModelEntity {
-
-        /**
-         * @return the allocation ratio of memory
-         */
-        float getAllocationRatio();
-
-        /**
-         * @return the max unit of memory
-         */
-        int getMaxUnit();
-
-        /**
-         * @return the min unit of memory
-         */
-        int getMinUnit();
-
-        /**
-         * @return the reserved memory
-         */
-        int getReserved();
-
-        /**
-         * @return the step size of memory
-         */
-        int getStepSize();
-
-        /**
-         * @return the total memory
-         */
-        int getTotal();
-
-    }
-
-    public interface Pcpu extends ModelEntity {
-
-        /**
-         * @return the allocation ratio of pcpus
-         */
-        float getAllocationRatio();
-
-        /**
-         * @return the max unit of pcpus
-         */
-        int getMaxUnit();
-
-        /**
-         * @return the min unit of pcpus
-         */
-        int getMinUnit();
-
-        /**
-         * @return the reserved pcpus
-         */
-        int getReserved();
-
-        /**
-         * @return the step size of pcpus
-         */
-        int getStepSize();
-
-        /**
-         * @return the total pcpus
-         */
-        int getTotal();
-
-    }
-
-    public interface Vcpu extends ModelEntity {
-
-        /**
-         * @return the allocation ratio of vcpus
-         */
-        float getAllocationRatio();
-
-        /**
-         * @return the max unit of vcpus
-         */
-        int getMaxUnit();
-
-        /**
-         * @return the min unit of vcpus
-         */
-        int getMinUnit();
-
-        /**
-         * @return the reserved vcpus
-         */
-        int getReserved();
-
-        /**
-         * @return the step size of vcpus
-         */
-        int getStepSize();
-
-        /**
-         * @return the total vcpus
-         */
-        int getTotal();
-
     }
 }

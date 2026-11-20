@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.barbican.Secret;
 import org.openstack4j.model.barbican.builder.SecretCreateBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Created by reneschollmeyer on 02.08.17.

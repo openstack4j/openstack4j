@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.util.function.Function;
+
 import org.openstack4j.api.EndpointTokenProvider;
 import org.openstack4j.api.exceptions.ConnectionException;
 import org.openstack4j.api.types.ServiceType;

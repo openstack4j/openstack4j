@@ -59,6 +59,7 @@ public interface NetSecurityGroupRuleBuilder extends Builder<NetSecurityGroupRul
      * @see SecurityGroupRule#getRemoteIpPrefix()
      */
     NetSecurityGroupRuleBuilder remoteIpPrefix(String prefix);
+
     /**
      * @see SecurityGroupRule#getDescription()
      */

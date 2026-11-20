@@ -6,7 +6,7 @@ import org.openstack4j.api.AbstractTest;
 import org.openstack4j.model.network.NetQuota;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  *

@@ -1,14 +1,14 @@
 package org.openstack4j.openstack.dns.v2.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
-import java.util.Objects;
 import org.openstack4j.model.dns.v2.Nameserver;
 import org.openstack4j.model.dns.v2.builder.NameserverBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * model class for designate/v2 nameserver

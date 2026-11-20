@@ -16,8 +16,8 @@
         "device_owner": "baremetal:none",
         "allowed_address_pairs": [
             {
-                   "ip_address": "192.168.0.100",
-                   "mac_address": "00:60:2f:38:62:8d"
+                "ip_address": "192.168.0.100",
+                "mac_address": "00:60:2f:38:62:8d"
             }
         ],
         "created_at": "2020-10-30T22:16:01Z",

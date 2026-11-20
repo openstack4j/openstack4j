@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.barbican.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.barbican.ContainerSecret;
 import org.openstack4j.model.barbican.builder.ContainerSecretBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 public class BarbicanContainerSecret implements ContainerSecret {
     private String name;

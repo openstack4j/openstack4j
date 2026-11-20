@@ -1,7 +1,6 @@
 package org.openstack4j.openstack.gbp.domain;
 
 import java.util.List;
-import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;

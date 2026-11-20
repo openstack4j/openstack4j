@@ -46,10 +46,10 @@ public class Main {
 
     // ========
 
-    private static Map<String, String> env = loadOpenrc();
-    private static OSClient os = getClient();
+    private static final Map<String, String> env = loadOpenrc();
+    private static final OSClient os = getClient();
 
-    public static void main(String[] args) throws Throwable {
+    public static void main(String[] args) {
         os.compute().servers().list();
 //        for (NetFloatingIP fip : os.networking().floatingip().list()) {
 //            System.out.println(fip);
@@ -151,18 +151,13 @@ public class Main {
         }
 
         // Keystone v2
-        if (tn != null) {
-            return OSFactory.builderV2()
-                    .withConfig(config)
-                    .endpoint(env.get("OS_AUTH_URL"))
-                    .credentials(env.get("OS_USERNAME"), env.get("OS_PASSWORD"))
-                    .tenantName(env.get("OS_TENANT_NAME"))
-                    .authenticate()
-                    .useRegion(null);
-        }
+        return OSFactory.builderV2()
+                .withConfig(config)
+                .endpoint(env.get("OS_AUTH_URL"))
+                .credentials(env.get("OS_USERNAME"), env.get("OS_PASSWORD"))
+                .tenantName(env.get("OS_TENANT_NAME"))
+                .authenticate()
+                .useRegion(null);
 
-        System.err.println("Unable to locate auth evn vars. Forgot to `source openrc.sh`?");
-        System.exit(1);
-        return null; // :-/
     }
 }

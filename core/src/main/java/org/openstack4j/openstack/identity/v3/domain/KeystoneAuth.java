@@ -63,6 +63,38 @@ public class KeystoneAuth implements Authentication, AuthStore {
         this.type = type;
     }
 
+    public static KeystoneAuth applicationCredential(String id, String secret) {
+        return applicationCredential(new ApplicationCredential(requireValue(id, "Application credential ID"),
+                null, requireValue(secret, "Application credential secret"), null));
+    }
+
+    public static KeystoneAuth applicationCredential(String name, String secret, Identifier user, Identifier domain) {
+        Objects.requireNonNull(user, "Application credential owner is required");
+        if (!user.isTypeID()) {
+            Objects.requireNonNull(domain, "The owner's domain is required when using a user name");
+            requireValue(domain.getId(), "The owner's domain");
+        }
+        AuthIdentity.AuthPassword.AuthUser owner = new AuthIdentity.AuthPassword.AuthUser(
+                requireValue(user.getId(), "Application credential owner"), null, user.isTypeID() ? null : domain);
+        return applicationCredential(new ApplicationCredential(null, requireValue(name, "Application credential name"),
+                requireValue(secret, "Application credential secret"), owner));
+    }
+
+    private static KeystoneAuth applicationCredential(ApplicationCredential credential) {
+        KeystoneAuth auth = new KeystoneAuth(Type.APPLICATION_CREDENTIAL);
+        auth.identity = new AuthIdentity();
+        auth.identity.methods.add("application_credential");
+        auth.identity.applicationCredential = credential;
+        return auth;
+    }
+
+    private static String requireValue(String value, String name) {
+        if (value == null || value.trim().isEmpty()) {
+            throw new IllegalArgumentException(name + " is required");
+        }
+        return value;
+    }
+
     public Type getType() {
         return type;
     }
@@ -80,25 +112,33 @@ public class KeystoneAuth implements Authentication, AuthStore {
     @Override
     @JsonIgnore
     public String getUsername() {
-        return identity.getPassword().getUser().getName();
+        AuthIdentity.AuthPassword.AuthUser user = passwordUser();
+        return user == null ? null : user.getName();
     }
 
     @JsonIgnore
     @Override
     public String getPassword() {
-        return identity.getPassword().getUser().getPassword();
+        AuthIdentity.AuthPassword.AuthUser user = passwordUser();
+        return user == null ? null : user.getPassword();
     }
 
     @Override
     @JsonIgnore
     public String getId() {
-        return identity.getPassword().getUser().getDomain().getId();
+        AuthIdentity.AuthPassword.AuthUser user = passwordUser();
+        return user == null || user.getDomain() == null ? null : user.getDomain().getId();
     }
 
     @Override
     @JsonIgnore
     public String getName() {
-        return identity.getPassword().getUser().getDomain().getName();
+        AuthIdentity.AuthPassword.AuthUser user = passwordUser();
+        return user == null || user.getDomain() == null ? null : user.getDomain().getName();
+    }
+
+    private AuthIdentity.AuthPassword.AuthUser passwordUser() {
+        return identity == null || identity.password == null ? null : identity.password.user;
     }
 
     @JsonIgnore
@@ -113,6 +153,8 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
         private AuthPassword password;
         private AuthToken token;
+        @JsonProperty("application_credential")
+        private ApplicationCredential applicationCredential;
         private List<String> methods = new ArrayList<>();
 
         static AuthIdentity createTokenType(String tokenId) {
@@ -225,6 +267,27 @@ public class KeystoneAuth implements Authentication, AuthStore {
 
                 }
             }
+        }
+    }
+
+    private static final class ApplicationCredential implements Serializable {
+
+        private static final long serialVersionUID = 1L;
+
+        @JsonProperty
+        private final String id;
+        @JsonProperty
+        private final String name;
+        @JsonProperty
+        private final String secret;
+        @JsonProperty
+        private final AuthIdentity.AuthPassword.AuthUser user;
+
+        private ApplicationCredential(String id, String name, String secret, AuthIdentity.AuthPassword.AuthUser user) {
+            this.id = id;
+            this.name = name;
+            this.secret = secret;
+            this.user = user;
         }
     }
 

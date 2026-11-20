@@ -1,8 +1,8 @@
 package org.openstack4j.core.transport.functions;
 
 import java.util.Map;
-
 import java.util.function.Function;
+
 import org.openstack4j.core.transport.HttpResponse;
 import org.openstack4j.model.common.ActionResponse;
 

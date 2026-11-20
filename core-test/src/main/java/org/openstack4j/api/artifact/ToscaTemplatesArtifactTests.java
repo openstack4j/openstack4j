@@ -12,7 +12,7 @@ import org.openstack4j.model.artifact.builder.ArtifactUpdateBuilder;
 import org.openstack4j.model.artifact.builder.ToscaTemplatesArtifactBuilder;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests the Artifact -> Tosca Template Artifact API against the mock webserver and spec based

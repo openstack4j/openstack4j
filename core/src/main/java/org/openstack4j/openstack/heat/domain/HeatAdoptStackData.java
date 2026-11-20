@@ -4,8 +4,8 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.heat.AdoptStackData;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * This class contains all elements required for the creation of <code>adopt_stack_data</code> element. It is used for stack adoption and as a return value for stack abandoning.

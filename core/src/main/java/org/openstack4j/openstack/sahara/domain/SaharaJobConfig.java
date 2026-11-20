@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.sahara.JobConfig;
 import org.openstack4j.model.sahara.builder.JobConfigBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * For mapping JSON response to/from java objects

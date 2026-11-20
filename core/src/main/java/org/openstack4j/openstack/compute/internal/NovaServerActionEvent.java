@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.compute.internal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.compute.ServerActionEvent;
 import org.openstack4j.model.compute.builder.ServerActionEventBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Events hold information about start_time, finish_time, event and result

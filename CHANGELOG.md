@@ -16,7 +16,7 @@
 - Fix for issue #1124:openstack4j mistaken heat-cfn service as heat ser… #1142
 - Heat service, adding support for stack abandon and adopt #1136
 - Alarm test case fix #1209
-- aodh-gnocchi alarm  support #1134
+- aodh-gnocchi alarm support #1134
 - Consider the SSLContext of an HttpRequest's Config object when using the Resteasy connector #1162
 - Fix issue #1165. #1166
 - Make sure the number of okhttp CLOSE_WAIT connections is always manageable #1151
@@ -46,7 +46,7 @@
 ### 3.1.0
 
 - Issue : #[1070](https://github.com/ContainX/openstack4j/issues/1070) #1072
-- fix  Firewall policy param cannot be updated #1074
+- fix Firewall policy param cannot be updated #1074
 - Added API for Octavia #1081
 - Feature/barbican secret #1080
 - Support multiattach property in volume #1079
@@ -59,7 +59,8 @@
 - Fix ETag header to match documented name: 'Etag' #1062
 - Added a new method createSnapshot() to invoke create image action API with metadata properties #1056
 - Adding limit to SampleCriteria for Ceilometer APIs #1052
-- Update builder to set old deprecated fields to support volume creation (preserving name and description) for cinder API V1 #1058
+- Update builder to set old deprecated fields to support volume creation (preserving name and description) for cinder
+  API V1 #1058
 - Mistral: add workflow environment and cron trigger endpoint #1055
 - 928 ceilometer statistics date parsing #1049
 - Renamed CinderVolume properties to be compatible with block storage API v2, fixed broken VolumeTests #1046
@@ -114,9 +115,10 @@
 - Openstack telemetry aodh support #900
 - Kept the portsecurityenabled property as undefined #904
 
-### 3.0.0 
+### 3.0.0
 
-This is a major milestone release which was driven and lead by @auhlig and @dhague. Special thanks for their major contributions and making this release possible.
+This is a major milestone release which was driven and lead by @auhlig and @dhague. Special thanks for their major
+contributions and making this release possible.
 
 As a result we have added 2.0-maintenance branch which is the path to EOL for OpenStack4j 2.0.X series.
 
@@ -127,33 +129,35 @@ As a result we have added 2.0-maintenance branch which is the path to EOL for Op
 * SLF4j 1.7.21 as sole logging implementation
 
 ##### Misc
+
 * Introduced Groovy tests written in Groovy using Betamax to record and replay client-server communication
 * Clean split of the implementation by Identity version:
-* Package names reflect different  versions (*.identity.v2.* and *.identity.v3.* )
-* Instead of the old version-mixed OSClient a OSClientV2 for only Identity V2 API and OSClientV3 for only Identity V3 API are available
+* Package names reflect different versions (*.identity.v2.* and *.identity.v3.* )
+* Instead of the old version-mixed OSClient a OSClientV2 for only Identity V2 API and OSClientV3 for only Identity V3
+  API are available
 * Same refactoring for the OSClientSession: introducing new OSClientSessionV2 and OSClientV3
 
 ### 2.20
 
-This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward only critical or specific pull requests will justify future release.  It is strongly encourage to consider moving to OpenStack4j 3.0.X which offers the full Identity V3 Support.
+This marks the last of the 2.X OpenStack4j versioning scheme. Going forward only critical or specific pull requests will
+justify future release. It is strongly encourage to consider moving to OpenStack4j 3.0.X which offers the full Identity
+V3 Support.
 
 ### 2.0.9
 
 ##### Enhancements/Improvements
 
-* Issue #503 - domain scoped authentication with tests - Thank you - @auhlig  
+* Issue #503 - domain scoped authentication with tests - Thank you - @auhlig
 
 ##### Fixes
 
-* Issue #454 - Tenant and user id not in Volume - Thank you - @iviireczech 
-
-
+* Issue #454 - Tenant and user id not in Volume - Thank you - @iviireczech
 
 ### 2.0.8
 
 ##### Enhancements/Improvements
 
-* Issue #492 - Telemetry Events API - Thank you - @iviireczech  
+* Issue #492 - Telemetry Events API - Thank you - @iviireczech
 * Issue #500 - Use Enums instead of String for sourceType and destinationType in block mappings
 
 ##### Fixes
@@ -161,34 +165,35 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #489 - Race Condition in DefaultEndpointURLResolver - Thank you - @rvesselinov
 * Issue #501 - Avoid using printStackTrace() for exception logging
 
-### 2.0.7 
+### 2.0.7
 
 ##### Enhancements/Improvements
 
-* Issue #479 - Support for Identity V3 - Thank you - @auhlig 
+* Issue #479 - Support for Identity V3 - Thank you - @auhlig
 * Issue #474 - NetQuotaService does not accept/return security_group and security_group_rule quota - Thank you @abareghi
 * Issue #390 - Support for newest Service Versions
 
 ##### Fixes
 
 * Issue #485 - Not returning sub-directories under a directory in Swift - Thank you - @sbcd90
-* Issue #470 - Create (boot) server call fails against DevStack due to optional parameters in JSON payload in the request 
-* Issue #458 - java.lang.NullPointerException when getting servers list - Thank you @symcssn 
+* Issue #470 - Create (boot) server call fails against DevStack due to optional parameters in JSON payload in the
+  request
+* Issue #458 - java.lang.NullPointerException when getting servers list - Thank you @symcssn
 * Issue #448 - RACKSPACE: Unable to Find Supported Services
 
 ### 2.0.6
 
 ##### Enhancements/Improvements
 
-* Issue #450 - Make configDrive() accessible from Server Create builder - Thank you - @imclem 
+* Issue #450 - Make configDrive() accessible from Server Create builder - Thank you - @imclem
 
 ##### Fixes
 
-* Issue #459 - NPE from keystone v3 re-auths - Thank you - @symcssn 
-* Issue #446 - DLPayload does not return proper response to allow proper handling - Thank you @symcssn 
-* Issue #444 - OSAuthenticator.authenticateV3 does not reauthenticate properly - Thank you @symcssn 
+* Issue #459 - NPE from keystone v3 re-auths - Thank you - @symcssn
+* Issue #446 - DLPayload does not return proper response to allow proper handling - Thank you @symcssn
+* Issue #444 - OSAuthenticator.authenticateV3 does not reauthenticate properly - Thank you @symcssn
 
-### 2.0.5 
+### 2.0.5
 
 ##### Enhancements/Improvements
 
@@ -217,14 +222,14 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #343 - Add filter support when listing Volume and Volume Snapshot
 * Issue #340 - Support for Network Extension: Firewall As a Service (FwaaS)
 * Issue #337 - Enhancement Request: ability to fetch ALL metadata for objects/containers
-* Issue #332 - Refactor HttpClient Connector to use singleton of the Apache HttpClient 
+* Issue #332 - Refactor HttpClient Connector to use singleton of the Apache HttpClient
 
 ##### Fixes
 
 * Issue #420 - Bug fix for the get_files. The key should be the file name
 * Issue #418 - Bugs regarding updating object metadata
 * Issue #414 - FlavorServiceImpl.listExtraSpecs NullPointerException
-* Issue #413 - ObjectStorageObjectServiceImpl.get(ObjectLocation) throws NPE 
+* Issue #413 - ObjectStorageObjectServiceImpl.get(ObjectLocation) throws NPE
 * Issue #412 - httpclient connector leaks connections on failed authentication attempts and eventually hangs
 * Issue #411 - [Partial Fix] Connection leak from usage of BaseOpenStackService.Invocation.executeWithResponse()
 * Issue #403 - The KeystoneServiceEndpoint miss @JsonRootName("endpoint")
@@ -233,7 +238,7 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #394 - HttpClient connection leak when processing Server Errors
 * Issue #393 - The FlavorServiceImpl.removeTenantAccess method error
 * Issue #391 - FlavorServiceImpl.getSpec /flavors/%s/os-extra_specs/%s/ uri error
-* Issue #376 - Deserialization error with HttpURL connector 
+* Issue #376 - Deserialization error with HttpURL connector
 * Issue #373 - Connection leak when using HttpClient connector
 * Issue #365 - Compute: Add/Remove SecGroup 500 exception not caught.
 * Issue #360 - Connection leak when using HttpClient connector
@@ -242,7 +247,8 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #336 - Exception when deleting an unexisting Glance image
 * Issue #333 - Default value set to 0 for NetSecurityGroupRules : port range
 * Issue #327 - SwiftAccount account = os.objectStorage().account().get()
-* Issue #314 - EofSensorInputStream throws JsonParseException for 404s. Also, inconsistent behavior of how 404s are handled
+* Issue #314 - EofSensorInputStream throws JsonParseException for 404s. Also, inconsistent behavior of how 404s are
+  handled
 
 ### 2.0.3
 
@@ -253,14 +259,14 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #316 - Expose error code in ActionResponse
 * Issue #308 - Add PENDING_CREATE to Neutron Network State Enumeration
 * Issue #294 - NetQuota : updateForTenant support request
-* Issue #272 - Quota-Set for Block Storage 
+* Issue #272 - Quota-Set for Block Storage
 * Issue #267 - Configuring connection pooling feature for underlying client connectors
 
 ##### Fixes
 
 * Issue #326 - BlockStorageVolumeBuilder : allow availability_zone to be set
 * Issue #329 - Update default quotaSet shows exception
-* Issue #325 - Volumes metadata is not set due to wrong parameter name sent from OS4j 
+* Issue #325 - Volumes metadata is not set due to wrong parameter name sent from OS4j
 * Issue #323 - Setting external gateway to router in api returns not authorized, but the same is allowed via CLI
 * Issue #307 - Unable to catch assign floating IP error
 * Issue #295 - Exception while updating quota for tenant
@@ -317,21 +323,21 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 ##### Enhancements/Improvements
 
 * Issue #182 - os-availability-zone support
-* Issue #177 - Heat: Nested template support - Thanks @magixyu 
+* Issue #177 - Heat: Nested template support - Thanks @magixyu
 * Issue #175 - Implement os-floating-ip-dns resource
-* Issue #174 - Neutron: Ability to set DNS Nameserver and Host Route within SubnetBuilder  
+* Issue #174 - Neutron: Ability to set DNS Nameserver and Host Route within SubnetBuilder
 * Issue #173 - Ceilometer: Ability to specify 'project' in obtaining samples using SampleCriteria
-* Issue #171 - Upload volume to image  
+* Issue #171 - Upload volume to image
 * Issue #169 - Update a neutron network
-* Issue #165 - volume migrate and force delete support  
+* Issue #165 - volume migrate and force delete support
 * Issue #164 - Interface attachment support
 
 ##### Fixes
 
 * Issue #181 - Can't get VNCConsoleURL using RestEasy connector
 * Issue #172 - ClassCastException with HttpClient-2.0.1 connecter while downloading image
-* Issue #163  - State vs Status in the NeutronPort
-* Issue #161  - Issue with attaching a Volume
+* Issue #163 - State vs Status in the NeutronPort
+* Issue #161 - Issue with attaching a Volume
 * Issue #160 - Adding users to a tenant is not working
 
 ### 2.0.0
@@ -347,7 +353,7 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #125 - Compute - update a server (instance) name
 * Issue #120 - Compute - flavor extra spec support for scheduler hints
 * Issue #114 - Support for SPICE Html5 console
-* PR    #107 - Server group support - Thank you @octupszhang
+* PR #107 - Server group support - Thank you @octupszhang
 * Issue #105 - Full server metadata support
 * Issue #102 - Support for backup server action
 * Issue #101 - Limits for Cinder and Neutron
@@ -369,7 +375,8 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #147 - API version is not set in service URL when using HTTPS
 * Issue #146 - Bad request when using HTTPS
 * Issue #142 - Creating a volume from ImageRef returns volume object without populating original reference
-* Issue #135 - Deleting Non-existent KeyPair yields: Can not deserialize instance of java.lang.String out of START_OBJECT token
+* Issue #135 - Deleting Non-existent KeyPair yields: Can not deserialize instance of java.lang.String out of
+  START_OBJECT token
 * Issue #134 - JDK 1.6 compatibility support option with Jersey 2 connector
 * Issue #131 - Regression: Error adding a floating IP
 * Issue #130 - NPE when creating a new Network
@@ -403,9 +410,9 @@ This marks the last of the 2.X OpenStack4j versioning scheme.  Going forward onl
 * Issue #15 - Ability to specify a Region to call against
 * Issue #26 - Ability to set Availibility Zone to a Server
 * Issue #19 - Boot and Wait for Server to become ACTIVE based upon max wait time
- 
 
 ##### Fixes
+
 * Issue #58 - Server status "SHUTOFF" showing as UNRECOGNIZED enum value on query
 * Issue #50 - List of SecurityGroupRule returns null
 * Issue #49 - Listing of servers error in some environments

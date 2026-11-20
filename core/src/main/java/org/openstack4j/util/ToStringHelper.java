@@ -133,9 +133,11 @@ public final class ToStringHelper {
         // create a copy to keep it consistent in case value changes
         String nextSeparator = "";
         StringBuilder builder = new StringBuilder(32).append(className).append('{');
-        for (ValueHolder valueHolder = holderHead.next;
+        for (
+                ValueHolder valueHolder = holderHead.next;
                 valueHolder != null;
-                valueHolder = valueHolder.next) {
+                valueHolder = valueHolder.next
+        ) {
             Object value = valueHolder.value;
             if (!omitNullValues || value != null) {
                 builder.append(nextSeparator);

@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.LbMethod;
 import org.openstack4j.model.network.ext.LbPoolV2Update;
 import org.openstack4j.model.network.ext.SessionPersistence;
 import org.openstack4j.model.network.ext.builder.LbPoolV2UpdateBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Used to update lbaas V2 lb pool

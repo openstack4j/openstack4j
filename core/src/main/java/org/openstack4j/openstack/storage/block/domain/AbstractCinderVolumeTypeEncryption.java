@@ -1,9 +1,9 @@
 package org.openstack4j.openstack.storage.block.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.storage.block.VolumeTypeEncryption;
 import org.openstack4j.model.storage.block.builder.VolumeTypeEncryptionBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A volume type encryption

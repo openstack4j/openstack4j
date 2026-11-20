@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.ModelEntity;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Neutron Resource Tags Entity

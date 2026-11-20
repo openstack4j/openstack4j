@@ -1,7 +1,8 @@
 openstack4j core-test
 ===========================
 
-Tests for OpenStack4j using [TestNG](http://testng.org) test framework and an web server to mock server-client communication.
+Tests for OpenStack4j using [TestNG](http://testng.org) test framework and an web server to mock server-client
+communication.
 
 HOW TO
 ------
@@ -10,7 +11,7 @@ HOW TO
 
 Tests are created in the folder corresponding to the OpenStack service.
 The following code shows a simple example.
- 
+
     @Test(groups = "idV3", suiteName = "Identity/V3/Keystone")
     public class KeystoneCredentialServiceTests extends AbstractTest {
         
@@ -45,19 +46,20 @@ The following code shows a simple example.
  
     }
 
-
 ### Run Tests
 
 * Tests in the `core-test` module are executed in the test phase via ```mvn clean test``` (or any phase later).
 
 #### Adding a new service
 
-OpenStack services require an endpoint in the service catalog of a access object (Keystone v2) or of token (Keystone v3).
-Since the initial authentication request and its response are mocked, the endpoints have to added manually to the corresponding files.
+OpenStack services require an endpoint in the service catalog of a access object (Keystone v2) or of token (Keystone
+v3).
+Since the initial authentication request and its response are mocked, the endpoints have to added manually to the
+corresponding files.
 The following fragments might be helpful.
 
 #####Keystone V2:
-    
+
     # Add to service catalog in /resources/idenity/v2/access.json
 
     {
@@ -74,7 +76,6 @@ The following fragments might be helpful.
 	"type": "compute",
 	"name": "nova"
     }
-    
 
 #####Keystone V3:
 

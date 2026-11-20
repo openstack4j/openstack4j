@@ -5,12 +5,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.api.Apis;
 import org.openstack4j.model.network.ext.FirewallPolicy;
 import org.openstack4j.model.network.ext.FirewallRule;
 import org.openstack4j.model.network.ext.builder.FirewallPolicyBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A Neutron Firewall (FwaaS) : Firewall Policy Entity.

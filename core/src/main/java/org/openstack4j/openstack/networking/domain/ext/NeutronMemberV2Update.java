@@ -3,9 +3,9 @@ package org.openstack4j.openstack.networking.domain.ext;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.network.ext.MemberV2Update;
 import org.openstack4j.model.network.ext.builder.MemberV2UpdateBuilder;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Entity for updating lbaas v2 members

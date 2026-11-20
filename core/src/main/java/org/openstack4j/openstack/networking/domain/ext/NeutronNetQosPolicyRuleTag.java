@@ -1,12 +1,12 @@
 package org.openstack4j.openstack.networking.domain.ext;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
-import org.openstack4j.model.ModelEntity;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
+import org.openstack4j.model.ModelEntity;
 
 /**
  * @author bboyHan

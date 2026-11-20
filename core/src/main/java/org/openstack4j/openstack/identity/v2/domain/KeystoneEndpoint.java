@@ -2,14 +2,14 @@ package org.openstack4j.openstack.identity.v2.domain;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openstack4j.util.ToStringHelper;
-import java.util.Objects;
 import org.openstack4j.model.identity.v2.Endpoint;
 import org.openstack4j.model.identity.v2.builder.EndpointBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Endpoint Model is used to describe a network address which is described by URL's and other service

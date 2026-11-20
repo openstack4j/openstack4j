@@ -1,5 +1,7 @@
 package org.openstack4j.openstack.manila.internal;
 
+import java.util.Objects;
+
 import org.openstack4j.api.manila.QuotaSetService;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.manila.QuotaSet;
@@ -7,8 +9,6 @@ import org.openstack4j.model.manila.QuotaSetUpdateOptions;
 import org.openstack4j.openstack.compute.functions.ToActionResponseFunction;
 import org.openstack4j.openstack.manila.domain.ManilaQuotaSet;
 import org.openstack4j.openstack.manila.domain.ManilaQuotaSetUpdate;
-
-import java.util.Objects;
 
 public class QuotaSetServiceImpl extends BaseShareServices implements QuotaSetService {
     @Override

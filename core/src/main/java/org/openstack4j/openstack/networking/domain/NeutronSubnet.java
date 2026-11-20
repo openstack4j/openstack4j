@@ -5,11 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.*;
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.model.common.builder.ResourceBuilder;
 import org.openstack4j.model.network.*;
 import org.openstack4j.model.network.builder.SubnetBuilder;
 import org.openstack4j.openstack.common.ListResult;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * A Subnet is a network with Pools and network based settings
@@ -419,7 +419,8 @@ public class NeutronSubnet implements Subnet {
 
         @Override
         public SubnetBuilder addHostRoute(String destination, String nexthop) {
-            if (nexthop == null || destination == null) throw new IllegalArgumentException("NextHop and Destination must have a value");
+            if (nexthop == null || destination == null)
+                throw new IllegalArgumentException("NextHop and Destination must have a value");
             if (m.hostRoutes == null)
                 m.hostRoutes = new ArrayList<>();
 

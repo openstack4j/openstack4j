@@ -1,6 +1,7 @@
 package org.openstack4j.model.common.functions;
 
 import java.util.function.Function;
+
 import org.openstack4j.model.common.IdEntity;
 
 /**

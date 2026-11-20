@@ -2,9 +2,9 @@ package org.openstack4j.api.exceptions;
 
 import javax.annotation.Nullable;
 
-import org.openstack4j.util.ToStringHelper;
 import org.openstack4j.core.transport.HttpRequest;
 import org.openstack4j.core.transport.HttpResponse;
+import org.openstack4j.util.ToStringHelper;
 
 /**
  * Base Exception for HTTP Errors during Rest Operations

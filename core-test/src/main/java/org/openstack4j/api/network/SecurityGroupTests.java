@@ -6,7 +6,7 @@ import org.openstack4j.model.network.SecurityGroup;
 import org.openstack4j.model.network.builder.NetSecurityGroupUpdateBuilder;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 
 /**

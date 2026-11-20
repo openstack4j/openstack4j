@@ -165,7 +165,7 @@ public class ServerTests extends AbstractTest {
         respondWith(JSON_SERVER_REBUILD);
 
         RebuildOptions rebuildOptions = RebuildOptions.create().image("70a599e0-31e7-49b7-b260-868f441e862b").userData("ZWNobyAiaGVsbG8gd29ybGQi");
-        
+
         ActionResponse actionResponse = osv3().compute().servers().rebuild("0c37a84a-c757-4f22-8c7f-0bf8b6970886", rebuildOptions);
         assertNotNull(actionResponse);
         assertTrue(actionResponse.isSuccess());

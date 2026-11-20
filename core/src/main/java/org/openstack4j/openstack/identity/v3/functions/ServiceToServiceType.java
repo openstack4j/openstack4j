@@ -1,6 +1,7 @@
 package org.openstack4j.openstack.identity.v3.functions;
 
 import java.util.function.Function;
+
 import org.openstack4j.api.types.ServiceType;
 import org.openstack4j.model.identity.v3.Service;
 

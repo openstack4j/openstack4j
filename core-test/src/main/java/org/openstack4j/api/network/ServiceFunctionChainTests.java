@@ -2,8 +2,8 @@ package org.openstack4j.api.network;
 
 import java.io.InputStreamReader;
 import java.util.List;
-
 import java.util.Objects;
+
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.core.transport.ObjectMapperSingleton;

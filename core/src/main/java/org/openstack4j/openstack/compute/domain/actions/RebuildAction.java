@@ -3,10 +3,9 @@ package org.openstack4j.openstack.compute.domain.actions;
 import java.util.List;
 import java.util.Map;
 
-import org.openstack4j.model.compute.Personality;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import org.openstack4j.model.compute.Personality;
 import org.openstack4j.model.compute.actions.RebuildOptions;
 
 /**
@@ -32,7 +31,7 @@ public class RebuildAction implements ServerAction {
     private String userData;
     private List<Personality> personality;
     private Map<String, String> metadata;
-    
+
     public static RebuildAction create(RebuildOptions options) {
         RebuildAction action = new RebuildAction();
 
@@ -58,14 +57,15 @@ public class RebuildAction implements ServerAction {
     public String getAdminPass() {
         return adminPass;
     }
+
     public String getUserData() {
         return userData;
     }
-    
+
     public List<Personality> getPersonality() {
         return personality;
     }
-    
+
     public Map<String, String> getMetadata() {
         return metadata;
     }
