@@ -53,19 +53,9 @@ To use another connector, see [the connector usage guide](connectors/README.md).
 
 #### Publishing a release
 
-Use a tag matching the release version in `pom.xml`, for example `v4.0.0` for version `4.0.0`.
-
-Publishing a GitHub release in `spechurkin/openstack4j` triggers **Publish to GitHub Packages**.
-The workflow uses the built-in `GITHUB_TOKEN` and requires no additional repository secrets.
-
-To publish to Maven Central, run the **Publish to Maven Central** workflow in `spechurkin/openstack4j` from the release tag.
-The Central Portal account must have access to the `io.github.spechurkin` namespace.
-Set the repository secrets `CENTRAL_USERNAME` and `CENTRAL_TOKEN` to the generated Central Portal token credentials.
-Set `GPG_PRIVATE_KEY` and `GPG_PASSPHRASE` for the signing key, and make its public key available to Central.
-
-```sh
-gh workflow run publish-central.yml --repo spechurkin/openstack4j --ref v4.0.0
-```
+Push a tag in the form `vMAJOR.MINOR.PATCH` to `spechurkin/openstack4j`, for example `v4.0.0` for version `4.0.0`.
+The tag must match the version in `pom.xml` and point to a commit reachable from the default branch (`main` or `master`).
+The **Release** workflow runs the Maven verification build and publishes a GitHub Release after it passes.
 
 Contributing
 ------------

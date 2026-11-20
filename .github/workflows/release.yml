@@ -1,0 +1,75 @@
+name: Release
+
+on:
+    push:
+        tags: ['v*.*.*']
+
+permissions:
+    contents: read
+
+jobs:
+    verify:
+        if: github.repository == 'spechurkin/openstack4j' && !github.event.deleted
+        runs-on: ubuntu-latest
+        outputs:
+            commit: ${{ steps.tag.outputs.commit }}
+        steps:
+            -   uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+                with:
+                    ref: ${{ github.sha }}
+                    fetch-depth: 0
+                    persist-credentials: false
+            -   name: Verify release tag
+                id: tag
+                shell: bash
+                env:
+                    DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+                run: |
+                    if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                        echo '::error::Expected a tag in the form vMAJOR.MINOR.PATCH.'
+                        exit 1
+                    fi
+                    if [[ "$DEFAULT_BRANCH" != main && "$DEFAULT_BRANCH" != master ]]; then
+                        echo '::error::The default branch must be main or master.'
+                        exit 1
+                    fi
+                    commit=$(git rev-parse --verify "${GITHUB_REF}^{commit}")
+                    if [[ "$commit" != "$(git rev-parse HEAD)" ]] ||
+                        ! git merge-base --is-ancestor "$commit" "refs/remotes/origin/$DEFAULT_BRANCH"; then
+                        echo '::error::The release tag must point to the checked-out commit on the default branch.'
+                        exit 1
+                    fi
+                    version=$(python3 -c "from xml.etree import ElementTree as ET; print(ET.parse('pom.xml').findtext('{*}version'))")
+                    if [[ "$GITHUB_REF_NAME" != "v$version" ]]; then
+                        echo '::error::The tag must match the version in pom.xml.'
+                        exit 1
+                    fi
+                    echo "commit=$commit" >> "$GITHUB_OUTPUT"
+            -   uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+                with:
+                    distribution: temurin
+                    java-version: '17'
+            -   name: Verify Maven build
+                run: mvn -B --no-transfer-progress -Prelease verify
+
+    publish:
+        needs: verify
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            -   name: Publish GitHub Release
+                shell: bash
+                env:
+                    GH_TOKEN: ${{ github.token }}
+                    GH_REPO: ${{ github.repository }}
+                    VERIFIED_COMMIT: ${{ needs.verify.outputs.commit }}
+                run: |
+                    tag_refs=$(git ls-remote --exit-code --sort=refname "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY.git" \
+                        "$GITHUB_REF" "${GITHUB_REF}^{}")
+                    tag_commit=$(tail -n 1 <<< "$tag_refs" | cut -f 1)
+                    if [[ "$tag_commit" != "$VERIFIED_COMMIT" ]]; then
+                        echo '::error::The release tag changed after verification.'
+                        exit 1
+                    fi
+                    gh release create "$GITHUB_REF_NAME" --verify-tag --generate-notes --title "$GITHUB_REF_NAME"
