@@ -140,6 +140,10 @@ public class Builders {
         return NeutronNetwork.builder();
     }
 
+    public static NetQosPolicyUpdateBuilder netQosPolicyUpdate() {
+        return NeutronNetQosPolicyUpdate.builder();
+    }
+
     /**
      * The builder to create a Flow Classifier
      *
@@ -185,6 +189,10 @@ public class Builders {
         return NeutronSubnet.builder();
     }
 
+    public static SubnetPoolBuilder subnetPool() {
+        return NeutronSubnetPool.builder();
+    }
+
     /**
      * The builder to create a Port
      *
@@ -201,6 +209,10 @@ public class Builders {
      */
     public static RouterBuilder router() {
         return NeutronRouter.builder();
+    }
+
+    public static RouterConntrackHelperBuilder routerConntrackHelper() {
+        return NeutronRouterConntrackHelper.builder();
     }
 
     /**

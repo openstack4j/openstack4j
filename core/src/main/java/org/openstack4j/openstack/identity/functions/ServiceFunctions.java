@@ -11,8 +11,6 @@ import java.util.regex.Pattern;
  */
 public final class ServiceFunctions {
 
-    private static final Pattern VERSION_PATTERN = Pattern.compile("(.*)v(\\d+)");
-
     /**
      * Takes a Service Type or Service Name and strips off any version (if applicable) and returns the
      * common name.  For example: {@code nova21} would be returned as {@code nova}.
@@ -23,7 +21,6 @@ public final class ServiceFunctions {
             return matchForVersion(serviceType, false);
         }
     };
-
     /**
      * Determines the version from a Service Type or Name.  If the current service does not match the pattern
      * then a version 1 is always returned.  For example: {@code nova21} would return {@code 21}, {@code compute} would
@@ -36,6 +33,7 @@ public final class ServiceFunctions {
             return matchForVersion(serviceType, true);
         }
     };
+    private static final Pattern VERSION_PATTERN = Pattern.compile("(.*)v(\\d+)");
 
     @SuppressWarnings("unchecked")
     private static <T> T matchForVersion(String service, boolean returnVersion) {

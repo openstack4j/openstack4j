@@ -20,6 +20,10 @@ public interface NetworkingService extends RestService {
      */
     SubnetService subnet();
 
+    default SubnetPoolService subnetPool() {
+        throw new UnsupportedOperationException("Subnet pools are not supported by this networking service");
+    }
+
     /**
      * @return the Port Service API
      */
@@ -29,6 +33,10 @@ public interface NetworkingService extends RestService {
      * @return the Router Service API
      */
     RouterService router();
+
+    default RouterConntrackHelperService routerConntrackHelper() {
+        throw new UnsupportedOperationException("Router conntrack helpers are not supported by this networking service");
+    }
 
     /**
      * @return the FloatingIP Service API

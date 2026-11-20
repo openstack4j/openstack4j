@@ -10,13 +10,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import okhttp3.mockwebserver.RecordedRequest;
 import org.openstack4j.api.AbstractTest;
 import org.openstack4j.api.Builders;
 import org.openstack4j.model.common.ActionResponse;
 import org.openstack4j.model.common.Payload;
 import org.openstack4j.model.common.Payloads;
 import org.openstack4j.model.image.v2.*;
+import org.openstack4j.openstack.image.v2.domain.GlanceImage;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -77,6 +82,28 @@ public class ImageV2Tests extends AbstractTest {
         assertNotNull(image.getId());
         assertEquals(image.getId(), id);
         assertEquals(2, image.getLocations().size());
+    }
+
+    public void testUpdateImageSendsJsonPatch() throws IOException, InterruptedException {
+        ObjectMapper mapper = new ObjectMapper();
+        String originalJson = getResource(IMAGE_JSON);
+        Image image = mapper.readValue(originalJson, GlanceImage.class);
+        Image updated = image.toBuilder().name("renamed-image").build();
+        while (server.takeRequest(0, TimeUnit.SECONDS) != null) {
+            // Other tests in this class do not consume recorded requests.
+        }
+        respondWith(200, originalJson);
+        respondWith(200, mapper.writeValueAsString(updated));
+
+        assertEquals(osv3().imagesV2().update(updated).getName(), "renamed-image");
+        RecordedRequest get = server.takeRequest(1, TimeUnit.SECONDS);
+        RecordedRequest patch = server.takeRequest(1, TimeUnit.SECONDS);
+        assertNotNull(get);
+        assertNotNull(patch);
+        assertEquals(get.getMethod(), "GET");
+        assertEquals(patch.getMethod(), "PATCH");
+        JsonNode expected = mapper.readTree("[{\"op\":\"replace\",\"path\":\"/name\",\"value\":\"renamed-image\"}]");
+        assertEquals(mapper.readTree(patch.getBody().readUtf8()), expected);
     }
 
     public void testCreateImage() throws IOException {

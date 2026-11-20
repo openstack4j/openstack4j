@@ -1,5 +1,6 @@
 package org.openstack4j.model.network.ext;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.common.BasicResource;
 import org.openstack4j.model.network.ext.builder.NetQosPolicyUpdateBuilder;
@@ -10,6 +11,10 @@ import org.openstack4j.model.network.ext.builder.NetQosPolicyUpdateBuilder;
  * @author bboyHan
  */
 public interface NetQosPolicyUpdate extends BasicResource, Buildable<NetQosPolicyUpdateBuilder> {
+
+    @Override
+    @JsonIgnore
+    String getId();
 
     /**
      * A human-readable description for the resource. Default is an empty string.

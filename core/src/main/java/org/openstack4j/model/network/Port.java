@@ -87,4 +87,8 @@ public interface Port extends Resource, TimeEntity, Buildable<PortBuilder> {
     String getvNicType();
 
     Map<String, Object> getProfile();
+
+    default List<? extends ExtraDhcpOptCreate> getExtraDhcpOpts() {
+        return null;
+    }
 }

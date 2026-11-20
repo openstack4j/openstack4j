@@ -60,7 +60,7 @@ public abstract class AbstractTest {
      */
     protected abstract Service service();
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     protected void startServer() throws UnknownHostException {
 
         InetAddress inetAddress = InetAddress.getByName("localhost");

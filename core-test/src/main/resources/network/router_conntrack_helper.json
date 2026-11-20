@@ -1,0 +1,8 @@
+{
+    "conntrack_helper": {
+        "protocol": "udp",
+        "id": "2fc1eebb-e0fa-4c40-868a-7ace444717e1",
+        "helper": "tftp",
+        "port": 69
+    }
+}

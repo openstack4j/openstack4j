@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openstack4j.common.Buildable;
 import org.openstack4j.model.common.IdEntity;
 import org.openstack4j.model.network.ext.builder.NetQosPolicyBandwidthLimitRuleBuilder;
@@ -16,6 +17,10 @@ import org.openstack4j.openstack.networking.domain.ext.NeutronNetQosPolicyRuleTa
  * @author slankka
  */
 public interface NetQosPolicyBandwidthLimitRule extends IdEntity, Buildable<NetQosPolicyBandwidthLimitRuleBuilder> {
+
+    @Override
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    String getId();
 
     /**
      * The maximum KBPS (kilobits per second) value.

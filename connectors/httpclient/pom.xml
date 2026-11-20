@@ -1,25 +1,21 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.github.openstack4j.core.connectors</groupId>
+        <groupId>io.github.spechurkin</groupId>
         <artifactId>openstack4j-connectors</artifactId>
-        <version>3.13</version>
+        <version>4.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>openstack4j-httpclient</artifactId>
     <name>OpenStack4j HttpComponents-HttpClient Connector</name>
-    <url>https://github.com/openstack4j/openstack4j/</url>
+    <url>https://github.com/spechurkin/openstack4j/</url>
     <packaging>jar</packaging>
-
-    <properties>
-        <httpclient-version>4.5.13</httpclient-version>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>${httpclient-version}</version>
+            <version>${httpclient.version}</version>
             <type>jar</type>
         </dependency>
     </dependencies>

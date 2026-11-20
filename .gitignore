@@ -12,6 +12,8 @@ javadoc
 target/**/*
 target
 **/target
+.idea/
+.openidea/
 *.class
 Thumbs.db
 test-output

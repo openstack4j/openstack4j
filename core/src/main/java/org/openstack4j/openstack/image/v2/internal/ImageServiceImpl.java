@@ -9,7 +9,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.fge.jsonpatch.diff.JsonDiff;
+import com.flipkart.zjsonpatch.JsonDiff;
 import org.openstack4j.api.Apis;
 import org.openstack4j.api.exceptions.ResponseException;
 import org.openstack4j.api.image.v2.ImageService;

@@ -1,8 +1,8 @@
 OpenStack4j Connectors
 ======================
 
-By default OpenStack4j uses Jersey 2. You can break this out to allow usage of any of the following connectors Jersey 2,
-Resteasy, Apache HttpClient or OKHttp.
+The `openstack4j` distribution uses RESTEasy by default. To select a connector, use the core artifact and one of the
+RESTEasy, Apache HttpClient or OkHttp artifacts below.
 
 ### Usage
 
@@ -10,7 +10,7 @@ Instead of depending on the normal "openstack4j" artifactId, change the dependen
 
 ```xml
 <dependency>
-    <groupId>com.github.openstack4j.core</groupId>
+    <groupId>io.github.spechurkin</groupId>
     <artifactId>openstack4j-core</artifactId>
     <version>...</version>
 </dependency>
@@ -22,7 +22,7 @@ Now choose a connector by adding the applicable dependency below:
 
 ```xml
 <dependency>
-    <groupId>com.github.openstack4j.core.connectors</groupId>
+    <groupId>io.github.spechurkin</groupId>
     <artifactId>openstack4j-resteasy</artifactId>
     <version>...</version>
 </dependency>
@@ -32,7 +32,7 @@ Now choose a connector by adding the applicable dependency below:
 
 ```xml
 <dependency>
-    <groupId>com.github.openstack4j.core.connectors</groupId>
+    <groupId>io.github.spechurkin</groupId>
     <artifactId>openstack4j-httpclient</artifactId>
     <version>...</version>
 </dependency>
@@ -42,7 +42,7 @@ Now choose a connector by adding the applicable dependency below:
 
 ```xml
 <dependency>
-    <groupId>com.github.openstack4j.core.connectors</groupId>
+    <groupId>io.github.spechurkin</groupId>
     <artifactId>openstack4j-okhttp</artifactId>
     <version>...</version>
 </dependency>

@@ -3,13 +3,13 @@ OpenStack4j
 
 [![Build Status](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml/badge.svg)](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.openstack4j.core/openstack4j)
-[![javadoc](https://javadoc.io/badge2/com.github.openstack4j.core/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/com.github.openstack4j.core/openstack4j-core)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.spechurkin/openstack4j)](https://central.sonatype.com/artifact/io.github.spechurkin/openstack4j)
+[![javadoc](https://javadoc.io/badge2/io.github.spechurkin/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/io.github.spechurkin/openstack4j-core)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=openstack4j_openstack4j&metric=alert_status)](https://sonarcloud.io/dashboard?id=openstack4j_openstack4j)
 
 OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment. This includes
-support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions (
-LBaaS, FWaaS, Quota-Sets, etc)
+support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions
+(LBaaS, FWaaS, Quota-Sets, etc)
 
 ## Documentation and Support
 
@@ -25,17 +25,8 @@ LBaaS, FWaaS, Quota-Sets, etc)
 
 ## Java version support
 
-| ----                                | Java 8 | Java 11 | Java 17 | Java 21 |
-|-------------------------------------|--------|---------|---------|---------|
-| OpenStack4j                         | ?      | 🟢      | 🟢      | 🟢      |
-| HttpURL Connector                   | ?      | 🟢      | *       | *       |
-| HttpComponents-HttpClient Connector | ?      | 🟢      | 🟢      | 🟢      |
-| Jersey2 Connector                   | ?      | 🟢      | *       | *       |
-| OKHttp Connector                    | ?      | 🟢      | 🟢      | 🟢      |
-| RestEasy Connector                  | ?      | 🟢      | 🟢      | 🟢      |
-
-*) Starting with Java 16, it is not possible to use HttpUrlConnection to perform PATH requests.
-Connectors depending on native JDK http stack will not work after Java 16.
+The SDK and its RESTEasy, Apache HttpClient and OkHttp connectors target Java 8.
+Building from source requires JDK 11 or later and Maven 3.6.3 or later.
 
 Maven
 -----
@@ -45,11 +36,12 @@ Maven
 OpenStack4j version 2.0.0+ is now modular. One of the benefits to this is the ability to choose the connector that you
 would like to use in your environment.
 
-**Using OpenStack4j with the default Jersey2 Connector**
+**Using OpenStack4j with the default RESTEasy connector**
 
 ```xml
+
 <dependency>
-    <groupId>com.github.openstack4j.core</groupId>
+    <groupId>io.github.spechurkin</groupId>
     <artifactId>openstack4j</artifactId>
     <version>...</version>
 </dependency>
@@ -57,39 +49,17 @@ would like to use in your environment.
 
 **Using OpenStack4j with one of our connector modules**
 
-To configure OpenStack4j to use one of our supported connectors (Jersey 2, Resteasy, Apache HttpClient,
-OKHttp) [see the usage guide](https://github.com/openstack4j/openstack4j/tree/master/connectors)
+To use another connector, see [the connector usage guide](connectors/README.md).
 
-#### Current (Master Branch)
+#### Publishing a release
 
-See notes above about connectors (same rules apply) to development branches.
+Run the **Publish to Maven Central** workflow in `spechurkin/openstack4j` from a tag matching the version in `pom.xml`, for example `v4.0.0` for version `4.0.0`.
+The Central Portal account must have access to the `io.github.spechurkin` namespace.
+Set the repository secrets `CENTRAL_USERNAME` and `CENTRAL_TOKEN` to the generated Central Portal token credentials.
+Set `GPG_PRIVATE_KEY` and `GPG_PASSPHRASE` for the signing key, and make its public key available to Central.
 
-```xml
-<dependency>
-    <groupId>com.github.openstack4j.core</groupId>
-    <artifactId>openstack4j</artifactId>
-    <version>...</version>
-</dependency>
-```
-
-**A note about referencing Snapshots without Source**
-
-Snapshots are deploys to sonatype. We automatically deploy snapshots on every merge into the master branch. Typically
-5 - 10 snapshot releases before an official release.
-
-You will need to add the repository to your POM or Settings file. Releases (above) are deployed to maven central and
-this step is not required.
-
-Example POM based repository declaration to grab snapshots:
-
-```xml
-<repositories>
-    <repository>
-        <id>st-snapshots</id>
-        <name>sonatype-snapshots</name>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-</repositories>
+```sh
+gh workflow run publish-central.yml --repo spechurkin/openstack4j --ref v4.0.0
 ```
 
 Contributing
@@ -118,13 +88,24 @@ The legacy Identity V2 API now uses the class ```OSClientV2``` in place of the c
 ```java
 // Identity V2 Authentication Example
 OSClientV2 os = OSFactory.builderV2()
-        .endpoint("http://127.0.0.1:5000/v2.0")
-        .credentials("admin","sample")
-        .tenantName("admin")
-        .authenticate();
+                .endpoint("http://127.0.0.1:5000/v2.0")
+                .credentials("admin", "sample")
+                .tenantName("admin")
+                .authenticate();
 ```
 
 ##### Using Identity V3 authentication
+
+To authenticate with a Keystone application credential, use its ID and secret.
+Keystone supplies the credential's project scope.
+
+```java
+OSClientV3 os = OSFactory.builderV3()
+        .endpoint("https://<fqdn>:5000/v3")
+        .applicationCredential(System.getenv("OS_APPLICATION_CREDENTIAL_ID"),
+                System.getenv("OS_APPLICATION_CREDENTIAL_SECRET"))
+        .authenticate();
+```
 
 Creating and authenticating against OpenStack is extremely simple. Below is an example of authenticating which will
 result with the authorized OSClient. OSClient allows you to invoke Compute, Identity, Neutron operations fluently.
@@ -193,21 +174,28 @@ Verifying - Enter Export Password:encrypt
 ```
 
 ```java
-String encrypt =  "encrypt";
+String encrypt = "encrypt";
 KeyStore keyStore = KeyStore.getInstance("PKCS12");
-keyStore.load(new FileInputStream(new File("client-certificate-keystore.p12")), encrypt.toCharArray());
+keyStore.
+
+load(new FileInputStream(new File("client-certificate-keystore.p12")),encrypt.
+
+toCharArray());
 SSLContext sslContext = SSLContexts.custom()
         //ignore server verify
         .loadTrustMaterial(new TrustStrategy() {
             @Override
-            public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+            public boolean isTrusted(X509Certificate[] chain, String authType) {
                 return true;
             }
         })
-        .loadKeyMaterial(keyStore,encrypt.toCharArray())
+        .loadKeyMaterial(keyStore, encrypt.toCharArray())
         .build();
 Config config = Config.newConfig();
-config.withSSLContext(sslContext);
+config.
+
+withSSLContext(sslContext);
+
 OSClient.OSClientV3 osClient = OSFactory.builderV3()
         .endpoint("https://<fqdn>:5000/v3")
         .withConfig(config)
@@ -231,12 +219,12 @@ details.
 ```java
 // Create a User associated to the new Project
 User user = os.identity().users().create(Builders.user()
-	      .domainId("domain id")
-	      .name("foobar")
-	      .password("secret")
-	      .email("foobar@example.com")
-	      .enabled(true)
-	      .build());
+                .domainId("domain id")
+                .name("foobar")
+                .password("secret")
+                .email("foobar@example.com")
+                .enabled(true)
+                .build());
 //or
 User user = os.identity().users().create("domain id", "foobar", "secret", "foobar@example.org", true);
 
@@ -288,12 +276,12 @@ examples below are only a small fraction of the existing API so please refer to 
 ```java
 // Create a Tenant (could also be created fluent within user create)
 Tenant tenant = os.identity().tenants().create(
-    Builders.identityV2().tenant().name("MyNewTenant").build()
-);
+                Builders.identityV2().tenant().name("MyNewTenant").build()
+        );
 
 // Create a User associated to the new Tenant
 User user = os.identity().users().create(
-    Builders.identityV2().user().name("jack").password("sample").tenant(tenant).build()
+        Builders.identityV2().user().name("jack").password("sample").tenant(tenant).build()
 );
 
 // Add a Tenant based Role to the User
@@ -316,12 +304,12 @@ extensions will be covered and documented within the API.
 ```java
 // Create a Flavor for a special customer base
 Flavor flavor = os.compute().flavors().create(
-    Builders.flavor().name("Gold").vcpus(4).disk(80).ram(2048).build()
-);
+                Builders.flavor().name("Gold").vcpus(4).disk(80).ram(2048).build()
+        );
 
 // Create and Boot a new Server (minimal builder options shown in example)
 Server server = os.compute().servers().boot(
-    Builders.server().name("Ubuntu 2").flavor(flavor.getId()).image("imageId").build()
+        Builders.server().name("Ubuntu 2").flavor(flavor.getId()).image("imageId").build()
 );
 ```
 
@@ -351,7 +339,7 @@ List<? extends Network> networks = os.networking().network().list();
 
 // Create a Network
 Network network = os.networking().network().create(
-    Builders.network().name("MyNewNet").tenantId(tenant.getId()).build()
+        Builders.network().name("MyNewNet").tenantId(tenant.getId()).build()
 );
 ```
 
@@ -381,7 +369,7 @@ List<? extends Router> = os.networking().router().list();
 
 // Create a Router
 Router router = os.networking().router().create(
-    Builders.router().name("ext_net").adminStateUp(true).externalGateway("networkId").build()
+        Builders.router().name("ext_net").adminStateUp(true).externalGateway("networkId").build()
 );
 ```
 
@@ -413,7 +401,7 @@ os.images().update(
 InputStream is = os.images().getAsStream("imageId");
 ```
 
-**Create a Image**
+**Create an Image**
 
 ```java
 // (URL Payload in this example, File, InputStream are other payloads available)

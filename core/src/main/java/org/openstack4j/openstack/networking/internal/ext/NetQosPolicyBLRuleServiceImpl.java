@@ -37,7 +37,7 @@ public class NetQosPolicyBLRuleServiceImpl extends BaseNetworkingServices implem
         checkNotNull(bandwidthLimitRule);
         checkNotNull(bandwidthLimitRule.getId(), "netQosPolicy rule id must not be null");
         return put(NeutronNetQosPolicyBandwidthLimitRule.class, uri("/qos/policies/%s/bandwidth_limit_rules/%s",
-                policyId, getAndClearIdentifier(bandwidthLimitRule)))
+                policyId, bandwidthLimitRule.getId()))
                 .entity(bandwidthLimitRule).execute();
     }
 
@@ -58,9 +58,4 @@ public class NetQosPolicyBLRuleServiceImpl extends BaseNetworkingServices implem
         return deleteWithResponse(uri("/qos/policies/%s/bandwidth_limit_rules/%s", policyId, ruleId)).execute();
     }
 
-    private String getAndClearIdentifier(NetQosPolicyBandwidthLimitRule update) {
-        String id = update.getId();
-        update.setId(null);
-        return id;
-    }
 }

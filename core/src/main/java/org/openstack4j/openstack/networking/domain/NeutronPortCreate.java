@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import org.openstack4j.model.ModelEntity;
+import org.openstack4j.model.network.ExtraDhcpOptCreate;
 import org.openstack4j.model.network.Port;
 import org.openstack4j.openstack.common.ListEntity;
 
@@ -70,6 +71,9 @@ public class NeutronPortCreate implements ModelEntity {
     @JsonProperty("binding:profile")
     private Map<String, Object> profile;
 
+    @JsonProperty("extra_dhcp_opts")
+    private List<? extends ExtraDhcpOptCreate> extraDhcpOpts;
+
 
     public NeutronPortCreate() {
     }
@@ -99,8 +103,7 @@ public class NeutronPortCreate implements ModelEntity {
         c.vifDetails = port.getVifDetails();
         c.vNicType = port.getvNicType();
         c.profile = port.getProfile();
-
-
+        c.extraDhcpOpts = port.getExtraDhcpOpts();
         return c;
     }
 

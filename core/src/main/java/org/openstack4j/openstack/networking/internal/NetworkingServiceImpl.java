@@ -27,6 +27,11 @@ public class NetworkingServiceImpl implements NetworkingService {
         return Apis.get(SubnetService.class);
     }
 
+    @Override
+    public SubnetPoolService subnetPool() {
+        return Apis.get(SubnetPoolService.class);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -41,6 +46,11 @@ public class NetworkingServiceImpl implements NetworkingService {
     @Override
     public RouterService router() {
         return Apis.get(RouterService.class);
+    }
+
+    @Override
+    public RouterConntrackHelperService routerConntrackHelper() {
+        return Apis.get(RouterConntrackHelperService.class);
     }
 
     /**

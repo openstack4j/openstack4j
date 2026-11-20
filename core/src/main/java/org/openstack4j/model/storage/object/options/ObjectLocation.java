@@ -2,12 +2,16 @@ package org.openstack4j.model.storage.object.options;
 
 import java.util.Objects;
 
+import com.google.common.net.PercentEscaper;
 /**
  * Holds location information for an Object (Container and Object name including path)
  *
  * @author Jeremy Unruh
  */
 public final class ObjectLocation {
+
+    private static final PercentEscaper PATH_ESCAPER = new PercentEscaper("-._~/", false);
+    private static final PercentEscaper SEGMENT_ESCAPER = new PercentEscaper("-._~", false);
 
     private String containerName;
     private String objectName;
@@ -35,6 +39,18 @@ public final class ObjectLocation {
     }
 
     public String getURI() {
-        return String.format("/%s/%s", containerName, objectName);
+        if (containerName.isEmpty() || containerName.indexOf('/') >= 0 || ".".equals(containerName) || "..".equals(containerName)) {
+            throw new IllegalArgumentException("Container name must be a single path segment");
+        }
+        for (String component : objectName.split("/", -1)) {
+            if (component.isEmpty() || ".".equals(component) || "..".equals(component)) {
+                return "/" + encodePath(containerName) + "/" + SEGMENT_ESCAPER.escape(objectName);
+            }
+        }
+        return "/" + encodePath(containerName) + "/" + encodePath(objectName);
+    }
+
+    public static String encodePath(String path) {
+        return PATH_ESCAPER.escape(path);
     }
 }

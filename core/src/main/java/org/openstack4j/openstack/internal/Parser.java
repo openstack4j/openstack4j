@@ -33,6 +33,7 @@ public final class Parser {
 
     static {
         ISO8601_FORMAT.setTimeZone(new SimpleTimeZone(0, "GMT"));
+        RFC822_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT"));
     }
 
     /**

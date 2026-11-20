@@ -130,9 +130,11 @@ public class DefaultAPIProvider implements APIProvider {
         bind(ArtifactService.class, ArtifactServiceImpl.class);
         bind(ToscaTemplatesArtifactService.class, ToscaTemplatesArtifactServiceImpl.class);
         bind(SubnetService.class, SubnetServiceImpl.class);
+        bind(SubnetPoolService.class, SubnetPoolServiceImpl.class);
         bind(AvailabilityZoneService.class, AvailabilityZoneServiceImpl.class);
         bind(PortService.class, PortServiceImpl.class);
         bind(RouterService.class, RouterServiceImpl.class);
+        bind(RouterConntrackHelperService.class, RouterConntrackHelperServiceImpl.class);
         bind(OctaviaService.class, OctaviaServiceImpl.class);
         bind(org.openstack4j.api.octavia.LoadBalancerV2Service.class, org.openstack4j.openstack.octavia.internal.LoadBalancerV2ServiceImpl.class);
         bind(org.openstack4j.api.octavia.ListenerV2Service.class, org.openstack4j.openstack.octavia.internal.ListenerV2ServiceImpl.class);

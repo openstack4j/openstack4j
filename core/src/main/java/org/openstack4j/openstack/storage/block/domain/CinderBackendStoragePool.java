@@ -3,6 +3,9 @@ package org.openstack4j.openstack.storage.block.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.openstack4j.openstack.common.LenientIntegerDeserializer;
+import org.openstack4j.openstack.common.LenientLongDeserializer;
 import org.openstack4j.openstack.common.ListResult;
 
 /**
@@ -32,30 +35,36 @@ public class CinderBackendStoragePool implements VolumeBackendPool {
         @JsonProperty("goodness_function")
         private String goodnessfunction;
         @JsonProperty("total_volumes")
+        @JsonDeserialize(using = LenientIntegerDeserializer.class)
         private Integer totalvolumes;
         @JsonProperty("multiattach")
         private Boolean multiattach;
         @JsonProperty("provisioned_capacity_gb")
+        @JsonDeserialize(using = LenientLongDeserializer.class)
         private Long provisionedcapacitygb;
         @JsonProperty("timestamp")
         private String timestamp;
         @JsonProperty("allocated_capacity_gb")
+        @JsonDeserialize(using = LenientIntegerDeserializer.class)
         private Integer allocatedcapacitygb;
         @JsonProperty("volume_backend_name")
         private String volumeBackendName;
         @JsonProperty("thin_provisioning_support")
         private Boolean thinprovisioningsupport;
         @JsonProperty("free_capacity_gb")
+        @JsonDeserialize(using = LenientLongDeserializer.class)
         private Long freeCapacityGb;
         @JsonProperty("driver_version")
         private String driverVersion;
         @JsonProperty("location_info")
         private String locationinfo;
         @JsonProperty("total_capacity_gb")
+        @JsonDeserialize(using = LenientLongDeserializer.class)
         private Long totalCapacityGb;
         @JsonProperty("thick_provisioning_support")
         private Boolean thickprovisioningsupport;
         @JsonProperty("reserved_percentage")
+        @JsonDeserialize(using = LenientIntegerDeserializer.class)
         private Integer reservedPercentage;
         @JsonProperty("QoS_support")
         private Boolean qosSupport;

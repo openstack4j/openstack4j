@@ -129,6 +129,19 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         Identifier domain;
         AuthScope scope;
         String tokenId;
+        private KeystoneAuth applicationCredential;
+
+        @Override
+        public ClientV3 applicationCredential(String id, String secret) {
+            applicationCredential = KeystoneAuth.applicationCredential(id, secret);
+            return this;
+        }
+
+        @Override
+        public ClientV3 applicationCredential(String name, String secret, Identifier user, Identifier userDomain) {
+            applicationCredential = KeystoneAuth.applicationCredential(name, secret, user, userDomain);
+            return this;
+        }
 
         @Override
         public ClientV3 domainName(String domainName) {
@@ -158,6 +171,12 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
 
         @Override
         public OSClientV3 authenticate() throws AuthenticationException {
+            if (applicationCredential != null) {
+                if (scope != null || tokenId != null || user != null) {
+                    throw new IllegalStateException("Application credentials specify their own authentication method and project scope");
+                }
+                return (OSClientV3) OSAuthenticator.invoke(applicationCredential, endpoint, perspective, config, provider);
+            }
             // token based authentication
             if (tokenId != null && tokenId.length() > 0)
                 if (scope != null) {

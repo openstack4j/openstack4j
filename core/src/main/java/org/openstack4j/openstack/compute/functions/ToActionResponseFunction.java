@@ -28,22 +28,23 @@ public class ToActionResponseFunction implements Function<HttpResponse, ActionRe
 
     public ActionResponse apply(HttpResponse response, String action) {
         try {
-            if (response.getStatus() == 409 || response.getStatus() == 500) {
-                ActionResponse ar = ResponseToActionResponse.INSTANCE.apply(response, true);
-                if (ar != null) {
-                    return ar;
-                }
-
-                LOG.error("{}, {}", response.getStatus(), response.getStatusMessage());
-                if (action == null) {
-                    return ActionResponse.actionFailed("Instance currently is in build state", 409);
-                }
-                return ActionResponse.actionFailed(String.format(FAILED_MSG, action, action), 409);
+            int status = response.getStatus();
+            if (status < 400) {
+                return ActionResponse.actionSuccess();
             }
-            if (response.getStatus() >= 400 && response.getStatus() < 409) {
-                return ResponseToActionResponse.INSTANCE.apply(response);
+            boolean legacyConflict = status == 409 || status == 500;
+            try {
+                ActionResponse error = ResponseToActionResponse.INSTANCE.apply(response, legacyConflict);
+                if (error != null) {
+                    return error;
+                }
+            } catch (RuntimeException e) {
+                LOG.debug("Unreadable error body for status {}", status);
+                return ActionResponse.actionFailed(response.getStatusMessage(), status);
             }
-            return ActionResponse.actionSuccess();
+            LOG.error("{}, {}", status, response.getStatusMessage());
+            return ActionResponse.actionFailed(action == null ? "Instance currently is in build state"
+                    : String.format(FAILED_MSG, action, action), 409);
         } finally {
             HttpEntityHandler.closeQuietly(response);
         }

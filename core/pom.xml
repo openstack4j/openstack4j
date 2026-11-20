@@ -1,16 +1,15 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.github.openstack4j.core</groupId>
+        <groupId>io.github.spechurkin</groupId>
         <artifactId>openstack4j-parent</artifactId>
-        <version>3.13</version>
+        <version>4.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>openstack4j-core</artifactId>
     <name>OpenStack4j Core</name>
     <description>OpenStack Java API</description>
-    <version>3.13</version>
-    <url>https://github.com/openstack4j/openstack4j/</url>
+    <url>https://github.com/spechurkin/openstack4j/</url>
     <packaging>jar</packaging>
 
     <build>
@@ -28,6 +27,7 @@
                         </goals>
                         <configuration>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
                             <createSourcesJar>true</createSourcesJar>
                             <shadedClassifierName>withdeps</shadedClassifierName>
                         </configuration>
@@ -182,14 +182,24 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>32.0.1-jre</version>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>2.0</version>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.flipkart.zjsonpatch</groupId>
+            <artifactId>zjsonpatch</artifactId>
+            <version>0.4.16</version>
         </dependency>
     </dependencies>
     <reporting>

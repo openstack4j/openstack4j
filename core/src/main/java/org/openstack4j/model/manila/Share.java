@@ -1,6 +1,7 @@
 package org.openstack4j.model.manila;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -164,21 +165,36 @@ public interface Share extends ModelEntity {
         EXTENDING_ERROR,
         SHRINKING,
         SHRINKING_ERROR,
-        SHRINKING_POSSIBLE_DATA_LOSS_ERROR;
+        SHRINKING_POSSIBLE_DATA_LOSS_ERROR,
+        UNRECOGNIZED;
 
         @JsonCreator
         public static Status value(String v) {
-            return valueOf(v.toUpperCase());
+            try {
+                return valueOf(v.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException e) {
+                return UNRECOGNIZED;
+            }
         }
 
         @JsonValue
         public String value() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.ROOT);
         }
     }
 
     enum Protocol {
-        NFS, CIFS, GlusterFS, HDFS
+        NFS, CIFS, GlusterFS, HDFS, CEPHFS, MAPRFS, LUSTRE, WEKAFS, UNRECOGNIZED;
+
+        @JsonCreator
+        public static Protocol value(String v) {
+            for (Protocol protocol : values()) {
+                if (protocol.name().equalsIgnoreCase(v)) {
+                    return protocol;
+                }
+            }
+            return UNRECOGNIZED;
+        }
     }
 
     enum TaskState {
@@ -187,16 +203,21 @@ public interface Share extends ModelEntity {
         MIGRATION_ERROR,
         MIGRATION_SUCCESS,
         MIGRATION_COMPLETING,
-        MIGRATING;
+        MIGRATING,
+        UNRECOGNIZED;
 
         @JsonCreator
         public static TaskState value(String v) {
-            return valueOf(v.toUpperCase());
+            try {
+                return valueOf(v.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException e) {
+                return UNRECOGNIZED;
+            }
         }
 
         @JsonValue
         public String value() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.ROOT);
         }
     }
 }

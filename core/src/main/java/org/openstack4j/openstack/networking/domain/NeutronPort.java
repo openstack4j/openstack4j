@@ -2,6 +2,7 @@ package org.openstack4j.openstack.networking.domain;
 
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -84,6 +85,8 @@ public class NeutronPort implements Port {
 
     @JsonProperty("binding:profile")
     private Map<String, Object> profile;
+    @JsonIgnore
+    private boolean profileRequested;
 
     @JsonProperty("created_at")
     private Date createdTime;
@@ -98,6 +101,16 @@ public class NeutronPort implements Port {
     @Override
     public PortBuilder toBuilder() {
         return new PortConcreteBuilder(this);
+    }
+
+    @Override
+    @JsonProperty("extra_dhcp_opts")
+    public List<? extends ExtraDhcpOptCreate> getExtraDhcpOpts() {
+        return extraDhcpOptCreates;
+    }
+
+    boolean isProfileRequested() {
+        return profileRequested;
     }
 
     /**
@@ -575,6 +588,7 @@ public class NeutronPort implements Port {
         @Override
         public PortBuilder profile(Map<String, Object> profile) {
             m.profile = profile;
+            m.profileRequested = true;
             return this;
         }
 

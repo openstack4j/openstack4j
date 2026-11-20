@@ -94,6 +94,10 @@ public class BaseOpenStackService {
         return String.format(path, params);
     }
 
+    protected String pathSegment(String identifier) {
+        return PathSegment.encode(identifier);
+    }
+
     private <R> Invocation<R> builder(Class<R> returnType, String[] path, HttpMethod method) {
         return builder(returnType, String.join("", path), method);
     }
