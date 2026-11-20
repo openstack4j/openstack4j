@@ -55,7 +55,10 @@ To use another connector, see [the connector usage guide](connectors/README.md).
 
 Push a tag in the form `vMAJOR.MINOR.PATCH` to `spechurkin/openstack4j`, for example `v4.0.0` for version `4.0.0`.
 The tag must match the version in `pom.xml` and point to a commit reachable from the default branch (`main` or `master`).
-The **Release** workflow runs the Maven verification build and publishes a GitHub Release after it passes.
+The **Release** workflow builds with Maven and then publishes to GitHub Releases, GitHub Packages, and Maven Central.
+The release build skips tests. The **openstack4j CI** workflow runs tests separately.
+Maven Central publishing uses the repository's `CENTRAL_USERNAME`, `CENTRAL_TOKEN`, and `GPG_PRIVATE_KEY` secrets.
+Set `GPG_PASSPHRASE` if the signing key is passphrase-protected.
 
 Contributing
 ------------
