@@ -141,6 +141,8 @@ public abstract class AbstractTest {
         }
         r.setBody(body);
         r.setResponseCode(statusCode);
+        // Test classes reuse service ports after replacing the server.
+        r.setHeader("Connection", "close");
         server.enqueue(r);
     }
 
