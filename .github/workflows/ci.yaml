@@ -10,7 +10,7 @@ permissions:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-24.04
 
         strategy:
             matrix:
@@ -25,13 +25,9 @@ jobs:
                     distribution: 'temurin'
                     java-version: ${{ matrix.java-version }}
             -   run: mvn -B install --no-transfer-progress --update-snapshots
-            -   uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
-                if: matrix.java-version == 11
-                with:
-                    distribution: temurin
-                    java-version: '8'
             -   name: Run packaged distribution on Java 8
                 if: matrix.java-version == 11
                 run: |
                     jars=(distribution/target/*-withdeps.jar)
-                    java -cp "distribution/target/test-classes:${jars[0]}" org.openstack4j.Java8Smoke
+                    "${JAVA_HOME_8_X64:?}/bin/java" \
+                        -cp "distribution/target/test-classes:${jars[0]}" org.openstack4j.Java8Smoke
