@@ -1,11 +1,10 @@
 OpenStack4j
 ===========
 
-[![Build Status](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml/badge.svg)](https://github.com/openstack4j/openstack4j/actions/workflows/ci.yaml)
+[![Build Status](https://github.com/spechurkin/openstack4j/actions/workflows/ci.yaml/badge.svg)](https://github.com/spechurkin/openstack4j/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.spechurkin/openstack4j)](https://central.sonatype.com/artifact/io.github.spechurkin/openstack4j)
 [![javadoc](https://javadoc.io/badge2/io.github.spechurkin/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/io.github.spechurkin/openstack4j-core)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=openstack4j_openstack4j&metric=alert_status)](https://sonarcloud.io/dashboard?id=openstack4j_openstack4j)
 
 OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment. This includes
 support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions
@@ -17,11 +16,11 @@ support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Pr
 * Documentation/Tutorials: [openstack4j.github.io/learn/](https://openstack4j.github.io/learn/)
 * Questions - Use Google Groups: [groups.google.com/group/openstack4j](http://groups.google.com/group/openstack4j)
 * Questions - [StackOverflow](http://stackoverflow.com/search?q=openstack4j)
-* Changelog: [Changelog](https://github.com/openstack4j/openstack4j/releases)
+* Changelog: [Changelog](https://github.com/spechurkin/openstack4j/releases)
 
 ## Bug Reports
 
-* GitHub Issues: [Click Here](https://github.com/openstack4j/openstack4j/issues)
+* GitHub Issues: [Click Here](https://github.com/spechurkin/openstack4j/issues)
 
 ## Java version support
 
