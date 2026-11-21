@@ -3,8 +3,7 @@ OpenStack4j
 
 [![Build Status](https://github.com/spechurkin/openstack4j/actions/workflows/ci.yaml/badge.svg)](https://github.com/spechurkin/openstack4j/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)]()
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.spechurkin/openstack4j)](https://central.sonatype.com/artifact/io.github.spechurkin/openstack4j)
-[![javadoc](https://javadoc.io/badge2/io.github.spechurkin/openstack4j-core/javadoc.svg)](https://javadoc.io/doc/io.github.spechurkin/openstack4j-core)
+[GitHub Packages](https://github.com/spechurkin/openstack4j/packages)
 
 OpenStack4j is a fluent OpenStack client that allows provisioning and control of an OpenStack deployment. This includes
 support for Identity, Compute, Image, Network, Block Storage, Telemetry, Data Processing as well as many extensions
@@ -35,6 +34,20 @@ Maven
 OpenStack4j version 2.0.0+ is now modular. One of the benefits to this is the ability to choose the connector that you
 would like to use in your environment.
 
+Add GitHub Packages to your Maven repositories.
+
+```xml
+<repositories>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/spechurkin/openstack4j</url>
+    </repository>
+</repositories>
+```
+
+In `~/.m2/settings.xml`, configure the `github` server with your GitHub username and a personal access token (classic)
+with the `read:packages` scope. See [GitHub's Maven authentication guide](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-with-a-personal-access-token).
+
 **Using OpenStack4j with the default RESTEasy connector**
 
 ```xml
@@ -54,10 +67,10 @@ To use another connector, see [the connector usage guide](connectors/README.md).
 
 Push a tag in the form `vMAJOR.MINOR.PATCH` to `spechurkin/openstack4j`, for example `v4.0.0` for version `4.0.0`.
 The tag must match the version in `pom.xml` and point to a commit reachable from the default branch (`main` or `master`).
-The **Release** workflow builds with Maven and then publishes to GitHub Releases, GitHub Packages, and Maven Central.
-The release build skips tests. The **openstack4j CI** workflow runs tests separately.
-Maven Central publishing uses the repository's `CENTRAL_USERNAME`, `CENTRAL_TOKEN`, and `GPG_PRIVATE_KEY` secrets.
-Set `GPG_PASSPHRASE` if the signing key is passphrase-protected.
+The **Release** workflow runs the build and tests, publishes to GitHub Packages, then creates a GitHub Release.
+Maven publishing uses the workflow's built-in `GITHUB_TOKEN`.
+Packages appear in the [repository's Packages section](https://github.com/spechurkin/openstack4j/packages)
+and the [owner's Packages tab](https://github.com/spechurkin?tab=packages).
 
 Contributing
 ------------
